@@ -1,0 +1,460 @@
+{
+  "id": "pompeii",
+  "name": "Pompeii Archaeological Park",
+  "city": "Pompeii",
+  "languages": [
+    "en"
+  ],
+  "featuredPlace": "thermopolium",
+  "welcome": {
+    "eyebrow": "Pompeii · Day 2 of your trip",
+    "headline": "Every stone here has a secret.",
+    "body": "Point your camera at anything. Guess its secret, then find the clue. Takes 30 seconds.",
+    "image": "forum",
+    "imageAnchor": {
+      "x": 0.56,
+      "y": 0.5
+    }
+  },
+  "tickets": {
+    "tags": [
+      "Named tickets",
+      "Book ahead"
+    ],
+    "price": "€20",
+    "priceNote": "Live price from official site",
+    "cap": "20,000",
+    "capNote": "visitors per day",
+    "bookingURL": "https://www.pompeiisites.org"
+  },
+  "thenNow": {
+    "title": "Then & Now · the Forum",
+    "then": "forum1841",
+    "thenCaption": "1841 · painted by Købke",
+    "now": "forum"
+  },
+  "postcardImage": "forum",
+  "geoBounds": {
+    "north": 40.7525,
+    "south": 40.7455,
+    "west": 14.479,
+    "east": 14.495
+  },
+  "map": {
+    "width": 361,
+    "height": 520,
+    "outline": [
+      [
+        60,
+        46
+      ],
+      [
+        132,
+        26
+      ],
+      [
+        250,
+        34
+      ],
+      [
+        318,
+        70
+      ],
+      [
+        338,
+        160
+      ],
+      [
+        330,
+        300
+      ],
+      [
+        300,
+        420
+      ],
+      [
+        210,
+        470
+      ],
+      [
+        96,
+        462
+      ],
+      [
+        40,
+        380
+      ],
+      [
+        26,
+        230
+      ],
+      [
+        34,
+        120
+      ]
+    ],
+    "water": [
+      [
+        0,
+        300
+      ],
+      [
+        18,
+        300
+      ],
+      [
+        26,
+        340
+      ],
+      [
+        18,
+        380
+      ],
+      [
+        18,
+        520
+      ],
+      [
+        0,
+        520
+      ]
+    ],
+    "streets": [
+      {
+        "from": [
+          40,
+          300
+        ],
+        "to": [
+          336,
+          278
+        ]
+      },
+      {
+        "from": [
+          48,
+          168
+        ],
+        "to": [
+          334,
+          150
+        ]
+      },
+      {
+        "from": [
+          196,
+          34
+        ],
+        "to": [
+          206,
+          466
+        ]
+      },
+      {
+        "from": [
+          110,
+          40
+        ],
+        "to": [
+          104,
+          450
+        ]
+      }
+    ],
+    "blocks": [
+      {
+        "x": 62,
+        "y": 232,
+        "w": 34,
+        "h": 58
+      }
+    ],
+    "mountains": [
+      [
+        [
+          250,
+          34
+        ],
+        [
+          284,
+          0
+        ],
+        [
+          296,
+          10
+        ],
+        [
+          308,
+          -2
+        ],
+        [
+          342,
+          34
+        ]
+      ]
+    ],
+    "labels": [
+      {
+        "text": "Forum",
+        "x": 70,
+        "y": 222,
+        "style": "place"
+      },
+      {
+        "text": "Vesuvius ↗",
+        "x": 296,
+        "y": 46,
+        "style": "place"
+      },
+      {
+        "text": "VIA DELL’ABBONDANZA",
+        "x": 190,
+        "y": 310,
+        "rotation": -4,
+        "style": "street"
+      },
+      {
+        "text": "VIA DI STABIA",
+        "x": 216,
+        "y": 410,
+        "rotation": 88,
+        "style": "street"
+      }
+    ]
+  },
+  "places": [
+    {
+      "id": "forum",
+      "name": "Forum",
+      "site": "Pompeii",
+      "street": "Via Marina",
+      "latitude": 40.7489,
+      "longitude": 14.4848,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.56,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.35,
+        "y": 0.2,
+        "w": 0.4,
+        "h": 0.4
+      },
+      "clues": [
+        "Open square",
+        "Columns",
+        "Vesuvius behind"
+      ],
+      "mapPoint": [
+        80,
+        262
+      ],
+      "showsMapLabel": false,
+      "referenceImages": [
+        "forum",
+        "forum1841"
+      ],
+      "story": {
+        "eyebrow": "Forum · Pompeii",
+        "question": "This big open square was the heart of Roman Pompeii. What happened here?",
+        "answers": [
+          "Chariot races",
+          "Business, politics and worship",
+          "Gladiator fights"
+        ],
+        "correctIndex": 1,
+        "answerTitle": "Business, politics and worship.",
+        "subtitle": "This was Pompeii’s forum.",
+        "body": "Temples, the law court and market halls stood around this square, with the Temple of Jupiter at the north end and Vesuvius rising behind it.",
+        "source": "Pompeii Archaeological Park",
+        "theory": null,
+        "dinnerLine": "“In Pompeii, the main square came with a volcano view.”",
+        "lookCloser": null,
+        "sticker": {
+          "id": "vesuvius-view",
+          "title": "Vesuvius from the Forum",
+          "collection": "Big views",
+          "image": "forum",
+          "crop": {
+            "x": 0.4,
+            "y": 0.16,
+            "w": 0.45,
+            "h": 0.34
+          },
+          "back": "Vesuvius rises right behind the Temple of Jupiter."
+        },
+        "recallChoices": [
+          "Races",
+          "Business",
+          "Fights"
+        ],
+        "recallPrompt": "Remember the big square in Pompeii? What happened there?"
+      }
+    },
+    {
+      "id": "tragic-poet",
+      "name": "House of the Tragic Poet",
+      "site": "Pompeii",
+      "street": "Vicolo della Fullonica",
+      "latitude": 40.7499,
+      "longitude": 14.484,
+      "cameraImage": "caveCanem",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.15,
+        "y": 0.2,
+        "w": 0.7,
+        "h": 0.6
+      },
+      "clues": [
+        "Mosaic floor",
+        "A dog",
+        "Latin letters"
+      ],
+      "mapPoint": [
+        118,
+        130
+      ],
+      "showsMapLabel": true,
+      "referenceImages": [
+        "caveCanem"
+      ],
+      "story": {
+        "eyebrow": "House of the Tragic Poet · Pompeii",
+        "question": "The Latin words in this doorway mosaic are a message to visitors. What do they say?",
+        "answers": [
+          "Welcome, friend",
+          "Beware of the dog",
+          "Shop closed today"
+        ],
+        "correctIndex": 1,
+        "answerTitle": "Beware of the dog.",
+        "subtitle": "In Latin: Cave canem.",
+        "body": "The mosaic sits in the entrance floor, so every visitor stepped over a snarling dog on the way in.",
+        "source": "Pompeii Archaeological Park",
+        "theory": null,
+        "dinnerLine": "Romans had “Beware of the dog” signs too, made of tiny stones.",
+        "lookCloser": null,
+        "sticker": {
+          "id": "cave-canem",
+          "title": "Beware of the dog",
+          "collection": "Warnings",
+          "image": "caveCanem",
+          "crop": {
+            "x": 0.04,
+            "y": 0.04,
+            "w": 0.92,
+            "h": 0.92
+          },
+          "back": "Pompeii’s front doors had “Beware of the dog” in mosaic."
+        },
+        "recallChoices": [
+          "Welcome",
+          "Dog",
+          "Closed"
+        ],
+        "recallPrompt": "Remember the mosaic in the doorway? What did it warn you about?"
+      }
+    },
+    {
+      "id": "thermopolium",
+      "name": "Thermopolium",
+      "site": "Pompeii",
+      "street": "Via dell’Abbondanza",
+      "latitude": 40.7497,
+      "longitude": 14.489,
+      "cameraImage": "thermo",
+      "cameraAnchor": {
+        "x": 0.38,
+        "y": 0.6
+      },
+      "focus": {
+        "x": 0.29,
+        "y": 0.52,
+        "w": 0.26,
+        "h": 0.28
+      },
+      "clues": [
+        "Stone counter",
+        "Round holes",
+        "Via dell’Abbondanza"
+      ],
+      "mapPoint": [
+        262,
+        286
+      ],
+      "showsMapLabel": true,
+      "referenceImages": [
+        "thermo",
+        "shrine"
+      ],
+      "story": {
+        "eyebrow": "Thermopolium · Pompeii",
+        "question": "Romans queued at this counter every day. What was it?",
+        "answers": [
+          "A bank counter",
+          "A street-food bar",
+          "A bakery oven"
+        ],
+        "correctIndex": 1,
+        "answerTitle": "A street-food bar.",
+        "subtitle": "Romans called it a thermopolium.",
+        "body": "The holes held big jars of hot food and wine, served straight to people in the street. This one belonged to Lucius Vetutius Placidus.",
+        "source": "Pompeii Archaeological Park",
+        "theory": {
+          "label": "THEORY",
+          "lead": "Some historians think",
+          "text": "many Romans ate out because small flats had no kitchen."
+        },
+        "dinnerLine": "“Pompeii had fast food almost 2,000 years ago.”",
+        "lookCloser": {
+          "prompt": "Behind the counter is a painted shrine. Find the two snakes that guarded the shop.",
+          "hint": "Tip: look below the painted gods",
+          "image": "shrine",
+          "anchor": {
+            "x": 0.55,
+            "y": 1.0
+          },
+          "zoom": 1.15,
+          "target": {
+            "x": 0.555,
+            "y": 0.72
+          }
+        },
+        "sticker": {
+          "id": "guardian-snakes",
+          "title": "The guardian snakes",
+          "collection": "Everyday Romans",
+          "image": "shrine",
+          "crop": {
+            "x": 0.4,
+            "y": 0.57,
+            "w": 0.32,
+            "h": 0.3
+          },
+          "back": "Romans painted snakes by the counter to protect the shop."
+        },
+        "recallChoices": [
+          "Bank",
+          "Bar",
+          "Bakery"
+        ],
+        "recallPrompt": "Remember yesterday’s stone counter? Was it a bank, a bar or a bakery?"
+      }
+    }
+  ],
+  "demoTrip": {
+    "visited": [
+      "forum",
+      "tragic-poet"
+    ],
+    "collected": [
+      "vesuvius-view",
+      "cave-canem"
+    ]
+  }
+}

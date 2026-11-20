@@ -1,0 +1,132 @@
+{
+  "welcome": {
+    "eyebrow": "Pompeji · Tag 2 deiner Reise",
+    "headline": "Hier hat jeder Stein ein Geheimnis.",
+    "body": "Richte die Kamera auf irgendetwas. Rate sein Geheimnis und finde dann den Hinweis. Dauert 30 Sekunden."
+  },
+  "tickets": {
+    "tags": [
+      "Namentliche Tickets",
+      "Vorher buchen"
+    ],
+    "priceNote": "Aktueller Preis von der offiziellen Website",
+    "capNote": "Besucher pro Tag"
+  },
+  "thenNow": {
+    "title": "Damals & heute · das Forum",
+    "thenCaption": "1841 · gemalt von Købke"
+  },
+  "places": [
+    {
+      "id": "forum",
+      "name": "Forum",
+      "clues": [
+        "Offener Platz",
+        "Säulen",
+        "Der Vesuv dahinter"
+      ],
+      "story": {
+        "eyebrow": "Forum · Pompeji",
+        "question": "Dieser große Platz war das Herz des römischen Pompeji. Was passierte hier?",
+        "answers": [
+          "Wagenrennen",
+          "Handel, Politik und Gottesdienst",
+          "Gladiatorenkämpfe"
+        ],
+        "answerTitle": "Handel, Politik und Gottesdienst.",
+        "subtitle": "Das war das Forum von Pompeji.",
+        "body": "Tempel, Gericht und Markthallen umgaben diesen Platz, mit dem Jupitertempel im Norden und dem Vesuv direkt dahinter.",
+        "source": "Archäologischer Park Pompeji",
+        "dinnerLine": "„In Pompeji hatte der Hauptplatz Vulkanblick.“",
+        "sticker": {
+          "title": "Der Vesuv vom Forum aus",
+          "collection": "Große Ausblicke",
+          "back": "Der Vesuv erhebt sich direkt hinter dem Jupitertempel."
+        },
+        "recallChoices": [
+          "Rennen",
+          "Handel",
+          "Kämpfe"
+        ],
+        "recallPrompt": "Erinnerst du dich an den großen Platz in Pompeji? Was passierte dort?"
+      }
+    },
+    {
+      "id": "tragic-poet",
+      "name": "Haus des tragischen Dichters",
+      "clues": [
+        "Mosaikboden",
+        "Ein Hund",
+        "Lateinische Buchstaben"
+      ],
+      "story": {
+        "eyebrow": "Haus des tragischen Dichters · Pompeji",
+        "question": "Die lateinischen Wörter in diesem Eingangsmosaik sind eine Botschaft an Besucher. Was steht da?",
+        "answers": [
+          "Willkommen, Freund",
+          "Vorsicht, bissiger Hund",
+          "Heute geschlossen"
+        ],
+        "answerTitle": "Vorsicht, bissiger Hund.",
+        "subtitle": "Auf Latein: Cave canem.",
+        "body": "Das Mosaik liegt im Boden des Eingangs: Jeder Besucher stieg über einen knurrenden Hund.",
+        "source": "Archäologischer Park Pompeji",
+        "dinnerLine": "„Auch die Römer warnten vor dem Hund, mit Schildern aus winzigen Steinen.“",
+        "sticker": {
+          "title": "Vorsicht, Hund",
+          "collection": "Warnungen",
+          "back": "Pompejis Haustüren warnten im Mosaik vor dem Hund."
+        },
+        "recallChoices": [
+          "Willkommen",
+          "Hund",
+          "Geschlossen"
+        ],
+        "recallPrompt": "Erinnerst du dich an das Mosaik im Eingang? Wovor hat es gewarnt?"
+      }
+    },
+    {
+      "id": "thermopolium",
+      "name": "Thermopolium",
+      "clues": [
+        "Steintheke",
+        "Runde Löcher",
+        "Via dell’Abbondanza"
+      ],
+      "story": {
+        "eyebrow": "Thermopolium · Pompeji",
+        "question": "Die Römer standen hier jeden Tag Schlange. Was war das?",
+        "answers": [
+          "Ein Bankschalter",
+          "Eine Imbissbude",
+          "Ein Backofen"
+        ],
+        "answerTitle": "Eine Imbissbude.",
+        "subtitle": "Die Römer nannten sie Thermopolium.",
+        "body": "In den Löchern standen große Krüge mit warmem Essen und Wein, direkt an die Leute auf der Straße verkauft. Diese gehörte Lucius Vetutius Placidus.",
+        "source": "Archäologischer Park Pompeji",
+        "dinnerLine": "„Pompeji hatte vor fast 2.000 Jahren schon Streetfood.“",
+        "sticker": {
+          "title": "Die Wächterschlangen",
+          "collection": "Römischer Alltag",
+          "back": "Die Römer malten Schlangen neben die Theke, um den Laden zu schützen."
+        },
+        "recallChoices": [
+          "Bank",
+          "Imbiss",
+          "Ofen"
+        ],
+        "recallPrompt": "Erinnerst du dich an die Steintheke von gestern? Bank, Imbiss oder Backofen?",
+        "theory": {
+          "label": "THEORIE",
+          "lead": "Manche Historiker glauben,",
+          "text": "dass viele Römer auswärts aßen, weil kleine Wohnungen keine Küche hatten."
+        },
+        "lookCloser": {
+          "prompt": "Hinter der Theke ist ein gemalter Schrein. Finde die zwei Schlangen, die den Laden beschützten.",
+          "hint": "Tipp: Schau unter die gemalten Götter"
+        }
+      }
+    }
+  ]
+}

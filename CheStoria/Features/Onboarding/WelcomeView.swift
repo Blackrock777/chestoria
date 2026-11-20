@@ -1,18 +1,19 @@
 import SwiftUI
 
-/// One screen, no account. The Forum drifts in slowly while the headline rises word by word.
+/// One screen, no account. The site's photo drifts in slowly while the headline rises word by word.
+/// Every word on this screen comes from the content files.
 struct WelcomeView: View {
     @Environment(AppModel.self) private var model
     @Environment(\.accessibilityReduceMotion) private var reduce
     @State private var zoom: CGFloat = 1.16
     @State private var shown = false
 
-    private let words = "Every stone here has a secret.".split(separator: " ").map(String.init)
-
     var body: some View {
+        @Bindable var model = model
+        let w = model.site.welcome, t = model.strings
         ZStack(alignment: .bottom) {
-            CoverImage(name: "forum", anchor: .init(x: 0.56, y: 0.5))
-                .scaleEffect(zoom, anchor: UnitPoint(x: 0.56, y: 0.4))
+            CoverImage(w.image, anchor: w.imageAnchor)
+                .scaleEffect(zoom, anchor: UnitPoint(x: w.imageAnchor.x, y: 0.4))
                 .ignoresSafeArea()
             LinearGradient(stops: [.init(color: .black.opacity(0.45), location: 0), .init(color: .clear, location: 0.22),
                                    .init(color: .clear, location: 0.42), .init(color: Color(red: 0.04, green: 0.05, blue: 0.05).opacity(0.88), location: 0.72),
@@ -23,32 +24,35 @@ struct WelcomeView: View {
             VStack(alignment: .leading, spacing: 16) {
                 HStack(spacing: 8) {
                     Circle().fill(Palette.tufo).frame(width: 8, height: 8)
-                    Text("Pompeii · Day 2 of your trip").font(.system(size: 13, weight: .semibold)).textCase(.uppercase).kerning(0.5)
+                    Text(w.eyebrow).font(.system(size: 13, weight: .semibold)).textCase(.uppercase).kerning(0.5)
                 }
                 .foregroundStyle(.white.opacity(0.8))
                 .rise(shown, delay: 0.1)
 
-                WordFlow(words: words, shown: shown, reduce: reduce)
+                WordFlow(words: w.headline.split(separator: " ").map(String.init), shown: shown, reduce: reduce)
+                    .id(w.headline)
 
-                Text("Point your camera at anything. Guess its secret, then find the clue. Takes 30 seconds.")
-                    .font(.system(size: 17)).foregroundStyle(.white.opacity(0.8))
+                Text(w.body).font(.system(size: 17)).foregroundStyle(.white.opacity(0.8))
                     .rise(shown, delay: 0.75)
 
-                HStack {
-                    Text("Stories in \(Locale.current.localizedString(forLanguageCode: Locale.current.language.languageCode?.identifier ?? "en") ?? "English")")
-                    Spacer()
-                    Text("Change").foregroundStyle(Palette.tufo)
+                Button { model.showLanguagePicker = true } label: {
+                    HStack {
+                        Text(t("welcome.storiesIn", t("lang.name")))
+                        Spacer()
+                        Text(t("common.change")).foregroundStyle(Palette.tufo)
+                    }
+                    .font(.system(size: 16, weight: .semibold)).foregroundStyle(.white)
+                    .padding(.horizontal, 16).frame(height: 52)
+                    .contentShape(Rectangle())
                 }
-                .font(.system(size: 16, weight: .semibold)).foregroundStyle(.white)
-                .padding(.horizontal, 16).frame(height: 52)
-                .glassEffect(.regular, in: .rect(cornerRadius: 18))
+                .glassEffect(.regular.interactive(), in: .rect(cornerRadius: 18))
                 .rise(shown, delay: 0.85)
 
-                Button("Start exploring") { Haptics.tap(); model.completeOnboarding() }
+                Button(t("welcome.start")) { Haptics.tap(); model.completeOnboarding() }
                     .buttonStyle(CTAButtonStyle(kind: .light))
                     .rise(shown, delay: 0.95)
 
-                Text("No account needed").font(.system(size: 13)).foregroundStyle(.white.opacity(0.6))
+                Text(t("welcome.noAccount")).font(.system(size: 13)).foregroundStyle(.white.opacity(0.6))
                     .frame(maxWidth: .infinity).rise(shown, delay: 1.05)
             }
             .padding(.horizontal, 24).padding(.bottom, 12)
@@ -75,6 +79,7 @@ private struct WordFlow: View {
     let words: [String]
     let shown: Bool
     let reduce: Bool
+    @State private var appeared = false
     var body: some View {
         FlowLayout(spacing: 11, lineSpacing: 0) {
             ForEach(Array(words.enumerated()), id: \.offset) { i, w in

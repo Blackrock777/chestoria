@@ -10,6 +10,8 @@
 | `forum1841` | *The Forum, Pompeii, with Vesuvius in the Distance* (1841), painting | Christen Schjellerup Købke | Public domain |
 | `caveCanem` | Cave canem mosaic, House of the Tragic Poet (cropped) | Argo Navis | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
 
+Test fixtures in `CheStoriaTests/Fixtures` (used only to test recognition): Pompeii Forum (Gary Todd, CC0), Cave canem mosaic (Yair Haklai, CC BY-SA 4.0), Stepping stones at Via del Tempio d’Iside (Gary Todd, public domain).
+
 The Cave canem photo is shared under CC BY-SA 4.0: the cropped version in this repository is shared under the same licence, with attribution to Argo Navis.
 
 ## Fonts

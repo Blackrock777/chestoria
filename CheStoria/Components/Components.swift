@@ -28,44 +28,70 @@ struct CoverLayout: Equatable {
     }
 }
 
-extension UIImage {
-    static func size(named name: String) -> CGSize { UIImage(named: name)?.size ?? CGSize(width: 1, height: 1) }
-}
-
 /// A photo that fills its container, framed by `anchor` and `zoom`.
+/// The source can be content (`ImageRef`, asset or URL) or a photo the person just took.
 struct CoverImage: View {
-    let name: String
+    enum Source { case ref(ImageRef), image(UIImage) }
+    let source: Source
     var anchor: NormalizedPoint = .init(x: 0.5, y: 0.5)
     var zoom: CGFloat = 1
+    @State private var loaded: UIImage?
+
+    init(_ ref: ImageRef, anchor: NormalizedPoint = .init(x: 0.5, y: 0.5), zoom: CGFloat = 1) {
+        source = .ref(ref); self.anchor = anchor; self.zoom = zoom
+    }
+    init(image: UIImage, anchor: NormalizedPoint = .init(x: 0.5, y: 0.5), zoom: CGFloat = 1) {
+        source = .image(image); self.anchor = anchor; self.zoom = zoom
+    }
+
+    private var current: UIImage? {
+        switch source {
+        case .image(let i): i
+        case .ref(let r): loaded ?? ImageLoader.shared.cached(r)
+        }
+    }
+    private var key: String {
+        switch source { case .image(let i): "img-\(ObjectIdentifier(i).hashValue)"; case .ref(let r): "\(r)" }
+    }
 
     var body: some View {
         GeometryReader { geo in
-            let l = CoverLayout(imageSize: UIImage.size(named: name), container: geo.size,
-                                anchor: CGPoint(x: anchor.x, y: anchor.y), zoom: zoom)
-            Image(name).resizable()
-                .frame(width: l.displaySize.width, height: l.displaySize.height)
-                .offset(x: l.origin.x, y: l.origin.y)
+            if let img = current {
+                let l = CoverLayout(imageSize: img.size, container: geo.size, anchor: CGPoint(x: anchor.x, y: anchor.y), zoom: zoom)
+                Image(uiImage: img).resizable()
+                    .frame(width: l.displaySize.width, height: l.displaySize.height)
+                    .offset(x: l.origin.x, y: l.origin.y)
+            } else {
+                Palette.sunk.overlay(ProgressView())
+            }
         }
         .clipped()
         .accessibilityHidden(true)
+        .task(id: key) { if current == nil, case .ref(let r) = source { loaded = await ImageLoader.shared.load(r) } }
     }
 }
 
 /// Shows only `crop` (normalised) of a photo, filling the frame.
 struct CroppedImage: View {
-    let name: String
+    let ref: ImageRef
     let crop: NormalizedRect
+    @State private var loaded: UIImage?
 
     var body: some View {
         GeometryReader { geo in
-            let img = UIImage.size(named: name)
-            let s = max(geo.size.width / (crop.w * img.width), geo.size.height / (crop.h * img.height))
-            let cx = (crop.x + crop.w / 2) * img.width * s, cy = (crop.y + crop.h / 2) * img.height * s
-            Image(name).resizable()
-                .frame(width: img.width * s, height: img.height * s)
-                .offset(x: geo.size.width / 2 - cx, y: geo.size.height / 2 - cy)
+            if let img = loaded ?? ImageLoader.shared.cached(ref) {
+                let sz = img.size
+                let s = max(geo.size.width / (crop.w * sz.width), geo.size.height / (crop.h * sz.height))
+                let cx = (crop.x + crop.w / 2) * sz.width * s, cy = (crop.y + crop.h / 2) * sz.height * s
+                Image(uiImage: img).resizable()
+                    .frame(width: sz.width * s, height: sz.height * s)
+                    .offset(x: geo.size.width / 2 - cx, y: geo.size.height / 2 - cy)
+            } else {
+                Palette.sunk
+            }
         }
         .clipped()
+        .task(id: "\(ref)") { if ImageLoader.shared.cached(ref) == nil { loaded = await ImageLoader.shared.load(ref) } }
     }
 }
 
@@ -95,7 +121,7 @@ struct StickerArt: View {
     var sheen: CGFloat = 0
 
     var body: some View {
-        CroppedImage(name: sticker.image, crop: sticker.crop)
+        CroppedImage(ref: sticker.image, crop: sticker.crop)
             .overlay {
                 LinearGradient(stops: [.init(color: .clear, location: 0.38), .init(color: .white.opacity(0.5), location: 0.5), .init(color: .clear, location: 0.62)],
                                startPoint: .topLeading, endPoint: .bottomTrailing)
@@ -132,9 +158,9 @@ struct LiveDot: View {
 }
 
 struct VerifiedPill: View {
-    let source: String
+    let text: String
     var body: some View {
-        Label("Verified · \(source)", systemImage: "checkmark")
+        Label(text, systemImage: "checkmark")
             .labelStyle(.titleAndIcon)
             .font(.system(size: 11, weight: .bold)).textCase(.uppercase).kerning(0.6)
             .foregroundStyle(Palette.maiolica)
@@ -260,6 +286,7 @@ struct Reticle: View {
 struct ShutterButton: View {
     var enabled = true
     var glowing = false
+    var label = "Take photo"
     let action: () -> Void
     @State private var glow = false
     var body: some View {
@@ -273,7 +300,7 @@ struct ShutterButton: View {
         }
         .buttonStyle(ShutterPress())
         .disabled(!enabled).opacity(enabled ? 1 : 0.45)
-        .accessibilityLabel("Take photo")
+        .accessibilityLabel(label)
         .onAppear { withAnimation(.easeInOut(duration: 0.6).repeatForever()) { glow = true } }
     }
     private struct ShutterPress: ButtonStyle {

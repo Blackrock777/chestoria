@@ -11,13 +11,14 @@ struct HuntFeedback: Equatable {
     var pulseInterval: Double { Double(max(0.28, min(1.6, distance / 150))) }
     /// 0 (far) ... 1 (on target), used for haptic intensity.
     var closeness: CGFloat { max(0, min(1, 1 - distance / 320)) }
-    var label: String {
+    /// Key into the interface strings ("closer.hot" → "hot!").
+    var labelKey: String {
         switch distance {
-        case ..<Self.foundRadius: "Found them!"
-        case ..<90: "hot!"
-        case ..<160: "warmer…"
-        case ..<260: "warm"
-        default: "colder…"
+        case ..<Self.foundRadius: "closer.found"
+        case ..<90: "closer.hot"
+        case ..<160: "closer.warmer"
+        case ..<260: "closer.warm"
+        default: "closer.colder"
         }
     }
 
@@ -29,7 +30,9 @@ struct HuntFeedback: Equatable {
 struct LookCloserView: View {
     let look: LookCloser
     let onSnap: () -> Void
+    @Environment(AppModel.self) private var model
     @Environment(\.accessibilityReduceMotion) private var reduce
+    @State private var photo: UIImage?
     @State private var ring: CGPoint?
     @State private var aim: CGPoint?
     @State private var found = false
@@ -38,15 +41,17 @@ struct LookCloserView: View {
     @State private var shown = false
 
     var body: some View {
+        let t = model.strings
+        let imageSize = (photo ?? ImageLoader.shared.cached(look.image))?.size ?? CGSize(width: 3, height: 2)
         GeometryReader { geo in
-            let layout = CoverLayout(imageSize: UIImage.size(named: look.image), container: geo.size,
+            let layout = CoverLayout(imageSize: imageSize, container: geo.size,
                                      anchor: CGPoint(x: look.anchor.x, y: look.anchor.y), zoom: look.zoom)
             let target = layout.point(look.target)
             let pos = ring ?? CGPoint(x: geo.size.width / 2, y: geo.size.height * 0.47)
             let fb = HuntFeedback(distance: HuntFeedback.distance(pos, target))
 
             ZStack(alignment: .topLeading) {
-                CoverImage(name: look.image, anchor: look.anchor, zoom: look.zoom)
+                CoverImage(look.image, anchor: look.anchor, zoom: look.zoom)
                 RadialGradient(colors: [.clear, .black.opacity(0.55)], center: .init(x: 0.5, y: 0.55), startRadius: geo.size.width * 0.45, endRadius: geo.size.height * 0.75)
                 LinearGradient(stops: [.init(color: .black.opacity(0.5), location: 0), .init(color: .clear, location: 0.25),
                                        .init(color: .clear, location: 0.7), .init(color: .black.opacity(0.55), location: 1)], startPoint: .top, endPoint: .bottom)
@@ -61,7 +66,7 @@ struct LookCloserView: View {
             .overlay(alignment: .top) {
                 VStack(spacing: 14) {
                     VStack(alignment: .leading, spacing: 6) {
-                        Text("Look closer").font(.system(size: 11, weight: .bold)).textCase(.uppercase).kerning(1.2).foregroundStyle(Palette.tufo)
+                        Text(t("closer.eyebrow")).font(.system(size: 11, weight: .bold)).textCase(.uppercase).kerning(1.2).foregroundStyle(Palette.tufo)
                         Text(look.prompt).font(Typeface.display(20)).foregroundStyle(.white).fixedSize(horizontal: false, vertical: true)
                     }
                     .padding(.horizontal, 18).padding(.vertical, 16)
@@ -69,12 +74,12 @@ struct LookCloserView: View {
                     .glassEffect(.regular, in: .rect(cornerRadius: 26))
                     .rise(shown, delay: 0.1)
 
-                    Text(aim == nil && !found ? "Drag across the photo" : fb.label)
+                    Text(aim == nil && !found ? t("closer.drag") : t(fb.labelKey))
                         .font(Typeface.hand(24)).foregroundStyle(.white)
                         .padding(.horizontal, 18).frame(height: 44)
                         .glassEffect(.regular, in: .capsule)
                         .contentTransition(.opacity)
-                        .animation(.easeOut(duration: 0.2), value: fb.label)
+                        .animation(.easeOut(duration: 0.2), value: fb.labelKey)
                     if showTip && !found {
                         Text(look.hint).font(.system(size: 13)).foregroundStyle(.white.opacity(0.85)).transition(.opacity)
                     }
@@ -88,13 +93,14 @@ struct LookCloserView: View {
                 }
                 .padding(.bottom, 72)
             }
-            .task(id: geo.size) { await follow(target: target, start: pos) }
+            .task(id: geo.size.width + imageSize.width) { await follow(target: target, start: pos) }
             .task(id: found) { await hapticPulses(target: target) }
         }
         .overlay { FlashOverlay(trigger: flash) }
         .ignoresSafeArea()
         .preferredColorScheme(.dark)
         .onAppear { shown = true }
+        .task { if photo == nil { photo = await ImageLoader.shared.load(look.image) } }
         .task { try? await Task.sleep(for: .seconds(6)); withAnimation { showTip = true } }
     }
 
@@ -160,6 +166,7 @@ struct StickerEarnedView: View {
     let sticker: Sticker
     let onKeepExploring: () -> Void
     let onSeeAll: () -> Void
+    @Environment(AppModel.self) private var model
     @Environment(\.accessibilityReduceMotion) private var reduce
     @State private var arrived = false
     @State private var shown = false
@@ -167,7 +174,7 @@ struct StickerEarnedView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            Text("New sticker").font(.system(size: 11, weight: .bold)).textCase(.uppercase).kerning(0.6)
+            Text(model.strings("sticker.new")).font(.system(size: 11, weight: .bold)).textCase(.uppercase).kerning(0.6)
                 .foregroundStyle(Palette.onTufo).padding(.horizontal, 12).frame(height: 28)
                 .background(Palette.tufo, in: .capsule)
                 .scaleEffect(shown ? 1 : 0).animation(Motion.pop.delay(0.8), value: shown)
@@ -187,12 +194,12 @@ struct StickerEarnedView: View {
 
             Text(sticker.title).font(Typeface.display(38, relativeTo: .largeTitle)).foregroundStyle(Palette.piperno)
                 .multilineTextAlignment(.center).padding(.top, 52).rise(shown, delay: 0.9)
-            Text("Added to \(Text(sticker.collection).bold().foregroundStyle(Palette.piperno))")
+            Text(model.strings("sticker.addedTo", sticker.collection))
                 .font(.system(size: 16)).foregroundStyle(Palette.stone).padding(.top, 10).rise(shown, delay: 1.0)
             Spacer()
             VStack(spacing: 14) {
-                Button("Keep exploring", action: onKeepExploring).buttonStyle(CTAButtonStyle(kind: .dark))
-                Button("See all stickers", action: onSeeAll).font(.system(size: 17, weight: .semibold)).foregroundStyle(Palette.azzurro)
+                Button(model.strings("sticker.keepExploring"), action: onKeepExploring).buttonStyle(CTAButtonStyle(kind: .dark))
+                Button(model.strings("sticker.seeAll"), action: onSeeAll).font(.system(size: 17, weight: .semibold)).foregroundStyle(Palette.azzurro)
             }
             .rise(shown, delay: 1.1)
         }

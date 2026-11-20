@@ -21,6 +21,14 @@ targets:
       - path: CheStoria
         excludes:
           - "Resources/Fonts/*.txt"
+          - "Resources/Content"
+      - path: CheStoria/Resources/Content
+        type: folder
+        buildPhase: resources
+    entitlements:
+      path: CheStoria/CheStoria.entitlements
+      properties:
+        com.apple.developer.applesignin: [Default]
     info:
       path: CheStoria/Info.plist
       properties:
@@ -34,6 +42,8 @@ targets:
           - Kalam-Bold.ttf
         NSCameraUsageDescription: CheStoria uses the camera so you can point at a place and get its story.
         NSLocationWhenInUseUsageDescription: CheStoria uses your location to know which place you are looking at, so you never have to search.
+        ContentBaseURL: ""
+        CFBundleLocalizations: [en, it, fr, de, es]
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: app.chestoria.CheStoria
@@ -44,7 +54,12 @@ targets:
   CheStoriaTests:
     type: bundle.unit-test
     platform: iOS
-    sources: [CheStoriaTests]
+    sources:
+      - path: CheStoriaTests
+        excludes: ["Fixtures"]
+      - path: CheStoriaTests/Fixtures
+        type: folder
+        buildPhase: resources
     dependencies:
       - target: CheStoria
     settings:

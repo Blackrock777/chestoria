@@ -1,0 +1,132 @@
+{
+  "welcome": {
+    "eyebrow": "Pompei · 2° giorno del tuo viaggio",
+    "headline": "Ogni pietra qui ha un segreto.",
+    "body": "Inquadra qualsiasi cosa. Indovina il suo segreto, poi trova l’indizio. Bastano 30 secondi."
+  },
+  "tickets": {
+    "tags": [
+      "Biglietti nominativi",
+      "Prenota prima"
+    ],
+    "priceNote": "Prezzo aggiornato dal sito ufficiale",
+    "capNote": "visitatori al giorno"
+  },
+  "thenNow": {
+    "title": "Ieri e oggi · il Foro",
+    "thenCaption": "1841 · dipinto da Købke"
+  },
+  "places": [
+    {
+      "id": "forum",
+      "name": "Foro",
+      "clues": [
+        "Piazza aperta",
+        "Colonne",
+        "Il Vesuvio dietro"
+      ],
+      "story": {
+        "eyebrow": "Foro · Pompei",
+        "question": "Questa grande piazza era il cuore della Pompei romana. Che cosa succedeva qui?",
+        "answers": [
+          "Corse di carri",
+          "Affari, politica e culto",
+          "Combattimenti di gladiatori"
+        ],
+        "answerTitle": "Affari, politica e culto.",
+        "subtitle": "Era il foro di Pompei.",
+        "body": "Templi, il tribunale e i mercati circondavano questa piazza, con il Tempio di Giove a nord e il Vesuvio alle sue spalle.",
+        "source": "Parco Archeologico di Pompei",
+        "dinnerLine": "«A Pompei la piazza principale aveva vista sul vulcano.»",
+        "sticker": {
+          "title": "Il Vesuvio dal Foro",
+          "collection": "Grandi panorami",
+          "back": "Il Vesuvio si alza proprio dietro il Tempio di Giove."
+        },
+        "recallChoices": [
+          "Corse",
+          "Affari",
+          "Gladiatori"
+        ],
+        "recallPrompt": "Ricordi la grande piazza di Pompei? Che cosa succedeva lì?"
+      }
+    },
+    {
+      "id": "tragic-poet",
+      "name": "Casa del Poeta Tragico",
+      "clues": [
+        "Pavimento a mosaico",
+        "Un cane",
+        "Lettere latine"
+      ],
+      "story": {
+        "eyebrow": "Casa del Poeta Tragico · Pompei",
+        "question": "Le parole latine di questo mosaico all’ingresso sono un messaggio per i visitatori. Che cosa dicono?",
+        "answers": [
+          "Benvenuto, amico",
+          "Attenti al cane",
+          "Negozio chiuso oggi"
+        ],
+        "answerTitle": "Attenti al cane.",
+        "subtitle": "In latino: Cave canem.",
+        "body": "Il mosaico è nel pavimento dell’ingresso: ogni visitatore passava sopra un cane che ringhia.",
+        "source": "Parco Archeologico di Pompei",
+        "dinnerLine": "«Anche i Romani avevano i cartelli “Attenti al cane”, fatti di minuscole pietre.»",
+        "sticker": {
+          "title": "Attenti al cane",
+          "collection": "Avvertimenti",
+          "back": "Le porte di Pompei avevano “Attenti al cane” a mosaico."
+        },
+        "recallChoices": [
+          "Benvenuto",
+          "Cane",
+          "Chiuso"
+        ],
+        "recallPrompt": "Ricordi il mosaico all’ingresso? Da che cosa ti metteva in guardia?"
+      }
+    },
+    {
+      "id": "thermopolium",
+      "name": "Thermopolium",
+      "clues": [
+        "Bancone in pietra",
+        "Fori rotondi",
+        "Via dell’Abbondanza"
+      ],
+      "story": {
+        "eyebrow": "Thermopolium · Pompei",
+        "question": "I Romani facevano la fila a questo bancone ogni giorno. Che cos’era?",
+        "answers": [
+          "Il bancone di una banca",
+          "Un bar di cibo da strada",
+          "Il forno di un panettiere"
+        ],
+        "answerTitle": "Un bar di cibo da strada.",
+        "subtitle": "I Romani lo chiamavano thermopolium.",
+        "body": "Nei fori c’erano grandi giare con cibi caldi e vino, serviti direttamente a chi passava per strada. Questo apparteneva a Lucius Vetutius Placidus.",
+        "source": "Parco Archeologico di Pompei",
+        "dinnerLine": "«Pompei aveva il cibo da strada quasi 2.000 anni fa.»",
+        "sticker": {
+          "title": "I serpenti guardiani",
+          "collection": "Romani di ogni giorno",
+          "back": "I Romani dipingevano serpenti vicino al bancone per proteggere la bottega."
+        },
+        "recallChoices": [
+          "Banca",
+          "Bar",
+          "Forno"
+        ],
+        "recallPrompt": "Ricordi il bancone di pietra di ieri? Era una banca, un bar o un forno?",
+        "theory": {
+          "label": "TEORIA",
+          "lead": "Alcuni storici pensano",
+          "text": "che molti Romani mangiassero fuori perché le case piccole non avevano cucina."
+        },
+        "lookCloser": {
+          "prompt": "Dietro il bancone c’è un altarino dipinto. Trova i due serpenti che proteggevano la bottega.",
+          "hint": "Suggerimento: guarda sotto gli dèi dipinti"
+        }
+      }
+    }
+  ]
+}

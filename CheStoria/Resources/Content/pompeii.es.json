@@ -1,0 +1,132 @@
+{
+  "welcome": {
+    "eyebrow": "Pompeya · Día 2 de tu viaje",
+    "headline": "Aquí cada piedra guarda un secreto.",
+    "body": "Apunta la cámara a cualquier cosa. Adivina su secreto y luego busca la pista. Solo 30 segundos."
+  },
+  "tickets": {
+    "tags": [
+      "Entradas nominativas",
+      "Reserva antes"
+    ],
+    "priceNote": "Precio actualizado desde la web oficial",
+    "capNote": "visitantes al día"
+  },
+  "thenNow": {
+    "title": "Antes y ahora · el Foro",
+    "thenCaption": "1841 · pintado por Købke"
+  },
+  "places": [
+    {
+      "id": "forum",
+      "name": "Foro",
+      "clues": [
+        "Plaza abierta",
+        "Columnas",
+        "El Vesubio detrás"
+      ],
+      "story": {
+        "eyebrow": "Foro · Pompeya",
+        "question": "Esta gran plaza era el corazón de la Pompeya romana. ¿Qué pasaba aquí?",
+        "answers": [
+          "Carreras de carros",
+          "Negocios, política y culto",
+          "Luchas de gladiadores"
+        ],
+        "answerTitle": "Negocios, política y culto.",
+        "subtitle": "Era el foro de Pompeya.",
+        "body": "Templos, el tribunal y los mercados rodeaban esta plaza, con el Templo de Júpiter al norte y el Vesubio justo detrás.",
+        "source": "Parque Arqueológico de Pompeya",
+        "dinnerLine": "«En Pompeya, la plaza mayor tenía vistas a un volcán.»",
+        "sticker": {
+          "title": "El Vesubio desde el Foro",
+          "collection": "Grandes vistas",
+          "back": "El Vesubio se alza justo detrás del Templo de Júpiter."
+        },
+        "recallChoices": [
+          "Carreras",
+          "Negocios",
+          "Luchas"
+        ],
+        "recallPrompt": "¿Recuerdas la gran plaza de Pompeya? ¿Qué pasaba allí?"
+      }
+    },
+    {
+      "id": "tragic-poet",
+      "name": "Casa del Poeta Trágico",
+      "clues": [
+        "Suelo de mosaico",
+        "Un perro",
+        "Letras latinas"
+      ],
+      "story": {
+        "eyebrow": "Casa del Poeta Trágico · Pompeya",
+        "question": "Las palabras en latín de este mosaico de la entrada son un mensaje para los visitantes. ¿Qué dicen?",
+        "answers": [
+          "Bienvenido, amigo",
+          "Cuidado con el perro",
+          "Hoy cerrado"
+        ],
+        "answerTitle": "Cuidado con el perro.",
+        "subtitle": "En latín: Cave canem.",
+        "body": "El mosaico está en el suelo de la entrada: cada visitante pisaba un perro que gruñe.",
+        "source": "Parque Arqueológico de Pompeya",
+        "dinnerLine": "«Los romanos también tenían carteles de “Cuidado con el perro”, hechos con piedras diminutas.»",
+        "sticker": {
+          "title": "Cuidado con el perro",
+          "collection": "Avisos",
+          "back": "Las puertas de Pompeya tenían “Cuidado con el perro” en mosaico."
+        },
+        "recallChoices": [
+          "Bienvenido",
+          "Perro",
+          "Cerrado"
+        ],
+        "recallPrompt": "¿Recuerdas el mosaico de la entrada? ¿De qué te avisaba?"
+      }
+    },
+    {
+      "id": "thermopolium",
+      "name": "Thermopolium",
+      "clues": [
+        "Mostrador de piedra",
+        "Agujeros redondos",
+        "Via dell’Abbondanza"
+      ],
+      "story": {
+        "eyebrow": "Thermopolium · Pompeya",
+        "question": "Los romanos hacían cola en este mostrador cada día. ¿Qué era?",
+        "answers": [
+          "El mostrador de un banco",
+          "Un bar de comida callejera",
+          "El horno de una panadería"
+        ],
+        "answerTitle": "Un bar de comida callejera.",
+        "subtitle": "Los romanos lo llamaban thermopolium.",
+        "body": "Los agujeros guardaban grandes tinajas de comida caliente y vino, servidos directamente a la gente de la calle. Este era de Lucius Vetutius Placidus.",
+        "source": "Parque Arqueológico de Pompeya",
+        "dinnerLine": "«Pompeya tenía comida callejera hace casi 2.000 años.»",
+        "sticker": {
+          "title": "Las serpientes guardianas",
+          "collection": "Romanos de cada día",
+          "back": "Los romanos pintaban serpientes junto al mostrador para proteger la tienda."
+        },
+        "recallChoices": [
+          "Banco",
+          "Bar",
+          "Horno"
+        ],
+        "recallPrompt": "¿Recuerdas el mostrador de piedra de ayer? ¿Banco, bar u horno?",
+        "theory": {
+          "label": "TEORÍA",
+          "lead": "Algunos historiadores creen",
+          "text": "que muchos romanos comían fuera porque las casas pequeñas no tenían cocina."
+        },
+        "lookCloser": {
+          "prompt": "Detrás del mostrador hay un altar pintado. Encuentra las dos serpientes que protegían la tienda.",
+          "hint": "Pista: mira debajo de los dioses pintados"
+        }
+      }
+    }
+  ]
+}

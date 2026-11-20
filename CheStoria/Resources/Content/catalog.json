@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 2,
+  "defaultSite": "pompeii",
+  "sites": [
+    {
+      "id": "pompeii",
+      "file": "pompeii.json",
+      "baseLanguage": "en",
+      "translations": {
+        "it": "pompeii.it.json",
+        "fr": "pompeii.fr.json",
+        "de": "pompeii.de.json",
+        "es": "pompeii.es.json"
+      }
+    }
+  ],
+  "strings": {
+    "en": "strings/en.json",
+    "it": "strings/it.json",
+    "fr": "strings/fr.json",
+    "de": "strings/de.json",
+    "es": "strings/es.json"
+  }
+}

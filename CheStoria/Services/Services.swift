@@ -6,16 +6,13 @@ import UIKit
 
 // MARK: - Place recognition
 
-/// Picks the place you are looking at. GPS does most of the work; the photo only has to break ties.
-/// This first version uses location only and falls back to the first story place (useful in the simulator).
+/// Knows where the person is. Recognition uses it to narrow candidates; the Snap chip shows the nearest place.
 @Observable
 final class PlaceRecognizer: NSObject, CLLocationManagerDelegate {
     private let manager = CLLocationManager()
-    private let places: [Place]
     private(set) var lastLocation: CLLocation?
 
-    init(places: [Place]) {
-        self.places = places.filter { $0.story != nil }
+    override init() {
         super.init()
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
@@ -26,12 +23,13 @@ final class PlaceRecognizer: NSObject, CLLocationManagerDelegate {
         manager.startUpdatingLocation()
     }
 
-    /// Nearest story place and the distance to it, if we have a fix.
-    var nearest: (place: Place, meters: Int?) {
-        guard let loc = lastLocation, let best = places.min(by: { distance($0, loc) < distance($1, loc) }) else {
-            return (places.last ?? places[0], 12)   // demo default: the Thermopolium, 12 m away
-        }
-        return (best, Int(distance(best, loc)))
+    /// Nearest story place and its distance. Without a fix (or far from the site) it falls back to the site's featured place.
+    func nearest(in site: SiteContent) -> (place: Place, meters: Int?) {
+        let places = site.storyPlaces
+        let fallback = (site.featured ?? places[0], Optional(12))
+        guard let loc = lastLocation, let best = places.min(by: { distance($0, loc) < distance($1, loc) }) else { return fallback }
+        let d = distance(best, loc)
+        return d > RecognitionPolicy.onSiteMeters ? fallback : (best, Int(d))
     }
 
     private func distance(_ p: Place, _ loc: CLLocation) -> CLLocationDistance {
@@ -50,8 +48,10 @@ final class PlaceRecognizer: NSObject, CLLocationManagerDelegate {
 /// Owns the capture session off the main thread.
 nonisolated final class CameraSession: @unchecked Sendable {
     let session = AVCaptureSession()
+    private let output = AVCapturePhotoOutput()
     private let queue = DispatchQueue(label: "app.chestoria.camera")
     private(set) var isConfigured = false
+    private var pending: PhotoDelegate?
 
     static var isAvailable: Bool {
         #if targetEnvironment(simulator)
@@ -70,6 +70,27 @@ nonisolated final class CameraSession: @unchecked Sendable {
 
     func stop() { queue.async { [self] in if session.isRunning { session.stopRunning() } } }
 
+    /// Takes a photo. Returns nil in the simulator or if capture fails.
+    func capture() async -> UIImage? {
+        guard Self.isAvailable else { return nil }
+        return await withCheckedContinuation { cont in
+            queue.async { [self] in
+                guard session.isRunning else { cont.resume(returning: nil); return }
+                let delegate = PhotoDelegate { image in cont.resume(returning: image) }
+                pending = delegate
+                output.capturePhoto(with: AVCapturePhotoSettings(), delegate: delegate)
+            }
+        }
+    }
+
+    private final class PhotoDelegate: NSObject, AVCapturePhotoCaptureDelegate, @unchecked Sendable {
+        let done: (UIImage?) -> Void
+        init(done: @escaping (UIImage?) -> Void) { self.done = done }
+        func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+            done(photo.fileDataRepresentation().flatMap(UIImage.init(data:)))
+        }
+    }
+
     private func configure() {
         session.beginConfiguration()
         session.sessionPreset = .high
@@ -77,6 +98,7 @@ nonisolated final class CameraSession: @unchecked Sendable {
            let input = try? AVCaptureDeviceInput(device: device), session.canAddInput(input) {
             session.addInput(input)
         }
+        if session.canAddOutput(output) { session.addOutput(output) }
         session.commitConfiguration()
         isConfigured = true
     }
@@ -102,10 +124,11 @@ struct CameraPreview: UIViewRepresentable {
 // MARK: - Haptics
 
 enum Haptics {
-    static func tap() { UIImpactFeedbackGenerator(style: .light).impactOccurred() }
-    static func pulse(intensity: CGFloat) { UIImpactFeedbackGenerator(style: .soft).impactOccurred(intensity: max(0.2, min(1, intensity))) }
-    static func success() { UINotificationFeedbackGenerator().notificationOccurred(.success) }
-    static func rigid() { UIImpactFeedbackGenerator(style: .rigid).impactOccurred() }
+    private static var on: Bool { UserDefaults.standard.bool(forKey: Settings.haptics) }
+    static func tap() { guard on else { return }; UIImpactFeedbackGenerator(style: .light).impactOccurred() }
+    static func pulse(intensity: CGFloat) { guard on else { return }; UIImpactFeedbackGenerator(style: .soft).impactOccurred(intensity: max(0.2, min(1, intensity))) }
+    static func success() { guard on else { return }; UINotificationFeedbackGenerator().notificationOccurred(.success) }
+    static func rigid() { guard on else { return }; UIImpactFeedbackGenerator(style: .rigid).impactOccurred() }
 }
 
 // MARK: - Read aloud
@@ -117,10 +140,13 @@ final class Narrator: NSObject, AVSpeechSynthesizerDelegate {
 
     override init() { super.init(); synth.delegate = self }
 
-    func toggle(_ text: String) {
-        if synth.isSpeaking { synth.stopSpeaking(at: .immediate); isSpeaking = false; return }
+    func stop() { if synth.isSpeaking { synth.stopSpeaking(at: .immediate) }; isSpeaking = false }
+
+    /// Reads `text` in the story language (e.g. "it"), or stops if already reading.
+    func toggle(_ text: String, language: String) {
+        if synth.isSpeaking { stop(); return }
         let u = AVSpeechUtterance(string: text)
-        u.voice = AVSpeechSynthesisVoice(language: Locale.preferredLanguages.first)
+        u.voice = AVSpeechSynthesisVoice(language: language)
         u.rate = AVSpeechUtteranceDefaultSpeechRate * 0.95
         synth.speak(u); isSpeaking = true
     }
@@ -138,6 +164,7 @@ enum RecallScheduler {
     static let category = "RECALL"
 
     static func schedule(for place: Place, story: Story, at hour: Int = 8, minute: Int = 12) {
+        guard UserDefaults.standard.bool(forKey: Settings.recall) else { return }
         let center = UNUserNotificationCenter.current()
         let actions = story.recallChoices.enumerated().map { i, title in
             UNNotificationAction(identifier: "answer.\(i)", title: title, options: [])

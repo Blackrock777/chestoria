@@ -1,0 +1,132 @@
+{
+  "welcome": {
+    "eyebrow": "Pompéi · Jour 2 de votre voyage",
+    "headline": "Ici, chaque pierre a un secret.",
+    "body": "Visez n’importe quoi avec l’appareil photo. Devinez son secret, puis trouvez l’indice. 30 secondes suffisent."
+  },
+  "tickets": {
+    "tags": [
+      "Billets nominatifs",
+      "Réservez à l’avance"
+    ],
+    "priceNote": "Prix à jour depuis le site officiel",
+    "capNote": "visiteurs par jour"
+  },
+  "thenNow": {
+    "title": "Hier et aujourd’hui · le Forum",
+    "thenCaption": "1841 · peint par Købke"
+  },
+  "places": [
+    {
+      "id": "forum",
+      "name": "Forum",
+      "clues": [
+        "Grande place",
+        "Colonnes",
+        "Le Vésuve derrière"
+      ],
+      "story": {
+        "eyebrow": "Forum · Pompéi",
+        "question": "Cette grande place était le cœur de la Pompéi romaine. Que s’y passait-il ?",
+        "answers": [
+          "Des courses de chars",
+          "Commerce, politique et culte",
+          "Des combats de gladiateurs"
+        ],
+        "answerTitle": "Commerce, politique et culte.",
+        "subtitle": "C’était le forum de Pompéi.",
+        "body": "Temples, tribunal et halles entouraient cette place, avec le temple de Jupiter au nord et le Vésuve juste derrière.",
+        "source": "Parc archéologique de Pompéi",
+        "dinnerLine": "« À Pompéi, la grand-place avait vue sur le volcan. »",
+        "sticker": {
+          "title": "Le Vésuve depuis le Forum",
+          "collection": "Grands panoramas",
+          "back": "Le Vésuve se dresse juste derrière le temple de Jupiter."
+        },
+        "recallChoices": [
+          "Courses",
+          "Commerce",
+          "Combats"
+        ],
+        "recallPrompt": "Vous vous souvenez de la grande place de Pompéi ? Que s’y passait-il ?"
+      }
+    },
+    {
+      "id": "tragic-poet",
+      "name": "Maison du Poète tragique",
+      "clues": [
+        "Sol en mosaïque",
+        "Un chien",
+        "Lettres latines"
+      ],
+      "story": {
+        "eyebrow": "Maison du Poète tragique · Pompéi",
+        "question": "Les mots latins de cette mosaïque d’entrée sont un message aux visiteurs. Que disent-ils ?",
+        "answers": [
+          "Bienvenue, ami",
+          "Attention au chien",
+          "Boutique fermée aujourd’hui"
+        ],
+        "answerTitle": "Attention au chien.",
+        "subtitle": "En latin : Cave canem.",
+        "body": "La mosaïque est dans le sol de l’entrée : chaque visiteur enjambait un chien qui grogne.",
+        "source": "Parc archéologique de Pompéi",
+        "dinnerLine": "« Les Romains avaient aussi des panneaux “Attention au chien”, en minuscules pierres. »",
+        "sticker": {
+          "title": "Attention au chien",
+          "collection": "Avertissements",
+          "back": "Les portes de Pompéi affichaient “Attention au chien” en mosaïque."
+        },
+        "recallChoices": [
+          "Bienvenue",
+          "Chien",
+          "Fermé"
+        ],
+        "recallPrompt": "Vous vous souvenez de la mosaïque de l’entrée ? De quoi vous avertissait-elle ?"
+      }
+    },
+    {
+      "id": "thermopolium",
+      "name": "Thermopolium",
+      "clues": [
+        "Comptoir en pierre",
+        "Trous ronds",
+        "Via dell’Abbondanza"
+      ],
+      "story": {
+        "eyebrow": "Thermopolium · Pompéi",
+        "question": "Les Romains faisaient la queue à ce comptoir tous les jours. Qu’était-ce ?",
+        "answers": [
+          "Un comptoir de banque",
+          "Un bar de street-food",
+          "Le four d’un boulanger"
+        ],
+        "answerTitle": "Un bar de street-food.",
+        "subtitle": "Les Romains l’appelaient thermopolium.",
+        "body": "Les trous contenaient de grandes jarres de plats chauds et de vin, servis directement aux passants. Celui-ci appartenait à Lucius Vetutius Placidus.",
+        "source": "Parc archéologique de Pompéi",
+        "dinnerLine": "« Pompéi avait de la street-food il y a presque 2 000 ans. »",
+        "sticker": {
+          "title": "Les serpents gardiens",
+          "collection": "Romains du quotidien",
+          "back": "Les Romains peignaient des serpents près du comptoir pour protéger la boutique."
+        },
+        "recallChoices": [
+          "Banque",
+          "Bar",
+          "Four"
+        ],
+        "recallPrompt": "Vous vous souvenez du comptoir en pierre d’hier ? Une banque, un bar ou un four ?",
+        "theory": {
+          "label": "THÉORIE",
+          "lead": "Certains historiens pensent",
+          "text": "que beaucoup de Romains mangeaient dehors, car les petits logements n’avaient pas de cuisine."
+        },
+        "lookCloser": {
+          "prompt": "Derrière le comptoir se trouve un petit autel peint. Trouvez les deux serpents qui protégeaient la boutique.",
+          "hint": "Astuce : regardez sous les dieux peints"
+        }
+      }
+    }
+  ]
+}

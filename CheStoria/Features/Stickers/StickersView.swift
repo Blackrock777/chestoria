@@ -8,22 +8,26 @@ struct StickersView: View {
     @State private var dealt = false
 
     var body: some View {
+        let t = model.strings
         let all = model.collectedStickers
         let collections = Dictionary(grouping: all, by: { $0.sticker.collection }).map { ($0.key, $0.value.count) }.sorted { $0.0 < $1.0 }
         let shown = all.filter { filter == nil || $0.sticker.collection == filter }
 
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
-                HStack(alignment: .firstTextBaseline) {
-                    Text("Stickers").font(Typeface.display(36, relativeTo: .largeTitle)).foregroundStyle(Palette.piperno)
+                HStack(alignment: .center) {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(t("stickers.title")).font(Typeface.display(36, relativeTo: .largeTitle)).foregroundStyle(Palette.piperno)
+                        Text(t("stickers.tapToFlip")).font(.system(size: 14)).foregroundStyle(Palette.stone)
+                    }
                     Spacer()
-                    Text("Tap to flip").font(.system(size: 14)).foregroundStyle(Palette.stone)
+                    ProfileButton()
                 }
                 .padding(.horizontal, 8)
 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 8) {
-                        chip("All · \(all.count)", on: filter == nil) { filter = nil }
+                        chip(t("stickers.all", "\(all.count)"), on: filter == nil) { filter = nil }
                         ForEach(collections, id: \.0) { name, n in chip("\(name) · \(n)", on: filter == name) { filter = name } }
                     }
                     .padding(.horizontal, 4)
@@ -31,8 +35,9 @@ struct StickersView: View {
 
                 LazyVGrid(columns: [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)], spacing: 12) {
                     ForEach(Array(shown.enumerated()), id: \.element.sticker.id) { i, item in
-                        FlipCard(sticker: item.sticker, place: model.content.place(id: item.record.placeID)?.name ?? "",
-                                 date: item.record.date, isNew: model.isNew(item.sticker), flipped: flipped.contains(item.sticker.id))
+                        FlipCard(sticker: item.sticker, place: model.site.place(id: item.record.placeID)?.name ?? "",
+                                 date: item.record.date, isNew: model.isNew(item.sticker), flipped: flipped.contains(item.sticker.id),
+                                 newLabel: t("stickers.new"), backTitle: t("reveal.tellTonight"))
                             .onTapGesture {
                                 Haptics.tap()
                                 withAnimation(Motion.glide) { flipped.formSymmetricDifference([item.sticker.id]) }
@@ -43,12 +48,12 @@ struct StickersView: View {
                 }
 
                 HStack(spacing: 14) {
-                    CoverImage(name: "forum").frame(width: 56, height: 64).clipShape(.rect(cornerRadius: 8))
+                    CoverImage(model.site.postcardImage).frame(width: 56, height: 64).clipShape(.rect(cornerRadius: 8))
                         .overlay(RoundedRectangle(cornerRadius: 8).stroke(.white, lineWidth: 3)).rotationEffect(.degrees(-6))
                         .shadow(color: .black.opacity(0.3), radius: 6, y: 4)
                     VStack(alignment: .leading, spacing: 2) {
-                        Text("Your trip postcard").font(Typeface.display(17)).foregroundStyle(.white)
-                        Text("Ready on your last evening").font(.system(size: 13)).foregroundStyle(.white.opacity(0.75))
+                        Text(t("stickers.postcard")).font(Typeface.display(17)).foregroundStyle(.white)
+                        Text(t("stickers.postcardNote")).font(.system(size: 13)).foregroundStyle(.white.opacity(0.75))
                     }
                     Spacer()
                 }
@@ -79,6 +84,8 @@ private struct FlipCard: View {
     let date: Date
     let isNew: Bool
     let flipped: Bool
+    let newLabel: String
+    let backTitle: String
 
     var body: some View {
         ZStack {
@@ -105,7 +112,7 @@ private struct FlipCard: View {
         .overlay(RoundedRectangle(cornerRadius: 24).stroke(Palette.hair, lineWidth: 1.5))
         .overlay(alignment: .topTrailing) {
             if isNew {
-                Text("NEW").font(.system(size: 10, weight: .heavy)).kerning(0.6).foregroundStyle(Palette.onTufo)
+                Text(newLabel).font(.system(size: 10, weight: .heavy)).kerning(0.6).foregroundStyle(Palette.onTufo)
                     .padding(.horizontal, 8).frame(height: 22).background(Palette.tufo, in: .capsule).padding(12)
             }
         }
@@ -113,7 +120,7 @@ private struct FlipCard: View {
 
     private var back: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("Tell it tonight").font(.system(size: 10, weight: .bold)).textCase(.uppercase).kerning(1).foregroundStyle(Palette.tufo)
+            Text(backTitle).font(.system(size: 10, weight: .bold)).textCase(.uppercase).kerning(1).foregroundStyle(Palette.tufo)
             Text(sticker.back).font(Typeface.hand(19)).foregroundStyle(Palette.calce)
             Spacer()
             Text("\(place) · \(date.formatted(.dateTime.day().month()))").font(.system(size: 12)).foregroundStyle(Palette.calce.opacity(0.7))
