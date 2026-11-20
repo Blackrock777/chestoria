@@ -9,8 +9,18 @@
       "Entradas nominativas",
       "Reserva antes"
     ],
-    "priceNote": "Precio actualizado desde la web oficial",
-    "capNote": "visitantes al día"
+    "tiles": [
+      {
+        "label": "Entrada general",
+        "value": "€20–23",
+        "note": "Los precios varían según la entrada. Consulta la web oficial."
+      },
+      {
+        "label": "Límite diario",
+        "value": "20.000",
+        "note": "visitantes al día, entradas nominativas"
+      }
+    ]
   },
   "thenNow": {
     "title": "Antes y ahora · el Foro",
@@ -36,7 +46,7 @@
         "answerTitle": "Negocios, política y culto.",
         "subtitle": "Era el foro de Pompeya.",
         "body": "Templos, el tribunal y los mercados rodeaban esta plaza, con el Templo de Júpiter al norte y el Vesubio justo detrás.",
-        "source": "Parque Arqueológico de Pompeya",
+        "source": "Fuentes publicadas",
         "dinnerLine": "«En Pompeya, la plaza mayor tenía vistas a un volcán.»",
         "sticker": {
           "title": "El Vesubio desde el Foro",
@@ -70,7 +80,7 @@
         "answerTitle": "Cuidado con el perro.",
         "subtitle": "En latín: Cave canem.",
         "body": "El mosaico está en el suelo de la entrada: cada visitante pisaba un perro que gruñe.",
-        "source": "Parque Arqueológico de Pompeya",
+        "source": "Fuentes publicadas",
         "dinnerLine": "«Los romanos también tenían carteles de “Cuidado con el perro”, hechos con piedras diminutas.»",
         "sticker": {
           "title": "Cuidado con el perro",
@@ -104,7 +114,7 @@
         "answerTitle": "Un bar de comida callejera.",
         "subtitle": "Los romanos lo llamaban thermopolium.",
         "body": "Los agujeros guardaban grandes tinajas de comida caliente y vino, servidos directamente a la gente de la calle. Este era de Lucius Vetutius Placidus.",
-        "source": "Parque Arqueológico de Pompeya",
+        "source": "Fuentes publicadas",
         "dinnerLine": "«Pompeya tenía comida callejera hace casi 2.000 años.»",
         "sticker": {
           "title": "Las serpientes guardianas",

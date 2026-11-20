@@ -9,8 +9,18 @@
       "Billets nominatifs",
       "Réservez à l’avance"
     ],
-    "priceNote": "Prix à jour depuis le site officiel",
-    "capNote": "visiteurs par jour"
+    "tiles": [
+      {
+        "label": "Plein tarif",
+        "value": "€20–23",
+        "note": "Les prix varient selon le billet. Vérifiez sur le site officiel."
+      },
+      {
+        "label": "Limite par jour",
+        "value": "20 000",
+        "note": "visiteurs par jour, billets nominatifs"
+      }
+    ]
   },
   "thenNow": {
     "title": "Hier et aujourd’hui · le Forum",
@@ -36,7 +46,7 @@
         "answerTitle": "Commerce, politique et culte.",
         "subtitle": "C’était le forum de Pompéi.",
         "body": "Temples, tribunal et halles entouraient cette place, avec le temple de Jupiter au nord et le Vésuve juste derrière.",
-        "source": "Parc archéologique de Pompéi",
+        "source": "Sources publiées",
         "dinnerLine": "« À Pompéi, la grand-place avait vue sur le volcan. »",
         "sticker": {
           "title": "Le Vésuve depuis le Forum",
@@ -70,7 +80,7 @@
         "answerTitle": "Attention au chien.",
         "subtitle": "En latin : Cave canem.",
         "body": "La mosaïque est dans le sol de l’entrée : chaque visiteur enjambait un chien qui grogne.",
-        "source": "Parc archéologique de Pompéi",
+        "source": "Sources publiées",
         "dinnerLine": "« Les Romains avaient aussi des panneaux “Attention au chien”, en minuscules pierres. »",
         "sticker": {
           "title": "Attention au chien",
@@ -104,7 +114,7 @@
         "answerTitle": "Un bar de street-food.",
         "subtitle": "Les Romains l’appelaient thermopolium.",
         "body": "Les trous contenaient de grandes jarres de plats chauds et de vin, servis directement aux passants. Celui-ci appartenait à Lucius Vetutius Placidus.",
-        "source": "Parc archéologique de Pompéi",
+        "source": "Sources publiées",
         "dinnerLine": "« Pompéi avait de la street-food il y a presque 2 000 ans. »",
         "sticker": {
           "title": "Les serpents gardiens",

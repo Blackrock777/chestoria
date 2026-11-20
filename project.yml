@@ -25,10 +25,14 @@ targets:
       - path: CheStoria/Resources/Content
         type: folder
         buildPhase: resources
+      - path: Shared
+    dependencies:
+      - target: CheStoriaWidgets
     entitlements:
       path: CheStoria/CheStoria.entitlements
       properties:
         com.apple.developer.applesignin: [Default]
+        com.apple.security.application-groups: [group.app.chestoria]
     info:
       path: CheStoria/Info.plist
       properties:
@@ -43,6 +47,12 @@ targets:
         NSCameraUsageDescription: CheStoria uses the camera so you can point at a place and get its story.
         NSLocationWhenInUseUsageDescription: CheStoria uses your location to know which place you are looking at, so you never have to search.
         ContentBaseURL: ""
+        SupabaseURL: ""
+        SupabaseAnonKey: ""
+        NSSupportsLiveActivities: true
+        CFBundleURLTypes:
+          - CFBundleURLName: app.chestoria
+            CFBundleURLSchemes: [chestoria]
         CFBundleLocalizations: [en, it, fr, de, es]
     settings:
       base:
@@ -51,6 +61,26 @@ targets:
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: Tufo
         TARGETED_DEVICE_FAMILY: "1"
         GENERATE_INFOPLIST_FILE: NO
+  CheStoriaWidgets:
+    type: app-extension
+    platform: iOS
+    sources: [CheStoriaWidgets, Shared]
+    info:
+      path: CheStoriaWidgets/Info.plist
+      properties:
+        CFBundleDisplayName: CheStoria
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    entitlements:
+      path: CheStoriaWidgets/CheStoriaWidgets.entitlements
+      properties:
+        com.apple.security.application-groups: [group.app.chestoria]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: app.chestoria.CheStoria.Widgets
+        TARGETED_DEVICE_FAMILY: "1"
+        GENERATE_INFOPLIST_FILE: NO
+        SKIP_INSTALL: YES
   CheStoriaTests:
     type: bundle.unit-test
     platform: iOS

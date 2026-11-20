@@ -74,7 +74,8 @@ struct StoryFlowView: View {
 
     private func finish(_ tab: AppTab) {
         guard let p = current else { model.activeFlow = nil; return }
-        if let story = p.story { RecallScheduler.schedule(for: p, story: story) }
+        if let story = p.story { RecallScheduler.schedule(for: p, story: story, strings: model.strings) }
+        LiveActivityController.shared.end()
         model.finishStory(at: p, goTo: tab)
     }
 
@@ -325,8 +326,14 @@ struct RevealView: View {
     @State private var wipe = false
     @State private var shown = false
     @State private var stamped = false
+    @State private var showSources = false
 
     private var right: Bool { chosen == story.correctIndex }
+    private var factLabel: String {
+        let t = model.strings
+        guard let fc = story.factCheck else { return t("reveal.verified", story.source) }
+        return fc.status == .verified ? t("reveal.verified", story.source) : t("reveal.sourced", "\(fc.sources.count)")
+    }
 
     var body: some View {
         let t = model.strings
@@ -345,7 +352,11 @@ struct RevealView: View {
             Text(story.body).font(.system(size: 18)).foregroundStyle(Palette.piperno).lineSpacing(3)
                 .fixedSize(horizontal: false, vertical: true)
                 .rise(shown, delay: 0.9)
-            VerifiedPill(text: t("reveal.verified", story.source)).rise(shown, delay: 1.0)
+            Button { showSources = true } label: {
+                HStack(spacing: 4) { VerifiedPill(text: factLabel); Image(systemName: "chevron.right").font(.system(size: 10, weight: .bold)).foregroundStyle(Palette.maiolica) }
+            }
+            .disabled(story.factCheck == nil)
+            .rise(shown, delay: 1.0)
             if let theory = story.theory {
                 TheoryCard(theory: theory, stamped: stamped)
                     .opacity(shown ? 1 : 0).animation(.easeOut(duration: 0.4).delay(1.1), value: shown)
@@ -389,6 +400,7 @@ struct RevealView: View {
             }
         }
         .onDisappear { narrator.stop() }
+        .sheet(isPresented: $showSources) { if let fc = story.factCheck { SourcesSheet(factCheck: fc) } }
     }
 
     private var spoken: String { [story.answerTitle, story.subtitle, story.body].joined(separator: " ") }

@@ -1,0 +1,186 @@
+{
+  "welcome": {
+    "eyebrow": "Neapel · Tag 1 deiner Reise",
+    "headline": "Hier hat jede Ecke ein Geheimnis.",
+    "body": "Richte die Kamera auf irgendetwas. Rate sein Geheimnis und finde dann den Hinweis. Dauert 30 Sekunden."
+  },
+  "tickets": {
+    "tags": [
+      "Meist kostenlos",
+      "Sansevero vorher buchen"
+    ],
+    "tiles": [
+      {
+        "label": "Straßen und Plätze",
+        "value": "Kostenlos",
+        "note": "Gesù Nuovo und Piazza del Plebiscito"
+      },
+      {
+        "label": "Cappella Sansevero",
+        "value": "12 €",
+        "note": "Vorher buchen · dienstags geschlossen"
+      }
+    ]
+  },
+  "thenNow": {
+    "title": "Damals & heute · Piazza del Plebiscito",
+    "thenCaption": "Als er ein Parkplatz war"
+  },
+  "places": [
+    {
+      "id": "gesu-nuovo",
+      "name": "Gesù Nuovo",
+      "clues": [
+        "Stachelige Steinfassade",
+        "Piperno-Stein",
+        "Erbaut im 15. Jahrhundert"
+      ],
+      "story": {
+        "eyebrow": "Gesù Nuovo · Neapel",
+        "question": "Es ist eine Kirche. Aber sie wurde nicht als Kirche gebaut. Was war sie?",
+        "answers": [
+          "Eine Bank",
+          "Ein Gefängnis",
+          "Ein Fürstenpalast"
+        ],
+        "answerTitle": "Ein Fürstenpalast.",
+        "subtitle": "Erbaut 1470.",
+        "body": "Er wurde für Roberto Sanseverino, Fürst von Salerno, gebaut. Die Jesuiten machten zwischen 1584 und 1601 eine Kirche daraus und behielten die stachelige Fassade.",
+        "source": "Veröffentlichte Quellen",
+        "dinnerLine": "„Die stachelige Kirche in Neapel? Das war ein Fürstenpalast.“",
+        "sticker": {
+          "title": "Der stachelige Palast",
+          "collection": "War etwas anderes",
+          "back": "Die Jesuiten behielten die stachelige Steinfassade des Palastes."
+        },
+        "recallChoices": [
+          "Bank",
+          "Gefängnis",
+          "Palast"
+        ],
+        "recallPrompt": "Erinnerst du dich an die stachelige Kirche in Neapel? Bank, Gefängnis oder Palast?",
+        "theory": {
+          "label": "THEORIE",
+          "lead": "Manche sagen,",
+          "text": "die Zeichen auf den Steinen sind eine versteckte Partitur."
+        }
+      }
+    },
+    {
+      "id": "plebiscito",
+      "name": "Piazza del Plebiscito",
+      "clues": [
+        "Riesiger Platz",
+        "Eine Kuppel",
+        "Säulengang"
+      ],
+      "story": {
+        "eyebrow": "Piazza del Plebiscito · Neapel",
+        "question": "Das ist der größte Platz Neapels. Was füllte ihn bis 1993?",
+        "answers": [
+          "Ein Fischmarkt",
+          "Ein Parkplatz",
+          "Ein Fußballplatz"
+        ],
+        "answerTitle": "Ein Parkplatz.",
+        "subtitle": "Für den G7-Gipfel 1994 geräumt.",
+        "body": "Jahrelang standen Autos auf diesem riesigen Platz. Neapel räumte ihn vor dem G7-Gipfel 1994, und heute bummelt man dort, wo früher geparkt wurde.",
+        "source": "Veröffentlichte Quellen",
+        "dinnerLine": "„Neapels prächtigster Platz war bis 1993 ein Parkplatz.“",
+        "sticker": {
+          "title": "Der Platz, der ein Parkplatz war",
+          "collection": "War etwas anderes",
+          "back": "Die Piazza del Plebiscito war bis 1993 ein Parkplatz."
+        },
+        "recallChoices": [
+          "Markt",
+          "Parkplatz",
+          "Fußball"
+        ],
+        "recallPrompt": "Erinnerst du dich an Neapels größten Platz? Was füllte ihn bis 1993?"
+      }
+    },
+    {
+      "id": "sansevero",
+      "name": "Cappella Sansevero",
+      "clues": [
+        "Weißer Marmor",
+        "Ein Schleier",
+        "Eine Kapelle"
+      ],
+      "story": {
+        "eyebrow": "Cappella Sansevero · Neapel",
+        "question": "Der Schleier über diesem Körper sieht aus wie echter Stoff. Woraus ist er?",
+        "answers": [
+          "Stoff in Gips getaucht",
+          "Aus demselben Marmorblock",
+          "Über Stein gegossenes Glas"
+        ],
+        "answerTitle": "Aus demselben Marmorblock.",
+        "subtitle": "Giuseppe Sanmartino, 1753.",
+        "body": "Körper und Schleier sind ein einziges Stück Marmor. Sanmartino meißelte den Stoff so dünn, dass er am Gesicht darunter zu haften scheint.",
+        "source": "Veröffentlichte Quellen",
+        "dinnerLine": "„In Neapel gibt es einen Marmorschleier, so dünn, dass man das Gesicht hindurch sieht.“",
+        "sticker": {
+          "title": "Der Marmorschleier",
+          "collection": "Meisterwerke",
+          "back": "Schleier und Körper wurden aus einem einzigen Marmorblock gemeißelt."
+        },
+        "recallChoices": [
+          "Stoff",
+          "Marmor",
+          "Glas"
+        ],
+        "recallPrompt": "Erinnerst du dich an den verschleierten Christus? Woraus war der Schleier?",
+        "theory": {
+          "label": "LEGENDE",
+          "lead": "Die Legende sagt,",
+          "text": "der Fürst von Sansevero habe einen echten Schleier durch Alchemie in Marmor verwandelt."
+        },
+        "lookCloser": {
+          "prompt": "Finde das Gesicht unter dem Schleier.",
+          "hint": "Tipp: Schau, wo der Schleier einsinkt"
+        }
+      }
+    },
+    {
+      "id": "castel-ovo",
+      "name": "Castel dell’Ovo",
+      "clues": [
+        "Burg am Meer",
+        "Gelber Tuff",
+        "Auf einer kleinen Insel"
+      ],
+      "story": {
+        "eyebrow": "Castel dell’Ovo · Neapel",
+        "question": "Der Name bedeutet „Eierburg“. Was ist der Legende nach in ihren Mauern versteckt?",
+        "answers": [
+          "Ein magisches Ei",
+          "Ein goldenes Schwert",
+          "Ein schlafender Drache"
+        ],
+        "answerTitle": "Ein magisches Ei.",
+        "subtitle": "Vom Dichter Vergil versteckt, sagt die Legende.",
+        "body": "Sollte das Ei je zerbrechen, so die Legende, stürzt die Burg ein und Unglück trifft Neapel. Sie ist die älteste Burg der Stadt.",
+        "source": "Veröffentlichte Quellen",
+        "dinnerLine": "„Neapels älteste Burg soll auf einem magischen Ei stehen.“",
+        "sticker": {
+          "title": "Die Eierburg",
+          "collection": "Legenden",
+          "back": "Der Legende nach versteckte Vergil ein magisches Ei im Castel dell’Ovo."
+        },
+        "recallChoices": [
+          "Ei",
+          "Schwert",
+          "Drache"
+        ],
+        "recallPrompt": "Erinnerst du dich an Neapels älteste Burg? Was ist in ihren Mauern versteckt?",
+        "theory": {
+          "label": "LEGENDE",
+          "lead": "Das ist eine Legende:",
+          "text": "niemand hat das Ei je gefunden."
+        }
+      }
+    }
+  ]
+}

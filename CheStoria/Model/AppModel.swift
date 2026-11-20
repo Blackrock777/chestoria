@@ -50,6 +50,8 @@ final class AppModel {
     private let loader: (String) -> Catalog?
     private enum Keys {
         static let onboarded = "chestoria.onboarded"
+        static let recallRight = "chestoria.recall.right"
+        static let recallAnswered = "chestoria.recall.answered"
         static func trip(_ site: String) -> String { "chestoria.trip.v2.\(site)" }
     }
 
@@ -57,7 +59,7 @@ final class AppModel {
         self.catalog = catalog
         self.defaults = defaults
         self.loader = loader
-        let site = catalog.defaultSite
+        let site = defaults.string(forKey: Settings.site).flatMap(catalog.site(id:)) ?? catalog.defaultSite
         self.site = site
         self.hasOnboarded = defaults.bool(forKey: Keys.onboarded)
         self.state = Self.loadState(for: site, defaults: defaults)
@@ -111,6 +113,16 @@ final class AppModel {
         guard let s = catalog.site(id: id), s.id != site.id else { return }
         site = s
         state = Self.loadState(for: s, defaults: defaults)
+        defaults.set(id, forKey: Settings.site)
+    }
+
+    /// Answers to next-morning questions, for the "Remembered" stat.
+    var recallStats: (remembered: Int, answered: Int) {
+        (defaults.integer(forKey: Keys.recallRight), defaults.integer(forKey: Keys.recallAnswered))
+    }
+    func recordRecall(correct: Bool) {
+        defaults.set(defaults.integer(forKey: Keys.recallAnswered) + 1, forKey: Keys.recallAnswered)
+        if correct { defaults.set(defaults.integer(forKey: Keys.recallRight) + 1, forKey: Keys.recallRight) }
     }
 
     func startStory(at place: Place, photo: UIImage? = nil) {

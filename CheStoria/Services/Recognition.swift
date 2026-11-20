@@ -175,20 +175,17 @@ nonisolated final class FeaturePrintIndex: @unchecked Sendable {
     }
 }
 
+/// Decides what a ranking means. Thresholds come from the site's `recognition` content block,
+/// so they can be tuned on site (using the recognition log in Profile) without a code change.
 enum RecognitionPolicy {
-    /// Above this distance a match is not trusted at all (per backend; tune on site).
-    /// Descriptor values are measured on unseen photos of the Pompeii places (see RecognitionTests).
-    static func maxDistance(_ b: FeaturePrintIndex.Backend) -> Float { b == .vision ? 1.1 : 0.56 }
-    /// The winner must be clearly closer than the runner-up, otherwise we ask.
-    static let separation: Float = 0.86
-    /// Only places this close are candidates when we know where the person is.
-    static let nearbyMeters: CLLocationDistance = 500
     /// If the person is further than this from every place, ignore location (e.g. testing at home).
     static let onSiteMeters: CLLocationDistance = 3_000
 
-    static func decide(_ ranked: [(id: String, distance: Float)], places: [Place], backend: FeaturePrintIndex.Backend = .descriptor) -> RecognitionResult {
+    static func decide(_ ranked: [(id: String, distance: Float)], places: [Place], backend: FeaturePrintIndex.Backend = .descriptor,
+                       settings: SiteContent.Recognition = .init()) -> RecognitionResult {
         let lookup = { (id: String) in places.first { $0.id == id } }
-        let cap = maxDistance(backend)
+        let cap = backend == .vision ? settings.visionMaxDistance : settings.descriptorMaxDistance
+        let separation = settings.separation
         guard let best = ranked.first, let bestPlace = lookup(best.id), best.distance <= cap else {
             return .none(places)
         }
@@ -198,7 +195,7 @@ enum RecognitionPolicy {
         return .confident(bestPlace)
     }
 
-    static func candidates(_ places: [Place], near location: CLLocation?) -> [Place] {
+    static func candidates(_ places: [Place], near location: CLLocation?, nearbyMeters: CLLocationDistance = 500) -> [Place] {
         guard let loc = location else { return places }
         let withDistance = places.map { ($0, CLLocation(latitude: $0.latitude, longitude: $0.longitude).distance(from: loc)) }
         guard withDistance.contains(where: { $0.1 <= onSiteMeters }) else { return places }
@@ -207,10 +204,20 @@ enum RecognitionPolicy {
     }
 }
 
+/// One recognition attempt, kept for the on-site tuning log in Profile.
+struct RecognitionLogEntry: Identifiable {
+    let id = UUID()
+    let date = Date()
+    let backend: FeaturePrintIndex.Backend
+    let ranked: [(id: String, distance: Float)]
+    let outcome: String
+}
+
 @Observable
 final class PlaceMatcher {
-    private let index = FeaturePrintIndex()
+    private var index = FeaturePrintIndex()
     private(set) var isReady = false
+    private(set) var log: [RecognitionLogEntry] = []
     private var preparation: (site: String, task: Task<Void, Never>)?
 
     /// Computes fingerprints for every story place's reference images (off the main thread).
@@ -218,6 +225,7 @@ final class PlaceMatcher {
     func prepare(site: SiteContent) async {
         if let p = preparation, p.site == site.id { await p.task.value; return }
         isReady = false
+        if preparation != nil { index = FeaturePrintIndex() }   // new site: start a fresh index
         let places = site.storyPlaces, index = self.index
         let task = Task { @MainActor in
             var jobs: [(String, [CGImage])] = []
@@ -242,20 +250,28 @@ final class PlaceMatcher {
     func identify(_ photo: UIImage, in site: SiteContent, near location: CLLocation?) async -> RecognitionResult {
         await prepare(site: site)
         guard let cg = photo.normalizedCGImage else { return .none(site.storyPlaces) }
-        let nearby = RecognitionPolicy.candidates(site.storyPlaces, near: location)
-        let first = await rank(cg, among: nearby)
+        let settings = site.recognitionSettings
+        let nearby = RecognitionPolicy.candidates(site.storyPlaces, near: location, nearbyMeters: settings.nearbyMeters)
+        let first = await rank(cg, among: nearby, settings: settings)
         if case .none = first, nearby.count < site.storyPlaces.count {
-            let all = await rank(cg, among: site.storyPlaces)
+            let all = await rank(cg, among: site.storyPlaces, settings: settings)
             if case .none = all { return .none(nearby) }
             return all
         }
         return first
     }
 
-    private func rank(_ cg: CGImage, among places: [Place]) async -> RecognitionResult {
+    private func rank(_ cg: CGImage, among places: [Place], settings: SiteContent.Recognition) async -> RecognitionResult {
         let ids = Set(places.map(\.id)), index = self.index
         let ranked = await Task.detached(priority: .userInitiated) { index.rank(cg, among: ids) }.value
-        let result = RecognitionPolicy.decide(ranked, places: places, backend: index.lastBackend)
+        let result = RecognitionPolicy.decide(ranked, places: places, backend: index.lastBackend, settings: settings)
+        let outcome: String = switch result {
+        case .confident(let p): "✓ \(p.name)"
+        case .unsure(let ps): "? " + ps.map(\.name).joined(separator: " / ")
+        case .none: "✗"
+        }
+        log.insert(RecognitionLogEntry(backend: index.lastBackend, ranked: ranked, outcome: outcome), at: 0)
+        log = Array(log.prefix(20))
         #if DEBUG
         print("[Recognition] backend=\(index.lastBackend) ranked=\(ranked.map { "\($0.id)=\(String(format: "%.3f", $0.distance))" }) → \(result)")
         #endif

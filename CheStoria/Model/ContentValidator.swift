@@ -29,6 +29,7 @@ enum ContentValidator {
         if site.place(id: site.featuredPlace)?.story == nil { out.append("featuredPlace '\(site.featuredPlace)' missing or has no story") }
         if site.map.outline.count < 3 { out.append("map outline needs at least 3 points") }
 
+        if site.tickets.tiles.isEmpty { out.append("tickets.tiles is empty") }
         image(site.welcome.image, "welcome.image")
         image(site.postcardImage, "postcardImage")
         if let tn = site.thenNow { image(tn.then, "thenNow.then"); image(tn.now, "thenNow.now") }
@@ -45,6 +46,11 @@ enum ContentValidator {
             if s.recallChoices.count != s.answers.count { out.append("\(p.id): recallChoices must match answers") }
             if s.body.split(separator: " ").count > 40 { out.append("\(p.id): story body is over 40 words (short beats long)") }
             image(s.sticker.image, "\(p.id).sticker.image")
+            if let fc = s.factCheck {
+                if fc.sources.isEmpty { out.append("\(p.id): factCheck needs at least one source") }
+            } else {
+                out.append("\(p.id): story has no factCheck (every fact needs a source)")
+            }
             let c = s.sticker.crop
             if !(unit(c.x) && unit(c.y) && c.w > 0 && c.h > 0 && c.x + c.w <= 1.0001 && c.y + c.h <= 1.0001) { out.append("\(p.id): sticker crop outside the image") }
             if let look = s.lookCloser {

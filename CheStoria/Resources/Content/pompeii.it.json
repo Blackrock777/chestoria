@@ -9,8 +9,18 @@
       "Biglietti nominativi",
       "Prenota prima"
     ],
-    "priceNote": "Prezzo aggiornato dal sito ufficiale",
-    "capNote": "visitatori al giorno"
+    "tiles": [
+      {
+        "label": "Biglietto intero",
+        "value": "€20–23",
+        "note": "I prezzi variano in base al biglietto. Controlla il sito ufficiale."
+      },
+      {
+        "label": "Limite giornaliero",
+        "value": "20.000",
+        "note": "visitatori al giorno, biglietti nominativi"
+      }
+    ]
   },
   "thenNow": {
     "title": "Ieri e oggi · il Foro",
@@ -36,7 +46,7 @@
         "answerTitle": "Affari, politica e culto.",
         "subtitle": "Era il foro di Pompei.",
         "body": "Templi, il tribunale e i mercati circondavano questa piazza, con il Tempio di Giove a nord e il Vesuvio alle sue spalle.",
-        "source": "Parco Archeologico di Pompei",
+        "source": "Fonti pubblicate",
         "dinnerLine": "«A Pompei la piazza principale aveva vista sul vulcano.»",
         "sticker": {
           "title": "Il Vesuvio dal Foro",
@@ -70,7 +80,7 @@
         "answerTitle": "Attenti al cane.",
         "subtitle": "In latino: Cave canem.",
         "body": "Il mosaico è nel pavimento dell’ingresso: ogni visitatore passava sopra un cane che ringhia.",
-        "source": "Parco Archeologico di Pompei",
+        "source": "Fonti pubblicate",
         "dinnerLine": "«Anche i Romani avevano i cartelli “Attenti al cane”, fatti di minuscole pietre.»",
         "sticker": {
           "title": "Attenti al cane",
@@ -104,7 +114,7 @@
         "answerTitle": "Un bar di cibo da strada.",
         "subtitle": "I Romani lo chiamavano thermopolium.",
         "body": "Nei fori c’erano grandi giare con cibi caldi e vino, serviti direttamente a chi passava per strada. Questo apparteneva a Lucius Vetutius Placidus.",
-        "source": "Parco Archeologico di Pompei",
+        "source": "Fonti pubblicate",
         "dinnerLine": "«Pompei aveva il cibo da strada quasi 2.000 anni fa.»",
         "sticker": {
           "title": "I serpenti guardiani",

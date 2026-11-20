@@ -21,7 +21,7 @@ struct UserAccount: Codable, Equatable, Identifiable, Sendable {
 }
 
 enum AuthError: LocalizedError, Equatable {
-    case invalidEmail, weakPassword, emptyName, emailInUse, wrongCredentials, appleFailed, notSignedIn, storageFailed
+    case invalidEmail, weakPassword, emptyName, emailInUse, wrongCredentials, appleFailed, notSignedIn, storageFailed, network, confirmEmail
 
     var errorDescription: String? {
         switch self {
@@ -33,6 +33,8 @@ enum AuthError: LocalizedError, Equatable {
         case .appleFailed: "Sign in with Apple didn’t finish. Try again."
         case .notSignedIn: "You’re not signed in."
         case .storageFailed: "Your account couldn’t be saved on this device. Try again."
+        case .network: "We couldn’t reach the server. Check your connection and try again."
+        case .confirmEmail: "Check your inbox and confirm your email, then sign in."
         }
     }
 }
@@ -43,7 +45,7 @@ protocol AuthService: AnyObject {
     var currentUser: UserAccount? { get }
     func signUp(name: String, email: String, password: String) async throws -> UserAccount
     func signIn(email: String, password: String) async throws -> UserAccount
-    func signInWithApple(userID: String, name: PersonNameComponents?, email: String?) async throws -> UserAccount
+    func signInWithApple(userID: String, name: PersonNameComponents?, email: String?, identityToken: String?) async throws -> UserAccount
     func updateDisplayName(_ name: String) throws -> UserAccount
     func signOut()
     func deleteAccount() async throws
@@ -206,7 +208,7 @@ final class LocalAuthService: AuthService {
         return try startSession(stored.account, key: key)
     }
 
-    func signInWithApple(userID: String, name: PersonNameComponents?, email: String?) async throws -> UserAccount {
+    func signInWithApple(userID: String, name: PersonNameComponents?, email: String?, identityToken: String? = nil) async throws -> UserAccount {
         var users = appleUsers
         // Apple only shares name and email the first time; reuse what we saved after that.
         let account = users[userID] ?? UserAccount(id: UUID().uuidString,
@@ -264,6 +266,14 @@ final class AccountModel {
     }
 
     var isSignedIn: Bool { user != nil }
+    /// True when accounts sync through a server (Supabase) rather than living on this device.
+    var isServerBacked: Bool { service is SupabaseAuthService }
+
+    /// The right service for this build: Supabase if configured, otherwise on-device accounts.
+    static func makeDefault() -> AccountModel {
+        if let config = SupabaseAuthService.Config.fromInfoPlist { return AccountModel(service: SupabaseAuthService(config: config)) }
+        return AccountModel(service: LocalAuthService())
+    }
 
     func signUp(name: String, email: String, password: String) async { await run { try await self.service.signUp(name: name, email: email, password: password) } }
     func signIn(email: String, password: String) async { await run { try await self.service.signIn(email: email, password: password) } }
@@ -272,7 +282,8 @@ final class AccountModel {
         switch result {
         case .success(let auth):
             guard let cred = auth.credential as? ASAuthorizationAppleIDCredential else { errorMessage = AuthError.appleFailed.errorDescription; return }
-            await run { try await self.service.signInWithApple(userID: cred.user, name: cred.fullName, email: cred.email) }
+            let token = cred.identityToken.flatMap { String(data: $0, encoding: .utf8) }
+            await run { try await self.service.signInWithApple(userID: cred.user, name: cred.fullName, email: cred.email, identityToken: token) }
         case .failure(let error):
             if (error as? ASAuthorizationError)?.code == .canceled { return }
             errorMessage = AuthError.appleFailed.errorDescription
@@ -305,6 +316,7 @@ enum Settings {
     static let recall = "settings.recall"
     static let autoRead = "settings.autoRead"
     static let storyLanguage = "settings.storyLanguage"
+    static let site = "settings.site"
 
     static func register() {
         UserDefaults.standard.register(defaults: [haptics: true, recall: true, autoRead: false, storyLanguage: "en"])

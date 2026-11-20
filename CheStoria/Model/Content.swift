@@ -79,6 +79,16 @@ struct Theory: Codable, Hashable, Sendable {
     let text: String
 }
 
+/// Where a story's facts come from. `sourced` = checked against published sources;
+/// `verified` = confirmed by the site's authority (shown as "Verified").
+struct FactCheck: Codable, Hashable, Sendable {
+    struct Source: Codable, Hashable, Sendable { let title: String; let url: URL }
+    enum Status: String, Codable, Sendable { case sourced, verified }
+    let status: Status
+    let checkedOn: String
+    let sources: [Source]
+}
+
 struct Story: Codable, Hashable, Sendable {
     let eyebrow: String
     let question: String
@@ -95,6 +105,7 @@ struct Story: Codable, Hashable, Sendable {
     /// Short words used in the next-morning recall question ("Bank", "Bar", "Bakery").
     let recallChoices: [String]
     let recallPrompt: String
+    let factCheck: FactCheck?
 }
 
 struct Place: Codable, Identifiable, Hashable, Sendable {
@@ -153,12 +164,18 @@ struct SiteContent: Codable, Identifiable, Hashable, Sendable {
         let imageAnchor: NormalizedPoint
     }
     struct Tickets: Codable, Hashable, Sendable {
+        struct Tile: Codable, Hashable, Sendable { let label: String; let value: String; let note: String }
         let tags: [String]
-        let price: String
-        let priceNote: String
-        let cap: String
-        let capNote: String
+        let tiles: [Tile]
         let bookingURL: URL
+        let sources: [FactCheck.Source]?
+    }
+    /// Recognition thresholds, tunable per site from content (see the recognition log in Profile).
+    struct Recognition: Codable, Hashable, Sendable {
+        var visionMaxDistance: Float = 1.1
+        var descriptorMaxDistance: Float = 0.56
+        var separation: Float = 0.86
+        var nearbyMeters: Double = 500
     }
     struct ThenNow: Codable, Hashable, Sendable {
         let title: String
@@ -182,6 +199,15 @@ struct SiteContent: Codable, Identifiable, Hashable, Sendable {
     let map: SiteMap
     let places: [Place]
     let demoTrip: DemoTrip?
+    let recognition: Recognition?
+
+    var recognitionSettings: Recognition { recognition ?? Recognition() }
+    /// Centre of all places, used for "Pompeii is 1,240 km away".
+    var centre: CLLocation {
+        let lat = places.map(\.latitude).reduce(0, +) / Double(max(places.count, 1))
+        let lon = places.map(\.longitude).reduce(0, +) / Double(max(places.count, 1))
+        return CLLocation(latitude: lat, longitude: lon)
+    }
 
     func place(id: String) -> Place? { places.first { $0.id == id } }
     var storyPlaces: [Place] { places.filter { $0.story != nil } }

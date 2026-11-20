@@ -5,7 +5,7 @@ struct CheStoriaApp: App {
     @State private var model: AppModel
     @State private var recognizer = PlaceRecognizer()
     @State private var matcher = PlaceMatcher()
-    @State private var account = AccountModel(service: LocalAuthService())
+    @State private var account = AccountModel.makeDefault()
 
     init() {
         Settings.register()
@@ -31,8 +31,19 @@ struct CheStoriaApp: App {
                 .environment(matcher)
                 .environment(account)
                 .task {
+                    NotificationCoordinator.shared.activate()
+                    NotificationCoordinator.shared.onAnswer = { [model] correct in model.recordRecall(correct: correct) }
                     // New content from the server is validated, cached and used on the next launch.
                     if let url = ContentStore.remoteBaseURL { try? await ContentStore.refresh(from: url) }
+                }
+                .onOpenURL { url in
+                    // chestoria://snap, chestoria://trip, chestoria://stickers (widget and Live Activity)
+                    model.completeOnboarding()
+                    switch url.host() {
+                    case "trip": model.selectedTab = .trip
+                    case "stickers": model.selectedTab = .stickers
+                    default: model.selectedTab = .snap
+                    }
                 }
         }
     }
@@ -70,7 +81,8 @@ struct MainTabs: View {
 
 #if DEBUG
 /// Launch arguments for screenshots and demos:
-/// `-reset`, `-lang it`, `-screen reveal`, `-autosolve`, `-capture caveCanem` (runs real recognition on an asset).
+/// `-reset`, `-lang it`, `-site naples`, `-screen reveal`, `-autosolve`, `-noLocation`,
+/// `-capture caveCanem` (runs real recognition on an asset).
 enum DebugLaunch {
     private static func value(_ flag: String) -> String? {
         let args = ProcessInfo.processInfo.arguments
@@ -84,6 +96,7 @@ enum DebugLaunch {
         let args = ProcessInfo.processInfo.arguments
         if args.contains("-reset") { model.resetDemo() }
         if let lang = value("-lang") { model.setLanguage(lang) }
+        if let site = value("-site") { model.switchSite(to: site) }
         if let asset = value("-capture"), let photo = UIImage(named: asset), let fallback = model.site.featured {
             model.completeOnboarding(); model.startStory(at: fallback, photo: photo); return
         }

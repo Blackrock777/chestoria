@@ -12,6 +12,17 @@
         "de": "pompeii.de.json",
         "es": "pompeii.es.json"
       }
+    },
+    {
+      "id": "naples",
+      "file": "naples.json",
+      "baseLanguage": "en",
+      "translations": {
+        "it": "naples.it.json",
+        "fr": "naples.fr.json",
+        "de": "naples.de.json",
+        "es": "naples.es.json"
+      }
     }
   ],
   "strings": {

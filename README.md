@@ -8,6 +8,9 @@
 <p>
 <img src="docs/screenshots/10-welcome-it.jpg" width="160"> <img src="docs/screenshots/11-language.jpg" width="160"> <img src="docs/screenshots/12-recognised-cave-canem.jpg" width="160"> <img src="docs/screenshots/13-reveal-de.jpg" width="160"> <img src="docs/screenshots/14-profile.jpg" width="160">
 </p>
+<p>
+<img src="docs/screenshots/15-far-away.jpg" width="160"> <img src="docs/screenshots/16-switch-to-naples.jpg" width="160"> <img src="docs/screenshots/17-naples-snap-it.jpg" width="160"> <img src="docs/screenshots/19-naples-castel-ovo.jpg" width="160"> <img src="docs/screenshots/18-naples-reveal.jpg" width="160">
+</p>
 
 ## The loop
 
@@ -26,6 +29,12 @@ Every design decision maps to the team's research: the language gap, little time
 - **Photo recognition**: your photo is compared with each place's reference photos on the device, with location narrowing the candidates. Different photos lead to different stories; if it's unsure, the app asks "Which one are you looking at?". There's a photo picker next to the shutter for the simulator or for photos you already took.
 - **Profile and accounts**: Sign in with Apple, or email and password. Passwords are salted and hashed (PBKDF2-SHA256) and kept in the Keychain. Profile also has settings (language, haptics, next-morning question, read aloud), sign-out and account deletion.
 - **Everything is content**: places, stories, maps, welcome text, tickets, translations and interface text are JSON. See [CONTENT.md](CONTENT.md).
+- **Two sites**: Pompeii (Forum, Thermopolium, House of the Tragic Poet) and Naples (Gesù Nuovo, Piazza del Plebiscito with a real car-park Then & Now, Cappella Sansevero, Castel dell’Ovo). Switch in Profile; the app offers to switch when you are standing in the other site. Each site keeps its own trip.
+- **Fact-checked**: every story lists its sources (tap the green pill). The validator refuses a story without sources. "Verified" is reserved for facts confirmed by the site itself; everything else says "Checked against N sources".
+- **Honest location**: the Snap chip shows the real nearest place and distance, "Finding where you are…", "Location is off", or "Pompeii is 1,639 km away". It never invents a distance.
+- **Live Activity and widget**: "Secret 30 m ahead" appears on the Lock Screen and in the Dynamic Island when an unseen story is within 150 m. A "Yesterday’s question" widget shows the recall question and its result.
+- **Next-morning question**: answer it straight from the notification. You get "✓ Bar! You remembered." (or the right answer) at once, and it counts towards "Remembered" in Profile.
+- **Accounts that can sync**: on-device accounts by default; set `SupabaseURL` and `SupabaseAnonKey` in `project.yml` and the same screens use Supabase Auth (email, password, Sign in with Apple, account deletion).
 
 ## Run it
 
@@ -49,7 +58,8 @@ xcodebuild test -project CheStoria.xcodeproj -scheme CheStoria -destination 'pla
 
 Useful for demos and screenshots (Debug builds only):
 - `-reset` restores the demo trip.
-- `-lang it` switches the story language.
+- `-lang it` switches the story language. `-site naples` switches site.
+- `-noLocation` skips location (the chip then says "Finding where you are…").
 - `-screen <name>` jumps to `welcome`, `snap`, `recognizing`, `question`, `reveal`, `closer`, `sticker`, `trip`, `stickers`, `profile` or `language`.
 - `-capture <asset>` runs real recognition on a bundled photo, e.g. `-capture caveCanem`.
 - `-autosolve` finishes the Look closer hunt by itself.
@@ -65,7 +75,9 @@ CheStoria/
   Components/     photos from assets or URLs, die-cut stickers, glass chips, buttons, theory seal, reticle
   Features/       Onboarding, Snap, Story (recognise → choose → question → reveal → look closer → sticker), Trip, Stickers, Profile
   Resources/      Content/ (catalog, sites, translations, interface strings), photos, fonts
-CheStoriaTests/   content in every language, recognition on unseen photos, accounts, framing, hunt, trip state
+CheStoriaWidgets/ Live Activity ("Secret nearby") and the "Yesterday’s question" widget
+Shared/           types shared by the app and the widget extension (App Group store, activity attributes)
+CheStoriaTests/   content in every language, recognition (Pompeii, Naples, unseen photos), location honesty, sites, accounts (local + Supabase), framing, hunt, trip state
 tools/            import_places.py: import points of interest from a partner's CSV/JSON export
 design/           CheStoria.sketch, animated HTML prototype, design direction page
 ```
@@ -85,14 +97,14 @@ The app talks to an `AuthService` protocol. This version ships `LocalAuthService
 
 Open `design/CheStoria.sketch` after installing the fonts in `CheStoria/Resources/Fonts`. Open `design/prototype/index.html` in a browser for the animated walkthrough.
 
-## Not built yet
+## Before launch (needs people, not code)
 
-- Tuning recognition thresholds on site with real visitor photos, and more reference photos per place.
-- A server-backed `AuthService` for accounts that sync across devices.
-- The Live Activity ("Secret 30 m ahead") and a widget, which need a widget extension target.
-- Handling the answer from the recall notification inside the app.
-- Naples stories and the rest of Pompeii, from a licensed data export (see CONTENT.md).
-- A content pipeline with fact-checking. **The Pompeii story text and its translations are sample copy and must be verified with the Park before launch.**
+- **Site confirmation**: stories are checked against published sources (listed in each story). Before launch, ask the Pompeii Archaeological Park and the Naples sites to confirm them; then set `"status": "verified"` and the pill reads "Verified".
+- **Native-speaker review** of the Italian, French, German and Spanish text.
+- **On-site recognition tuning**: walk the sites, take photos, read Profile → Recognition log, and adjust the site’s `recognition` block in the content. Add 3–4 reference photos per place.
+- **The rest of Pompeii and Naples** from a licensed data export (`tools/import_places.py`).
+- **Supabase project**: create one, add Apple as a provider, run the `delete_user` SQL in `SupabaseAuth.swift`, and fill in the two keys.
+- **Signing**: App Groups (widget data) and Sign in with Apple are requested in `project.yml`; Xcode registers them for your team on the first device build.
 
 ## Credits
 

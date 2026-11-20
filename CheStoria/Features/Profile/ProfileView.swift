@@ -94,7 +94,9 @@ private struct SignInView: View {
                 .disabled(account.isBusy || email.isEmpty || password.isEmpty || (mode == .create && name.isEmpty))
                 .opacity(email.isEmpty || password.isEmpty ? 0.5 : 1)
 
-                Label(t("profile.localNote"), systemImage: "lock.fill").font(.system(size: 12)).foregroundStyle(Palette.stone)
+                if !account.isServerBacked {
+                    Label(t("profile.localNote"), systemImage: "lock.fill").font(.system(size: 12)).foregroundStyle(Palette.stone)
+                }
             }
             .padding(20)
             .animation(Motion.glide, value: mode)
@@ -144,6 +146,7 @@ private struct SignedInView: View {
     @State private var editingName = false
     @State private var newName = ""
     @State private var confirmDelete = false
+    @State private var showSites = false
 
     var body: some View {
         @Bindable var model = model
@@ -167,7 +170,7 @@ private struct SignedInView: View {
                     Divider()
                     stat("\(model.collectedStickers.count)", t("profile.stickers"))
                     Divider()
-                    stat(model.site.city, t("profile.site"))
+                    stat("\(model.recallStats.remembered)/\(model.recallStats.answered)", t("profile.remembered"))
                 }
                 .frame(height: 56)
             }
@@ -175,6 +178,10 @@ private struct SignedInView: View {
             Section(t("profile.settings")) {
                 Button { model.showLanguagePicker = true } label: {
                     LabeledContent(t("lang.title"), value: model.languageName(model.language))
+                }
+                .tint(Palette.piperno)
+                Button { showSites = true } label: {
+                    LabeledContent(t("profile.site"), value: model.site.city)
                 }
                 .tint(Palette.piperno)
                 Toggle(t("profile.haptics"), isOn: $haptics)
@@ -189,6 +196,7 @@ private struct SignedInView: View {
             Section(t("profile.demo")) {
                 Button(t("profile.resetTrip")) { model.resetDemo(); dismiss() }
                 Button(t("profile.replayWelcome")) { model.resetOnboarding(); dismiss() }
+                NavigationLink(t("profile.recognitionLog")) { RecognitionLogView() }
             }
 
             Section(t("profile.account")) {
@@ -209,6 +217,7 @@ private struct SignedInView: View {
             Button(t("common.save")) { account.rename(newName) }
             Button(t("common.cancel"), role: .cancel) {}
         }
+        .sheet(isPresented: $showSites) { SitePicker() }
         .confirmationDialog(t("profile.deleteConfirm"), isPresented: $confirmDelete, titleVisibility: .visible) {
             Button(t("profile.delete"), role: .destructive) { Task { await account.deleteAccount() } }
             Button(t("common.cancel"), role: .cancel) {}

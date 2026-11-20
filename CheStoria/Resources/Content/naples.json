@@ -1,0 +1,609 @@
+{
+  "id": "naples",
+  "name": "Centro Storico, Naples",
+  "city": "Naples",
+  "featuredPlace": "gesu-nuovo",
+  "welcome": {
+    "eyebrow": "Naples · Day 1 of your trip",
+    "headline": "Every corner here has a secret.",
+    "body": "Point your camera at anything. Guess its secret, then find the clue. Takes 30 seconds.",
+    "image": "plebiscitoVesuvius",
+    "imageAnchor": {
+      "x": 0.62,
+      "y": 0.62
+    }
+  },
+  "tickets": {
+    "tags": [
+      "Mostly free",
+      "Book Sansevero ahead"
+    ],
+    "tiles": [
+      {
+        "label": "Streets and squares",
+        "value": "Free",
+        "note": "Gesù Nuovo and Piazza del Plebiscito"
+      },
+      {
+        "label": "Cappella Sansevero",
+        "value": "€12",
+        "note": "Book ahead · closed Tuesday"
+      }
+    ],
+    "bookingURL": "https://www.museosansevero.it/en/opening-hours-and-fees/",
+    "sources": [
+      {
+        "title": "Museo Cappella Sansevero: opening hours and fees",
+        "url": "https://www.museosansevero.it/en/opening-hours-and-fees/"
+      }
+    ]
+  },
+  "thenNow": {
+    "title": "Then & Now · Piazza del Plebiscito",
+    "then": "plebiscitoCarPark",
+    "thenCaption": "When it was a car park",
+    "now": "plebiscito"
+  },
+  "postcardImage": "plebiscitoVesuvius",
+  "geoBounds": {
+    "north": 40.852,
+    "south": 40.826,
+    "west": 14.238,
+    "east": 14.262
+  },
+  "recognition": {
+    "visionMaxDistance": 1.1,
+    "descriptorMaxDistance": 0.56,
+    "separation": 0.86,
+    "nearbyMeters": 500
+  },
+  "map": {
+    "width": 361,
+    "height": 520,
+    "outline": [
+      [
+        20,
+        20
+      ],
+      [
+        341,
+        20
+      ],
+      [
+        350,
+        370
+      ],
+      [
+        260,
+        392
+      ],
+      [
+        200,
+        412
+      ],
+      [
+        150,
+        430
+      ],
+      [
+        110,
+        422
+      ],
+      [
+        60,
+        398
+      ],
+      [
+        15,
+        388
+      ]
+    ],
+    "water": [
+      [
+        0,
+        395
+      ],
+      [
+        60,
+        405
+      ],
+      [
+        110,
+        430
+      ],
+      [
+        150,
+        442
+      ],
+      [
+        200,
+        422
+      ],
+      [
+        260,
+        400
+      ],
+      [
+        361,
+        380
+      ],
+      [
+        361,
+        520
+      ],
+      [
+        0,
+        520
+      ]
+    ],
+    "streets": [
+      {
+        "from": [
+          175,
+          30
+        ],
+        "to": [
+          160,
+          330
+        ]
+      },
+      {
+        "from": [
+          150,
+          98
+        ],
+        "to": [
+          345,
+          38
+        ]
+      },
+      {
+        "from": [
+          60,
+          402
+        ],
+        "to": [
+          150,
+          440
+        ]
+      },
+      {
+        "from": [
+          150,
+          440
+        ],
+        "to": [
+          262,
+          398
+        ]
+      },
+      {
+        "from": [
+          143,
+          440
+        ],
+        "to": [
+          143,
+          462
+        ]
+      }
+    ],
+    "blocks": [
+      {
+        "x": 123,
+        "y": 458,
+        "w": 40,
+        "h": 34
+      }
+    ],
+    "mountains": [
+      [
+        [
+          292,
+          342
+        ],
+        [
+          318,
+          312
+        ],
+        [
+          330,
+          322
+        ],
+        [
+          342,
+          308
+        ],
+        [
+          361,
+          342
+        ]
+      ]
+    ],
+    "labels": [
+      {
+        "text": "VIA TOLEDO",
+        "x": 178,
+        "y": 205,
+        "rotation": 92,
+        "style": "street"
+      },
+      {
+        "text": "SPACCANAPOLI",
+        "x": 290,
+        "y": 66,
+        "rotation": -17,
+        "style": "street"
+      },
+      {
+        "text": "Golfo di Napoli",
+        "x": 250,
+        "y": 478,
+        "style": "water"
+      },
+      {
+        "text": "Vesuvius ↗",
+        "x": 326,
+        "y": 356,
+        "style": "place"
+      }
+    ]
+  },
+  "places": [
+    {
+      "id": "gesu-nuovo",
+      "name": "Gesù Nuovo",
+      "site": "Naples",
+      "street": "Piazza del Gesù Nuovo",
+      "latitude": 40.8473,
+      "longitude": 14.2509,
+      "cameraImage": "gesuFacade",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.15,
+        "y": 0.25,
+        "w": 0.7,
+        "h": 0.5
+      },
+      "clues": [
+        "Spiky stone front",
+        "Piperno stone",
+        "Built in the 1400s"
+      ],
+      "mapPoint": [
+        194,
+        94
+      ],
+      "showsMapLabel": true,
+      "referenceImages": [
+        "gesuFacade",
+        "gesuFacade2",
+        "gesuDetail"
+      ],
+      "story": {
+        "eyebrow": "Gesù Nuovo · Naples",
+        "question": "It’s a church. But it wasn’t built as one. What was it?",
+        "answers": [
+          "A bank",
+          "A prison",
+          "A prince’s palace"
+        ],
+        "correctIndex": 2,
+        "answerTitle": "A prince’s palace.",
+        "subtitle": "Built in 1470.",
+        "body": "It was built for Roberto Sanseverino, Prince of Salerno. The Jesuits turned it into a church between 1584 and 1601 and kept the spiky stone front.",
+        "source": "Published sources",
+        "theory": {
+          "label": "THEORY",
+          "lead": "Some say",
+          "text": "the marks on the stones are a hidden music score."
+        },
+        "dinnerLine": "“That spiky church in Naples? It was a prince’s palace.”",
+        "lookCloser": null,
+        "sticker": {
+          "id": "spiky-palace",
+          "title": "The spiky palace",
+          "collection": "Was something else",
+          "image": "gesuDetail",
+          "crop": {
+            "x": 0.08,
+            "y": 0.2,
+            "w": 0.36,
+            "h": 0.34
+          },
+          "back": "The Jesuits kept the palace’s spiky stone front."
+        },
+        "recallChoices": [
+          "Bank",
+          "Prison",
+          "Palace"
+        ],
+        "recallPrompt": "Remember the spiky church in Naples? Was it a bank, a prison or a palace?",
+        "factCheck": {
+          "status": "sourced",
+          "checkedOn": "2026-11-20",
+          "sources": [
+            {
+              "title": "DMO Napoli: Church of Gesù Nuovo",
+              "url": "https://dmo-napoli.inera.it/en/attraction/church-of-gesu-nuovo/"
+            },
+            {
+              "title": "NBC News (2010): the façade “music score” theory",
+              "url": "https://www.nbcnews.com/news/amp/wbna40926952"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "plebiscito",
+      "name": "Piazza del Plebiscito",
+      "site": "Naples",
+      "street": "Piazza del Plebiscito",
+      "latitude": 40.8359,
+      "longitude": 14.2486,
+      "cameraImage": "plebiscito",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.25,
+        "w": 0.6,
+        "h": 0.4
+      },
+      "clues": [
+        "Huge square",
+        "A dome",
+        "Colonnade"
+      ],
+      "mapPoint": [
+        159,
+        322
+      ],
+      "showsMapLabel": true,
+      "referenceImages": [
+        "plebiscito",
+        "plebiscitoVesuvius"
+      ],
+      "story": {
+        "eyebrow": "Piazza del Plebiscito · Naples",
+        "question": "This is the biggest square in Naples. What filled it until 1993?",
+        "answers": [
+          "A fish market",
+          "A car park",
+          "A football pitch"
+        ],
+        "correctIndex": 1,
+        "answerTitle": "A car park.",
+        "subtitle": "Cleared for the 1994 G7 summit.",
+        "body": "For years cars covered this huge square. Naples cleared it before the G7 summit in 1994, and today people stroll where cars used to park.",
+        "source": "Published sources",
+        "theory": null,
+        "dinnerLine": "“The grandest square in Naples was a car park until 1993.”",
+        "lookCloser": null,
+        "sticker": {
+          "id": "car-park-square",
+          "title": "The square that was a car park",
+          "collection": "Was something else",
+          "image": "plebiscitoCarPark",
+          "crop": {
+            "x": 0.05,
+            "y": 0.45,
+            "w": 0.6,
+            "h": 0.5
+          },
+          "back": "Piazza del Plebiscito was a car park until 1993."
+        },
+        "recallChoices": [
+          "Market",
+          "Car park",
+          "Football"
+        ],
+        "recallPrompt": "Remember the biggest square in Naples? What filled it until 1993?",
+        "factCheck": {
+          "status": "sourced",
+          "checkedOn": "2026-11-20",
+          "sources": [
+            {
+              "title": "Il Post: how Naples and other cities created pedestrian squares",
+              "url": "https://www.ilpost.it/2020/12/30/isole-pedonali/"
+            },
+            {
+              "title": "Wikipedia: Piazza del Plebiscito",
+              "url": "https://en.wikipedia.org/wiki/Piazza_del_Plebiscito"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "sansevero",
+      "name": "Cappella Sansevero",
+      "site": "Naples",
+      "street": "Via Francesco de Sanctis",
+      "latitude": 40.8494,
+      "longitude": 14.2551,
+      "cameraImage": "sansevero",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.1,
+        "y": 0.2,
+        "w": 0.8,
+        "h": 0.6
+      },
+      "clues": [
+        "White marble",
+        "A veil",
+        "A chapel"
+      ],
+      "mapPoint": [
+        257,
+        52
+      ],
+      "showsMapLabel": true,
+      "referenceImages": [
+        "sansevero",
+        "veiledChristFace"
+      ],
+      "story": {
+        "eyebrow": "Cappella Sansevero · Naples",
+        "question": "The veil over this body looks like real cloth. What is it made of?",
+        "answers": [
+          "Cloth dipped in plaster",
+          "The same block of marble",
+          "Glass poured over stone"
+        ],
+        "correctIndex": 1,
+        "answerTitle": "The same block of marble.",
+        "subtitle": "Giuseppe Sanmartino, 1753.",
+        "body": "Body and veil are one piece of marble. Sanmartino carved the cloth so thin that it seems to cling to the face beneath.",
+        "source": "Published sources",
+        "theory": {
+          "label": "LEGEND",
+          "lead": "Legend says",
+          "text": "the prince of Sansevero turned a real veil into marble with alchemy."
+        },
+        "dinnerLine": "“In Naples there’s a marble veil so thin you can see the face through it.”",
+        "lookCloser": {
+          "prompt": "Find the face beneath the veil.",
+          "hint": "Tip: look where the veil dips",
+          "image": "veiledChristFace",
+          "anchor": {
+            "x": 0.5,
+            "y": 0.4
+          },
+          "zoom": 1.0,
+          "target": {
+            "x": 0.45,
+            "y": 0.38
+          }
+        },
+        "sticker": {
+          "id": "veiled-christ",
+          "title": "The marble veil",
+          "collection": "Masterpieces",
+          "image": "veiledChristFace",
+          "crop": {
+            "x": 0.2,
+            "y": 0.2,
+            "w": 0.6,
+            "h": 0.45
+          },
+          "back": "The veil and the body were carved from one block of marble."
+        },
+        "recallChoices": [
+          "Cloth",
+          "Marble",
+          "Glass"
+        ],
+        "recallPrompt": "Remember the Veiled Christ? What was the veil made of?",
+        "factCheck": {
+          "status": "sourced",
+          "checkedOn": "2026-11-20",
+          "sources": [
+            {
+              "title": "Museo Cappella Sansevero",
+              "url": "https://www.museosansevero.it/en/"
+            },
+            {
+              "title": "Wikipedia: Veiled Christ",
+              "url": "https://en.wikipedia.org/wiki/Veiled_Christ"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "castel-ovo",
+      "name": "Castel dell’Ovo",
+      "site": "Naples",
+      "street": "Via Eldorado",
+      "latitude": 40.8283,
+      "longitude": 14.2475,
+      "cameraImage": "castelOvo",
+      "cameraAnchor": {
+        "x": 0.7,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.6,
+        "y": 0.25,
+        "w": 0.35,
+        "h": 0.45
+      },
+      "clues": [
+        "Sea castle",
+        "Yellow tuff",
+        "On an islet"
+      ],
+      "mapPoint": [
+        143,
+        474
+      ],
+      "showsMapLabel": true,
+      "referenceImages": [
+        "castelOvo",
+        "castelOvo2"
+      ],
+      "story": {
+        "eyebrow": "Castel dell’Ovo · Naples",
+        "question": "Its name means “Egg Castle”. Legend says what is hidden in its walls?",
+        "answers": [
+          "A magic egg",
+          "A golden sword",
+          "A sleeping dragon"
+        ],
+        "correctIndex": 0,
+        "answerTitle": "A magic egg.",
+        "subtitle": "Hidden by the poet Virgil, says the legend.",
+        "body": "If the egg ever breaks, the legend goes, the castle will fall and disaster will strike Naples. It is the oldest castle in the city.",
+        "source": "Published sources",
+        "theory": {
+          "label": "LEGEND",
+          "lead": "This is a legend:",
+          "text": "no egg has ever been found."
+        },
+        "dinnerLine": "“The oldest castle in Naples is said to stand on a magic egg.”",
+        "lookCloser": null,
+        "sticker": {
+          "id": "egg-castle",
+          "title": "The egg castle",
+          "collection": "Legends",
+          "image": "castelOvo2",
+          "crop": {
+            "x": 0.1,
+            "y": 0.12,
+            "w": 0.8,
+            "h": 0.68
+          },
+          "back": "Legend says Virgil hid a magic egg in Castel dell’Ovo."
+        },
+        "recallChoices": [
+          "Egg",
+          "Sword",
+          "Dragon"
+        ],
+        "recallPrompt": "Remember the oldest castle in Naples? What is hidden in its walls?",
+        "factCheck": {
+          "status": "sourced",
+          "checkedOn": "2026-11-20",
+          "sources": [
+            {
+              "title": "Wikipedia: Castel dell’Ovo",
+              "url": "https://en.wikipedia.org/wiki/Castel_dell%27Ovo"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "demoTrip": null
+}

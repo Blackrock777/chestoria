@@ -1,6 +1,7 @@
 import Testing
 import Foundation
 import UIKit
+import CoreLocation
 @testable import CheStoria
 
 @MainActor
@@ -225,13 +226,13 @@ struct AuthTests {
     @Test func appleSignInRemembersNameAndDeleteRemovesAccount() async throws {
         let s = service()
         var name = PersonNameComponents(); name.givenName = "Pooja"; name.familyName = "T"
-        let first = try await s.signInWithApple(userID: "apple.123", name: name, email: "p@privaterelay.appleid.com")
+        let first = try await s.signInWithApple(userID: "apple.123", name: name, email: "p@privaterelay.appleid.com", identityToken: nil)
         s.signOut()
-        let second = try await s.signInWithApple(userID: "apple.123", name: nil, email: nil)
+        let second = try await s.signInWithApple(userID: "apple.123", name: nil, email: nil, identityToken: nil)
         #expect(second.id == first.id && second.displayName == "Pooja T")
         try await s.deleteAccount()
         #expect(s.currentUser == nil)
-        let third = try await s.signInWithApple(userID: "apple.123", name: nil, email: nil)
+        let third = try await s.signInWithApple(userID: "apple.123", name: nil, email: nil, identityToken: nil)
         #expect(third.id != first.id)
     }
 
@@ -243,6 +244,124 @@ struct AuthTests {
     }
 }
 
-import CoreLocation
 
 final class FixtureMarker {}
+
+
+@MainActor
+struct LocationStatusTests {
+    @Test func neverInventsADistance() throws {
+        let site = try ContentStore.loadBundled().site(id: "pompeii")!
+        #expect(LocationStatus.compute(site: site, location: nil, authorization: .authorizedWhenInUse) == .locating)
+        #expect(LocationStatus.compute(site: site, location: nil, authorization: .denied) == .off)
+        let atThermo = CLLocation(latitude: 40.7497, longitude: 14.4892)
+        if case .near(let p, let m) = LocationStatus.compute(site: site, location: atThermo, authorization: .authorizedWhenInUse) {
+            #expect(p.id == "thermopolium" && m < 30)
+        } else { Issue.record("expected near") }
+        let london = CLLocation(latitude: 51.5072, longitude: -0.1276)
+        if case .far(let name, let distance) = LocationStatus.compute(site: site, location: london, authorization: .authorizedWhenInUse) {
+            #expect(name == "Pompeii")
+            #expect(distance.contains("1") && !distance.contains("12 m"))
+        } else { Issue.record("expected far") }
+    }
+}
+
+@MainActor
+struct SiteTests {
+    private func freshModel() throws -> (AppModel, UserDefaults) {
+        let defaults = UserDefaults(suiteName: "chestoria.tests.\(UUID().uuidString)")!
+        return (AppModel(catalog: try ContentStore.loadBundled(), defaults: defaults, loader: { try? ContentStore.loadBundled(language: $0) }), defaults)
+    }
+
+    @Test func naplesIsASecondSiteWithItsOwnTrip() throws {
+        let (m, defaults) = try freshModel()
+        #expect(m.catalog.sites.map(\.id) == ["pompeii", "naples"])
+        m.switchSite(to: "naples")
+        #expect(m.site.city == "Naples" && m.visitedPlaces.isEmpty)
+        let gesu = try #require(m.site.place(id: "gesu-nuovo"))
+        m.finishStory(at: gesu, goTo: .trip)
+        m.switchSite(to: "pompeii")
+        #expect(m.collectedStickers.count == 2)
+        m.switchSite(to: "naples")
+        #expect(m.collectedStickers.map(\.sticker.id) == ["spiky-palace"])
+        let reopened = AppModel(catalog: try ContentStore.loadBundled(), defaults: defaults, loader: { _ in nil })
+        #expect(reopened.site.id == "naples")
+    }
+
+    @Test func everyStoryHasSources() throws {
+        for site in try ContentStore.loadBundled().sites {
+            for p in site.storyPlaces { #expect((p.story?.factCheck?.sources.count ?? 0) >= 1, "\(p.id) has no sources") }
+        }
+    }
+
+    @Test func recallAnswersAreCounted() throws {
+        let (m, _) = try freshModel()
+        m.recordRecall(correct: true); m.recordRecall(correct: false)
+        #expect(m.recallStats.remembered == 1 && m.recallStats.answered == 2)
+    }
+
+    @Test func naplesPlacesAreRecognisedFromTheirPhotos() async throws {
+        let site = try ContentStore.loadBundled().site(id: "naples")!
+        let matcher = PlaceMatcher()
+        for (asset, expected) in [("gesuFacade2", "gesu-nuovo"), ("castelOvo", "castel-ovo"), ("veiledChristFace", "sansevero"), ("plebiscitoVesuvius", "plebiscito")] {
+            let img = UIImage(named: asset)!.normalizedCGImage!
+            let crop = UIImage(cgImage: img.cropping(to: CGRect(x: img.width / 12, y: img.height / 12, width: img.width * 5 / 6, height: img.height * 5 / 6))!)
+            switch await matcher.identify(crop, in: site, near: nil) {
+            case .confident(let p): #expect(p.id == expected, "\(asset) → \(p.id)")
+            case .unsure(let ps): #expect(ps.first?.id == expected, "\(asset) unsure, first \(ps.first?.id ?? "-")")
+            case .none: Issue.record("\(asset) matched nothing")
+            }
+        }
+    }
+}
+
+nonisolated final class Stub: URLProtocol, @unchecked Sendable {
+    nonisolated(unsafe) static var handler: ((URLRequest) -> (Int, String))?
+    nonisolated(unsafe) static var lastBody: [String: Any]?
+    override class func canInit(with request: URLRequest) -> Bool { true }
+    override class func canonicalRequest(for request: URLRequest) -> URLRequest { request }
+    override func startLoading() {
+        if let stream = request.httpBodyStream {
+            stream.open(); var data = Data(); var buf = [UInt8](repeating: 0, count: 4096)
+            while stream.hasBytesAvailable { let n = stream.read(&buf, maxLength: buf.count); if n <= 0 { break }; data.append(buf, count: n) }
+            stream.close(); Stub.lastBody = try? JSONSerialization.jsonObject(with: data) as? [String: Any]
+        }
+        let (status, body) = Stub.handler?(request) ?? (500, "{}")
+        client?.urlProtocol(self, didReceive: HTTPURLResponse(url: request.url!, statusCode: status, httpVersion: nil, headerFields: nil)!, cacheStoragePolicy: .notAllowed)
+        client?.urlProtocol(self, didLoad: Data(body.utf8))
+        client?.urlProtocolDidFinishLoading(self)
+    }
+    override func stopLoading() {}
+}
+
+
+/// Supabase requests and responses, against a stubbed server.
+@MainActor
+struct SupabaseAuthTests {
+    private func service() -> SupabaseAuthService {
+        let cfg = URLSessionConfiguration.ephemeral; cfg.protocolClasses = [Stub.self]
+        return SupabaseAuthService(config: .init(url: URL(string: "https://demo.supabase.co/")!, anonKey: "anon"), store: InMemorySecureStore(), session: URLSession(configuration: cfg))
+    }
+
+    @Test func signInStoresSessionAndUser() async throws {
+        Stub.handler = { req in
+            #expect(req.url?.absoluteString == "https://demo.supabase.co/auth/v1/token?grant_type=password")
+            #expect(req.value(forHTTPHeaderField: "apikey") == "anon")
+            return (200, #"{"access_token":"a","refresh_token":"r","user":{"id":"u1","email":"p@x.co","created_at":"2026-11-20T10:00:00Z","user_metadata":{"name":"Pooja"}}}"#)
+        }
+        let s = service()
+        let user = try await s.signIn(email: "P@X.co", password: "pompeii79")
+        #expect(user.id == "u1" && user.displayName == "Pooja" && s.currentUser == user)
+        #expect(Stub.lastBody?["email"] as? String == "p@x.co")
+    }
+
+    @Test func mapsServerErrors() async throws {
+        let s = service()
+        Stub.handler = { _ in (400, #"{"error_code":"invalid_credentials","msg":"Invalid login credentials"}"#) }
+        await #expect(throws: AuthError.wrongCredentials) { try await s.signIn(email: "p@x.co", password: "nope12345") }
+        Stub.handler = { _ in (422, #"{"error_code":"user_already_exists"}"#) }
+        await #expect(throws: AuthError.emailInUse) { try await s.signUp(name: "P", email: "p@x.co", password: "pompeii79") }
+        Stub.handler = { _ in (200, #"{"id":"u2","email":"new@x.co"}"#) }
+        await #expect(throws: AuthError.confirmEmail) { try await s.signUp(name: "N", email: "new@x.co", password: "pompeii79") }
+    }
+}

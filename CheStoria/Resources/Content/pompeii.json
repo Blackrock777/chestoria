@@ -21,11 +21,25 @@
       "Named tickets",
       "Book ahead"
     ],
-    "price": "€20",
-    "priceNote": "Live price from official site",
-    "cap": "20,000",
-    "capNote": "visitors per day",
-    "bookingURL": "https://www.pompeiisites.org"
+    "tiles": [
+      {
+        "label": "Full ticket",
+        "value": "€20–23",
+        "note": "Prices vary by ticket. Check the official site."
+      },
+      {
+        "label": "Daily cap",
+        "value": "20,000",
+        "note": "visitors per day, named tickets"
+      }
+    ],
+    "bookingURL": "https://www.pompeiisites.org",
+    "sources": [
+      {
+        "title": "Finestre sull’Arte: named tickets and 20,000 a day",
+        "url": "https://www.finestresullarte.info/musei/parco-archeologico-pompei-introduce-biglietti-nominativi-e-limite-20mila-visitatori-al-giorno"
+      }
+    ]
   },
   "thenNow": {
     "title": "Then & Now · the Forum",
@@ -39,6 +53,12 @@
     "south": 40.7455,
     "west": 14.479,
     "east": 14.495
+  },
+  "recognition": {
+    "visionMaxDistance": 1.1,
+    "descriptorMaxDistance": 0.56,
+    "separation": 0.86,
+    "nearbyMeters": 500
   },
   "map": {
     "width": 361,
@@ -267,7 +287,7 @@
         "answerTitle": "Business, politics and worship.",
         "subtitle": "This was Pompeii’s forum.",
         "body": "Temples, the law court and market halls stood around this square, with the Temple of Jupiter at the north end and Vesuvius rising behind it.",
-        "source": "Pompeii Archaeological Park",
+        "source": "Published sources",
         "theory": null,
         "dinnerLine": "“In Pompeii, the main square came with a volcano view.”",
         "lookCloser": null,
@@ -289,7 +309,21 @@
           "Business",
           "Fights"
         ],
-        "recallPrompt": "Remember the big square in Pompeii? What happened there?"
+        "recallPrompt": "Remember the big square in Pompeii? What happened there?",
+        "factCheck": {
+          "status": "sourced",
+          "checkedOn": "2026-11-20",
+          "sources": [
+            {
+              "title": "World History Encyclopedia: Temple of Jupiter, Forum of Pompeii",
+              "url": "https://www.worldhistory.org/image/11299/the-temple-of-jupiter-in-the-forum-of-pompeii/"
+            },
+            {
+              "title": "Wikipedia: Temple of Jupiter (Pompeii)",
+              "url": "https://en.wikipedia.org/wiki/Temple_of_Jupiter_(Pompeii)"
+            }
+          ]
+        }
       }
     },
     {
@@ -335,7 +369,7 @@
         "answerTitle": "Beware of the dog.",
         "subtitle": "In Latin: Cave canem.",
         "body": "The mosaic sits in the entrance floor, so every visitor stepped over a snarling dog on the way in.",
-        "source": "Pompeii Archaeological Park",
+        "source": "Published sources",
         "theory": null,
         "dinnerLine": "Romans had “Beware of the dog” signs too, made of tiny stones.",
         "lookCloser": null,
@@ -357,7 +391,21 @@
           "Dog",
           "Closed"
         ],
-        "recallPrompt": "Remember the mosaic in the doorway? What did it warn you about?"
+        "recallPrompt": "Remember the mosaic in the doorway? What did it warn you about?",
+        "factCheck": {
+          "status": "sourced",
+          "checkedOn": "2026-11-20",
+          "sources": [
+            {
+              "title": "Wikipedia: House of the Tragic Poet",
+              "url": "https://en.wikipedia.org/wiki/House_of_the_Tragic_Poet"
+            },
+            {
+              "title": "World History Encyclopedia: Cave Canem dog mosaic",
+              "url": "https://www.worldhistory.org/image/12746/cave-canem-dog-mosaic/"
+            }
+          ]
+        }
       }
     },
     {
@@ -404,7 +452,7 @@
         "answerTitle": "A street-food bar.",
         "subtitle": "Romans called it a thermopolium.",
         "body": "The holes held big jars of hot food and wine, served straight to people in the street. This one belonged to Lucius Vetutius Placidus.",
-        "source": "Pompeii Archaeological Park",
+        "source": "Published sources",
         "theory": {
           "label": "THEORY",
           "lead": "Some historians think",
@@ -443,7 +491,29 @@
           "Bar",
           "Bakery"
         ],
-        "recallPrompt": "Remember yesterday’s stone counter? Was it a bank, a bar or a bakery?"
+        "recallPrompt": "Remember yesterday’s stone counter? Was it a bank, a bar or a bakery?",
+        "factCheck": {
+          "status": "sourced",
+          "checkedOn": "2026-11-20",
+          "sources": [
+            {
+              "title": "Encyclopaedia Romana (University of Chicago): Thermopolium",
+              "url": "https://penelope.uchicago.edu/~grout/encyclopaedia_Romana/wine/thermopolium.html"
+            },
+            {
+              "title": "World History Encyclopedia: Thermopolium of Vetutius Placidus",
+              "url": "https://www.worldhistory.org/image/11256/the-thermopolium-of-vetutius-placidus-in-pompeii/"
+            },
+            {
+              "title": "Athena Review: the lararium and its serpents",
+              "url": "https://athenapub.com/aria1/_Pomp/pomp-thermop2.html"
+            },
+            {
+              "title": "Wikipedia: Thermopolium",
+              "url": "https://en.wikipedia.org/wiki/Thermopolium"
+            }
+          ]
+        }
       }
     }
   ],

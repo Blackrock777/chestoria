@@ -1,0 +1,186 @@
+{
+  "welcome": {
+    "eyebrow": "Naples · Jour 1 de votre voyage",
+    "headline": "Ici, chaque coin a un secret.",
+    "body": "Visez n’importe quoi avec l’appareil photo. Devinez son secret, puis trouvez l’indice. 30 secondes suffisent."
+  },
+  "tickets": {
+    "tags": [
+      "Presque tout gratuit",
+      "Réservez Sansevero"
+    ],
+    "tiles": [
+      {
+        "label": "Rues et places",
+        "value": "Gratuit",
+        "note": "Gesù Nuovo et Piazza del Plebiscito"
+      },
+      {
+        "label": "Cappella Sansevero",
+        "value": "12 €",
+        "note": "Réservez à l’avance · fermé le mardi"
+      }
+    ]
+  },
+  "thenNow": {
+    "title": "Hier et aujourd’hui · Piazza del Plebiscito",
+    "thenCaption": "Quand c’était un parking"
+  },
+  "places": [
+    {
+      "id": "gesu-nuovo",
+      "name": "Gesù Nuovo",
+      "clues": [
+        "Façade à pointes",
+        "Pierre de piperno",
+        "Construit au XVe siècle"
+      ],
+      "story": {
+        "eyebrow": "Gesù Nuovo · Naples",
+        "question": "C’est une église. Mais elle n’a pas été construite comme telle. Qu’était-ce ?",
+        "answers": [
+          "Une banque",
+          "Une prison",
+          "Le palais d’un prince"
+        ],
+        "answerTitle": "Le palais d’un prince.",
+        "subtitle": "Construit en 1470.",
+        "body": "Il fut construit pour Roberto Sanseverino, prince de Salerne. Les jésuites en firent une église entre 1584 et 1601 et gardèrent la façade à pointes.",
+        "source": "Sources publiées",
+        "dinnerLine": "« Cette église à pointes de Naples ? C’était le palais d’un prince. »",
+        "sticker": {
+          "title": "Le palais à pointes",
+          "collection": "C’était autre chose",
+          "back": "Les jésuites ont gardé la façade à pointes du palais."
+        },
+        "recallChoices": [
+          "Banque",
+          "Prison",
+          "Palais"
+        ],
+        "recallPrompt": "Vous vous souvenez de l’église à pointes de Naples ? Une banque, une prison ou un palais ?",
+        "theory": {
+          "label": "THÉORIE",
+          "lead": "Certains disent que",
+          "text": "les marques sur les pierres forment une partition cachée."
+        }
+      }
+    },
+    {
+      "id": "plebiscito",
+      "name": "Piazza del Plebiscito",
+      "clues": [
+        "Immense place",
+        "Un dôme",
+        "Une colonnade"
+      ],
+      "story": {
+        "eyebrow": "Piazza del Plebiscito · Naples",
+        "question": "C’est la plus grande place de Naples. Qu’est-ce qui la remplissait jusqu’en 1993 ?",
+        "answers": [
+          "Un marché aux poissons",
+          "Un parking",
+          "Un terrain de foot"
+        ],
+        "answerTitle": "Un parking.",
+        "subtitle": "Libérée pour le G7 de 1994.",
+        "body": "Pendant des années, les voitures couvraient cette immense place. Naples l’a libérée avant le G7 de 1994, et aujourd’hui on se promène là où l’on se garait.",
+        "source": "Sources publiées",
+        "dinnerLine": "« La plus belle place de Naples était un parking jusqu’en 1993. »",
+        "sticker": {
+          "title": "La place qui était un parking",
+          "collection": "C’était autre chose",
+          "back": "La Piazza del Plebiscito était un parking jusqu’en 1993."
+        },
+        "recallChoices": [
+          "Marché",
+          "Parking",
+          "Foot"
+        ],
+        "recallPrompt": "Vous vous souvenez de la plus grande place de Naples ? Qu’est-ce qui la remplissait jusqu’en 1993 ?"
+      }
+    },
+    {
+      "id": "sansevero",
+      "name": "Cappella Sansevero",
+      "clues": [
+        "Marbre blanc",
+        "Un voile",
+        "Une chapelle"
+      ],
+      "story": {
+        "eyebrow": "Cappella Sansevero · Naples",
+        "question": "Le voile sur ce corps ressemble à du vrai tissu. En quoi est-il fait ?",
+        "answers": [
+          "Du tissu trempé dans le plâtre",
+          "Le même bloc de marbre",
+          "Du verre coulé sur la pierre"
+        ],
+        "answerTitle": "Le même bloc de marbre.",
+        "subtitle": "Giuseppe Sanmartino, 1753.",
+        "body": "Le corps et le voile ne forment qu’un seul bloc de marbre. Sanmartino a sculpté le tissu si fin qu’il semble coller au visage en dessous.",
+        "source": "Sources publiées",
+        "dinnerLine": "« À Naples, il y a un voile de marbre si fin qu’on voit le visage à travers. »",
+        "sticker": {
+          "title": "Le voile de marbre",
+          "collection": "Chefs-d’œuvre",
+          "back": "Le voile et le corps ont été sculptés dans un seul bloc de marbre."
+        },
+        "recallChoices": [
+          "Tissu",
+          "Marbre",
+          "Verre"
+        ],
+        "recallPrompt": "Vous vous souvenez du Christ voilé ? En quoi était fait le voile ?",
+        "theory": {
+          "label": "LÉGENDE",
+          "lead": "La légende dit que",
+          "text": "le prince de Sansevero a changé un vrai voile en marbre par l’alchimie."
+        },
+        "lookCloser": {
+          "prompt": "Trouvez le visage sous le voile.",
+          "hint": "Astuce : regardez là où le voile se creuse"
+        }
+      }
+    },
+    {
+      "id": "castel-ovo",
+      "name": "Castel dell’Ovo",
+      "clues": [
+        "Château sur la mer",
+        "Tuf jaune",
+        "Sur un îlot"
+      ],
+      "story": {
+        "eyebrow": "Castel dell’Ovo · Naples",
+        "question": "Son nom signifie « Château de l’Œuf ». Selon la légende, qu’est-ce qui est caché dans ses murs ?",
+        "answers": [
+          "Un œuf magique",
+          "Une épée d’or",
+          "Un dragon endormi"
+        ],
+        "answerTitle": "Un œuf magique.",
+        "subtitle": "Caché par le poète Virgile, dit la légende.",
+        "body": "Si l’œuf se brisait, dit la légende, le château s’effondrerait et le malheur frapperait Naples. C’est le plus ancien château de la ville.",
+        "source": "Sources publiées",
+        "dinnerLine": "« Le plus ancien château de Naples reposerait sur un œuf magique. »",
+        "sticker": {
+          "title": "Le château de l’œuf",
+          "collection": "Légendes",
+          "back": "La légende dit que Virgile a caché un œuf magique dans le Castel dell’Ovo."
+        },
+        "recallChoices": [
+          "Œuf",
+          "Épée",
+          "Dragon"
+        ],
+        "recallPrompt": "Vous vous souvenez du plus ancien château de Naples ? Qu’est-ce qui est caché dans ses murs ?",
+        "theory": {
+          "label": "LÉGENDE",
+          "lead": "C’est une légende :",
+          "text": "personne n’a jamais trouvé l’œuf."
+        }
+      }
+    }
+  ]
+}

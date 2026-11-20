@@ -58,7 +58,21 @@ The tests (`⌘U`) validate every file in every language: ids, answers, image na
 - `theory` and `lookCloser` are optional. Use `"label": "LEGEND"` or `"THEORY"`: it appears on the red seal.
 - `mapPoint` is in the units of the site's `map` (Pompeii is drawn 361 × 520).
 - `target` and `crop` are fractions of the photo (0 to 1), measured from the top-left corner.
-- Every fact must be checked against a primary source before it ships. `source` names that source.
+- Every story needs a `factCheck` block (the validator rejects stories without one):
+
+```json
+"factCheck": {
+  "status": "sourced",
+  "checkedOn": "2026-11-20",
+  "sources": [{ "title": "Wikipedia: Castel dell’Ovo", "url": "https://en.wikipedia.org/wiki/Castel_dell%27Ovo" }]
+}
+```
+
+  `sourced` shows "Checked against N sources"; use `verified` only once the site itself has confirmed the facts, and put that authority in `source`. Anything that is not established fact goes in `theory` with the label `THEORY` or `LEGEND`.
+
+## Tickets
+
+`tickets.tiles` is a list of label / value / note boxes, so each site shows what matters there (Pompeii: price and daily cap; Naples: free squares and Sansevero’s fee). Prices change: link `bookingURL` to the official page and avoid stating a single price when sources disagree.
 
 ## Photos for recognition
 
@@ -67,7 +81,13 @@ The tests (`⌘U`) validate every file in every language: ids, answers, image na
 - **Real iPhones** use Apple Vision feature prints.
 - **The simulator**, or any device where Vision returns unusable output, uses a colour-and-layout fingerprint.
 
-Location narrows the candidates to places within 500 m. If none of those match (for example a gallery photo taken elsewhere), every place is compared. If two places look alike, the app asks the visitor which one it is. The thresholds are in `RecognitionPolicy` and should be checked on site with real photos.
+Location narrows the candidates to places within 500 m. If none of those match (for example a gallery photo taken elsewhere), every place is compared. If two places look alike, the app asks the visitor which one it is. The thresholds live in each site’s `recognition` block:
+
+```json
+"recognition": { "visionMaxDistance": 1.1, "descriptorMaxDistance": 0.56, "separation": 0.86, "nearbyMeters": 500 }
+```
+
+On site, open Profile → Recognition log after taking photos: it lists every place’s distance for each photo. If the right place wins but the app still asks "Which one?", lower `separation` slightly; if wrong places are accepted, lower the max distance. The change ships with the next content update.
 
 ## Add a language
 

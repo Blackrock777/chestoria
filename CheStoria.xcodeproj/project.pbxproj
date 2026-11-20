@@ -8,7 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		07861CD13D4CCEA6C47D037C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9BC09F8FB3BE8110FCEB7ED /* Assets.xcassets */; };
+		0F86EBA4BBA5BFC60981D58D /* SitePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612E7904E9939210D022A6F0 /* SitePicker.swift */; };
+		12C0D9A8850982E0293BFDC8 /* CheStoriaWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2C177852516C3EE880A87FC4 /* CheStoriaWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2DE1AD324BF671061C04A82B /* SharedModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41ED3826686F4CB85A541AE2 /* SharedModels.swift */; };
 		30FB83C2ED00FB004ACBFF0B /* ContentValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439759A6B9F76864EC6DA8CB /* ContentValidator.swift */; };
+		31AC3A31A59544CA5CBB8068 /* CheStoriaWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEEF3A94E33585FBCA1396D /* CheStoriaWidgets.swift */; };
 		43A1931D082ABB760332948C /* SnapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C9772EF8D2986720638311 /* SnapView.swift */; };
 		47614DDE4E26FFB4D8F2A612 /* LookCloserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F290031E2376B71EDE366DDB /* LookCloserView.swift */; };
 		480E792A3A99DB2A351C8085 /* Kalam-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5807B50A8DF66E9903E07A78 /* Kalam-Bold.ttf */; };
@@ -16,12 +20,16 @@
 		59177E474E735C5490D8C098 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE80A87EC9A7A032375039D /* Account.swift */; };
 		593541C1E263B7BA6129BA94 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A08DA6254C99F168A7DE60B /* Components.swift */; };
 		5B6689FF1BCD02FAAB49E3FB /* BricolageGrotesque-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F70703656A9E190766F485D /* BricolageGrotesque-Bold.ttf */; };
+		5FD77F48ED7FD01DB904BD91 /* SharedModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41ED3826686F4CB85A541AE2 /* SharedModels.swift */; };
+		6523EBB294210D86ED31974C /* SupabaseAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB104BE7E7D02919103D3CD /* SupabaseAuth.swift */; };
 		790DDD14479755DDC5D4C488 /* ProfileButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544985A7C71D1651EE6DB030 /* ProfileButton.swift */; };
 		9513719998FD3C839DF8EEC8 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C4DFA2681FEC827C3CE1B3 /* Services.swift */; };
 		9A71C801E7515099D62C00B7 /* CheStoriaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F58D0E362FF7B8FF337422 /* CheStoriaTests.swift */; };
 		A92A6D138F7CA26A69B294E0 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C245DC0D36140CC4DB9E5A2D /* WelcomeView.swift */; };
+		AA4626146CE5FE6C588A9782 /* SourcesSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05036C39F6B7F21DD46E78 /* SourcesSheet.swift */; };
 		BB2E1862EE45A718AAB0D7C2 /* Recognition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D2EBDCC1DE818A621904F4 /* Recognition.swift */; };
 		BC50FBDBB6D936899851743B /* StickersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D15AE7E42AF56E1FFFB3111 /* StickersView.swift */; };
+		C1A6ED68903BA42D049AF362 /* Engagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C40318834956275A9B7206 /* Engagement.swift */; };
 		C57ED7863ECE5B1BA64B81BE /* CheStoriaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E107198779C209FB5180544 /* CheStoriaApp.swift */; };
 		DA7ADDBEBD1DBC3C7C447F7C /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36255DD9ADE78F22D00621 /* AppModel.swift */; };
 		DCC09E3264E34BD6DAAC3BC0 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA92CFE624C8FD5286299560 /* ProfileView.swift */; };
@@ -41,26 +49,55 @@
 			remoteGlobalIDString = CD6C5AFDE1D4E8068FAA6A86;
 			remoteInfo = CheStoria;
 		};
+		F11F90AD0D8E4560AE532722 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FD92CC8D30576BC251936A15 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 74C290FD3C717A710894AAFF;
+			remoteInfo = CheStoriaWidgets;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CD5C41DA1C22319EDA016CD5 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				12C0D9A8850982E0293BFDC8 /* CheStoriaWidgets.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		093B24B4A2965836232F2563 /* TripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripView.swift; sourceTree = "<group>"; };
+		0A05036C39F6B7F21DD46E78 /* SourcesSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourcesSheet.swift; sourceTree = "<group>"; };
 		0D15AE7E42AF56E1FFFB3111 /* StickersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickersView.swift; sourceTree = "<group>"; };
 		0E107198779C209FB5180544 /* CheStoriaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheStoriaApp.swift; sourceTree = "<group>"; };
 		0EDC56C4FB5C027E9EE7851C /* Fixtures */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fixtures; path = CheStoriaTests/Fixtures; sourceTree = SOURCE_ROOT; };
 		1591EED2A2DCB5533A0AE29F /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		2A08DA6254C99F168A7DE60B /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
+		2C177852516C3EE880A87FC4 /* CheStoriaWidgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = CheStoriaWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		2DEEF3A94E33585FBCA1396D /* CheStoriaWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheStoriaWidgets.swift; sourceTree = "<group>"; };
+		41ED3826686F4CB85A541AE2 /* SharedModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedModels.swift; sourceTree = "<group>"; };
 		439759A6B9F76864EC6DA8CB /* ContentValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentValidator.swift; sourceTree = "<group>"; };
+		4FB104BE7E7D02919103D3CD /* SupabaseAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseAuth.swift; sourceTree = "<group>"; };
 		544985A7C71D1651EE6DB030 /* ProfileButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileButton.swift; sourceTree = "<group>"; };
 		5807B50A8DF66E9903E07A78 /* Kalam-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kalam-Bold.ttf"; sourceTree = "<group>"; };
 		5CE80A87EC9A7A032375039D /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		612E7904E9939210D022A6F0 /* SitePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SitePicker.swift; sourceTree = "<group>"; };
 		6653475E0ED06AE136C4714B /* CheStoriaTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = CheStoriaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A149032DA806F36C76F9300 /* BricolageGrotesque-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BricolageGrotesque-ExtraBold.ttf"; sourceTree = "<group>"; };
+		75DF7F2C02ED4759E91D42B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7CC29E3C3B9A2B7EF33683A2 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		81D2EBDCC1DE818A621904F4 /* Recognition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recognition.swift; sourceTree = "<group>"; };
 		8F70703656A9E190766F485D /* BricolageGrotesque-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BricolageGrotesque-Bold.ttf"; sourceTree = "<group>"; };
 		A6641F74A7C4BD29595028CA /* Content */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Content; path = CheStoria/Resources/Content; sourceTree = SOURCE_ROOT; };
 		B0F58D0E362FF7B8FF337422 /* CheStoriaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheStoriaTests.swift; sourceTree = "<group>"; };
+		B3C40318834956275A9B7206 /* Engagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Engagement.swift; sourceTree = "<group>"; };
 		BA71FD65579D156967C7396F /* StoryFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryFlowView.swift; sourceTree = "<group>"; };
 		C245DC0D36140CC4DB9E5A2D /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		D229E9DA883BEE777DF1BA5D /* CheStoria.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = CheStoria.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,6 +105,7 @@
 		D9D2323BE0DAD192FDD78068 /* CheStoria.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CheStoria.entitlements; sourceTree = "<group>"; };
 		DA92CFE624C8FD5286299560 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		DB900E6D4D172488B2CA59BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E406847AC6DDADD1729681D3 /* CheStoriaWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CheStoriaWidgets.entitlements; sourceTree = "<group>"; };
 		E7C4DFA2681FEC827C3CE1B3 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		EE36255DD9ADE78F22D00621 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		F290031E2376B71EDE366DDB /* LookCloserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookCloserView.swift; sourceTree = "<group>"; };
@@ -117,11 +155,21 @@
 			path = Design;
 			sourceTree = "<group>";
 		};
+		28F4ACFDA9221EAD8EC4BC5E /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				41ED3826686F4CB85A541AE2 /* SharedModels.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		37DB54B7459F16AAF3E20FA0 = {
 			isa = PBXGroup;
 			children = (
 				9D6B917A2D27BC4093EF5E3A /* CheStoria */,
 				F4675D80EC1006955F08040E /* CheStoriaTests */,
+				E60CD8073AB91437F0261FBD /* CheStoriaWidgets */,
+				28F4ACFDA9221EAD8EC4BC5E /* Shared */,
 				C350F13885202E3A7851DCBF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -186,6 +234,7 @@
 			children = (
 				D229E9DA883BEE777DF1BA5D /* CheStoria.app */,
 				6653475E0ED06AE136C4714B /* CheStoriaTests.xctest */,
+				2C177852516C3EE880A87FC4 /* CheStoriaWidgets.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -194,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				F290031E2376B71EDE366DDB /* LookCloserView.swift */,
+				0A05036C39F6B7F21DD46E78 /* SourcesSheet.swift */,
 				BA71FD65579D156967C7396F /* StoryFlowView.swift */,
 			);
 			path = Story;
@@ -211,8 +261,10 @@
 			isa = PBXGroup;
 			children = (
 				5CE80A87EC9A7A032375039D /* Account.swift */,
+				B3C40318834956275A9B7206 /* Engagement.swift */,
 				81D2EBDCC1DE818A621904F4 /* Recognition.swift */,
 				E7C4DFA2681FEC827C3CE1B3 /* Services.swift */,
+				4FB104BE7E7D02919103D3CD /* SupabaseAuth.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -222,8 +274,19 @@
 			children = (
 				544985A7C71D1651EE6DB030 /* ProfileButton.swift */,
 				DA92CFE624C8FD5286299560 /* ProfileView.swift */,
+				612E7904E9939210D022A6F0 /* SitePicker.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		E60CD8073AB91437F0261FBD /* CheStoriaWidgets */ = {
+			isa = PBXGroup;
+			children = (
+				E406847AC6DDADD1729681D3 /* CheStoriaWidgets.entitlements */,
+				2DEEF3A94E33585FBCA1396D /* CheStoriaWidgets.swift */,
+				75DF7F2C02ED4759E91D42B6 /* Info.plist */,
+			);
+			path = CheStoriaWidgets;
 			sourceTree = "<group>";
 		};
 		E9A54DF6FC01FC31F4D75E45 /* Model */ = {
@@ -267,16 +330,35 @@
 			productReference = 6653475E0ED06AE136C4714B /* CheStoriaTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		74C290FD3C717A710894AAFF /* CheStoriaWidgets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF25D227D5EE747D1259DB65 /* Build configuration list for PBXNativeTarget "CheStoriaWidgets" */;
+			buildPhases = (
+				64756FA0192D9976638AF4CF /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CheStoriaWidgets;
+			packageProductDependencies = (
+			);
+			productName = CheStoriaWidgets;
+			productReference = 2C177852516C3EE880A87FC4 /* CheStoriaWidgets.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		CD6C5AFDE1D4E8068FAA6A86 /* CheStoria */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2E624CC246EF2E566B570EE5 /* Build configuration list for PBXNativeTarget "CheStoria" */;
 			buildPhases = (
 				FB722BA674DE62B2D4E0B576 /* Sources */,
 				855205C112FC2063E63773AF /* Resources */,
+				CD5C41DA1C22319EDA016CD5 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				48B0E48C4C34811EBCD71E7B /* PBXTargetDependency */,
 			);
 			name = CheStoria;
 			packageProductDependencies = (
@@ -295,6 +377,10 @@
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					4DD3DE1EC9BADB2EE7FA11D4 = {
+						DevelopmentTeam = 4HDA7QAGZ3;
+						ProvisioningStyle = Automatic;
+					};
+					74C290FD3C717A710894AAFF = {
 						DevelopmentTeam = 4HDA7QAGZ3;
 						ProvisioningStyle = Automatic;
 					};
@@ -319,6 +405,7 @@
 			projectRoot = "";
 			targets = (
 				CD6C5AFDE1D4E8068FAA6A86 /* CheStoria */,
+				74C290FD3C717A710894AAFF /* CheStoriaWidgets */,
 				4DD3DE1EC9BADB2EE7FA11D4 /* CheStoriaTests */,
 			);
 		};
@@ -348,6 +435,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		64756FA0192D9976638AF4CF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				31AC3A31A59544CA5CBB8068 /* CheStoriaWidgets.swift in Sources */,
+				2DE1AD324BF671061C04A82B /* SharedModels.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EC9C23120A232BCD0C3673B4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -366,14 +462,19 @@
 				593541C1E263B7BA6129BA94 /* Components.swift in Sources */,
 				E689B0B67A1FA5609D228416 /* Content.swift in Sources */,
 				30FB83C2ED00FB004ACBFF0B /* ContentValidator.swift in Sources */,
+				C1A6ED68903BA42D049AF362 /* Engagement.swift in Sources */,
 				47614DDE4E26FFB4D8F2A612 /* LookCloserView.swift in Sources */,
 				790DDD14479755DDC5D4C488 /* ProfileButton.swift in Sources */,
 				DCC09E3264E34BD6DAAC3BC0 /* ProfileView.swift in Sources */,
 				BB2E1862EE45A718AAB0D7C2 /* Recognition.swift in Sources */,
 				9513719998FD3C839DF8EEC8 /* Services.swift in Sources */,
+				5FD77F48ED7FD01DB904BD91 /* SharedModels.swift in Sources */,
+				0F86EBA4BBA5BFC60981D58D /* SitePicker.swift in Sources */,
 				43A1931D082ABB760332948C /* SnapView.swift in Sources */,
+				AA4626146CE5FE6C588A9782 /* SourcesSheet.swift in Sources */,
 				BC50FBDBB6D936899851743B /* StickersView.swift in Sources */,
 				F46B722C4C8C74845125C431 /* StoryFlowView.swift in Sources */,
+				6523EBB294210D86ED31974C /* SupabaseAuth.swift in Sources */,
 				E416980E3184F32D74509824 /* Theme.swift in Sources */,
 				49002DCFC23B028A82992248 /* TripView.swift in Sources */,
 				A92A6D138F7CA26A69B294E0 /* WelcomeView.swift in Sources */,
@@ -383,6 +484,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		48B0E48C4C34811EBCD71E7B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 74C290FD3C717A710894AAFF /* CheStoriaWidgets */;
+			targetProxy = F11F90AD0D8E4560AE532722 /* PBXContainerItemProxy */;
+		};
 		E807E7A9C31C01291A059077 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CD6C5AFDE1D4E8068FAA6A86 /* CheStoria */;
@@ -450,6 +556,24 @@
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		2408EB241BF6EED9477551E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = CheStoriaWidgets/CheStoriaWidgets.entitlements;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = CheStoriaWidgets/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = app.chestoria.CheStoria.Widgets;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -558,6 +682,24 @@
 			};
 			name = Debug;
 		};
+		AF4263D93C14E035AFBE8645 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = CheStoriaWidgets/CheStoriaWidgets.entitlements;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = CheStoriaWidgets/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = app.chestoria.CheStoria.Widgets;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
 		BA3E8F4859DDB39C88D88C6B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -620,6 +762,15 @@
 			buildConfigurations = (
 				BA3E8F4859DDB39C88D88C6B /* Debug */,
 				5DA768715CFCD72407218064 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		EF25D227D5EE747D1259DB65 /* Build configuration list for PBXNativeTarget "CheStoriaWidgets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF4263D93C14E035AFBE8645 /* Debug */,
+				2408EB241BF6EED9477551E4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

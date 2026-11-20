@@ -1,0 +1,186 @@
+{
+  "welcome": {
+    "eyebrow": "Napoli · 1° giorno del tuo viaggio",
+    "headline": "Ogni angolo qui ha un segreto.",
+    "body": "Inquadra qualsiasi cosa. Indovina il suo segreto, poi trova l’indizio. Bastano 30 secondi."
+  },
+  "tickets": {
+    "tags": [
+      "Quasi tutto gratis",
+      "Prenota Sansevero"
+    ],
+    "tiles": [
+      {
+        "label": "Strade e piazze",
+        "value": "Gratis",
+        "note": "Gesù Nuovo e Piazza del Plebiscito"
+      },
+      {
+        "label": "Cappella Sansevero",
+        "value": "€12",
+        "note": "Prenota prima · chiuso il martedì"
+      }
+    ]
+  },
+  "thenNow": {
+    "title": "Ieri e oggi · Piazza del Plebiscito",
+    "thenCaption": "Quando era un parcheggio"
+  },
+  "places": [
+    {
+      "id": "gesu-nuovo",
+      "name": "Gesù Nuovo",
+      "clues": [
+        "Facciata a punta",
+        "Pietra piperno",
+        "Costruito nel ’400"
+      ],
+      "story": {
+        "eyebrow": "Gesù Nuovo · Napoli",
+        "question": "È una chiesa. Ma non è nata come chiesa. Che cos’era?",
+        "answers": [
+          "Una banca",
+          "Una prigione",
+          "Il palazzo di un principe"
+        ],
+        "answerTitle": "Il palazzo di un principe.",
+        "subtitle": "Costruito nel 1470.",
+        "body": "Fu costruito per Roberto Sanseverino, principe di Salerno. Tra il 1584 e il 1601 i Gesuiti lo trasformarono in chiesa, conservando la facciata a punte.",
+        "source": "Fonti pubblicate",
+        "dinnerLine": "«Quella chiesa a punte di Napoli? Era il palazzo di un principe.»",
+        "sticker": {
+          "title": "Il palazzo a punte",
+          "collection": "Era un’altra cosa",
+          "back": "I Gesuiti conservarono la facciata a punte del palazzo."
+        },
+        "recallChoices": [
+          "Banca",
+          "Prigione",
+          "Palazzo"
+        ],
+        "recallPrompt": "Ricordi la chiesa a punte di Napoli? Era una banca, una prigione o un palazzo?",
+        "theory": {
+          "label": "TEORIA",
+          "lead": "Secondo alcuni",
+          "text": "i segni sulle pietre sono uno spartito musicale nascosto."
+        }
+      }
+    },
+    {
+      "id": "plebiscito",
+      "name": "Piazza del Plebiscito",
+      "clues": [
+        "Piazza enorme",
+        "Una cupola",
+        "Colonnato"
+      ],
+      "story": {
+        "eyebrow": "Piazza del Plebiscito · Napoli",
+        "question": "È la piazza più grande di Napoli. Che cosa la riempiva fino al 1993?",
+        "answers": [
+          "Un mercato del pesce",
+          "Un parcheggio",
+          "Un campo da calcio"
+        ],
+        "answerTitle": "Un parcheggio.",
+        "subtitle": "Liberata per il G7 del 1994.",
+        "body": "Per anni le auto coprivano questa enorme piazza. Napoli la liberò prima del G7 del 1994, e oggi si passeggia dove prima si parcheggiava.",
+        "source": "Fonti pubblicate",
+        "dinnerLine": "«La piazza più grandiosa di Napoli era un parcheggio fino al 1993.»",
+        "sticker": {
+          "title": "La piazza che era un parcheggio",
+          "collection": "Era un’altra cosa",
+          "back": "Piazza del Plebiscito è stata un parcheggio fino al 1993."
+        },
+        "recallChoices": [
+          "Mercato",
+          "Parcheggio",
+          "Calcio"
+        ],
+        "recallPrompt": "Ricordi la piazza più grande di Napoli? Che cosa la riempiva fino al 1993?"
+      }
+    },
+    {
+      "id": "sansevero",
+      "name": "Cappella Sansevero",
+      "clues": [
+        "Marmo bianco",
+        "Un velo",
+        "Una cappella"
+      ],
+      "story": {
+        "eyebrow": "Cappella Sansevero · Napoli",
+        "question": "Il velo su questo corpo sembra vera stoffa. Di che cosa è fatto?",
+        "answers": [
+          "Stoffa intrisa di gesso",
+          "Lo stesso blocco di marmo",
+          "Vetro colato sulla pietra"
+        ],
+        "answerTitle": "Lo stesso blocco di marmo.",
+        "subtitle": "Giuseppe Sanmartino, 1753.",
+        "body": "Corpo e velo sono un unico pezzo di marmo. Sanmartino scolpì il tessuto così sottile che sembra aderire al volto sottostante.",
+        "source": "Fonti pubblicate",
+        "dinnerLine": "«A Napoli c’è un velo di marmo così sottile che si vede il volto attraverso.»",
+        "sticker": {
+          "title": "Il velo di marmo",
+          "collection": "Capolavori",
+          "back": "Il velo e il corpo furono scolpiti in un unico blocco di marmo."
+        },
+        "recallChoices": [
+          "Stoffa",
+          "Marmo",
+          "Vetro"
+        ],
+        "recallPrompt": "Ricordi il Cristo velato? Di che cosa era fatto il velo?",
+        "theory": {
+          "label": "LEGGENDA",
+          "lead": "Si racconta che",
+          "text": "il principe di Sansevero abbia trasformato un vero velo in marmo con l’alchimia."
+        },
+        "lookCloser": {
+          "prompt": "Trova il volto sotto il velo.",
+          "hint": "Suggerimento: guarda dove il velo si abbassa"
+        }
+      }
+    },
+    {
+      "id": "castel-ovo",
+      "name": "Castel dell’Ovo",
+      "clues": [
+        "Castello sul mare",
+        "Tufo giallo",
+        "Su un isolotto"
+      ],
+      "story": {
+        "eyebrow": "Castel dell’Ovo · Napoli",
+        "question": "Il nome significa “Castello dell’Uovo”. Secondo la leggenda, che cosa è nascosto nelle sue mura?",
+        "answers": [
+          "Un uovo magico",
+          "Una spada d’oro",
+          "Un drago addormentato"
+        ],
+        "answerTitle": "Un uovo magico.",
+        "subtitle": "Nascosto dal poeta Virgilio, dice la leggenda.",
+        "body": "Se l’uovo si rompesse, dice la leggenda, il castello crollerebbe e su Napoli si abbatterebbero sciagure. È il castello più antico della città.",
+        "source": "Fonti pubblicate",
+        "dinnerLine": "«Si dice che il castello più antico di Napoli poggi su un uovo magico.»",
+        "sticker": {
+          "title": "Il castello dell’uovo",
+          "collection": "Leggende",
+          "back": "Si dice che Virgilio abbia nascosto un uovo magico in Castel dell’Ovo."
+        },
+        "recallChoices": [
+          "Uovo",
+          "Spada",
+          "Drago"
+        ],
+        "recallPrompt": "Ricordi il castello più antico di Napoli? Che cosa è nascosto nelle sue mura?",
+        "theory": {
+          "label": "LEGGENDA",
+          "lead": "È una leggenda:",
+          "text": "nessuno ha mai trovato l’uovo."
+        }
+      }
+    }
+  ]
+}

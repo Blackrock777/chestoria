@@ -1,0 +1,186 @@
+{
+  "welcome": {
+    "eyebrow": "Nápoles · Día 1 de tu viaje",
+    "headline": "Aquí cada rincón guarda un secreto.",
+    "body": "Apunta la cámara a cualquier cosa. Adivina su secreto y luego busca la pista. Solo 30 segundos."
+  },
+  "tickets": {
+    "tags": [
+      "Casi todo gratis",
+      "Reserva Sansevero"
+    ],
+    "tiles": [
+      {
+        "label": "Calles y plazas",
+        "value": "Gratis",
+        "note": "Gesù Nuovo y Piazza del Plebiscito"
+      },
+      {
+        "label": "Cappella Sansevero",
+        "value": "12 €",
+        "note": "Reserva antes · cerrado los martes"
+      }
+    ]
+  },
+  "thenNow": {
+    "title": "Antes y ahora · Piazza del Plebiscito",
+    "thenCaption": "Cuando era un aparcamiento"
+  },
+  "places": [
+    {
+      "id": "gesu-nuovo",
+      "name": "Gesù Nuovo",
+      "clues": [
+        "Fachada de puntas",
+        "Piedra piperno",
+        "Construido en el siglo XV"
+      ],
+      "story": {
+        "eyebrow": "Gesù Nuovo · Nápoles",
+        "question": "Es una iglesia. Pero no se construyó como iglesia. ¿Qué era?",
+        "answers": [
+          "Un banco",
+          "Una cárcel",
+          "El palacio de un príncipe"
+        ],
+        "answerTitle": "El palacio de un príncipe.",
+        "subtitle": "Construido en 1470.",
+        "body": "Se construyó para Roberto Sanseverino, príncipe de Salerno. Los jesuitas lo convirtieron en iglesia entre 1584 y 1601 y conservaron la fachada de puntas.",
+        "source": "Fuentes publicadas",
+        "dinnerLine": "«¿Esa iglesia de puntas de Nápoles? Era el palacio de un príncipe.»",
+        "sticker": {
+          "title": "El palacio de puntas",
+          "collection": "Era otra cosa",
+          "back": "Los jesuitas conservaron la fachada de puntas del palacio."
+        },
+        "recallChoices": [
+          "Banco",
+          "Cárcel",
+          "Palacio"
+        ],
+        "recallPrompt": "¿Recuerdas la iglesia de puntas de Nápoles? ¿Banco, cárcel o palacio?",
+        "theory": {
+          "label": "TEORÍA",
+          "lead": "Algunos dicen que",
+          "text": "las marcas de las piedras son una partitura escondida."
+        }
+      }
+    },
+    {
+      "id": "plebiscito",
+      "name": "Piazza del Plebiscito",
+      "clues": [
+        "Plaza enorme",
+        "Una cúpula",
+        "Columnata"
+      ],
+      "story": {
+        "eyebrow": "Piazza del Plebiscito · Nápoles",
+        "question": "Es la plaza más grande de Nápoles. ¿Qué la llenaba hasta 1993?",
+        "answers": [
+          "Un mercado de pescado",
+          "Un aparcamiento",
+          "Un campo de fútbol"
+        ],
+        "answerTitle": "Un aparcamiento.",
+        "subtitle": "Despejada para el G7 de 1994.",
+        "body": "Durante años los coches cubrieron esta enorme plaza. Nápoles la despejó antes de la cumbre del G7 de 1994, y hoy se pasea donde antes se aparcaba.",
+        "source": "Fuentes publicadas",
+        "dinnerLine": "«La plaza más grandiosa de Nápoles fue un aparcamiento hasta 1993.»",
+        "sticker": {
+          "title": "La plaza que fue aparcamiento",
+          "collection": "Era otra cosa",
+          "back": "La Piazza del Plebiscito fue un aparcamiento hasta 1993."
+        },
+        "recallChoices": [
+          "Mercado",
+          "Aparcamiento",
+          "Fútbol"
+        ],
+        "recallPrompt": "¿Recuerdas la plaza más grande de Nápoles? ¿Qué la llenaba hasta 1993?"
+      }
+    },
+    {
+      "id": "sansevero",
+      "name": "Cappella Sansevero",
+      "clues": [
+        "Mármol blanco",
+        "Un velo",
+        "Una capilla"
+      ],
+      "story": {
+        "eyebrow": "Cappella Sansevero · Nápoles",
+        "question": "El velo sobre este cuerpo parece tela de verdad. ¿De qué está hecho?",
+        "answers": [
+          "Tela empapada en yeso",
+          "El mismo bloque de mármol",
+          "Vidrio vertido sobre piedra"
+        ],
+        "answerTitle": "El mismo bloque de mármol.",
+        "subtitle": "Giuseppe Sanmartino, 1753.",
+        "body": "Cuerpo y velo son una sola pieza de mármol. Sanmartino talló la tela tan fina que parece pegarse al rostro que hay debajo.",
+        "source": "Fuentes publicadas",
+        "dinnerLine": "«En Nápoles hay un velo de mármol tan fino que se ve el rostro a través.»",
+        "sticker": {
+          "title": "El velo de mármol",
+          "collection": "Obras maestras",
+          "back": "El velo y el cuerpo se tallaron en un solo bloque de mármol."
+        },
+        "recallChoices": [
+          "Tela",
+          "Mármol",
+          "Vidrio"
+        ],
+        "recallPrompt": "¿Recuerdas el Cristo velado? ¿De qué era el velo?",
+        "theory": {
+          "label": "LEYENDA",
+          "lead": "Cuenta la leyenda que",
+          "text": "el príncipe de Sansevero convirtió un velo real en mármol con alquimia."
+        },
+        "lookCloser": {
+          "prompt": "Encuentra el rostro bajo el velo.",
+          "hint": "Pista: mira donde el velo se hunde"
+        }
+      }
+    },
+    {
+      "id": "castel-ovo",
+      "name": "Castel dell’Ovo",
+      "clues": [
+        "Castillo en el mar",
+        "Toba amarilla",
+        "En un islote"
+      ],
+      "story": {
+        "eyebrow": "Castel dell’Ovo · Nápoles",
+        "question": "Su nombre significa «Castillo del Huevo». Según la leyenda, ¿qué hay escondido en sus muros?",
+        "answers": [
+          "Un huevo mágico",
+          "Una espada de oro",
+          "Un dragón dormido"
+        ],
+        "answerTitle": "Un huevo mágico.",
+        "subtitle": "Escondido por el poeta Virgilio, dice la leyenda.",
+        "body": "Si el huevo se rompiera, dice la leyenda, el castillo caería y la desgracia llegaría a Nápoles. Es el castillo más antiguo de la ciudad.",
+        "source": "Fuentes publicadas",
+        "dinnerLine": "«Dicen que el castillo más antiguo de Nápoles se sostiene sobre un huevo mágico.»",
+        "sticker": {
+          "title": "El castillo del huevo",
+          "collection": "Leyendas",
+          "back": "La leyenda dice que Virgilio escondió un huevo mágico en el Castel dell’Ovo."
+        },
+        "recallChoices": [
+          "Huevo",
+          "Espada",
+          "Dragón"
+        ],
+        "recallPrompt": "¿Recuerdas el castillo más antiguo de Nápoles? ¿Qué hay escondido en sus muros?",
+        "theory": {
+          "label": "LEYENDA",
+          "lead": "Es una leyenda:",
+          "text": "nadie ha encontrado nunca el huevo."
+        }
+      }
+    }
+  ]
+}

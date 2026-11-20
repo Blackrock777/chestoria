@@ -179,9 +179,8 @@ struct SiteSheet: View {
                         TagPill(text: tag, fill: i == 0 ? Palette.tufoSoft : Palette.sunk, ink: i == 0 ? Palette.piperno : Palette.stone)
                     }
                 }
-                HStack(spacing: 10) {
-                    tile(t("site.fullTicket"), site.tickets.price, site.tickets.priceNote)
-                    tile(t("site.dailyCap"), site.tickets.cap, site.tickets.capNote)
+                LazyVGrid(columns: [GridItem(.flexible(), spacing: 10), GridItem(.flexible(), spacing: 10)], spacing: 10) {
+                    ForEach(site.tickets.tiles, id: \.label) { tile($0.label, $0.value, $0.note) }
                 }
                 if let tn = site.thenNow {
                     Text(tn.title).font(.system(size: 12, weight: .bold)).textCase(.uppercase).kerning(1).foregroundStyle(Palette.stone).padding(.top, 4)
@@ -213,7 +212,7 @@ struct SiteSheet: View {
             Text(note).font(.system(size: 11)).foregroundStyle(Palette.stone)
         }
         .padding(.horizontal, 14).padding(.vertical, 12)
-        .frame(maxWidth: .infinity, alignment: .leading)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .background(Palette.card, in: .rect(cornerRadius: 20))
         .overlay(RoundedRectangle(cornerRadius: 20).stroke(Palette.hair, lineWidth: 1.5))
     }

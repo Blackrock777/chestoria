@@ -9,8 +9,18 @@
       "Namentliche Tickets",
       "Vorher buchen"
     ],
-    "priceNote": "Aktueller Preis von der offiziellen Website",
-    "capNote": "Besucher pro Tag"
+    "tiles": [
+      {
+        "label": "Normalpreis",
+        "value": "€20–23",
+        "note": "Preise je nach Ticket. Bitte auf der offiziellen Website prüfen."
+      },
+      {
+        "label": "Tageslimit",
+        "value": "20.000",
+        "note": "Besucher pro Tag, namentliche Tickets"
+      }
+    ]
   },
   "thenNow": {
     "title": "Damals & heute · das Forum",
@@ -36,7 +46,7 @@
         "answerTitle": "Handel, Politik und Gottesdienst.",
         "subtitle": "Das war das Forum von Pompeji.",
         "body": "Tempel, Gericht und Markthallen umgaben diesen Platz, mit dem Jupitertempel im Norden und dem Vesuv direkt dahinter.",
-        "source": "Archäologischer Park Pompeji",
+        "source": "Veröffentlichte Quellen",
         "dinnerLine": "„In Pompeji hatte der Hauptplatz Vulkanblick.“",
         "sticker": {
           "title": "Der Vesuv vom Forum aus",
@@ -70,7 +80,7 @@
         "answerTitle": "Vorsicht, bissiger Hund.",
         "subtitle": "Auf Latein: Cave canem.",
         "body": "Das Mosaik liegt im Boden des Eingangs: Jeder Besucher stieg über einen knurrenden Hund.",
-        "source": "Archäologischer Park Pompeji",
+        "source": "Veröffentlichte Quellen",
         "dinnerLine": "„Auch die Römer warnten vor dem Hund, mit Schildern aus winzigen Steinen.“",
         "sticker": {
           "title": "Vorsicht, Hund",
@@ -104,7 +114,7 @@
         "answerTitle": "Eine Imbissbude.",
         "subtitle": "Die Römer nannten sie Thermopolium.",
         "body": "In den Löchern standen große Krüge mit warmem Essen und Wein, direkt an die Leute auf der Straße verkauft. Diese gehörte Lucius Vetutius Placidus.",
-        "source": "Archäologischer Park Pompeji",
+        "source": "Veröffentlichte Quellen",
         "dinnerLine": "„Pompeji hatte vor fast 2.000 Jahren schon Streetfood.“",
         "sticker": {
           "title": "Die Wächterschlangen",
