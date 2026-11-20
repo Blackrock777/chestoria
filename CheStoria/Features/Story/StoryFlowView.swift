@@ -7,10 +7,13 @@ struct StoryFlowView: View {
     @State private var place: Place?
     @State private var choices: [Place] = []
     @State private var noMatch = false
+    @State private var seenLabel: String?
+    @State private var heritage = false
     @State private var step: Step = .recognizing
     @State private var chosen = 0
+    @State private var confidence = 2
 
-    enum Step: Int { case recognizing, choose, question, reveal, lookCloser, sticker }
+    enum Step: Int { case recognizing, choose, notAPlace, question, reveal, lookCloser, sticker }
 
     /// Re-read the place from the current site, so a language change mid-flow shows translated text.
     private var current: Place? { place.flatMap { model.site.place(id: $0.id) } ?? place }
@@ -22,18 +25,23 @@ struct StoryFlowView: View {
                 RecognizingView(request: request) { result in handle(result) }
                     .transition(.opacity)
             case .choose:
-                ChoosePlaceView(photo: request.photo, places: choices, noMatch: noMatch) { picked in
-                    place = picked; go(.question)
-                }
+                ChoosePlaceView(photo: request.photo, places: choices, label: seenLabel, noMatch: noMatch,
+                                onPick: { picked in place = picked; go(.question) },
+                                onNone: { noMatch = true; go(.notAPlace) })
+                .transition(.opacity)
+            case .notAPlace:
+                NotAPlaceView(photo: request.photo, label: seenLabel, heritage: heritage, nearby: choices,
+                              onPick: { picked in place = picked; go(.question) },
+                              onRetake: { model.activeFlow = nil })
                 .transition(.opacity)
             case .question:
                 if let p = current, let story = p.story {
-                    QuestionView(place: p, story: story, photo: request.photo) { i in chosen = i; go(.reveal) }
+                    QuestionView(place: p, story: story, photo: request.photo) { i, sure in chosen = i; confidence = sure; go(.reveal) }
                         .transition(.opacity)
                 }
             case .reveal:
-                if let story = current?.story {
-                    RevealView(story: story, chosen: chosen) { go(story.lookCloser == nil ? .sticker : .lookCloser) }
+                if let p = current, let story = p.story {
+                    RevealView(story: story, chosen: chosen, confidence: confidence, thenNow: p.thenNow) { go(story.lookCloser == nil ? .sticker : .lookCloser) }
                         .transition(.push(from: .trailing))
                 }
             case .lookCloser:
@@ -43,7 +51,7 @@ struct StoryFlowView: View {
                 }
             case .sticker:
                 if let sticker = current?.story?.sticker {
-                    StickerEarnedView(sticker: sticker, onKeepExploring: { finish(.trip) }, onSeeAll: { finish(.stickers) })
+                    StickerEarnedView(sticker: sticker, photo: request.photo, onKeepExploring: { finish(.trip) }, onSeeAll: { finish(.stickers) })
                         .transition(.move(edge: .bottom))
                 }
             }
@@ -63,8 +71,8 @@ struct StoryFlowView: View {
     private func handle(_ result: RecognitionResult) {
         switch result {
         case .confident(let p): place = p; go(.question, animated: false)
-        case .unsure(let ps): choices = ps; noMatch = false; go(.choose, animated: false)
-        case .none(let ps): choices = ps; noMatch = true; go(.choose, animated: false)
+        case .unsure(let ps, let label): choices = ps; seenLabel = label; noMatch = false; go(.choose, animated: false)
+        case .notAPlace(let label, let h, let nearby): choices = nearby; seenLabel = label; heritage = h; go(.notAPlace, animated: false)
         }
     }
 
@@ -76,7 +84,7 @@ struct StoryFlowView: View {
         guard let p = current else { model.activeFlow = nil; return }
         if let story = p.story { RecallScheduler.schedule(for: p, story: story, strings: model.strings) }
         LiveActivityController.shared.end()
-        model.finishStory(at: p, goTo: tab)
+        model.finishStory(at: p, goTo: tab, photo: request.photo)
     }
 
     #if DEBUG
@@ -177,14 +185,23 @@ struct RecognizingView: View {
         let site = model.site
         let recognition = Task { () -> RecognitionResult in
             guard let photo = request.photo else { return .confident(request.suggested) }
-            return await matcher.identify(photo, in: site, near: location.lastLocation)
+            return await matcher.identify(photo, in: site, near: location.lastLocation, catalog: model.catalog)
         }
         guard await pause(250) else { recognition.cancel(); return }
         withAnimation(reduce ? .default : .spring(response: 0.7, dampingFraction: 0.72)) { locked = true }
         guard await pause(450) else { return }
         withAnimation(.easeInOut(duration: 0.9).repeatCount(3, autoreverses: true)) { scan = true }
         let result = await recognition.value
-        if case .confident(let p) = result { clues = model.site.place(id: p.id)?.clues ?? p.clues } else { clues = [] }
+        // Show what the AI actually saw in the photo; for a known place, add its clues.
+        let vocab = model.catalog.vocabulary
+        let seen = (matcher.log.first?.topLabels ?? []).compactMap { id in
+            vocab?.labels.first { $0.id == id }.map { vocab!.name($0, language: model.language) }
+        }
+        if case .confident(let p) = result {
+            clues = request.photo == nil ? (model.site.place(id: p.id)?.clues ?? p.clues) : Array((seen.prefix(2) + [p.name]).prefix(3))
+        } else {
+            clues = Array(seen.prefix(3))
+        }
         for i in 1...clues.count + 1 {
             guard await pause(420) else { return }
             visibleClues = i
@@ -200,12 +217,14 @@ extension String {
     var capitalizedFirst: String { prefix(1).uppercased() + dropFirst() }
 }
 
-/// Shown when the photo matched several places (or none): the person picks, which also teaches us.
+/// Shown when the photo could be one of several places: the person picks, or says none of these.
 struct ChoosePlaceView: View {
     let photo: UIImage?
     let places: [Place]
+    let label: String?
     let noMatch: Bool
     let onPick: (Place) -> Void
+    let onNone: () -> Void
     @Environment(AppModel.self) private var model
     @State private var shown = false
 
@@ -216,8 +235,9 @@ struct ChoosePlaceView: View {
             else { Palette.piperno.ignoresSafeArea() }
             VStack(alignment: .leading, spacing: 14) {
                 Spacer()
-                Text(t(noMatch ? "scan.noneTitle" : "scan.unsureTitle")).font(Typeface.display(30)).foregroundStyle(.white)
-                Text(t(noMatch ? "scan.noneBody" : "scan.unsureBody")).font(.system(size: 16)).foregroundStyle(.white.opacity(0.8))
+                if let label { Text(t("ai.looksLike", label)).font(Typeface.hand(22)).foregroundStyle(Palette.tufo) }
+                Text(t("scan.unsureTitle")).font(Typeface.display(30)).foregroundStyle(.white)
+                Text(t("scan.unsureBody")).font(.system(size: 16)).foregroundStyle(.white.opacity(0.8))
                 ForEach(Array(places.compactMap { model.site.place(id: $0.id) }.enumerated()), id: \.element.id) { i, p in
                     Button { Haptics.tap(); onPick(p) } label: {
                         HStack(spacing: 14) {
@@ -234,7 +254,66 @@ struct ChoosePlaceView: View {
                     }
                     .rise(shown, delay: 0.1 + Double(i) * 0.08)
                 }
+                Button(t("ai.noneOfThese"), action: onNone)
+                    .font(.system(size: 16, weight: .semibold)).foregroundStyle(.white.opacity(0.9))
+                    .frame(maxWidth: .infinity).padding(.top, 6)
                 Spacer().frame(height: 24)
+            }
+            .padding(.horizontal, 20)
+        }
+        .preferredColorScheme(.dark)
+        .onAppear { shown = true }
+    }
+}
+
+/// The photo isn't one of our places. Say what it looks like, kindly, and offer what is nearby.
+struct NotAPlaceView: View {
+    let photo: UIImage?
+    let label: String?
+    let heritage: Bool
+    let nearby: [Place]
+    let onPick: (Place) -> Void
+    let onRetake: () -> Void
+    @Environment(AppModel.self) private var model
+    @State private var shown = false
+
+    var body: some View {
+        let t = model.strings
+        ZStack {
+            if let photo { CoverImage(image: photo).blur(radius: 14).overlay(Color.black.opacity(0.5)).ignoresSafeArea() }
+            else { Palette.piperno.ignoresSafeArea() }
+            VStack(alignment: .leading, spacing: 14) {
+                Spacer()
+                if let photo {
+                    CoverImage(image: photo).frame(width: 110, height: 110).clipShape(.rect(cornerRadius: 24))
+                        .overlay(RoundedRectangle(cornerRadius: 24).stroke(.white, lineWidth: 4)).rotationEffect(.degrees(-4))
+                        .shadow(color: .black.opacity(0.4), radius: 12, y: 6)
+                        .scaleEffect(shown ? 1 : 0.6).animation(Motion.pop, value: shown)
+                }
+                Text(label.map { t(heritage ? "ai.heritageTitle" : "ai.notPlaceTitle", $0) } ?? t("scan.noneTitle"))
+                    .font(Typeface.display(30)).foregroundStyle(.white).fixedSize(horizontal: false, vertical: true)
+                    .rise(shown, delay: 0.1)
+                Text(t(heritage ? "ai.heritageBody" : "ai.notPlaceBody")).font(.system(size: 16)).foregroundStyle(.white.opacity(0.85))
+                    .rise(shown, delay: 0.2)
+                Button(t("scan.tryAgain"), action: onRetake).buttonStyle(CTAButtonStyle(kind: .tufo)).rise(shown, delay: 0.3)
+                if !nearby.isEmpty {
+                    Text(t("ai.nearby")).font(.system(size: 12, weight: .bold)).textCase(.uppercase).kerning(1).foregroundStyle(.white.opacity(0.7)).padding(.top, 8)
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 10) {
+                            ForEach(nearby.compactMap { model.site.place(id: $0.id) }) { p in
+                                Button { Haptics.tap(); onPick(p) } label: {
+                                    VStack(alignment: .leading, spacing: 6) {
+                                        CoverImage(p.cameraImage, anchor: p.cameraAnchor).frame(width: 130, height: 90).clipShape(.rect(cornerRadius: 14))
+                                        Text(p.name).font(.system(size: 13, weight: .semibold)).foregroundStyle(.white).lineLimit(1)
+                                    }
+                                    .frame(width: 130)
+                                }
+                            }
+                        }
+                    }
+                    .rise(shown, delay: 0.4)
+                }
+                Spacer().frame(height: 20)
             }
             .padding(.horizontal, 20)
         }
@@ -250,7 +329,7 @@ struct QuestionView: View {
     let place: Place
     let story: Story
     let photo: UIImage?
-    let onAnswer: (Int) -> Void
+    let onAnswer: (Int, Int) -> Void
     @Environment(AppModel.self) private var model
     @State private var shown = false
     @State private var selected: Int?
@@ -278,7 +357,7 @@ struct QuestionView: View {
                     ForEach(Array(story.answers.enumerated()), id: \.offset) { i, a in
                         Button(a) {
                             selected = i; Haptics.tap()
-                            Task { try? await Task.sleep(for: .milliseconds(480)); onAnswer(i) }
+                            Task { try? await Task.sleep(for: .milliseconds(480)); onAnswer(i, confidence) }
                         }
                         .buttonStyle(AnswerButtonStyle(selected: selected == i, key: ["A", "B", "C", "D"][min(i, 3)]))
                         .disabled(selected != nil)
@@ -318,6 +397,8 @@ struct QuestionView: View {
 struct RevealView: View {
     let story: Story
     let chosen: Int
+    var confidence = 2
+    var thenNow: ThenNow? = nil
     let onNext: () -> Void
     @Environment(AppModel.self) private var model
     @Environment(\.accessibilityReduceMotion) private var reduce
@@ -327,6 +408,7 @@ struct RevealView: View {
     @State private var shown = false
     @State private var stamped = false
     @State private var showSources = false
+    @State private var showThenNow = false
 
     private var right: Bool { chosen == story.correctIndex }
     private var factLabel: String {
@@ -338,7 +420,8 @@ struct RevealView: View {
     var body: some View {
         let t = model.strings
         VStack(alignment: .leading, spacing: 14) {
-            Text(right ? t("reveal.right") : t("reveal.wrong", story.answers[min(chosen, story.answers.count - 1)]))
+            Text(confidence == 3 ? (right ? t("reveal.rightSure") : t("reveal.wrongSure"))
+                 : right ? t("reveal.right") : t("reveal.wrong", story.answers[min(chosen, story.answers.count - 1)]))
                 .font(Typeface.hand(23)).foregroundStyle(right ? Palette.maiolica : Palette.stone)
                 .mask(alignment: .leading) { Rectangle().scaleEffect(x: wipe ? 1 : 0, anchor: .leading) }
                 .padding(.top, 8)
@@ -370,6 +453,23 @@ struct RevealView: View {
             }
             .fixedSize(horizontal: false, vertical: true)
             .rise(shown, delay: 1.3)
+            if let tn = thenNow {
+                Button { showThenNow = true } label: {
+                    HStack(spacing: 12) {
+                        HStack(spacing: 0) {
+                            CoverImage(tn.then).frame(width: 34, height: 44)
+                            CoverImage(tn.now).frame(width: 34, height: 44)
+                        }
+                        .clipShape(.rect(cornerRadius: 10))
+                        Text(t("thenNow.open")).font(.system(size: 15, weight: .semibold)).foregroundStyle(Palette.piperno)
+                        Spacer()
+                        Image(systemName: "chevron.right").font(.system(size: 13, weight: .bold)).foregroundStyle(Palette.stone)
+                    }
+                    .padding(8).background(Palette.card, in: .rect(cornerRadius: 16))
+                    .overlay(RoundedRectangle(cornerRadius: 16).stroke(Palette.hair, lineWidth: 1.5))
+                }
+                .rise(shown, delay: 1.4)
+            }
             Spacer(minLength: 0)
             HStack(spacing: 10) {
                 Button { narrator.toggle(spoken, language: model.language) } label: {
@@ -401,6 +501,7 @@ struct RevealView: View {
         }
         .onDisappear { narrator.stop() }
         .sheet(isPresented: $showSources) { if let fc = story.factCheck { SourcesSheet(factCheck: fc) } }
+        .sheet(isPresented: $showThenNow) { if let tn = thenNow { ThenNowSheet(thenNow: tn, title: story.eyebrow) } }
     }
 
     private var spoken: String { [story.answerTitle, story.subtitle, story.body].joined(separator: " ") }

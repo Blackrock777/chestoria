@@ -24,7 +24,7 @@ struct WelcomeView: View {
             VStack(alignment: .leading, spacing: 16) {
                 HStack(spacing: 8) {
                     Circle().fill(Palette.tufo).frame(width: 8, height: 8)
-                    Text(w.eyebrow).font(.system(size: 13, weight: .semibold)).textCase(.uppercase).kerning(0.5)
+                    Text(model.welcomeEyebrow).font(.system(size: 13, weight: .semibold)).textCase(.uppercase).kerning(0.5)
                 }
                 .foregroundStyle(.white.opacity(0.8))
                 .rise(shown, delay: 0.1)
@@ -34,6 +34,24 @@ struct WelcomeView: View {
 
                 Text(w.body).font(.system(size: 17)).foregroundStyle(.white.opacity(0.8))
                     .rise(shown, delay: 0.75)
+
+                if model.catalog.sites.count > 1 {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(t("welcome.where")).font(.system(size: 13, weight: .semibold)).foregroundStyle(.white.opacity(0.7))
+                        HStack(spacing: 8) {
+                            ForEach(model.catalog.sites) { s in
+                                Button { Haptics.tap(); withAnimation(.easeInOut) { model.switchSite(to: s.id) } } label: {
+                                    Text(s.city).font(.system(size: 15, weight: .semibold))
+                                        .foregroundStyle(s.id == model.site.id ? Palette.onTufo : .white)
+                                        .padding(.horizontal, 16).frame(height: 38)
+                                        .background { if s.id == model.site.id { Capsule().fill(Palette.tufo) } }
+                                }
+                                .glassEffect(s.id == model.site.id ? .identity : .regular.interactive(), in: .capsule)
+                            }
+                        }
+                    }
+                    .rise(shown, delay: 0.8)
+                }
 
                 Button { model.showLanguagePicker = true } label: {
                     HStack {

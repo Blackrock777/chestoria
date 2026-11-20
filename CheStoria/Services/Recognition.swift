@@ -31,11 +31,67 @@ final class ImageLoader {
 
 /// What the photo turned out to be.
 enum RecognitionResult: Equatable {
+    /// One place, clearly.
     case confident(Place)
-    /// Several places look alike; ask the person (best guess first).
-    case unsure([Place])
-    /// Nothing matched well; offer nearby places.
-    case none([Place])
+    /// Probably one of these (best first); `label` says what the AI sees, e.g. "a church façade".
+    case unsure([Place], label: String?)
+    /// Not one of our places. `label` is what it looks like ("a cup of coffee");
+    /// `heritage` is true when it still looks historic (a place we have no story for yet).
+    case notAPlace(label: String?, heritage: Bool, nearby: [Place])
+}
+
+/// What the camera sees right now, updated a few times a second.
+struct LiveGuess: Equatable {
+    let label: String?
+    let heritage: Bool
+    let place: Place?
+}
+
+/// SigLIP image encoder (google/siglip-base-patch16-224, Apache-2.0) running on device with Core ML.
+/// Produces a 768-d, L2-normalised embedding for any image or camera frame.
+nonisolated final class SigLIPEmbedder: @unchecked Sendable {
+    static let shared = SigLIPEmbedder()
+    private let request: VNCoreMLRequest?
+    private let lock = NSLock()
+
+    var isAvailable: Bool { request != nil }
+
+    private init() {
+        let config = MLModelConfiguration()
+        #if targetEnvironment(simulator)
+        config.computeUnits = .cpuOnly
+        #endif
+        if let url = Bundle.main.url(forResource: "SigLIPVision", withExtension: "mlmodelc"),
+           let model = try? MLModel(contentsOf: url, configuration: config), let vn = try? VNCoreMLModel(for: model) {
+            let r = VNCoreMLRequest(model: vn)
+            r.imageCropAndScaleOption = .centerCrop
+            request = r
+        } else {
+            request = nil
+        }
+    }
+
+    func embed(_ image: CGImage) -> [Float]? { run(VNImageRequestHandler(cgImage: image, options: [:])) }
+    func embed(_ buffer: CVPixelBuffer, orientation: CGImagePropertyOrientation = .right) -> [Float]? {
+        run(VNImageRequestHandler(cvPixelBuffer: buffer, orientation: orientation, options: [:]))
+    }
+
+    private func run(_ handler: VNImageRequestHandler) -> [Float]? {
+        guard let request else { return nil }
+        lock.lock(); defer { lock.unlock() }
+        guard (try? handler.perform([request])) != nil,
+              let array = (request.results?.first as? VNCoreMLFeatureValueObservation)?.featureValue.multiArrayValue else { return nil }
+        var v = (0..<array.count).map { Float(truncating: array[$0]) }
+        let n = sqrt(v.reduce(0) { $0 + $1 * $1 })
+        if n > 0 { v = v.map { $0 / n } }
+        return v
+    }
+
+    static func dot(_ a: [Float], _ b: [Float]) -> Float {
+        var s: Float = 0
+        for i in 0..<min(a.count, b.count) { s += a[i] * b[i] }
+        return s
+    }
 }
 
 /// A small colour-and-layout fingerprint: an HSV histogram plus an 8×8 brightness layout.
@@ -87,112 +143,77 @@ nonisolated struct ColorLayoutDescriptor: Sendable {
     }
 }
 
-/// Compares a photo against each place's reference images. Uses Vision feature prints when they
-/// work (real devices) and the colour-and-layout descriptor otherwise. New places only need
-/// reference photos in the content; nothing is trained.
-nonisolated final class FeaturePrintIndex: @unchecked Sendable {
-    enum Backend: Sendable { case vision, descriptor }
-    private var prints: [String: [VNFeaturePrintObservation]] = [:]
+/// Scores for one photo against every candidate place and every label.
+nonisolated struct PhotoScores: Sendable {
+    /// (place id, best similarity to its reference photos, best similarity to its descriptions)
+    var places: [(id: String, image: Float, text: Float)]
+    /// Labels ranked by similarity.
+    var labels: [(label: AIVocabulary.Label, score: Float)]
+    var usedAI: Bool
+}
+
+/// Reference-photo index for one site. With the AI model it stores SigLIP embeddings;
+/// without it (model missing), colour-and-layout descriptors.
+nonisolated final class PlaceIndex: @unchecked Sendable {
+    private var embeddings: [String: [[Float]]] = [:]
     private var descriptors: [String: [ColorLayoutDescriptor]] = [:]
-    private(set) var backend: Backend = .vision
-    /// The backend used for the most recent `rank` call (may fall back per photo).
-    private(set) var lastBackend: Backend = .vision
     private let lock = NSLock()
 
-    static func featurePrint(of image: CGImage) -> VNFeaturePrintObservation? {
-        func run(cpuOnly: Bool) -> VNFeaturePrintObservation? {
-            let request = VNGenerateImageFeaturePrintRequest()
-            request.imageCropAndScaleOption = .scaleFill
-            if cpuOnly, let cpu = MLComputeDevice.allComputeDevices.first(where: { if case .cpu = $0 { true } else { false } }) {
-                request.setComputeDevice(cpu, for: .main)
-            }
-            guard (try? VNImageRequestHandler(cgImage: image, options: [:]).perform([request])) != nil else { return nil }
-            return request.results?.first as? VNFeaturePrintObservation
-        }
-        return run(cpuOnly: false) ?? run(cpuOnly: true)
-    }
-
     func add(placeID: String, images: [CGImage]) {
-        let fps = images.compactMap(Self.featurePrint(of:))
-        let ds = images.compactMap(ColorLayoutDescriptor.init)
-        lock.lock(); prints[placeID] = fps; descriptors[placeID] = ds; lock.unlock()
+        let e = SigLIPEmbedder.shared.isAvailable ? images.compactMap { SigLIPEmbedder.shared.embed($0) } : []
+        let d = images.compactMap(ColorLayoutDescriptor.init)
+        lock.lock(); embeddings[placeID] = e; descriptors[placeID] = d; lock.unlock()
     }
 
-    /// Picks Vision only if it clearly tells every pair of places apart. In the simulator (and if the
-    /// model misbehaves) it returns identical vectors, so the descriptor is used instead.
-    func chooseBackend() {
-        lock.lock(); defer { lock.unlock() }
-        let groups = prints.filter { !$0.value.isEmpty }
-        guard groups.count >= 2, groups.count == descriptors.count else { backend = .descriptor; return }
-        let ids = Array(groups.keys)
-        for i in 0..<ids.count {
-            for j in (i + 1)..<ids.count {
-                for a in groups[ids[i]]! {
-                    for b in groups[ids[j]]! {
-                        var d: Float = 0
-                        guard (try? a.computeDistance(&d, to: b)) != nil, d > 0.05 else { backend = .descriptor; return }
-                    }
-                }
+    func scores(for image: CGImage? = nil, embedding: [Float]? = nil, among ids: Set<String>, vocabulary: AIVocabulary?) -> PhotoScores {
+        lock.lock(); let emb = embeddings, ds = descriptors; lock.unlock()
+        if let e = embedding ?? image.flatMap({ SigLIPEmbedder.shared.embed($0) }) {
+            let places = ids.map { id -> (id: String, image: Float, text: Float) in
+                let img = emb[id]?.map { SigLIPEmbedder.dot(e, $0) }.max() ?? 0
+                let txt = vocabulary?.placeText[id]?.map { SigLIPEmbedder.dot(e, $0) }.max() ?? 0
+                return (id, img, txt)
             }
+            let labels = (vocabulary?.labels ?? []).map { ($0, SigLIPEmbedder.dot(e, $0.embedding)) }.sorted { $0.1 > $1.1 }
+            return PhotoScores(places: places, labels: labels.map { (label: $0.0, score: $0.1) }, usedAI: true)
         }
-        backend = .vision
-    }
-
-    var isEmpty: Bool { lock.lock(); defer { lock.unlock() }; return descriptors.isEmpty }
-
-    /// Places sorted by their closest reference image (smaller distance = more alike).
-    func rank(_ image: CGImage, among ids: Set<String>?) -> [(id: String, distance: Float)] {
-        lock.lock(); let fps = prints, ds = descriptors, backend = self.backend; lock.unlock()
-        var scores: [(String, Float)] = []
-        switch backend {
-        case .vision:
-            if let query = Self.featurePrint(of: image) {
-                for (id, refs) in fps where ids?.contains(id) ?? true {
-                    let best = refs.compactMap { fp -> Float? in var d: Float = 0; return (try? query.computeDistance(&d, to: fp)) != nil ? d : nil }.min()
-                    if let best { scores.append((id, best)) }
-                }
-            }
-            // No real signal (missing or identical distances): judge this photo with the descriptor instead.
-            let spread = (scores.map(\.1).max() ?? 0) - (scores.map(\.1).min() ?? 0)
-            if scores.count < 2 || spread < 0.01 {
-                scores = []
-                if let query = ColorLayoutDescriptor(image) {
-                    for (id, refs) in ds where ids?.contains(id) ?? true {
-                        if let best = refs.map({ query.distance(to: $0) }).min() { scores.append((id, best)) }
-                    }
-                }
-                lastBackend = .descriptor
-                return scores.sorted { $0.1 < $1.1 }.map { (id: $0.0, distance: $0.1) }
-            }
-        case .descriptor:
-            guard let query = ColorLayoutDescriptor(image) else { return [] }
-            for (id, refs) in ds where ids?.contains(id) ?? true {
-                if let best = refs.map({ query.distance(to: $0) }).min() { scores.append((id, best)) }
-            }
-        }
-        lastBackend = backend
-        return scores.sorted { $0.1 < $1.1 }.map { (id: $0.0, distance: $0.1) }
+        // Fallback: descriptor distance (0 best) turned into a similarity (1 best).
+        guard let image, let q = ColorLayoutDescriptor(image) else { return PhotoScores(places: [], labels: [], usedAI: false) }
+        let places = ids.map { id in (id: id, image: 1 - (ds[id]?.map { q.distance(to: $0) }.min() ?? 1), text: Float(0)) }
+        return PhotoScores(places: places, labels: [], usedAI: false)
     }
 }
 
-/// Decides what a ranking means. Thresholds come from the site's `recognition` content block,
-/// so they can be tuned on site (using the recognition log in Profile) without a code change.
-enum RecognitionPolicy {
+/// Turns scores into a decision. Thresholds come from the site's `recognition` block in content,
+/// so they can be tuned on site (Profile → Recognition log) without a code change.
+nonisolated enum RecognitionPolicy {
     /// If the person is further than this from every place, ignore location (e.g. testing at home).
     static let onSiteMeters: CLLocationDistance = 3_000
 
-    static func decide(_ ranked: [(id: String, distance: Float)], places: [Place], backend: FeaturePrintIndex.Backend = .descriptor,
-                       settings: SiteContent.Recognition = .init()) -> RecognitionResult {
+    static func decide(_ s: PhotoScores, places: [Place], settings: SiteContent.Recognition, language: String, vocabulary: AIVocabulary?) -> RecognitionResult {
         let lookup = { (id: String) in places.first { $0.id == id } }
-        let cap = backend == .vision ? settings.visionMaxDistance : settings.descriptorMaxDistance
-        let separation = settings.separation
-        guard let best = ranked.first, let bestPlace = lookup(best.id), best.distance <= cap else {
-            return .none(places)
+        let label = s.labels.first
+        let labelName = label.map { vocabulary?.name($0.label, language: language) ?? $0.label.id }
+        let heritageLooking = s.labels.prefix(3).first.map(\.label.heritage) ?? true
+        guard !s.places.isEmpty else { return .notAPlace(label: labelName, heritage: heritageLooking, nearby: places) }
+
+        if s.usedAI {
+            let byImage = s.places.sorted { $0.image > $1.image }
+            let ranked = s.places.sorted { $0.image + settings.textWeight * $0.text > $1.image + settings.textWeight * $1.text }
+            let best = byImage[0], second = byImage.count > 1 ? byImage[1].image : 0
+            if best.image >= settings.confident, best.image - second >= settings.margin, let p = lookup(best.id) { return .confident(p) }
+            if best.image >= settings.possible || (heritageLooking && best.image >= settings.possible - 0.08) {
+                return .unsure(ranked.prefix(3).compactMap { lookup($0.id) }, label: labelName)
+            }
+            return .notAPlace(label: labelName, heritage: heritageLooking, nearby: places)
         }
-        if ranked.count > 1, best.distance > ranked[1].distance * separation {
-            return .unsure(ranked.prefix(3).filter { $0.distance <= cap }.compactMap { lookup($0.id) })
+        // Descriptor fallback (no AI model): similarity = 1 - distance.
+        let ranked = s.places.sorted { $0.image > $1.image }
+        let cap = 1 - settings.descriptorCap
+        guard ranked[0].image >= cap, let p = lookup(ranked[0].id) else { return .notAPlace(label: nil, heritage: true, nearby: places) }
+        if ranked.count > 1, (1 - ranked[0].image) > (1 - ranked[1].image) * settings.separationRatio {
+            return .unsure(ranked.prefix(3).filter { $0.image >= cap }.compactMap { lookup($0.id) }, label: nil)
         }
-        return .confident(bestPlace)
+        return .confident(p)
     }
 
     static func candidates(_ places: [Place], near location: CLLocation?, nearbyMeters: CLLocationDistance = 500) -> [Place] {
@@ -208,24 +229,29 @@ enum RecognitionPolicy {
 struct RecognitionLogEntry: Identifiable {
     let id = UUID()
     let date = Date()
-    let backend: FeaturePrintIndex.Backend
-    let ranked: [(id: String, distance: Float)]
+    let usedAI: Bool
+    let places: [(id: String, image: Float, text: Float)]
+    let topLabels: [String]
     let outcome: String
 }
 
 @Observable
 final class PlaceMatcher {
-    private var index = FeaturePrintIndex()
+    private var index = PlaceIndex()
     private(set) var isReady = false
     private(set) var log: [RecognitionLogEntry] = []
+    private(set) var live: LiveGuess?
     private var preparation: (site: String, task: Task<Void, Never>)?
+    private var liveBusy = false
 
-    /// Computes fingerprints for every story place's reference images (off the main thread).
-    /// Calling it again for the same site waits for the same work instead of starting over.
+    var usesAI: Bool { SigLIPEmbedder.shared.isAvailable }
+
+    /// Embeds every story place's reference photos (off the main thread). Calling it again for the
+    /// same site waits for the same work instead of starting over.
     func prepare(site: SiteContent) async {
         if let p = preparation, p.site == site.id { await p.task.value; return }
         isReady = false
-        if preparation != nil { index = FeaturePrintIndex() }   // new site: start a fresh index
+        if preparation != nil { index = PlaceIndex() }
         let places = site.storyPlaces, index = self.index
         let task = Task { @MainActor in
             var jobs: [(String, [CGImage])] = []
@@ -236,46 +262,71 @@ final class PlaceMatcher {
                 }
                 jobs.append((place.id, images))
             }
-            await Task.detached(priority: .utility) {
-                for (id, imgs) in jobs { index.add(placeID: id, images: imgs) }
-                index.chooseBackend()
-            }.value
+            await Task.detached(priority: .utility) { for (id, imgs) in jobs { index.add(placeID: id, images: imgs) } }.value
             self.isReady = true
         }
         preparation = (site.id, task)
         await task.value
     }
 
-    /// Nearby places first; if none of them match (e.g. a gallery photo taken elsewhere), every place.
-    func identify(_ photo: UIImage, in site: SiteContent, near location: CLLocation?) async -> RecognitionResult {
+    /// Nearby places first; if nothing nearby matches (e.g. a gallery photo taken elsewhere), every place.
+    func identify(_ photo: UIImage, in site: SiteContent, near location: CLLocation?, catalog: Catalog) async -> RecognitionResult {
         await prepare(site: site)
-        guard let cg = photo.normalizedCGImage else { return .none(site.storyPlaces) }
+        guard let cg = photo.normalizedCGImage else { return .notAPlace(label: nil, heritage: false, nearby: site.storyPlaces) }
         let settings = site.recognitionSettings
-        let nearby = RecognitionPolicy.candidates(site.storyPlaces, near: location, nearbyMeters: settings.nearbyMeters)
-        let first = await rank(cg, among: nearby, settings: settings)
-        if case .none = first, nearby.count < site.storyPlaces.count {
-            let all = await rank(cg, among: site.storyPlaces, settings: settings)
-            if case .none = all { return .none(nearby) }
-            return all
+        let nearby = RecognitionPolicy.candidates(site.storyPlaces, near: location, nearbyMeters: settings.nearby)
+        let scores = await score(cg, among: site.storyPlaces, vocabulary: catalog.vocabulary)
+        let nearbyIDs = Set(nearby.map(\.id))
+        let nearScores = PhotoScores(places: scores.places.filter { nearbyIDs.contains($0.id) }, labels: scores.labels, usedAI: scores.usedAI)
+        var result = RecognitionPolicy.decide(nearScores, places: nearby, settings: settings, language: catalog.language, vocabulary: catalog.vocabulary)
+        if case .notAPlace = result, nearby.count < site.storyPlaces.count {
+            let all = RecognitionPolicy.decide(scores, places: site.storyPlaces, settings: settings, language: catalog.language, vocabulary: catalog.vocabulary)
+            if case .notAPlace = all {} else { result = all }
         }
-        return first
+        record(scores, result: result)
+        return result
     }
 
-    private func rank(_ cg: CGImage, among places: [Place], settings: SiteContent.Recognition) async -> RecognitionResult {
+    /// Real-time guess for a camera frame (or the simulator's stand-in photo). Drops frames while busy.
+    func liveGuess(buffer: CVPixelBuffer? = nil, image: CGImage? = nil, site: SiteContent, catalog: Catalog) {
+        guard usesAI, isReady, !liveBusy else { return }
+        liveBusy = true
+        let index = self.index, ids = Set(site.storyPlaces.map(\.id)), vocab = catalog.vocabulary
+        let settings = site.recognitionSettings, language = catalog.language, places = site.storyPlaces
+        nonisolated(unsafe) let frame = buffer
+        Task.detached(priority: .userInitiated) {
+            let e = frame.flatMap { SigLIPEmbedder.shared.embed($0) } ?? image.flatMap { SigLIPEmbedder.shared.embed($0) }
+            let s = index.scores(embedding: e, among: ids, vocabulary: vocab)
+            let decision = RecognitionPolicy.decide(s, places: places, settings: settings, language: language, vocabulary: vocab)
+            let label = s.labels.first
+            await MainActor.run {
+                self.liveBusy = false
+                guard e != nil else { return }
+                var place: Place? = nil
+                if case .confident(let p) = decision { place = p }
+                self.live = LiveGuess(label: label.map { vocab?.name($0.label, language: language) ?? $0.label.id }, heritage: label?.label.heritage ?? false, place: place)
+            }
+        }
+    }
+
+    func clearLive() { live = nil }
+
+    private func score(_ cg: CGImage, among places: [Place], vocabulary: AIVocabulary?) async -> PhotoScores {
         let ids = Set(places.map(\.id)), index = self.index
-        let ranked = await Task.detached(priority: .userInitiated) { index.rank(cg, among: ids) }.value
-        let result = RecognitionPolicy.decide(ranked, places: places, backend: index.lastBackend, settings: settings)
+        return await Task.detached(priority: .userInitiated) { index.scores(for: cg, among: ids, vocabulary: vocabulary) }.value
+    }
+
+    private func record(_ s: PhotoScores, result: RecognitionResult) {
         let outcome: String = switch result {
         case .confident(let p): "✓ \(p.name)"
-        case .unsure(let ps): "? " + ps.map(\.name).joined(separator: " / ")
-        case .none: "✗"
+        case .unsure(let ps, let l): "? " + ps.map(\.name).joined(separator: " / ") + (l.map { " (\($0))" } ?? "")
+        case .notAPlace(let l, let h, _): "✗ " + (l ?? "unknown") + (h ? " · heritage" : "")
         }
-        log.insert(RecognitionLogEntry(backend: index.lastBackend, ranked: ranked, outcome: outcome), at: 0)
-        log = Array(log.prefix(20))
         #if DEBUG
-        print("[Recognition] backend=\(index.lastBackend) ranked=\(ranked.map { "\($0.id)=\(String(format: "%.3f", $0.distance))" }) → \(result)")
+        print("[Recognition] ai=\(s.usedAI) places=\(s.places.sorted { $0.image > $1.image }.map { "\($0.id)=\(String(format: "%.3f/%.3f", $0.image, $0.text))" }) labels=\(s.labels.prefix(3).map { "\($0.label.id)=\(String(format: "%.3f", $0.score))" }) → \(outcome)")
         #endif
-        return result
+        log.insert(RecognitionLogEntry(usedAI: s.usedAI, places: s.places.sorted { $0.image > $1.image }, topLabels: s.labels.prefix(3).map(\.label.id), outcome: outcome), at: 0)
+        log = Array(log.prefix(20))
     }
 }
 

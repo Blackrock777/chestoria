@@ -1,0 +1,617 @@
+{
+  "note": "Everyday and heritage things the photo recogniser can name. \"heritage\" decides whether an unmatched photo is treated as a historic place without a story yet. Run tools/embed_content.py after editing.",
+  "labels": [
+    {
+      "id": "ruins",
+      "heritage": true,
+      "prompt": "a photo of ancient ruins",
+      "names": {
+        "en": "ancient ruins",
+        "it": "rovine antiche",
+        "fr": "des ruines antiques",
+        "de": "antike Ruinen",
+        "es": "ruinas antiguas"
+      }
+    },
+    {
+      "id": "columns",
+      "heritage": true,
+      "prompt": "a photo of ancient stone columns",
+      "names": {
+        "en": "ancient columns",
+        "it": "colonne antiche",
+        "fr": "des colonnes antiques",
+        "de": "antike Säulen",
+        "es": "columnas antiguas"
+      }
+    },
+    {
+      "id": "church-facade",
+      "heritage": true,
+      "prompt": "a photo of the facade of a historic church",
+      "names": {
+        "en": "a church façade",
+        "it": "la facciata di una chiesa",
+        "fr": "une façade d’église",
+        "de": "eine Kirchenfassade",
+        "es": "la fachada de una iglesia"
+      }
+    },
+    {
+      "id": "church-interior",
+      "heritage": true,
+      "prompt": "a photo of the inside of a historic church",
+      "names": {
+        "en": "a church interior",
+        "it": "l’interno di una chiesa",
+        "fr": "l’intérieur d’une église",
+        "de": "das Innere einer Kirche",
+        "es": "el interior de una iglesia"
+      }
+    },
+    {
+      "id": "castle",
+      "heritage": true,
+      "prompt": "a photo of a medieval castle",
+      "names": {
+        "en": "a castle",
+        "it": "un castello",
+        "fr": "un château",
+        "de": "eine Burg",
+        "es": "un castillo"
+      }
+    },
+    {
+      "id": "palace",
+      "heritage": true,
+      "prompt": "a photo of a historic palace",
+      "names": {
+        "en": "a historic palace",
+        "it": "un palazzo storico",
+        "fr": "un palais historique",
+        "de": "ein historischer Palast",
+        "es": "un palacio histórico"
+      }
+    },
+    {
+      "id": "statue",
+      "heritage": true,
+      "prompt": "a photo of a marble or bronze statue",
+      "names": {
+        "en": "a statue",
+        "it": "una statua",
+        "fr": "une statue",
+        "de": "eine Statue",
+        "es": "una estatua"
+      }
+    },
+    {
+      "id": "fresco",
+      "heritage": true,
+      "prompt": "a photo of an old fresco painted on a wall",
+      "names": {
+        "en": "a fresco",
+        "it": "un affresco",
+        "fr": "une fresque",
+        "de": "ein Fresko",
+        "es": "un fresco"
+      }
+    },
+    {
+      "id": "mosaic",
+      "heritage": true,
+      "prompt": "a photo of an ancient mosaic",
+      "names": {
+        "en": "a mosaic",
+        "it": "un mosaico",
+        "fr": "une mosaïque",
+        "de": "ein Mosaik",
+        "es": "un mosaico"
+      }
+    },
+    {
+      "id": "painting",
+      "heritage": true,
+      "prompt": "a photo of an old painting in a museum",
+      "names": {
+        "en": "a painting",
+        "it": "un dipinto",
+        "fr": "un tableau",
+        "de": "ein Gemälde",
+        "es": "un cuadro"
+      }
+    },
+    {
+      "id": "arch",
+      "heritage": true,
+      "prompt": "a photo of a stone archway",
+      "names": {
+        "en": "a stone archway",
+        "it": "un arco in pietra",
+        "fr": "une arche en pierre",
+        "de": "ein Steinbogen",
+        "es": "un arco de piedra"
+      }
+    },
+    {
+      "id": "square",
+      "heritage": true,
+      "prompt": "a photo of a historic city square",
+      "names": {
+        "en": "a historic square",
+        "it": "una piazza storica",
+        "fr": "une place historique",
+        "de": "ein historischer Platz",
+        "es": "una plaza histórica"
+      }
+    },
+    {
+      "id": "fountain",
+      "heritage": true,
+      "prompt": "a photo of a historic fountain",
+      "names": {
+        "en": "a fountain",
+        "it": "una fontana",
+        "fr": "une fontaine",
+        "de": "ein Brunnen",
+        "es": "una fuente"
+      }
+    },
+    {
+      "id": "obelisk",
+      "heritage": true,
+      "prompt": "a photo of an obelisk or monument",
+      "names": {
+        "en": "a monument",
+        "it": "un monumento",
+        "fr": "un monument",
+        "de": "ein Denkmal",
+        "es": "un monumento"
+      }
+    },
+    {
+      "id": "museum",
+      "heritage": true,
+      "prompt": "a photo of objects on display in a museum",
+      "names": {
+        "en": "a museum exhibit",
+        "it": "un reperto di museo",
+        "fr": "une pièce de musée",
+        "de": "ein Museumsstück",
+        "es": "una pieza de museo"
+      }
+    },
+    {
+      "id": "catacomb",
+      "heritage": true,
+      "prompt": "a photo of an underground catacomb or tunnel",
+      "names": {
+        "en": "an underground passage",
+        "it": "un passaggio sotterraneo",
+        "fr": "un passage souterrain",
+        "de": "ein unterirdischer Gang",
+        "es": "un pasadizo subterráneo"
+      }
+    },
+    {
+      "id": "amphitheatre",
+      "heritage": true,
+      "prompt": "a photo of a Roman amphitheatre",
+      "names": {
+        "en": "an amphitheatre",
+        "it": "un anfiteatro",
+        "fr": "un amphithéâtre",
+        "de": "ein Amphitheater",
+        "es": "un anfiteatro"
+      }
+    },
+    {
+      "id": "old-street",
+      "heritage": true,
+      "prompt": "a photo of an old stone-paved street",
+      "names": {
+        "en": "an old street",
+        "it": "una strada antica",
+        "fr": "une vieille rue",
+        "de": "eine alte Straße",
+        "es": "una calle antigua"
+      }
+    },
+    {
+      "id": "bell-tower",
+      "heritage": true,
+      "prompt": "a photo of a bell tower",
+      "names": {
+        "en": "a bell tower",
+        "it": "un campanile",
+        "fr": "un clocher",
+        "de": "ein Glockenturm",
+        "es": "un campanario"
+      }
+    },
+    {
+      "id": "coffee",
+      "heritage": false,
+      "prompt": "a photo of a cup of coffee",
+      "names": {
+        "en": "a cup of coffee",
+        "it": "una tazza di caffè",
+        "fr": "une tasse de café",
+        "de": "eine Tasse Kaffee",
+        "es": "una taza de café"
+      }
+    },
+    {
+      "id": "pizza",
+      "heritage": false,
+      "prompt": "a photo of a pizza",
+      "names": {
+        "en": "a pizza",
+        "it": "una pizza",
+        "fr": "une pizza",
+        "de": "eine Pizza",
+        "es": "una pizza"
+      }
+    },
+    {
+      "id": "food",
+      "heritage": false,
+      "prompt": "a photo of a plate of food",
+      "names": {
+        "en": "a plate of food",
+        "it": "un piatto di cibo",
+        "fr": "une assiette",
+        "de": "ein Teller Essen",
+        "es": "un plato de comida"
+      }
+    },
+    {
+      "id": "ice-cream",
+      "heritage": false,
+      "prompt": "a photo of an ice cream",
+      "names": {
+        "en": "an ice cream",
+        "it": "un gelato",
+        "fr": "une glace",
+        "de": "ein Eis",
+        "es": "un helado"
+      }
+    },
+    {
+      "id": "drink",
+      "heritage": false,
+      "prompt": "a photo of a glass of a drink",
+      "names": {
+        "en": "a drink",
+        "it": "una bevanda",
+        "fr": "une boisson",
+        "de": "ein Getränk",
+        "es": "una bebida"
+      }
+    },
+    {
+      "id": "dog",
+      "heritage": false,
+      "prompt": "a photo of a dog",
+      "names": {
+        "en": "a dog",
+        "it": "un cane",
+        "fr": "un chien",
+        "de": "ein Hund",
+        "es": "un perro"
+      }
+    },
+    {
+      "id": "cat",
+      "heritage": false,
+      "prompt": "a photo of a cat",
+      "names": {
+        "en": "a cat",
+        "it": "un gatto",
+        "fr": "un chat",
+        "de": "eine Katze",
+        "es": "un gato"
+      }
+    },
+    {
+      "id": "bird",
+      "heritage": false,
+      "prompt": "a photo of a bird",
+      "names": {
+        "en": "a bird",
+        "it": "un uccello",
+        "fr": "un oiseau",
+        "de": "ein Vogel",
+        "es": "un pájaro"
+      }
+    },
+    {
+      "id": "person",
+      "heritage": false,
+      "prompt": "a photo of a photo of a person",
+      "names": {
+        "en": "a person",
+        "it": "una persona",
+        "fr": "une personne",
+        "de": "eine Person",
+        "es": "una persona"
+      }
+    },
+    {
+      "id": "people",
+      "heritage": false,
+      "prompt": "a photo of a group of people",
+      "names": {
+        "en": "a group of people",
+        "it": "un gruppo di persone",
+        "fr": "un groupe de personnes",
+        "de": "eine Gruppe von Menschen",
+        "es": "un grupo de personas"
+      }
+    },
+    {
+      "id": "selfie",
+      "heritage": false,
+      "prompt": "a photo of a selfie",
+      "names": {
+        "en": "a selfie",
+        "it": "un selfie",
+        "fr": "un selfie",
+        "de": "ein Selfie",
+        "es": "un selfie"
+      }
+    },
+    {
+      "id": "car",
+      "heritage": false,
+      "prompt": "a photo of a car",
+      "names": {
+        "en": "a car",
+        "it": "un’auto",
+        "fr": "une voiture",
+        "de": "ein Auto",
+        "es": "un coche"
+      }
+    },
+    {
+      "id": "scooter",
+      "heritage": false,
+      "prompt": "a photo of a scooter or motorbike",
+      "names": {
+        "en": "a scooter",
+        "it": "uno scooter",
+        "fr": "un scooter",
+        "de": "ein Roller",
+        "es": "una moto"
+      }
+    },
+    {
+      "id": "bus",
+      "heritage": false,
+      "prompt": "a photo of a bus or train",
+      "names": {
+        "en": "a bus or train",
+        "it": "un autobus o un treno",
+        "fr": "un bus ou un train",
+        "de": "ein Bus oder Zug",
+        "es": "un autobús o tren"
+      }
+    },
+    {
+      "id": "boat",
+      "heritage": false,
+      "prompt": "a photo of a boat",
+      "names": {
+        "en": "a boat",
+        "it": "una barca",
+        "fr": "un bateau",
+        "de": "ein Boot",
+        "es": "un barco"
+      }
+    },
+    {
+      "id": "screen",
+      "heritage": false,
+      "prompt": "a photo of a phone or computer screen",
+      "names": {
+        "en": "a screen",
+        "it": "uno schermo",
+        "fr": "un écran",
+        "de": "ein Bildschirm",
+        "es": "una pantalla"
+      }
+    },
+    {
+      "id": "laptop",
+      "heritage": false,
+      "prompt": "a photo of a laptop on a desk",
+      "names": {
+        "en": "a laptop",
+        "it": "un portatile",
+        "fr": "un ordinateur portable",
+        "de": "ein Laptop",
+        "es": "un portátil"
+      }
+    },
+    {
+      "id": "text",
+      "heritage": false,
+      "prompt": "a photo of a page of text",
+      "names": {
+        "en": "some text",
+        "it": "del testo",
+        "fr": "du texte",
+        "de": "ein Text",
+        "es": "un texto"
+      }
+    },
+    {
+      "id": "ticket",
+      "heritage": false,
+      "prompt": "a photo of a ticket or receipt",
+      "names": {
+        "en": "a ticket",
+        "it": "un biglietto",
+        "fr": "un billet",
+        "de": "eine Eintrittskarte",
+        "es": "una entrada"
+      }
+    },
+    {
+      "id": "map",
+      "heritage": false,
+      "prompt": "a photo of a map",
+      "names": {
+        "en": "a map",
+        "it": "una mappa",
+        "fr": "une carte",
+        "de": "eine Karte",
+        "es": "un mapa"
+      }
+    },
+    {
+      "id": "plant",
+      "heritage": false,
+      "prompt": "a photo of a plant or tree",
+      "names": {
+        "en": "a plant",
+        "it": "una pianta",
+        "fr": "une plante",
+        "de": "eine Pflanze",
+        "es": "una planta"
+      }
+    },
+    {
+      "id": "flowers",
+      "heritage": false,
+      "prompt": "a photo of flowers",
+      "names": {
+        "en": "flowers",
+        "it": "dei fiori",
+        "fr": "des fleurs",
+        "de": "Blumen",
+        "es": "flores"
+      }
+    },
+    {
+      "id": "sea",
+      "heritage": false,
+      "prompt": "a photo of the sea",
+      "names": {
+        "en": "the sea",
+        "it": "il mare",
+        "fr": "la mer",
+        "de": "das Meer",
+        "es": "el mar"
+      }
+    },
+    {
+      "id": "beach",
+      "heritage": false,
+      "prompt": "a photo of a beach",
+      "names": {
+        "en": "a beach",
+        "it": "una spiaggia",
+        "fr": "une plage",
+        "de": "ein Strand",
+        "es": "una playa"
+      }
+    },
+    {
+      "id": "sky",
+      "heritage": false,
+      "prompt": "a photo of the sky",
+      "names": {
+        "en": "the sky",
+        "it": "il cielo",
+        "fr": "le ciel",
+        "de": "der Himmel",
+        "es": "el cielo"
+      }
+    },
+    {
+      "id": "mountain",
+      "heritage": false,
+      "prompt": "a photo of a mountain landscape",
+      "names": {
+        "en": "a mountain",
+        "it": "una montagna",
+        "fr": "une montagne",
+        "de": "ein Berg",
+        "es": "una montaña"
+      }
+    },
+    {
+      "id": "modern-building",
+      "heritage": false,
+      "prompt": "a photo of a modern building",
+      "names": {
+        "en": "a modern building",
+        "it": "un edificio moderno",
+        "fr": "un bâtiment moderne",
+        "de": "ein modernes Gebäude",
+        "es": "un edificio moderno"
+      }
+    },
+    {
+      "id": "shop",
+      "heritage": false,
+      "prompt": "a photo of a shop window",
+      "names": {
+        "en": "a shop",
+        "it": "un negozio",
+        "fr": "une boutique",
+        "de": "ein Geschäft",
+        "es": "una tienda"
+      }
+    },
+    {
+      "id": "sign",
+      "heritage": false,
+      "prompt": "a photo of a street sign",
+      "names": {
+        "en": "a sign",
+        "it": "un cartello",
+        "fr": "un panneau",
+        "de": "ein Schild",
+        "es": "un cartel"
+      }
+    },
+    {
+      "id": "hand",
+      "heritage": false,
+      "prompt": "a photo of a hand",
+      "names": {
+        "en": "a hand",
+        "it": "una mano",
+        "fr": "une main",
+        "de": "eine Hand",
+        "es": "una mano"
+      }
+    },
+    {
+      "id": "room",
+      "heritage": false,
+      "prompt": "a photo of the inside of a modern room",
+      "names": {
+        "en": "a room",
+        "it": "una stanza",
+        "fr": "une pièce",
+        "de": "ein Zimmer",
+        "es": "una habitación"
+      }
+    },
+    {
+      "id": "bottle",
+      "heritage": false,
+      "prompt": "a photo of a bottle",
+      "names": {
+        "en": "a bottle",
+        "it": "una bottiglia",
+        "fr": "une bouteille",
+        "de": "eine Flasche",
+        "es": "una botella"
+      }
+    }
+  ]
+}

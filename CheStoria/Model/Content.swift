@@ -3,12 +3,12 @@ import CoreLocation
 
 // MARK: - Small value types
 
-struct NormalizedPoint: Codable, Hashable, Sendable {
+nonisolated struct NormalizedPoint: Codable, Hashable, Sendable {
     var x: Double
     var y: Double
 }
 
-struct NormalizedRect: Codable, Hashable, Sendable {
+nonisolated struct NormalizedRect: Codable, Hashable, Sendable {
     var x: Double
     var y: Double
     var w: Double
@@ -16,7 +16,7 @@ struct NormalizedRect: Codable, Hashable, Sendable {
 }
 
 /// A point in map units, written in JSON as `[x, y]`.
-struct MapPoint: Codable, Hashable, Sendable {
+nonisolated struct MapPoint: Codable, Hashable, Sendable {
     var x: Double
     var y: Double
     init(_ x: Double, _ y: Double) { self.x = x; self.y = y }
@@ -31,7 +31,7 @@ struct MapPoint: Codable, Hashable, Sendable {
 
 /// An image is either an asset compiled into the app (`"forum"`) or a URL (`"https://…/forum.jpg"`).
 /// Remote images let new places ship without an app update.
-enum ImageRef: Codable, Hashable, Sendable {
+nonisolated enum ImageRef: Codable, Hashable, Sendable {
     case asset(String)
     case remote(URL)
 
@@ -51,7 +51,7 @@ enum ImageRef: Codable, Hashable, Sendable {
 
 // MARK: - Stories and places
 
-struct Sticker: Codable, Identifiable, Hashable, Sendable {
+nonisolated struct Sticker: Codable, Identifiable, Hashable, Sendable {
     let id: String
     let title: String
     let collection: String
@@ -61,7 +61,7 @@ struct Sticker: Codable, Identifiable, Hashable, Sendable {
     let back: String
 }
 
-struct LookCloser: Codable, Hashable, Sendable {
+nonisolated struct LookCloser: Codable, Hashable, Sendable {
     let prompt: String
     let hint: String
     let image: ImageRef
@@ -72,7 +72,7 @@ struct LookCloser: Codable, Hashable, Sendable {
     let target: NormalizedPoint
 }
 
-struct Theory: Codable, Hashable, Sendable {
+nonisolated struct Theory: Codable, Hashable, Sendable {
     /// "THEORY" or "LEGEND". Shown on the red seal.
     let label: String
     let lead: String
@@ -81,15 +81,15 @@ struct Theory: Codable, Hashable, Sendable {
 
 /// Where a story's facts come from. `sourced` = checked against published sources;
 /// `verified` = confirmed by the site's authority (shown as "Verified").
-struct FactCheck: Codable, Hashable, Sendable {
-    struct Source: Codable, Hashable, Sendable { let title: String; let url: URL }
-    enum Status: String, Codable, Sendable { case sourced, verified }
+nonisolated struct FactCheck: Codable, Hashable, Sendable {
+    nonisolated struct Source: Codable, Hashable, Sendable { let title: String; let url: URL }
+    nonisolated enum Status: String, Codable, Sendable { case sourced, verified }
     let status: Status
     let checkedOn: String
     let sources: [Source]
 }
 
-struct Story: Codable, Hashable, Sendable {
+nonisolated struct Story: Codable, Hashable, Sendable {
     let eyebrow: String
     let question: String
     let answers: [String]
@@ -108,7 +108,14 @@ struct Story: Codable, Hashable, Sendable {
     let factCheck: FactCheck?
 }
 
-struct Place: Codable, Identifiable, Hashable, Sendable {
+nonisolated struct ThenNow: Codable, Hashable, Sendable {
+    let then: ImageRef
+    let thenCaption: String
+    let now: ImageRef
+    let nowCaption: String
+}
+
+nonisolated struct Place: Codable, Identifiable, Hashable, Sendable {
     let id: String
     let name: String
     let site: String
@@ -123,7 +130,11 @@ struct Place: Codable, Identifiable, Hashable, Sendable {
     /// Position on the site map, in map units.
     let mapPoint: MapPoint
     let showsMapLabel: Bool?
-    /// Photos used to recognise this place from the camera (Vision feature prints).
+    /// Optional old-vs-today comparison for this place (shown after the story and on the map).
+    let thenNow: ThenNow?
+    /// Plain-English descriptions the AI matches photos against (embedded by tools/embed_content.py).
+    let aiDescriptions: [String]?
+    /// Photos used to recognise this place from the camera.
     let referenceImages: [ImageRef]?
     let story: Story?
 
@@ -134,11 +145,11 @@ struct Place: Codable, Identifiable, Hashable, Sendable {
 
 // MARK: - Site
 
-struct SiteMap: Codable, Hashable, Sendable {
-    struct Street: Codable, Hashable, Sendable { let from: MapPoint; let to: MapPoint }
-    struct Block: Codable, Hashable, Sendable { let x: Double; let y: Double; let w: Double; let h: Double }
-    struct Label: Codable, Hashable, Sendable {
-        enum Style: String, Codable, Sendable { case place, street, water }
+nonisolated struct SiteMap: Codable, Hashable, Sendable {
+    nonisolated struct Street: Codable, Hashable, Sendable { let from: MapPoint; let to: MapPoint }
+    nonisolated struct Block: Codable, Hashable, Sendable { let x: Double; let y: Double; let w: Double; let h: Double }
+    nonisolated struct Label: Codable, Hashable, Sendable {
+        nonisolated enum Style: String, Codable, Sendable { case place, street, water }
         let text: String
         let x: Double
         let y: Double
@@ -155,35 +166,45 @@ struct SiteMap: Codable, Hashable, Sendable {
     let labels: [Label]
 }
 
-struct SiteContent: Codable, Identifiable, Hashable, Sendable {
-    struct Welcome: Codable, Hashable, Sendable {
-        let eyebrow: String
+nonisolated struct SiteContent: Codable, Identifiable, Hashable, Sendable {
+    nonisolated struct Welcome: Codable, Hashable, Sendable {
+        /// Optional fixed line above the headline; normally the app writes "Welcome to Pompeii" / "Pompeii · Day 2 of your trip".
+        let eyebrow: String?
         let headline: String
         let body: String
         let image: ImageRef
         let imageAnchor: NormalizedPoint
     }
-    struct Tickets: Codable, Hashable, Sendable {
-        struct Tile: Codable, Hashable, Sendable { let label: String; let value: String; let note: String }
+    nonisolated struct Tickets: Codable, Hashable, Sendable {
+        nonisolated struct Tile: Codable, Hashable, Sendable { let label: String; let value: String; let note: String }
         let tags: [String]
         let tiles: [Tile]
         let bookingURL: URL
         let sources: [FactCheck.Source]?
     }
     /// Recognition thresholds, tunable per site from content (see the recognition log in Profile).
-    struct Recognition: Codable, Hashable, Sendable {
-        var visionMaxDistance: Float = 1.1
-        var descriptorMaxDistance: Float = 0.56
-        var separation: Float = 0.86
-        var nearbyMeters: Double = 500
+    /// Every field is optional; missing ones fall back to the defaults below.
+    nonisolated struct Recognition: Codable, Hashable, Sendable {
+        var descriptorMaxDistance: Float?
+        var separation: Float?
+        var nearbyMeters: Double?
+        /// SigLIP: image similarity needed to open a story straight away, and its lead over the runner-up.
+        var aiConfident: Float?
+        var aiMargin: Float?
+        /// SigLIP: similarity above which we ask "Which one is it?" instead of saying it's not a place.
+        var aiPossible: Float?
+        /// How much the text descriptions count next to the reference photos when ranking places.
+        var aiTextWeight: Float?
+
+        var descriptorCap: Float { descriptorMaxDistance ?? 0.56 }
+        var separationRatio: Float { separation ?? 0.86 }
+        var nearby: Double { nearbyMeters ?? 500 }
+        var confident: Float { aiConfident ?? 0.72 }
+        var margin: Float { aiMargin ?? 0.05 }
+        var possible: Float { aiPossible ?? 0.62 }
+        var textWeight: Float { aiTextWeight ?? 2 }
     }
-    struct ThenNow: Codable, Hashable, Sendable {
-        let title: String
-        let then: ImageRef
-        let thenCaption: String
-        let now: ImageRef
-    }
-    struct DemoTrip: Codable, Hashable, Sendable {
+    nonisolated struct DemoTrip: Codable, Hashable, Sendable {
         let visited: [String]
         let collected: [String]
     }
@@ -194,8 +215,10 @@ struct SiteContent: Codable, Identifiable, Hashable, Sendable {
     let featuredPlace: String
     let welcome: Welcome
     let tickets: Tickets
-    let thenNow: ThenNow?
     let postcardImage: ImageRef
+    /// Real-world corners of the hand-drawn map, used to place "you are here" and imported pins.
+    let geoBounds: GeoBounds?
+    nonisolated struct GeoBounds: Codable, Hashable, Sendable { let north: Double; let south: Double; let west: Double; let east: Double }
     let map: SiteMap
     let places: [Place]
     let demoTrip: DemoTrip?
@@ -219,8 +242,8 @@ struct SiteContent: Codable, Identifiable, Hashable, Sendable {
 
 // MARK: - Catalog
 
-struct CatalogIndex: Codable, Sendable {
-    struct Entry: Codable, Sendable {
+nonisolated struct CatalogIndex: Codable, Sendable {
+    nonisolated struct Entry: Codable, Sendable {
         let id: String
         /// Base file, written in `baseLanguage`.
         let file: String
@@ -234,18 +257,24 @@ struct CatalogIndex: Codable, Sendable {
     let sites: [Entry]
     /// Interface text per language, e.g. `{"en": "strings/en.json"}`. English is the fallback.
     let strings: [String: String]?
+    let ai: AIFiles?
+
+    nonisolated struct AIFiles: Codable, Sendable { let model: String; let labels: String; let textEmbeddings: String }
 
     var allFiles: [String] {
         ["catalog.json"] + sites.flatMap { [$0.file] + ($0.translations.map { Array($0.values) } ?? []) } + (strings.map { Array($0.values) } ?? [])
+            + (ai.map { [$0.labels, $0.textEmbeddings] } ?? [])
     }
 }
 
-struct Catalog: Sendable {
+nonisolated struct Catalog: Sendable {
     static let supportedSchema = 2
     let index: CatalogIndex
     let sites: [SiteContent]
     let language: String
     let strings: UIStrings
+    /// Labels and pre-computed text embeddings for the on-device AI (nil if the content has none).
+    let vocabulary: AIVocabulary?
 
     func site(id: String) -> SiteContent? { sites.first { $0.id == id } }
     var defaultSite: SiteContent { site(id: index.defaultSite) ?? sites[0] }
@@ -253,7 +282,7 @@ struct Catalog: Sendable {
 }
 
 /// Interface text loaded from content, so wording and translations can change without code changes.
-struct UIStrings: Sendable {
+nonisolated struct UIStrings: Sendable {
     let table: [String: String]
     let fallback: [String: String]
 
@@ -269,7 +298,7 @@ struct UIStrings: Sendable {
 
 /// Merges a translation overlay into a base JSON document. Objects merge key by key;
 /// arrays of objects with an `id` merge item by item; anything else is replaced.
-enum JSONMerge {
+nonisolated enum JSONMerge {
     static func merge(_ base: Any, _ overlay: Any) -> Any {
         if let b = base as? [String: Any], let o = overlay as? [String: Any] {
             var r = b
@@ -291,7 +320,7 @@ enum JSONMerge {
 /// Where content comes from. Bundled content always works offline; a remote base URL
 /// (Info.plist key `ContentBaseURL`) can replace it without an app update.
 enum ContentStore {
-    enum LoadError: LocalizedError {
+    nonisolated enum LoadError: LocalizedError {
         case missingFile(String)
         case unsupportedSchema(Int)
         case invalid([String])
@@ -336,7 +365,11 @@ enum ContentStore {
             guard let file = index.strings?[lang], let data = try? read(file) else { return [:] }
             return (try? decoder.decode([String: String].self, from: data)) ?? [:]
         }
-        return Catalog(index: index, sites: sites, language: language, strings: UIStrings(table: table(language), fallback: table("en")))
+        var vocabulary: AIVocabulary?
+        if let ai = index.ai, let labels = try? read(ai.labels), let emb = try? read(ai.textEmbeddings) {
+            vocabulary = try? AIVocabulary(labelsJSON: labels, embeddingsJSON: emb)
+        }
+        return Catalog(index: index, sites: sites, language: language, strings: UIStrings(table: table(language), fallback: table("en")), vocabulary: vocabulary)
     }
 
     /// Downloads every file the catalog mentions from `baseURL`, validates them in every language,
@@ -375,4 +408,40 @@ enum ContentStore {
     }
 
     static func clearCache() { try? FileManager.default.removeItem(at: cacheDirectory) }
+}
+
+// MARK: - AI vocabulary
+
+/// Everyday and heritage labels plus SigLIP text embeddings, loaded from content (ai/*.json).
+nonisolated struct AIVocabulary: Sendable {
+    nonisolated struct Label: Sendable { let id: String; let heritage: Bool; let names: [String: String]; let embedding: [Float] }
+    let model: String
+    let labels: [Label]
+    let placeText: [String: [[Float]]]
+
+    private struct LabelsFile: Decodable {
+        nonisolated struct L: Decodable { let id: String; let heritage: Bool; let names: [String: String] }
+        let labels: [L]
+    }
+    private struct EmbeddingsFile: Decodable {
+        let model: String
+        let labels: [String: String]
+        let places: [String: [String]]
+    }
+
+    init(labelsJSON: Data, embeddingsJSON: Data) throws {
+        let lf = try JSONDecoder().decode(LabelsFile.self, from: labelsJSON)
+        let ef = try JSONDecoder().decode(EmbeddingsFile.self, from: embeddingsJSON)
+        model = ef.model
+        labels = lf.labels.compactMap { l in ef.labels[l.id].flatMap(Self.decode).map { Label(id: l.id, heritage: l.heritage, names: l.names, embedding: $0) } }
+        placeText = ef.places.mapValues { $0.compactMap(Self.decode) }
+    }
+
+    /// Base64 little-endian float16 → [Float].
+    static func decode(_ b64: String) -> [Float]? {
+        guard let data = Data(base64Encoded: b64), data.count % 2 == 0 else { return nil }
+        return data.withUnsafeBytes { raw in raw.bindMemory(to: UInt16.self).map { Float(Float16(bitPattern: UInt16(littleEndian: $0))) } }
+    }
+
+    func name(_ label: Label, language: String) -> String { label.names[language] ?? label.names["en"] ?? label.id }
 }

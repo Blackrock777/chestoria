@@ -143,6 +143,8 @@ private struct SignedInView: View {
     @AppStorage(Settings.haptics) private var haptics = true
     @AppStorage(Settings.recall) private var recall = true
     @AppStorage(Settings.autoRead) private var autoRead = false
+    @AppStorage(Settings.recallHour) private var recallHour = 8
+    @AppStorage(Settings.recallMinute) private var recallMinute = 12
     @State private var editingName = false
     @State private var newName = ""
     @State private var confirmDelete = false
@@ -189,12 +191,19 @@ private struct SignedInView: View {
                     Toggle(t("profile.recall"), isOn: $recall)
                     Text(t("profile.recallNote")).font(.system(size: 12)).foregroundStyle(Palette.stone)
                 }
+                if recall {
+                    DatePicker(t("profile.recallTime"), selection: Binding(
+                        get: { Calendar.current.date(bySettingHour: recallHour, minute: recallMinute, second: 0, of: .now) ?? .now },
+                        set: { let c = Calendar.current.dateComponents([.hour, .minute], from: $0); recallHour = c.hour ?? 8; recallMinute = c.minute ?? 12 }),
+                        displayedComponents: .hourAndMinute)
+                }
                 Toggle(t("profile.autoRead"), isOn: $autoRead)
             }
             .tint(Palette.azzurro)
 
             Section(t("profile.demo")) {
-                Button(t("profile.resetTrip")) { model.resetDemo(); dismiss() }
+                Button(t("profile.startFresh")) { model.startFresh(); dismiss() }
+                Button(t("profile.loadDemo")) { model.loadDemo(); dismiss() }
                 Button(t("profile.replayWelcome")) { model.resetOnboarding(); dismiss() }
                 NavigationLink(t("profile.recognitionLog")) { RecognitionLogView() }
             }

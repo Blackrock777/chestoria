@@ -1,6 +1,5 @@
 {
   "welcome": {
-    "eyebrow": "Pompei · 2° giorno del tuo viaggio",
     "headline": "Ogni pietra qui ha un segreto.",
     "body": "Inquadra qualsiasi cosa. Indovina il suo segreto, poi trova l’indizio. Bastano 30 secondi."
   },
@@ -21,10 +20,6 @@
         "note": "visitatori al giorno, biglietti nominativi"
       }
     ]
-  },
-  "thenNow": {
-    "title": "Ieri e oggi · il Foro",
-    "thenCaption": "1841 · dipinto da Købke"
   },
   "places": [
     {
@@ -59,6 +54,10 @@
           "Gladiatori"
         ],
         "recallPrompt": "Ricordi la grande piazza di Pompei? Che cosa succedeva lì?"
+      },
+      "thenNow": {
+        "thenCaption": "1841 · dipinto da Christen Købke",
+        "nowCaption": "Oggi"
       }
     },
     {

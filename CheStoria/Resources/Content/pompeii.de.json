@@ -1,6 +1,5 @@
 {
   "welcome": {
-    "eyebrow": "Pompeji · Tag 2 deiner Reise",
     "headline": "Hier hat jeder Stein ein Geheimnis.",
     "body": "Richte die Kamera auf irgendetwas. Rate sein Geheimnis und finde dann den Hinweis. Dauert 30 Sekunden."
   },
@@ -21,10 +20,6 @@
         "note": "Besucher pro Tag, namentliche Tickets"
       }
     ]
-  },
-  "thenNow": {
-    "title": "Damals & heute · das Forum",
-    "thenCaption": "1841 · gemalt von Købke"
   },
   "places": [
     {
@@ -59,6 +54,10 @@
           "Kämpfe"
         ],
         "recallPrompt": "Erinnerst du dich an den großen Platz in Pompeji? Was passierte dort?"
+      },
+      "thenNow": {
+        "thenCaption": "1841 · gemalt von Christen Købke",
+        "nowCaption": "Heute"
       }
     },
     {

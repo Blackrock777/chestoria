@@ -1,6 +1,5 @@
 {
   "welcome": {
-    "eyebrow": "Naples · Jour 1 de votre voyage",
     "headline": "Ici, chaque coin a un secret.",
     "body": "Visez n’importe quoi avec l’appareil photo. Devinez son secret, puis trouvez l’indice. 30 secondes suffisent."
   },
@@ -21,10 +20,6 @@
         "note": "Réservez à l’avance · fermé le mardi"
       }
     ]
-  },
-  "thenNow": {
-    "title": "Hier et aujourd’hui · Piazza del Plebiscito",
-    "thenCaption": "Quand c’était un parking"
   },
   "places": [
     {
@@ -98,6 +93,10 @@
           "Foot"
         ],
         "recallPrompt": "Vous vous souvenez de la plus grande place de Naples ? Qu’est-ce qui la remplissait jusqu’en 1993 ?"
+      },
+      "thenNow": {
+        "thenCaption": "Quand c’était un parking",
+        "nowCaption": "Aujourd’hui"
       }
     },
     {

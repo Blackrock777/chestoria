@@ -1,6 +1,5 @@
 {
   "welcome": {
-    "eyebrow": "Neapel · Tag 1 deiner Reise",
     "headline": "Hier hat jede Ecke ein Geheimnis.",
     "body": "Richte die Kamera auf irgendetwas. Rate sein Geheimnis und finde dann den Hinweis. Dauert 30 Sekunden."
   },
@@ -21,10 +20,6 @@
         "note": "Vorher buchen · dienstags geschlossen"
       }
     ]
-  },
-  "thenNow": {
-    "title": "Damals & heute · Piazza del Plebiscito",
-    "thenCaption": "Als er ein Parkplatz war"
   },
   "places": [
     {
@@ -98,6 +93,10 @@
           "Fußball"
         ],
         "recallPrompt": "Erinnerst du dich an Neapels größten Platz? Was füllte ihn bis 1993?"
+      },
+      "thenNow": {
+        "thenCaption": "Als er ein Parkplatz war",
+        "nowCaption": "Heute"
       }
     },
     {

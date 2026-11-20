@@ -3,8 +3,10 @@ import SwiftUI
 /// Today's walk on a hand-drawn site map. Only places you found are shown, never what you missed.
 struct TripView: View {
     @Environment(AppModel.self) private var model
+    @Environment(PlaceRecognizer.self) private var location
     @State private var showSite = false
     @State private var drawn = false
+    @State private var openPlace: Place?
 
     var body: some View {
         let t = model.strings
@@ -26,15 +28,21 @@ struct TripView: View {
                 }
                 .padding(.horizontal, 4)
 
-                SiteMapView(map: map, places: visited, drawn: drawn)
+                SiteMapView(map: map, places: visited, drawn: drawn, here: hereOnMap, onTap: { openPlace = $0 })
                     .aspectRatio(map.width / map.height, contentMode: .fit)
+                    .overlay(alignment: .bottom) {
+                        if visited.isEmpty {
+                            Text(t("trip.empty")).font(.system(size: 14, weight: .semibold)).foregroundStyle(Palette.stone)
+                                .padding(.horizontal, 14).padding(.vertical, 10).background(.white.opacity(0.85), in: .capsule).padding(16)
+                        }
+                    }
                     .clipShape(.rect(cornerRadius: 30))
                     .overlay(RoundedRectangle(cornerRadius: 30).stroke(Palette.hair, lineWidth: 1.5))
 
                 HStack(spacing: 10) {
                     ForEach(Array(model.collectedStickers.prefix(2).enumerated()), id: \.element.sticker.id) { i, item in
                         HStack(spacing: 10) {
-                            StickerArt(sticker: item.sticker, border: 3).frame(width: 44, height: 40)
+                            StickerArt(sticker: item.sticker, border: 3, photo: model.stickerPhoto(item.sticker)).frame(width: 44, height: 40)
                             Text(item.sticker.title).font(.system(size: 13, weight: .semibold)).foregroundStyle(Palette.piperno)
                                 .lineLimit(2).frame(maxWidth: .infinity, alignment: .leading)
                         }
@@ -50,6 +58,16 @@ struct TripView: View {
         .background(Palette.calce)
         .onAppear { drawn = false; DispatchQueue.main.async { drawn = true } }
         .sheet(isPresented: $showSite) { SiteSheet().presentationDetents([.large]).presentationCornerRadius(38) }
+        .sheet(item: $openPlace) { PlaceSheet(place: $0) }
+    }
+
+    /// Your real position on the hand-drawn map, if you are inside it.
+    private var hereOnMap: MapPoint? {
+        guard let loc = location.lastLocation, let b = model.site.geoBounds else { return nil }
+        let lat = loc.coordinate.latitude, lon = loc.coordinate.longitude
+        guard (b.south...b.north).contains(lat), (b.west...b.east).contains(lon) else { return nil }
+        let m = model.site.map
+        return MapPoint((lon - b.west) / (b.east - b.west) * m.width, (b.north - lat) / (b.north - b.south) * m.height)
     }
 }
 
@@ -58,6 +76,8 @@ struct SiteMapView: View {
     let map: SiteMap
     let places: [Place]
     let drawn: Bool
+    var here: MapPoint? = nil
+    var onTap: ((Place) -> Void)? = nil
     @Environment(\.accessibilityReduceMotion) private var reduce
 
     private let ink = Color(red: 0.17, green: 0.19, blue: 0.18)
@@ -82,7 +102,9 @@ struct SiteMapView: View {
                     .scaleEffect(drawn ? 1 : 0.4).opacity(drawn ? 1 : 0).offset(y: drawn ? 0 : -40)
                     .animation(reduce ? nil : Motion.pop.delay(0.35 + Double(i) * 0.6), value: drawn)
                     .position(pts[i])
+                    .onTapGesture { Haptics.tap(); onTap?(place) }
                     .accessibilityLabel(place.name)
+                    .accessibilityAddTraits(.isButton)
                     if place.showsMapLabel ?? true {
                         Text(place.name).font(.system(size: 11.5, weight: .bold)).foregroundStyle(ink)
                             .fixedSize()
@@ -90,7 +112,7 @@ struct SiteMapView: View {
                             .opacity(drawn ? 1 : 0).animation(.easeOut.delay(0.6 + Double(i) * 0.6), value: drawn)
                     }
                 }
-                if let last = pts.last { YouAreHere().position(x: last.x + 34 * k, y: last.y + 66 * k) }
+                if let here { YouAreHere().position(x: here.x * k, y: here.y * k) }
             }
         }
         .background(Color(red: 0.98, green: 0.98, blue: 0.96))
@@ -150,6 +172,7 @@ nonisolated struct SmoothPath: Shape {
 }
 
 private struct YouAreHere: View {
+    @Environment(AppModel.self) private var model
     @State private var pulse = false
     var body: some View {
         ZStack {
@@ -157,7 +180,7 @@ private struct YouAreHere: View {
             Circle().fill(Palette.azzurro).frame(width: 16, height: 16).overlay(Circle().stroke(.white, lineWidth: 3))
         }
         .onAppear { withAnimation(.easeInOut(duration: 1.2).repeatForever()) { pulse = true } }
-        .accessibilityLabel("You are here")
+        .accessibilityLabel(model.strings("a11y.here"))
     }
 }
 
@@ -165,9 +188,7 @@ private struct YouAreHere: View {
 
 struct SiteSheet: View {
     @Environment(AppModel.self) private var model
-    @State private var split: CGFloat = 0.55
-    @State private var dragged = false
-    @Environment(\.accessibilityReduceMotion) private var reduce
+    @State private var thenNowPlace: Place?
 
     var body: some View {
         let site = model.site, t = model.strings
@@ -182,11 +203,25 @@ struct SiteSheet: View {
                 LazyVGrid(columns: [GridItem(.flexible(), spacing: 10), GridItem(.flexible(), spacing: 10)], spacing: 10) {
                     ForEach(site.tickets.tiles, id: \.label) { tile($0.label, $0.value, $0.note) }
                 }
-                if let tn = site.thenNow {
-                    Text(tn.title).font(.system(size: 12, weight: .bold)).textCase(.uppercase).kerning(1).foregroundStyle(Palette.stone).padding(.top, 4)
-                    ThenNowSlider(then: tn.then, now: tn.now, caption: tn.thenCaption, todayLabel: t("site.today"), split: $split)
-                        .frame(height: 220)
-                        .simultaneousGesture(DragGesture().onChanged { _ in dragged = true })
+                let withThenNow = site.places.filter { $0.thenNow != nil }
+                if !withThenNow.isEmpty {
+                    Text(t("thenNow.title")).font(.system(size: 12, weight: .bold)).textCase(.uppercase).kerning(1).foregroundStyle(Palette.stone).padding(.top, 4)
+                    ForEach(withThenNow) { p in
+                        Button { thenNowPlace = p } label: {
+                            HStack(spacing: 12) {
+                                HStack(spacing: 0) { CoverImage(p.thenNow!.then).frame(width: 40, height: 52); CoverImage(p.thenNow!.now).frame(width: 40, height: 52) }
+                                    .clipShape(.rect(cornerRadius: 12))
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text(p.name).font(.system(size: 16, weight: .semibold)).foregroundStyle(Palette.piperno)
+                                    Text(p.thenNow!.thenCaption).font(.system(size: 13)).foregroundStyle(Palette.stone)
+                                }
+                                Spacer()
+                                Image(systemName: "chevron.right").foregroundStyle(Palette.stone)
+                            }
+                            .padding(10).background(Palette.card, in: .rect(cornerRadius: 18))
+                            .overlay(RoundedRectangle(cornerRadius: 18).stroke(Palette.hair, lineWidth: 1.5))
+                        }
+                    }
                 }
                 Link(destination: site.tickets.bookingURL) { Text(t("site.book")).frame(maxWidth: .infinity) }
                     .buttonStyle(CTAButtonStyle(kind: .dark)).padding(.top, 8)
@@ -194,15 +229,7 @@ struct SiteSheet: View {
             .padding(.horizontal, 20)
         }
         .background(Palette.calce)
-        .task {
-            guard !reduce else { return }
-            try? await Task.sleep(for: .milliseconds(700))
-            // Sweep once so people see the slider can move.
-            for step in 0...60 where !dragged {
-                split = 0.55 + sin(Double(step) / 60 * .pi * 2) * 0.3
-                try? await Task.sleep(for: .milliseconds(30))
-            }
-        }
+        .sheet(item: $thenNowPlace) { p in if let tn = p.thenNow { ThenNowSheet(thenNow: tn, title: p.name) } }
     }
 
     private func tile(_ label: String, _ value: String, _ note: String) -> some View {

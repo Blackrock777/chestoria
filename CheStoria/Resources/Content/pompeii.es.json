@@ -1,6 +1,5 @@
 {
   "welcome": {
-    "eyebrow": "Pompeya · Día 2 de tu viaje",
     "headline": "Aquí cada piedra guarda un secreto.",
     "body": "Apunta la cámara a cualquier cosa. Adivina su secreto y luego busca la pista. Solo 30 segundos."
   },
@@ -21,10 +20,6 @@
         "note": "visitantes al día, entradas nominativas"
       }
     ]
-  },
-  "thenNow": {
-    "title": "Antes y ahora · el Foro",
-    "thenCaption": "1841 · pintado por Købke"
   },
   "places": [
     {
@@ -59,6 +54,10 @@
           "Luchas"
         ],
         "recallPrompt": "¿Recuerdas la gran plaza de Pompeya? ¿Qué pasaba allí?"
+      },
+      "thenNow": {
+        "thenCaption": "1841 · pintado por Christen Købke",
+        "nowCaption": "Hoy"
       }
     },
     {

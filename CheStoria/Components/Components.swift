@@ -119,9 +119,13 @@ struct StickerArt: View {
     var border: CGFloat = 8
     /// -1...1 tilt used to move the sheen.
     var sheen: CGFloat = 0
+    /// The person's own photo; when present the sticker is cut from it instead of the content image.
+    var photo: UIImage? = nil
 
     var body: some View {
-        CroppedImage(ref: sticker.image, crop: sticker.crop)
+        Group {
+            if let photo { CoverImage(image: photo) } else { CroppedImage(ref: sticker.image, crop: sticker.crop) }
+        }
             .overlay {
                 LinearGradient(stops: [.init(color: .clear, location: 0.38), .init(color: .white.opacity(0.5), location: 0.5), .init(color: .clear, location: 0.62)],
                                startPoint: .topLeading, endPoint: .bottomTrailing)
@@ -131,7 +135,7 @@ struct StickerArt: View {
             .clipShape(BlobShape())
             .overlay(BlobShape().stroke(.white, lineWidth: border))
             .shadow(color: Color(red: 0.24, green: 0.16, blue: 0).opacity(0.4), radius: 16, y: 12)
-            .accessibilityLabel(Text("Sticker: \(sticker.title)"))
+            .accessibilityLabel(Text(sticker.title))
     }
 }
 
@@ -326,11 +330,12 @@ struct FlashOverlay: View {
 
 struct CloseButton: View {
     let action: () -> Void
+    @Environment(AppModel.self) private var model
     var body: some View {
         Button(action: action) {
             Image(systemName: "xmark").font(.system(size: 15, weight: .bold)).foregroundStyle(.white).frame(width: 40, height: 40)
         }
         .glassEffect(.regular.interactive(), in: .circle)
-        .accessibilityLabel("Close")
+        .accessibilityLabel(model.strings("common.close"))
     }
 }

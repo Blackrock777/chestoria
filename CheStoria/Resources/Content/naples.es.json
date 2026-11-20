@@ -1,6 +1,5 @@
 {
   "welcome": {
-    "eyebrow": "Nápoles · Día 1 de tu viaje",
     "headline": "Aquí cada rincón guarda un secreto.",
     "body": "Apunta la cámara a cualquier cosa. Adivina su secreto y luego busca la pista. Solo 30 segundos."
   },
@@ -21,10 +20,6 @@
         "note": "Reserva antes · cerrado los martes"
       }
     ]
-  },
-  "thenNow": {
-    "title": "Antes y ahora · Piazza del Plebiscito",
-    "thenCaption": "Cuando era un aparcamiento"
   },
   "places": [
     {
@@ -98,6 +93,10 @@
           "Fútbol"
         ],
         "recallPrompt": "¿Recuerdas la plaza más grande de Nápoles? ¿Qué la llenaba hasta 1993?"
+      },
+      "thenNow": {
+        "thenCaption": "Cuando era un aparcamiento",
+        "nowCaption": "Hoy"
       }
     },
     {

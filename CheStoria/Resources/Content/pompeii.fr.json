@@ -1,6 +1,5 @@
 {
   "welcome": {
-    "eyebrow": "Pompéi · Jour 2 de votre voyage",
     "headline": "Ici, chaque pierre a un secret.",
     "body": "Visez n’importe quoi avec l’appareil photo. Devinez son secret, puis trouvez l’indice. 30 secondes suffisent."
   },
@@ -21,10 +20,6 @@
         "note": "visiteurs par jour, billets nominatifs"
       }
     ]
-  },
-  "thenNow": {
-    "title": "Hier et aujourd’hui · le Forum",
-    "thenCaption": "1841 · peint par Købke"
   },
   "places": [
     {
@@ -59,6 +54,10 @@
           "Combats"
         ],
         "recallPrompt": "Vous vous souvenez de la grande place de Pompéi ? Que s’y passait-il ?"
+      },
+      "thenNow": {
+        "thenCaption": "1841 · peint par Christen Købke",
+        "nowCaption": "Aujourd’hui"
       }
     },
     {

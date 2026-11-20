@@ -317,8 +317,10 @@ enum Settings {
     static let autoRead = "settings.autoRead"
     static let storyLanguage = "settings.storyLanguage"
     static let site = "settings.site"
+    static let recallHour = "settings.recallHour"
+    static let recallMinute = "settings.recallMinute"
 
     static func register() {
-        UserDefaults.standard.register(defaults: [haptics: true, recall: true, autoRead: false, storyLanguage: "en"])
+        UserDefaults.standard.register(defaults: [haptics: true, recall: true, autoRead: false, storyLanguage: "en", recallHour: 8, recallMinute: 12])
     }
 }

@@ -7,7 +7,6 @@
   ],
   "featuredPlace": "thermopolium",
   "welcome": {
-    "eyebrow": "Pompeii · Day 2 of your trip",
     "headline": "Every stone here has a secret.",
     "body": "Point your camera at anything. Guess its secret, then find the clue. Takes 30 seconds.",
     "image": "forum",
@@ -41,12 +40,6 @@
       }
     ]
   },
-  "thenNow": {
-    "title": "Then & Now · the Forum",
-    "then": "forum1841",
-    "thenCaption": "1841 · painted by Købke",
-    "now": "forum"
-  },
   "postcardImage": "forum",
   "geoBounds": {
     "north": 40.7525,
@@ -58,7 +51,11 @@
     "visionMaxDistance": 1.1,
     "descriptorMaxDistance": 0.56,
     "separation": 0.86,
-    "nearbyMeters": 500
+    "nearbyMeters": 500,
+    "aiConfident": 0.72,
+    "aiMargin": 0.05,
+    "aiPossible": 0.62,
+    "aiTextWeight": 2.0
   },
   "map": {
     "width": 361,
@@ -275,6 +272,16 @@
         "forum",
         "forum1841"
       ],
+      "aiDescriptions": [
+        "the ruins of the Roman Forum of Pompeii with columns and Mount Vesuvius in the background",
+        "an open grassy square surrounded by ancient Roman columns and brick ruins"
+      ],
+      "thenNow": {
+        "then": "forum1841",
+        "thenCaption": "1841 · painted by Christen Købke",
+        "now": "forum",
+        "nowCaption": "Today"
+      },
       "story": {
         "eyebrow": "Forum · Pompeii",
         "question": "This big open square was the heart of Roman Pompeii. What happened here?",
@@ -356,6 +363,10 @@
       "showsMapLabel": true,
       "referenceImages": [
         "caveCanem"
+      ],
+      "aiDescriptions": [
+        "an ancient Roman floor mosaic of a black chained dog with the words CAVE CANEM",
+        "a black and white mosaic of a dog at a house entrance in Pompeii"
       ],
       "story": {
         "eyebrow": "House of the Tragic Poet · Pompeii",
@@ -439,6 +450,10 @@
       "referenceImages": [
         "thermo",
         "shrine"
+      ],
+      "aiDescriptions": [
+        "an ancient Roman stone counter with large round holes for food jars",
+        "a painted Roman shrine with gods and two snakes on a red wall"
       ],
       "story": {
         "eyebrow": "Thermopolium · Pompeii",

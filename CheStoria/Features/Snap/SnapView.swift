@@ -47,10 +47,8 @@ struct SnapView: View {
                     .animation(Motion.glide.delay(0.25), value: shown)
                 Spacer()
 
-                Text(t("snap.hint"))
-                    .font(.system(size: 15, weight: .semibold)).foregroundStyle(.white)
-                    .shadow(color: .black.opacity(0.6), radius: 8)
-                    .padding(.bottom, 18)
+                LiveGuessChip(guess: matcher.live, hint: t("snap.hint"))
+                    .padding(.bottom, 14)
                 ZStack {
                     ShutterButton(label: t("snap.takePhoto")) { snap(fallback: fallback) }
                     HStack {
@@ -79,7 +77,20 @@ struct SnapView: View {
         .onDisappear { camera.stop() }
         .onChange(of: recognizer.lastLocation) { updateLiveActivity() }
         .onChange(of: model.activeFlow == nil) { _, idle in if !idle { LiveActivityController.shared.end() } }
-        .task(id: model.site.id) { await matcher.prepare(site: model.site) }
+        .task(id: model.site.id + model.language) {
+            matcher.clearLive()
+            await matcher.prepare(site: model.site)
+            if CameraSession.isAvailable {
+                // Real camera: a frame about twice a second goes to the on-device AI.
+                camera.onFrame = { [matcher, model] buffer in
+                    nonisolated(unsafe) let frame = buffer
+                    Task { @MainActor in matcher.liveGuess(buffer: frame, site: model.site, catalog: model.catalog) }
+                }
+            } else if let cg = ImageLoader.shared.cached(fallback.cameraImage)?.normalizedCGImage {
+                // Simulator: the stand-in photo is what the "camera" sees.
+                matcher.liveGuess(image: cg, site: model.site, catalog: model.catalog)
+            }
+        }
         .onChange(of: picked) { _, item in
             guard let item else { return }
             Task {
@@ -103,6 +114,33 @@ struct SnapView: View {
             try? await Task.sleep(for: .milliseconds(120))
             model.startStory(at: fallback, photo: photo)
         }
+    }
+}
+
+/// Real-time AI: what the camera sees right now, and whether it's one of our places.
+private struct LiveGuessChip: View {
+    let guess: LiveGuess?
+    let hint: String
+    @Environment(AppModel.self) private var model
+
+    var body: some View {
+        let t = model.strings
+        Group {
+            if let place = guess?.place {
+                Label(t("ai.livePlace", place.name), systemImage: "sparkles")
+                    .foregroundStyle(Palette.onTufo).padding(.horizontal, 14).frame(height: 36).background(Palette.tufo, in: .capsule)
+            } else if let label = guess?.label {
+                Label(t("ai.liveSee", label), systemImage: "eye")
+                    .foregroundStyle(.white).padding(.horizontal, 14).frame(height: 36).glassEffect(.regular, in: .capsule)
+            } else {
+                Text(hint).foregroundStyle(.white).shadow(color: .black.opacity(0.6), radius: 8)
+            }
+        }
+        .font(.system(size: 15, weight: .semibold))
+        .lineLimit(1).minimumScaleFactor(0.75)
+        .contentTransition(.opacity)
+        .animation(.easeInOut(duration: 0.25), value: guess)
+        .accessibilityAddTraits(.updatesFrequently)
     }
 }
 

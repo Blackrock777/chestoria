@@ -1,6 +1,5 @@
 {
   "welcome": {
-    "eyebrow": "Napoli · 1° giorno del tuo viaggio",
     "headline": "Ogni angolo qui ha un segreto.",
     "body": "Inquadra qualsiasi cosa. Indovina il suo segreto, poi trova l’indizio. Bastano 30 secondi."
   },
@@ -21,10 +20,6 @@
         "note": "Prenota prima · chiuso il martedì"
       }
     ]
-  },
-  "thenNow": {
-    "title": "Ieri e oggi · Piazza del Plebiscito",
-    "thenCaption": "Quando era un parcheggio"
   },
   "places": [
     {
@@ -98,6 +93,10 @@
           "Calcio"
         ],
         "recallPrompt": "Ricordi la piazza più grande di Napoli? Che cosa la riempiva fino al 1993?"
+      },
+      "thenNow": {
+        "thenCaption": "Quando era un parcheggio",
+        "nowCaption": "Oggi"
       }
     },
     {

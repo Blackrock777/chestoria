@@ -11,6 +11,9 @@
 <p>
 <img src="docs/screenshots/15-far-away.jpg" width="160"> <img src="docs/screenshots/16-switch-to-naples.jpg" width="160"> <img src="docs/screenshots/17-naples-snap-it.jpg" width="160"> <img src="docs/screenshots/19-naples-castel-ovo.jpg" width="160"> <img src="docs/screenshots/18-naples-reveal.jpg" width="160">
 </p>
+<p>
+<img src="docs/screenshots/21-live-ai.jpg" width="160"> <img src="docs/screenshots/23-not-a-place-coffee.jpg" width="160"> <img src="docs/screenshots/24-which-one-street.jpg" width="160"> <img src="docs/screenshots/22-then-now-card.jpg" width="160"> <img src="docs/screenshots/20-welcome-real.jpg" width="160">
+</p>
 
 ## The loop
 
@@ -26,7 +29,7 @@ Every design decision maps to the team's research: the language gap, little time
 ## What's in this version
 
 - **Five languages**: English, Italiano, Français, Deutsch, Español. Change them on the welcome screen or in Profile. Stories, buttons and read-aloud all switch at once, and trip progress is kept.
-- **Photo recognition**: your photo is compared with each place's reference photos on the device, with location narrowing the candidates. Different photos lead to different stories; if it's unsure, the app asks "Which one are you looking at?". There's a photo picker next to the shutter for the simulator or for photos you already took.
+- **On-device AI recognition (real time)**: Google's SigLIP model (Apache-2.0) runs on the phone with Core ML. While you aim, the Snap screen says what it sees ("I see a church façade", or "This looks like Gesù Nuovo · tap the shutter"). After a photo it opens the right story, asks "Which one is it?" when two places are close (with "None of these"), or says kindly what the photo shows ("That looks like a cup of coffee") when it isn't a place. No internet, no account, no cost per photo.
 - **Profile and accounts**: Sign in with Apple, or email and password. Passwords are salted and hashed (PBKDF2-SHA256) and kept in the Keychain. Profile also has settings (language, haptics, next-morning question, read aloud), sign-out and account deletion.
 - **Everything is content**: places, stories, maps, welcome text, tickets, translations and interface text are JSON. See [CONTENT.md](CONTENT.md).
 - **Two sites**: Pompeii (Forum, Thermopolium, House of the Tragic Poet) and Naples (Gesù Nuovo, Piazza del Plebiscito with a real car-park Then & Now, Cappella Sansevero, Castel dell’Ovo). Switch in Profile; the app offers to switch when you are standing in the other site. Each site keeps its own trip.
@@ -57,7 +60,9 @@ xcodebuild test -project CheStoria.xcodeproj -scheme CheStoria -destination 'pla
 ### Debug launch arguments
 
 Useful for demos and screenshots (Debug builds only):
-- `-reset` restores the demo trip.
+- `-reset` starts a fresh trip; `-demo` loads the content’s demo trip (for presentations).
+- `-capturePath /path/photo.jpg` runs recognition on any photo file (simulator).
+- `-place forum` picks the place for `-screen reveal` and friends.
 - `-lang it` switches the story language. `-site naples` switches site.
 - `-noLocation` skips location (the chip then says "Finding where you are…").
 - `-screen <name>` jumps to `welcome`, `snap`, `recognizing`, `question`, `reveal`, `closer`, `sticker`, `trip`, `stickers`, `profile` or `language`.
@@ -83,6 +88,18 @@ design/           CheStoria.sketch, animated HTML prototype, design direction pa
 ```
 
 Content lives in `CheStoria/Resources/Content/`, not in code; [CONTENT.md](CONTENT.md) explains how to add places, languages and sites. A test fails if any language has broken content or a story body over 40 words.
+
+## The AI model, and why this one
+
+| Option | Licence | Verdict |
+|---|---|---|
+| **Google SigLIP base (used)** | Apache-2.0, commercial use allowed | Strong photo↔photo and photo↔text matching; 70 MB on device after 6-bit compression (cosine ≥ 0.985 vs the original) |
+| Apple Vision built-in classifier | Part of iOS | Free, but generic labels only and can’t learn our places |
+| Apple MobileCLIP / FastVLM | Apple ML Research licence (non-commercial only) | Not usable in a product |
+| OpenAI CLIP | Model card rules out deployed use | Avoided |
+| SmolVLM2 (Hugging Face) | Apache-2.0 | Can describe any photo in a sentence; a 0.5–1 GB download, good for a later "describe this" feature |
+
+How it works: the app ships only SigLIP’s image encoder (`CheStoria/Resources/ML`). Reference photos of each place are embedded on the phone; each place’s plain-English `aiDescriptions` and a vocabulary of ~50 everyday and heritage things are embedded offline by `tools/embed_content.py` and shipped as content. A photo is compared with all of them; thresholds live in each site’s `recognition` block. Measured on photos the app has never seen: a different Cave canem photo opens its story (0.83 vs 0.51), a crowded Forum photo is offered first, an unrelated street is never matched with confidence, and coffee and laptop photos are named correctly in all five languages. See `CheStoria/Resources/ML/NOTICE.md` for the licence notice.
 
 ## Accounts
 

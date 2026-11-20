@@ -31,6 +31,12 @@ Test fixtures in `CheStoriaTests/Fixtures` (used only to test recognition): Pomp
 
 The Cave canem photo is shared under CC BY-SA 4.0: the cropped version in this repository is shared under the same licence, with attribution to Argo Navis.
 
+## AI model
+
+- **SigLIP** (google/siglip-base-patch16-224) by Google, Apache License 2.0. The image encoder is converted to Core ML and compressed; see `CheStoria/Resources/ML/NOTICE.md` and the licence file next to it.
+
+Test fixtures for "not a place": cup of coffee in Café Butter, Berlin (Edward, CC0); Computer desk at Narita Airport (D Coetzee, CC0).
+
 ## Fonts
 
 - **Bricolage Grotesque** by Mathieu Triay and the Bricolage Grotesque Project Authors, SIL Open Font License 1.1 (`CheStoria/Resources/Fonts/OFL-Bricolage.txt`). The ExtraBold and Bold files are static instances made from the variable font.

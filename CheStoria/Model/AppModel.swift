@@ -15,6 +15,8 @@ struct CollectedSticker: Codable, Hashable, Identifiable, Sendable {
     let stickerID: String
     let placeID: String
     let date: Date
+    /// File name of the person's own photo the sticker was cut from (Application Support/Stickers).
+    var photoFile: String? = nil
     var id: String { stickerID }
 }
 
@@ -22,6 +24,8 @@ struct CollectedSticker: Codable, Hashable, Identifiable, Sendable {
 struct TripState: Codable, Equatable, Sendable {
     var visited: [String] = []
     var collected: [CollectedSticker] = []
+    /// When this trip's first story was finished; drives "Day 2 of your trip".
+    var startedAt: Date?
 
     /// Starting point taken from the site's optional `demoTrip`, so demos never begin empty.
     static func demo(for site: SiteContent) -> TripState {
@@ -30,7 +34,7 @@ struct TripState: Codable, Equatable, Sendable {
             guard let place = site.placeOwning(stickerID: stickerID) else { return nil }
             return CollectedSticker(stickerID: stickerID, placeID: place.id, date: .now.addingTimeInterval(-3600 * Double(i + 1)))
         }
-        return TripState(visited: demo.visited, collected: collected)
+        return TripState(visited: demo.visited, collected: collected, startedAt: .now.addingTimeInterval(-86_400))
     }
 }
 
@@ -69,9 +73,11 @@ final class AppModel {
         if let data = defaults.data(forKey: Keys.trip(site.id)), let saved = try? JSONDecoder().decode(TripState.self, from: data) {
             // Drop anything the current content no longer contains.
             return TripState(visited: saved.visited.filter { site.place(id: $0) != nil },
-                             collected: saved.collected.filter { site.sticker(id: $0.stickerID) != nil })
+                             collected: saved.collected.filter { site.sticker(id: $0.stickerID) != nil },
+                             startedAt: saved.startedAt)
         }
-        return .demo(for: site)
+        // A new trip starts empty: no invented progress. Profile → Demo can load the content's demo trip.
+        return TripState()
     }
 
     var visitedPlaces: [Place] { state.visited.compactMap(site.place(id:)) }
@@ -98,6 +104,7 @@ final class AppModel {
         catalog = c
         site = c.site(id: site.id) ?? c.defaultSite
         defaults.set(code, forKey: Settings.storyLanguage)
+        SharedStore.saveWidgetEmptyText(strings("widget.empty"))
     }
 
     /// The best language to start with: the saved choice, else the device language if the content has it.
@@ -130,20 +137,60 @@ final class AppModel {
         activeFlow = FlowRequest(photo: photo, suggested: place)
     }
 
-    func finishStory(at place: Place, goTo tab: AppTab) {
+    func finishStory(at place: Place, goTo tab: AppTab, photo: UIImage? = nil) {
+        if state.startedAt == nil { state.startedAt = .now }
         if !state.visited.contains(place.id) { state.visited.append(place.id) }
-        if let sticker = place.story?.sticker, !state.collected.contains(where: { $0.stickerID == sticker.id }) {
-            state.collected.append(CollectedSticker(stickerID: sticker.id, placeID: place.id, date: .now))
+        if let sticker = place.story?.sticker {
+            let file = photo.flatMap { StickerPhotos.save($0, id: "\(site.id)-\(sticker.id)") }
+            if let i = state.collected.firstIndex(where: { $0.stickerID == sticker.id }) {
+                if let file { state.collected[i].photoFile = file }
+            } else {
+                state.collected.append(CollectedSticker(stickerID: sticker.id, placeID: place.id, date: .now, photoFile: file))
+            }
         }
         activeFlow = nil
         selectedTab = tab
     }
 
-    func resetDemo() { state = .demo(for: site); selectedTab = .snap }
+    /// For presentations: the content's demo trip (if it has one).
+    func loadDemo() { state = .demo(for: site); selectedTab = .snap }
+    func startFresh() { state = TripState(); selectedTab = .snap }
+    /// Kept for launch arguments and tests.
+    func resetDemo() { loadDemo() }
+
+    /// "Welcome to Pompeii" before the first story; "Pompeii · Day 2 of your trip" after, counted from the real start date.
+    var welcomeEyebrow: String {
+        if let fixed = site.welcome.eyebrow { return fixed }
+        guard let start = state.startedAt else { return strings("welcome.first", site.city) }
+        let days = (Calendar.current.dateComponents([.day], from: Calendar.current.startOfDay(for: start), to: Calendar.current.startOfDay(for: .now)).day ?? 0) + 1
+        return strings("welcome.day", site.city, "\(days)")
+    }
+
+    /// The person's own photo for a sticker, if they took one.
+    func stickerPhoto(_ sticker: Sticker) -> UIImage? {
+        state.collected.first { $0.stickerID == sticker.id }?.photoFile.flatMap(StickerPhotos.load)
+    }
 
     func resetOnboarding() { hasOnboarded = false }
 
     private func save() {
         if let data = try? JSONEncoder().encode(state) { defaults.set(data, forKey: Keys.trip(site.id)) }
     }
+}
+
+/// Sticker photos are the person's own shots, kept on the device.
+enum StickerPhotos {
+    static var folder: URL { URL.applicationSupportDirectory.appending(path: "Stickers", directoryHint: .isDirectory) }
+
+    static func save(_ image: UIImage, id: String) -> String? {
+        try? FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+        let side: CGFloat = 900, s = min(1, side / max(image.size.width, image.size.height))
+        let size = CGSize(width: image.size.width * s, height: image.size.height * s)
+        let small = UIGraphicsImageRenderer(size: size).image { _ in image.draw(in: CGRect(origin: .zero, size: size)) }
+        guard let data = small.jpegData(compressionQuality: 0.85) else { return nil }
+        let name = "\(id).jpg"
+        return (try? data.write(to: folder.appending(path: name), options: .atomic)) != nil ? name : nil
+    }
+
+    static func load(_ name: String) -> UIImage? { UIImage(contentsOfFile: folder.appending(path: name).path) }
 }

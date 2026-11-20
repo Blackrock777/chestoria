@@ -107,9 +107,10 @@ struct RecognitionTests {
     }
 
     @Test func eachPlaceIsRecognisedFromItsOwnPhoto() async throws {
-        let site = try ContentStore.loadBundled().defaultSite
+        let catalog = try ContentStore.loadBundled()
+        let site = catalog.site(id: "pompeii")!
         let matcher = PlaceMatcher()
-        await matcher.prepare(site: site)
+        #expect(matcher.usesAI, "SigLIP model should load from the app bundle")
         let cases: [(String, CGRect, String)] = [
             ("thermo", CGRect(x: 0.1, y: 0.15, width: 0.75, height: 0.8), "thermopolium"),
             ("shrine", CGRect(x: 0.15, y: 0.1, width: 0.7, height: 0.75), "thermopolium"),
@@ -117,12 +118,9 @@ struct RecognitionTests {
             ("forum", CGRect(x: 0.05, y: 0.05, width: 0.85, height: 0.85), "forum"),
         ]
         for (asset, rect, expected) in cases {
-            let result = await matcher.identify(crop(asset, rect), in: site, near: nil)
-            switch result {
-            case .confident(let p): #expect(p.id == expected, "\(asset) → \(p.id)")
-            case .unsure(let ps): #expect(ps.first?.id == expected, "\(asset) unsure, best \(ps.first?.id ?? "-")")
-            case .none: Issue.record("\(asset) matched nothing")
-            }
+            let result = await matcher.identify(crop(asset, rect), in: site, near: nil, catalog: catalog)
+            if case .confident(let p) = result { #expect(p.id == expected, "\(asset) → \(p.id)") }
+            else { Issue.record("\(asset) not confident: \(result)") }
         }
     }
 
@@ -134,23 +132,46 @@ struct RecognitionTests {
     /// Photos that are NOT reference images: a different shot of the same place must not pick the wrong place,
     /// and a photo of somewhere else must not be confidently matched.
     @Test func unseenPhotosAreHandledSafely() async throws {
-        let site = try ContentStore.loadBundled().defaultSite
+        let catalog = try ContentStore.loadBundled()
+        let site = catalog.site(id: "pompeii")!
         let matcher = PlaceMatcher()
-        await matcher.prepare(site: site)
 
-        if case .confident(let p) = await matcher.identify(try fixture("cave-canem-other"), in: site, near: nil) {
+        if case .confident(let p) = await matcher.identify(try fixture("cave-canem-other"), in: site, near: nil, catalog: catalog) {
             #expect(p.id == "tragic-poet")
         } else { Issue.record("second Cave canem photo should be recognised") }
 
-        switch await matcher.identify(try fixture("forum-tour-group"), in: site, near: nil) {
+        switch await matcher.identify(try fixture("forum-tour-group"), in: site, near: nil, catalog: catalog) {
         case .confident(let p): #expect(p.id == "forum")
-        case .unsure(let ps): #expect(ps.first?.id == "forum")
-        case .none: Issue.record("forum photo should at least be offered first")
+        case .unsure(let ps, _): #expect(ps.first?.id == "forum")
+        case .notAPlace: Issue.record("forum photo should at least be offered first")
         }
 
-        if case .confident(let p) = await matcher.identify(try fixture("street-negative"), in: site, near: nil) {
+        if case .confident(let p) = await matcher.identify(try fixture("street-negative"), in: site, near: nil, catalog: catalog) {
             Issue.record("an unrelated street was confidently matched to \(p.id)")
         }
+    }
+
+    /// Everyday photos: not a place, and the AI says what it is (in the chosen language).
+    @Test func everydayPhotosAreNamedNotMatched() async throws {
+        let catalog = try ContentStore.loadBundled(language: "en")
+        let site = catalog.site(id: "pompeii")!
+        let matcher = PlaceMatcher()
+        for (name, expected) in [("coffee-negative", "a cup of coffee"), ("laptop-negative", "a laptop")] {
+            if case .notAPlace(let label, let heritage, _) = await matcher.identify(try fixture(name), in: site, near: nil, catalog: catalog) {
+                #expect(label == expected && !heritage, "\(name) → \(label ?? "-")")
+            } else { Issue.record("\(name) should not be a place") }
+        }
+        let it = try ContentStore.loadBundled(language: "it")
+        if case .notAPlace(let label, _, _) = await matcher.identify(try fixture("coffee-negative"), in: site, near: nil, catalog: it) {
+            #expect(label == "una tazza di caffè")
+        }
+    }
+
+    @Test func vocabularyLoadsFromContent() throws {
+        let v = try #require(try ContentStore.loadBundled().vocabulary)
+        #expect(v.model == "google/siglip-base-patch16-224")
+        #expect(v.labels.count >= 50 && v.labels.allSatisfy { $0.embedding.count == 768 })
+        #expect(v.placeText["thermopolium"]?.count == 2)
     }
 
     @Test func farAwayLocationDoesNotFilterCandidates() throws {
@@ -169,8 +190,17 @@ struct AppModelTests {
         return AppModel(catalog: try ContentStore.loadBundled(), defaults: defaults, loader: { try? ContentStore.loadBundled(language: $0) })
     }
 
+    @Test func newTripStartsEmptyAndWelcomeIsReal() throws {
+        let m = try freshModel()
+        #expect(m.visitedPlaces.isEmpty && m.collectedStickers.isEmpty)
+        #expect(m.welcomeEyebrow == "Welcome to Pompeii")
+        m.finishStory(at: m.site.place(id: "forum")!, goTo: .trip)
+        #expect(m.welcomeEyebrow == "Pompeii · Day 1 of your trip")
+    }
+
     @Test func demoTripComesFromContent() throws {
         let m = try freshModel()
+        m.loadDemo()
         #expect(m.visitedPlaces.map(\.id) == ["forum", "tragic-poet"])
         #expect(Set(m.collectedStickers.map(\.sticker.id)) == ["vesuvius-view", "cave-canem"])
     }
@@ -189,6 +219,7 @@ struct AppModelTests {
 
     @Test func switchingLanguageKeepsProgress() throws {
         let m = try freshModel()
+        m.loadDemo()
         m.setLanguage("de")
         #expect(m.language == "de")
         #expect(m.site.place(id: "tragic-poet")?.name == "Haus des tragischen Dichters")
@@ -281,7 +312,7 @@ struct SiteTests {
         let gesu = try #require(m.site.place(id: "gesu-nuovo"))
         m.finishStory(at: gesu, goTo: .trip)
         m.switchSite(to: "pompeii")
-        #expect(m.collectedStickers.count == 2)
+        #expect(m.collectedStickers.isEmpty)
         m.switchSite(to: "naples")
         #expect(m.collectedStickers.map(\.sticker.id) == ["spiky-palace"])
         let reopened = AppModel(catalog: try ContentStore.loadBundled(), defaults: defaults, loader: { _ in nil })
@@ -301,15 +332,16 @@ struct SiteTests {
     }
 
     @Test func naplesPlacesAreRecognisedFromTheirPhotos() async throws {
-        let site = try ContentStore.loadBundled().site(id: "naples")!
+        let catalog = try ContentStore.loadBundled()
+        let site = catalog.site(id: "naples")!
         let matcher = PlaceMatcher()
         for (asset, expected) in [("gesuFacade2", "gesu-nuovo"), ("castelOvo", "castel-ovo"), ("veiledChristFace", "sansevero"), ("plebiscitoVesuvius", "plebiscito")] {
             let img = UIImage(named: asset)!.normalizedCGImage!
             let crop = UIImage(cgImage: img.cropping(to: CGRect(x: img.width / 12, y: img.height / 12, width: img.width * 5 / 6, height: img.height * 5 / 6))!)
-            switch await matcher.identify(crop, in: site, near: nil) {
+            switch await matcher.identify(crop, in: site, near: nil, catalog: catalog) {
             case .confident(let p): #expect(p.id == expected, "\(asset) → \(p.id)")
-            case .unsure(let ps): #expect(ps.first?.id == expected, "\(asset) unsure, first \(ps.first?.id ?? "-")")
-            case .none: Issue.record("\(asset) matched nothing")
+            case .unsure(let ps, _): #expect(ps.first?.id == expected, "\(asset) unsure, first \(ps.first?.id ?? "-")")
+            case .notAPlace: Issue.record("\(asset) matched nothing")
             }
         }
     }

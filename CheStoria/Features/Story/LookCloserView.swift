@@ -164,6 +164,7 @@ private struct PulsingRing: View {
 /// The detail photo peels into a die-cut sticker (CapWords) that tilts towards your finger (Any Distance).
 struct StickerEarnedView: View {
     let sticker: Sticker
+    var photo: UIImage? = nil
     let onKeepExploring: () -> Void
     let onSeeAll: () -> Void
     @Environment(AppModel.self) private var model
@@ -180,7 +181,7 @@ struct StickerEarnedView: View {
                 .scaleEffect(shown ? 1 : 0).animation(Motion.pop.delay(0.8), value: shown)
                 .padding(.top, 40)
 
-            StickerArt(sticker: sticker, sheen: tilt.width / 120)
+            StickerArt(sticker: sticker, sheen: tilt.width / 120, photo: photo)
                 .frame(width: 270, height: 190)
                 .rotation3DEffect(.degrees(Double(-tilt.height / 6)), axis: (1, 0, 0))
                 .rotation3DEffect(.degrees(Double(tilt.width / 6)), axis: (0, 1, 0))

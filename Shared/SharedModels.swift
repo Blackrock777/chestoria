@@ -10,6 +10,10 @@ nonisolated enum SharedStore {
     static func saveRecall(_ payload: RecallPayload) {
         if let data = try? JSONEncoder().encode(payload) { defaults.set(data, forKey: recallKey) }
     }
+    /// Widget text that must follow the app language (the widget has no content files).
+    static func saveWidgetEmptyText(_ s: String) { defaults.set(s, forKey: "widget.empty") }
+    static var widgetEmptyText: String { defaults.string(forKey: "widget.empty") ?? "Snap a place to get tomorrow’s question." }
+
     static func loadRecall() -> RecallPayload? {
         defaults.data(forKey: recallKey).flatMap { try? JSONDecoder().decode(RecallPayload.self, from: $0) }
     }

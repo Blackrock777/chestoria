@@ -69,7 +69,7 @@ struct RecallWidgetView: View {
         } else {
             VStack(alignment: .leading, spacing: 6) {
                 Circle().fill(WidgetPalette.tufo).frame(width: 10, height: 10)
-                Text("Snap a place to get tomorrow’s question.").font(.system(size: 14, weight: .semibold, design: .rounded)).foregroundStyle(.white)
+                Text(SharedStore.widgetEmptyText).font(.system(size: 14, weight: .semibold, design: .rounded)).foregroundStyle(.white)
             }
         }
     }

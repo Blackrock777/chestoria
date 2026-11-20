@@ -48,9 +48,12 @@ struct RecognitionLogView: View {
                         Spacer()
                         Text(entry.date.formatted(date: .omitted, time: .shortened)).font(.system(size: 12)).foregroundStyle(Palette.stone)
                     }
-                    Text(entry.ranked.map { "\($0.id) \(String(format: "%.3f", $0.distance))" }.joined(separator: " · "))
+                    Text(entry.places.prefix(4).map { "\($0.id) \(String(format: "%.2f", $0.image))" }.joined(separator: " · "))
                         .font(.system(size: 12, design: .monospaced)).foregroundStyle(Palette.stone)
-                    Text(entry.backend == .vision ? "Vision" : "Descriptor").font(.system(size: 11, weight: .bold)).foregroundStyle(Palette.azzurro)
+                    if !entry.topLabels.isEmpty {
+                        Text(entry.topLabels.joined(separator: " · ")).font(.system(size: 12)).foregroundStyle(Palette.stone)
+                    }
+                    Text(entry.usedAI ? "SigLIP (on-device AI)" : "Descriptor fallback").font(.system(size: 11, weight: .bold)).foregroundStyle(Palette.azzurro)
                 }
             }
         }

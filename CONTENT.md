@@ -55,6 +55,8 @@ The tests (`⌘U`) validate every file in every language: ids, answers, image na
 ```
 
 - `story` can be `null`. The place then shows on the map but has no question yet.
+- `aiDescriptions`: two or three plain-English sentences describing what the camera will see. After editing them run `python3 tools/embed_content.py` (needs `pip install torch transformers sentencepiece`).
+- `thenNow` (optional): `{ "then": "oldPhoto", "thenCaption": "…", "now": "todayPhoto", "nowCaption": "Today" }`. It appears as a card after the story, in the place card (tap the pin on My trip) and in the site sheet. Translate the captions in the overlays.
 - `theory` and `lookCloser` are optional. Use `"label": "LEGEND"` or `"THEORY"`: it appears on the red seal.
 - `mapPoint` is in the units of the site's `map` (Pompeii is drawn 361 × 520).
 - `target` and `crop` are fractions of the photo (0 to 1), measured from the top-left corner.
@@ -69,6 +71,14 @@ The tests (`⌘U`) validate every file in every language: ids, answers, image na
 ```
 
   `sourced` shows "Checked against N sources"; use `verified` only once the site itself has confirmed the facts, and put that authority in `source`. Anything that is not established fact goes in `theory` with the label `THEORY` or `LEGEND`.
+
+## Welcome screen
+
+The line above the headline is written by the app from real data: "Welcome to Pompeii" before your first story, then "Pompeii · Day 2 of your trip" counted from the day you started. Set `welcome.eyebrow` only if a site needs a fixed line. New trips start empty; `demoTrip` is only used by Profile → Demo → Load demo trip.
+
+## What the AI can name
+
+`ai/labels.json` lists everyday and heritage things ("a cup of coffee", "a fresco") with names in every language. `heritage: true` means an unmatched photo of it is treated as "a historic place we don’t have a story for yet". Add labels freely, then run `tools/embed_content.py`.
 
 ## Tickets
 

@@ -84,9 +84,14 @@ final class PlaceRecognizer: NSObject, CLLocationManagerDelegate {
 nonisolated final class CameraSession: @unchecked Sendable {
     let session = AVCaptureSession()
     private let output = AVCapturePhotoOutput()
+    private let video = AVCaptureVideoDataOutput()
     private let queue = DispatchQueue(label: "app.chestoria.camera")
+    private let frameQueue = DispatchQueue(label: "app.chestoria.frames")
     private(set) var isConfigured = false
     private var pending: PhotoDelegate?
+    private var frames: FrameDelegate?
+    /// Called with a camera frame about twice a second, for live AI recognition.
+    var onFrame: (@Sendable (CVPixelBuffer) -> Void)? { didSet { frames?.onFrame = onFrame } }
 
     static var isAvailable: Bool {
         #if targetEnvironment(simulator)
@@ -118,6 +123,16 @@ nonisolated final class CameraSession: @unchecked Sendable {
         }
     }
 
+    private final class FrameDelegate: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, @unchecked Sendable {
+        var onFrame: (@Sendable (CVPixelBuffer) -> Void)?
+        private var last = Date.distantPast
+        func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+            guard Date().timeIntervalSince(last) > 0.5, let buffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
+            last = Date()
+            onFrame?(buffer)
+        }
+    }
+
     private final class PhotoDelegate: NSObject, AVCapturePhotoCaptureDelegate, @unchecked Sendable {
         let done: (UIImage?) -> Void
         init(done: @escaping (UIImage?) -> Void) { self.done = done }
@@ -134,6 +149,11 @@ nonisolated final class CameraSession: @unchecked Sendable {
             session.addInput(input)
         }
         if session.canAddOutput(output) { session.addOutput(output) }
+        let fd = FrameDelegate(); fd.onFrame = onFrame; frames = fd
+        video.alwaysDiscardsLateVideoFrames = true
+        video.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA]
+        video.setSampleBufferDelegate(fd, queue: frameQueue)
+        if session.canAddOutput(video) { session.addOutput(video) }
         session.commitConfiguration()
         isConfigured = true
     }
@@ -200,7 +220,9 @@ final class Narrator: NSObject, AVSpeechSynthesizerDelegate {
 enum RecallScheduler {
     static let category = "RECALL"
 
-    static func schedule(for place: Place, story: Story, strings: UIStrings, at hour: Int = 8, minute: Int = 12) {
+    static func schedule(for place: Place, story: Story, strings: UIStrings,
+                         at hour: Int = UserDefaults.standard.integer(forKey: Settings.recallHour),
+                         minute: Int = UserDefaults.standard.integer(forKey: Settings.recallMinute)) {
         let payload = RecallPayload(title: strings("widget.title"), prompt: story.recallPrompt, choices: story.recallChoices, placeName: place.name)
         SharedStore.saveRecall(payload)
         WidgetCenter.shared.reloadAllTimelines()

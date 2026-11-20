@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		07861CD13D4CCEA6C47D037C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9BC09F8FB3BE8110FCEB7ED /* Assets.xcassets */; };
 		0F86EBA4BBA5BFC60981D58D /* SitePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612E7904E9939210D022A6F0 /* SitePicker.swift */; };
+		11B17A5DE5C5F5D1410449BA /* PostcardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B3FC71F6CF6DA0AF3C1202 /* PostcardView.swift */; };
 		12C0D9A8850982E0293BFDC8 /* CheStoriaWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2C177852516C3EE880A87FC4 /* CheStoriaWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1332A04AE2EE4982A5F62825 /* PlaceSheets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F883CBDBE08297A645EBEE7 /* PlaceSheets.swift */; };
 		2DE1AD324BF671061C04A82B /* SharedModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41ED3826686F4CB85A541AE2 /* SharedModels.swift */; };
 		30FB83C2ED00FB004ACBFF0B /* ContentValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439759A6B9F76864EC6DA8CB /* ContentValidator.swift */; };
 		31AC3A31A59544CA5CBB8068 /* CheStoriaWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEEF3A94E33585FBCA1396D /* CheStoriaWidgets.swift */; };
@@ -22,6 +24,7 @@
 		5B6689FF1BCD02FAAB49E3FB /* BricolageGrotesque-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F70703656A9E190766F485D /* BricolageGrotesque-Bold.ttf */; };
 		5FD77F48ED7FD01DB904BD91 /* SharedModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41ED3826686F4CB85A541AE2 /* SharedModels.swift */; };
 		6523EBB294210D86ED31974C /* SupabaseAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB104BE7E7D02919103D3CD /* SupabaseAuth.swift */; };
+		7049825DA9EC1AECD6830E19 /* SigLIPVision.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 777EC0EC87CCB37852D5D99B /* SigLIPVision.mlpackage */; };
 		790DDD14479755DDC5D4C488 /* ProfileButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544985A7C71D1651EE6DB030 /* ProfileButton.swift */; };
 		9513719998FD3C839DF8EEC8 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C4DFA2681FEC827C3CE1B3 /* Services.swift */; };
 		9A71C801E7515099D62C00B7 /* CheStoriaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F58D0E362FF7B8FF337422 /* CheStoriaTests.swift */; };
@@ -88,10 +91,13 @@
 		544985A7C71D1651EE6DB030 /* ProfileButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileButton.swift; sourceTree = "<group>"; };
 		5807B50A8DF66E9903E07A78 /* Kalam-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kalam-Bold.ttf"; sourceTree = "<group>"; };
 		5CE80A87EC9A7A032375039D /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		5F883CBDBE08297A645EBEE7 /* PlaceSheets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceSheets.swift; sourceTree = "<group>"; };
 		612E7904E9939210D022A6F0 /* SitePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SitePicker.swift; sourceTree = "<group>"; };
 		6653475E0ED06AE136C4714B /* CheStoriaTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = CheStoriaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A149032DA806F36C76F9300 /* BricolageGrotesque-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BricolageGrotesque-ExtraBold.ttf"; sourceTree = "<group>"; };
 		75DF7F2C02ED4759E91D42B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		777EC0EC87CCB37852D5D99B /* SigLIPVision.mlpackage */ = {isa = PBXFileReference; path = SigLIPVision.mlpackage; sourceTree = "<group>"; };
+		79B3FC71F6CF6DA0AF3C1202 /* PostcardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostcardView.swift; sourceTree = "<group>"; };
 		7CC29E3C3B9A2B7EF33683A2 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		81D2EBDCC1DE818A621904F4 /* Recognition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recognition.swift; sourceTree = "<group>"; };
 		8F70703656A9E190766F485D /* BricolageGrotesque-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BricolageGrotesque-Bold.ttf"; sourceTree = "<group>"; };
@@ -124,6 +130,7 @@
 		159C8BD172DB3E8F33D37361 /* Trip */ = {
 			isa = PBXGroup;
 			children = (
+				5F883CBDBE08297A645EBEE7 /* PlaceSheets.swift */,
 				093B24B4A2965836232F2563 /* TripView.swift */,
 			);
 			path = Trip;
@@ -135,6 +142,7 @@
 				F9BC09F8FB3BE8110FCEB7ED /* Assets.xcassets */,
 				A6641F74A7C4BD29595028CA /* Content */,
 				508043C2C1CE40FBF8B83879 /* Fonts */,
+				572F3D5371351A03BF4C4DCB /* ML */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -184,6 +192,14 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		572F3D5371351A03BF4C4DCB /* ML */ = {
+			isa = PBXGroup;
+			children = (
+				777EC0EC87CCB37852D5D99B /* SigLIPVision.mlpackage */,
+			);
+			path = ML;
+			sourceTree = "<group>";
+		};
 		7384A2252A09692CD980A5CE /* Features */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,6 +216,7 @@
 		963BF68BCACE6C05A633ABE8 /* Stickers */ = {
 			isa = PBXGroup;
 			children = (
+				79B3FC71F6CF6DA0AF3C1202 /* PostcardView.swift */,
 				0D15AE7E42AF56E1FFFB3111 /* StickersView.swift */,
 			);
 			path = Stickers;
@@ -464,11 +481,14 @@
 				30FB83C2ED00FB004ACBFF0B /* ContentValidator.swift in Sources */,
 				C1A6ED68903BA42D049AF362 /* Engagement.swift in Sources */,
 				47614DDE4E26FFB4D8F2A612 /* LookCloserView.swift in Sources */,
+				1332A04AE2EE4982A5F62825 /* PlaceSheets.swift in Sources */,
+				11B17A5DE5C5F5D1410449BA /* PostcardView.swift in Sources */,
 				790DDD14479755DDC5D4C488 /* ProfileButton.swift in Sources */,
 				DCC09E3264E34BD6DAAC3BC0 /* ProfileView.swift in Sources */,
 				BB2E1862EE45A718AAB0D7C2 /* Recognition.swift in Sources */,
 				9513719998FD3C839DF8EEC8 /* Services.swift in Sources */,
 				5FD77F48ED7FD01DB904BD91 /* SharedModels.swift in Sources */,
+				7049825DA9EC1AECD6830E19 /* SigLIPVision.mlpackage in Sources */,
 				0F86EBA4BBA5BFC60981D58D /* SitePicker.swift in Sources */,
 				43A1931D082ABB760332948C /* SnapView.swift in Sources */,
 				AA4626146CE5FE6C588A9782 /* SourcesSheet.swift in Sources */,

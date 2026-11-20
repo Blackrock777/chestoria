@@ -6,6 +6,7 @@ struct StickersView: View {
     @State private var filter: String?
     @State private var flipped: Set<String> = []
     @State private var dealt = false
+    @State private var showPostcard = false
 
     var body: some View {
         let t = model.strings
@@ -35,7 +36,7 @@ struct StickersView: View {
 
                 LazyVGrid(columns: [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)], spacing: 12) {
                     ForEach(Array(shown.enumerated()), id: \.element.sticker.id) { i, item in
-                        FlipCard(sticker: item.sticker, place: model.site.place(id: item.record.placeID)?.name ?? "",
+                        FlipCard(sticker: item.sticker, photo: model.stickerPhoto(item.sticker), place: model.site.place(id: item.record.placeID)?.name ?? "",
                                  date: item.record.date, isNew: model.isNew(item.sticker), flipped: flipped.contains(item.sticker.id),
                                  newLabel: t("stickers.new"), backTitle: t("reveal.tellTonight"))
                             .onTapGesture {
@@ -47,24 +48,34 @@ struct StickersView: View {
                     }
                 }
 
-                HStack(spacing: 14) {
-                    CoverImage(model.site.postcardImage).frame(width: 56, height: 64).clipShape(.rect(cornerRadius: 8))
-                        .overlay(RoundedRectangle(cornerRadius: 8).stroke(.white, lineWidth: 3)).rotationEffect(.degrees(-6))
-                        .shadow(color: .black.opacity(0.3), radius: 6, y: 4)
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(t("stickers.postcard")).font(Typeface.display(17)).foregroundStyle(.white)
-                        Text(t("stickers.postcardNote")).font(.system(size: 13)).foregroundStyle(.white.opacity(0.75))
-                    }
-                    Spacer()
+                if all.isEmpty {
+                    Text(t("stickers.empty")).font(.system(size: 15, weight: .semibold)).foregroundStyle(Palette.stone)
+                        .frame(maxWidth: .infinity).padding(.vertical, 40)
                 }
-                .padding(.horizontal, 18).frame(height: 96)
-                .background(Palette.mare, in: .rect(cornerRadius: 24))
+                Button { showPostcard = true } label: {
+                    HStack(spacing: 14) {
+                        CoverImage(model.site.postcardImage).frame(width: 56, height: 64).clipShape(.rect(cornerRadius: 8))
+                            .overlay(RoundedRectangle(cornerRadius: 8).stroke(.white, lineWidth: 3)).rotationEffect(.degrees(-6))
+                            .shadow(color: .black.opacity(0.3), radius: 6, y: 4)
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(t("postcard.make")).font(Typeface.display(17)).foregroundStyle(.white)
+                            Text(all.isEmpty ? t("postcard.empty") : t("postcard.note")).font(.system(size: 13)).foregroundStyle(.white.opacity(0.75))
+                                .multilineTextAlignment(.leading)
+                        }
+                        Spacer()
+                        Image(systemName: "chevron.right").foregroundStyle(.white.opacity(0.7))
+                    }
+                    .padding(.horizontal, 18).frame(minHeight: 96)
+                    .background(Palette.mare, in: .rect(cornerRadius: 24))
+                }
+                .disabled(all.isEmpty).opacity(all.isEmpty ? 0.6 : 1)
                 .opacity(dealt ? 1 : 0).animation(.easeOut.delay(0.5), value: dealt)
             }
             .padding(.horizontal, 16).padding(.bottom, 24)
         }
         .background(Palette.calce)
         .onAppear { dealt = false; DispatchQueue.main.async { dealt = true } }
+        .sheet(isPresented: $showPostcard) { PostcardView() }
     }
 
     private func chip(_ title: String, on: Bool, action: @escaping () -> Void) -> some View {
@@ -80,6 +91,7 @@ struct StickersView: View {
 
 private struct FlipCard: View {
     let sticker: Sticker
+    let photo: UIImage?
     let place: String
     let date: Date
     let isNew: Bool
@@ -102,7 +114,7 @@ private struct FlipCard: View {
 
     private var front: some View {
         VStack(spacing: 10) {
-            StickerArt(sticker: sticker, border: 6).frame(width: 118, height: 104)
+            StickerArt(sticker: sticker, border: 6, photo: photo).frame(width: 118, height: 104)
             Text(sticker.title).font(Typeface.display(17)).foregroundStyle(Palette.piperno).multilineTextAlignment(.center)
             Text(place).font(.system(size: 12)).foregroundStyle(Palette.stone).multilineTextAlignment(.center)
         }

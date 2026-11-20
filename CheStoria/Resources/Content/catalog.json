@@ -31,5 +31,10 @@
     "fr": "strings/fr.json",
     "de": "strings/de.json",
     "es": "strings/es.json"
+  },
+  "ai": {
+    "model": "google/siglip-base-patch16-224",
+    "labels": "ai/labels.json",
+    "textEmbeddings": "ai/text-embeddings.json"
   }
 }

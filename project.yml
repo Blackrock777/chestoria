@@ -21,6 +21,8 @@ targets:
       - path: CheStoria
         excludes:
           - "Resources/Fonts/*.txt"
+          - "Resources/ML/*.txt"
+          - "Resources/ML/*.md"
           - "Resources/Content"
       - path: CheStoria/Resources/Content
         type: folder
