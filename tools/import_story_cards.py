@@ -18,7 +18,7 @@ What it does:
   * refuses story bodies over 40 words in any language.
 
 Usage:
-  python3 tools/import_story_cards.py cards.json tools/story_cards/naples_v2_editorial.json \
+  python3 tools/import_story_cards.py cards.json tools/story_cards/naples_editorial.json \
       --site CheStoria/Resources/Content/naples.json [--dry-run]
 Then run tools/embed_content.py (AI text descriptions) and the tests.
 """

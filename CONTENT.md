@@ -118,11 +118,11 @@ Set `ContentBaseURL` in `project.yml` (Info.plist) to a folder on any static hos
 
 ## Import researched story cards
 
-The research team delivers story cards as JSON: story text in five languages, sources, Wikidata coordinates, camera or map mode (example: `tools/story_cards/chestoria_naples_story_cards_v2.json`). An editorial file next to it adds what the app needs: a question asked first, three believable answers with the right one first, photos, sticker crop, Look closer target, entrances, and every string in all languages (`tools/story_cards/naples_v2_editorial.json`).
+The research team delivers story cards as JSON: story text in five languages, sources, Wikidata coordinates, camera or map mode (example: `tools/story_cards/chestoria_naples_12_cards_updated_v3.json`). An editorial file next to it adds what the app needs: a question asked first, three believable answers with the right one first, photos, sticker crop, Look closer target, entrances, and every string in all languages (`tools/story_cards/naples_editorial.json`).
 
 ```sh
-python3 tools/import_story_cards.py tools/story_cards/chestoria_naples_story_cards_v2.json \
-    tools/story_cards/naples_v2_editorial.json --site CheStoria/Resources/Content/naples.json
+python3 tools/import_story_cards.py tools/story_cards/chestoria_naples_12_cards_updated_v3.json \
+    tools/story_cards/naples_editorial.json --site CheStoria/Resources/Content/naples.json
 python3 tools/embed_content.py   # AI text descriptions for the new places
 ```
 

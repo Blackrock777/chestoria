@@ -1,6 +1,6 @@
 {
   "dataset_name": "CheStoria — Naples Historical Story Cards — Research Prototype",
-  "created_utc_date": "2026-11-20",
+  "created_utc_date": "2026-11-21",
   "stories": [
     {
       "id": "gesu-nuovo",
@@ -23,6 +23,22 @@
           "publisher": "Comune di Napoli — World Heritage heritage guide",
           "url": "https://patrimoniomondiale.comune.napoli.it/gesu-nuovo/",
           "rights_note": "Institutional or primary heritage description; research reference only, not a grant to copy prose or images"
+        },
+        {
+          "publisher": "Campania CRBC — Centro Regionale Beni Culturali",
+          "url": "https://www.campaniacrbc.it/portal/generaDettaglio.do?idPagina=20H721&l=it&tipoScheda=LC",
+          "source_type": "institutional heritage catalogue",
+          "relevant_to": "Conversion from Palazzo Sanseverino beginning 1584; diamond-point stone façade; modern church",
+          "inspection": "page_opened_2026-11-21",
+          "rights_note": "Fact-check/reference only; content/media reuse is NOT licensed by this reference"
+        },
+        {
+          "publisher": "Bollettino Telematico dell’Arte — academic art-history essay",
+          "url": "https://www.bta.it/txt/a0/07/bta00708.html",
+          "source_type": "scholarly art-history analysis",
+          "relevant_to": "1470 inscription naming Novello da San Lucano, 1584 Jesuit acquisition, preservation of exterior stonework",
+          "inspection": "page_opened_2026-11-21",
+          "rights_note": "Fact-check/reference only; content/media reuse is NOT licensed by this reference"
         }
       ],
       "source_verification": "Source links and principal historical claims reviewed in research pass; independent historian/editor approval NOT completed.",
@@ -143,8 +159,8 @@
           "word_count": 37
         }
       },
-      "source_independence": "independent_institutions",
-      "historical_accuracy_status": "referenced_draft_not_historian_approved",
+      "source_independence": "multi_publisher_non_independence_possible",
+      "historical_accuracy_status": "multiple_source_referenced_draft_not_historian_approved",
       "copyright_review": {
         "wikidata_structured_data": "CC0",
         "original_story_text": "original_generated_draft",
@@ -153,7 +169,7 @@
         "license_for_training_on_source_webpages": "NOT_ESTABLISHED"
       },
       "factCheck": {
-        "status": "draft_references_checked_human_review_pending",
+        "status": "additional_sources_crosschecked_historian_approval_pending",
         "claims": [
           {
             "text": "A palace for Roberto Sanseverino dates to 1470",
@@ -170,6 +186,50 @@
               "https://patrimoniomondiale.comune.napoli.it/gesu-nuovo/"
             ],
             "classification": "historical"
+          }
+        ],
+        "dossier_v3_claims": [
+          {
+            "text": "Palazzo Sanseverino was commissioned for Roberto Sanseverino and dates to 1470",
+            "source_urls": [
+              "https://bibliotecauniversitarianapoli.cultura.gov.it/it/443/chiesa-del-gesu-nuovo",
+              "https://patrimoniomondiale.comune.napoli.it/gesu-nuovo/",
+              "https://www.bta.it/txt/a0/07/bta00708.html"
+            ],
+            "classification": "historical_building_history"
+          },
+          {
+            "text": "The Jesuits began adapting the palace as a church in 1584",
+            "source_urls": [
+              "https://bibliotecauniversitarianapoli.cultura.gov.it/it/443/chiesa-del-gesu-nuovo",
+              "https://www.campaniacrbc.it/portal/generaDettaglio.do?idPagina=20H721&l=it&tipoScheda=LC",
+              "https://www.bta.it/txt/a0/07/bta00708.html"
+            ],
+            "classification": "historical_building_history"
+          },
+          {
+            "text": "The church retained the diamond-point piperno stone façade of the palace",
+            "source_urls": [
+              "https://bibliotecauniversitarianapoli.cultura.gov.it/it/443/chiesa-del-gesu-nuovo",
+              "https://patrimoniomondiale.comune.napoli.it/gesu-nuovo/",
+              "https://www.campaniacrbc.it/portal/generaDettaglio.do?idPagina=20H721&l=it&tipoScheda=LC",
+              "https://www.bta.it/txt/a0/07/bta00708.html"
+            ],
+            "classification": "architectural_survival"
+          },
+          {
+            "text": "Masons’ marks remain visible on the diamond-point façade",
+            "source_urls": [
+              "https://patrimoniomondiale.comune.napoli.it/gesu-nuovo/"
+            ],
+            "classification": "physical_detail"
+          },
+          {
+            "text": "The church was consecrated on 7 October 1601",
+            "source_urls": [
+              "https://bibliotecauniversitarianapoli.cultura.gov.it/it/443/chiesa-del-gesu-nuovo"
+            ],
+            "classification": "event_date"
           }
         ]
       },
@@ -188,7 +248,124 @@
         "lon": 14.25180278,
         "navigationReady": false
       },
-      "recordStatus": "editorial_draft"
+      "recordStatus": "research_expanded_editorial_draft",
+      "category": "church / former aristocratic palace",
+      "historical_sources_before_expansion": 2,
+      "additional_sources_2026_11_21": [
+        {
+          "publisher": "Campania CRBC — Centro Regionale Beni Culturali",
+          "url": "https://www.campaniacrbc.it/portal/generaDettaglio.do?idPagina=20H721&l=it&tipoScheda=LC",
+          "source_type": "institutional heritage catalogue",
+          "relevant_to": "Conversion from Palazzo Sanseverino beginning 1584; diamond-point stone façade; modern church",
+          "inspection": "page_opened_2026-11-21"
+        },
+        {
+          "publisher": "Bollettino Telematico dell’Arte — academic art-history essay",
+          "url": "https://www.bta.it/txt/a0/07/bta00708.html",
+          "source_type": "scholarly art-history analysis",
+          "relevant_to": "1470 inscription naming Novello da San Lucano, 1584 Jesuit acquisition, preservation of exterior stonework",
+          "inspection": "page_opened_2026-11-21"
+        }
+      ],
+      "research_evidence_v3": [
+        {
+          "fact_id": "gesu-nuovo-F01",
+          "fact": "Palazzo Sanseverino was commissioned for Roberto Sanseverino and dates to 1470",
+          "classification": "historical_building_history",
+          "source_indices": [
+            0,
+            1,
+            3
+          ],
+          "source_urls": [
+            "https://bibliotecauniversitarianapoli.cultura.gov.it/it/443/chiesa-del-gesu-nuovo",
+            "https://patrimoniomondiale.comune.napoli.it/gesu-nuovo/",
+            "https://www.bta.it/txt/a0/07/bta00708.html"
+          ],
+          "evidence_status": "supported_by_listed_pages_editorial_review_pending",
+          "independent_primary_confirmation": "NOT_CLAIMED"
+        },
+        {
+          "fact_id": "gesu-nuovo-F02",
+          "fact": "The Jesuits began adapting the palace as a church in 1584",
+          "classification": "historical_building_history",
+          "source_indices": [
+            0,
+            2,
+            3
+          ],
+          "source_urls": [
+            "https://bibliotecauniversitarianapoli.cultura.gov.it/it/443/chiesa-del-gesu-nuovo",
+            "https://www.campaniacrbc.it/portal/generaDettaglio.do?idPagina=20H721&l=it&tipoScheda=LC",
+            "https://www.bta.it/txt/a0/07/bta00708.html"
+          ],
+          "evidence_status": "supported_by_listed_pages_editorial_review_pending",
+          "independent_primary_confirmation": "NOT_CLAIMED"
+        },
+        {
+          "fact_id": "gesu-nuovo-F03",
+          "fact": "The church retained the diamond-point piperno stone façade of the palace",
+          "classification": "architectural_survival",
+          "source_indices": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "source_urls": [
+            "https://bibliotecauniversitarianapoli.cultura.gov.it/it/443/chiesa-del-gesu-nuovo",
+            "https://patrimoniomondiale.comune.napoli.it/gesu-nuovo/",
+            "https://www.campaniacrbc.it/portal/generaDettaglio.do?idPagina=20H721&l=it&tipoScheda=LC",
+            "https://www.bta.it/txt/a0/07/bta00708.html"
+          ],
+          "evidence_status": "supported_by_listed_pages_editorial_review_pending",
+          "independent_primary_confirmation": "NOT_CLAIMED"
+        },
+        {
+          "fact_id": "gesu-nuovo-F04",
+          "fact": "Masons’ marks remain visible on the diamond-point façade",
+          "classification": "physical_detail",
+          "source_indices": [
+            1
+          ],
+          "source_urls": [
+            "https://patrimoniomondiale.comune.napoli.it/gesu-nuovo/"
+          ],
+          "evidence_status": "single_source_supported_editorial_review_pending",
+          "independent_primary_confirmation": "NOT_CLAIMED"
+        },
+        {
+          "fact_id": "gesu-nuovo-F05",
+          "fact": "The church was consecrated on 7 October 1601",
+          "classification": "event_date",
+          "source_indices": [
+            0
+          ],
+          "source_urls": [
+            "https://bibliotecauniversitarianapoli.cultura.gov.it/it/443/chiesa-del-gesu-nuovo"
+          ],
+          "evidence_status": "single_source_supported_editorial_review_pending",
+          "independent_primary_confirmation": "NOT_CLAIMED"
+        }
+      ],
+      "source_review_v3": {
+        "two_new_sources_added": 2,
+        "source_links_total": 4,
+        "access_date": "2026-11-21",
+        "discrepancies_and_caveats": [
+          "A Jesuit organizational article gives 1597 for acquisition, while the Ministry, regional catalogue and scholarly essay reference 1584 for acquisition or start of conversion. Phrase CheStoria as “conversion began in 1584” and do not give an unqualified acquisition date until a historian reconciles it. The Jesuit page: https://gesuiti.it/gesu-nuovo-la-facciata-di-diamanti-torna-a-brillare/"
+        ],
+        "source_independence": "multiple publishers; not guaranteed independent research",
+        "rights_position": "Linked institutional and academic pages are research references only. Do not copy their written descriptions or images into training material."
+      },
+      "visit_research_v3": {
+        "recommended_mode": "camera_exterior",
+        "site_notes": "Exterior stone façade visible from Piazza del Gesù Nuovo; individual mason marks need on-site angle/visibility check. No photo needed for the story.",
+        "coordinate_caveat": "Wikidata property is site centre; treat as provisional; camera orientation is not verified.",
+        "current_hours_and_ticketing": "NOT_REVALIDATED_FOR_LIVE_VISIT",
+        "camera_required": false,
+        "field_test_done": false
+      }
     },
     {
       "id": "castel-dell-ovo",
@@ -1377,6 +1554,22 @@
           "publisher": "Royal District of Naples",
           "url": "https://www.royaldistrict.it/siti-borbonici/galleria-borbonica/",
           "rights_note": "Institutional or primary heritage description; research reference only, not a grant to copy prose or images"
+        },
+        {
+          "publisher": "FAI — Fondo per l’Ambiente Italiano, I Luoghi del Cuore",
+          "url": "https://fondoambiente.it/luoghi/galleria-borbonica",
+          "source_type": "national heritage non-profit",
+          "relevant_to": "1853 decree, architect Errico Alvino, planned royal escape route, Second World War shelter, postwar municipal storage",
+          "inspection": "page_opened_2026-11-21",
+          "rights_note": "Fact-check/reference only; content/media reuse is NOT licensed by this reference"
+        },
+        {
+          "publisher": "Campania CRBC — Centro Regionale Beni Culturali",
+          "url": "https://www.campaniacrbc.it/portal/generaDettaglio.do?idPagina=20H17353&tipoScheda=RIFTER",
+          "source_type": "institutional heritage catalogue",
+          "relevant_to": "Ferdinand II, 1853 commission, WWII shelter, underground heritage features, published entrances",
+          "inspection": "page_opened_2026-11-21",
+          "rights_note": "Fact-check/reference only; content/media reuse is NOT licensed by this reference"
         }
       ],
       "source_verification": "Source links and principal historical claims reviewed in research pass; independent historian/editor approval NOT completed.",
@@ -1497,8 +1690,8 @@
           "word_count": 38
         }
       },
-      "source_independence": "operator_and_secondary_unverified",
-      "historical_accuracy_status": "referenced_draft_not_historian_approved",
+      "source_independence": "multi_publisher_non_independence_possible",
+      "historical_accuracy_status": "multiple_source_referenced_draft_not_historian_approved",
       "copyright_review": {
         "wikidata_structured_data": "CC0",
         "original_story_text": "original_generated_draft",
@@ -1507,7 +1700,7 @@
         "license_for_training_on_source_webpages": "NOT_ESTABLISHED"
       },
       "factCheck": {
-        "status": "draft_references_checked_human_review_pending",
+        "status": "additional_sources_crosschecked_historian_approval_pending",
         "claims": [
           {
             "text": "Ferdinand II ordered work on the tunnel in 1853",
@@ -1524,6 +1717,62 @@
               "https://www.royaldistrict.it/siti-borbonici/galleria-borbonica/"
             ],
             "classification": "historical"
+          }
+        ],
+        "dossier_v3_claims": [
+          {
+            "text": "King Ferdinand II commissioned an underground route in 1853",
+            "source_urls": [
+              "https://www.galleriaborbonica.com/it/storia",
+              "https://www.royaldistrict.it/siti-borbonici/galleria-borbonica/",
+              "https://fondoambiente.it/luoghi/galleria-borbonica",
+              "https://www.campaniacrbc.it/portal/generaDettaglio.do?idPagina=20H17353&tipoScheda=RIFTER"
+            ],
+            "classification": "historical_date"
+          },
+          {
+            "text": "Architect Errico Alvino was tasked with the tunnel project",
+            "source_urls": [
+              "https://www.galleriaborbonica.com/it/storia",
+              "https://www.royaldistrict.it/siti-borbonici/galleria-borbonica/",
+              "https://fondoambiente.it/luoghi/galleria-borbonica",
+              "https://www.campaniacrbc.it/portal/generaDettaglio.do?idPagina=20H17353&tipoScheda=RIFTER"
+            ],
+            "classification": "architect"
+          },
+          {
+            "text": "The project proposed a military connection and possible escape for the royal family",
+            "source_urls": [
+              "https://www.royaldistrict.it/siti-borbonici/galleria-borbonica/",
+              "https://fondoambiente.it/luoghi/galleria-borbonica"
+            ],
+            "classification": "intended_purpose"
+          },
+          {
+            "text": "Underground spaces were converted into air-raid shelters during World War II",
+            "source_urls": [
+              "https://www.galleriaborbonica.com/it/storia",
+              "https://www.royaldistrict.it/siti-borbonici/galleria-borbonica/",
+              "https://fondoambiente.it/luoghi/galleria-borbonica",
+              "https://www.campaniacrbc.it/portal/generaDettaglio.do?idPagina=20H17353&tipoScheda=RIFTER"
+            ],
+            "classification": "change_of_use"
+          },
+          {
+            "text": "The gallery and nearby rooms served as municipal judicial storage after the war",
+            "source_urls": [
+              "https://www.galleriaborbonica.com/it/storia",
+              "https://www.royaldistrict.it/siti-borbonici/galleria-borbonica/",
+              "https://fondoambiente.it/luoghi/galleria-borbonica"
+            ],
+            "classification": "postwar_reuse"
+          },
+          {
+            "text": "The regional heritage listing identifies multiple visitor entrances rather than one tunnel midpoint",
+            "source_urls": [
+              "https://www.campaniacrbc.it/portal/generaDettaglio.do?idPagina=20H17353&tipoScheda=RIFTER"
+            ],
+            "classification": "access_guidance"
           }
         ]
       },
@@ -1542,7 +1791,148 @@
         "lon": 14.24627202,
         "navigationReady": false
       },
-      "recordStatus": "editorial_draft"
+      "recordStatus": "research_expanded_editorial_draft",
+      "category": "19th-century underground infrastructure / war shelter",
+      "historical_sources_before_expansion": 2,
+      "additional_sources_2026_11_21": [
+        {
+          "publisher": "FAI — Fondo per l’Ambiente Italiano, I Luoghi del Cuore",
+          "url": "https://fondoambiente.it/luoghi/galleria-borbonica",
+          "source_type": "national heritage non-profit",
+          "relevant_to": "1853 decree, architect Errico Alvino, planned royal escape route, Second World War shelter, postwar municipal storage",
+          "inspection": "page_opened_2026-11-21"
+        },
+        {
+          "publisher": "Campania CRBC — Centro Regionale Beni Culturali",
+          "url": "https://www.campaniacrbc.it/portal/generaDettaglio.do?idPagina=20H17353&tipoScheda=RIFTER",
+          "source_type": "institutional heritage catalogue",
+          "relevant_to": "Ferdinand II, 1853 commission, WWII shelter, underground heritage features, published entrances",
+          "inspection": "page_opened_2026-11-21"
+        }
+      ],
+      "research_evidence_v3": [
+        {
+          "fact_id": "galleria-borbonica-F01",
+          "fact": "King Ferdinand II commissioned an underground route in 1853",
+          "classification": "historical_date",
+          "source_indices": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "source_urls": [
+            "https://www.galleriaborbonica.com/it/storia",
+            "https://www.royaldistrict.it/siti-borbonici/galleria-borbonica/",
+            "https://fondoambiente.it/luoghi/galleria-borbonica",
+            "https://www.campaniacrbc.it/portal/generaDettaglio.do?idPagina=20H17353&tipoScheda=RIFTER"
+          ],
+          "evidence_status": "supported_by_listed_pages_editorial_review_pending",
+          "independent_primary_confirmation": "NOT_CLAIMED"
+        },
+        {
+          "fact_id": "galleria-borbonica-F02",
+          "fact": "Architect Errico Alvino was tasked with the tunnel project",
+          "classification": "architect",
+          "source_indices": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "source_urls": [
+            "https://www.galleriaborbonica.com/it/storia",
+            "https://www.royaldistrict.it/siti-borbonici/galleria-borbonica/",
+            "https://fondoambiente.it/luoghi/galleria-borbonica",
+            "https://www.campaniacrbc.it/portal/generaDettaglio.do?idPagina=20H17353&tipoScheda=RIFTER"
+          ],
+          "evidence_status": "supported_by_listed_pages_editorial_review_pending",
+          "independent_primary_confirmation": "NOT_CLAIMED"
+        },
+        {
+          "fact_id": "galleria-borbonica-F03",
+          "fact": "The project proposed a military connection and possible escape for the royal family",
+          "classification": "intended_purpose",
+          "source_indices": [
+            1,
+            2
+          ],
+          "source_urls": [
+            "https://www.royaldistrict.it/siti-borbonici/galleria-borbonica/",
+            "https://fondoambiente.it/luoghi/galleria-borbonica"
+          ],
+          "evidence_status": "supported_by_listed_pages_editorial_review_pending",
+          "independent_primary_confirmation": "NOT_CLAIMED"
+        },
+        {
+          "fact_id": "galleria-borbonica-F04",
+          "fact": "Underground spaces were converted into air-raid shelters during World War II",
+          "classification": "change_of_use",
+          "source_indices": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "source_urls": [
+            "https://www.galleriaborbonica.com/it/storia",
+            "https://www.royaldistrict.it/siti-borbonici/galleria-borbonica/",
+            "https://fondoambiente.it/luoghi/galleria-borbonica",
+            "https://www.campaniacrbc.it/portal/generaDettaglio.do?idPagina=20H17353&tipoScheda=RIFTER"
+          ],
+          "evidence_status": "supported_by_listed_pages_editorial_review_pending",
+          "independent_primary_confirmation": "NOT_CLAIMED"
+        },
+        {
+          "fact_id": "galleria-borbonica-F05",
+          "fact": "The gallery and nearby rooms served as municipal judicial storage after the war",
+          "classification": "postwar_reuse",
+          "source_indices": [
+            0,
+            1,
+            2
+          ],
+          "source_urls": [
+            "https://www.galleriaborbonica.com/it/storia",
+            "https://www.royaldistrict.it/siti-borbonici/galleria-borbonica/",
+            "https://fondoambiente.it/luoghi/galleria-borbonica"
+          ],
+          "evidence_status": "supported_by_listed_pages_editorial_review_pending",
+          "independent_primary_confirmation": "NOT_CLAIMED"
+        },
+        {
+          "fact_id": "galleria-borbonica-F06",
+          "fact": "The regional heritage listing identifies multiple visitor entrances rather than one tunnel midpoint",
+          "classification": "access_guidance",
+          "source_indices": [
+            3
+          ],
+          "source_urls": [
+            "https://www.campaniacrbc.it/portal/generaDettaglio.do?idPagina=20H17353&tipoScheda=RIFTER"
+          ],
+          "evidence_status": "single_source_supported_editorial_review_pending",
+          "independent_primary_confirmation": "NOT_CLAIMED"
+        }
+      ],
+      "source_review_v3": {
+        "two_new_sources_added": 2,
+        "source_links_total": 4,
+        "access_date": "2026-11-21",
+        "discrepancies_and_caveats": [
+          "Wikidata tunnel coordinates identify the site, NOT a usable entrance. Opening routes and exact entry points vary by operator and tour; verify through the venue at visit time.",
+          "Avoid quoting “5,000–10,000 people sheltered” as a uniquely measured attendance statistic; it appears in operator and Royal District material and is an estimate."
+        ],
+        "source_independence": "multiple publishers; not guaranteed independent research",
+        "rights_position": "Research-linked FAI and regional pages; no permissions assumed for text, photographs or commercial audioguides."
+      },
+      "visit_research_v3": {
+        "recommended_mode": "map_or_location_only",
+        "site_notes": "Use map-first preview; visiting requires a guided tour/access arrangement. The tunnel is underground and an exterior photo cannot identify the interior scene.",
+        "coordinate_caveat": "Site coordinate only; do not create navigation directions to it. Check specific route entrance with current operator.",
+        "current_hours_and_ticketing": "NOT_REVALIDATED_FOR_LIVE_VISIT",
+        "camera_required": false,
+        "field_test_done": false
+      }
     },
     {
       "id": "galleria-umberto-i",
@@ -1565,6 +1955,22 @@
           "publisher": "Italian heritage catalogue — historical gallery record",
           "url": "https://catalogo.beniculturali.it/detail/PhotographicHeritage/1500953655",
           "rights_note": "Reference only; no webpage text or images copied."
+        },
+        {
+          "publisher": "Campania CRBC — Centro Regionale Beni Culturali",
+          "url": "https://www.campaniacrbc.it/portal/generaDettaglio.do?idPagina=20H700&l=it&tipoScheda=LC",
+          "source_type": "institutional heritage catalogue",
+          "relevant_to": "Iron-and-glass dome, height reported as 56.7 m, zodiac floor mosaics, public arcade",
+          "inspection": "page_opened_2026-11-21",
+          "rights_note": "Fact-check/reference only; content/media reuse is NOT licensed by this reference"
+        },
+        {
+          "publisher": "Discover Campania — architectural and cultural feature",
+          "url": "https://discovercampania.it/en/explore-campania/territory/naples/go-see-naples/squares/1182-the-umberto-i-gallery",
+          "source_type": "independent travel/heritage editorial",
+          "relevant_to": "Urban redevelopment of 1887–1890, four arcade arms, zodiac and compass rose floor, accessible entrances",
+          "inspection": "page_opened_2026-11-21",
+          "rights_note": "Fact-check/reference only; content/media reuse is NOT licensed by this reference"
         }
       ],
       "source_verification": "Source links and principal historical claims reviewed in research pass; independent historian/editor approval NOT completed.",
@@ -1685,8 +2091,8 @@
           "word_count": 37
         }
       },
-      "source_independence": "municipal_and_national_heritage_catalogue",
-      "historical_accuracy_status": "referenced_draft_not_historian_approved",
+      "source_independence": "multi_publisher_non_independence_possible",
+      "historical_accuracy_status": "multiple_source_referenced_draft_not_historian_approved",
       "copyright_review": {
         "wikidata_structured_data": "CC0",
         "original_story_text": "original_generated_draft",
@@ -1695,7 +2101,7 @@
         "license_for_training_on_source_webpages": "NOT_ESTABLISHED"
       },
       "factCheck": {
-        "status": "draft_references_checked_human_review_pending",
+        "status": "additional_sources_crosschecked_historian_approval_pending",
         "claims": [
           {
             "text": "Galleria Umberto I was constructed between 1887 and 1890",
@@ -1712,6 +2118,59 @@
               "https://catalogo.beniculturali.it/detail/PhotographicHeritage/1500953655"
             ],
             "classification": "historical"
+          }
+        ],
+        "dossier_v3_claims": [
+          {
+            "text": "Galleria Umberto I was built between 1887 and 1890",
+            "source_urls": [
+              "https://napoliforme.comune.napoli.it/en/pois/-/poi/Umberto-I-Gallery",
+              "https://catalogo.beniculturali.it/detail/PhotographicHeritage/1500953655",
+              "https://discovercampania.it/en/explore-campania/territory/naples/go-see-naples/squares/1182-the-umberto-i-gallery"
+            ],
+            "classification": "construction_date"
+          },
+          {
+            "text": "The gallery formed part of urban renewal replacing unhealthy old streets near Teatro San Carlo",
+            "source_urls": [
+              "https://napoliforme.comune.napoli.it/en/pois/-/poi/Umberto-I-Gallery",
+              "https://catalogo.beniculturali.it/detail/PhotographicHeritage/1500953655",
+              "https://discovercampania.it/en/explore-campania/territory/naples/go-see-naples/squares/1182-the-umberto-i-gallery"
+            ],
+            "classification": "historical_context"
+          },
+          {
+            "text": "Its central roof structure is made of iron and glass",
+            "source_urls": [
+              "https://napoliforme.comune.napoli.it/en/pois/-/poi/Umberto-I-Gallery",
+              "https://www.campaniacrbc.it/portal/generaDettaglio.do?idPagina=20H700&l=it&tipoScheda=LC",
+              "https://discovercampania.it/en/explore-campania/territory/naples/go-see-naples/squares/1182-the-umberto-i-gallery"
+            ],
+            "classification": "architecture"
+          },
+          {
+            "text": "The floor includes mosaics of zodiac signs",
+            "source_urls": [
+              "https://napoliforme.comune.napoli.it/en/pois/-/poi/Umberto-I-Gallery",
+              "https://www.campaniacrbc.it/portal/generaDettaglio.do?idPagina=20H700&l=it&tipoScheda=LC",
+              "https://discovercampania.it/en/explore-campania/territory/naples/go-see-naples/squares/1182-the-umberto-i-gallery"
+            ],
+            "classification": "physical_detail"
+          },
+          {
+            "text": "A compass rose is set within the floor mosaics",
+            "source_urls": [
+              "https://napoliforme.comune.napoli.it/en/pois/-/poi/Umberto-I-Gallery",
+              "https://discovercampania.it/en/explore-campania/territory/naples/go-see-naples/squares/1182-the-umberto-i-gallery"
+            ],
+            "classification": "physical_detail"
+          },
+          {
+            "text": "The regional heritage listing gives the dome height as 56.7 metres",
+            "source_urls": [
+              "https://www.campaniacrbc.it/portal/generaDettaglio.do?idPagina=20H700&l=it&tipoScheda=LC"
+            ],
+            "classification": "quantitative_single_source"
           }
         ]
       },
@@ -1730,7 +2189,142 @@
         "lon": 14.24948333,
         "navigationReady": false
       },
-      "recordStatus": "editorial_draft"
+      "recordStatus": "research_expanded_editorial_draft",
+      "category": "19th-century commercial arcade / architecture",
+      "historical_sources_before_expansion": 2,
+      "additional_sources_2026_11_21": [
+        {
+          "publisher": "Campania CRBC — Centro Regionale Beni Culturali",
+          "url": "https://www.campaniacrbc.it/portal/generaDettaglio.do?idPagina=20H700&l=it&tipoScheda=LC",
+          "source_type": "institutional heritage catalogue",
+          "relevant_to": "Iron-and-glass dome, height reported as 56.7 m, zodiac floor mosaics, public arcade",
+          "inspection": "page_opened_2026-11-21"
+        },
+        {
+          "publisher": "Discover Campania — architectural and cultural feature",
+          "url": "https://discovercampania.it/en/explore-campania/territory/naples/go-see-naples/squares/1182-the-umberto-i-gallery",
+          "source_type": "independent travel/heritage editorial",
+          "relevant_to": "Urban redevelopment of 1887–1890, four arcade arms, zodiac and compass rose floor, accessible entrances",
+          "inspection": "page_opened_2026-11-21"
+        }
+      ],
+      "research_evidence_v3": [
+        {
+          "fact_id": "galleria-umberto-i-F01",
+          "fact": "Galleria Umberto I was built between 1887 and 1890",
+          "classification": "construction_date",
+          "source_indices": [
+            0,
+            1,
+            3
+          ],
+          "source_urls": [
+            "https://napoliforme.comune.napoli.it/en/pois/-/poi/Umberto-I-Gallery",
+            "https://catalogo.beniculturali.it/detail/PhotographicHeritage/1500953655",
+            "https://discovercampania.it/en/explore-campania/territory/naples/go-see-naples/squares/1182-the-umberto-i-gallery"
+          ],
+          "evidence_status": "supported_by_listed_pages_editorial_review_pending",
+          "independent_primary_confirmation": "NOT_CLAIMED"
+        },
+        {
+          "fact_id": "galleria-umberto-i-F02",
+          "fact": "The gallery formed part of urban renewal replacing unhealthy old streets near Teatro San Carlo",
+          "classification": "historical_context",
+          "source_indices": [
+            0,
+            1,
+            3
+          ],
+          "source_urls": [
+            "https://napoliforme.comune.napoli.it/en/pois/-/poi/Umberto-I-Gallery",
+            "https://catalogo.beniculturali.it/detail/PhotographicHeritage/1500953655",
+            "https://discovercampania.it/en/explore-campania/territory/naples/go-see-naples/squares/1182-the-umberto-i-gallery"
+          ],
+          "evidence_status": "supported_by_listed_pages_editorial_review_pending",
+          "independent_primary_confirmation": "NOT_CLAIMED"
+        },
+        {
+          "fact_id": "galleria-umberto-i-F03",
+          "fact": "Its central roof structure is made of iron and glass",
+          "classification": "architecture",
+          "source_indices": [
+            0,
+            2,
+            3
+          ],
+          "source_urls": [
+            "https://napoliforme.comune.napoli.it/en/pois/-/poi/Umberto-I-Gallery",
+            "https://www.campaniacrbc.it/portal/generaDettaglio.do?idPagina=20H700&l=it&tipoScheda=LC",
+            "https://discovercampania.it/en/explore-campania/territory/naples/go-see-naples/squares/1182-the-umberto-i-gallery"
+          ],
+          "evidence_status": "supported_by_listed_pages_editorial_review_pending",
+          "independent_primary_confirmation": "NOT_CLAIMED"
+        },
+        {
+          "fact_id": "galleria-umberto-i-F04",
+          "fact": "The floor includes mosaics of zodiac signs",
+          "classification": "physical_detail",
+          "source_indices": [
+            0,
+            2,
+            3
+          ],
+          "source_urls": [
+            "https://napoliforme.comune.napoli.it/en/pois/-/poi/Umberto-I-Gallery",
+            "https://www.campaniacrbc.it/portal/generaDettaglio.do?idPagina=20H700&l=it&tipoScheda=LC",
+            "https://discovercampania.it/en/explore-campania/territory/naples/go-see-naples/squares/1182-the-umberto-i-gallery"
+          ],
+          "evidence_status": "supported_by_listed_pages_editorial_review_pending",
+          "independent_primary_confirmation": "NOT_CLAIMED"
+        },
+        {
+          "fact_id": "galleria-umberto-i-F05",
+          "fact": "A compass rose is set within the floor mosaics",
+          "classification": "physical_detail",
+          "source_indices": [
+            0,
+            3
+          ],
+          "source_urls": [
+            "https://napoliforme.comune.napoli.it/en/pois/-/poi/Umberto-I-Gallery",
+            "https://discovercampania.it/en/explore-campania/territory/naples/go-see-naples/squares/1182-the-umberto-i-gallery"
+          ],
+          "evidence_status": "supported_by_listed_pages_editorial_review_pending",
+          "independent_primary_confirmation": "NOT_CLAIMED"
+        },
+        {
+          "fact_id": "galleria-umberto-i-F06",
+          "fact": "The regional heritage listing gives the dome height as 56.7 metres",
+          "classification": "quantitative_single_source",
+          "source_indices": [
+            2
+          ],
+          "source_urls": [
+            "https://www.campaniacrbc.it/portal/generaDettaglio.do?idPagina=20H700&l=it&tipoScheda=LC"
+          ],
+          "evidence_status": "single_source_supported_editorial_review_pending",
+          "independent_primary_confirmation": "NOT_CLAIMED"
+        }
+      ],
+      "source_review_v3": {
+        "two_new_sources_added": 2,
+        "source_links_total": 4,
+        "access_date": "2026-11-21",
+        "discrepancies_and_caveats": [
+          "Some popular accounts assign different opening dates; retain only the widely documented 1887–1890 construction span until official inauguration archive is checked.",
+          "Discover Campania says mosaics were relocated after World War II; do not imply every mosaic element visible today is the untouched 1890 original."
+        ],
+        "source_independence": "multiple publishers; not guaranteed independent research",
+        "rights_position": "Discover Campania explicitly prohibits reproduction without permission; use as verification reference only. Regional catalogue usage and media licenses must be checked separately."
+      },
+      "visit_research_v3": {
+        "recommended_mode": "map_or_location_only",
+        "site_notes": "Public arcade, but the zodiac challenge is INSIDE under the dome, not visible on its exterior. Mark optional indoor look-closer without mandatory photo upload.",
+        "coordinate_caveat": "Gallery centroid is not necessarily the entrance or the mosaic position.",
+        "current_hours_and_ticketing": "NOT_REVALIDATED_FOR_LIVE_VISIT",
+        "camera_required": false,
+        "field_test_done": false
+      }
     },
     {
       "id": "catacombe-san-gennaro",
@@ -2143,6 +2737,22 @@
           "publisher": "Museum of Treasure of San Gennaro — official collection",
           "url": "https://tesorosangennaro.it/i-capolavori/",
           "rights_note": "Reference only; no webpage text or images copied."
+        },
+        {
+          "publisher": "Italian Ministry of Culture — Museo del Tesoro di San Gennaro",
+          "url": "https://cultura.gov.it/luogo/museo-del-tesoro-di-san-gennaro",
+          "source_type": "national institution museum listing",
+          "relevant_to": "Museum opened in December 2003, Deputazione founded 1601, centuries of gifts and artistic collections",
+          "inspection": "search-indexed full page excerpt_2026-11-21; direct open timed out",
+          "rights_note": "Fact-check/reference only; content/media reuse is NOT licensed by this reference"
+        },
+        {
+          "publisher": "RAI Cultura — I Tesori di San Gennaro",
+          "url": "https://www.raicultura.it/arte/articoli/2018/12/I-Tesori-di-San-Gennaro-500cbffb-9d3f-4db0-b271-8ea6e84b64f4.html",
+          "source_type": "national public broadcaster cultural reporting",
+          "relevant_to": "Michele Dato necklace in 1679, precious-metal craftsmanship, successive donations",
+          "inspection": "page_opened_2026-11-21",
+          "rights_note": "Fact-check/reference only; content/media reuse is NOT licensed by this reference"
         }
       ],
       "source_verification": "Source links and principal historical claims reviewed in research pass; independent historian/editor approval NOT completed.",
@@ -2263,8 +2873,8 @@
           "word_count": 39
         }
       },
-      "source_independence": "municipal_and_museum_sources",
-      "historical_accuracy_status": "referenced_draft_not_historian_approved",
+      "source_independence": "multi_publisher_non_independence_possible",
+      "historical_accuracy_status": "multiple_source_referenced_draft_not_historian_approved",
       "copyright_review": {
         "wikidata_structured_data": "CC0",
         "original_story_text": "original_generated_draft",
@@ -2273,7 +2883,7 @@
         "license_for_training_on_source_webpages": "NOT_ESTABLISHED"
       },
       "factCheck": {
-        "status": "draft_references_checked_human_review_pending",
+        "status": "additional_sources_crosschecked_historian_approval_pending",
         "claims": [
           {
             "text": "The famous necklace began in 1679",
@@ -2290,6 +2900,49 @@
               "https://tesorosangennaro.it/i-capolavori/"
             ],
             "classification": "historical"
+          }
+        ],
+        "dossier_v3_claims": [
+          {
+            "text": "The upper band of San Gennaro’s necklace was commissioned from Michele Dato in 1679",
+            "source_urls": [
+              "https://napoliforme.comune.napoli.it/en/pois/-/poi/Museum-of-the-Treasure-of-San-Gennaro",
+              "https://tesorosangennaro.it/i-capolavori/",
+              "https://www.raicultura.it/arte/articoli/2018/12/I-Tesori-di-San-Gennaro-500cbffb-9d3f-4db0-b271-8ea6e84b64f4.html"
+            ],
+            "classification": "object_origin"
+          },
+          {
+            "text": "Its original upper band is described as thirteen gold links",
+            "source_urls": [
+              "https://napoliforme.comune.napoli.it/en/pois/-/poi/Museum-of-the-Treasure-of-San-Gennaro",
+              "https://tesorosangennaro.it/i-capolavori/"
+            ],
+            "classification": "physical_object_detail"
+          },
+          {
+            "text": "Rulers, nobles and devotees added jewels and gifts over subsequent generations",
+            "source_urls": [
+              "https://napoliforme.comune.napoli.it/en/pois/-/poi/Museum-of-the-Treasure-of-San-Gennaro",
+              "https://tesorosangennaro.it/i-capolavori/",
+              "https://cultura.gov.it/luogo/museo-del-tesoro-di-san-gennaro",
+              "https://www.raicultura.it/arte/articoli/2018/12/I-Tesori-di-San-Gennaro-500cbffb-9d3f-4db0-b271-8ea6e84b64f4.html"
+            ],
+            "classification": "cultural_history"
+          },
+          {
+            "text": "The Museum of the Treasure of San Gennaro opened to the public in December 2003",
+            "source_urls": [
+              "https://cultura.gov.it/luogo/museo-del-tesoro-di-san-gennaro"
+            ],
+            "classification": "museum_history"
+          },
+          {
+            "text": "The Deputazione associated with the Royal Chapel of the Treasure traces its foundation to 1601",
+            "source_urls": [
+              "https://cultura.gov.it/luogo/museo-del-tesoro-di-san-gennaro"
+            ],
+            "classification": "institutional_history"
           }
         ]
       },
@@ -2308,10 +2961,127 @@
         "lon": 14.25903889,
         "navigationReady": false
       },
-      "recordStatus": "editorial_draft"
+      "recordStatus": "research_expanded_editorial_draft",
+      "category": "museum of sacred art and goldsmithing",
+      "historical_sources_before_expansion": 2,
+      "additional_sources_2026_11_21": [
+        {
+          "publisher": "Italian Ministry of Culture — Museo del Tesoro di San Gennaro",
+          "url": "https://cultura.gov.it/luogo/museo-del-tesoro-di-san-gennaro",
+          "source_type": "national institution museum listing",
+          "relevant_to": "Museum opened in December 2003, Deputazione founded 1601, centuries of gifts and artistic collections",
+          "inspection": "search-indexed full page excerpt_2026-11-21; direct open timed out"
+        },
+        {
+          "publisher": "RAI Cultura — I Tesori di San Gennaro",
+          "url": "https://www.raicultura.it/arte/articoli/2018/12/I-Tesori-di-San-Gennaro-500cbffb-9d3f-4db0-b271-8ea6e84b64f4.html",
+          "source_type": "national public broadcaster cultural reporting",
+          "relevant_to": "Michele Dato necklace in 1679, precious-metal craftsmanship, successive donations",
+          "inspection": "page_opened_2026-11-21"
+        }
+      ],
+      "research_evidence_v3": [
+        {
+          "fact_id": "tesoro-san-gennaro-F01",
+          "fact": "The upper band of San Gennaro’s necklace was commissioned from Michele Dato in 1679",
+          "classification": "object_origin",
+          "source_indices": [
+            0,
+            1,
+            3
+          ],
+          "source_urls": [
+            "https://napoliforme.comune.napoli.it/en/pois/-/poi/Museum-of-the-Treasure-of-San-Gennaro",
+            "https://tesorosangennaro.it/i-capolavori/",
+            "https://www.raicultura.it/arte/articoli/2018/12/I-Tesori-di-San-Gennaro-500cbffb-9d3f-4db0-b271-8ea6e84b64f4.html"
+          ],
+          "evidence_status": "supported_by_listed_pages_editorial_review_pending",
+          "independent_primary_confirmation": "NOT_CLAIMED"
+        },
+        {
+          "fact_id": "tesoro-san-gennaro-F02",
+          "fact": "Its original upper band is described as thirteen gold links",
+          "classification": "physical_object_detail",
+          "source_indices": [
+            0,
+            1
+          ],
+          "source_urls": [
+            "https://napoliforme.comune.napoli.it/en/pois/-/poi/Museum-of-the-Treasure-of-San-Gennaro",
+            "https://tesorosangennaro.it/i-capolavori/"
+          ],
+          "evidence_status": "supported_by_listed_pages_editorial_review_pending",
+          "independent_primary_confirmation": "NOT_CLAIMED"
+        },
+        {
+          "fact_id": "tesoro-san-gennaro-F03",
+          "fact": "Rulers, nobles and devotees added jewels and gifts over subsequent generations",
+          "classification": "cultural_history",
+          "source_indices": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "source_urls": [
+            "https://napoliforme.comune.napoli.it/en/pois/-/poi/Museum-of-the-Treasure-of-San-Gennaro",
+            "https://tesorosangennaro.it/i-capolavori/",
+            "https://cultura.gov.it/luogo/museo-del-tesoro-di-san-gennaro",
+            "https://www.raicultura.it/arte/articoli/2018/12/I-Tesori-di-San-Gennaro-500cbffb-9d3f-4db0-b271-8ea6e84b64f4.html"
+          ],
+          "evidence_status": "supported_by_listed_pages_editorial_review_pending",
+          "independent_primary_confirmation": "NOT_CLAIMED"
+        },
+        {
+          "fact_id": "tesoro-san-gennaro-F04",
+          "fact": "The Museum of the Treasure of San Gennaro opened to the public in December 2003",
+          "classification": "museum_history",
+          "source_indices": [
+            2
+          ],
+          "source_urls": [
+            "https://cultura.gov.it/luogo/museo-del-tesoro-di-san-gennaro"
+          ],
+          "evidence_status": "single_source_supported_editorial_review_pending",
+          "independent_primary_confirmation": "NOT_CLAIMED"
+        },
+        {
+          "fact_id": "tesoro-san-gennaro-F05",
+          "fact": "The Deputazione associated with the Royal Chapel of the Treasure traces its foundation to 1601",
+          "classification": "institutional_history",
+          "source_indices": [
+            2
+          ],
+          "source_urls": [
+            "https://cultura.gov.it/luogo/museo-del-tesoro-di-san-gennaro"
+          ],
+          "evidence_status": "single_source_supported_editorial_review_pending",
+          "independent_primary_confirmation": "NOT_CLAIMED"
+        }
+      ],
+      "source_review_v3": {
+        "two_new_sources_added": 2,
+        "source_links_total": 4,
+        "access_date": "2026-11-21",
+        "discrepancies_and_caveats": [
+          "The museum, regional and other published pages give inconsistent years or totals for some OTHER treasures (e.g. mitre commission dates and early reliquary). Do not import those secondary numbers automatically.",
+          "Museums may change exhibition layouts. Do not guarantee the necklace is on view at a particular time.",
+          "The v2 Wikidata item has conflicting coordinate statements. Retain the warning and use the museum’s officially published street address for visitor directions, without inventing GPS entrance coordinates."
+        ],
+        "source_independence": "multiple publishers; not guaranteed independent research",
+        "rights_position": "Museum photographs and RAI/media footage are not automatically reusable; link to source pages without copying media or prose."
+      },
+      "visit_research_v3": {
+        "recommended_mode": "map_or_location_only",
+        "site_notes": "Ticketed museum. Use map/location story and official Via Duomo 149 address. Do not require interior photographs. The museum and Cathedral Chapel are distinct visitor experiences.",
+        "coordinate_caveat": "Conflicting Wikidata coordinates; mark NOT_NAVIGATION_READY. Visitor address: Via Duomo 149, Napoli, Italy, from official museum site.",
+        "current_hours_and_ticketing": "NOT_REVALIDATED_FOR_LIVE_VISIT",
+        "camera_required": false,
+        "field_test_done": false
+      }
     }
   ],
-  "version": "0.2.0",
+  "version": "0.3.0",
   "record_count": 12,
   "locales": [
     "en",
@@ -2320,7 +3090,7 @@
     "de",
     "es"
   ],
-  "scope": "Research-backed draft for integration testing; NOT historian-approved, not a cleared third-party training corpus.",
+  "scope": "12 existing Naples cards, with four expanded source-backed research dossiers (eight newly selected sources).",
   "policy": {
     "source_hierarchy": "Prefer Italian Ministry of Culture, Comune di Napoli heritage catalogue, primary museum/operator, then supported institution.",
     "legends": "Legends explicitly labeled and separated from historical facts.",
@@ -2356,6 +3126,11 @@
       "Teatro San Carlo removed unrelated conservatory citation",
       "Treasure museum Wikidata has inconsistent coordinate claims; provisional chosen cultural catalogue location",
       "Bourbon Tunnel Wikidata point is not certified visitor entrance"
-    ]
+    ],
+    "four_cards_new_sources": 8,
+    "four_cards_extended": 4,
+    "all_naples_records": 12,
+    "rights_caveat": "External historical source pages linked for fact verification only; NOT copyright cleared as model-training corpus.",
+    "editorial_status": "Not historian approved; draft translations and venue rules pending."
   }
 }

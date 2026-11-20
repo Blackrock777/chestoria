@@ -342,6 +342,14 @@
             {
               "title": "Comune di Napoli — World Heritage heritage guide",
               "url": "https://patrimoniomondiale.comune.napoli.it/gesu-nuovo/"
+            },
+            {
+              "title": "Campania CRBC — Centro Regionale Beni Culturali",
+              "url": "https://www.campaniacrbc.it/portal/generaDettaglio.do?idPagina=20H721&l=it&tipoScheda=LC"
+            },
+            {
+              "title": "Bollettino Telematico dell’Arte — academic art-history essay",
+              "url": "https://www.bta.it/txt/a0/07/bta00708.html"
             }
           ]
         }
@@ -725,7 +733,7 @@
         "recallPrompt": "Remember Santa Chiara? What damaged it in 1943?",
         "factCheck": {
           "status": "sourced",
-          "checkedOn": "2026-11-20",
+          "checkedOn": "2026-11-21",
           "sources": [
             {
               "title": "Comune di Napoli — NapoliForMe",
@@ -818,7 +826,7 @@
         "recallPrompt": "Remember San Carlo? How long did rebuilding take after the 1816 fire?",
         "factCheck": {
           "status": "sourced",
-          "checkedOn": "2026-11-20",
+          "checkedOn": "2026-11-21",
           "sources": [
             {
               "title": "Italian Ministry of Culture — Teatro San Carlo",
@@ -920,7 +928,7 @@
         "recallPrompt": "Remember Castel Nuovo’s white arch? What does it celebrate?",
         "factCheck": {
           "status": "sourced",
-          "checkedOn": "2026-11-20",
+          "checkedOn": "2026-11-21",
           "sources": [
             {
               "title": "Italian Ministry of Culture / Biblioteca Universitaria di Napoli",
@@ -1021,7 +1029,7 @@
         "recallPrompt": "Remember Caravaggio’s Seven Works of Mercy? On how many canvases?",
         "factCheck": {
           "status": "sourced",
-          "checkedOn": "2026-11-20",
+          "checkedOn": "2026-11-21",
           "sources": [
             {
               "title": "Pio Monte della Misericordia — Caravaggio",
@@ -1127,7 +1135,7 @@
         "recallPrompt": "Remember the Bourbon Tunnel? What did it become in the war?",
         "factCheck": {
           "status": "sourced",
-          "checkedOn": "2026-11-20",
+          "checkedOn": "2026-11-21",
           "sources": [
             {
               "title": "Galleria Borbonica — Official operator history",
@@ -1136,6 +1144,14 @@
             {
               "title": "Royal District of Naples",
               "url": "https://www.royaldistrict.it/siti-borbonici/galleria-borbonica/"
+            },
+            {
+              "title": "FAI — Fondo per l’Ambiente Italiano, I Luoghi del Cuore",
+              "url": "https://fondoambiente.it/luoghi/galleria-borbonica"
+            },
+            {
+              "title": "Campania CRBC — Centro Regionale Beni Culturali",
+              "url": "https://www.campaniacrbc.it/portal/generaDettaglio.do?idPagina=20H17353&tipoScheda=RIFTER"
             }
           ]
         }
@@ -1217,7 +1233,7 @@
         "recallPrompt": "Remember Galleria Umberto I? What is in the floor under the dome?",
         "factCheck": {
           "status": "sourced",
-          "checkedOn": "2026-11-20",
+          "checkedOn": "2026-11-21",
           "sources": [
             {
               "title": "Comune di Napoli — NapoliForMe",
@@ -1226,6 +1242,14 @@
             {
               "title": "Italian heritage catalogue — historical gallery record",
               "url": "https://catalogo.beniculturali.it/detail/PhotographicHeritage/1500953655"
+            },
+            {
+              "title": "Campania CRBC — Centro Regionale Beni Culturali",
+              "url": "https://www.campaniacrbc.it/portal/generaDettaglio.do?idPagina=20H700&l=it&tipoScheda=LC"
+            },
+            {
+              "title": "Discover Campania — architectural and cultural feature",
+              "url": "https://discovercampania.it/en/explore-campania/territory/naples/go-see-naples/squares/1182-the-umberto-i-gallery"
             }
           ]
         }
@@ -1319,7 +1343,7 @@
         "recallPrompt": "Remember the bishop in the catacombs? Where was he bishop?",
         "factCheck": {
           "status": "sourced",
-          "checkedOn": "2026-11-20",
+          "checkedOn": "2026-11-21",
           "sources": [
             {
               "title": "Catacombe di Napoli — Official site history",
@@ -1425,7 +1449,7 @@
         "recallPrompt": "Remember the San Gaudioso catacombs? Whose tomb did they grow around?",
         "factCheck": {
           "status": "sourced",
-          "checkedOn": "2026-11-20",
+          "checkedOn": "2026-11-21",
           "sources": [
             {
               "title": "Catacombe di Napoli — San Gaudioso",
@@ -1526,7 +1550,7 @@
         "recallPrompt": "Remember San Gennaro’s necklace? How did it grow?",
         "factCheck": {
           "status": "sourced",
-          "checkedOn": "2026-11-20",
+          "checkedOn": "2026-11-21",
           "sources": [
             {
               "title": "Comune di Napoli — NapoliForMe",
@@ -1535,6 +1559,14 @@
             {
               "title": "Museum of Treasure of San Gennaro — official collection",
               "url": "https://tesorosangennaro.it/i-capolavori/"
+            },
+            {
+              "title": "Italian Ministry of Culture — Museo del Tesoro di San Gennaro",
+              "url": "https://cultura.gov.it/luogo/museo-del-tesoro-di-san-gennaro"
+            },
+            {
+              "title": "RAI Cultura — I Tesori di San Gennaro",
+              "url": "https://www.raicultura.it/arte/articoli/2018/12/I-Tesori-di-San-Gennaro-500cbffb-9d3f-4db0-b271-8ea6e84b64f4.html"
             }
           ]
         }
