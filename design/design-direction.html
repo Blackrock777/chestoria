@@ -1,0 +1,557 @@
+<title>CheStoria Design Direction</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Kalam:wght@700&display=swap">
+<style>
+/* Layout: a brand book for an iOS app. Prose column for decisions, wrapping rows of iPhone mockups. Colours come from the stones of Naples. */
+:root{
+  --calce:#F5F4F0; --card:#FFFFFF; --piperno:#2B302E; --stone:#6B716E; --hair:#DCDBD5; --sunk:#ECEBE6;
+  --tufo:#E8B230; --tufo-soft:#F8E7B5; --azzurro:#176FAD; --azzurro-soft:#DCEAF5;
+  --maiolica:#2C8560; --maiolica-soft:#DDF0E6; --pompei:#B23A2E; --pompei-soft:#F6DFDB; --mare:#0E3B5C;
+  --display:"Bricolage Grotesque", "SF Pro Rounded", system-ui, sans-serif;
+  --text:-apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, "Segoe UI", Roboto, sans-serif;
+  --hand:"Kalam", "Bradley Hand", cursive;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --calce:#111312; --card:#1B1E1D; --piperno:#EEEDE8; --stone:#A3A8A5; --hair:#333836; --sunk:#232726;
+  --tufo:#F2C04A; --tufo-soft:#46391A; --azzurro:#5AB0EA; --azzurro-soft:#17324A;
+  --maiolica:#5BC08F; --maiolica-soft:#173A2A; --pompei:#E36B5E; --pompei-soft:#45201C; --mare:#0B2A42; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --calce:#111312; --card:#1B1E1D; --piperno:#EEEDE8; --stone:#A3A8A5; --hair:#333836; --sunk:#232726;
+  --tufo:#F2C04A; --tufo-soft:#46391A; --azzurro:#5AB0EA; --azzurro-soft:#17324A;
+  --maiolica:#5BC08F; --maiolica-soft:#173A2A; --pompei:#E36B5E; --pompei-soft:#45201C; --mare:#0B2A42; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--calce);color:var(--piperno);font-family:var(--text);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;
+  padding-left:max(16px, env(safe-area-inset-left,0px));padding-right:max(16px, env(safe-area-inset-right,0px));padding-block:0 72px}
+.wrap{max-width:1160px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.05}
+h1{font-size:clamp(2.6rem,7vw,5rem);font-weight:800;letter-spacing:-.03em}
+h2{font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:700;letter-spacing:-.015em}
+h3{font-size:1.15rem;font-weight:700;letter-spacing:-.005em}
+p{margin:0;max-width:66ch}
+.eyebrow{font-weight:700;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone)}
+.lede{font-size:1.1rem;color:var(--stone)}
+section{padding-block:64px 0;display:grid;gap:28px}
+.head{display:grid;gap:8px}
+code,.mono{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:.82em}
+
+header.top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;padding-block:28px 14px;border-bottom:1.5px solid var(--piperno);font-size:.85rem;color:var(--stone)}
+header.top b{color:var(--piperno)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:48px;align-items:center;padding-block:48px 8px}
+.hero .copy{display:grid;gap:20px;min-width:0}
+.hero h1 .y{color:var(--piperno);background:var(--tufo);padding:0 .14em;border-radius:.12em;color:#2B302E}
+.hero .trio{display:flex;gap:18px;align-items:flex-end}
+@media (max-width:900px){.hero{grid-template-columns:1fr}.hero .trio{justify-content:center;overflow-x:auto;padding-bottom:8px}}
+.change{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1.5px solid var(--hair);border-radius:16px;padding:14px 16px;max-width:60ch}
+.change .tag{flex:none;font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:var(--tufo);color:#2B302E;border-radius:999px;padding:3px 9px;margin-top:2px}
+
+/* swatches */
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.sw{background:var(--card);border:1.5px solid var(--hair);border-radius:18px;overflow:hidden;display:grid}
+.sw .chip{height:110px;position:relative;display:flex;align-items:flex-end;padding:12px}
+.sw .chip span{font-family:var(--display);font-weight:800;font-size:1.25rem;letter-spacing:-.01em}
+.sw .info{padding:12px 14px 14px;display:grid;gap:4px;font-size:.88rem}
+.sw .hex{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:.78rem;color:var(--stone)}
+.sw .role{font-weight:700}
+.ratio{display:grid;grid-template-columns:62fr 20fr 10fr 5fr 3fr;height:44px;border-radius:12px;overflow:hidden;border:1.5px solid var(--hair)}
+.ratio div{display:grid;place-items:center;font-size:.7rem;font-weight:800;letter-spacing:.04em}
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.rule{background:var(--card);border:1.5px solid var(--hair);border-radius:14px;padding:14px 16px;font-size:.92rem;display:grid;gap:4px}
+.rule b{font-family:var(--display);font-size:1rem}
+.rule.no b{color:var(--pompei)}
+
+/* type */
+.type{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:20px}
+@media (max-width:820px){.type{grid-template-columns:1fr}}
+.spec{background:var(--card);border:1.5px solid var(--hair);border-radius:18px;padding:22px;display:grid;gap:14px;align-content:start;min-width:0}
+.spec .big{font-family:var(--display);font-weight:800;font-size:clamp(2rem,5vw,3.3rem);line-height:1;letter-spacing:-.025em}
+.scale{display:grid;gap:10px}
+.scale div{display:grid;grid-template-columns:96px minmax(0,1fr);gap:12px;align-items:baseline;border-top:1px solid var(--hair);padding-top:10px}
+.scale .lbl{font-size:.72rem;color:var(--stone);font-family:ui-monospace,"SF Mono",Menlo,monospace}
+
+/* references */
+.refs{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.ref{background:var(--card);border:1.5px solid var(--hair);border-radius:16px;padding:18px;display:grid;gap:10px;align-content:start}
+.ref .award{font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--stone)}
+.ref .take{border-left:3px solid var(--tufo);padding-left:10px;font-size:.93rem}
+.ref .skip{font-size:.85rem;color:var(--stone)}
+
+/* phones */
+.phones{display:flex;flex-wrap:wrap;gap:40px 28px;justify-content:flex-start}
+.shot{width:270px;max-width:100%;display:grid;gap:12px;align-content:start}
+.shot .n{font-family:var(--display);font-weight:800;font-size:1rem}
+.shot p{font-size:.9rem;color:var(--stone)}
+.iphone{width:270px;max-width:100%;aspect-ratio:270/570;border-radius:46px;background:#0B0C0C;padding:9px;box-shadow:0 1px 0 #3a3d3c inset,0 18px 40px -18px rgba(0,0,0,.45);position:relative;flex:none}
+.sc{position:relative;height:100%;border-radius:38px;overflow:hidden;background:var(--calce);display:flex;flex-direction:column;color:var(--piperno)}
+.island{position:absolute;top:9px;left:50%;transform:translateX(-50%);width:84px;height:24px;border-radius:14px;background:#000;z-index:5}
+.status{height:44px;flex:none;display:flex;justify-content:space-between;align-items:center;padding:6px 24px 0;font-size:.7rem;font-weight:700;position:relative;z-index:4}
+.status i{font-style:normal;letter-spacing:1px}
+.dark .sc{background:#0E0F0F;color:#F4F3EE}
+.body{flex:1;display:flex;flex-direction:column;gap:10px;padding:4px 16px 14px;min-height:0;position:relative}
+.d{font-family:var(--display)}
+.q{font-family:var(--display);font-weight:800;font-size:1.32rem;line-height:1.08;letter-spacing:-.015em}
+.small{font-size:.72rem;line-height:1.35}
+.muted{color:var(--stone)}
+.ans{border-radius:16px;background:var(--card);border:1.5px solid var(--hair);padding:11px 14px;font-weight:700;font-size:.86rem;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 0 var(--hair)}
+.ans.sel{border-color:var(--piperno);box-shadow:0 2px 0 var(--piperno)}
+.ans .k{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--hair);display:grid;place-items:center;font-size:.6rem;color:var(--stone)}
+.cta{border-radius:999px;background:var(--piperno);color:var(--calce);text-align:center;font-weight:700;font-size:.86rem;padding:12px}
+.cta.y{background:var(--tufo);color:#2B302E}
+.pill{display:inline-flex;align-items:center;gap:4px;font-size:.6rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;border-radius:999px;padding:3px 8px}
+.pill.ver{background:var(--maiolica-soft);color:var(--maiolica)}
+.seal{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--pompei);color:#fff;font-family:var(--display);font-weight:800;font-size:.55rem;letter-spacing:.04em;flex:none;
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--pompei) 35%,transparent);transform:rotate(-12deg)}
+.legend{display:flex;gap:10px;align-items:center;background:var(--pompei-soft);border-radius:14px;padding:9px 11px}
+.glass{background:rgba(255,255,255,.18);backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);border:1px solid rgba(255,255,255,.35);color:#fff;box-shadow:0 6px 18px -8px rgba(0,0,0,.4)}
+.tabbar{position:absolute;left:14px;right:14px;bottom:12px;height:54px;border-radius:28px;display:flex;justify-content:space-around;align-items:center;z-index:6;font-size:.56rem;font-weight:700}
+.tabbar.light{background:color-mix(in srgb,var(--card) 78%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--hair);color:var(--stone)}
+.tab{display:grid;justify-items:center;gap:2px}
+.tab svg{width:20px;height:20px}
+.tab.on{color:var(--azzurro)}
+.tabbar.glass .tab.on{color:var(--tufo)}
+
+/* the façade: Gesù Nuovo's diamond-point piperno, drawn with gradients */
+.facade{position:relative;background:
+   conic-gradient(from 45deg,#6A706C 25%,#474C49 0 50%,#5A605C 0 75%,#3B3F3D 0) 0 0/13px 13px;}
+.facade.sky::before{content:"";position:absolute;inset:0 0 auto 0;height:22%;background:linear-gradient(#8DB9DE,#C9DDEE)}
+.facade .door{position:absolute;left:50%;bottom:0;width:30%;height:34%;transform:translateX(-50%);background:#23201C;border-radius:40% 40% 0 0 / 30% 30% 0 0;box-shadow:0 0 0 5px #B9AE97}
+.facade .win{position:absolute;width:14%;height:15%;background:#2A2723;border-radius:2px;box-shadow:0 0 0 3px #B9AE97}
+
+/* camera */
+.cam{position:absolute;inset:0}
+.reticle{position:absolute;left:18%;right:18%;top:24%;bottom:34%}
+.reticle i{position:absolute;width:30px;height:30px;border:3px solid #fff;border-radius:4px}
+.reticle i:nth-child(1){top:0;left:0;border-right:0;border-bottom:0;border-top-left-radius:14px}
+.reticle i:nth-child(2){top:0;right:0;border-left:0;border-bottom:0;border-top-right-radius:14px}
+.reticle i:nth-child(3){bottom:0;left:0;border-right:0;border-top:0;border-bottom-left-radius:14px}
+.reticle i:nth-child(4){bottom:0;right:0;border-left:0;border-top:0;border-bottom-right-radius:14px}
+.shutter{width:66px;height:66px;border-radius:50%;border:4px solid #fff;display:grid;place-items:center}
+.shutter::after{content:"";width:52px;height:52px;border-radius:50%;background:var(--tufo)}
+
+/* sticker */
+.sticker{border-radius:34% 40% 38% 30% / 36% 30% 40% 34%;border:6px solid #fff;box-shadow:0 10px 20px -8px rgba(0,0,0,.45);overflow:hidden}
+
+/* lock screen */
+.lock .sc{background:linear-gradient(170deg,#0E3B5C 0%,#1F6390 45%,#E8B230 120%);color:#fff}
+.notif{border-radius:20px;padding:11px 12px;display:grid;gap:6px}
+
+/* motion table */
+.table{overflow-x:auto;border:1.5px solid var(--hair);border-radius:16px;background:var(--card)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:.9rem}
+th,td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--hair);vertical-align:top}
+th{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--stone)}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:700;white-space:nowrap}
+
+.ia{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.ia div{background:var(--card);border:1.5px solid var(--hair);border-radius:16px;padding:16px;display:grid;gap:6px;align-content:start}
+.ia .ic{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;background:var(--tufo-soft);color:var(--piperno)}
+.ia .ic svg{width:20px;height:20px}
+
+footer{margin-top:64px;padding-top:16px;border-top:1.5px solid var(--hair);font-size:.82rem;color:var(--stone);display:grid;gap:6px}
+footer p{max-width:none}
+a{color:var(--azzurro)}
+</style>
+
+<div class="wrap">
+
+<header class="top"><span><b>CheStoria</b> · Design direction v0.2</span><span>20 Nov 2026 · iOS app · follows Sketchbook v0.1</span></header>
+
+<!-- reusable icons -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-cam" viewBox="0 0 24 24"><path d="M4 8h3l2-2.5h6L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.6" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+  <symbol id="i-map" viewBox="0 0 24 24"><path d="M9 4 3.5 6v14L9 18l6 2 5.5-2V4L15 6 9 4Zm0 0v14m6-12v14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  <symbol id="i-stk" viewBox="0 0 24 24"><path d="M5 4h14a1 1 0 0 1 1 1v9l-6 6H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M20 14h-5a1 1 0 0 0-1 1v5" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+</svg>
+
+<div class="hero">
+  <div class="copy">
+    <div class="eyebrow">Point. Snap. Story.</div>
+    <h1>Made of <span class="y">Naples</span> stone.</h1>
+    <p class="lede">CheStoria's look comes from the city itself: the grey piperno stone of Gesù Nuovo's façade, the yellow tufo the city is built from, the blue of the bay, Santa Chiara's majolica tiles and Pompeian red. It's a native iOS app that borrows its best ideas from recent Apple Design Award winners.</p>
+    <div class="change"><span class="tag">Changed</span><span>CheStoria is now a <b>full App Store app</b>, not an App Clip. The QR signs at each site now open the App Store page. Onboarding takes under 30 seconds with no account, so the download is the only hurdle.</span></div>
+  </div>
+  <div class="trio" aria-hidden="true">
+    <div class="iphone dark" style="width:200px"><div class="sc">
+      <div class="island"></div>
+      <div class="cam facade sky"><div class="win" style="left:14%;top:38%"></div><div class="win" style="right:14%;top:38%"></div><div class="door"></div></div>
+      <div class="status" style="color:#fff"><span>9:41</span><i>●●●</i></div>
+      <div style="position:absolute;top:56px;left:50%;transform:translateX(-50%);z-index:4" class="glass pill">◉ Gesù Nuovo · 20 m</div>
+      <div class="reticle"><i></i><i></i><i></i><i></i></div>
+      <div style="position:absolute;bottom:22px;left:0;right:0;display:grid;place-items:center;z-index:4"><div class="shutter" style="width:54px;height:54px"></div></div>
+    </div></div>
+    <div class="iphone" style="width:220px"><div class="sc">
+      <div class="island"></div>
+      <div class="status"><span>9:41</span><i>●●●</i></div>
+      <div class="body">
+        <div class="facade" style="height:112px;border-radius:18px;overflow:hidden"><div class="door" style="height:46%"></div></div>
+        <div class="q" style="font-size:1.12rem">It's a church. But it wasn't built as one. What was it?</div>
+        <div class="ans" style="padding:8px 12px">A bank</div>
+        <div class="ans" style="padding:8px 12px">A prison</div>
+        <div class="ans sel" style="padding:8px 12px">A prince's palace</div>
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ============ COLOUR ============ -->
+<section id="colour">
+  <div class="head">
+    <div class="eyebrow">01 · Colour</div>
+    <h2>Five stones and the sea</h2>
+    <p class="lede">Each colour is a material you can touch in the Centro Storico, and each one has a single job in the interface. There are no extra colours.</p>
+  </div>
+
+  <div class="swatches">
+    <div class="sw"><div class="chip" style="background:#2B302E;color:#F5F4F0"><span>Piperno</span></div>
+      <div class="info"><span class="role">Ink and primary buttons</span><span>The volcanic grey stone of Gesù Nuovo's spiky façade.</span><span class="hex">#2B302E · dark mode #EEEDE8</span></div></div>
+    <div class="sw"><div class="chip" style="background:#E8B230;color:#2B302E"><span>Tufo</span></div>
+      <div class="info"><span class="role">Brand and "reward" moments</span><span>Neapolitan yellow tuff, the stone the city is built from. Used for the shutter, the "Look closer" button, pins and the app icon.</span><span class="hex">#E8B230 · always with Piperno text</span></div></div>
+    <div class="sw"><div class="chip" style="background:#176FAD;color:#fff"><span>Azzurro</span></div>
+      <div class="info"><span class="role">Interactive and links</span><span>The blue of the bay and of the city's sky-blue colours. Used for selected tabs, links and the map's water.</span><span class="hex">#176FAD · dark #5AB0EA</span></div></div>
+    <div class="sw"><div class="chip" style="background:#2C8560;color:#fff"><span>Maiolica</span></div>
+      <div class="info"><span class="role">Verified facts only</span><span>The green of the tiles in Santa Chiara's cloister. It appears only on the "Verified" source pill.</span><span class="hex">#2C8560 · dark #5BC08F</span></div></div>
+    <div class="sw"><div class="chip" style="background:#B23A2E;color:#fff"><span>Pompei</span></div>
+      <div class="info"><span class="role">Legends and theories</span><span>Pompeian red, worn as a wax seal. Wherever you see red, the claim isn't a proven fact.</span><span class="hex">#B23A2E · dark #E36B5E</span></div></div>
+    <div class="sw"><div class="chip" style="background:#F5F4F0;color:#2B302E;border-bottom:1.5px solid var(--hair)"><span>Calce</span></div>
+      <div class="info"><span class="role">Backgrounds</span><span>Lime-wash, slightly cool so it doesn't read as beige. In dark mode this becomes Lava, #111312.</span><span class="hex">#F5F4F0 · dark #111312</span></div></div>
+  </div>
+
+  <div class="head" style="gap:10px">
+    <h3>How much of each</h3>
+    <div class="ratio" aria-label="Colour proportions">
+      <div style="background:var(--calce);color:var(--piperno)">Calce 62</div>
+      <div style="background:#2B302E;color:#F5F4F0">Piperno 20</div>
+      <div style="background:#E8B230;color:#2B302E">Tufo 10</div>
+      <div style="background:#176FAD;color:#fff">5</div>
+      <div style="background:#B23A2E;color:#fff"></div>
+    </div>
+    <p class="muted" style="font-size:.88rem">Mostly calm stone. Tufo yellow is rare on purpose, so when it appears it means "something good is here". Green and red appear only on facts and legends.</p>
+  </div>
+
+  <div class="rules">
+    <div class="rule"><b>Yellow means reward</b>The shutter, "Look closer", new stickers. Never warnings, never errors.</div>
+    <div class="rule"><b>Red means legend, not wrong</b>Wrong answers are never red. "Nope!" is playful grey text, so guessing feels safe.</div>
+    <div class="rule"><b>The camera stays neutral</b>Over the live camera, controls use system Liquid Glass so the real façade stays the hero.</div>
+    <div class="rule no"><b>Don't</b>Use Italian-flag green, white and red, or gradients on text. And don't use yellow text on white: it fails contrast.</div>
+  </div>
+</section>
+
+<!-- ============ TYPE ============ -->
+<section id="type">
+  <div class="head">
+    <div class="eyebrow">02 · Typography</div>
+    <h2>A bold voice for questions, the system font for facts</h2>
+  </div>
+  <div class="type">
+    <div class="spec">
+      <span class="eyebrow">Display · Bricolage Grotesque, ExtraBold</span>
+      <div class="big">Bank, prison or a prince's palace?</div>
+      <p class="muted" style="font-size:.92rem">Used only for questions, answers and big headings. It's quirky and a bit hand-cut, which suits a cheeky storyteller. Open licence (OFL), so it can ship inside the app. For scripts it doesn't cover (Chinese, Japanese, Arabic, Cyrillic), the app falls back to SF Pro Rounded automatically.</p>
+    </div>
+    <div class="spec">
+      <span class="eyebrow">Text · SF Pro (system)</span>
+      <div class="scale">
+        <div><span class="lbl">Question 30/32</span><span class="d" style="font-weight:800;font-size:1.5rem;line-height:1.05">What was it?</span></div>
+        <div><span class="lbl">Answer 20/24</span><span class="d" style="font-weight:800;font-size:1.2rem">A prince's palace. 1470.</span></div>
+        <div><span class="lbl">Story 17/24</span><span style="font-size:1.02rem">Built for Roberto Sanseverino, Prince of Salerno.</span></div>
+        <div><span class="lbl">Label 12 caps</span><span class="pill ver" style="justify-self:start">✓ Verified · DMO Napoli</span></div>
+        <div><span class="lbl">Reaction · Kalam</span><span style="font-family:var(--hand);font-size:1.1rem">Nope! Good guess though.</span></div>
+      </div>
+      <p class="muted" style="font-size:.88rem">Story text uses SF Pro with Dynamic Type, up to the largest accessibility sizes. It covers every language the Translation framework offers, so problem 1 is solved at the font level. The handwritten Kalam appears only in one-line reactions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REFERENCES ============ -->
+<section id="references">
+  <div class="head">
+    <div class="eyebrow">03 · References</div>
+    <h2>What we take from Apple Design Award winners</h2>
+    <p class="lede">For each app: the one idea we borrow, and the thing we deliberately don't copy.</p>
+  </div>
+  <div class="refs">
+    <div class="ref"><span class="award">2025 · Delight and Fun</span><h3>CapWords</h3>
+      <p class="muted" style="font-size:.9rem">Snap an everyday object and it becomes a sticker for a word in another language.</p>
+      <p class="take"><b>Take:</b> the cut-out sticker. Your "look closer" photo is lifted out of its background (Vision subject lifting) and peels into your sticker book with a white border and a haptic.</p>
+      <p class="skip"><b>Skip:</b> vocabulary drills. We teach one story, not a word list.</p></div>
+
+    <div class="ref"><span class="award">2023 · Interaction</span><h3>Flighty</h3>
+      <p class="muted" style="font-size:.9rem">Live Activities, the Dynamic Island and a lot of information made very calm.</p>
+      <p class="take"><b>Take:</b> a Live Activity while you walk: "A secret 40 m ahead · Gesù Nuovo". It's the nudge to look up, without opening the app.</p>
+      <p class="skip"><b>Skip:</b> dense data screens. A story screen has 2 facts, never a dashboard.</p></div>
+
+    <div class="ref"><span class="award">2023 · Visuals and Graphics</span><h3>Any Distance</h3>
+      <p class="muted" style="font-size:.9rem">Collectible medals with real depth and shine, and beautiful shareable recaps.</p>
+      <p class="take"><b>Take:</b> stickers with a subtle sheen that tilts with the phone (Core Motion), and a trip postcard worth sharing at the end of the stay.</p>
+      <p class="skip"><b>Skip:</b> stats and totals on the recap. We show stories, not numbers.</p></div>
+
+    <div class="ref"><span class="award">2023 · Delight and Fun</span><h3>Duolingo</h3>
+      <p class="muted" style="font-size:.9rem">Instant feedback, sound and haptics that make every answer feel alive.</p>
+      <p class="take"><b>Take:</b> the satisfying tap. Answer buttons have a physical "press" depth, and the reveal arrives with a spring and a haptic.</p>
+      <p class="skip"><b>Skip:</b> streaks, hearts and guilt. Tourists are here for 3 days, not 300.</p></div>
+
+    <div class="ref"><span class="award">2024 · Delight and Fun</span><h3>Bears Gratitude</h3>
+      <p class="muted" style="font-size:.9rem">Gentle, warm and personal, with illustration that feels hand-made.</p>
+      <p class="take"><b>Take:</b> a hand-drawn map of the Centro Storico, with your walk drawn in as you go. It feels like your own travel journal.</p>
+      <p class="skip"><b>Skip:</b> a mascot. Naples is already the character.</p></div>
+
+    <div class="ref"><span class="award">2024 · Interaction</span><h3>Crouton</h3>
+      <p class="muted" style="font-size:.9rem">A clean step-by-step mode that's easy to use while your hands are busy.</p>
+      <p class="take"><b>Take:</b> one thing per screen. Question, then reveal, then look closer, each full-screen with big type, easy to use one-handed in the street.</p>
+      <p class="skip"><b>Skip:</b> long lists. No screen in the core flow ever scrolls.</p></div>
+
+    <div class="ref"><span class="award">2024 · Inclusivity</span><h3>Oko</h3>
+      <p class="muted" style="font-size:.9rem">Haptics and audio that work without looking at the screen.</p>
+      <p class="take"><b>Take:</b> a hot/cold haptic for the "look closer" hunt (pulses speed up as you get closer), and every story can be read aloud in your language.</p>
+      <p class="skip"><b>Skip:</b> nothing. Accessibility is a launch requirement, not a later feature.</p></div>
+
+    <div class="ref"><span class="award">2024 · Social Impact</span><h3>Gentler Streak</h3>
+      <p class="muted" style="font-size:.9rem">Encouraging and optimistic, with no guilt.</p>
+      <p class="take"><b>Take:</b> the tone. Copy celebrates what you found and never mentions what you missed. A wrong answer gets "Good guess though".</p>
+      <p class="skip"><b>Skip:</b> health-style progress rings.</p></div>
+  </div>
+</section>
+
+<!-- ============ STRUCTURE ============ -->
+<section id="structure">
+  <div class="head">
+    <div class="eyebrow">04 · App structure</div>
+    <h2>Three tabs, camera first</h2>
+    <p class="lede">The app opens straight on the camera. Everything else is one tab away.</p>
+  </div>
+  <div class="ia">
+    <div><span class="ic"><svg><use href="#i-cam"/></svg></span><h3>Snap</h3><p class="muted" style="font-size:.9rem">Opens on launch. Snap → question → reveal → look closer. The core loop lives here.</p></div>
+    <div><span class="ic"><svg><use href="#i-map"/></svg></span><h3>My Naples</h3><p class="muted" style="font-size:.9rem">A hand-drawn map with your walk and your pins. Tap a place for tickets, hours and Then &amp; Now.</p></div>
+    <div><span class="ic"><svg><use href="#i-stk"/></svg></span><h3>Stickers</h3><p class="muted" style="font-size:.9rem">Your sticker book, grouped by theme. It also holds the trip postcard and settings (language, read aloud).</p></div>
+    <div><span class="ic" style="background:var(--azzurro-soft)">✦</span><h3>Outside the app</h3><p class="muted" style="font-size:.9rem">A Live Activity near secrets, a "yesterday's question" widget, and an App Intent so Siri can answer "What's this place?"</p></div>
+  </div>
+</section>
+
+<!-- ============ SCREENS ============ -->
+<section id="screens">
+  <div class="head">
+    <div class="eyebrow">05 · Key screens</div>
+    <h2>The full walk, high fidelity</h2>
+    <p class="lede">Mockups follow your light or dark setting, except the camera screens, which are always dark.</p>
+  </div>
+
+  <div class="phones">
+
+    <!-- 1 Onboarding -->
+    <div class="shot">
+      <div class="n">1 · First launch</div>
+      <div class="iphone"><div class="sc">
+        <div class="island"></div>
+        <div class="status"><span>9:41</span><i>●●●</i></div>
+        <div class="body" style="gap:14px">
+          <div class="facade" style="height:200px;border-radius:24px;overflow:hidden;position:relative"><div class="win" style="left:16%;top:30%"></div><div class="win" style="right:16%;top:30%"></div><div class="door"></div>
+            <div class="sticker facade" style="position:absolute;width:74px;height:74px;right:-6px;top:-6px;transform:rotate(10deg);background-color:#E8B230"></div></div>
+          <div class="q" style="font-size:1.55rem">Every corner of Naples has a secret.</div>
+          <p class="small muted">Point your camera at a building, guess its secret, then find the clue. Takes 30 seconds.</p>
+          <div class="spacer" style="flex:1"></div>
+          <div class="ans" style="font-weight:600"><span>🌐 Stories in English</span><span class="muted small">Change</span></div>
+          <div class="cta">Start exploring</div>
+          <p class="small muted" style="text-align:center">No account needed</p>
+        </div>
+      </div></div>
+      <p>One screen, then permissions are requested only when they're needed. Language comes from the phone, so most people never touch it.</p>
+    </div>
+
+    <!-- 2 Snap -->
+    <div class="shot">
+      <div class="n">2 · Snap (home)</div>
+      <div class="iphone dark"><div class="sc">
+        <div class="island"></div>
+        <div class="cam facade sky"><div class="win" style="left:14%;top:38%"></div><div class="win" style="right:14%;top:38%"></div><div class="door"></div></div>
+        <div class="status" style="color:#fff"><span>9:41</span><i>●●●</i></div>
+        <div style="position:absolute;top:58px;left:0;right:0;display:flex;justify-content:center;z-index:4"><span class="glass pill" style="font-size:.66rem;padding:6px 12px">◉ Near you · Gesù Nuovo</span></div>
+        <div class="reticle"><i></i><i></i><i></i><i></i></div>
+        <div style="position:absolute;bottom:80px;left:0;right:0;display:grid;place-items:center;z-index:4"><div class="shutter"></div></div>
+        <div class="tabbar glass"><div class="tab on"><svg><use href="#i-cam"/></svg>Snap</div><div class="tab"><svg><use href="#i-map"/></svg>My Naples</div><div class="tab"><svg><use href="#i-stk"/></svg>Stickers</div></div>
+      </div></div>
+      <p>Full-bleed camera, a yellow shutter, and Liquid Glass controls. GPS already knows the place, shown in the chip at the top.</p>
+    </div>
+
+    <!-- 3 Question -->
+    <div class="shot">
+      <div class="n">3 · The question</div>
+      <div class="iphone"><div class="sc">
+        <div class="island"></div>
+        <div class="facade" style="position:absolute;inset:0 0 auto 0;height:42%"><div class="win" style="left:14%;top:36%"></div><div class="win" style="right:14%;top:36%"></div><div class="door"></div></div>
+        <div class="status" style="color:#fff"><span>9:41</span><i>●●●</i></div>
+        <div class="body" style="margin-top:auto;background:var(--calce);border-radius:28px 28px 0 0;padding-top:18px;flex:none;height:62%">
+          <div class="q">It's a church. But it wasn't built as one. What was it?</div>
+          <div class="spacer" style="flex:1"></div>
+          <div class="ans">A bank<span class="k">A</span></div>
+          <div class="ans">A prison<span class="k">B</span></div>
+          <div class="ans">A prince's palace<span class="k">C</span></div>
+          <p class="small muted" style="text-align:center">How sure? <span style="color:var(--piperno)">● ● ○</span></p>
+        </div>
+      </div></div>
+      <p>Your photo sits on top and a sheet slides up. The answer buttons have Duolingo-style press depth. The confidence bet is optional.</p>
+    </div>
+
+    <!-- 4 Reveal -->
+    <div class="shot">
+      <div class="n">4 · The reveal</div>
+      <div class="iphone"><div class="sc">
+        <div class="island"></div>
+        <div class="status"><span>9:41</span><i>●●●</i></div>
+        <div class="body" style="gap:12px">
+          <span style="font-family:var(--hand);font-size:1.15rem;color:var(--stone)">You said prison. Nope! Good guess though.</span>
+          <div class="q" style="font-size:1.9rem;line-height:1">A prince's palace.<br><span style="color:var(--azzurro)">1470.</span></div>
+          <p style="font-size:.86rem;line-height:1.45">Built for Roberto Sanseverino, Prince of Salerno. Over 100 years later the Jesuits made it a church and kept the spiky front.</p>
+          <span class="pill ver" style="align-self:flex-start">✓ Verified · DMO Napoli</span>
+          <div class="legend"><span class="seal">LEGEND</span><span class="small"><b>Theory:</b> some say the stones hide a music score.</span></div>
+          <div class="spacer" style="flex:1"></div>
+          <div class="row" style="display:flex;gap:8px"><div class="cta" style="flex:none;width:48px;background:var(--sunk);color:var(--piperno)">🔊</div><div class="cta y" style="flex:1">Look closer →</div></div>
+        </div>
+      </div></div>
+      <p>Calm and readable. The year is in Azzurro so your eye goes to it. The legend has its red seal, and 🔊 reads the story aloud.</p>
+    </div>
+
+    <!-- 5 Look closer -->
+    <div class="shot">
+      <div class="n">5 · Look closer</div>
+      <div class="iphone dark"><div class="sc">
+        <div class="island"></div>
+        <div class="cam facade" style="background-size:22px 22px"></div>
+        <div class="status" style="color:#fff"><span>9:41</span><i>●●●</i></div>
+        <div style="position:absolute;top:58px;left:14px;right:14px;z-index:4;padding:12px 14px;border-radius:20px" class="glass">
+          <div class="d" style="font-weight:800;font-size:1rem;line-height:1.15">Find a stone with a carved mark on it.</div>
+        </div>
+        <div style="position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);width:92px;height:92px;border-radius:50%;border:3px solid var(--tufo);box-shadow:0 0 0 10px rgba(232,178,48,.25),0 0 0 22px rgba(232,178,48,.12);z-index:4"></div>
+        <div style="position:absolute;bottom:112px;left:0;right:0;text-align:center;z-index:4;color:#fff;font-family:var(--hand);font-size:1.1rem">warmer… ·)))</div>
+        <div style="position:absolute;bottom:30px;left:0;right:0;display:grid;place-items:center;z-index:4"><div class="shutter"></div></div>
+      </div></div>
+      <p>The hunt. Haptic pulses speed up as the right detail comes into frame, so it works without reading anything (the idea we take from Oko).</p>
+    </div>
+
+    <!-- 6 Sticker -->
+    <div class="shot">
+      <div class="n">6 · Sticker earned</div>
+      <div class="iphone"><div class="sc">
+        <div class="island"></div>
+        <div class="status"><span>9:41</span><i>●●●</i></div>
+        <div class="body" style="align-items:center;text-align:center;gap:14px">
+          <div class="spacer" style="flex:1"></div>
+          <div class="sticker facade" style="width:150px;height:150px;transform:rotate(-6deg);background-size:20px 20px;position:relative">
+            <div style="position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.35) 48%,transparent 60%)"></div>
+          </div>
+          <div class="q" style="font-size:1.5rem">The spiky palace</div>
+          <p class="small muted">Gesù Nuovo · added to <b style="color:var(--piperno)">Was something else</b></p>
+          <div class="spacer" style="flex:1"></div>
+          <div class="cta" style="align-self:stretch">Keep exploring</div>
+          <p class="small" style="color:var(--azzurro)">Share sticker</p>
+        </div>
+      </div></div>
+      <p>Your detail photo, lifted out of its background and turned into a sticker (the idea we take from CapWords). The sheen moves as you tilt the phone (from Any Distance).</p>
+    </div>
+
+    <!-- 7 Map -->
+    <div class="shot">
+      <div class="n">7 · My Naples</div>
+      <div class="iphone"><div class="sc">
+        <div class="island"></div>
+        <div class="status"><span>9:41</span><i>●●●</i></div>
+        <div class="body" style="padding-bottom:80px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline"><div class="q" style="font-size:1.5rem">My Naples</div><span class="small muted">3 secrets</span></div>
+          <div style="flex:1;border-radius:22px;overflow:hidden;background:var(--card);border:1.5px solid var(--hair);position:relative">
+            <svg viewBox="0 0 240 330" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <rect width="240" height="330" fill="var(--card)"/>
+              <path d="M0 250 C50 236 90 268 140 252 S210 226 240 238 L240 330 L0 330 Z" fill="var(--azzurro-soft)"/>
+              <path d="M0 252 C50 238 90 270 140 254 S210 228 240 240" fill="none" stroke="var(--azzurro)" stroke-width="1.5" opacity=".5"/>
+              <g stroke="var(--hair)" stroke-width="5" stroke-linecap="round" fill="none"><path d="M10 92 L230 112"/><path d="M14 150 L226 162"/><path d="M70 20 L86 230"/><path d="M168 24 L156 220"/></g>
+              <text x="120" y="88" font-size="8" fill="var(--stone)" font-family="system-ui" transform="rotate(5 120 88)">SPACCANAPOLI</text>
+              <path d="M54 96 C80 130 110 120 128 150 S170 190 186 205" fill="none" stroke="var(--piperno)" stroke-width="2.2" stroke-dasharray="1 6" stroke-linecap="round"/>
+              <g stroke="#fff" stroke-width="3"><circle cx="54" cy="96" r="12" fill="#E8B230"/><circle cx="128" cy="150" r="12" fill="#E8B230"/><circle cx="186" cy="205" r="12" fill="#E8B230"/></g>
+              <circle cx="54" cy="96" r="3.5" fill="#2B302E"/><circle cx="128" cy="150" r="3.5" fill="#2B302E"/><circle cx="186" cy="205" r="3.5" fill="#2B302E"/>
+              <text x="70" y="70" font-size="9" font-weight="700" fill="var(--piperno)" font-family="system-ui">Gesù Nuovo</text>
+              <text x="142" y="140" font-size="9" font-weight="700" fill="var(--piperno)" font-family="system-ui">Sansevero</text>
+              <text x="150" y="232" font-size="9" font-weight="700" fill="var(--piperno)" font-family="system-ui">Plebiscito</text>
+              <text x="18" y="300" font-size="9" fill="var(--azzurro)" font-family="system-ui" font-style="italic">Golfo di Napoli</text>
+            </svg>
+          </div>
+        </div>
+        <div class="tabbar light"><div class="tab"><svg><use href="#i-cam"/></svg>Snap</div><div class="tab on"><svg><use href="#i-map"/></svg>My Naples</div><div class="tab"><svg><use href="#i-stk"/></svg>Stickers</div></div>
+      </div></div>
+      <p>A hand-drawn map with your walk dotted in and a pin for each secret you found. Places you haven't visited aren't shown, so it never feels like a to-do list.</p>
+    </div>
+
+    <!-- 8 Place sheet -->
+    <div class="shot">
+      <div class="n">8 · Place: tickets &amp; hours</div>
+      <div class="iphone"><div class="sc">
+        <div class="island"></div>
+        <div style="position:absolute;inset:0 0 auto 0;height:38%;background:linear-gradient(160deg,#3E4441,#1F2321)"></div>
+        <div class="status" style="color:#fff"><span>9:41</span><i>●●●</i></div>
+        <div class="body" style="margin-top:auto;background:var(--calce);border-radius:28px 28px 0 0;padding-top:10px;flex:none;height:72%;gap:11px">
+          <div style="width:36px;height:5px;border-radius:3px;background:var(--hair);align-self:center"></div>
+          <div class="q" style="font-size:1.35rem">Cappella Sansevero</div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap"><span class="pill" style="background:var(--tufo-soft);color:var(--piperno)">Book ahead</span><span class="pill" style="background:var(--sunk);color:var(--stone)">Closed Tue</span></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+            <div class="ans" style="display:grid;gap:0;padding:10px 12px"><span class="small muted">Today</span><span>9:00–19:00</span></div>
+            <div class="ans" style="display:grid;gap:0;padding:10px 12px"><span class="small muted">Full ticket</span><span>€12</span></div>
+          </div>
+          <p class="small muted">€8 ages 18–26 · €6 ages 10–17 · free up to 9</p>
+          <span class="pill ver" style="align-self:flex-start">✓ Live from museosansevero.it</span>
+          <div class="spacer" style="flex:1"></div>
+          <div class="cta">Book on official site ↗</div>
+        </div>
+      </div></div>
+      <p>The basics in a pull-up sheet. Prices are fetched live from the official site, and booking links straight to it.</p>
+    </div>
+
+    <!-- 9 Lock screen -->
+    <div class="shot">
+      <div class="n">9 · Next morning</div>
+      <div class="iphone lock"><div class="sc">
+        <div class="island" style="width:150px;display:flex;align-items:center;justify-content:space-between;padding:0 10px;font-size:.55rem;color:#fff;font-weight:700"><span style="color:#E8B230">◉</span><span>Secret · 40 m</span></div>
+        <div style="text-align:center;margin-top:62px;display:grid;gap:0">
+          <span style="font-size:.78rem;font-weight:600;opacity:.85">Saturday 21 November</span>
+          <span class="d" style="font-size:4.2rem;font-weight:700;line-height:1;letter-spacing:-.03em">8:12</span>
+        </div>
+        <div style="margin-top:auto;padding:0 12px 14px;display:grid;gap:8px">
+          <div class="notif glass">
+            <div style="display:flex;justify-content:space-between;font-size:.62rem;opacity:.85"><b>CHESTORIA</b><span>now</span></div>
+            <div style="font-size:.78rem;line-height:1.3"><b>Remember yesterday's spiky church?</b> Bank, prison or palace?</div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px;font-size:.66rem;font-weight:700;text-align:center">
+              <span style="background:rgba(255,255,255,.22);border-radius:9px;padding:6px 0">Bank</span><span style="background:rgba(255,255,255,.22);border-radius:9px;padding:6px 0">Prison</span><span style="background:rgba(255,255,255,.22);border-radius:9px;padding:6px 0">Palace</span>
+            </div>
+          </div>
+        </div>
+      </div></div>
+      <p>An optional morning recall you answer straight from the notification. That one retrieval is what keeps the memory. The Live Activity in the Dynamic Island points to secrets nearby.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ MOTION ============ -->
+<section id="motion">
+  <div class="head">
+    <div class="eyebrow">06 · Motion, haptics and sound</div>
+    <h2>Five moments that should feel physical</h2>
+    <p class="lede">Everything else stays still. With Reduce Motion turned on, each of these becomes a simple crossfade, and the haptics stay.</p>
+  </div>
+  <div class="table"><table>
+    <thead><tr><th>Moment</th><th>Motion</th><th>Haptic</th><th>Sound</th></tr></thead>
+    <tbody>
+      <tr><td>Recognising</td><td>A yellow outline traces the façade in about 1.2 s while clues appear ("1400s…")</td><td>None</td><td>None</td></tr>
+      <tr><td>Answer tap</td><td>Button presses down 2 pt, then springs back</td><td><code>.impact(.light)</code></td><td>Soft click</td></tr>
+      <tr><td>Reveal</td><td>Answer drops in with a spring (response 0.35, damping 0.7). The year counts up to 1470.</td><td><code>.success</code> if right, <code>.soft</code> if wrong</td><td>Short chime if right</td></tr>
+      <tr><td>Look-closer hunt</td><td>Rings around the target pulse faster as you get closer</td><td>Pulses from 1 per second up to 4 per second (Core Haptics)</td><td>Optional</td></tr>
+      <tr><td>Sticker peel</td><td>Sticker lifts, rotates −6°, its shadow grows, then it flies to the Stickers tab</td><td><code>.rigid</code> on lift</td><td>Paper peel</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<footer>
+  <p>Award references: <a href="https://developer.apple.com/design/awards/2025/">Apple Design Awards 2025</a> (CapWords), <a href="https://developer.apple.com/design/awards/2024">2024</a> (Bears Gratitude, Crouton, Oko, Gentler Streak), <a href="https://apple.com/newsroom/2023/06/apple-announces-winners-of-the-2023-apple-design-awards">2023</a> (Duolingo, Flighty, Any Distance).</p>
+  <p>Facts in the mockups come from the team's verified Naples list (18 Nov 2026). Prices should always be fetched live. The façade pattern is a drawing of Gesù Nuovo's diamond-point stones, not a photo.</p>
+</footer>
+</div>

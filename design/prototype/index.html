@@ -1,0 +1,822 @@
+<title>CheStoria Prototype</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Kalam:wght@700&display=swap">
+<style>
+/* Layout: a dark presentation stage (piperno stone, diamond-point texture) with the phone in the centre,
+   a step list on the left and "what moves / why" notes on the right. Single dark theme by choice. */
+:root{
+  --stage:#121514; --stage2:#1A1E1C; --line:#2C312F; --ink:#ECEBE6; --mute:#9BA19E;
+  --calce:#F5F4F0; --card:#FFFFFF; --piperno:#2B302E; --stone:#6B716E; --hair:#DCDBD5; --sunk:#ECEBE6;
+  --tufo:#E8B230; --tufo-soft:#F8E7B5; --azzurro:#176FAD; --azzurro-soft:#DCEAF5;
+  --maiolica:#2C8560; --maiolica-soft:#DDF0E6; --pompei:#B23A2E; --pompei-soft:#F6DFDB; --mare:#0E3B5C;
+  --display:"Bricolage Grotesque","Arial Narrow",system-ui,sans-serif;
+  --text:-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,"Segoe UI",Roboto,sans-serif;
+  --hand:"Kalam","Bradley Hand",cursive;
+  --spring:cubic-bezier(.34,1.56,.64,1); --ios:cubic-bezier(.32,.72,0,1);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--stage);color:var(--ink);font-family:var(--text);-webkit-font-smoothing:antialiased;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;opacity:.05;z-index:0;
+  background:conic-gradient(from 45deg,#fff 25%,#888 0 50%,#ccc 0 75%,#555 0) 0 0/26px 26px}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+button:focus-visible{outline:3px solid var(--tufo);outline-offset:3px;border-radius:12px}
+
+.stage{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:40px;align-items:center;min-height:100vh;max-width:1440px;margin:0 auto;padding-block:28px}
+@media (max-width:1100px){.stage{grid-template-columns:minmax(0,1fr);gap:28px;justify-items:center}.left,.right{max-width:520px;width:100%}.left{order:1}.device-col{order:2}.right{order:3}}
+
+/* left */
+.left{display:grid;gap:22px;align-content:center;justify-self:end;max-width:330px;min-width:0}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:-.01em}
+.brand i{width:26px;height:26px;border-radius:8px;background:var(--tufo);display:inline-block;position:relative}
+.brand i::after{content:"";position:absolute;inset:7px;border-radius:50%;background:var(--piperno)}
+.left h1{font-family:var(--display);font-weight:800;font-size:clamp(2rem,3.4vw,2.9rem);line-height:1;letter-spacing:-.025em;margin:0;text-wrap:balance}
+.left h1 em{font-style:normal;color:var(--tufo)}
+.left p{margin:0;color:var(--mute);font-size:.95rem;line-height:1.5}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.steps button{width:100%;display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:center;text-align:left;padding:7px 10px;border-radius:12px;color:var(--mute);font-size:.92rem;transition:background .2s,color .2s}
+.steps button:hover{background:var(--stage2);color:var(--ink)}
+.steps button span{font-family:var(--display);font-weight:700;font-size:.78rem;font-variant-numeric:tabular-nums;opacity:.7}
+.steps button[aria-current="step"]{background:var(--stage2);color:var(--ink)}
+.steps button[aria-current="step"] span{color:var(--tufo);opacity:1}
+
+/* right */
+.right{display:grid;gap:18px;align-content:center;justify-self:start;max-width:340px;min-width:0}
+.note-card{background:var(--stage2);border:1px solid var(--line);border-radius:20px;padding:20px;display:grid;gap:14px}
+.note-card .eyebrow{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--tufo)}
+.note-card h2{margin:0;font-family:var(--display);font-weight:800;font-size:1.5rem;letter-spacing:-.015em;line-height:1.1}
+.note-card ul{margin:0;padding:0;list-style:none;display:grid;gap:9px}
+.note-card li{display:grid;grid-template-columns:16px 1fr;gap:8px;font-size:.9rem;line-height:1.45;color:var(--ink)}
+.note-card li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--tufo);margin-top:.5em}
+.why{font-size:.88rem;line-height:1.5;color:var(--mute);border-top:1px solid var(--line);padding-top:12px}
+.why b{color:var(--ink)}
+.hint{font-size:.82rem;color:var(--mute)}
+.hint kbd{font-family:var(--text);font-size:.75rem;border:1px solid var(--line);border-radius:6px;padding:1px 6px;color:var(--ink)}
+
+/* device */
+.device-col{display:grid;justify-items:center;gap:16px}
+.device-box{position:relative}
+.device{width:417px;height:876px;border-radius:66px;background:#050606;padding:12px;position:absolute;top:0;left:0;transform-origin:0 0;
+  box-shadow:0 0 0 2px #2b2f2e,0 0 0 4px #0b0c0c,0 40px 90px -30px rgba(0,0,0,.9),0 0 120px -40px rgba(232,178,48,.25)}
+.root{position:relative;width:393px;height:852px;border-radius:54px;overflow:hidden;background:var(--calce);isolation:isolate;container-type:size}
+.controls{display:flex;gap:10px;align-items:center}
+.ctl{height:42px;padding:0 16px;border-radius:21px;border:1px solid var(--line);background:var(--stage2);font-size:.88rem;font-weight:600;display:inline-flex;align-items:center;gap:6px;transition:background .2s,transform .15s}
+.ctl:hover{background:#232826}
+.ctl:active{transform:scale(.96)}
+.ctl.primary{background:var(--tufo);color:#1d2120;border-color:transparent}
+
+/* ---------- phone chrome ---------- */
+.status{position:absolute;top:0;left:0;right:0;height:54px;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:6px 30px 0 44px;font-weight:600;font-size:17px;color:var(--piperno);pointer-events:none;transition:color .3s}
+.status.dark{color:#fff}
+.status .icons{display:flex;gap:6px;align-items:center}
+.status svg{display:block}
+.island{position:absolute;top:11px;left:50%;width:126px;height:37px;border-radius:19px;background:#000;transform:translateX(-50%);z-index:60;display:flex;align-items:center;gap:8px;padding:0 14px;overflow:hidden;color:#fff;font-size:14px;font-weight:600;white-space:nowrap;transition:width .6s var(--spring)}
+.island .la{opacity:0;transition:opacity .3s .25s;display:flex;align-items:center;gap:8px}
+.island.wide{width:206px}
+.island.wide .la{opacity:1}
+.island .dot{width:10px;height:10px;border-radius:50%;background:var(--tufo);box-shadow:0 0 0 0 rgba(232,178,48,.7);animation:ping 1.6s infinite}
+.homebar{position:absolute;bottom:9px;left:50%;width:134px;height:5px;border-radius:3px;background:var(--piperno);transform:translateX(-50%);z-index:60;transition:background .3s}
+.homebar.dark{background:#fff}
+
+.tabbar{position:absolute;left:20px;right:20px;bottom:24px;height:64px;border-radius:32px;z-index:40;display:flex;justify-content:space-around;align-items:center;padding:0 6px;transition:transform .5s var(--ios),opacity .3s}
+.tabbar.hide{transform:translateY(130px);opacity:0;pointer-events:none}
+.tabbar.glass{background:rgba(255,255,255,.16);backdrop-filter:blur(22px) saturate(1.6);-webkit-backdrop-filter:blur(22px) saturate(1.6);border:1px solid rgba(255,255,255,.3);color:#fff}
+.tabbar.light{background:rgba(255,255,255,.82);backdrop-filter:blur(22px) saturate(1.6);-webkit-backdrop-filter:blur(22px) saturate(1.6);border:1px solid var(--hair);color:var(--stone);box-shadow:0 10px 30px -12px rgba(0,0,0,.25)}
+.tab{flex:1;height:52px;border-radius:26px;display:grid;justify-items:center;align-content:center;gap:2px;font-size:10px;font-weight:600;transition:background .3s,color .3s}
+.tab svg{width:24px;height:24px}
+.tabbar.light .tab.on{background:var(--azzurro-soft);color:var(--azzurro)}
+.tabbar.glass .tab.on{background:rgba(255,255,255,.16);color:var(--tufo)}
+
+/* ---------- screens ---------- */
+.screen{position:absolute;inset:0;visibility:hidden;overflow:hidden;background:var(--calce);color:var(--piperno)}
+.screen.active{visibility:visible}
+.photo{position:absolute;inset:0;background-size:cover;background-repeat:no-repeat}
+.d{font-family:var(--display);font-weight:800;letter-spacing:-.02em}
+.glass{background:rgba(255,255,255,.16);backdrop-filter:blur(20px) saturate(1.6);-webkit-backdrop-filter:blur(20px) saturate(1.6);border:1px solid rgba(255,255,255,.32);color:#fff}
+.pill{display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 12px;border-radius:14px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.pill.ver{background:var(--maiolica-soft);color:var(--maiolica)}
+.cta{height:58px;border-radius:29px;display:flex;align-items:center;justify-content:center;gap:8px;font-weight:600;font-size:17px;background:var(--piperno);color:var(--calce);width:100%;position:relative;overflow:hidden;transition:transform .15s}
+.cta:active{transform:scale(.97)}
+.cta.tufo{background:var(--tufo);color:#1f2321}
+.cta.light{background:var(--calce);color:var(--piperno)}
+.cta.shine::after{content:"";position:absolute;top:0;bottom:0;width:60px;left:-80px;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);animation:shine 2.8s 1.2s infinite}
+@keyframes shine{0%{left:-80px}40%,100%{left:120%}}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(232,178,48,.7)}80%,100%{box-shadow:0 0 0 10px rgba(232,178,48,0)}}
+
+/* welcome */
+#s-welcome .photo{background-image:url(img/forum.jpg);background-position:56% 50%;transform-origin:56% 40%}
+#s-welcome .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45) 0%,rgba(0,0,0,0) 22%,rgba(0,0,0,0) 40%,rgba(10,14,13,.88) 72%,rgba(10,14,13,.96) 100%)}
+#s-welcome .content{position:absolute;left:24px;right:24px;bottom:44px;display:grid;gap:16px;color:#fff}
+#s-welcome .place{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:rgba(255,255,255,.8)}
+#s-welcome .place i{width:8px;height:8px;border-radius:50%;background:var(--tufo)}
+#s-welcome h2{margin:0;font-size:44px;line-height:.98}
+#s-welcome h2 .w{display:inline-block}
+#s-welcome p{margin:0;font-size:17px;line-height:1.45;color:rgba(255,255,255,.78)}
+#s-welcome .lang{height:52px;border-radius:18px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;font-size:16px;font-weight:600}
+#s-welcome .lang span:last-child{color:var(--tufo);font-weight:600}
+#s-welcome .small{font-size:13px;text-align:center;color:rgba(255,255,255,.6)}
+#s-welcome .logo{position:absolute;top:66px;left:24px;display:flex;align-items:center;gap:8px;color:#fff;font-family:var(--display);font-weight:800;font-size:18px}
+#s-welcome .logo i{width:24px;height:24px;border-radius:7px;background:var(--tufo);position:relative}
+#s-welcome .logo i::after{content:"";position:absolute;inset:6px;border-radius:50%;background:var(--piperno)}
+
+/* camera */
+.cam{background-image:url(img/thermo.jpg);background-position:38% 60%}
+.cam.drift{animation:drift 7s ease-in-out infinite alternate}
+@keyframes drift{0%{transform:scale(1.06) translate(0,0) rotate(0)}50%{transform:scale(1.07) translate(-5px,4px) rotate(-.3deg)}100%{transform:scale(1.06) translate(4px,-3px) rotate(.25deg)}}
+.chip{position:absolute;top:64px;left:50%;transform:translateX(-50%);height:44px;border-radius:22px;padding:0 18px 0 14px;display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600;white-space:nowrap;z-index:3}
+.chip .dot{width:10px;height:10px;border-radius:50%;background:var(--tufo);animation:ping 1.6s infinite}
+.chip small{font-weight:500;opacity:.75;font-size:13px}
+.reticle{position:absolute;left:62px;top:230px;width:269px;height:320px;z-index:2}
+.reticle i{position:absolute;width:38px;height:38px;border:4px solid #fff;filter:drop-shadow(0 1px 4px rgba(0,0,0,.4))}
+.reticle i:nth-child(1){top:0;left:0;border-right:0;border-bottom:0;border-top-left-radius:18px}
+.reticle i:nth-child(2){top:0;right:0;border-left:0;border-bottom:0;border-top-right-radius:18px}
+.reticle i:nth-child(3){bottom:0;left:0;border-right:0;border-top:0;border-bottom-left-radius:18px}
+.reticle i:nth-child(4){bottom:0;right:0;border-left:0;border-top:0;border-bottom-right-radius:18px}
+.reticle.breathe{animation:breathe 2.4s ease-in-out infinite}
+@keyframes breathe{50%{transform:scale(.965)}}
+.cam-hint{position:absolute;left:0;right:0;bottom:196px;text-align:center;color:#fff;font-size:15px;font-weight:600;text-shadow:0 1px 8px rgba(0,0,0,.6);z-index:3}
+.shutter{position:absolute;left:50%;bottom:104px;width:84px;height:84px;margin-left:-42px;border-radius:50%;border:5px solid #fff;display:grid;place-items:center;z-index:3;transition:transform .15s}
+.shutter::after{content:"";width:66px;height:66px;border-radius:50%;background:var(--tufo);transition:transform .15s}
+.shutter:active::after{transform:scale(.86)}
+.shutter.off{opacity:.45;pointer-events:none}
+.shutter.glow::after{animation:glow 1.2s ease-in-out infinite}
+@keyframes glow{50%{box-shadow:0 0 0 10px rgba(232,178,48,.35);transform:scale(1.04)}}
+.flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:30}
+
+/* scan */
+#s-scan .photo{filter:saturate(.9)}
+.lock{position:absolute;z-index:3;border-radius:22px;box-shadow:0 0 0 2000px rgba(0,0,0,.35)}
+.lock i{position:absolute;width:30px;height:30px;border:4px solid var(--tufo)}
+.lock i:nth-child(1){top:0;left:0;border-right:0;border-bottom:0;border-top-left-radius:18px}
+.lock i:nth-child(2){top:0;right:0;border-left:0;border-bottom:0;border-top-right-radius:18px}
+.lock i:nth-child(3){bottom:0;left:0;border-right:0;border-top:0;border-bottom-left-radius:18px}
+.lock i:nth-child(4){bottom:0;right:0;border-left:0;border-top:0;border-bottom-right-radius:18px}
+.scanline{position:absolute;left:8px;right:8px;height:2px;background:linear-gradient(90deg,transparent,var(--tufo),transparent);box-shadow:0 0 18px 4px rgba(232,178,48,.6);top:0}
+.clues{position:absolute;left:20px;right:20px;bottom:120px;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;z-index:4}
+.clue{height:38px;border-radius:19px;padding:0 15px;display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600;opacity:0}
+.clue.got{background:var(--tufo);color:#1f2321;border-color:transparent}
+.thinking{position:absolute;left:0;right:0;bottom:70px;text-align:center;font-family:var(--hand);font-size:22px;color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.6);z-index:4}
+
+/* question */
+#s-question .top{position:absolute;left:0;right:0;top:0;height:100%;background-image:url(img/thermo.jpg);background-size:cover;background-position:40% 62%}
+#s-question .sheet{position:absolute;left:0;right:0;bottom:0;height:520px;background:var(--calce);border-radius:38px 38px 0 0;padding:16px 20px 40px;display:flex;flex-direction:column;gap:12px;box-shadow:0 -10px 40px rgba(0,0,0,.25)}
+.grab{width:38px;height:5px;border-radius:3px;background:var(--hair);align-self:center}
+.eyebrow-s{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--stone)}
+#s-question h3{margin:0;font-size:31px;line-height:1.05}
+.answers{display:grid;gap:10px;margin-top:auto}
+.ans{height:62px;border-radius:20px;background:var(--card);border:1.5px solid var(--hair);box-shadow:0 3px 0 #CFCEC7;display:flex;align-items:center;justify-content:space-between;padding:0 16px 0 18px;font-size:18px;font-weight:600;color:var(--piperno);transition:transform .12s,box-shadow .12s,border-color .2s,background .2s}
+.ans:active,.ans.pressed{transform:translateY(3px);box-shadow:0 0 0 #CFCEC7}
+.ans .k{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--hair);display:grid;place-items:center;font-size:12px;color:var(--stone);transition:all .2s}
+.ans.sel{border-color:var(--piperno);box-shadow:0 3px 0 var(--piperno)}
+.ans.sel .k{background:var(--piperno);border-color:var(--piperno);color:#fff}
+.conf{display:flex;justify-content:center;align-items:center;gap:10px;font-size:15px;color:var(--stone);height:30px}
+.conf button{width:14px;height:14px;border-radius:50%;border:2px solid var(--piperno);transition:background .2s,transform .2s}
+.conf button.on{background:var(--piperno)}
+.conf button:active{transform:scale(.8)}
+
+/* reveal */
+#s-reveal .wrap{position:absolute;inset:0;padding:66px 24px 40px;display:flex;flex-direction:column;gap:14px}
+.reaction{font-family:var(--hand);font-size:23px;line-height:1.2;color:var(--stone)}
+.reaction.right{color:var(--maiolica)}
+#s-reveal h3{margin:0;font-size:46px;line-height:.98}
+#s-reveal .sub{font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:-.01em;color:var(--azzurro);margin-top:-6px}
+#s-reveal .story{font-size:18px;line-height:1.45;margin:0}
+.theory{display:flex;gap:14px;align-items:center;background:var(--pompei-soft);border-radius:20px;padding:12px 14px}
+.seal{flex:none;width:54px;height:54px;border-radius:50%;background:var(--pompei);color:#fff;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:10px;letter-spacing:.05em;box-shadow:0 0 0 4px rgba(178,58,46,.25),inset 0 -3px 0 rgba(0,0,0,.15);transform:rotate(-12deg)}
+.theory p{margin:0;font-size:15px;line-height:1.4}
+.dinner{display:grid;gap:3px;border-left:3px solid var(--tufo);padding-left:12px}
+.dinner small{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--stone)}
+.dinner span{font-size:16px;font-weight:600}
+.row{display:flex;gap:10px}
+.listen{flex:none;width:58px;height:58px;border-radius:29px;background:var(--sunk);display:grid;place-items:center}
+
+/* look closer */
+#s-closer .photo{background-image:url(img/shrine.jpg);background-size:auto 115%;background-position:55% 100%}
+#s-closer .vig{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 55%,transparent 40%,rgba(0,0,0,.55) 100%),linear-gradient(180deg,rgba(0,0,0,.5),transparent 25%,transparent 70%,rgba(0,0,0,.55))}
+.task{position:absolute;top:62px;left:16px;right:16px;border-radius:26px;padding:16px 18px;z-index:4;display:grid;gap:6px}
+.task small{font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--tufo)}
+.task b{font-family:var(--display);font-weight:800;font-size:21px;line-height:1.15;letter-spacing:-.01em}
+.huntzone{position:absolute;inset:0;z-index:2;touch-action:none;cursor:crosshair}
+.ring{position:absolute;width:120px;height:120px;margin:-60px 0 0 -60px;border-radius:50%;border:4px solid var(--tufo);z-index:3;pointer-events:none;left:50%;top:50%;transition:border-color .3s}
+.ring::before,.ring::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:4px solid var(--tufo);animation:pulse var(--rate,1.4s) ease-out infinite}
+.ring::after{animation-delay:calc(var(--rate,1.4s) / 2)}
+@keyframes pulse{from{transform:scale(1);opacity:.7}to{transform:scale(1.9);opacity:0}}
+.ring.found{border-color:#fff;background:rgba(232,178,48,.18)}
+.ring.found::before,.ring.found::after{border-color:#fff}
+.temp{position:absolute;left:0;right:0;top:206px;text-align:center;color:#fff;font-family:var(--hand);font-size:28px;text-shadow:0 1px 10px rgba(0,0,0,.7);z-index:4;pointer-events:none}
+.tip{position:absolute;left:0;right:0;top:244px;text-align:center;color:rgba(255,255,255,.8);font-size:13px;z-index:4;pointer-events:none;opacity:0;transition:opacity .5s}
+
+/* sticker */
+#s-sticker{background:radial-gradient(ellipse at 50% 32%,#FFF6DA 0%,var(--calce) 60%)}
+#s-sticker .wrap{position:absolute;inset:0;padding:70px 24px 40px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.newpill{background:var(--tufo);color:#1f2321;margin-top:20px}
+.stk-holder{margin-top:40px;width:270px;height:230px;perspective:900px;position:relative}
+.stk{position:absolute;inset:0;border:8px solid #fff;border-radius:44% 56% 48% 52% / 55% 45% 55% 45%;background-image:url(img/shrine.jpg);background-size:360%;background-position:52% 79%;
+  box-shadow:0 22px 40px -14px rgba(60,40,0,.45),0 2px 6px rgba(0,0,0,.15);transform:rotate(-5deg);overflow:hidden;transform-style:preserve-3d}
+.stk .sheen{position:absolute;inset:-20%;background:linear-gradient(115deg,transparent 38%,rgba(255,255,255,.55) 50%,transparent 62%);mix-blend-mode:soft-light;pointer-events:none}
+#s-sticker h3{margin:44px 0 0;font-size:38px;line-height:1}
+#s-sticker p{margin:10px 0 0;font-size:16px;color:var(--stone)}
+#s-sticker p b{color:var(--piperno)}
+#s-sticker .ctas{margin-top:auto;width:100%;display:grid;gap:14px}
+.link{font-size:17px;font-weight:600;color:var(--azzurro);height:30px}
+
+/* map */
+.page{position:absolute;inset:0;padding:62px 16px 0}
+.ptitle{display:flex;justify-content:space-between;align-items:baseline;padding:0 8px}
+.ptitle h3{margin:0;font-size:36px}
+.ptitle span{font-size:14px;color:var(--stone)}
+.mapcard{margin-top:12px;height:520px;border-radius:30px;background:#FBFAF6;border:1.5px solid var(--hair);overflow:hidden;position:relative}
+.mapcard svg{width:100%;height:100%;display:block}
+.found-row{margin-top:14px;display:flex;gap:10px;padding:0 4px}
+.mini{flex:1;height:64px;border-radius:18px;background:var(--card);border:1.5px solid var(--hair);display:flex;align-items:center;gap:10px;padding:0 10px;font-size:13px;font-weight:600;line-height:1.2;text-align:left}
+.mini i{flex:none;width:40px;height:40px;border-radius:44% 56% 48% 52% / 55% 45% 55% 45%;border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.2);background-size:cover}
+
+/* stickers */
+.chips{display:flex;gap:8px;margin-top:14px;padding:0 4px;overflow:hidden}
+.chips span{height:34px;border-radius:17px;padding:0 14px;display:flex;align-items:center;font-size:14px;font-weight:600;background:var(--card);border:1.5px solid var(--hair);white-space:nowrap}
+.chips span.on{background:var(--piperno);color:var(--calce);border-color:var(--piperno)}
+.grid{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 4px}
+.scard{height:236px;perspective:800px}
+.scard .in{position:relative;width:100%;height:100%;transition:transform .7s var(--ios);transform-style:preserve-3d}
+.scard.flip .in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;border-radius:24px;background:var(--card);border:1.5px solid var(--hair);backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:14px;text-align:center}
+.face.back{transform:rotateY(180deg);background:var(--piperno);color:var(--calce);border-color:var(--piperno);justify-content:flex-start;text-align:left;align-items:flex-start}
+.face .art{width:118px;height:104px;border:6px solid #fff;border-radius:44% 56% 48% 52% / 55% 45% 55% 45%;box-shadow:0 10px 18px -8px rgba(0,0,0,.4);background-size:cover}
+.face b{font-family:var(--display);font-weight:800;font-size:17px;line-height:1.1;letter-spacing:-.01em}
+.face small{font-size:12px;color:var(--stone)}
+.face.back small{color:var(--tufo);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:10px}
+.face.back p{margin:0;font-family:var(--hand);font-size:19px;line-height:1.2}
+.face.back span{margin-top:auto;font-size:12px;opacity:.7}
+.newdot{position:absolute;top:12px;right:12px;height:22px;padding:0 8px;border-radius:11px;background:var(--tufo);color:#1f2321;font-size:10px;font-weight:800;letter-spacing:.06em;display:flex;align-items:center}
+.postcard{grid-column:1/-1;height:96px;border-radius:24px;background:var(--mare);color:#fff;display:flex;align-items:center;gap:14px;padding:0 18px;text-align:left}
+.postcard i{flex:none;width:56px;height:64px;border-radius:8px;background:url(img/forum.jpg) center/cover;border:3px solid #fff;transform:rotate(-6deg);box-shadow:0 6px 12px rgba(0,0,0,.3)}
+.postcard b{font-family:var(--display);font-size:17px;font-weight:800;display:block}
+.postcard span{font-size:13px;opacity:.75}
+
+/* place */
+#s-place .top{position:absolute;left:0;right:0;top:0;height:300px;background:url(img/forum.jpg) 58% 40%/cover}
+#s-place .top::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45),transparent 40%)}
+#s-place .sheet{position:absolute;left:0;right:0;bottom:0;top:226px;background:var(--calce);border-radius:38px 38px 0 0;padding:14px 20px 40px;display:flex;flex-direction:column;gap:12px;box-shadow:0 -10px 40px rgba(0,0,0,.25)}
+#s-place h3{margin:0;font-size:29px;line-height:1.05}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{background:var(--card);border:1.5px solid var(--hair);border-radius:20px;padding:12px 14px;display:grid;gap:2px}
+.tile small{font-size:13px;color:var(--stone)}
+.tile b{font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:-.01em}
+.tile em{font-style:normal;font-size:11px;color:var(--stone)}
+.compare{position:relative;height:200px;border-radius:22px;overflow:hidden;touch-action:none;cursor:ew-resize;user-select:none;-webkit-user-select:none}
+.compare .now,.compare .then{position:absolute;inset:0;background-size:cover}
+.compare .now{background-image:url(img/forum.jpg);background-position:55% 45%}
+.compare .then{background-image:url(img/forum-1841.jpg);background-position:50% 40%;clip-path:inset(0 calc(100% - var(--x,50%)) 0 0)}
+.compare .bar{position:absolute;top:0;bottom:0;left:var(--x,50%);width:3px;margin-left:-1.5px;background:#fff;box-shadow:0 0 10px rgba(0,0,0,.4)}
+.compare .knob{position:absolute;top:50%;left:var(--x,50%);width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;background:var(--tufo);border:3px solid #fff;box-shadow:0 4px 12px rgba(0,0,0,.35);display:grid;place-items:center;color:#1f2321;font-weight:800;font-size:14px}
+.compare .lbl{position:absolute;bottom:10px;height:26px;padding:0 10px;border-radius:13px;font-size:12px;font-weight:700;display:flex;align-items:center}
+.compare .l1{left:10px}.compare .l2{right:10px}
+
+/* lock */
+#s-lock{background:var(--mare)}
+#s-lock .photo{background-image:url(img/forum.jpg);background-position:56% 50%;filter:blur(2px) saturate(1.1);transform:scale(1.06)}
+#s-lock .tint{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,59,92,.75),rgba(14,59,92,.35) 45%,rgba(14,59,92,.85))}
+#s-lock .clock{position:absolute;top:96px;left:0;right:0;text-align:center;color:#fff}
+#s-lock .clock small{font-size:20px;font-weight:600;opacity:.9}
+#s-lock .clock b{display:block;font-size:108px;line-height:1;font-weight:700;letter-spacing:-.02em;margin-top:2px;font-family:-apple-system,"SF Pro Display",system-ui,sans-serif}
+.notif{position:absolute;left:14px;right:14px;bottom:118px;border-radius:30px;padding:14px;display:grid;gap:10px;z-index:3}
+.notif .hd{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.06em}
+.notif .hd i{width:24px;height:24px;border-radius:7px;background:var(--tufo);position:relative}
+.notif .hd i::after{content:"";position:absolute;inset:6px;border-radius:50%;background:var(--piperno)}
+.notif .hd span{margin-left:auto;font-weight:500;opacity:.7;letter-spacing:0}
+.notif p{margin:0;font-size:16px;line-height:1.35}
+.nbtns{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.nbtns button{height:40px;border-radius:13px;background:rgba(255,255,255,.22);font-size:15px;font-weight:600;color:#fff;transition:background .2s,transform .15s}
+.nbtns button:active{transform:scale(.95)}
+.nbtns button.ok{background:var(--tufo);color:#1f2321}
+.nbtns button.no{background:rgba(255,255,255,.1);opacity:.6}
+.lockbtns{position:absolute;bottom:40px;left:46px;right:46px;display:flex;justify-content:space-between;z-index:3}
+.lockbtns i{width:52px;height:52px;border-radius:50%;background:rgba(0,0,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+
+footer{position:relative;z-index:1;max-width:1440px;margin:0 auto;padding-block:8px 28px;font-size:.75rem;color:var(--mute);line-height:1.5}
+footer a{color:var(--mute)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+</style>
+
+<div class="stage">
+  <aside class="left">
+    <div class="brand"><i></i>CheStoria</div>
+    <h1>One morning in <em>Pompeii</em>.</h1>
+    <p>An animated prototype of the full loop, using real photos from Pompeii. Tap through it like the real app, or jump to any step.</p>
+    <ol class="steps" id="steps"></ol>
+  </aside>
+
+  <div class="device-col">
+    <div class="device-box" id="box">
+      <div class="device" id="device">
+        <div class="root" id="root">
+
+          <!-- 1 welcome -->
+          <section class="screen" id="s-welcome" data-status="dark">
+            <div class="photo"></div><div class="scrim"></div>
+            <div class="logo"><i></i>CheStoria</div>
+            <div class="content">
+              <div class="place"><i></i>Pompeii · Day 2 of your trip</div>
+              <h2 class="d" id="w-head">Every stone here has a secret.</h2>
+              <p>Point your camera at anything. Guess its secret, then find the clue. Takes 30 seconds.</p>
+              <div class="lang glass"><span>Stories in English</span><span>Change</span></div>
+              <button class="cta light" data-go="snap">Start exploring</button>
+              <div class="small">No account needed</div>
+            </div>
+          </section>
+
+          <!-- 2 snap -->
+          <section class="screen" id="s-snap" data-status="dark">
+            <div class="photo cam drift"></div>
+            <div class="chip glass"><span class="dot"></span>Near you · Thermopolium <small>· 12 m</small></div>
+            <div class="reticle breathe"><i></i><i></i><i></i><i></i></div>
+            <div class="cam-hint">Point at anything that makes you curious</div>
+            <button class="shutter" id="shutter1" aria-label="Snap"></button>
+            <div class="flash"></div>
+          </section>
+
+          <!-- 3 scan -->
+          <section class="screen" id="s-scan" data-status="dark">
+            <div class="photo cam" style="transform:scale(1.06)"></div>
+            <div class="flash"></div>
+            <div class="lock" id="lockbox"><i></i><i></i><i></i><i></i><div class="scanline" id="scanline"></div></div>
+            <div class="clues">
+              <span class="clue glass">Stone counter</span><span class="clue glass">Round holes</span><span class="clue glass">Via dell’Abbondanza</span><span class="clue got">✓ Got it</span>
+            </div>
+            <div class="thinking" id="thinking">Hmm, let me look…</div>
+          </section>
+
+          <!-- 4 question -->
+          <section class="screen" id="s-question" data-status="dark">
+            <div class="top"></div>
+            <div class="sheet">
+              <div class="grab"></div>
+              <div class="eyebrow-s">Thermopolium · Pompeii</div>
+              <h3 class="d">Romans queued at this counter every day. What was it?</h3>
+              <div class="answers">
+                <button class="ans" data-a="0">A bank counter<span class="k">A</span></button>
+                <button class="ans" data-a="1">A street-food bar<span class="k">B</span></button>
+                <button class="ans" data-a="2">A bakery oven<span class="k">C</span></button>
+              </div>
+              <div class="conf">How sure? <button aria-label="A bit sure" class="on"></button><button aria-label="Quite sure" class="on"></button><button aria-label="Very sure"></button></div>
+            </div>
+          </section>
+
+          <!-- 5 reveal -->
+          <section class="screen" id="s-reveal">
+            <div class="wrap">
+              <div class="reaction" id="reaction">You said bank. Nope! Good guess though.</div>
+              <h3 class="d">A street-food bar.</h3>
+              <div class="sub">Romans called it a thermopolium.</div>
+              <p class="story">The holes held big jars of hot food and wine, served straight to people in the street. This one belonged to Lucius Vetutius Placidus.</p>
+              <div><span class="pill ver">✓ Verified · Pompeii Archaeological Park</span></div>
+              <div class="theory"><div class="seal">THEORY</div><p><b>Some historians think</b> many Romans ate out because small flats had no kitchen.</p></div>
+              <div class="dinner"><small>Tell it tonight</small><span>“Pompeii had fast food almost 2,000 years ago.”</span></div>
+              <div class="row" style="margin-top:auto">
+                <button class="listen" aria-label="Read aloud"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2B302E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4Z" fill="#2B302E"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg></button>
+                <button class="cta tufo shine" data-go="closer">Look closer →</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- 6 look closer -->
+          <section class="screen" id="s-closer" data-status="dark">
+            <div class="photo"></div><div class="vig"></div>
+            <div class="task glass"><small>LOOK CLOSER</small><b>Behind the counter is a painted shrine. Find the two snakes that guarded the shop.</b></div>
+            <div class="huntzone" id="hunt"></div>
+            <div class="ring" id="ring"></div>
+            <div class="temp" id="temp">Move to search</div>
+            <div class="tip" id="tip">Tip: look below the painted gods</div>
+            <button class="shutter off" id="shutter2" aria-label="Snap the detail"></button>
+            <div class="flash"></div>
+          </section>
+
+          <!-- 7 sticker -->
+          <section class="screen" id="s-sticker">
+            <div class="wrap">
+              <span class="pill newpill" id="newpill">New sticker</span>
+              <div class="stk-holder" id="stkholder"><div class="stk" id="stk"><div class="sheen" id="sheen"></div></div></div>
+              <h3 class="d">The guardian snakes</h3>
+              <p>Thermopolium · added to <b>Everyday Romans</b></p>
+              <div class="ctas">
+                <button class="cta" data-go="map">Keep exploring</button>
+                <button class="link" data-go="stickers">See all stickers</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- 8 map -->
+          <section class="screen" id="s-map">
+            <div class="page">
+              <div class="ptitle"><h3 class="d">My trip</h3><span>Pompeii · 3 secrets</span></div>
+              <div class="mapcard">
+                <svg viewBox="0 0 361 520" aria-label="Hand-drawn map of Pompeii with your walk">
+                  <defs><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="#E7E3D8" stroke-width="2"/></pattern></defs>
+                  <path d="M60 46 L132 26 L250 34 L318 70 L338 160 L330 300 L300 420 L210 470 L96 462 L40 380 L26 230 L34 120 Z" fill="url(#hatch)" stroke="#CFC9BA" stroke-width="2.5" stroke-dasharray="2 5" stroke-linecap="round"/>
+                  <g stroke="#E3DFD4" stroke-width="10" stroke-linecap="round" fill="none">
+                    <path d="M40 300 L336 278"/><path d="M48 168 L334 150"/><path d="M196 34 L206 466"/><path d="M110 40 L104 450"/>
+                  </g>
+                  <text x="118" y="314" font-size="9" font-weight="700" fill="#9A9F9C" letter-spacing="1.2" transform="rotate(-4 118 314)">VIA DELL’ABBONDANZA</text>
+                  <text x="212" y="420" font-size="9" font-weight="700" fill="#9A9F9C" letter-spacing="1.2" transform="rotate(88 212 420)">VIA DI STABIA</text>
+                  <rect x="62" y="232" width="34" height="58" rx="4" fill="#EFE9DA" stroke="#CFC9BA" stroke-width="1.5"/>
+                  <text x="52" y="226" font-size="10" fill="#6B716E" font-weight="600">Forum</text>
+                  <g transform="translate(250 -6)"><path d="M0 40 L34 6 L46 16 L58 4 L92 40 Z" fill="#E9E5DA" stroke="#B7B1A2" stroke-width="1.5"/><text x="14" y="54" font-size="9" fill="#6B716E" font-weight="600">Vesuvius ↗</text></g>
+                  <path d="M18 520 L18 380 Q30 340 18 300 L0 300 L0 520 Z" fill="#DCEAF5"/>
+                  <text x="6" y="470" font-size="9" fill="#176FAD" font-style="italic" transform="rotate(-90 10 470)">to the sea</text>
+                  <path id="route" d="M80 262 C 80 210, 90 170, 118 130 C 130 160, 120 230, 150 286 S 230 292, 262 286" fill="none" stroke="#2B302E" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 9"/>
+                  <g transform="translate(80 262)"><g class="pin"><circle r="16" fill="#E8B230" stroke="#fff" stroke-width="4"/><circle r="5" fill="#2B302E"/></g></g>
+                  <g transform="translate(118 130)"><g class="pin"><circle r="16" fill="#E8B230" stroke="#fff" stroke-width="4"/><circle r="5" fill="#2B302E"/></g></g>
+                  <g transform="translate(262 286)"><g class="pin"><circle r="18" fill="#E8B230" stroke="#fff" stroke-width="4"/><circle r="6" fill="#2B302E"/></g></g>
+                  <text x="134" y="122" font-size="11.5" font-weight="700" fill="#2B302E">House of the Tragic Poet</text>
+                  <text x="232" y="318" font-size="11.5" font-weight="700" fill="#2B302E">Thermopolium</text>
+                  <g id="here" transform="translate(296 352)"><circle r="20" fill="#176FAD" opacity=".18"><animate attributeName="r" values="12;24;12" dur="2.4s" repeatCount="indefinite"/></circle><circle r="8" fill="#176FAD" stroke="#fff" stroke-width="3"/></g>
+                </svg>
+              </div>
+              <div class="found-row">
+                <div class="mini"><i style="background-image:url(img/shrine.jpg);background-size:360%;background-position:52% 79%"></i>Guardian snakes</div>
+                <div class="mini"><i style="background-image:url(img/cave-canem.jpg)"></i>Beware of the dog</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 9 stickers -->
+          <section class="screen" id="s-stickers">
+            <div class="page">
+              <div class="ptitle"><h3 class="d">Stickers</h3><span>Tap to flip</span></div>
+              <div class="chips"><span class="on">All · 2</span><span>Everyday Romans · 1</span><span>Warnings · 1</span></div>
+              <div class="grid">
+                <button class="scard"><div class="in">
+                  <div class="face"><span class="newdot">NEW</span><div class="art" style="background-image:url(img/shrine.jpg);background-size:360%;background-position:52% 79%"></div><b>The guardian snakes</b><small>Thermopolium · today</small></div>
+                  <div class="face back"><small>Tell it tonight</small><p>Romans painted snakes by the counter to protect the shop.</p><span>Pompeii · 21 Nov</span></div>
+                </div></button>
+                <button class="scard"><div class="in">
+                  <div class="face"><div class="art" style="background-image:url(img/cave-canem.jpg)"></div><b>Beware of the dog</b><small>House of the Tragic Poet</small></div>
+                  <div class="face back"><small>Tell it tonight</small><p>Pompeii’s front doors had “Beware of the dog” in mosaic.</p><span>Pompeii · 21 Nov</span></div>
+                </div></button>
+                <div class="postcard"><i></i><div><b>Your trip postcard</b><span>Ready on your last evening</span></div></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 10 place -->
+          <section class="screen" id="s-place" data-status="dark">
+            <div class="top"></div>
+            <div class="sheet">
+              <div class="grab"></div>
+              <h3 class="d">Pompeii Archaeological Park</h3>
+              <div style="display:flex;gap:8px"><span class="pill" style="background:var(--tufo-soft)">Named tickets</span><span class="pill" style="background:var(--sunk);color:var(--stone)">Book ahead</span></div>
+              <div class="tiles">
+                <div class="tile"><small>Full ticket</small><b>€20</b><em>Live price from official site</em></div>
+                <div class="tile"><small>Daily cap</small><b>20,000</b><em>visitors per day</em></div>
+              </div>
+              <div class="eyebrow-s" style="margin-top:4px">Then &amp; Now · the Forum</div>
+              <div class="compare" id="compare" style="--x:55%">
+                <div class="now"></div><div class="then"></div><div class="bar"></div><div class="knob">⇆</div>
+                <span class="lbl l1 glass">1841 · painted by Købke</span><span class="lbl l2 glass">Today</span>
+              </div>
+              <button class="cta" style="margin-top:auto">Book on official site ↗</button>
+            </div>
+          </section>
+
+          <!-- 11 lock -->
+          <section class="screen" id="s-lock" data-status="dark" data-notime="1">
+            <div class="photo"></div><div class="tint"></div>
+            <div class="clock"><small>Saturday 22 November</small><b>8:12</b></div>
+            <div class="notif glass" id="notif">
+              <div class="hd"><i></i>CHESTORIA<span>now</span></div>
+              <p id="nmsg"><b>Remember yesterday’s stone counter?</b> Was it a bank, a bar or a bakery?</p>
+              <div class="nbtns"><button data-n="0">Bank</button><button data-n="1">Bar</button><button data-n="2">Bakery</button></div>
+            </div>
+            <div class="lockbtns"><i></i><i></i></div>
+          </section>
+
+          <!-- chrome -->
+          <div class="status" id="status"><span id="time">9:41</span>
+            <span class="icons"><svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1.5 4.5a9.5 9.5 0 0 1 13 0M4 7.3a6 6 0 0 1 8 0"/><circle cx="8" cy="10" r="1.3" fill="currentColor" stroke="none"/></svg>
+            <svg width="27" height="13" viewBox="0 0 27 13" fill="none"><rect x=".5" y=".5" width="23" height="12" rx="3.5" stroke="currentColor" opacity=".45"/><rect x="2.5" y="2.5" width="17" height="8" rx="2" fill="currentColor"/><rect x="25" y="4.5" width="1.6" height="4" rx=".8" fill="currentColor" opacity=".45"/></svg></span>
+          </div>
+          <div class="island" id="island"><span class="la"><span class="dot"></span>Secret 30 m ahead</span></div>
+          <nav class="tabbar hide" id="tabbar">
+            <button class="tab" data-tab="snap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 8h3l2-2.5h6L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z"/><circle cx="12" cy="13" r="3.6"/></svg>Snap</button>
+            <button class="tab" data-tab="map"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M9 4 3.5 6v14L9 18l6 2 5.5-2V4L15 6 9 4Zm0 0v14m6-12v14"/></svg>My trip</button>
+            <button class="tab" data-tab="stickers"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M5 4h14a1 1 0 0 1 1 1v9l-6 6H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z"/><path d="M20 14h-5a1 1 0 0 0-1 1v5"/></svg>Stickers</button>
+          </nav>
+          <div class="homebar" id="homebar"></div>
+        </div>
+      </div>
+    </div>
+    <div class="controls">
+      <button class="ctl" id="prev" aria-label="Previous screen">←</button>
+      <button class="ctl" id="replay">↻ Replay</button>
+      <button class="ctl primary" id="next">Next →</button>
+    </div>
+  </div>
+
+  <aside class="right">
+    <div class="note-card" aria-live="polite">
+      <div class="eyebrow" id="n-step">Step 1 of 11</div>
+      <h2 id="n-title">Welcome</h2>
+      <ul id="n-moves"></ul>
+      <div class="why" id="n-why"></div>
+    </div>
+    <p class="hint">Keyboard: <kbd>←</kbd> <kbd>→</kbd> to move, <kbd>R</kbd> to replay. On the Look closer screen, drag across the photo to hunt.</p>
+  </aside>
+</div>
+
+<footer>
+  Photos via Wikimedia Commons: Pompeii Forum &amp; Vesuvius, Thermopolium of Vetutius Placidus and Stepping stones by Gary Todd (CC0 / public domain) · Thermopolium shrine by Jebulon (CC0) · The Forum, Pompeii, with Vesuvius (1841) by Christen Købke (public domain) · Cave canem mosaic by Argo Navis (<a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>). Story text is sample copy: verify every fact with the park before launch.
+</footer>
+
+<script>
+(() => {
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const root = $('#root');
+let timers = [];
+const later = (fn, ms) => timers.push(setTimeout(fn, RM ? Math.min(ms, 60) : ms));
+const anim = (el, kf, o) => el && el.animate(kf, Object.assign({ fill: 'both', easing: 'cubic-bezier(.32,.72,0,1)' }, o, RM ? { duration: 1, delay: 0 } : {}));
+const SPRING = 'cubic-bezier(.34,1.56,.64,1)';
+let answer = 0;
+
+/* map an image-normalised point to screen coords for a cover-sized background */
+function coverPoint(el, iw, ih, px, py, nx, ny) {
+  const W = el.offsetWidth, H = el.offsetHeight, s = Math.max(W / iw, H / ih);
+  const dw = iw * s, dh = ih * s;
+  return { x: (W - dw) * px + nx * dw, y: (H - dh) * py + ny * dh, s };
+}
+
+const SCREENS = [
+  { id: 'welcome', title: 'Welcome', tab: null,
+    moves: ['Photo of the Forum drifts in slowly with a Ken Burns zoom', 'Headline rises word by word, then the buttons follow', 'Language comes from the phone, so most people just tap Start'],
+    why: '<b>Why:</b> one screen, no account. Downloading is the hurdle (87% of museum visitors never install an app), so the first 30 seconds must feel instant.',
+    enter() {
+      anim($('#s-welcome .photo'), [{ transform: 'scale(1.16)' }, { transform: 'scale(1)' }], { duration: 9000, easing: 'cubic-bezier(.2,.6,.2,1)' });
+      $$('#w-head .w').forEach((w, i) => anim(w, [{ opacity: 0, transform: 'translateY(26px)' }, { opacity: 1, transform: 'none' }], { duration: 700, delay: 250 + i * 70, easing: SPRING }));
+      $$('#s-welcome .content > :not(h2)').forEach((el, i) => anim(el, [{ opacity: 0, transform: 'translateY(16px)' }, { opacity: 1, transform: 'none' }], { duration: 600, delay: (i < 1 ? 100 : 650 + i * 80) }));
+      anim($('#s-welcome .logo'), [{ opacity: 0 }, { opacity: 1 }], { duration: 800, delay: 200 });
+    } },
+  { id: 'snap', title: 'Snap', tab: 'glass',
+    moves: ['Live camera with a gentle hand-held drift', 'Location chip pulses: GPS already knows you are at the Thermopolium', 'Corners breathe to invite a tap; the shutter flashes white'],
+    why: '<b>Why:</b> no search, no list, no route. Visitors who explore on their own are the most satisfied (Edinburgh Castle study).',
+    enter() {
+      anim($('#s-snap .chip'), [{ opacity: 0, transform: 'translate(-50%,-14px) scale(.9)' }, { opacity: 1, transform: 'translate(-50%,0)' }], { duration: 600, delay: 150, easing: SPRING });
+      anim($('#s-snap .reticle'), [{ opacity: 0, transform: 'scale(1.15)' }, { opacity: 1, transform: 'scale(1)' }], { duration: 700, delay: 250 });
+      anim($('#shutter1'), [{ transform: 'scale(.6)', opacity: 0 }, { transform: 'scale(1)', opacity: 1 }], { duration: 600, delay: 350, easing: SPRING });
+    } },
+  { id: 'scan', title: 'Recognising', tab: null, auto: true,
+    moves: ['White shutter flash, then the brackets slide in and lock onto the counter', 'A scan line sweeps the target', 'Clues pop in one by one, so the wait already teases the story'],
+    why: '<b>Why:</b> the 1–2 second wait becomes part of the curiosity gap instead of a spinner.',
+    enter() {
+      const scr = $('#s-scan'); anim($('.flash', scr), [{ opacity: 1 }, { opacity: 0 }], { duration: 500 });
+      const p = scr.querySelector('.photo');
+      const a = coverPoint(p, 1800, 1200, .38, .60, .29, .52), b = coverPoint(p, 1800, 1200, .38, .60, .55, .80);
+      const lk = $('#lockbox'); const box = { left: a.x, top: a.y, width: b.x - a.x, height: b.y - a.y };
+      Object.assign(lk.style, { left: box.left + 'px', top: box.top + 'px', width: box.width + 'px', height: box.height + 'px' });
+      anim(lk, [{ transform: 'scale(1.5)', opacity: 0 }, { transform: 'scale(1)', opacity: 1 }], { duration: 750, delay: 250, easing: SPRING });
+      anim($('#scanline'), [{ top: '6%' }, { top: '94%' }], { duration: 900, delay: 700, iterations: 2, direction: 'alternate', easing: 'ease-in-out', fill: 'none' });
+      const th = $('#thinking'); th.textContent = 'Hmm, let me look…';
+      $$('.clue', scr).forEach((c, i) => anim(c, [{ opacity: 0, transform: 'translateY(10px) scale(.85)' }, { opacity: 1, transform: 'none' }], { duration: 450, delay: 700 + i * 420, easing: SPRING }));
+      later(() => th.textContent = 'Stone counter… round holes…', 900);
+      later(() => th.textContent = 'Got it.', 2100);
+      later(() => go('question'), 2900);
+    } },
+  { id: 'question', title: 'The question', tab: null, fade: true,
+    moves: ['Your photo shrinks to the top while the sheet springs up', 'Answers arrive one after another', 'Buttons have real press depth; the optional "how sure?" bet sits underneath'],
+    why: '<b>Why:</b> ask first, tell after. A question before the answer improves memory (Gruber et al., Neuron 2014). A confident wrong guess is remembered best.',
+    enter() {
+      $$('#s-question .ans').forEach(a => a.classList.remove('sel', 'pressed'));
+      anim($('#s-question .top'), [{ height: '100%' }, { height: '42%' }], { duration: 800, delay: 60 });
+      anim($('#s-question .sheet'), [{ transform: 'translateY(100%)' }, { transform: 'none' }], { duration: 750, delay: 150, easing: 'cubic-bezier(.22,1.2,.36,1)' });
+      $$('#s-question .sheet > *').forEach((el, i) => i > 0 && anim(el, [{ opacity: 0, transform: 'translateY(14px)' }, { opacity: 1, transform: 'none' }], { duration: 500, delay: 420 + i * 60 }));
+      $$('#s-question .ans').forEach((el, i) => anim(el, [{ opacity: 0, transform: 'translateY(18px)' }, { opacity: 1, transform: 'none' }], { duration: 500, delay: 650 + i * 90, easing: SPRING }));
+    } },
+  { id: 'reveal', title: 'The reveal', tab: null,
+    moves: ['Your reaction is "handwritten" across the screen', 'The answer drops in with a spring, then the facts settle', 'The red THEORY seal stamps down; Look closer shimmers'],
+    why: '<b>Why:</b> about 30 words and only 2 facts. 2 facts made people curious, 8+ put them off (Tassiello &amp; Tillotson 2020). Red marks theories, never wrong answers.',
+    enter() {
+      const r = $('#reaction');
+      const names = ['bank', 'street-food bar', 'bakery'];
+      r.className = 'reaction' + (answer === 1 ? ' right' : '');
+      r.textContent = answer === 1 ? 'Spot on! You knew it.' : `You said ${names[answer]}. Nope! Good guess though.`;
+      anim(r, [{ clipPath: 'inset(0 100% 0 0)' }, { clipPath: 'inset(0 0 0 0)' }], { duration: 900, delay: 100, easing: 'ease-out' });
+      anim($('#s-reveal h3'), [{ opacity: 0, transform: 'translateY(-40px) scale(1.06)' }, { opacity: 1, transform: 'none' }], { duration: 750, delay: 500, easing: SPRING });
+      anim($('#s-reveal .sub'), [{ opacity: 0, transform: 'translateY(10px)' }, { opacity: 1, transform: 'none' }], { duration: 500, delay: 800 });
+      ['.story', '.pill.ver', '.dinner', '.row'].forEach((s, i) => anim($('#s-reveal ' + s), [{ opacity: 0, transform: 'translateY(14px)' }, { opacity: 1, transform: 'none' }], { duration: 550, delay: 950 + i * 140 }));
+      anim($('#s-reveal .theory'), [{ opacity: 0 }, { opacity: 1 }], { duration: 400, delay: 1250 });
+      anim($('#s-reveal .seal'), [{ transform: 'rotate(-40deg) scale(2.2)', opacity: 0 }, { transform: 'rotate(-12deg) scale(.92)', opacity: 1, offset: .7 }, { transform: 'rotate(-12deg) scale(1)', opacity: 1 }], { duration: 650, delay: 1450, easing: 'cubic-bezier(.5,0,.75,0)' });
+      anim($('#s-reveal .theory'), [{ transform: 'none' }, { transform: 'translateX(-3px)' }, { transform: 'translateX(3px)' }, { transform: 'none' }], { duration: 220, delay: 1900, fill: 'none' });
+    } },
+  { id: 'closer', title: 'Look closer', tab: null,
+    moves: ['Drag across the photo: the rings pulse faster as you get closer', '"colder… warmer… hot!" updates live, like a haptic hot/cold game', 'On target the ring locks, turns white and the shutter starts to glow'],
+    why: '<b>Why:</b> photographing a detail protects your memory of it, while photographing the whole thing weakens it (Henkel 2014). Haptics make it work without reading (the idea we borrow from Oko).',
+    enter() { startHunt(); } },
+  { id: 'sticker', title: 'Sticker earned', tab: null,
+    moves: ['Your detail photo flies up and peels into a sticker with a white border', 'The sticker tilts towards your finger, and its sheen follows', '"New sticker" pops in. No confetti, no points'],
+    why: '<b>Why:</b> the cut-out sticker comes from CapWords (Apple Design Award 2025); the tilting shine from Any Distance (2023).',
+    enter() {
+      anim($('#stk'), [{ transform: 'translateY(240px) scale(.25) rotate(-40deg)', opacity: 0 }, { transform: 'translateY(-14px) scale(1.06) rotate(4deg)', opacity: 1, offset: .65 }, { transform: 'rotate(-5deg)', opacity: 1 }], { duration: 1000, delay: 120, easing: 'cubic-bezier(.2,.8,.3,1)' });
+      anim($('#sheen'), [{ transform: 'translateX(-60%)' }, { transform: 'translateX(60%)' }], { duration: 1300, delay: 1000, easing: 'ease-in-out', fill: 'none' });
+      anim($('#newpill'), [{ transform: 'scale(0)' }, { transform: 'scale(1)' }], { duration: 500, delay: 800, easing: SPRING });
+      $$('#s-sticker h3, #s-sticker p, #s-sticker .ctas').forEach((el, i) => anim(el, [{ opacity: 0, transform: 'translateY(14px)' }, { opacity: 1, transform: 'none' }], { duration: 550, delay: 900 + i * 120 }));
+    } },
+  { id: 'map', title: 'My trip', tab: 'light',
+    moves: ['Today’s walk draws itself across a hand-drawn map of Pompeii', 'Pins drop in the order you found them', 'Your stickers line up underneath; your blue dot breathes'],
+    why: '<b>Why:</b> the walk becomes a memory palace (method of loci). Only your pins are shown, never what you missed, so it never feels like a checklist tour.',
+    enter() {
+      const r = $('#route'); const L = r.getTotalLength();
+      r.style.strokeDasharray = `1 9`;
+      const mask = r.cloneNode(); mask.id = 'routemask'; mask.setAttribute('stroke', '#FBFAF6'); mask.setAttribute('stroke-width', '8'); mask.style.strokeDasharray = `${L} ${L}`;
+      $('#routemask')?.remove(); r.after(mask);
+      anim(mask, [{ strokeDashoffset: -0 }, { strokeDashoffset: -L }], { duration: 1600, delay: 400, easing: 'ease-in-out' });
+      $$('#s-map .pin').forEach((p, i) => anim(p, [{ opacity: 0, transform: 'translateY(-40px) scale(.4)' }, { opacity: 1, transform: 'none' }], { duration: 650, delay: 350 + i * 650, easing: SPRING }));
+      $$('#s-map .mini').forEach((m, i) => anim(m, [{ opacity: 0, transform: 'translateY(16px)' }, { opacity: 1, transform: 'none' }], { duration: 500, delay: 1700 + i * 120 }));
+    } },
+  { id: 'stickers', title: 'Stickers', tab: 'light',
+    moves: ['Cards deal in one after another', 'Tap a sticker to flip it: the back holds the line to retell tonight', 'Your trip postcard is waiting for the last evening'],
+    why: '<b>Why:</b> retelling is retrieval practice. If they say it out loud at dinner, they keep it.',
+    enter() {
+      $$('#s-stickers .scard').forEach(c => c.classList.remove('flip'));
+      $$('#s-stickers .grid > *').forEach((el, i) => anim(el, [{ opacity: 0, transform: 'translateY(30px) rotate(' + (i % 2 ? 3 : -3) + 'deg)' }, { opacity: 1, transform: 'none' }], { duration: 650, delay: 200 + i * 130, easing: SPRING }));
+      later(() => $$('#s-stickers .scard')[0].classList.add('flip'), 1300);
+      later(() => $$('#s-stickers .scard')[0].classList.remove('flip'), 3000);
+    } },
+  { id: 'place', title: 'Tickets & Then and Now', tab: null,
+    moves: ['Sheet slides up over the Forum photo', 'Then & Now slider sweeps once on its own to show it can move', 'Drag the yellow handle: 1841 painting vs today'],
+    why: '<b>Why:</b> visitors need the basics first, and "what did it look like before?" is one of the questions they ask most. One image answers it in a second.',
+    enter() {
+      anim($('#s-place .sheet'), [{ transform: 'translateY(100%)' }, { transform: 'none' }], { duration: 750, delay: 100, easing: 'cubic-bezier(.22,1.2,.36,1)' });
+      const c = $('#compare'); c.style.setProperty('--x', '55%');
+      if (!RM) {
+        const t0 = performance.now() + 900;
+        const step = now => { const t = (now - t0) / 1800; if (t < 0) return requestAnimationFrame(step); if (t > 1 || c.dataset.dragged) return;
+          c.style.setProperty('--x', (55 + Math.sin(t * Math.PI * 2) * 30) + '%'); requestAnimationFrame(step); };
+        delete c.dataset.dragged; requestAnimationFrame(step);
+      }
+    } },
+  { id: 'lock', title: 'Next morning', tab: null,
+    moves: ['The Dynamic Island expands into a Live Activity: "Secret 30 m ahead"', 'A recall question slides up on the lock screen', 'Answer right from the notification; it confirms and you are done'],
+    why: '<b>Why:</b> one retrieval after a night’s sleep locks the memory in (spaced retrieval). It is opt-in, once a day.',
+    enter() {
+      $('#island').classList.remove('wide'); later(() => $('#island').classList.add('wide'), 500);
+      const n = $('#notif'); $('#nmsg').innerHTML = '<b>Remember yesterday’s stone counter?</b> Was it a bank, a bar or a bakery?';
+      $$('.nbtns button', n).forEach(b => b.className = '');
+      anim(n, [{ transform: 'translateY(140%)', opacity: 0 }, { transform: 'none', opacity: 1 }], { duration: 800, delay: 900, easing: 'cubic-bezier(.22,1.2,.36,1)' });
+      anim($('#s-lock .clock'), [{ opacity: 0, transform: 'translateY(-10px)' }, { opacity: 1, transform: 'none' }], { duration: 700, delay: 100 });
+    } },
+];
+const idx = id => SCREENS.findIndex(s => s.id === id);
+
+/* split welcome headline into words */
+const wh = $('#w-head'); wh.innerHTML = wh.textContent.split(' ').map(w => `<span class="w">${w}</span>`).join(' ');
+
+/* steps list */
+$('#steps').innerHTML = SCREENS.map((s, i) => `<li><button data-step="${s.id}"><span>${String(i + 1).padStart(2, '0')}</span>${s.title}</button></li>`).join('');
+
+let cur = null;
+function go(id, opts = {}) {
+  timers.forEach(clearTimeout); timers = []; stopHunt();
+  const next = SCREENS[idx(id)]; const nextEl = $('#s-' + id); const prevEl = cur && $('#s-' + cur);
+  const back = cur && idx(id) < idx(cur);
+  const isCSS = a => (typeof CSSAnimation !== 'undefined' && a instanceof CSSAnimation) || (typeof CSSTransition !== 'undefined' && a instanceof CSSTransition);
+  $$('.screen').forEach(s => s.getAnimations({ subtree: true }).forEach(a => !isCSS(a) && a.cancel()));
+  nextEl.classList.add('active'); nextEl.style.zIndex = 2;
+  if (prevEl && prevEl !== nextEl && !opts.instant) {
+    prevEl.style.zIndex = 1;
+    if (next.fade) { anim(nextEl, [{ opacity: 0 }, { opacity: 1 }], { duration: 250, fill: 'none' }); setTimeout(() => prevEl.classList.remove('active'), 260); }
+    else {
+      anim(nextEl, [{ transform: `translateX(${back ? -30 : 100}%)` }, { transform: 'none' }], { duration: 520, fill: 'none' });
+      const a = anim(prevEl, [{ transform: 'none', filter: 'brightness(1)' }, { transform: `translateX(${back ? 100 : -30}%)`, filter: 'brightness(.7)' }], { duration: 520, fill: 'none' });
+      setTimeout(() => prevEl.classList.remove('active'), RM ? 0 : 520);
+    }
+  } else if (prevEl && prevEl !== nextEl) prevEl.classList.remove('active');
+  cur = id;
+  // chrome
+  $('#status').classList.toggle('dark', nextEl.dataset.status === 'dark');
+  $('#homebar').classList.toggle('dark', nextEl.dataset.status === 'dark');
+  $('#status').style.visibility = nextEl.dataset.notime ? 'hidden' : 'visible';
+  if (id !== 'lock') $('#island').classList.remove('wide');
+  const tb = $('#tabbar'); tb.className = 'tabbar ' + (next.tab || 'hide');
+  $$('.tab', tb).forEach(t => t.classList.toggle('on', t.dataset.tab === id));
+  // notes
+  const i = idx(id);
+  $('#n-step').textContent = `Step ${i + 1} of ${SCREENS.length}`; $('#n-title').textContent = next.title;
+  $('#n-moves').innerHTML = next.moves.map(m => `<li>${m}</li>`).join(''); $('#n-why').innerHTML = next.why;
+  $$('#steps button').forEach(b => b.dataset.step === id ? b.setAttribute('aria-current', 'step') : b.removeAttribute('aria-current'));
+  $('#prev').disabled = i === 0;
+  try { localStorage.setItem('chestoria-step', id); } catch (e) {}
+  if (location.hash.slice(1) !== id) { try { history.replaceState(null, '', '#' + id); } catch (e) {} }
+  setTimeout(() => next.enter(), opts.instant ? 0 : 80);
+}
+
+/* navigation wiring */
+document.addEventListener('click', e => {
+  const g = e.target.closest('[data-go]'); if (g) { go(g.dataset.go); return; }
+  const s = e.target.closest('[data-step]'); if (s) { go(s.dataset.step); return; }
+  const t = e.target.closest('[data-tab]'); if (t) { go(t.dataset.tab); return; }
+});
+$('#next').onclick = () => go(SCREENS[(idx(cur) + 1) % SCREENS.length].id);
+$('#prev').onclick = () => idx(cur) > 0 && go(SCREENS[idx(cur) - 1].id);
+$('#replay').onclick = () => go(cur, { instant: true });
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') $('#next').click(); else if (e.key === 'ArrowLeft') $('#prev').click(); else if (e.key.toLowerCase() === 'r' && !e.metaKey && !e.ctrlKey) $('#replay').click();
+});
+
+/* shutter on snap */
+$('#shutter1').onclick = () => { anim($('#s-snap .flash'), [{ opacity: 0 }, { opacity: 1 }], { duration: 120 }); setTimeout(() => go('scan'), 140); };
+
+/* answers */
+$$('#s-question .ans').forEach(b => b.addEventListener('click', () => {
+  answer = +b.dataset.a; $$('#s-question .ans').forEach(x => x.classList.remove('sel'));
+  b.classList.add('pressed', 'sel'); setTimeout(() => b.classList.remove('pressed'), 140);
+  anim(b, [{ transform: 'translateY(3px)' }, { transform: 'translateY(0)' }], { duration: 300, easing: SPRING, fill: 'none' });
+  timers.push(setTimeout(() => go('reveal'), 520));
+}));
+$$('#s-question .conf button').forEach((b, i, all) => b.addEventListener('click', () => all.forEach((x, j) => x.classList.toggle('on', j <= i))));
+
+/* hunt */
+let huntRAF = null, found = false;
+function stopHunt() { if (huntRAF) cancelAnimationFrame(huntRAF); huntRAF = null; }
+function startHunt() {
+  found = false;
+  const scr = $('#s-closer'), photo = $('.photo', scr), ring = $('#ring'), temp = $('#temp'), tip = $('#tip'), sh = $('#shutter2');
+  const H = photo.offsetHeight, W = photo.offsetWidth, dh = H * 1.15, dw = dh * 1800 / 1198;
+  const target = { x: (W - dw) * .55 + .555 * dw, y: (H - dh) * 1 + .72 * dh };
+  let pos = { x: 196, y: 400 }, aim = { ...pos };
+  ring.classList.remove('found'); sh.classList.add('off'); sh.classList.remove('glow'); tip.style.opacity = 0; temp.textContent = 'Drag across the photo';
+  anim(scr.querySelector('.task'), [{ opacity: 0, transform: 'translateY(-16px)' }, { opacity: 1, transform: 'none' }], { duration: 600, delay: 100, easing: SPRING });
+  anim(ring, [{ opacity: 0, transform: 'scale(.4)' }, { opacity: 1, transform: 'scale(1)' }], { duration: 600, delay: 300, easing: SPRING });
+  const zone = $('#hunt');
+  const toLocal = e => { const r = root.getBoundingClientRect(), k = r.width / root.offsetWidth; return { x: (e.clientX - r.left) / k, y: (e.clientY - r.top) / k }; };
+  zone.onpointerdown = e => { zone.setPointerCapture(e.pointerId); aim = toLocal(e); };
+  zone.onpointermove = e => { if (e.pointerType === 'mouse' || e.buttons) aim = toLocal(e); };
+  timers.push(setTimeout(() => !found && (tip.style.opacity = 1), 6000));
+  const loop = () => {
+    if (!found) { pos.x += (aim.x - pos.x) * .22; pos.y += (aim.y - pos.y) * .22; }
+    ring.style.left = pos.x + 'px'; ring.style.top = pos.y + 'px';
+    const d = Math.hypot(pos.x - target.x, pos.y - target.y);
+    if (!found) {
+      const rate = Math.max(.28, Math.min(1.6, d / 150));
+      ring.style.setProperty('--rate', rate + 's');
+      temp.textContent = d < 46 ? 'Found them!' : d < 90 ? 'hot!' : d < 160 ? 'warmer…' : d < 260 ? 'warm' : 'colder…';
+      if (d < 46) { found = true; aim = { ...target };
+        anim(ring, [{ transform: 'scale(1.25)' }, { transform: 'scale(1)' }], { duration: 500, easing: SPRING, fill: 'none' });
+        ring.classList.add('found'); sh.classList.remove('off'); sh.classList.add('glow'); tip.style.opacity = 0; }
+    } else { pos.x += (target.x - pos.x) * .25; pos.y += (target.y - pos.y) * .25; }
+    huntRAF = requestAnimationFrame(loop);
+  };
+  loop();
+  /* demo assist: if nobody touches it, glide towards the target after a while */
+  timers.push(setTimeout(() => { if (!found && Math.hypot(aim.x - 196, aim.y - 400) < 1) { aim = { x: target.x - 70, y: target.y - 110 };
+    timers.push(setTimeout(() => !found && (aim = { x: target.x, y: target.y }), 1300)); } }, 3200));
+  sh.onclick = () => { anim($('.flash', scr), [{ opacity: 0 }, { opacity: 1 }], { duration: 120 }); setTimeout(() => go('sticker'), 160); };
+}
+
+/* sticker tilt */
+const sc = $('#s-sticker');
+sc.addEventListener('pointermove', e => {
+  const r = $('#stkholder').getBoundingClientRect(); const dx = ((e.clientX - r.left) / r.width - .5), dy = ((e.clientY - r.top) / r.height - .5);
+  $('#stk').getAnimations().forEach(a => a.playState === 'finished' && a.commitStyles && (a.commitStyles(), a.cancel()));
+  $('#stk').style.transform = `rotate(-5deg) rotateY(${dx * 22}deg) rotateX(${-dy * 22}deg)`;
+  $('#sheen').style.transform = `translateX(${dx * 70}%)`;
+});
+sc.addEventListener('pointerleave', () => { $('#stk').style.transform = 'rotate(-5deg)'; $('#sheen').style.transform = ''; });
+
+/* sticker cards flip */
+$$('#s-stickers .scard').forEach(c => c.addEventListener('click', () => c.classList.toggle('flip')));
+
+/* compare slider */
+const cmp = $('#compare');
+const setX = e => { const r = cmp.getBoundingClientRect(); const x = Math.max(4, Math.min(96, (e.clientX - r.left) / r.width * 100)); cmp.style.setProperty('--x', x + '%'); cmp.dataset.dragged = 1; };
+cmp.addEventListener('pointerdown', e => { cmp.setPointerCapture(e.pointerId); setX(e); });
+cmp.addEventListener('pointermove', e => e.buttons && setX(e));
+
+/* lock notification answers */
+$$('.nbtns button').forEach(b => b.addEventListener('click', () => {
+  const n = +b.dataset.n; $$('.nbtns button').forEach((x, i) => x.className = i === 1 ? 'ok' : 'no');
+  $('#nmsg').innerHTML = n === 1 ? '<b>Bar! You remembered.</b> That’s how it sticks.' : '<b>It was a street-food bar.</b> Now you’ll remember it.';
+  anim($('#notif'), [{ transform: 'scale(.97)' }, { transform: 'scale(1)' }], { duration: 400, easing: SPRING, fill: 'none' });
+}));
+
+/* scale the phone to fit */
+function fit() {
+  const box = $('#box'), dev = $('#device');
+  const availH = Math.max(560, innerHeight - 110), availW = Math.min(innerWidth - 32, 417);
+  const k = Math.min(1, availH / 876, availW / 417);
+  dev.style.transform = `scale(${k})`; box.style.width = 417 * k + 'px'; box.style.height = 876 * k + 'px';
+}
+addEventListener('resize', fit); fit();
+
+let start = 'welcome';
+try { const s = localStorage.getItem('chestoria-step'); if (s && idx(s) >= 0) start = s; } catch (e) {}
+const hs = location.hash.slice(1); if (idx(hs) >= 0) start = hs;
+addEventListener('hashchange', () => { const h = location.hash.slice(1); if (idx(h) >= 0 && h !== cur) go(h); });
+go(start, { instant: true });
+})();
+</script>

@@ -1,0 +1,59 @@
+name: CheStoria
+options:
+  bundleIdPrefix: app.chestoria
+  deploymentTarget:
+    iOS: "26.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    SWIFT_DEFAULT_ACTOR_ISOLATION: MainActor
+    SWIFT_APPROACHABLE_CONCURRENCY: YES
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    DEVELOPMENT_TEAM: ""
+targets:
+  CheStoria:
+    type: application
+    platform: iOS
+    sources:
+      - path: CheStoria
+        excludes:
+          - "Resources/Fonts/*.txt"
+    info:
+      path: CheStoria/Info.plist
+      properties:
+        CFBundleDisplayName: CheStoria
+        UILaunchScreen:
+          UIColorName: LaunchBackground
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        UIAppFonts:
+          - BricolageGrotesque-ExtraBold.ttf
+          - BricolageGrotesque-Bold.ttf
+          - Kalam-Bold.ttf
+        NSCameraUsageDescription: CheStoria uses the camera so you can point at a place and get its story.
+        NSLocationWhenInUseUsageDescription: CheStoria uses your location to know which place you are looking at, so you never have to search.
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: app.chestoria.CheStoria
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: Tufo
+        TARGETED_DEVICE_FAMILY: "1"
+        GENERATE_INFOPLIST_FILE: NO
+  CheStoriaTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [CheStoriaTests]
+    dependencies:
+      - target: CheStoria
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+schemes:
+  CheStoria:
+    build:
+      targets:
+        CheStoria: all
+        CheStoriaTests: [test]
+    test:
+      targets: [CheStoriaTests]
