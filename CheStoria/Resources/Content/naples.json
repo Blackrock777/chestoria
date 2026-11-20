@@ -334,6 +334,14 @@
             {
               "title": "NBC News (2010): the façade “music score” theory",
               "url": "https://www.nbcnews.com/news/amp/wbna40926952"
+            },
+            {
+              "title": "Italian Ministry of Culture / Biblioteca Universitaria di Napoli",
+              "url": "https://bibliotecauniversitarianapoli.cultura.gov.it/it/443/chiesa-del-gesu-nuovo"
+            },
+            {
+              "title": "Comune di Napoli — World Heritage heritage guide",
+              "url": "https://patrimoniomondiale.comune.napoli.it/gesu-nuovo/"
             }
           ]
         }
@@ -531,6 +539,18 @@
             {
               "title": "Wikipedia: Veiled Christ",
               "url": "https://en.wikipedia.org/wiki/Veiled_Christ"
+            },
+            {
+              "title": "Museo Cappella Sansevero — The legend of the veil",
+              "url": "https://www.museosansevero.it/la-cappella-e-il-cristo-velato/il-cristo-velato/la-leggenda-del-velo"
+            },
+            {
+              "title": "Museo Cappella Sansevero — The statue",
+              "url": "https://www.museosansevero.it/la-cappella-e-il-cristo-velato/il-cristo-velato/la-statua"
+            },
+            {
+              "title": "Museo Cappella Sansevero — current statue page",
+              "url": "https://www.museosansevero.it/it/cristo-velato/la-statua"
             }
           ]
         }
@@ -618,6 +638,903 @@
             {
               "title": "Wikipedia: Castel dell’Ovo",
               "url": "https://en.wikipedia.org/wiki/Castel_dell%27Ovo"
+            },
+            {
+              "title": "FAI – Fondo Ambiente Italiano",
+              "url": "https://fondoambiente.it/luoghi/castel-dell-ovo"
+            },
+            {
+              "title": "Italia.it — Official Italian tourism portal",
+              "url": "https://www.italia.it/it/campania/napoli/castel-dell-ovo"
+            },
+            {
+              "title": "Comune di Napoli — official local myth and history",
+              "url": "https://www.comune.napoli.it/flex/cm/pages/ServeAttachment.php/L/EN/D/D.ad7f5e94ecd973db08a5/P/BLOB%3AID%3D5649/E/pdf?mode=inline"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "santa-chiara",
+      "name": "Santa Chiara",
+      "site": "Naples",
+      "street": "Via Santa Chiara",
+      "latitude": 40.84688056,
+      "longitude": 14.25286944,
+      "cameraImage": "santaChiara",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [
+        "Gothic façade",
+        "Tall bell tower",
+        "Majolica cloister"
+      ],
+      "showsMapLabel": true,
+      "referenceImages": [
+        "santaChiara",
+        "santaChiara2"
+      ],
+      "aiDescriptions": [
+        "a tall plain Gothic church façade of pale stone with a rose window and a square bell tower",
+        "the basilica of Santa Chiara in Naples seen from its courtyard gate"
+      ],
+      "cameraRecognition": true,
+      "story": {
+        "eyebrow": "Santa Chiara · Naples",
+        "question": "This Gothic church looks bare inside. What damaged it so badly in 1943?",
+        "answers": [
+          "An earthquake",
+          "Bombing raids",
+          "Vesuvius erupting"
+        ],
+        "correctIndex": 1,
+        "answerTitle": "Bombing raids.",
+        "subtitle": "Restorers brought back its Gothic look.",
+        "body": "Santa Chiara’s medieval church gained Baroque decoration, then suffered devastating damage during bombing in 1943. Restoration revived much of its Gothic appearance. Its cloister preserves a different era through bright 18th-century ceramic tiles.",
+        "source": "Published sources",
+        "theory": null,
+        "dinnerLine": "“Santa Chiara looks medieval today partly because of a 1943 bombing.”",
+        "lookCloser": null,
+        "sticker": {
+          "id": "majolica-cloister",
+          "title": "Majolica cloister",
+          "collection": "Rose again",
+          "image": "santaChiaraCloister",
+          "crop": {
+            "x": 0.05,
+            "y": 0.5,
+            "w": 0.5,
+            "h": 0.35
+          },
+          "back": "Santa Chiara’s cloister is covered in 18th-century majolica tiles."
+        },
+        "recallChoices": [
+          "Earthquake",
+          "Bombs",
+          "Vesuvius"
+        ],
+        "recallPrompt": "Remember Santa Chiara? What damaged it in 1943?",
+        "factCheck": {
+          "status": "sourced",
+          "checkedOn": "2026-11-20",
+          "sources": [
+            {
+              "title": "Comune di Napoli — NapoliForMe",
+              "url": "https://napoliforme.comune.napoli.it/pois/-/poi/Chiesa-di-Santa-Chiara"
+            },
+            {
+              "title": "Comune di Napoli — World Heritage heritage guide",
+              "url": "https://patrimoniomondiale.comune.napoli.it/santa-chiara/"
+            },
+            {
+              "title": "Monastero di Santa Chiara — official history",
+              "url": "https://www.monasterodisantachiara.it/benvenuti/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "teatro-san-carlo",
+      "name": "Teatro di San Carlo",
+      "site": "Naples",
+      "street": "Via San Carlo",
+      "latitude": 40.83738823,
+      "longitude": 14.2496871,
+      "cameraImage": "sanCarlo",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [
+        "Arched entrances",
+        "Columned loggia",
+        "Next to the royal palace"
+      ],
+      "showsMapLabel": true,
+      "referenceImages": [
+        "sanCarlo"
+      ],
+      "aiDescriptions": [
+        "a neoclassical opera house façade with rusticated arches at street level and a columned loggia above",
+        "the Teatro di San Carlo opera house in Naples"
+      ],
+      "cameraRecognition": true,
+      "thenNow": {
+        "then": "sanCarloEngraving",
+        "thenCaption": "In an old engraving",
+        "now": "sanCarlo",
+        "nowCaption": "Today"
+      },
+      "story": {
+        "eyebrow": "Teatro di San Carlo · Naples",
+        "question": "Fire gutted this opera house in 1816. How long did rebuilding take?",
+        "answers": [
+          "About nine months",
+          "Twelve years",
+          "Half a century"
+        ],
+        "correctIndex": 0,
+        "answerTitle": "About nine months.",
+        "subtitle": "It reopened in January 1817.",
+        "body": "Teatro San Carlo opened in 1737. A fire destroyed its auditorium in 1816, but reconstruction led by Antonio Niccolini took about nine months. The theater reopened in January 1817—an extraordinary recovery after the disaster.",
+        "source": "Published sources",
+        "theory": null,
+        "dinnerLine": "“San Carlo burned in 1816, and nine months later people were singing there again.”",
+        "lookCloser": null,
+        "sticker": {
+          "id": "opera-reborn",
+          "title": "Opera reborn",
+          "collection": "Rose again",
+          "image": "sanCarlo",
+          "crop": {
+            "x": 0.15,
+            "y": 0.2,
+            "w": 0.7,
+            "h": 0.5
+          },
+          "back": "Burned in 1816, reopened in January 1817."
+        },
+        "recallChoices": [
+          "Nine months",
+          "Twelve years",
+          "Fifty years"
+        ],
+        "recallPrompt": "Remember San Carlo? How long did rebuilding take after the 1816 fire?",
+        "factCheck": {
+          "status": "sourced",
+          "checkedOn": "2026-11-20",
+          "sources": [
+            {
+              "title": "Italian Ministry of Culture — Teatro San Carlo",
+              "url": "https://cultura.gov.it/luogo/teatro-san-carlo"
+            },
+            {
+              "title": "Italian Ministry of Culture SIUSA — Fondazione Teatro San Carlo",
+              "url": "https://siusa-archivi.cultura.gov.it/cgi-bin/pagina.pl?Chiave=16496&TipoPag=cons"
+            },
+            {
+              "title": "Italian Ministry of Culture — history of Antonio Niccolini and reopening",
+              "url": "https://cultura.gov.it/comunicato/mostra-antonio-niccolini-scenografo-dei-reali-teatri-di-napoli"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "castel-nuovo",
+      "name": "Castel Nuovo",
+      "site": "Naples",
+      "street": "Piazza Municipio",
+      "latitude": 40.83837611,
+      "longitude": 14.25380694,
+      "cameraImage": "castelNuovo",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [
+        "Round dark towers",
+        "White marble arch",
+        "Near the port"
+      ],
+      "showsMapLabel": true,
+      "referenceImages": [
+        "castelNuovo",
+        "castelNuovo2",
+        "castelNuovoArch"
+      ],
+      "aiDescriptions": [
+        "a medieval castle with two massive round dark stone towers and a white marble Renaissance triumphal arch between them",
+        "Castel Nuovo, the Maschio Angioino, in Naples"
+      ],
+      "cameraRecognition": true,
+      "story": {
+        "eyebrow": "Castel Nuovo · Naples",
+        "question": "Why is a white marble arch squeezed between these dark towers?",
+        "answers": [
+          "To celebrate a king’s arrival",
+          "To mark a naval victory",
+          "To replace a fallen gate"
+        ],
+        "correctIndex": 0,
+        "answerTitle": "A king’s arrival.",
+        "subtitle": "Alfonso of Aragon’s triumph, in marble.",
+        "body": "Alfonso of Aragon commissioned the triumphal monument to celebrate his arrival in Naples. A Renaissance celebration still stands against the older castle walls.",
+        "source": "Published sources",
+        "theory": null,
+        "dinnerLine": "“Castel Nuovo’s white arch celebrates Alfonso of Aragon entering Naples.”",
+        "lookCloser": {
+          "prompt": "Find the king’s procession carved across the arch.",
+          "hint": "Tip: look above the lower archway",
+          "image": "castelNuovoArch",
+          "anchor": {
+            "x": 0.5,
+            "y": 0.45
+          },
+          "zoom": 1.0,
+          "target": {
+            "x": 0.47,
+            "y": 0.46
+          }
+        },
+        "sticker": {
+          "id": "kings-arch",
+          "title": "The king’s arch",
+          "collection": "Royal Naples",
+          "image": "castelNuovoArch",
+          "crop": {
+            "x": 0.33,
+            "y": 0.38,
+            "w": 0.36,
+            "h": 0.16
+          },
+          "back": "Alfonso of Aragon built this arch to celebrate entering Naples."
+        },
+        "recallChoices": [
+          "A king",
+          "Sea battle",
+          "Fallen gate"
+        ],
+        "recallPrompt": "Remember Castel Nuovo’s white arch? What does it celebrate?",
+        "factCheck": {
+          "status": "sourced",
+          "checkedOn": "2026-11-20",
+          "sources": [
+            {
+              "title": "Italian Ministry of Culture / Biblioteca Universitaria di Napoli",
+              "url": "https://bibliotecauniversitarianapoli.cultura.gov.it/it/442/castel-nuovo"
+            },
+            {
+              "title": "Ministry of Culture — Historical catalogue",
+              "url": "https://catalogo.beniculturali.it/approfondimento/campania-provincia-napoli/castel-nuovo-napoli"
+            },
+            {
+              "title": "Italian Ministry of Culture — arch restoration and purpose",
+              "url": "https://trasparenza.cultura.gov.it/archivio105_procedure-dal-01012024_0_27811_566_1.html"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pio-monte-misericordia",
+      "name": "Pio Monte della Misericordia",
+      "site": "Naples",
+      "street": "Via dei Tribunali",
+      "latitude": 40.8518057,
+      "longitude": 14.2603541,
+      "cameraImage": "pioMonte",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [
+        "Arched porch",
+        "Caravaggio inside",
+        "A charity since 1602"
+      ],
+      "showsMapLabel": true,
+      "referenceImages": [
+        "pioMonte",
+        "pioMonte2"
+      ],
+      "aiDescriptions": [
+        "a palazzo with a porch of five stone arches on a narrow old street",
+        "Pio Monte della Misericordia in Naples"
+      ],
+      "cameraRecognition": false,
+      "story": {
+        "eyebrow": "Pio Monte della Misericordia · Naples",
+        "question": "Caravaggio painted seven acts of kindness for this charity. On how many canvases?",
+        "answers": [
+          "Seven",
+          "Just one",
+          "Three"
+        ],
+        "correctIndex": 1,
+        "answerTitle": "Just one.",
+        "subtitle": "Painted in 1606–07, after he fled Rome.",
+        "body": "After fleeing Rome in 1606, Caravaggio painted the Seven Works of Mercy for this Neapolitan charity. Instead of seven separate pictures, he brought the acts of compassion together in one dramatic painting, completed in 1606–1607.",
+        "source": "Published sources",
+        "theory": null,
+        "dinnerLine": "“Caravaggio fit seven acts of mercy into a single painting in Naples.”",
+        "lookCloser": {
+          "prompt": "Find the dead man being carried away: only his feet show.",
+          "hint": "Tip: look below the torch",
+          "image": "sevenWorksOfMercy",
+          "anchor": {
+            "x": 0.5,
+            "y": 0.6
+          },
+          "zoom": 1.0,
+          "target": {
+            "x": 0.62,
+            "y": 0.66
+          }
+        },
+        "sticker": {
+          "id": "seven-kindnesses",
+          "title": "Seven kindnesses",
+          "collection": "Masterpieces",
+          "image": "sevenWorksOfMercy",
+          "crop": {
+            "x": 0.66,
+            "y": 0.43,
+            "w": 0.32,
+            "h": 0.22
+          },
+          "back": "Caravaggio painted all seven works of mercy on one canvas."
+        },
+        "recallChoices": [
+          "Seven",
+          "One",
+          "Three"
+        ],
+        "recallPrompt": "Remember Caravaggio’s Seven Works of Mercy? On how many canvases?",
+        "factCheck": {
+          "status": "sourced",
+          "checkedOn": "2026-11-20",
+          "sources": [
+            {
+              "title": "Pio Monte della Misericordia — Caravaggio",
+              "url": "https://piomontedellamisericordia.it/caravaggio/"
+            },
+            {
+              "title": "Italian Ministry of Culture — Artwork catalogue",
+              "url": "https://catalogo.beniculturali.it/detail/HistoricOrArtisticProperty/1500409817"
+            },
+            {
+              "title": "Pio Monte della Misericordia — artist’s context",
+              "url": "https://piomontedellamisericordia.it/caravaggio-2/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "galleria-borbonica",
+      "name": "Bourbon Tunnel",
+      "site": "Naples",
+      "street": "Vico del Grottone",
+      "latitude": 40.83547277,
+      "longitude": 14.24627202,
+      "cameraImage": "borbonica",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [
+        "Underground",
+        "Old cars in the dark",
+        "Built for a king"
+      ],
+      "showsMapLabel": true,
+      "referenceImages": [
+        "borbonica",
+        "borbonica2"
+      ],
+      "aiDescriptions": [
+        "a huge underground cavern carved in yellow tuff stone with old cars and motorbikes",
+        "the Bourbon Tunnel under Naples"
+      ],
+      "cameraRecognition": false,
+      "entrance": {
+        "latitude": 40.8354768,
+        "longitude": 14.246277,
+        "note": "Vico del Grottone 4 (guided tours)"
+      },
+      "story": {
+        "eyebrow": "Bourbon Tunnel · Naples",
+        "question": "A king ordered this tunnel in 1853. What did it become in the Second World War?",
+        "answers": [
+          "An air-raid shelter",
+          "A secret hospital",
+          "A weapons factory"
+        ],
+        "correctIndex": 0,
+        "answerTitle": "An air-raid shelter.",
+        "subtitle": "Neapolitans hid here from the bombs.",
+        "body": "In 1853, King Ferdinand II ordered this underground passage through Naples. Decades later, the tunnel and nearby cisterns sheltered residents during Second World War air raids. One underground space served two very different eras.",
+        "source": "Published sources",
+        "theory": null,
+        "dinnerLine": "“A king’s tunnel under Naples later sheltered people from wartime bombs.”",
+        "lookCloser": {
+          "prompt": "Find the old vehicles left behind in the dark.",
+          "hint": "Tip: look along the floor",
+          "image": "borbonica",
+          "anchor": {
+            "x": 0.6,
+            "y": 0.7
+          },
+          "zoom": 1.0,
+          "target": {
+            "x": 0.72,
+            "y": 0.9
+          }
+        },
+        "sticker": {
+          "id": "hidden-shelter",
+          "title": "The hidden shelter",
+          "collection": "Underground",
+          "image": "borbonica",
+          "crop": {
+            "x": 0.55,
+            "y": 0.75,
+            "w": 0.4,
+            "h": 0.22
+          },
+          "back": "Begun in 1853 for Ferdinand II; a shelter in the Second World War."
+        },
+        "recallChoices": [
+          "Shelter",
+          "Hospital",
+          "Factory"
+        ],
+        "recallPrompt": "Remember the Bourbon Tunnel? What did it become in the war?",
+        "factCheck": {
+          "status": "sourced",
+          "checkedOn": "2026-11-20",
+          "sources": [
+            {
+              "title": "Galleria Borbonica — Official operator history",
+              "url": "https://www.galleriaborbonica.com/it/storia"
+            },
+            {
+              "title": "Royal District of Naples",
+              "url": "https://www.royaldistrict.it/siti-borbonici/galleria-borbonica/"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "galleria-umberto-i",
+      "name": "Galleria Umberto I",
+      "site": "Naples",
+      "street": "Via San Carlo",
+      "latitude": 40.83844167,
+      "longitude": 14.24948333,
+      "cameraImage": "galleriaUmberto",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [
+        "Glass dome",
+        "Iron and glass roof",
+        "Marble floor"
+      ],
+      "showsMapLabel": true,
+      "referenceImages": [
+        "galleriaUmberto",
+        "galleriaUmberto2"
+      ],
+      "aiDescriptions": [
+        "a grand shopping arcade with an iron and glass dome and a patterned marble floor",
+        "the interior of Galleria Umberto I in Naples"
+      ],
+      "cameraRecognition": true,
+      "thenNow": {
+        "then": "galleriaUmbertoEngraving",
+        "thenCaption": "In an old engraving",
+        "now": "galleriaUmberto",
+        "nowCaption": "Today"
+      },
+      "story": {
+        "eyebrow": "Galleria Umberto I · Naples",
+        "question": "Look down. What is set into the floor beneath this glass dome?",
+        "answers": [
+          "A map of old Naples",
+          "The signs of the zodiac",
+          "The builders’ names"
+        ],
+        "correctIndex": 1,
+        "answerTitle": "The signs of the zodiac.",
+        "subtitle": "Around a compass rose.",
+        "body": "Built between 1887 and 1890, Galleria Umberto I replaced unhealthy old streets with a grand shopping arcade. Under its iron-and-glass dome, the floor hides zodiac mosaics and a compass rose. Look down before looking up.",
+        "source": "Published sources",
+        "theory": null,
+        "dinnerLine": "“Galleria Umberto I hides the zodiac in its floor, right under the glass dome.”",
+        "lookCloser": null,
+        "sticker": {
+          "id": "zodiac-floor",
+          "title": "Zodiac underfoot",
+          "collection": "Hidden details",
+          "image": "galleriaUmberto",
+          "crop": {
+            "x": 0.3,
+            "y": 0.0,
+            "w": 0.4,
+            "h": 0.4
+          },
+          "back": "Galleria Umberto I was built between 1887 and 1890."
+        },
+        "recallChoices": [
+          "Old map",
+          "Zodiac",
+          "Names"
+        ],
+        "recallPrompt": "Remember Galleria Umberto I? What is in the floor under the dome?",
+        "factCheck": {
+          "status": "sourced",
+          "checkedOn": "2026-11-20",
+          "sources": [
+            {
+              "title": "Comune di Napoli — NapoliForMe",
+              "url": "https://napoliforme.comune.napoli.it/en/pois/-/poi/Umberto-I-Gallery"
+            },
+            {
+              "title": "Italian heritage catalogue — historical gallery record",
+              "url": "https://catalogo.beniculturali.it/detail/PhotographicHeritage/1500953655"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "catacombe-san-gennaro",
+      "name": "Catacombs of San Gennaro",
+      "site": "Naples",
+      "street": "Via Capodimonte",
+      "latitude": 40.86418056,
+      "longitude": 14.247625,
+      "cameraImage": "sanGennaroCatacombs",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [
+        "Underground",
+        "Painted tombs",
+        "Ancient mosaics"
+      ],
+      "showsMapLabel": true,
+      "referenceImages": [
+        "sanGennaroCatacombs",
+        "sanGennaroCatacombs2"
+      ],
+      "aiDescriptions": [
+        "an underground early Christian catacomb with carved tuff galleries and burial niches",
+        "the Catacombs of San Gennaro in Naples"
+      ],
+      "cameraRecognition": false,
+      "entrance": {
+        "latitude": 40.8650574,
+        "longitude": 14.2473645,
+        "note": "Beside the Basilica dell’Incoronata Madre del Buon Consiglio"
+      },
+      "story": {
+        "eyebrow": "Catacombs of San Gennaro · Naples",
+        "question": "A 5th-century bishop’s face survives in mosaic down here. Where was he bishop?",
+        "answers": [
+          "Constantinople",
+          "Jerusalem",
+          "Carthage, in Africa"
+        ],
+        "correctIndex": 2,
+        "answerTitle": "Carthage.",
+        "subtitle": "His name was Quodvultdeus.",
+        "body": "Beneath Naples, early Christians created extensive burial chambers. Later additions included the Crypt of the Bishops, where a fifth-century mosaic depicts Quodvultdeus, a bishop of Carthage. The underground art reveals links across the Mediterranean.",
+        "source": "Published sources",
+        "theory": null,
+        "dinnerLine": "“Under Naples there’s a 1,500-year-old mosaic of a bishop from Carthage.”",
+        "lookCloser": {
+          "prompt": "Find the book the bishop is holding.",
+          "hint": "Tip: look at his hands",
+          "image": "quodvultdeus",
+          "anchor": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "zoom": 1.0,
+          "target": {
+            "x": 0.62,
+            "y": 0.68
+          }
+        },
+        "sticker": {
+          "id": "bishop-of-carthage",
+          "title": "The bishop from Carthage",
+          "collection": "Underground",
+          "image": "quodvultdeus",
+          "crop": {
+            "x": 0.25,
+            "y": 0.0,
+            "w": 0.4,
+            "h": 0.45
+          },
+          "back": "A 5th-century mosaic of Quodvultdeus, bishop of Carthage."
+        },
+        "recallChoices": [
+          "Constantinople",
+          "Jerusalem",
+          "Carthage"
+        ],
+        "recallPrompt": "Remember the bishop in the catacombs? Where was he bishop?",
+        "factCheck": {
+          "status": "sourced",
+          "checkedOn": "2026-11-20",
+          "sources": [
+            {
+              "title": "Catacombe di Napoli — Official site history",
+              "url": "https://catacombedinapoli.it/it/luoghi/catacombe-di-san-gennaro-napoli/"
+            },
+            {
+              "title": "Catacombe di Napoli — English official site",
+              "url": "https://catacombedinapoli.it/en/luoghi/catacombs-of-san-gennaro-naples/"
+            },
+            {
+              "title": "Italia.it — Catacombs heritage guide",
+              "url": "https://www.italia.it/it/campania/napoli/cosa-fare/catacombe-di-napoli"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "catacombe-san-gaudioso",
+      "name": "Catacombs of San Gaudioso",
+      "site": "Naples",
+      "street": "Piazza Sanità",
+      "latitude": 40.86,
+      "longitude": 14.24888889,
+      "cameraImage": "sanGaudioso",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [
+        "Under a basilica",
+        "Faded frescoes",
+        "Rione Sanità"
+      ],
+      "showsMapLabel": true,
+      "referenceImages": [
+        "sanGaudioso",
+        "sanitaBasilica"
+      ],
+      "aiDescriptions": [
+        "dark underground catacomb corridors with faded frescoes and burial niches",
+        "the Catacombs of San Gaudioso under the Basilica of Santa Maria della Sanità"
+      ],
+      "cameraRecognition": false,
+      "entrance": {
+        "latitude": 40.8597275,
+        "longitude": 14.2490297,
+        "note": "Inside the Basilica di Santa Maria della Sanità"
+      },
+      "story": {
+        "eyebrow": "Catacombs of San Gaudioso · Naples",
+        "question": "These catacombs grew around one 5th-century tomb. Whose?",
+        "answers": [
+          "A Roman emperor",
+          "A bishop from Africa",
+          "Virgil, the poet"
+        ],
+        "correctIndex": 1,
+        "answerTitle": "A bishop from Africa.",
+        "subtitle": "Gaudiosus reached Naples in the 5th century.",
+        "body": "These catacombs grew around the tomb of Gaudiosus, an African bishop who reached Naples in the fifth century. Centuries later, noble families used the underground chambers for burials. Ancient Christian art shares space with later memorials.",
+        "source": "Published sources",
+        "theory": null,
+        "dinnerLine": "“The San Gaudioso catacombs grew around the tomb of a bishop from Africa.”",
+        "lookCloser": {
+          "prompt": "Find the Latin inscription that names Gaudiosus.",
+          "hint": "Tip: look above the tomb",
+          "image": "sanGaudioso2",
+          "anchor": {
+            "x": 0.5,
+            "y": 0.35
+          },
+          "zoom": 1.0,
+          "target": {
+            "x": 0.42,
+            "y": 0.17
+          }
+        },
+        "sticker": {
+          "id": "two-eras-one-tomb",
+          "title": "Two eras, one tomb",
+          "collection": "Underground",
+          "image": "sanGaudioso2",
+          "crop": {
+            "x": 0.2,
+            "y": 0.05,
+            "w": 0.6,
+            "h": 0.55
+          },
+          "back": "Early Christian art beside later noble burials, under the Sanità."
+        },
+        "recallChoices": [
+          "An emperor",
+          "A bishop",
+          "Virgil"
+        ],
+        "recallPrompt": "Remember the San Gaudioso catacombs? Whose tomb did they grow around?",
+        "factCheck": {
+          "status": "sourced",
+          "checkedOn": "2026-11-20",
+          "sources": [
+            {
+              "title": "Catacombe di Napoli — San Gaudioso",
+              "url": "https://catacombedinapoli.it/it/luoghi/catacombe-di-san-gaudioso-napoli/"
+            },
+            {
+              "title": "Vatican Pontifical Commission for Sacred Archaeology — San Gaudioso",
+              "url": "https://www.catacombeditalia.va/content/archeologiasacra/it/visita-catacombe/per-regione/campania/catacomba-di-s-gaudioso.pdf"
+            },
+            {
+              "title": "Italia.it — San Gaudioso and San Severo",
+              "url": "https://www.italia.it/it/campania/napoli/le-catacombe-di-san-gaudioso-e-san-severo"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "tesoro-san-gennaro",
+      "name": "Treasure of San Gennaro Museum",
+      "site": "Naples",
+      "street": "Via Duomo",
+      "latitude": 40.8522834,
+      "longitude": 14.2596841,
+      "cameraImage": "tesoroMuseum2",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [
+        "Next to the Duomo",
+        "Jewels and silver",
+        "Gifts of devotion"
+      ],
+      "showsMapLabel": true,
+      "referenceImages": [
+        "tesoroMuseum2",
+        "tesoroMuseum"
+      ],
+      "aiDescriptions": [
+        "a red neoclassical palazzo beside a cathedral on a busy street",
+        "the Museum of the Treasure of San Gennaro in Naples"
+      ],
+      "cameraRecognition": false,
+      "story": {
+        "eyebrow": "Treasure of San Gennaro Museum · Naples",
+        "question": "San Gennaro’s jewelled necklace was begun in 1679. How did it grow?",
+        "answers": [
+          "Gifts added over generations",
+          "Made in a single year",
+          "Bought by one king"
+        ],
+        "correctIndex": 0,
+        "answerTitle": "Gifts, over generations.",
+        "subtitle": "From kings, queens and ordinary devotees.",
+        "body": "San Gennaro’s jeweled necklace began in 1679 and gained new gems through later donations. Kings, queens and ordinary devotees contributed gifts over generations. The treasure is both an artwork and a record of the city’s devotion.",
+        "source": "Published sources",
+        "theory": null,
+        "dinnerLine": "“San Gennaro’s necklace grew for centuries, one gift at a time.”",
+        "lookCloser": {
+          "prompt": "Find the biggest green stone in the necklace.",
+          "hint": "Tip: look near the centre",
+          "image": "sanGennaroNecklace",
+          "anchor": {
+            "x": 0.5,
+            "y": 0.45
+          },
+          "zoom": 1.0,
+          "target": {
+            "x": 0.5,
+            "y": 0.47
+          }
+        },
+        "sticker": {
+          "id": "treasure-necklace",
+          "title": "The necklace of gifts",
+          "collection": "Masterpieces",
+          "image": "sanGennaroNecklace",
+          "crop": {
+            "x": 0.15,
+            "y": 0.08,
+            "w": 0.7,
+            "h": 0.6
+          },
+          "back": "Begun in 1679, enriched by donations over generations."
+        },
+        "recallChoices": [
+          "Gifts",
+          "One year",
+          "One king"
+        ],
+        "recallPrompt": "Remember San Gennaro’s necklace? How did it grow?",
+        "factCheck": {
+          "status": "sourced",
+          "checkedOn": "2026-11-20",
+          "sources": [
+            {
+              "title": "Comune di Napoli — NapoliForMe",
+              "url": "https://napoliforme.comune.napoli.it/en/pois/-/poi/Museum-of-the-Treasure-of-San-Gennaro"
+            },
+            {
+              "title": "Museum of Treasure of San Gennaro — official collection",
+              "url": "https://tesorosangennaro.it/i-capolavori/"
             }
           ]
         }

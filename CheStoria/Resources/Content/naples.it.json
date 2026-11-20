@@ -1,4 +1,5 @@
 {
+  "city": "Napoli",
   "welcome": {
     "headline": "Ogni angolo qui ha un segreto.",
     "body": "Inquadra qualsiasi cosa. Indovina il suo segreto, poi trova l’indizio. Bastano 30 secondi."
@@ -178,6 +179,344 @@
           "label": "LEGGENDA",
           "lead": "È una leggenda:",
           "text": "nessuno ha mai trovato l’uovo."
+        }
+      }
+    },
+    {
+      "id": "santa-chiara",
+      "name": "Santa Chiara",
+      "clues": [
+        "Facciata gotica",
+        "Alto campanile",
+        "Chiostro maiolicato"
+      ],
+      "story": {
+        "eyebrow": "Santa Chiara · Napoli",
+        "question": "Dentro, questa chiesa gotica sembra spoglia. Che cosa la danneggiò così tanto nel 1943?",
+        "answers": [
+          "Un terremoto",
+          "I bombardamenti",
+          "Un’eruzione del Vesuvio"
+        ],
+        "answerTitle": "I bombardamenti.",
+        "subtitle": "I restauri le ridiedero l’aspetto gotico.",
+        "body": "Santa Chiara fu arricchita in età barocca, ma subì gravi danni durante i bombardamenti del 1943. I restauri recuperarono gran parte dell’aspetto gotico. Il chiostro conserva un’altra epoca, raccontata dalle vivaci maioliche settecentesche.",
+        "source": "Fonti pubblicate",
+        "dinnerLine": "«Santa Chiara oggi sembra medievale anche a causa di un bombardamento del 1943.»",
+        "sticker": {
+          "title": "Chiostro maiolicato",
+          "collection": "Rinati",
+          "back": "Il chiostro di Santa Chiara è rivestito di maioliche del Settecento."
+        },
+        "recallChoices": [
+          "Terremoto",
+          "Bombe",
+          "Vesuvio"
+        ],
+        "recallPrompt": "Ricordi Santa Chiara? Che cosa la danneggiò nel 1943?"
+      }
+    },
+    {
+      "id": "teatro-san-carlo",
+      "name": "Teatro di San Carlo",
+      "clues": [
+        "Ingressi ad arco",
+        "Loggia con colonne",
+        "Accanto al Palazzo Reale"
+      ],
+      "story": {
+        "eyebrow": "Teatro di San Carlo · Napoli",
+        "question": "Nel 1816 un incendio devastò questo teatro d’opera. Quanto durò la ricostruzione?",
+        "answers": [
+          "Circa nove mesi",
+          "Dodici anni",
+          "Mezzo secolo"
+        ],
+        "answerTitle": "Circa nove mesi.",
+        "subtitle": "Riaprì nel gennaio 1817.",
+        "body": "Il Teatro San Carlo aprì nel 1737. Un incendio distrusse la sala nel 1816, ma la ricostruzione guidata da Antonio Niccolini durò circa nove mesi. Il teatro riaprì nel gennaio 1817: una ripresa straordinaria dopo il disastro.",
+        "source": "Fonti pubblicate",
+        "dinnerLine": "«Il San Carlo bruciò nel 1816 e nove mesi dopo si cantava di nuovo.»",
+        "sticker": {
+          "title": "L’opera rinata",
+          "collection": "Rinati",
+          "back": "Bruciato nel 1816, riaperto nel gennaio 1817."
+        },
+        "recallChoices": [
+          "Nove mesi",
+          "Dodici anni",
+          "Cinquant’anni"
+        ],
+        "recallPrompt": "Ricordi il San Carlo? Quanto durò la ricostruzione dopo l’incendio del 1816?"
+      },
+      "thenNow": {
+        "thenCaption": "In un’antica incisione",
+        "nowCaption": "Oggi"
+      }
+    },
+    {
+      "id": "castel-nuovo",
+      "name": "Castel Nuovo",
+      "clues": [
+        "Torri scure e rotonde",
+        "Arco di marmo bianco",
+        "Vicino al porto"
+      ],
+      "story": {
+        "eyebrow": "Castel Nuovo · Napoli",
+        "question": "Perché un arco di marmo bianco è incastrato tra queste torri scure?",
+        "answers": [
+          "Per celebrare l’arrivo di un re",
+          "Per una vittoria navale",
+          "Per sostituire una porta crollata"
+        ],
+        "answerTitle": "L’arrivo di un re.",
+        "subtitle": "Il trionfo di Alfonso d’Aragona, nel marmo.",
+        "body": "Alfonso d’Aragona lo fece realizzare per celebrare il suo ingresso a Napoli. Un monumento rinascimentale alla vittoria si staglia ancora contro le mura più antiche.",
+        "source": "Fonti pubblicate",
+        "dinnerLine": "«L’arco bianco del Maschio Angioino celebra l’ingresso di Alfonso d’Aragona a Napoli.»",
+        "sticker": {
+          "title": "L’arco del re",
+          "collection": "Napoli reale",
+          "back": "Alfonso d’Aragona fece costruire quest’arco per celebrare il suo ingresso a Napoli."
+        },
+        "recallChoices": [
+          "Un re",
+          "Battaglia navale",
+          "Porta crollata"
+        ],
+        "recallPrompt": "Ricordi l’arco bianco del Maschio Angioino? Che cosa celebra?",
+        "lookCloser": {
+          "prompt": "Trova il corteo del re scolpito sull’arco.",
+          "hint": "Suggerimento: guarda sopra l’arcata inferiore"
+        }
+      }
+    },
+    {
+      "id": "pio-monte-misericordia",
+      "name": "Pio Monte della Misericordia",
+      "clues": [
+        "Portico ad archi",
+        "Caravaggio all’interno",
+        "Carità dal 1602"
+      ],
+      "story": {
+        "eyebrow": "Pio Monte della Misericordia · Napoli",
+        "question": "Caravaggio dipinse sette opere di misericordia per questa istituzione. Su quante tele?",
+        "answers": [
+          "Sette",
+          "Una sola",
+          "Tre"
+        ],
+        "answerTitle": "Una sola.",
+        "subtitle": "Dipinta nel 1606–07, dopo la fuga da Roma.",
+        "body": "Dopo la fuga da Roma nel 1606, Caravaggio dipinse le Sette opere di misericordia per un’istituzione caritativa napoletana. Invece di sette quadri distinti, raccolse i gesti di compassione in un’unica scena drammatica, realizzata tra il 1606 e il 1607.",
+        "source": "Fonti pubblicate",
+        "dinnerLine": "«Caravaggio racchiuse sette opere di misericordia in un solo dipinto, a Napoli.»",
+        "sticker": {
+          "title": "Sette gesti di bontà",
+          "collection": "Capolavori",
+          "back": "Caravaggio dipinse tutte e sette le opere di misericordia su una sola tela."
+        },
+        "recallChoices": [
+          "Sette",
+          "Una",
+          "Tre"
+        ],
+        "recallPrompt": "Ricordi le Sette opere di misericordia di Caravaggio? Su quante tele?",
+        "lookCloser": {
+          "prompt": "Trova il morto portato via: si vedono solo i piedi.",
+          "hint": "Suggerimento: guarda sotto la torcia"
+        }
+      }
+    },
+    {
+      "id": "galleria-borbonica",
+      "name": "Galleria Borbonica",
+      "clues": [
+        "Sottoterra",
+        "Vecchie auto nel buio",
+        "Voluta da un re"
+      ],
+      "story": {
+        "eyebrow": "Galleria Borbonica · Napoli",
+        "question": "Un re ordinò questa galleria nel 1853. Che cosa diventò nella Seconda guerra mondiale?",
+        "answers": [
+          "Un rifugio antiaereo",
+          "Un ospedale segreto",
+          "Una fabbrica d’armi"
+        ],
+        "answerTitle": "Un rifugio antiaereo.",
+        "subtitle": "I napoletani vi si rifugiarono dalle bombe.",
+        "body": "Nel 1853 Ferdinando II ordinò la costruzione di un passaggio sotterraneo a Napoli. Decenni dopo, la galleria e le cisterne vicine offrirono riparo durante i bombardamenti della Seconda guerra mondiale. Lo stesso luogo ebbe due vite molto diverse.",
+        "source": "Fonti pubblicate",
+        "dinnerLine": "«Una galleria voluta da un re, sotto Napoli, riparò poi la gente dalle bombe della guerra.»",
+        "sticker": {
+          "title": "Il rifugio nascosto",
+          "collection": "Sottoterra",
+          "back": "Iniziata nel 1853 per Ferdinando II; rifugio nella Seconda guerra mondiale."
+        },
+        "recallChoices": [
+          "Rifugio",
+          "Ospedale",
+          "Fabbrica"
+        ],
+        "recallPrompt": "Ricordi la Galleria Borbonica? Che cosa diventò in guerra?",
+        "lookCloser": {
+          "prompt": "Trova i vecchi veicoli lasciati nel buio.",
+          "hint": "Suggerimento: guarda a terra"
+        }
+      }
+    },
+    {
+      "id": "galleria-umberto-i",
+      "name": "Galleria Umberto I",
+      "clues": [
+        "Cupola di vetro",
+        "Tetto in ferro e vetro",
+        "Pavimento in marmo"
+      ],
+      "story": {
+        "eyebrow": "Galleria Umberto I · Napoli",
+        "question": "Guarda in basso. Che cosa c’è nel pavimento sotto questa cupola di vetro?",
+        "answers": [
+          "Una mappa della vecchia Napoli",
+          "I segni dello zodiaco",
+          "I nomi dei costruttori"
+        ],
+        "answerTitle": "I segni dello zodiaco.",
+        "subtitle": "Attorno a una rosa dei venti.",
+        "body": "Costruita tra il 1887 e il 1890, la Galleria Umberto I sostituì vecchie strade malsane con un elegante passaggio commerciale. Sotto la cupola in ferro e vetro, il pavimento custodisce mosaici zodiacali e una rosa dei venti.",
+        "source": "Fonti pubblicate",
+        "dinnerLine": "«La Galleria Umberto I nasconde lo zodiaco nel pavimento, proprio sotto la cupola.»",
+        "sticker": {
+          "title": "Lo zodiaco sotto i piedi",
+          "collection": "Dettagli nascosti",
+          "back": "La Galleria Umberto I fu costruita tra il 1887 e il 1890."
+        },
+        "recallChoices": [
+          "Vecchia mappa",
+          "Zodiaco",
+          "Nomi"
+        ],
+        "recallPrompt": "Ricordi la Galleria Umberto I? Che cosa c’è nel pavimento sotto la cupola?"
+      },
+      "thenNow": {
+        "thenCaption": "In un’antica incisione",
+        "nowCaption": "Oggi"
+      }
+    },
+    {
+      "id": "catacombe-san-gennaro",
+      "name": "Catacombe di San Gennaro",
+      "clues": [
+        "Sottoterra",
+        "Tombe dipinte",
+        "Mosaici antichi"
+      ],
+      "story": {
+        "eyebrow": "Catacombe di San Gennaro · Napoli",
+        "question": "Qui sotto sopravvive in mosaico il volto di un vescovo del V secolo. Di quale città era vescovo?",
+        "answers": [
+          "Costantinopoli",
+          "Gerusalemme",
+          "Cartagine, in Africa"
+        ],
+        "answerTitle": "Cartagine.",
+        "subtitle": "Si chiamava Quodvultdeus.",
+        "body": "Sotto Napoli, i primi cristiani crearono ampie camere funerarie. Tra gli ambienti successivi c’è la Cripta dei Vescovi, dove un mosaico del V secolo raffigura Quodvultdeus, vescovo di Cartagine. Quest’arte sotterranea racconta legami mediterranei.",
+        "source": "Fonti pubblicate",
+        "dinnerLine": "«Sotto Napoli c’è un mosaico di 1.500 anni fa con un vescovo di Cartagine.»",
+        "sticker": {
+          "title": "Il vescovo di Cartagine",
+          "collection": "Sottoterra",
+          "back": "Un mosaico del V secolo di Quodvultdeus, vescovo di Cartagine."
+        },
+        "recallChoices": [
+          "Costantinopoli",
+          "Gerusalemme",
+          "Cartagine"
+        ],
+        "recallPrompt": "Ricordi il vescovo nelle catacombe? Di quale città era vescovo?",
+        "lookCloser": {
+          "prompt": "Trova il libro che il vescovo tiene in mano.",
+          "hint": "Suggerimento: guarda le sue mani"
+        }
+      }
+    },
+    {
+      "id": "catacombe-san-gaudioso",
+      "name": "Catacombe di San Gaudioso",
+      "clues": [
+        "Sotto una basilica",
+        "Affreschi sbiaditi",
+        "Rione Sanità"
+      ],
+      "story": {
+        "eyebrow": "Catacombe di San Gaudioso · Napoli",
+        "question": "Queste catacombe crebbero attorno a una tomba del V secolo. Di chi?",
+        "answers": [
+          "Un imperatore romano",
+          "Un vescovo africano",
+          "Il poeta Virgilio"
+        ],
+        "answerTitle": "Un vescovo africano.",
+        "subtitle": "Gaudioso giunse a Napoli nel V secolo.",
+        "body": "Queste catacombe si svilupparono attorno alla tomba di Gaudioso, vescovo africano arrivato a Napoli nel V secolo. Secoli dopo, famiglie nobili usarono gli ambienti sotterranei per le sepolture. Antichi affreschi cristiani convivono con memorie più recenti.",
+        "source": "Fonti pubblicate",
+        "dinnerLine": "«Le catacombe di San Gaudioso nacquero attorno alla tomba di un vescovo africano.»",
+        "sticker": {
+          "title": "Due epoche, una tomba",
+          "collection": "Sottoterra",
+          "back": "Arte paleocristiana accanto a sepolture nobili più tarde, sotto la Sanità."
+        },
+        "recallChoices": [
+          "Un imperatore",
+          "Un vescovo",
+          "Virgilio"
+        ],
+        "recallPrompt": "Ricordi le catacombe di San Gaudioso? Attorno alla tomba di chi nacquero?",
+        "lookCloser": {
+          "prompt": "Trova l’iscrizione latina che nomina Gaudioso.",
+          "hint": "Suggerimento: guarda sopra la tomba"
+        }
+      }
+    },
+    {
+      "id": "tesoro-san-gennaro",
+      "name": "Museo del Tesoro di San Gennaro",
+      "clues": [
+        "Accanto al Duomo",
+        "Gioielli e argenti",
+        "Doni di devozione"
+      ],
+      "story": {
+        "eyebrow": "Museo del Tesoro di San Gennaro · Napoli",
+        "question": "La collana di San Gennaro fu iniziata nel 1679. Come crebbe?",
+        "answers": [
+          "Doni aggiunti per generazioni",
+          "Realizzata in un solo anno",
+          "Comprata da un solo re"
+        ],
+        "answerTitle": "Doni, per generazioni.",
+        "subtitle": "Da re, regine e semplici fedeli.",
+        "body": "La preziosa collana di San Gennaro ebbe inizio nel 1679 e fu arricchita da donazioni successive. Re, regine e fedeli offrirono gioielli nel corso delle generazioni. Il tesoro è insieme un’opera d’arte e una testimonianza della devozione cittadina.",
+        "source": "Fonti pubblicate",
+        "dinnerLine": "«La collana di San Gennaro è cresciuta per secoli, un dono alla volta.»",
+        "sticker": {
+          "title": "La collana dei doni",
+          "collection": "Capolavori",
+          "back": "Iniziata nel 1679, arricchita da donazioni per generazioni."
+        },
+        "recallChoices": [
+          "Doni",
+          "Un anno",
+          "Un re"
+        ],
+        "recallPrompt": "Ricordi la collana di San Gennaro? Come crebbe?",
+        "lookCloser": {
+          "prompt": "Trova la pietra verde più grande della collana.",
+          "hint": "Suggerimento: guarda vicino al centro"
         }
       }
     }

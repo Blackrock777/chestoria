@@ -14,6 +14,9 @@
 <p>
 <img src="docs/screenshots/21-live-ai.jpg" width="160"> <img src="docs/screenshots/23-not-a-place-coffee.jpg" width="160"> <img src="docs/screenshots/24-which-one-street.jpg" width="160"> <img src="docs/screenshots/22-then-now-card.jpg" width="160"> <img src="docs/screenshots/20-welcome-real.jpg" width="160"> <img src="docs/screenshots/25-apple-maps-trip.jpg" width="160">
 </p>
+<p>
+<img src="docs/screenshots/26-naples-13-places.jpg" width="160"> <img src="docs/screenshots/27-pio-monte-question-it.jpg" width="160"> <img src="docs/screenshots/28-castel-nuovo-closer.jpg" width="160">
+</p>
 
 ## The loop
 
@@ -32,7 +35,7 @@ Every design decision maps to the team's research: the language gap, little time
 - **On-device AI recognition (real time)**: Google's SigLIP model (Apache-2.0) runs on the phone with Core ML. While you aim, the Snap screen says what it sees ("I see a church façade", or "This looks like Gesù Nuovo · tap the shutter"). After a photo it opens the right story, asks "Which one is it?" when two places are close (with "None of these"), or says kindly what the photo shows ("That looks like a cup of coffee") when it isn't a place. No internet, no account, no cost per photo.
 - **Profile and accounts**: Sign in with Apple, or email and password. Passwords are salted and hashed (PBKDF2-SHA256) and kept in the Keychain. Profile also has settings (language, haptics, next-morning question, read aloud), sign-out and account deletion.
 - **Everything is content**: places, stories, maps, welcome text, tickets, translations and interface text are JSON. See [CONTENT.md](CONTENT.md).
-- **Two sites**: Pompeii (Forum, Thermopolium, House of the Tragic Poet) and Naples (Gesù Nuovo, Piazza del Plebiscito with a real car-park Then & Now, Cappella Sansevero, Castel dell’Ovo). Switch in Profile; the app offers to switch when you are standing in the other site. Each site keeps its own trip.
+- **Two sites**: Pompeii (Forum, Thermopolium, House of the Tragic Poet) and Naples with 13 places: Gesù Nuovo, Piazza del Plebiscito (car-park Then & Now), Cappella Sansevero, Castel dell’Ovo, Santa Chiara, Teatro di San Carlo (engraving Then & Now), Castel Nuovo, Galleria Umberto I (engraving Then & Now), Pio Monte della Misericordia, the Bourbon Tunnel, the Catacombs of San Gennaro and San Gaudioso, and the Treasure of San Gennaro. Indoor, ticketed and underground places are map-only: no camera, they open from the map or when you stand there, and directions lead to the real entrance. Switch in Profile; the app offers to switch when you are standing in the other site. Each site keeps its own trip.
 - **Fact-checked**: every story lists its sources (tap the green pill). The validator refuses a story without sources. "Verified" is reserved for facts confirmed by the site itself; everything else says "Checked against N sources".
 - **Apple Maps trip map**: your route between the places you found, "?" pins for stories still to find, your live position, and walking directions from any place card. Pins come from each place's coordinates in the content.
 - **Honest location**: the Snap chip shows the real nearest place and distance, "Finding where you are…", "Location is off", or "Pompeii is 1,639 km away". It never invents a distance.
@@ -84,7 +87,7 @@ CheStoria/
 CheStoriaWidgets/ Live Activity ("Secret nearby") and the "Yesterday’s question" widget
 Shared/           types shared by the app and the widget extension (App Group store, activity attributes)
 CheStoriaTests/   content in every language, recognition (Pompeii, Naples, unseen photos), location honesty, sites, accounts (local + Supabase), framing, hunt, trip state
-tools/            import_places.py: import points of interest from a partner's CSV/JSON export
+tools/            import_places.py (partner CSV/JSON), import_story_cards.py (research story cards), embed_content.py (AI text)
 design/           CheStoria.sketch, animated HTML prototype, design direction page
 ```
 

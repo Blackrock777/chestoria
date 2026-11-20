@@ -56,6 +56,8 @@ The tests (`⌘U`) validate every file in every language: ids, answers, image na
 - `story` can be `null`. The place then shows on the map but has no question yet.
 - `aiDescriptions`: two or three plain-English sentences describing what the camera will see. After editing them run `python3 tools/embed_content.py` (needs `pip install torch transformers sentencepiece`).
 - `thenNow` (optional): `{ "then": "oldPhoto", "thenCaption": "…", "now": "todayPhoto", "nowCaption": "Today" }`. It appears as a card after the story, in the place card (tap the pin on My trip) and in the site sheet. Translate the captions in the overlays.
+- `cameraRecognition: false` (optional) marks places where the camera shouldn't be used: indoor art, ticketed or no-photo rooms, underground sites. They are never matched from photos. They open from the map, and Snap offers them when you are within 150 m (real GPS).
+- `entrance` (optional): `{ "latitude": …, "longitude": …, "note": "…" }` when visitors go in somewhere other than the site's point (catacombs, tunnels). Walking directions lead there.
 - `theory` and `lookCloser` are optional. Use `"label": "LEGEND"` or `"THEORY"`: it appears on the red seal.
 - The **My trip** map is Apple Maps: a pin needs only `latitude` and `longitude`. Found places show as gold pins joined by your route, stories not found yet as "?" pins, and the place card offers walking directions in Apple Maps. Where photos aren't allowed (indoors, ticketed rooms), visitors within 150 m can start the story from the card. The old hand-drawn `map` and `mapPoint` fields are optional and no longer needed.
 - `target` and `crop` are fractions of the photo (0 to 1), measured from the top-left corner.
@@ -113,6 +115,18 @@ Create `naples.json` with the same shape as `pompeii.json`, including its own `w
 ## Update content without an App Store release
 
 Set `ContentBaseURL` in `project.yml` (Info.plist) to a folder on any static host that contains `catalog.json` and the files it lists. On launch the app downloads everything and validates it in every language. If it's valid, it replaces the cached content on the next launch. Images can be `https://` URLs too, so a new place can ship entirely from the server. Invalid content is rejected, and the app keeps what it had.
+
+## Import researched story cards
+
+The research team delivers story cards as JSON: story text in five languages, sources, Wikidata coordinates, camera or map mode (example: `tools/story_cards/chestoria_naples_story_cards_v2.json`). An editorial file next to it adds what the app needs: a question asked first, three believable answers with the right one first, photos, sticker crop, Look closer target, entrances, and every string in all languages (`tools/story_cards/naples_v2_editorial.json`).
+
+```sh
+python3 tools/import_story_cards.py tools/story_cards/chestoria_naples_story_cards_v2.json \
+    tools/story_cards/naples_v2_editorial.json --site CheStoria/Resources/Content/naples.json
+python3 tools/embed_content.py   # AI text descriptions for the new places
+```
+
+The importer shuffles the answers (the same order every run), builds `factCheck` from the sources, marks map-only places, writes all four translation overlays, and refuses any story over 40 words. For places the app already has, it only adds the extra sources. Then run the tests.
 
 ## Importing from a partner's data (MyPompeii)
 

@@ -1,4 +1,5 @@
 {
+  "city": "Neapel",
   "welcome": {
     "headline": "Hier hat jede Ecke ein Geheimnis.",
     "body": "Richte die Kamera auf irgendetwas. Rate sein Geheimnis und finde dann den Hinweis. Dauert 30 Sekunden."
@@ -178,6 +179,344 @@
           "label": "LEGENDE",
           "lead": "Das ist eine Legende:",
           "text": "niemand hat das Ei je gefunden."
+        }
+      }
+    },
+    {
+      "id": "santa-chiara",
+      "name": "Santa Chiara",
+      "clues": [
+        "Gotische Fassade",
+        "Hoher Glockenturm",
+        "Majolika-Kreuzgang"
+      ],
+      "story": {
+        "eyebrow": "Santa Chiara · Neapel",
+        "question": "Innen wirkt diese gotische Kirche schlicht. Was hat sie 1943 so schwer beschädigt?",
+        "answers": [
+          "Ein Erdbeben",
+          "Bombenangriffe",
+          "Ein Ausbruch des Vesuvs"
+        ],
+        "answerTitle": "Bombenangriffe.",
+        "subtitle": "Die Restaurierung gab ihr den gotischen Charakter zurück.",
+        "body": "Santa Chiara wurde barock umgestaltet und 1943 bei Bombenangriffen schwer beschädigt. Der Wiederaufbau brachte viel von ihrem gotischen Charakter zurück. Im Kreuzgang erzählen farbenfrohe Majolikafliesen aus dem 18. Jahrhundert von einer anderen Epoche.",
+        "source": "Veröffentlichte Quellen",
+        "dinnerLine": "„Santa Chiara wirkt heute auch wegen eines Bombenangriffs von 1943 so mittelalterlich.“",
+        "sticker": {
+          "title": "Majolika-Kreuzgang",
+          "collection": "Wiederauferstanden",
+          "back": "Der Kreuzgang von Santa Chiara ist mit Majolika aus dem 18. Jahrhundert verkleidet."
+        },
+        "recallChoices": [
+          "Erdbeben",
+          "Bomben",
+          "Vesuv"
+        ],
+        "recallPrompt": "Erinnerst du dich an Santa Chiara? Was hat sie 1943 beschädigt?"
+      }
+    },
+    {
+      "id": "teatro-san-carlo",
+      "name": "Teatro di San Carlo",
+      "clues": [
+        "Bogeneingänge",
+        "Säulenloggia",
+        "Neben dem Königspalast"
+      ],
+      "story": {
+        "eyebrow": "Teatro di San Carlo · Neapel",
+        "question": "1816 brannte dieses Opernhaus aus. Wie lange dauerte der Wiederaufbau?",
+        "answers": [
+          "Etwa neun Monate",
+          "Zwölf Jahre",
+          "Ein halbes Jahrhundert"
+        ],
+        "answerTitle": "Etwa neun Monate.",
+        "subtitle": "Im Januar 1817 öffnete es wieder.",
+        "body": "Das Teatro San Carlo öffnete 1737. Ein Brand zerstörte 1816 den Zuschauerraum, doch unter Antonio Niccolini dauerte der Wiederaufbau rund neun Monate. Im Januar 1817 wurde das Theater wiedereröffnet – eine erstaunlich schnelle Erholung.",
+        "source": "Veröffentlichte Quellen",
+        "dinnerLine": "„Das San Carlo brannte 1816 – neun Monate später wurde dort wieder gesungen.“",
+        "sticker": {
+          "title": "Die wiedergeborene Oper",
+          "collection": "Wiederauferstanden",
+          "back": "1816 abgebrannt, im Januar 1817 wiedereröffnet."
+        },
+        "recallChoices": [
+          "Neun Monate",
+          "Zwölf Jahre",
+          "Fünfzig Jahre"
+        ],
+        "recallPrompt": "Erinnerst du dich ans San Carlo? Wie lange dauerte der Wiederaufbau nach dem Brand von 1816?"
+      },
+      "thenNow": {
+        "thenCaption": "Auf einem alten Stich",
+        "nowCaption": "Heute"
+      }
+    },
+    {
+      "id": "castel-nuovo",
+      "name": "Castel Nuovo",
+      "clues": [
+        "Dunkle Rundtürme",
+        "Weißer Marmorbogen",
+        "Nahe am Hafen"
+      ],
+      "story": {
+        "eyebrow": "Castel Nuovo · Neapel",
+        "question": "Warum steckt ein weißer Marmorbogen zwischen diesen dunklen Türmen?",
+        "answers": [
+          "Für den Einzug eines Königs",
+          "Für einen Seesieg",
+          "Als Ersatz für ein eingestürztes Tor"
+        ],
+        "answerTitle": "Der Einzug eines Königs.",
+        "subtitle": "Der Triumph Alfons’ von Aragón, in Marmor.",
+        "body": "Alfons von Aragón ließ ihn zur Erinnerung an seinen Einzug in Neapel errichten. Das Renaissance-Denkmal hebt sich noch heute von den älteren Festungsmauern ab.",
+        "source": "Veröffentlichte Quellen",
+        "dinnerLine": "„Der weiße Bogen des Castel Nuovo feiert den Einzug Alfons’ von Aragón in Neapel.“",
+        "sticker": {
+          "title": "Der Bogen des Königs",
+          "collection": "Königliches Neapel",
+          "back": "Alfons von Aragón ließ diesen Bogen für seinen Einzug in Neapel bauen."
+        },
+        "recallChoices": [
+          "Ein König",
+          "Seeschlacht",
+          "Eingestürztes Tor"
+        ],
+        "recallPrompt": "Erinnerst du dich an den weißen Bogen des Castel Nuovo? Was feiert er?",
+        "lookCloser": {
+          "prompt": "Finde den Festzug des Königs, der in den Bogen gemeißelt ist.",
+          "hint": "Tipp: Schau über den unteren Torbogen"
+        }
+      }
+    },
+    {
+      "id": "pio-monte-misericordia",
+      "name": "Pio Monte della Misericordia",
+      "clues": [
+        "Arkadenvorhalle",
+        "Ein Caravaggio im Inneren",
+        "Wohltätig seit 1602"
+      ],
+      "story": {
+        "eyebrow": "Pio Monte della Misericordia · Neapel",
+        "question": "Caravaggio malte sieben Werke der Barmherzigkeit für diese Stiftung. Auf wie vielen Leinwänden?",
+        "answers": [
+          "Auf sieben",
+          "Auf einer einzigen",
+          "Auf drei"
+        ],
+        "answerTitle": "Auf einer einzigen.",
+        "subtitle": "Gemalt 1606–07, nach seiner Flucht aus Rom.",
+        "body": "Nach seiner Flucht aus Rom 1606 malte Caravaggio die Sieben Werke der Barmherzigkeit für eine neapolitanische Wohltätigkeitsorganisation. Statt sieben einzelnen Bildern vereinte er die Taten in einer dramatischen Komposition von 1606 bis 1607.",
+        "source": "Veröffentlichte Quellen",
+        "dinnerLine": "„In Neapel packte Caravaggio sieben Werke der Barmherzigkeit in ein einziges Bild.“",
+        "sticker": {
+          "title": "Sieben gute Taten",
+          "collection": "Meisterwerke",
+          "back": "Caravaggio malte alle sieben Werke der Barmherzigkeit auf eine Leinwand."
+        },
+        "recallChoices": [
+          "Sieben",
+          "Eine",
+          "Drei"
+        ],
+        "recallPrompt": "Erinnerst du dich an Caravaggios Sieben Werke der Barmherzigkeit? Auf wie vielen Leinwänden?",
+        "lookCloser": {
+          "prompt": "Finde den Toten, der weggetragen wird: Nur seine Füße sind zu sehen.",
+          "hint": "Tipp: Schau unter die Fackel"
+        }
+      }
+    },
+    {
+      "id": "galleria-borbonica",
+      "name": "Bourbonischer Tunnel",
+      "clues": [
+        "Unterirdisch",
+        "Alte Autos im Dunkeln",
+        "Für einen König gebaut"
+      ],
+      "story": {
+        "eyebrow": "Bourbonischer Tunnel · Neapel",
+        "question": "Ein König ließ diesen Tunnel 1853 bauen. Was wurde im Zweiten Weltkrieg daraus?",
+        "answers": [
+          "Ein Luftschutzraum",
+          "Ein geheimes Krankenhaus",
+          "Eine Waffenfabrik"
+        ],
+        "answerTitle": "Ein Luftschutzraum.",
+        "subtitle": "Neapolitaner suchten hier Schutz vor Bomben.",
+        "body": "1853 ließ Ferdinand II. einen Tunnel unter Neapel anlegen. Jahrzehnte später boten der Tunnel und benachbarte Zisternen den Bewohnern Schutz vor Luftangriffen im Zweiten Weltkrieg. Ein unterirdischer Ort diente zwei völlig verschiedenen Zwecken.",
+        "source": "Veröffentlichte Quellen",
+        "dinnerLine": "„Ein Königstunnel unter Neapel schützte später Menschen vor den Bomben des Krieges.“",
+        "sticker": {
+          "title": "Der versteckte Schutzraum",
+          "collection": "Unter der Erde",
+          "back": "1853 für Ferdinand II. begonnen; im Zweiten Weltkrieg ein Schutzraum."
+        },
+        "recallChoices": [
+          "Schutzraum",
+          "Krankenhaus",
+          "Fabrik"
+        ],
+        "recallPrompt": "Erinnerst du dich an den Bourbonischen Tunnel? Was wurde im Krieg daraus?",
+        "lookCloser": {
+          "prompt": "Finde die alten Fahrzeuge, die im Dunkeln zurückblieben.",
+          "hint": "Tipp: Schau auf den Boden"
+        }
+      }
+    },
+    {
+      "id": "galleria-umberto-i",
+      "name": "Galleria Umberto I",
+      "clues": [
+        "Glaskuppel",
+        "Dach aus Eisen und Glas",
+        "Marmorboden"
+      ],
+      "story": {
+        "eyebrow": "Galleria Umberto I · Neapel",
+        "question": "Schau nach unten. Was ist unter dieser Glaskuppel in den Boden eingelassen?",
+        "answers": [
+          "Ein Plan des alten Neapel",
+          "Die Tierkreiszeichen",
+          "Die Namen der Erbauer"
+        ],
+        "answerTitle": "Die Tierkreiszeichen.",
+        "subtitle": "Rund um eine Windrose.",
+        "body": "Zwischen 1887 und 1890 ersetzte die Galleria Umberto I ungesunde alte Gassen durch eine prächtige Einkaufspassage. Unter ihrer Eisen-Glas-Kuppel zeigen Bodenmosaike die Tierkreiszeichen und eine Windrose. Schau zuerst nach unten!",
+        "source": "Veröffentlichte Quellen",
+        "dinnerLine": "„Die Galleria Umberto I versteckt den Tierkreis im Boden, direkt unter der Kuppel.“",
+        "sticker": {
+          "title": "Tierkreis unter den Füßen",
+          "collection": "Versteckte Details",
+          "back": "Die Galleria Umberto I entstand zwischen 1887 und 1890."
+        },
+        "recallChoices": [
+          "Alter Plan",
+          "Tierkreis",
+          "Namen"
+        ],
+        "recallPrompt": "Erinnerst du dich an die Galleria Umberto I? Was ist im Boden unter der Kuppel?"
+      },
+      "thenNow": {
+        "thenCaption": "Auf einem alten Stich",
+        "nowCaption": "Heute"
+      }
+    },
+    {
+      "id": "catacombe-san-gennaro",
+      "name": "Katakomben von San Gennaro",
+      "clues": [
+        "Unterirdisch",
+        "Bemalte Gräber",
+        "Antike Mosaiken"
+      ],
+      "story": {
+        "eyebrow": "Katakomben von San Gennaro · Neapel",
+        "question": "Hier unten ist das Mosaikgesicht eines Bischofs aus dem 5. Jahrhundert erhalten. Wo war er Bischof?",
+        "answers": [
+          "Konstantinopel",
+          "Jerusalem",
+          "Karthago in Afrika"
+        ],
+        "answerTitle": "Karthago.",
+        "subtitle": "Sein Name war Quodvultdeus.",
+        "body": "Unter Neapel legten frühe Christen weitläufige Grabkammern an. In der später entstandenen Bischofsgruft zeigt ein Mosaik aus dem 5. Jahrhundert Quodvultdeus, einen Bischof aus Karthago. Die unterirdische Kunst erzählt von Verbindungen über das Mittelmeer.",
+        "source": "Veröffentlichte Quellen",
+        "dinnerLine": "„Unter Neapel gibt es ein 1.500 Jahre altes Mosaik eines Bischofs aus Karthago.“",
+        "sticker": {
+          "title": "Der Bischof aus Karthago",
+          "collection": "Unter der Erde",
+          "back": "Ein Mosaik aus dem 5. Jahrhundert: Quodvultdeus, Bischof von Karthago."
+        },
+        "recallChoices": [
+          "Konstantinopel",
+          "Jerusalem",
+          "Karthago"
+        ],
+        "recallPrompt": "Erinnerst du dich an den Bischof in den Katakomben? Wo war er Bischof?",
+        "lookCloser": {
+          "prompt": "Finde das Buch, das der Bischof hält.",
+          "hint": "Tipp: Schau auf seine Hände"
+        }
+      }
+    },
+    {
+      "id": "catacombe-san-gaudioso",
+      "name": "Katakomben von San Gaudioso",
+      "clues": [
+        "Unter einer Basilika",
+        "Verblasste Fresken",
+        "Rione Sanità"
+      ],
+      "story": {
+        "eyebrow": "Katakomben von San Gaudioso · Neapel",
+        "question": "Diese Katakomben wuchsen um ein Grab aus dem 5. Jahrhundert. Wessen Grab?",
+        "answers": [
+          "Eines römischen Kaisers",
+          "Eines Bischofs aus Afrika",
+          "Des Dichters Vergil"
+        ],
+        "answerTitle": "Eines Bischofs aus Afrika.",
+        "subtitle": "Gaudiosus kam im 5. Jahrhundert nach Neapel.",
+        "body": "Diese Katakomben entstanden um das Grab von Gaudiosus, einem afrikanischen Bischof, der im 5. Jahrhundert nach Neapel kam. Jahrhunderte später wurden dort Adlige bestattet. Frühchristliche Wandmalereien stehen neben späteren Grabstätten.",
+        "source": "Veröffentlichte Quellen",
+        "dinnerLine": "„Die Katakomben von San Gaudioso entstanden um das Grab eines Bischofs aus Afrika.“",
+        "sticker": {
+          "title": "Zwei Epochen, ein Grab",
+          "collection": "Unter der Erde",
+          "back": "Frühchristliche Kunst neben späteren Adelsgräbern, unter der Sanità."
+        },
+        "recallChoices": [
+          "Ein Kaiser",
+          "Ein Bischof",
+          "Vergil"
+        ],
+        "recallPrompt": "Erinnerst du dich an die Katakomben von San Gaudioso? Um wessen Grab entstanden sie?",
+        "lookCloser": {
+          "prompt": "Finde die lateinische Inschrift mit dem Namen Gaudiosus.",
+          "hint": "Tipp: Schau über das Grab"
+        }
+      }
+    },
+    {
+      "id": "tesoro-san-gennaro",
+      "name": "Museum des Schatzes von San Gennaro",
+      "clues": [
+        "Neben dem Dom",
+        "Juwelen und Silber",
+        "Gaben der Verehrung"
+      ],
+      "story": {
+        "eyebrow": "Museum des Schatzes von San Gennaro · Neapel",
+        "question": "Die Juwelenkette des heiligen Januarius wurde 1679 begonnen. Wie wuchs sie?",
+        "answers": [
+          "Durch Gaben über Generationen",
+          "In einem einzigen Jahr gefertigt",
+          "Von einem König gekauft"
+        ],
+        "answerTitle": "Durch Gaben, über Generationen.",
+        "subtitle": "Von Königen, Königinnen und einfachen Gläubigen.",
+        "body": "Die berühmte Juwelenkette des heiligen Januarius entstand ab 1679 und wurde später durch Spenden erweitert. Könige, Königinnen und Gläubige schenkten über Generationen Edelsteine. Der Schatz ist zugleich Kunstwerk und Ausdruck neapolitanischer Verehrung.",
+        "source": "Veröffentlichte Quellen",
+        "dinnerLine": "„Die Kette des heiligen Januarius wuchs über Jahrhunderte – Geschenk für Geschenk.“",
+        "sticker": {
+          "title": "Die Kette der Gaben",
+          "collection": "Meisterwerke",
+          "back": "1679 begonnen, über Generationen durch Spenden bereichert."
+        },
+        "recallChoices": [
+          "Gaben",
+          "Ein Jahr",
+          "Ein König"
+        ],
+        "recallPrompt": "Erinnerst du dich an die Kette des heiligen Januarius? Wie wuchs sie?",
+        "lookCloser": {
+          "prompt": "Finde den größten grünen Stein der Kette.",
+          "hint": "Tipp: Schau in die Mitte"
         }
       }
     }

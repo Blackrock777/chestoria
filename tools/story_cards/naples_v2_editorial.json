@@ -1,0 +1,1729 @@
+{
+  "_about": "Editorial layer for chestoria_naples_story_cards_v2.json: app-specific fields (question first, three believable answers with the correct one FIRST here; the converter shuffles them), photos, crops, Look closer targets, entrances and all five languages. Story bodies come from the v2 dataset. Entrance coordinates: OpenStreetMap contributors (ODbL).",
+  "city": {
+    "en": "Naples",
+    "it": "Napoli",
+    "fr": "Naples",
+    "de": "Neapel",
+    "es": "Nápoles"
+  },
+  "source": {
+    "en": "Published sources",
+    "it": "Fonti pubblicate",
+    "fr": "Sources publiées",
+    "de": "Veröffentlichte Quellen",
+    "es": "Fuentes publicadas"
+  },
+  "today": {
+    "en": "Today",
+    "it": "Oggi",
+    "fr": "Aujourd’hui",
+    "de": "Heute",
+    "es": "Hoy"
+  },
+  "oldEngraving": {
+    "en": "In an old engraving",
+    "it": "In un’antica incisione",
+    "fr": "Sur une gravure ancienne",
+    "de": "Auf einem alten Stich",
+    "es": "En un grabado antiguo"
+  },
+  "collections": {
+    "roseAgain": {
+      "en": "Rose again",
+      "it": "Rinati",
+      "fr": "Renaissances",
+      "de": "Wiederauferstanden",
+      "es": "Renacidos"
+    },
+    "royal": {
+      "en": "Royal Naples",
+      "it": "Napoli reale",
+      "fr": "Naples royale",
+      "de": "Königliches Neapel",
+      "es": "Nápoles real"
+    },
+    "masterpieces": {
+      "en": "Masterpieces",
+      "it": "Capolavori",
+      "fr": "Chefs-d’œuvre",
+      "de": "Meisterwerke",
+      "es": "Obras maestras"
+    },
+    "underground": {
+      "en": "Underground",
+      "it": "Sottoterra",
+      "fr": "Sous terre",
+      "de": "Unter der Erde",
+      "es": "Bajo tierra"
+    },
+    "details": {
+      "en": "Hidden details",
+      "it": "Dettagli nascosti",
+      "fr": "Détails cachés",
+      "de": "Versteckte Details",
+      "es": "Detalles ocultos"
+    }
+  },
+  "places": [
+    {
+      "id": "santa-chiara",
+      "name": {
+        "en": "Santa Chiara"
+      },
+      "street": "Via Santa Chiara",
+      "camera": true,
+      "images": {
+        "camera": "santaChiara",
+        "references": [
+          "santaChiara",
+          "santaChiara2"
+        ],
+        "sticker": "santaChiaraCloister",
+        "crop": {
+          "x": 0.05,
+          "y": 0.5,
+          "w": 0.5,
+          "h": 0.35
+        }
+      },
+      "aiDescriptions": [
+        "a tall plain Gothic church façade of pale stone with a rose window and a square bell tower",
+        "the basilica of Santa Chiara in Naples seen from its courtyard gate"
+      ],
+      "clues": {
+        "en": [
+          "Gothic façade",
+          "Tall bell tower",
+          "Majolica cloister"
+        ],
+        "it": [
+          "Facciata gotica",
+          "Alto campanile",
+          "Chiostro maiolicato"
+        ],
+        "fr": [
+          "Façade gothique",
+          "Haut clocher",
+          "Cloître de faïence"
+        ],
+        "de": [
+          "Gotische Fassade",
+          "Hoher Glockenturm",
+          "Majolika-Kreuzgang"
+        ],
+        "es": [
+          "Fachada gótica",
+          "Alto campanario",
+          "Claustro de mayólica"
+        ]
+      },
+      "question": {
+        "en": "This Gothic church looks bare inside. What damaged it so badly in 1943?",
+        "it": "Dentro, questa chiesa gotica sembra spoglia. Che cosa la danneggiò così tanto nel 1943?",
+        "fr": "Cette église gothique paraît nue à l’intérieur. Qu’est-ce qui l’a tant endommagée en 1943 ?",
+        "de": "Innen wirkt diese gotische Kirche schlicht. Was hat sie 1943 so schwer beschädigt?",
+        "es": "Por dentro, esta iglesia gótica parece desnuda. ¿Qué la dañó tanto en 1943?"
+      },
+      "answers": {
+        "en": [
+          "Bombing raids",
+          "An earthquake",
+          "Vesuvius erupting"
+        ],
+        "it": [
+          "I bombardamenti",
+          "Un terremoto",
+          "Un’eruzione del Vesuvio"
+        ],
+        "fr": [
+          "Des bombardements",
+          "Un tremblement de terre",
+          "Une éruption du Vésuve"
+        ],
+        "de": [
+          "Bombenangriffe",
+          "Ein Erdbeben",
+          "Ein Ausbruch des Vesuvs"
+        ],
+        "es": [
+          "Los bombardeos",
+          "Un terremoto",
+          "Una erupción del Vesubio"
+        ]
+      },
+      "answerTitle": {
+        "en": "Bombing raids.",
+        "it": "I bombardamenti.",
+        "fr": "Des bombardements.",
+        "de": "Bombenangriffe.",
+        "es": "Los bombardeos."
+      },
+      "subtitle": {
+        "en": "Restorers brought back its Gothic look.",
+        "it": "I restauri le ridiedero l’aspetto gotico.",
+        "fr": "La restauration lui rendit son allure gothique.",
+        "de": "Die Restaurierung gab ihr den gotischen Charakter zurück.",
+        "es": "La restauración le devolvió su aspecto gótico."
+      },
+      "dinnerLine": {
+        "en": "“Santa Chiara looks medieval today partly because of a 1943 bombing.”",
+        "it": "«Santa Chiara oggi sembra medievale anche a causa di un bombardamento del 1943.»",
+        "fr": "« Santa Chiara paraît médiévale aujourd’hui, en partie à cause d’un bombardement de 1943. »",
+        "de": "„Santa Chiara wirkt heute auch wegen eines Bombenangriffs von 1943 so mittelalterlich.“",
+        "es": "«Santa Chiara parece medieval hoy, en parte, por un bombardeo de 1943.»"
+      },
+      "sticker": {
+        "id": "majolica-cloister",
+        "collection": "roseAgain",
+        "title": {
+          "en": "Majolica cloister",
+          "it": "Chiostro maiolicato",
+          "fr": "Cloître de faïence",
+          "de": "Majolika-Kreuzgang",
+          "es": "Claustro de mayólica"
+        },
+        "back": {
+          "en": "Santa Chiara’s cloister is covered in 18th-century majolica tiles.",
+          "it": "Il chiostro di Santa Chiara è rivestito di maioliche del Settecento.",
+          "fr": "Le cloître de Santa Chiara est couvert de faïences du XVIIIe siècle.",
+          "de": "Der Kreuzgang von Santa Chiara ist mit Majolika aus dem 18. Jahrhundert verkleidet.",
+          "es": "El claustro de Santa Chiara está cubierto de mayólicas del siglo XVIII."
+        }
+      },
+      "recall": {
+        "en": [
+          "Bombs",
+          "Earthquake",
+          "Vesuvius"
+        ],
+        "it": [
+          "Bombe",
+          "Terremoto",
+          "Vesuvio"
+        ],
+        "fr": [
+          "Bombes",
+          "Séisme",
+          "Vésuve"
+        ],
+        "de": [
+          "Bomben",
+          "Erdbeben",
+          "Vesuv"
+        ],
+        "es": [
+          "Bombas",
+          "Terremoto",
+          "Vesubio"
+        ]
+      },
+      "recallPrompt": {
+        "en": "Remember Santa Chiara? What damaged it in 1943?",
+        "it": "Ricordi Santa Chiara? Che cosa la danneggiò nel 1943?",
+        "fr": "Vous vous souvenez de Santa Chiara ? Qu’est-ce qui l’a endommagée en 1943 ?",
+        "de": "Erinnerst du dich an Santa Chiara? Was hat sie 1943 beschädigt?",
+        "es": "¿Recuerdas Santa Chiara? ¿Qué la dañó en 1943?"
+      }
+    },
+    {
+      "id": "teatro-san-carlo",
+      "name": {
+        "en": "Teatro di San Carlo"
+      },
+      "street": "Via San Carlo",
+      "camera": true,
+      "images": {
+        "camera": "sanCarlo",
+        "references": [
+          "sanCarlo"
+        ],
+        "sticker": "sanCarlo",
+        "crop": {
+          "x": 0.15,
+          "y": 0.2,
+          "w": 0.7,
+          "h": 0.5
+        }
+      },
+      "thenNow": {
+        "then": "sanCarloEngraving",
+        "thenCaption": "oldEngraving",
+        "now": "sanCarlo"
+      },
+      "aiDescriptions": [
+        "a neoclassical opera house façade with rusticated arches at street level and a columned loggia above",
+        "the Teatro di San Carlo opera house in Naples"
+      ],
+      "clues": {
+        "en": [
+          "Arched entrances",
+          "Columned loggia",
+          "Next to the royal palace"
+        ],
+        "it": [
+          "Ingressi ad arco",
+          "Loggia con colonne",
+          "Accanto al Palazzo Reale"
+        ],
+        "fr": [
+          "Entrées en arcades",
+          "Loggia à colonnes",
+          "À côté du palais royal"
+        ],
+        "de": [
+          "Bogeneingänge",
+          "Säulenloggia",
+          "Neben dem Königspalast"
+        ],
+        "es": [
+          "Entradas en arco",
+          "Logia con columnas",
+          "Junto al Palacio Real"
+        ]
+      },
+      "question": {
+        "en": "Fire gutted this opera house in 1816. How long did rebuilding take?",
+        "it": "Nel 1816 un incendio devastò questo teatro d’opera. Quanto durò la ricostruzione?",
+        "fr": "En 1816, un incendie ravagea cet opéra. Combien de temps dura la reconstruction ?",
+        "de": "1816 brannte dieses Opernhaus aus. Wie lange dauerte der Wiederaufbau?",
+        "es": "En 1816 un incendio arrasó este teatro de ópera. ¿Cuánto duró la reconstrucción?"
+      },
+      "answers": {
+        "en": [
+          "About nine months",
+          "Twelve years",
+          "Half a century"
+        ],
+        "it": [
+          "Circa nove mesi",
+          "Dodici anni",
+          "Mezzo secolo"
+        ],
+        "fr": [
+          "Environ neuf mois",
+          "Douze ans",
+          "Un demi-siècle"
+        ],
+        "de": [
+          "Etwa neun Monate",
+          "Zwölf Jahre",
+          "Ein halbes Jahrhundert"
+        ],
+        "es": [
+          "Unos nueve meses",
+          "Doce años",
+          "Medio siglo"
+        ]
+      },
+      "answerTitle": {
+        "en": "About nine months.",
+        "it": "Circa nove mesi.",
+        "fr": "Environ neuf mois.",
+        "de": "Etwa neun Monate.",
+        "es": "Unos nueve meses."
+      },
+      "subtitle": {
+        "en": "It reopened in January 1817.",
+        "it": "Riaprì nel gennaio 1817.",
+        "fr": "Il rouvrit en janvier 1817.",
+        "de": "Im Januar 1817 öffnete es wieder.",
+        "es": "Reabrió en enero de 1817."
+      },
+      "dinnerLine": {
+        "en": "“San Carlo burned in 1816, and nine months later people were singing there again.”",
+        "it": "«Il San Carlo bruciò nel 1816 e nove mesi dopo si cantava di nuovo.»",
+        "fr": "« Le San Carlo brûla en 1816 et, neuf mois plus tard, on y chantait de nouveau. »",
+        "de": "„Das San Carlo brannte 1816 – neun Monate später wurde dort wieder gesungen.“",
+        "es": "«El San Carlo ardió en 1816 y nueve meses después ya se volvía a cantar.»"
+      },
+      "sticker": {
+        "id": "opera-reborn",
+        "collection": "roseAgain",
+        "title": {
+          "en": "Opera reborn",
+          "it": "L’opera rinata",
+          "fr": "L’opéra renaissant",
+          "de": "Die wiedergeborene Oper",
+          "es": "La ópera renacida"
+        },
+        "back": {
+          "en": "Burned in 1816, reopened in January 1817.",
+          "it": "Bruciato nel 1816, riaperto nel gennaio 1817.",
+          "fr": "Brûlé en 1816, rouvert en janvier 1817.",
+          "de": "1816 abgebrannt, im Januar 1817 wiedereröffnet.",
+          "es": "Ardió en 1816 y reabrió en enero de 1817."
+        }
+      },
+      "recall": {
+        "en": [
+          "Nine months",
+          "Twelve years",
+          "Fifty years"
+        ],
+        "it": [
+          "Nove mesi",
+          "Dodici anni",
+          "Cinquant’anni"
+        ],
+        "fr": [
+          "Neuf mois",
+          "Douze ans",
+          "Cinquante ans"
+        ],
+        "de": [
+          "Neun Monate",
+          "Zwölf Jahre",
+          "Fünfzig Jahre"
+        ],
+        "es": [
+          "Nueve meses",
+          "Doce años",
+          "Cincuenta años"
+        ]
+      },
+      "recallPrompt": {
+        "en": "Remember San Carlo? How long did rebuilding take after the 1816 fire?",
+        "it": "Ricordi il San Carlo? Quanto durò la ricostruzione dopo l’incendio del 1816?",
+        "fr": "Vous vous souvenez du San Carlo ? Combien de temps dura la reconstruction après l’incendie de 1816 ?",
+        "de": "Erinnerst du dich ans San Carlo? Wie lange dauerte der Wiederaufbau nach dem Brand von 1816?",
+        "es": "¿Recuerdas el San Carlo? ¿Cuánto duró la reconstrucción tras el incendio de 1816?"
+      }
+    },
+    {
+      "id": "castel-nuovo",
+      "name": {
+        "en": "Castel Nuovo"
+      },
+      "street": "Piazza Municipio",
+      "camera": true,
+      "images": {
+        "camera": "castelNuovo",
+        "references": [
+          "castelNuovo",
+          "castelNuovo2",
+          "castelNuovoArch"
+        ],
+        "sticker": "castelNuovoArch",
+        "crop": {
+          "x": 0.33,
+          "y": 0.38,
+          "w": 0.36,
+          "h": 0.16
+        },
+        "look": {
+          "image": "castelNuovoArch",
+          "anchor": {
+            "x": 0.5,
+            "y": 0.45
+          },
+          "zoom": 1.0,
+          "target": {
+            "x": 0.47,
+            "y": 0.46
+          }
+        }
+      },
+      "aiDescriptions": [
+        "a medieval castle with two massive round dark stone towers and a white marble Renaissance triumphal arch between them",
+        "Castel Nuovo, the Maschio Angioino, in Naples"
+      ],
+      "clues": {
+        "en": [
+          "Round dark towers",
+          "White marble arch",
+          "Near the port"
+        ],
+        "it": [
+          "Torri scure e rotonde",
+          "Arco di marmo bianco",
+          "Vicino al porto"
+        ],
+        "fr": [
+          "Tours rondes et sombres",
+          "Arc de marbre blanc",
+          "Près du port"
+        ],
+        "de": [
+          "Dunkle Rundtürme",
+          "Weißer Marmorbogen",
+          "Nahe am Hafen"
+        ],
+        "es": [
+          "Torres oscuras y redondas",
+          "Arco de mármol blanco",
+          "Cerca del puerto"
+        ]
+      },
+      "question": {
+        "en": "Why is a white marble arch squeezed between these dark towers?",
+        "it": "Perché un arco di marmo bianco è incastrato tra queste torri scure?",
+        "fr": "Pourquoi un arc de marbre blanc est-il serré entre ces tours sombres ?",
+        "de": "Warum steckt ein weißer Marmorbogen zwischen diesen dunklen Türmen?",
+        "es": "¿Por qué hay un arco de mármol blanco encajado entre estas torres oscuras?"
+      },
+      "answers": {
+        "en": [
+          "To celebrate a king’s arrival",
+          "To mark a naval victory",
+          "To replace a fallen gate"
+        ],
+        "it": [
+          "Per celebrare l’arrivo di un re",
+          "Per una vittoria navale",
+          "Per sostituire una porta crollata"
+        ],
+        "fr": [
+          "Pour fêter l’arrivée d’un roi",
+          "Pour une victoire navale",
+          "Pour remplacer une porte effondrée"
+        ],
+        "de": [
+          "Für den Einzug eines Königs",
+          "Für einen Seesieg",
+          "Als Ersatz für ein eingestürztes Tor"
+        ],
+        "es": [
+          "Para celebrar la llegada de un rey",
+          "Por una victoria naval",
+          "Para sustituir una puerta caída"
+        ]
+      },
+      "answerTitle": {
+        "en": "A king’s arrival.",
+        "it": "L’arrivo di un re.",
+        "fr": "L’arrivée d’un roi.",
+        "de": "Der Einzug eines Königs.",
+        "es": "La llegada de un rey."
+      },
+      "subtitle": {
+        "en": "Alfonso of Aragon’s triumph, in marble.",
+        "it": "Il trionfo di Alfonso d’Aragona, nel marmo.",
+        "fr": "Le triomphe d’Alphonse d’Aragon, dans le marbre.",
+        "de": "Der Triumph Alfons’ von Aragón, in Marmor.",
+        "es": "El triunfo de Alfonso de Aragón, en mármol."
+      },
+      "dinnerLine": {
+        "en": "“Castel Nuovo’s white arch celebrates Alfonso of Aragon entering Naples.”",
+        "it": "«L’arco bianco del Maschio Angioino celebra l’ingresso di Alfonso d’Aragona a Napoli.»",
+        "fr": "« L’arc blanc du Castel Nuovo célèbre l’entrée d’Alphonse d’Aragon à Naples. »",
+        "de": "„Der weiße Bogen des Castel Nuovo feiert den Einzug Alfons’ von Aragón in Neapel.“",
+        "es": "«El arco blanco del Castel Nuovo celebra la entrada de Alfonso de Aragón en Nápoles.»"
+      },
+      "look": {
+        "prompt": {
+          "en": "Find the king’s procession carved across the arch.",
+          "it": "Trova il corteo del re scolpito sull’arco.",
+          "fr": "Trouvez le cortège du roi sculpté sur l’arc.",
+          "de": "Finde den Festzug des Königs, der in den Bogen gemeißelt ist.",
+          "es": "Encuentra el cortejo del rey tallado en el arco."
+        },
+        "hint": {
+          "en": "Tip: look above the lower archway",
+          "it": "Suggerimento: guarda sopra l’arcata inferiore",
+          "fr": "Astuce : regardez au-dessus de l’arche du bas",
+          "de": "Tipp: Schau über den unteren Torbogen",
+          "es": "Pista: mira encima del arco inferior"
+        }
+      },
+      "sticker": {
+        "id": "kings-arch",
+        "collection": "royal",
+        "title": {
+          "en": "The king’s arch",
+          "it": "L’arco del re",
+          "fr": "L’arc du roi",
+          "de": "Der Bogen des Königs",
+          "es": "El arco del rey"
+        },
+        "back": {
+          "en": "Alfonso of Aragon built this arch to celebrate entering Naples.",
+          "it": "Alfonso d’Aragona fece costruire quest’arco per celebrare il suo ingresso a Napoli.",
+          "fr": "Alphonse d’Aragon fit bâtir cet arc pour célébrer son entrée à Naples.",
+          "de": "Alfons von Aragón ließ diesen Bogen für seinen Einzug in Neapel bauen.",
+          "es": "Alfonso de Aragón levantó este arco para celebrar su entrada en Nápoles."
+        }
+      },
+      "recall": {
+        "en": [
+          "A king",
+          "Sea battle",
+          "Fallen gate"
+        ],
+        "it": [
+          "Un re",
+          "Battaglia navale",
+          "Porta crollata"
+        ],
+        "fr": [
+          "Un roi",
+          "Bataille navale",
+          "Porte effondrée"
+        ],
+        "de": [
+          "Ein König",
+          "Seeschlacht",
+          "Eingestürztes Tor"
+        ],
+        "es": [
+          "Un rey",
+          "Batalla naval",
+          "Puerta caída"
+        ]
+      },
+      "recallPrompt": {
+        "en": "Remember Castel Nuovo’s white arch? What does it celebrate?",
+        "it": "Ricordi l’arco bianco del Maschio Angioino? Che cosa celebra?",
+        "fr": "Vous vous souvenez de l’arc blanc du Castel Nuovo ? Que célèbre-t-il ?",
+        "de": "Erinnerst du dich an den weißen Bogen des Castel Nuovo? Was feiert er?",
+        "es": "¿Recuerdas el arco blanco del Castel Nuovo? ¿Qué celebra?"
+      }
+    },
+    {
+      "id": "pio-monte-misericordia",
+      "name": {
+        "en": "Pio Monte della Misericordia"
+      },
+      "street": "Via dei Tribunali",
+      "camera": false,
+      "coordinate": {
+        "latitude": 40.8518057,
+        "longitude": 14.2603541,
+        "source": "OpenStreetMap"
+      },
+      "images": {
+        "camera": "pioMonte",
+        "references": [
+          "pioMonte",
+          "pioMonte2"
+        ],
+        "sticker": "sevenWorksOfMercy",
+        "crop": {
+          "x": 0.66,
+          "y": 0.43,
+          "w": 0.32,
+          "h": 0.22
+        },
+        "look": {
+          "image": "sevenWorksOfMercy",
+          "anchor": {
+            "x": 0.5,
+            "y": 0.6
+          },
+          "zoom": 1.0,
+          "target": {
+            "x": 0.62,
+            "y": 0.66
+          }
+        }
+      },
+      "aiDescriptions": [
+        "a palazzo with a porch of five stone arches on a narrow old street",
+        "Pio Monte della Misericordia in Naples"
+      ],
+      "clues": {
+        "en": [
+          "Arched porch",
+          "Caravaggio inside",
+          "A charity since 1602"
+        ],
+        "it": [
+          "Portico ad archi",
+          "Caravaggio all’interno",
+          "Carità dal 1602"
+        ],
+        "fr": [
+          "Porche à arcades",
+          "Un Caravage à l’intérieur",
+          "Charité depuis 1602"
+        ],
+        "de": [
+          "Arkadenvorhalle",
+          "Ein Caravaggio im Inneren",
+          "Wohltätig seit 1602"
+        ],
+        "es": [
+          "Pórtico con arcos",
+          "Un Caravaggio dentro",
+          "Caridad desde 1602"
+        ]
+      },
+      "question": {
+        "en": "Caravaggio painted seven acts of kindness for this charity. On how many canvases?",
+        "it": "Caravaggio dipinse sette opere di misericordia per questa istituzione. Su quante tele?",
+        "fr": "Le Caravage peignit sept œuvres de miséricorde pour cette institution. Sur combien de toiles ?",
+        "de": "Caravaggio malte sieben Werke der Barmherzigkeit für diese Stiftung. Auf wie vielen Leinwänden?",
+        "es": "Caravaggio pintó siete obras de misericordia para esta institución. ¿En cuántos lienzos?"
+      },
+      "answers": {
+        "en": [
+          "Just one",
+          "Seven",
+          "Three"
+        ],
+        "it": [
+          "Una sola",
+          "Sette",
+          "Tre"
+        ],
+        "fr": [
+          "Une seule",
+          "Sept",
+          "Trois"
+        ],
+        "de": [
+          "Auf einer einzigen",
+          "Auf sieben",
+          "Auf drei"
+        ],
+        "es": [
+          "Uno solo",
+          "Siete",
+          "Tres"
+        ]
+      },
+      "answerTitle": {
+        "en": "Just one.",
+        "it": "Una sola.",
+        "fr": "Une seule.",
+        "de": "Auf einer einzigen.",
+        "es": "Uno solo."
+      },
+      "subtitle": {
+        "en": "Painted in 1606–07, after he fled Rome.",
+        "it": "Dipinta nel 1606–07, dopo la fuga da Roma.",
+        "fr": "Peinte en 1606–1607, après sa fuite de Rome.",
+        "de": "Gemalt 1606–07, nach seiner Flucht aus Rom.",
+        "es": "Pintado en 1606–07, tras huir de Roma."
+      },
+      "dinnerLine": {
+        "en": "“Caravaggio fit seven acts of mercy into a single painting in Naples.”",
+        "it": "«Caravaggio racchiuse sette opere di misericordia in un solo dipinto, a Napoli.»",
+        "fr": "« À Naples, le Caravage réunit sept œuvres de miséricorde dans un seul tableau. »",
+        "de": "„In Neapel packte Caravaggio sieben Werke der Barmherzigkeit in ein einziges Bild.“",
+        "es": "«En Nápoles, Caravaggio reunió siete obras de misericordia en un solo cuadro.»"
+      },
+      "look": {
+        "prompt": {
+          "en": "Find the dead man being carried away: only his feet show.",
+          "it": "Trova il morto portato via: si vedono solo i piedi.",
+          "fr": "Trouvez le mort que l’on emporte : on ne voit que ses pieds.",
+          "de": "Finde den Toten, der weggetragen wird: Nur seine Füße sind zu sehen.",
+          "es": "Encuentra al muerto al que se llevan: solo se ven sus pies."
+        },
+        "hint": {
+          "en": "Tip: look below the torch",
+          "it": "Suggerimento: guarda sotto la torcia",
+          "fr": "Astuce : regardez sous la torche",
+          "de": "Tipp: Schau unter die Fackel",
+          "es": "Pista: mira debajo de la antorcha"
+        }
+      },
+      "sticker": {
+        "id": "seven-kindnesses",
+        "collection": "masterpieces",
+        "title": {
+          "en": "Seven kindnesses",
+          "it": "Sette gesti di bontà",
+          "fr": "Sept gestes de bonté",
+          "de": "Sieben gute Taten",
+          "es": "Siete bondades"
+        },
+        "back": {
+          "en": "Caravaggio painted all seven works of mercy on one canvas.",
+          "it": "Caravaggio dipinse tutte e sette le opere di misericordia su una sola tela.",
+          "fr": "Le Caravage peignit les sept œuvres de miséricorde sur une seule toile.",
+          "de": "Caravaggio malte alle sieben Werke der Barmherzigkeit auf eine Leinwand.",
+          "es": "Caravaggio pintó las siete obras de misericordia en un solo lienzo."
+        }
+      },
+      "recall": {
+        "en": [
+          "One",
+          "Seven",
+          "Three"
+        ],
+        "it": [
+          "Una",
+          "Sette",
+          "Tre"
+        ],
+        "fr": [
+          "Une",
+          "Sept",
+          "Trois"
+        ],
+        "de": [
+          "Eine",
+          "Sieben",
+          "Drei"
+        ],
+        "es": [
+          "Uno",
+          "Siete",
+          "Tres"
+        ]
+      },
+      "recallPrompt": {
+        "en": "Remember Caravaggio’s Seven Works of Mercy? On how many canvases?",
+        "it": "Ricordi le Sette opere di misericordia di Caravaggio? Su quante tele?",
+        "fr": "Vous vous souvenez des Sept Œuvres de miséricorde du Caravage ? Sur combien de toiles ?",
+        "de": "Erinnerst du dich an Caravaggios Sieben Werke der Barmherzigkeit? Auf wie vielen Leinwänden?",
+        "es": "¿Recuerdas Las siete obras de misericordia de Caravaggio? ¿En cuántos lienzos?"
+      }
+    },
+    {
+      "id": "galleria-borbonica",
+      "name": {
+        "en": "Bourbon Tunnel",
+        "it": "Galleria Borbonica",
+        "fr": "Galerie bourbonienne",
+        "de": "Bourbonischer Tunnel",
+        "es": "Galería Borbónica"
+      },
+      "street": "Vico del Grottone",
+      "camera": false,
+      "entrance": {
+        "latitude": 40.8354768,
+        "longitude": 14.246277,
+        "note": "Vico del Grottone 4 (guided tours)"
+      },
+      "images": {
+        "camera": "borbonica",
+        "references": [
+          "borbonica",
+          "borbonica2"
+        ],
+        "sticker": "borbonica",
+        "crop": {
+          "x": 0.55,
+          "y": 0.75,
+          "w": 0.4,
+          "h": 0.22
+        },
+        "look": {
+          "image": "borbonica",
+          "anchor": {
+            "x": 0.6,
+            "y": 0.7
+          },
+          "zoom": 1.0,
+          "target": {
+            "x": 0.72,
+            "y": 0.9
+          }
+        }
+      },
+      "aiDescriptions": [
+        "a huge underground cavern carved in yellow tuff stone with old cars and motorbikes",
+        "the Bourbon Tunnel under Naples"
+      ],
+      "clues": {
+        "en": [
+          "Underground",
+          "Old cars in the dark",
+          "Built for a king"
+        ],
+        "it": [
+          "Sottoterra",
+          "Vecchie auto nel buio",
+          "Voluta da un re"
+        ],
+        "fr": [
+          "Sous terre",
+          "Vieilles voitures dans le noir",
+          "Voulue par un roi"
+        ],
+        "de": [
+          "Unterirdisch",
+          "Alte Autos im Dunkeln",
+          "Für einen König gebaut"
+        ],
+        "es": [
+          "Bajo tierra",
+          "Coches viejos en la oscuridad",
+          "Ordenada por un rey"
+        ]
+      },
+      "question": {
+        "en": "A king ordered this tunnel in 1853. What did it become in the Second World War?",
+        "it": "Un re ordinò questa galleria nel 1853. Che cosa diventò nella Seconda guerra mondiale?",
+        "fr": "Un roi fit creuser ce tunnel en 1853. Que devint-il pendant la Seconde Guerre mondiale ?",
+        "de": "Ein König ließ diesen Tunnel 1853 bauen. Was wurde im Zweiten Weltkrieg daraus?",
+        "es": "Un rey ordenó este túnel en 1853. ¿En qué se convirtió en la Segunda Guerra Mundial?"
+      },
+      "answers": {
+        "en": [
+          "An air-raid shelter",
+          "A secret hospital",
+          "A weapons factory"
+        ],
+        "it": [
+          "Un rifugio antiaereo",
+          "Un ospedale segreto",
+          "Una fabbrica d’armi"
+        ],
+        "fr": [
+          "Un abri antiaérien",
+          "Un hôpital secret",
+          "Une usine d’armes"
+        ],
+        "de": [
+          "Ein Luftschutzraum",
+          "Ein geheimes Krankenhaus",
+          "Eine Waffenfabrik"
+        ],
+        "es": [
+          "Un refugio antiaéreo",
+          "Un hospital secreto",
+          "Una fábrica de armas"
+        ]
+      },
+      "answerTitle": {
+        "en": "An air-raid shelter.",
+        "it": "Un rifugio antiaereo.",
+        "fr": "Un abri antiaérien.",
+        "de": "Ein Luftschutzraum.",
+        "es": "Un refugio antiaéreo."
+      },
+      "subtitle": {
+        "en": "Neapolitans hid here from the bombs.",
+        "it": "I napoletani vi si rifugiarono dalle bombe.",
+        "fr": "Les Napolitains s’y abritaient des bombes.",
+        "de": "Neapolitaner suchten hier Schutz vor Bomben.",
+        "es": "Los napolitanos se refugiaban aquí de las bombas."
+      },
+      "dinnerLine": {
+        "en": "“A king’s tunnel under Naples later sheltered people from wartime bombs.”",
+        "it": "«Una galleria voluta da un re, sotto Napoli, riparò poi la gente dalle bombe della guerra.»",
+        "fr": "« Sous Naples, le tunnel d’un roi abrita plus tard les habitants des bombes. »",
+        "de": "„Ein Königstunnel unter Neapel schützte später Menschen vor den Bomben des Krieges.“",
+        "es": "«Un túnel real bajo Nápoles protegió después a la gente de las bombas de la guerra.»"
+      },
+      "look": {
+        "prompt": {
+          "en": "Find the old vehicles left behind in the dark.",
+          "it": "Trova i vecchi veicoli lasciati nel buio.",
+          "fr": "Trouvez les vieux véhicules laissés dans le noir.",
+          "de": "Finde die alten Fahrzeuge, die im Dunkeln zurückblieben.",
+          "es": "Encuentra los vehículos viejos abandonados en la oscuridad."
+        },
+        "hint": {
+          "en": "Tip: look along the floor",
+          "it": "Suggerimento: guarda a terra",
+          "fr": "Astuce : regardez au sol",
+          "de": "Tipp: Schau auf den Boden",
+          "es": "Pista: mira el suelo"
+        }
+      },
+      "sticker": {
+        "id": "hidden-shelter",
+        "collection": "underground",
+        "title": {
+          "en": "The hidden shelter",
+          "it": "Il rifugio nascosto",
+          "fr": "L’abri caché",
+          "de": "Der versteckte Schutzraum",
+          "es": "El refugio oculto"
+        },
+        "back": {
+          "en": "Begun in 1853 for Ferdinand II; a shelter in the Second World War.",
+          "it": "Iniziata nel 1853 per Ferdinando II; rifugio nella Seconda guerra mondiale.",
+          "fr": "Commencé en 1853 pour Ferdinand II ; abri pendant la Seconde Guerre mondiale.",
+          "de": "1853 für Ferdinand II. begonnen; im Zweiten Weltkrieg ein Schutzraum.",
+          "es": "Iniciado en 1853 para Fernando II; refugio en la Segunda Guerra Mundial."
+        }
+      },
+      "recall": {
+        "en": [
+          "Shelter",
+          "Hospital",
+          "Factory"
+        ],
+        "it": [
+          "Rifugio",
+          "Ospedale",
+          "Fabbrica"
+        ],
+        "fr": [
+          "Abri",
+          "Hôpital",
+          "Usine"
+        ],
+        "de": [
+          "Schutzraum",
+          "Krankenhaus",
+          "Fabrik"
+        ],
+        "es": [
+          "Refugio",
+          "Hospital",
+          "Fábrica"
+        ]
+      },
+      "recallPrompt": {
+        "en": "Remember the Bourbon Tunnel? What did it become in the war?",
+        "it": "Ricordi la Galleria Borbonica? Che cosa diventò in guerra?",
+        "fr": "Vous vous souvenez de la galerie bourbonienne ? Que devint-elle pendant la guerre ?",
+        "de": "Erinnerst du dich an den Bourbonischen Tunnel? Was wurde im Krieg daraus?",
+        "es": "¿Recuerdas la Galería Borbónica? ¿En qué se convirtió en la guerra?"
+      }
+    },
+    {
+      "id": "galleria-umberto-i",
+      "name": {
+        "en": "Galleria Umberto I"
+      },
+      "street": "Via San Carlo",
+      "camera": true,
+      "images": {
+        "camera": "galleriaUmberto",
+        "references": [
+          "galleriaUmberto",
+          "galleriaUmberto2"
+        ],
+        "sticker": "galleriaUmberto",
+        "crop": {
+          "x": 0.3,
+          "y": 0.0,
+          "w": 0.4,
+          "h": 0.4
+        }
+      },
+      "thenNow": {
+        "then": "galleriaUmbertoEngraving",
+        "thenCaption": "oldEngraving",
+        "now": "galleriaUmberto"
+      },
+      "aiDescriptions": [
+        "a grand shopping arcade with an iron and glass dome and a patterned marble floor",
+        "the interior of Galleria Umberto I in Naples"
+      ],
+      "clues": {
+        "en": [
+          "Glass dome",
+          "Iron and glass roof",
+          "Marble floor"
+        ],
+        "it": [
+          "Cupola di vetro",
+          "Tetto in ferro e vetro",
+          "Pavimento in marmo"
+        ],
+        "fr": [
+          "Coupole de verre",
+          "Toit de fer et de verre",
+          "Sol de marbre"
+        ],
+        "de": [
+          "Glaskuppel",
+          "Dach aus Eisen und Glas",
+          "Marmorboden"
+        ],
+        "es": [
+          "Cúpula de cristal",
+          "Techo de hierro y cristal",
+          "Suelo de mármol"
+        ]
+      },
+      "question": {
+        "en": "Look down. What is set into the floor beneath this glass dome?",
+        "it": "Guarda in basso. Che cosa c’è nel pavimento sotto questa cupola di vetro?",
+        "fr": "Regardez en bas. Qu’y a-t-il dans le sol sous cette coupole de verre ?",
+        "de": "Schau nach unten. Was ist unter dieser Glaskuppel in den Boden eingelassen?",
+        "es": "Mira hacia abajo. ¿Qué hay en el suelo bajo esta cúpula de cristal?"
+      },
+      "answers": {
+        "en": [
+          "The signs of the zodiac",
+          "A map of old Naples",
+          "The builders’ names"
+        ],
+        "it": [
+          "I segni dello zodiaco",
+          "Una mappa della vecchia Napoli",
+          "I nomi dei costruttori"
+        ],
+        "fr": [
+          "Les signes du zodiaque",
+          "Un plan du vieux Naples",
+          "Les noms des bâtisseurs"
+        ],
+        "de": [
+          "Die Tierkreiszeichen",
+          "Ein Plan des alten Neapel",
+          "Die Namen der Erbauer"
+        ],
+        "es": [
+          "Los signos del zodiaco",
+          "Un mapa de la vieja Nápoles",
+          "Los nombres de los constructores"
+        ]
+      },
+      "answerTitle": {
+        "en": "The signs of the zodiac.",
+        "it": "I segni dello zodiaco.",
+        "fr": "Les signes du zodiaque.",
+        "de": "Die Tierkreiszeichen.",
+        "es": "Los signos del zodiaco."
+      },
+      "subtitle": {
+        "en": "Around a compass rose.",
+        "it": "Attorno a una rosa dei venti.",
+        "fr": "Autour d’une rose des vents.",
+        "de": "Rund um eine Windrose.",
+        "es": "Alrededor de una rosa de los vientos."
+      },
+      "dinnerLine": {
+        "en": "“Galleria Umberto I hides the zodiac in its floor, right under the glass dome.”",
+        "it": "«La Galleria Umberto I nasconde lo zodiaco nel pavimento, proprio sotto la cupola.»",
+        "fr": "« La Galleria Umberto I cache le zodiaque dans son sol, juste sous la coupole. »",
+        "de": "„Die Galleria Umberto I versteckt den Tierkreis im Boden, direkt unter der Kuppel.“",
+        "es": "«La Galleria Umberto I esconde el zodiaco en el suelo, justo bajo la cúpula.»"
+      },
+      "sticker": {
+        "id": "zodiac-floor",
+        "collection": "details",
+        "title": {
+          "en": "Zodiac underfoot",
+          "it": "Lo zodiaco sotto i piedi",
+          "fr": "Le zodiaque sous les pieds",
+          "de": "Tierkreis unter den Füßen",
+          "es": "El zodiaco bajo los pies"
+        },
+        "back": {
+          "en": "Galleria Umberto I was built between 1887 and 1890.",
+          "it": "La Galleria Umberto I fu costruita tra il 1887 e il 1890.",
+          "fr": "La Galleria Umberto I fut construite entre 1887 et 1890.",
+          "de": "Die Galleria Umberto I entstand zwischen 1887 und 1890.",
+          "es": "La Galleria Umberto I se construyó entre 1887 y 1890."
+        }
+      },
+      "recall": {
+        "en": [
+          "Zodiac",
+          "Old map",
+          "Names"
+        ],
+        "it": [
+          "Zodiaco",
+          "Vecchia mappa",
+          "Nomi"
+        ],
+        "fr": [
+          "Zodiaque",
+          "Vieux plan",
+          "Noms"
+        ],
+        "de": [
+          "Tierkreis",
+          "Alter Plan",
+          "Namen"
+        ],
+        "es": [
+          "Zodiaco",
+          "Mapa antiguo",
+          "Nombres"
+        ]
+      },
+      "recallPrompt": {
+        "en": "Remember Galleria Umberto I? What is in the floor under the dome?",
+        "it": "Ricordi la Galleria Umberto I? Che cosa c’è nel pavimento sotto la cupola?",
+        "fr": "Vous vous souvenez de la Galleria Umberto I ? Qu’y a-t-il dans le sol sous la coupole ?",
+        "de": "Erinnerst du dich an die Galleria Umberto I? Was ist im Boden unter der Kuppel?",
+        "es": "¿Recuerdas la Galleria Umberto I? ¿Qué hay en el suelo bajo la cúpula?"
+      }
+    },
+    {
+      "id": "catacombe-san-gennaro",
+      "name": {
+        "en": "Catacombs of San Gennaro",
+        "it": "Catacombe di San Gennaro",
+        "fr": "Catacombes de San Gennaro",
+        "de": "Katakomben von San Gennaro",
+        "es": "Catacumbas de San Gennaro"
+      },
+      "street": "Via Capodimonte",
+      "camera": false,
+      "entrance": {
+        "latitude": 40.8650574,
+        "longitude": 14.2473645,
+        "note": "Beside the Basilica dell’Incoronata Madre del Buon Consiglio"
+      },
+      "images": {
+        "camera": "sanGennaroCatacombs",
+        "references": [
+          "sanGennaroCatacombs",
+          "sanGennaroCatacombs2"
+        ],
+        "sticker": "quodvultdeus",
+        "crop": {
+          "x": 0.25,
+          "y": 0.0,
+          "w": 0.4,
+          "h": 0.45
+        },
+        "look": {
+          "image": "quodvultdeus",
+          "anchor": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "zoom": 1.0,
+          "target": {
+            "x": 0.62,
+            "y": 0.68
+          }
+        }
+      },
+      "aiDescriptions": [
+        "an underground early Christian catacomb with carved tuff galleries and burial niches",
+        "the Catacombs of San Gennaro in Naples"
+      ],
+      "clues": {
+        "en": [
+          "Underground",
+          "Painted tombs",
+          "Ancient mosaics"
+        ],
+        "it": [
+          "Sottoterra",
+          "Tombe dipinte",
+          "Mosaici antichi"
+        ],
+        "fr": [
+          "Sous terre",
+          "Tombes peintes",
+          "Mosaïques anciennes"
+        ],
+        "de": [
+          "Unterirdisch",
+          "Bemalte Gräber",
+          "Antike Mosaiken"
+        ],
+        "es": [
+          "Bajo tierra",
+          "Tumbas pintadas",
+          "Mosaicos antiguos"
+        ]
+      },
+      "question": {
+        "en": "A 5th-century bishop’s face survives in mosaic down here. Where was he bishop?",
+        "it": "Qui sotto sopravvive in mosaico il volto di un vescovo del V secolo. Di quale città era vescovo?",
+        "fr": "Ici, le visage d’un évêque du Ve siècle survit en mosaïque. De quelle ville était-il évêque ?",
+        "de": "Hier unten ist das Mosaikgesicht eines Bischofs aus dem 5. Jahrhundert erhalten. Wo war er Bischof?",
+        "es": "Aquí abajo sobrevive en mosaico el rostro de un obispo del siglo V. ¿De dónde era obispo?"
+      },
+      "answers": {
+        "en": [
+          "Carthage, in Africa",
+          "Constantinople",
+          "Jerusalem"
+        ],
+        "it": [
+          "Cartagine, in Africa",
+          "Costantinopoli",
+          "Gerusalemme"
+        ],
+        "fr": [
+          "Carthage, en Afrique",
+          "Constantinople",
+          "Jérusalem"
+        ],
+        "de": [
+          "Karthago in Afrika",
+          "Konstantinopel",
+          "Jerusalem"
+        ],
+        "es": [
+          "Cartago, en África",
+          "Constantinopla",
+          "Jerusalén"
+        ]
+      },
+      "answerTitle": {
+        "en": "Carthage.",
+        "it": "Cartagine.",
+        "fr": "Carthage.",
+        "de": "Karthago.",
+        "es": "Cartago."
+      },
+      "subtitle": {
+        "en": "His name was Quodvultdeus.",
+        "it": "Si chiamava Quodvultdeus.",
+        "fr": "Il s’appelait Quodvultdeus.",
+        "de": "Sein Name war Quodvultdeus.",
+        "es": "Se llamaba Quodvultdeus."
+      },
+      "dinnerLine": {
+        "en": "“Under Naples there’s a 1,500-year-old mosaic of a bishop from Carthage.”",
+        "it": "«Sotto Napoli c’è un mosaico di 1.500 anni fa con un vescovo di Cartagine.»",
+        "fr": "« Sous Naples, une mosaïque vieille de 1 500 ans montre un évêque de Carthage. »",
+        "de": "„Unter Neapel gibt es ein 1.500 Jahre altes Mosaik eines Bischofs aus Karthago.“",
+        "es": "«Bajo Nápoles hay un mosaico de hace 1.500 años de un obispo de Cartago.»"
+      },
+      "look": {
+        "prompt": {
+          "en": "Find the book the bishop is holding.",
+          "it": "Trova il libro che il vescovo tiene in mano.",
+          "fr": "Trouvez le livre que tient l’évêque.",
+          "de": "Finde das Buch, das der Bischof hält.",
+          "es": "Encuentra el libro que sostiene el obispo."
+        },
+        "hint": {
+          "en": "Tip: look at his hands",
+          "it": "Suggerimento: guarda le sue mani",
+          "fr": "Astuce : regardez ses mains",
+          "de": "Tipp: Schau auf seine Hände",
+          "es": "Pista: mira sus manos"
+        }
+      },
+      "sticker": {
+        "id": "bishop-of-carthage",
+        "collection": "underground",
+        "title": {
+          "en": "The bishop from Carthage",
+          "it": "Il vescovo di Cartagine",
+          "fr": "L’évêque de Carthage",
+          "de": "Der Bischof aus Karthago",
+          "es": "El obispo de Cartago"
+        },
+        "back": {
+          "en": "A 5th-century mosaic of Quodvultdeus, bishop of Carthage.",
+          "it": "Un mosaico del V secolo di Quodvultdeus, vescovo di Cartagine.",
+          "fr": "Une mosaïque du Ve siècle de Quodvultdeus, évêque de Carthage.",
+          "de": "Ein Mosaik aus dem 5. Jahrhundert: Quodvultdeus, Bischof von Karthago.",
+          "es": "Un mosaico del siglo V de Quodvultdeus, obispo de Cartago."
+        }
+      },
+      "recall": {
+        "en": [
+          "Carthage",
+          "Constantinople",
+          "Jerusalem"
+        ],
+        "it": [
+          "Cartagine",
+          "Costantinopoli",
+          "Gerusalemme"
+        ],
+        "fr": [
+          "Carthage",
+          "Constantinople",
+          "Jérusalem"
+        ],
+        "de": [
+          "Karthago",
+          "Konstantinopel",
+          "Jerusalem"
+        ],
+        "es": [
+          "Cartago",
+          "Constantinopla",
+          "Jerusalén"
+        ]
+      },
+      "recallPrompt": {
+        "en": "Remember the bishop in the catacombs? Where was he bishop?",
+        "it": "Ricordi il vescovo nelle catacombe? Di quale città era vescovo?",
+        "fr": "Vous vous souvenez de l’évêque des catacombes ? De quelle ville était-il évêque ?",
+        "de": "Erinnerst du dich an den Bischof in den Katakomben? Wo war er Bischof?",
+        "es": "¿Recuerdas al obispo de las catacumbas? ¿De dónde era obispo?"
+      }
+    },
+    {
+      "id": "catacombe-san-gaudioso",
+      "name": {
+        "en": "Catacombs of San Gaudioso",
+        "it": "Catacombe di San Gaudioso",
+        "fr": "Catacombes de San Gaudioso",
+        "de": "Katakomben von San Gaudioso",
+        "es": "Catacumbas de San Gaudioso"
+      },
+      "street": "Piazza Sanità",
+      "camera": false,
+      "entrance": {
+        "latitude": 40.8597275,
+        "longitude": 14.2490297,
+        "note": "Inside the Basilica di Santa Maria della Sanità"
+      },
+      "images": {
+        "camera": "sanGaudioso",
+        "references": [
+          "sanGaudioso",
+          "sanitaBasilica"
+        ],
+        "sticker": "sanGaudioso2",
+        "crop": {
+          "x": 0.2,
+          "y": 0.05,
+          "w": 0.6,
+          "h": 0.55
+        },
+        "look": {
+          "image": "sanGaudioso2",
+          "anchor": {
+            "x": 0.5,
+            "y": 0.35
+          },
+          "zoom": 1.0,
+          "target": {
+            "x": 0.42,
+            "y": 0.17
+          }
+        }
+      },
+      "aiDescriptions": [
+        "dark underground catacomb corridors with faded frescoes and burial niches",
+        "the Catacombs of San Gaudioso under the Basilica of Santa Maria della Sanità"
+      ],
+      "clues": {
+        "en": [
+          "Under a basilica",
+          "Faded frescoes",
+          "Rione Sanità"
+        ],
+        "it": [
+          "Sotto una basilica",
+          "Affreschi sbiaditi",
+          "Rione Sanità"
+        ],
+        "fr": [
+          "Sous une basilique",
+          "Fresques pâlies",
+          "Rione Sanità"
+        ],
+        "de": [
+          "Unter einer Basilika",
+          "Verblasste Fresken",
+          "Rione Sanità"
+        ],
+        "es": [
+          "Bajo una basílica",
+          "Frescos desvaídos",
+          "Rione Sanità"
+        ]
+      },
+      "question": {
+        "en": "These catacombs grew around one 5th-century tomb. Whose?",
+        "it": "Queste catacombe crebbero attorno a una tomba del V secolo. Di chi?",
+        "fr": "Ces catacombes se sont développées autour d’une tombe du Ve siècle. Celle de qui ?",
+        "de": "Diese Katakomben wuchsen um ein Grab aus dem 5. Jahrhundert. Wessen Grab?",
+        "es": "Estas catacumbas crecieron alrededor de una tumba del siglo V. ¿De quién?"
+      },
+      "answers": {
+        "en": [
+          "A bishop from Africa",
+          "A Roman emperor",
+          "Virgil, the poet"
+        ],
+        "it": [
+          "Un vescovo africano",
+          "Un imperatore romano",
+          "Il poeta Virgilio"
+        ],
+        "fr": [
+          "Un évêque africain",
+          "Un empereur romain",
+          "Le poète Virgile"
+        ],
+        "de": [
+          "Eines Bischofs aus Afrika",
+          "Eines römischen Kaisers",
+          "Des Dichters Vergil"
+        ],
+        "es": [
+          "Un obispo africano",
+          "Un emperador romano",
+          "El poeta Virgilio"
+        ]
+      },
+      "answerTitle": {
+        "en": "A bishop from Africa.",
+        "it": "Un vescovo africano.",
+        "fr": "Un évêque africain.",
+        "de": "Eines Bischofs aus Afrika.",
+        "es": "Un obispo africano."
+      },
+      "subtitle": {
+        "en": "Gaudiosus reached Naples in the 5th century.",
+        "it": "Gaudioso giunse a Napoli nel V secolo.",
+        "fr": "Gaudiosus arriva à Naples au Ve siècle.",
+        "de": "Gaudiosus kam im 5. Jahrhundert nach Neapel.",
+        "es": "Gaudioso llegó a Nápoles en el siglo V."
+      },
+      "dinnerLine": {
+        "en": "“The San Gaudioso catacombs grew around the tomb of a bishop from Africa.”",
+        "it": "«Le catacombe di San Gaudioso nacquero attorno alla tomba di un vescovo africano.»",
+        "fr": "« Les catacombes de San Gaudioso sont nées autour de la tombe d’un évêque africain. »",
+        "de": "„Die Katakomben von San Gaudioso entstanden um das Grab eines Bischofs aus Afrika.“",
+        "es": "«Las catacumbas de San Gaudioso nacieron alrededor de la tumba de un obispo africano.»"
+      },
+      "sticker": {
+        "id": "two-eras-one-tomb",
+        "collection": "underground",
+        "title": {
+          "en": "Two eras, one tomb",
+          "it": "Due epoche, una tomba",
+          "fr": "Deux époques, une tombe",
+          "de": "Zwei Epochen, ein Grab",
+          "es": "Dos épocas, una tumba"
+        },
+        "back": {
+          "en": "Early Christian art beside later noble burials, under the Sanità.",
+          "it": "Arte paleocristiana accanto a sepolture nobili più tarde, sotto la Sanità.",
+          "fr": "Art paléochrétien et sépultures nobles plus tardives, sous la Sanità.",
+          "de": "Frühchristliche Kunst neben späteren Adelsgräbern, unter der Sanità.",
+          "es": "Arte paleocristiano junto a entierros nobles posteriores, bajo la Sanità."
+        }
+      },
+      "recall": {
+        "en": [
+          "A bishop",
+          "An emperor",
+          "Virgil"
+        ],
+        "it": [
+          "Un vescovo",
+          "Un imperatore",
+          "Virgilio"
+        ],
+        "fr": [
+          "Un évêque",
+          "Un empereur",
+          "Virgile"
+        ],
+        "de": [
+          "Ein Bischof",
+          "Ein Kaiser",
+          "Vergil"
+        ],
+        "es": [
+          "Un obispo",
+          "Un emperador",
+          "Virgilio"
+        ]
+      },
+      "recallPrompt": {
+        "en": "Remember the San Gaudioso catacombs? Whose tomb did they grow around?",
+        "it": "Ricordi le catacombe di San Gaudioso? Attorno alla tomba di chi nacquero?",
+        "fr": "Vous vous souvenez des catacombes de San Gaudioso ? Autour de quelle tombe sont-elles nées ?",
+        "de": "Erinnerst du dich an die Katakomben von San Gaudioso? Um wessen Grab entstanden sie?",
+        "es": "¿Recuerdas las catacumbas de San Gaudioso? ¿Alrededor de qué tumba nacieron?"
+      },
+      "look": {
+        "prompt": {
+          "en": "Find the Latin inscription that names Gaudiosus.",
+          "it": "Trova l’iscrizione latina che nomina Gaudioso.",
+          "fr": "Trouvez l’inscription latine qui nomme Gaudiosus.",
+          "de": "Finde die lateinische Inschrift mit dem Namen Gaudiosus.",
+          "es": "Encuentra la inscripción latina que nombra a Gaudioso."
+        },
+        "hint": {
+          "en": "Tip: look above the tomb",
+          "it": "Suggerimento: guarda sopra la tomba",
+          "fr": "Astuce : regardez au-dessus de la tombe",
+          "de": "Tipp: Schau über das Grab",
+          "es": "Pista: mira encima de la tumba"
+        }
+      }
+    },
+    {
+      "id": "tesoro-san-gennaro",
+      "name": {
+        "en": "Treasure of San Gennaro Museum",
+        "it": "Museo del Tesoro di San Gennaro",
+        "fr": "Musée du Trésor de San Gennaro",
+        "de": "Museum des Schatzes von San Gennaro",
+        "es": "Museo del Tesoro de San Gennaro"
+      },
+      "street": "Via Duomo",
+      "camera": false,
+      "coordinate": {
+        "latitude": 40.8522834,
+        "longitude": 14.2596841,
+        "source": "OpenStreetMap (Via Duomo 149); Wikidata has conflicting points"
+      },
+      "images": {
+        "camera": "tesoroMuseum2",
+        "references": [
+          "tesoroMuseum2",
+          "tesoroMuseum"
+        ],
+        "sticker": "sanGennaroNecklace",
+        "crop": {
+          "x": 0.15,
+          "y": 0.08,
+          "w": 0.7,
+          "h": 0.6
+        },
+        "look": {
+          "image": "sanGennaroNecklace",
+          "anchor": {
+            "x": 0.5,
+            "y": 0.45
+          },
+          "zoom": 1.0,
+          "target": {
+            "x": 0.5,
+            "y": 0.47
+          }
+        }
+      },
+      "aiDescriptions": [
+        "a red neoclassical palazzo beside a cathedral on a busy street",
+        "the Museum of the Treasure of San Gennaro in Naples"
+      ],
+      "clues": {
+        "en": [
+          "Next to the Duomo",
+          "Jewels and silver",
+          "Gifts of devotion"
+        ],
+        "it": [
+          "Accanto al Duomo",
+          "Gioielli e argenti",
+          "Doni di devozione"
+        ],
+        "fr": [
+          "À côté du Duomo",
+          "Bijoux et argenterie",
+          "Dons de dévotion"
+        ],
+        "de": [
+          "Neben dem Dom",
+          "Juwelen und Silber",
+          "Gaben der Verehrung"
+        ],
+        "es": [
+          "Junto al Duomo",
+          "Joyas y plata",
+          "Ofrendas de devoción"
+        ]
+      },
+      "question": {
+        "en": "San Gennaro’s jewelled necklace was begun in 1679. How did it grow?",
+        "it": "La collana di San Gennaro fu iniziata nel 1679. Come crebbe?",
+        "fr": "Le collier de saint Janvier fut commencé en 1679. Comment s’est-il enrichi ?",
+        "de": "Die Juwelenkette des heiligen Januarius wurde 1679 begonnen. Wie wuchs sie?",
+        "es": "El collar de san Jenaro se empezó en 1679. ¿Cómo creció?"
+      },
+      "answers": {
+        "en": [
+          "Gifts added over generations",
+          "Made in a single year",
+          "Bought by one king"
+        ],
+        "it": [
+          "Doni aggiunti per generazioni",
+          "Realizzata in un solo anno",
+          "Comprata da un solo re"
+        ],
+        "fr": [
+          "Des dons au fil des générations",
+          "Fabriqué en une seule année",
+          "Acheté par un seul roi"
+        ],
+        "de": [
+          "Durch Gaben über Generationen",
+          "In einem einzigen Jahr gefertigt",
+          "Von einem König gekauft"
+        ],
+        "es": [
+          "Con regalos durante generaciones",
+          "Hecho en un solo año",
+          "Comprado por un solo rey"
+        ]
+      },
+      "answerTitle": {
+        "en": "Gifts, over generations.",
+        "it": "Doni, per generazioni.",
+        "fr": "Des dons, sur des générations.",
+        "de": "Durch Gaben, über Generationen.",
+        "es": "Con regalos, durante generaciones."
+      },
+      "subtitle": {
+        "en": "From kings, queens and ordinary devotees.",
+        "it": "Da re, regine e semplici fedeli.",
+        "fr": "De rois, de reines et de simples fidèles.",
+        "de": "Von Königen, Königinnen und einfachen Gläubigen.",
+        "es": "De reyes, reinas y devotos corrientes."
+      },
+      "dinnerLine": {
+        "en": "“San Gennaro’s necklace grew for centuries, one gift at a time.”",
+        "it": "«La collana di San Gennaro è cresciuta per secoli, un dono alla volta.»",
+        "fr": "« Le collier de saint Janvier a grandi pendant des siècles, un don après l’autre. »",
+        "de": "„Die Kette des heiligen Januarius wuchs über Jahrhunderte – Geschenk für Geschenk.“",
+        "es": "«El collar de san Jenaro creció durante siglos, regalo a regalo.»"
+      },
+      "look": {
+        "prompt": {
+          "en": "Find the biggest green stone in the necklace.",
+          "it": "Trova la pietra verde più grande della collana.",
+          "fr": "Trouvez la plus grosse pierre verte du collier.",
+          "de": "Finde den größten grünen Stein der Kette.",
+          "es": "Encuentra la piedra verde más grande del collar."
+        },
+        "hint": {
+          "en": "Tip: look near the centre",
+          "it": "Suggerimento: guarda vicino al centro",
+          "fr": "Astuce : regardez près du centre",
+          "de": "Tipp: Schau in die Mitte",
+          "es": "Pista: mira cerca del centro"
+        }
+      },
+      "sticker": {
+        "id": "treasure-necklace",
+        "collection": "masterpieces",
+        "title": {
+          "en": "The necklace of gifts",
+          "it": "La collana dei doni",
+          "fr": "Le collier des dons",
+          "de": "Die Kette der Gaben",
+          "es": "El collar de los regalos"
+        },
+        "back": {
+          "en": "Begun in 1679, enriched by donations over generations.",
+          "it": "Iniziata nel 1679, arricchita da donazioni per generazioni.",
+          "fr": "Commencé en 1679, enrichi de dons au fil des générations.",
+          "de": "1679 begonnen, über Generationen durch Spenden bereichert.",
+          "es": "Iniciado en 1679 y enriquecido con donaciones durante generaciones."
+        }
+      },
+      "recall": {
+        "en": [
+          "Gifts",
+          "One year",
+          "One king"
+        ],
+        "it": [
+          "Doni",
+          "Un anno",
+          "Un re"
+        ],
+        "fr": [
+          "Des dons",
+          "Un an",
+          "Un roi"
+        ],
+        "de": [
+          "Gaben",
+          "Ein Jahr",
+          "Ein König"
+        ],
+        "es": [
+          "Regalos",
+          "Un año",
+          "Un rey"
+        ]
+      },
+      "recallPrompt": {
+        "en": "Remember San Gennaro’s necklace? How did it grow?",
+        "it": "Ricordi la collana di San Gennaro? Come crebbe?",
+        "fr": "Vous vous souvenez du collier de saint Janvier ? Comment s’est-il enrichi ?",
+        "de": "Erinnerst du dich an die Kette des heiligen Januarius? Wie wuchs sie?",
+        "es": "¿Recuerdas el collar de san Jenaro? ¿Cómo creció?"
+      }
+    }
+  ]
+}

@@ -344,6 +344,46 @@ struct SiteTests {
             case .notAPlace: Issue.record("\(asset) matched nothing")
             }
         }
+        // New camera places from the v2 story cards.
+        for (asset, expected) in [("castelNuovo2", "castel-nuovo"), ("santaChiara2", "santa-chiara"), ("galleriaUmberto2", "galleria-umberto-i")] {
+            switch await matcher.identify(UIImage(named: asset)!, in: site, near: nil, catalog: catalog) {
+            case .confident(let p): #expect(p.id == expected, "\(asset) → \(p.id)")
+            case .unsure(let ps, _): #expect(ps.first?.id == expected, "\(asset) unsure, first \(ps.first?.id ?? "-")")
+            case .notAPlace: Issue.record("\(asset) matched nothing")
+            }
+        }
+    }
+
+    @Test func mapOnlyPlacesAreOfferedWhereYouStandNotGuessedFromPhotos() throws {
+        let site = try ContentStore.loadBundled().site(id: "naples")!
+        let pio = site.place(id: "pio-monte-misericordia")!
+        #expect(!pio.usesCamera)
+        #expect(!site.cameraPlaces.contains { $0.id == pio.id })
+        #expect(site.storyPlaces.contains { $0.id == pio.id })
+        let atPioMonte = CLLocation(latitude: pio.latitude + 0.0002, longitude: pio.longitude)
+        if case .unsure(let ps, _) = RecognitionPolicy.offeringPlacesHere(.notAPlace(label: "a painting", heritage: true, nearby: []), site: site, location: atPioMonte) {
+            #expect(ps.first?.id == pio.id)
+        } else { Issue.record("standing at Pio Monte should offer its story") }
+        let farAway = CLLocation(latitude: 40.8359, longitude: 14.2486)
+        if case .unsure = RecognitionPolicy.offeringPlacesHere(.notAPlace(label: nil, heritage: true, nearby: []), site: site, location: farAway) {
+            Issue.record("map-only places must not be offered from 2 km away")
+        }
+        let castel = site.place(id: "castel-nuovo")!
+        if case .confident(let p) = RecognitionPolicy.offeringPlacesHere(.confident(castel), site: site, location: atPioMonte) { #expect(p.id == castel.id) }
+        else { Issue.record("a confident photo match must win") }
+    }
+
+    @Test func answersAreShuffledAndEntrancesGuideDirections() throws {
+        let catalog = try ContentStore.loadBundled()
+        let stories = catalog.sites.flatMap(\.storyPlaces).compactMap(\.story)
+        #expect(Set(stories.map(\.correctIndex)).count == 3, "the right answer should not always sit in the same place")
+        let site = catalog.site(id: "naples")!
+        let catacombs = site.place(id: "catacombe-san-gennaro")!
+        #expect(catacombs.entrance != nil)
+        #expect(catacombs.directionsTarget.coordinate.latitude == catacombs.entrance!.latitude)
+        let gesu = site.place(id: "gesu-nuovo")!
+        #expect(gesu.directionsTarget.coordinate.latitude == gesu.latitude)
+        #expect(site.storyPlaces.count >= 13)
     }
 }
 

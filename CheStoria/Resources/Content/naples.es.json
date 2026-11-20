@@ -1,4 +1,5 @@
 {
+  "city": "Nápoles",
   "welcome": {
     "headline": "Aquí cada rincón guarda un secreto.",
     "body": "Apunta la cámara a cualquier cosa. Adivina su secreto y luego busca la pista. Solo 30 segundos."
@@ -178,6 +179,344 @@
           "label": "LEYENDA",
           "lead": "Es una leyenda:",
           "text": "nadie ha encontrado nunca el huevo."
+        }
+      }
+    },
+    {
+      "id": "santa-chiara",
+      "name": "Santa Chiara",
+      "clues": [
+        "Fachada gótica",
+        "Alto campanario",
+        "Claustro de mayólica"
+      ],
+      "story": {
+        "eyebrow": "Santa Chiara · Nápoles",
+        "question": "Por dentro, esta iglesia gótica parece desnuda. ¿Qué la dañó tanto en 1943?",
+        "answers": [
+          "Un terremoto",
+          "Los bombardeos",
+          "Una erupción del Vesubio"
+        ],
+        "answerTitle": "Los bombardeos.",
+        "subtitle": "La restauración le devolvió su aspecto gótico.",
+        "body": "Santa Chiara recibió decoración barroca, pero los bombardeos de 1943 la dañaron gravemente. La restauración recuperó buena parte de su aspecto gótico. En el claustro, coloridas mayólicas del siglo XVIII conservan otra etapa de su historia.",
+        "source": "Fuentes publicadas",
+        "dinnerLine": "«Santa Chiara parece medieval hoy, en parte, por un bombardeo de 1943.»",
+        "sticker": {
+          "title": "Claustro de mayólica",
+          "collection": "Renacidos",
+          "back": "El claustro de Santa Chiara está cubierto de mayólicas del siglo XVIII."
+        },
+        "recallChoices": [
+          "Terremoto",
+          "Bombas",
+          "Vesubio"
+        ],
+        "recallPrompt": "¿Recuerdas Santa Chiara? ¿Qué la dañó en 1943?"
+      }
+    },
+    {
+      "id": "teatro-san-carlo",
+      "name": "Teatro di San Carlo",
+      "clues": [
+        "Entradas en arco",
+        "Logia con columnas",
+        "Junto al Palacio Real"
+      ],
+      "story": {
+        "eyebrow": "Teatro di San Carlo · Nápoles",
+        "question": "En 1816 un incendio arrasó este teatro de ópera. ¿Cuánto duró la reconstrucción?",
+        "answers": [
+          "Unos nueve meses",
+          "Doce años",
+          "Medio siglo"
+        ],
+        "answerTitle": "Unos nueve meses.",
+        "subtitle": "Reabrió en enero de 1817.",
+        "body": "El Teatro San Carlo abrió en 1737. Un incendio destruyó su sala en 1816, pero la reconstrucción dirigida por Antonio Niccolini duró unos nueve meses. El teatro reabrió en enero de 1817, tras aquella catástrofe.",
+        "source": "Fuentes publicadas",
+        "dinnerLine": "«El San Carlo ardió en 1816 y nueve meses después ya se volvía a cantar.»",
+        "sticker": {
+          "title": "La ópera renacida",
+          "collection": "Renacidos",
+          "back": "Ardió en 1816 y reabrió en enero de 1817."
+        },
+        "recallChoices": [
+          "Nueve meses",
+          "Doce años",
+          "Cincuenta años"
+        ],
+        "recallPrompt": "¿Recuerdas el San Carlo? ¿Cuánto duró la reconstrucción tras el incendio de 1816?"
+      },
+      "thenNow": {
+        "thenCaption": "En un grabado antiguo",
+        "nowCaption": "Hoy"
+      }
+    },
+    {
+      "id": "castel-nuovo",
+      "name": "Castel Nuovo",
+      "clues": [
+        "Torres oscuras y redondas",
+        "Arco de mármol blanco",
+        "Cerca del puerto"
+      ],
+      "story": {
+        "eyebrow": "Castel Nuovo · Nápoles",
+        "question": "¿Por qué hay un arco de mármol blanco encajado entre estas torres oscuras?",
+        "answers": [
+          "Para celebrar la llegada de un rey",
+          "Por una victoria naval",
+          "Para sustituir una puerta caída"
+        ],
+        "answerTitle": "La llegada de un rey.",
+        "subtitle": "El triunfo de Alfonso de Aragón, en mármol.",
+        "body": "Alfonso de Aragón lo mandó construir para celebrar su entrada en Nápoles. Este monumento renacentista aún contrasta con los muros más antiguos del castillo.",
+        "source": "Fuentes publicadas",
+        "dinnerLine": "«El arco blanco del Castel Nuovo celebra la entrada de Alfonso de Aragón en Nápoles.»",
+        "sticker": {
+          "title": "El arco del rey",
+          "collection": "Nápoles real",
+          "back": "Alfonso de Aragón levantó este arco para celebrar su entrada en Nápoles."
+        },
+        "recallChoices": [
+          "Un rey",
+          "Batalla naval",
+          "Puerta caída"
+        ],
+        "recallPrompt": "¿Recuerdas el arco blanco del Castel Nuovo? ¿Qué celebra?",
+        "lookCloser": {
+          "prompt": "Encuentra el cortejo del rey tallado en el arco.",
+          "hint": "Pista: mira encima del arco inferior"
+        }
+      }
+    },
+    {
+      "id": "pio-monte-misericordia",
+      "name": "Pio Monte della Misericordia",
+      "clues": [
+        "Pórtico con arcos",
+        "Un Caravaggio dentro",
+        "Caridad desde 1602"
+      ],
+      "story": {
+        "eyebrow": "Pio Monte della Misericordia · Nápoles",
+        "question": "Caravaggio pintó siete obras de misericordia para esta institución. ¿En cuántos lienzos?",
+        "answers": [
+          "Siete",
+          "Uno solo",
+          "Tres"
+        ],
+        "answerTitle": "Uno solo.",
+        "subtitle": "Pintado en 1606–07, tras huir de Roma.",
+        "body": "Tras huir de Roma en 1606, Caravaggio pintó Las siete obras de misericordia para una institución benéfica napolitana. En vez de siete cuadros distintos, reunió los actos de compasión en una única escena dramática, realizada entre 1606 y 1607.",
+        "source": "Fuentes publicadas",
+        "dinnerLine": "«En Nápoles, Caravaggio reunió siete obras de misericordia en un solo cuadro.»",
+        "sticker": {
+          "title": "Siete bondades",
+          "collection": "Obras maestras",
+          "back": "Caravaggio pintó las siete obras de misericordia en un solo lienzo."
+        },
+        "recallChoices": [
+          "Siete",
+          "Uno",
+          "Tres"
+        ],
+        "recallPrompt": "¿Recuerdas Las siete obras de misericordia de Caravaggio? ¿En cuántos lienzos?",
+        "lookCloser": {
+          "prompt": "Encuentra al muerto al que se llevan: solo se ven sus pies.",
+          "hint": "Pista: mira debajo de la antorcha"
+        }
+      }
+    },
+    {
+      "id": "galleria-borbonica",
+      "name": "Galería Borbónica",
+      "clues": [
+        "Bajo tierra",
+        "Coches viejos en la oscuridad",
+        "Ordenada por un rey"
+      ],
+      "story": {
+        "eyebrow": "Galería Borbónica · Nápoles",
+        "question": "Un rey ordenó este túnel en 1853. ¿En qué se convirtió en la Segunda Guerra Mundial?",
+        "answers": [
+          "Un refugio antiaéreo",
+          "Un hospital secreto",
+          "Una fábrica de armas"
+        ],
+        "answerTitle": "Un refugio antiaéreo.",
+        "subtitle": "Los napolitanos se refugiaban aquí de las bombas.",
+        "body": "En 1853, Fernando II ordenó abrir un paso subterráneo en Nápoles. Décadas después, el túnel y las cisternas cercanas refugiaron a habitantes durante los bombardeos de la Segunda Guerra Mundial. Un mismo lugar tuvo dos usos muy distintos.",
+        "source": "Fuentes publicadas",
+        "dinnerLine": "«Un túnel real bajo Nápoles protegió después a la gente de las bombas de la guerra.»",
+        "sticker": {
+          "title": "El refugio oculto",
+          "collection": "Bajo tierra",
+          "back": "Iniciado en 1853 para Fernando II; refugio en la Segunda Guerra Mundial."
+        },
+        "recallChoices": [
+          "Refugio",
+          "Hospital",
+          "Fábrica"
+        ],
+        "recallPrompt": "¿Recuerdas la Galería Borbónica? ¿En qué se convirtió en la guerra?",
+        "lookCloser": {
+          "prompt": "Encuentra los vehículos viejos abandonados en la oscuridad.",
+          "hint": "Pista: mira el suelo"
+        }
+      }
+    },
+    {
+      "id": "galleria-umberto-i",
+      "name": "Galleria Umberto I",
+      "clues": [
+        "Cúpula de cristal",
+        "Techo de hierro y cristal",
+        "Suelo de mármol"
+      ],
+      "story": {
+        "eyebrow": "Galleria Umberto I · Nápoles",
+        "question": "Mira hacia abajo. ¿Qué hay en el suelo bajo esta cúpula de cristal?",
+        "answers": [
+          "Un mapa de la vieja Nápoles",
+          "Los signos del zodiaco",
+          "Los nombres de los constructores"
+        ],
+        "answerTitle": "Los signos del zodiaco.",
+        "subtitle": "Alrededor de una rosa de los vientos.",
+        "body": "Construida entre 1887 y 1890, la Galleria Umberto I sustituyó antiguas calles insalubres por una gran galería comercial. Bajo su cúpula de hierro y cristal, el suelo guarda mosaicos del zodiaco y una rosa de los vientos.",
+        "source": "Fuentes publicadas",
+        "dinnerLine": "«La Galleria Umberto I esconde el zodiaco en el suelo, justo bajo la cúpula.»",
+        "sticker": {
+          "title": "El zodiaco bajo los pies",
+          "collection": "Detalles ocultos",
+          "back": "La Galleria Umberto I se construyó entre 1887 y 1890."
+        },
+        "recallChoices": [
+          "Mapa antiguo",
+          "Zodiaco",
+          "Nombres"
+        ],
+        "recallPrompt": "¿Recuerdas la Galleria Umberto I? ¿Qué hay en el suelo bajo la cúpula?"
+      },
+      "thenNow": {
+        "thenCaption": "En un grabado antiguo",
+        "nowCaption": "Hoy"
+      }
+    },
+    {
+      "id": "catacombe-san-gennaro",
+      "name": "Catacumbas de San Gennaro",
+      "clues": [
+        "Bajo tierra",
+        "Tumbas pintadas",
+        "Mosaicos antiguos"
+      ],
+      "story": {
+        "eyebrow": "Catacumbas de San Gennaro · Nápoles",
+        "question": "Aquí abajo sobrevive en mosaico el rostro de un obispo del siglo V. ¿De dónde era obispo?",
+        "answers": [
+          "Constantinopla",
+          "Jerusalén",
+          "Cartago, en África"
+        ],
+        "answerTitle": "Cartago.",
+        "subtitle": "Se llamaba Quodvultdeus.",
+        "body": "Bajo Nápoles, los primeros cristianos crearon extensas cámaras funerarias. En la Cripta de los Obispos, un mosaico del siglo V representa a Quodvultdeus, obispo de Cartago. Este arte subterráneo revela antiguos vínculos mediterráneos.",
+        "source": "Fuentes publicadas",
+        "dinnerLine": "«Bajo Nápoles hay un mosaico de hace 1.500 años de un obispo de Cartago.»",
+        "sticker": {
+          "title": "El obispo de Cartago",
+          "collection": "Bajo tierra",
+          "back": "Un mosaico del siglo V de Quodvultdeus, obispo de Cartago."
+        },
+        "recallChoices": [
+          "Constantinopla",
+          "Jerusalén",
+          "Cartago"
+        ],
+        "recallPrompt": "¿Recuerdas al obispo de las catacumbas? ¿De dónde era obispo?",
+        "lookCloser": {
+          "prompt": "Encuentra el libro que sostiene el obispo.",
+          "hint": "Pista: mira sus manos"
+        }
+      }
+    },
+    {
+      "id": "catacombe-san-gaudioso",
+      "name": "Catacumbas de San Gaudioso",
+      "clues": [
+        "Bajo una basílica",
+        "Frescos desvaídos",
+        "Rione Sanità"
+      ],
+      "story": {
+        "eyebrow": "Catacumbas de San Gaudioso · Nápoles",
+        "question": "Estas catacumbas crecieron alrededor de una tumba del siglo V. ¿De quién?",
+        "answers": [
+          "Un emperador romano",
+          "Un obispo africano",
+          "El poeta Virgilio"
+        ],
+        "answerTitle": "Un obispo africano.",
+        "subtitle": "Gaudioso llegó a Nápoles en el siglo V.",
+        "body": "Estas catacumbas crecieron alrededor de la tumba de Gaudioso, un obispo africano llegado a Nápoles en el siglo V. Siglos después, familias nobles utilizaron las cámaras subterráneas para enterramientos. El arte paleocristiano convive con memorias posteriores.",
+        "source": "Fuentes publicadas",
+        "dinnerLine": "«Las catacumbas de San Gaudioso nacieron alrededor de la tumba de un obispo africano.»",
+        "sticker": {
+          "title": "Dos épocas, una tumba",
+          "collection": "Bajo tierra",
+          "back": "Arte paleocristiano junto a entierros nobles posteriores, bajo la Sanità."
+        },
+        "recallChoices": [
+          "Un emperador",
+          "Un obispo",
+          "Virgilio"
+        ],
+        "recallPrompt": "¿Recuerdas las catacumbas de San Gaudioso? ¿Alrededor de qué tumba nacieron?",
+        "lookCloser": {
+          "prompt": "Encuentra la inscripción latina que nombra a Gaudioso.",
+          "hint": "Pista: mira encima de la tumba"
+        }
+      }
+    },
+    {
+      "id": "tesoro-san-gennaro",
+      "name": "Museo del Tesoro de San Gennaro",
+      "clues": [
+        "Junto al Duomo",
+        "Joyas y plata",
+        "Ofrendas de devoción"
+      ],
+      "story": {
+        "eyebrow": "Museo del Tesoro de San Gennaro · Nápoles",
+        "question": "El collar de san Jenaro se empezó en 1679. ¿Cómo creció?",
+        "answers": [
+          "Con regalos durante generaciones",
+          "Hecho en un solo año",
+          "Comprado por un solo rey"
+        ],
+        "answerTitle": "Con regalos, durante generaciones.",
+        "subtitle": "De reyes, reinas y devotos corrientes.",
+        "body": "El célebre collar de san Jenaro comenzó a elaborarse en 1679 y recibió nuevas gemas con donaciones posteriores. Reyes, reinas y devotos aportaron joyas durante generaciones. El tesoro es una obra de arte y un testimonio de devoción popular.",
+        "source": "Fuentes publicadas",
+        "dinnerLine": "«El collar de san Jenaro creció durante siglos, regalo a regalo.»",
+        "sticker": {
+          "title": "El collar de los regalos",
+          "collection": "Obras maestras",
+          "back": "Iniciado en 1679 y enriquecido con donaciones durante generaciones."
+        },
+        "recallChoices": [
+          "Regalos",
+          "Un año",
+          "Un rey"
+        ],
+        "recallPrompt": "¿Recuerdas el collar de san Jenaro? ¿Cómo creció?",
+        "lookCloser": {
+          "prompt": "Encuentra la piedra verde más grande del collar.",
+          "hint": "Pista: mira cerca del centro"
         }
       }
     }

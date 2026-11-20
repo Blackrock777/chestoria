@@ -216,6 +216,21 @@ nonisolated enum RecognitionPolicy {
         return .confident(p)
     }
 
+    /// Places the camera doesn't recognise (indoor art, no-photo rooms) are offered when you are
+    /// standing at one, by real GPS, unless the photo clearly matched another place.
+    static let hereMeters: CLLocationDistance = 150
+    static func offeringPlacesHere(_ result: RecognitionResult, site: SiteContent, location: CLLocation?) -> RecognitionResult {
+        guard let loc = location else { return result }
+        let here = site.storyPlaces.filter { !$0.usesCamera && CLLocation(latitude: $0.latitude, longitude: $0.longitude).distance(from: loc) <= hereMeters }
+            .sorted { CLLocation(latitude: $0.latitude, longitude: $0.longitude).distance(from: loc) < CLLocation(latitude: $1.latitude, longitude: $1.longitude).distance(from: loc) }
+        guard !here.isEmpty else { return result }
+        switch result {
+        case .confident: return result
+        case .unsure(let ps, let label): return .unsure(Array((here + ps).prefix(3)), label: label)
+        case .notAPlace(let label, _, _): return .unsure(Array(here.prefix(3)), label: label)
+        }
+    }
+
     static func candidates(_ places: [Place], near location: CLLocation?, nearbyMeters: CLLocationDistance = 500) -> [Place] {
         guard let loc = location else { return places }
         let withDistance = places.map { ($0, CLLocation(latitude: $0.latitude, longitude: $0.longitude).distance(from: loc)) }
@@ -252,7 +267,7 @@ final class PlaceMatcher {
         if let p = preparation, p.site == site.id { await p.task.value; return }
         isReady = false
         if preparation != nil { index = PlaceIndex() }
-        let places = site.storyPlaces, index = self.index
+        let places = site.cameraPlaces, index = self.index
         let task = Task { @MainActor in
             var jobs: [(String, [CGImage])] = []
             for place in places {
@@ -274,15 +289,17 @@ final class PlaceMatcher {
         await prepare(site: site)
         guard let cg = photo.normalizedCGImage else { return .notAPlace(label: nil, heritage: false, nearby: site.storyPlaces) }
         let settings = site.recognitionSettings
-        let nearby = RecognitionPolicy.candidates(site.storyPlaces, near: location, nearbyMeters: settings.nearby)
-        let scores = await score(cg, among: site.storyPlaces, vocabulary: catalog.vocabulary)
+        let camera = site.cameraPlaces
+        let nearby = RecognitionPolicy.candidates(camera, near: location, nearbyMeters: settings.nearby)
+        let scores = await score(cg, among: camera, vocabulary: catalog.vocabulary)
         let nearbyIDs = Set(nearby.map(\.id))
         let nearScores = PhotoScores(places: scores.places.filter { nearbyIDs.contains($0.id) }, labels: scores.labels, usedAI: scores.usedAI)
         var result = RecognitionPolicy.decide(nearScores, places: nearby, settings: settings, language: catalog.language, vocabulary: catalog.vocabulary)
-        if case .notAPlace = result, nearby.count < site.storyPlaces.count {
-            let all = RecognitionPolicy.decide(scores, places: site.storyPlaces, settings: settings, language: catalog.language, vocabulary: catalog.vocabulary)
+        if case .notAPlace = result, nearby.count < camera.count {
+            let all = RecognitionPolicy.decide(scores, places: camera, settings: settings, language: catalog.language, vocabulary: catalog.vocabulary)
             if case .notAPlace = all {} else { result = all }
         }
+        result = RecognitionPolicy.offeringPlacesHere(result, site: site, location: location)
         record(scores, result: result)
         return result
     }
@@ -291,8 +308,8 @@ final class PlaceMatcher {
     func liveGuess(buffer: CVPixelBuffer? = nil, image: CGImage? = nil, site: SiteContent, catalog: Catalog) {
         guard usesAI, isReady, !liveBusy else { return }
         liveBusy = true
-        let index = self.index, ids = Set(site.storyPlaces.map(\.id)), vocab = catalog.vocabulary
-        let settings = site.recognitionSettings, language = catalog.language, places = site.storyPlaces
+        let index = self.index, ids = Set(site.cameraPlaces.map(\.id)), vocab = catalog.vocabulary
+        let settings = site.recognitionSettings, language = catalog.language, places = site.cameraPlaces
         nonisolated(unsafe) let frame = buffer
         Task.detached(priority: .userInitiated) {
             let e = frame.flatMap { SigLIPEmbedder.shared.embed($0) } ?? image.flatMap { SigLIPEmbedder.shared.embed($0) }

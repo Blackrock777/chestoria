@@ -1,4 +1,5 @@
 {
+  "city": "Naples",
   "welcome": {
     "headline": "Ici, chaque coin a un secret.",
     "body": "Visez n’importe quoi avec l’appareil photo. Devinez son secret, puis trouvez l’indice. 30 secondes suffisent."
@@ -178,6 +179,344 @@
           "label": "LÉGENDE",
           "lead": "C’est une légende :",
           "text": "personne n’a jamais trouvé l’œuf."
+        }
+      }
+    },
+    {
+      "id": "santa-chiara",
+      "name": "Santa Chiara",
+      "clues": [
+        "Façade gothique",
+        "Haut clocher",
+        "Cloître de faïence"
+      ],
+      "story": {
+        "eyebrow": "Santa Chiara · Naples",
+        "question": "Cette église gothique paraît nue à l’intérieur. Qu’est-ce qui l’a tant endommagée en 1943 ?",
+        "answers": [
+          "Un tremblement de terre",
+          "Des bombardements",
+          "Une éruption du Vésuve"
+        ],
+        "answerTitle": "Des bombardements.",
+        "subtitle": "La restauration lui rendit son allure gothique.",
+        "body": "Santa Chiara reçut des décors baroques avant d’être gravement endommagée par les bombardements de 1943. La restauration restitua une grande partie de son aspect gothique. Son cloître conserve aussi de magnifiques faïences colorées du XVIIIe siècle.",
+        "source": "Sources publiées",
+        "dinnerLine": "« Santa Chiara paraît médiévale aujourd’hui, en partie à cause d’un bombardement de 1943. »",
+        "sticker": {
+          "title": "Cloître de faïence",
+          "collection": "Renaissances",
+          "back": "Le cloître de Santa Chiara est couvert de faïences du XVIIIe siècle."
+        },
+        "recallChoices": [
+          "Séisme",
+          "Bombes",
+          "Vésuve"
+        ],
+        "recallPrompt": "Vous vous souvenez de Santa Chiara ? Qu’est-ce qui l’a endommagée en 1943 ?"
+      }
+    },
+    {
+      "id": "teatro-san-carlo",
+      "name": "Teatro di San Carlo",
+      "clues": [
+        "Entrées en arcades",
+        "Loggia à colonnes",
+        "À côté du palais royal"
+      ],
+      "story": {
+        "eyebrow": "Teatro di San Carlo · Naples",
+        "question": "En 1816, un incendie ravagea cet opéra. Combien de temps dura la reconstruction ?",
+        "answers": [
+          "Environ neuf mois",
+          "Douze ans",
+          "Un demi-siècle"
+        ],
+        "answerTitle": "Environ neuf mois.",
+        "subtitle": "Il rouvrit en janvier 1817.",
+        "body": "Le théâtre San Carlo ouvrit en 1737. Un incendie détruisit sa salle en 1816, mais la reconstruction dirigée par Antonio Niccolini dura environ neuf mois. Le théâtre rouvrit en janvier 1817, après cette catastrophe.",
+        "source": "Sources publiées",
+        "dinnerLine": "« Le San Carlo brûla en 1816 et, neuf mois plus tard, on y chantait de nouveau. »",
+        "sticker": {
+          "title": "L’opéra renaissant",
+          "collection": "Renaissances",
+          "back": "Brûlé en 1816, rouvert en janvier 1817."
+        },
+        "recallChoices": [
+          "Neuf mois",
+          "Douze ans",
+          "Cinquante ans"
+        ],
+        "recallPrompt": "Vous vous souvenez du San Carlo ? Combien de temps dura la reconstruction après l’incendie de 1816 ?"
+      },
+      "thenNow": {
+        "thenCaption": "Sur une gravure ancienne",
+        "nowCaption": "Aujourd’hui"
+      }
+    },
+    {
+      "id": "castel-nuovo",
+      "name": "Castel Nuovo",
+      "clues": [
+        "Tours rondes et sombres",
+        "Arc de marbre blanc",
+        "Près du port"
+      ],
+      "story": {
+        "eyebrow": "Castel Nuovo · Naples",
+        "question": "Pourquoi un arc de marbre blanc est-il serré entre ces tours sombres ?",
+        "answers": [
+          "Pour fêter l’arrivée d’un roi",
+          "Pour une victoire navale",
+          "Pour remplacer une porte effondrée"
+        ],
+        "answerTitle": "L’arrivée d’un roi.",
+        "subtitle": "Le triomphe d’Alphonse d’Aragon, dans le marbre.",
+        "body": "Alphonse d’Aragon l’a fait ériger pour célébrer son entrée dans Naples. Ce monument de la Renaissance contraste toujours avec les murs plus anciens.",
+        "source": "Sources publiées",
+        "dinnerLine": "« L’arc blanc du Castel Nuovo célèbre l’entrée d’Alphonse d’Aragon à Naples. »",
+        "sticker": {
+          "title": "L’arc du roi",
+          "collection": "Naples royale",
+          "back": "Alphonse d’Aragon fit bâtir cet arc pour célébrer son entrée à Naples."
+        },
+        "recallChoices": [
+          "Un roi",
+          "Bataille navale",
+          "Porte effondrée"
+        ],
+        "recallPrompt": "Vous vous souvenez de l’arc blanc du Castel Nuovo ? Que célèbre-t-il ?",
+        "lookCloser": {
+          "prompt": "Trouvez le cortège du roi sculpté sur l’arc.",
+          "hint": "Astuce : regardez au-dessus de l’arche du bas"
+        }
+      }
+    },
+    {
+      "id": "pio-monte-misericordia",
+      "name": "Pio Monte della Misericordia",
+      "clues": [
+        "Porche à arcades",
+        "Un Caravage à l’intérieur",
+        "Charité depuis 1602"
+      ],
+      "story": {
+        "eyebrow": "Pio Monte della Misericordia · Naples",
+        "question": "Le Caravage peignit sept œuvres de miséricorde pour cette institution. Sur combien de toiles ?",
+        "answers": [
+          "Sept",
+          "Une seule",
+          "Trois"
+        ],
+        "answerTitle": "Une seule.",
+        "subtitle": "Peinte en 1606–1607, après sa fuite de Rome.",
+        "body": "Après avoir fui Rome en 1606, Caravage peignit Les Sept Œuvres de miséricorde pour une institution charitable napolitaine. Plutôt que sept tableaux séparés, il réunit ces actes de compassion dans une seule scène dramatique, réalisée entre 1606 et 1607.",
+        "source": "Sources publiées",
+        "dinnerLine": "« À Naples, le Caravage réunit sept œuvres de miséricorde dans un seul tableau. »",
+        "sticker": {
+          "title": "Sept gestes de bonté",
+          "collection": "Chefs-d’œuvre",
+          "back": "Le Caravage peignit les sept œuvres de miséricorde sur une seule toile."
+        },
+        "recallChoices": [
+          "Sept",
+          "Une",
+          "Trois"
+        ],
+        "recallPrompt": "Vous vous souvenez des Sept Œuvres de miséricorde du Caravage ? Sur combien de toiles ?",
+        "lookCloser": {
+          "prompt": "Trouvez le mort que l’on emporte : on ne voit que ses pieds.",
+          "hint": "Astuce : regardez sous la torche"
+        }
+      }
+    },
+    {
+      "id": "galleria-borbonica",
+      "name": "Galerie bourbonienne",
+      "clues": [
+        "Sous terre",
+        "Vieilles voitures dans le noir",
+        "Voulue par un roi"
+      ],
+      "story": {
+        "eyebrow": "Galerie bourbonienne · Naples",
+        "question": "Un roi fit creuser ce tunnel en 1853. Que devint-il pendant la Seconde Guerre mondiale ?",
+        "answers": [
+          "Un abri antiaérien",
+          "Un hôpital secret",
+          "Une usine d’armes"
+        ],
+        "answerTitle": "Un abri antiaérien.",
+        "subtitle": "Les Napolitains s’y abritaient des bombes.",
+        "body": "En 1853, Ferdinand II ordonna le percement d’un passage souterrain à Naples. Des décennies plus tard, le tunnel et les citernes voisines abritèrent des habitants pendant les bombardements de la Seconde Guerre mondiale. Un même lieu, deux époques très différentes.",
+        "source": "Sources publiées",
+        "dinnerLine": "« Sous Naples, le tunnel d’un roi abrita plus tard les habitants des bombes. »",
+        "sticker": {
+          "title": "L’abri caché",
+          "collection": "Sous terre",
+          "back": "Commencé en 1853 pour Ferdinand II ; abri pendant la Seconde Guerre mondiale."
+        },
+        "recallChoices": [
+          "Abri",
+          "Hôpital",
+          "Usine"
+        ],
+        "recallPrompt": "Vous vous souvenez de la galerie bourbonienne ? Que devint-elle pendant la guerre ?",
+        "lookCloser": {
+          "prompt": "Trouvez les vieux véhicules laissés dans le noir.",
+          "hint": "Astuce : regardez au sol"
+        }
+      }
+    },
+    {
+      "id": "galleria-umberto-i",
+      "name": "Galleria Umberto I",
+      "clues": [
+        "Coupole de verre",
+        "Toit de fer et de verre",
+        "Sol de marbre"
+      ],
+      "story": {
+        "eyebrow": "Galleria Umberto I · Naples",
+        "question": "Regardez en bas. Qu’y a-t-il dans le sol sous cette coupole de verre ?",
+        "answers": [
+          "Un plan du vieux Naples",
+          "Les signes du zodiaque",
+          "Les noms des bâtisseurs"
+        ],
+        "answerTitle": "Les signes du zodiaque.",
+        "subtitle": "Autour d’une rose des vents.",
+        "body": "Construite entre 1887 et 1890, la Galleria Umberto I remplaça d’anciennes ruelles insalubres par une galerie commerçante monumentale. Sous sa coupole de fer et de verre, le sol révèle des mosaïques du zodiaque et une rose des vents.",
+        "source": "Sources publiées",
+        "dinnerLine": "« La Galleria Umberto I cache le zodiaque dans son sol, juste sous la coupole. »",
+        "sticker": {
+          "title": "Le zodiaque sous les pieds",
+          "collection": "Détails cachés",
+          "back": "La Galleria Umberto I fut construite entre 1887 et 1890."
+        },
+        "recallChoices": [
+          "Vieux plan",
+          "Zodiaque",
+          "Noms"
+        ],
+        "recallPrompt": "Vous vous souvenez de la Galleria Umberto I ? Qu’y a-t-il dans le sol sous la coupole ?"
+      },
+      "thenNow": {
+        "thenCaption": "Sur une gravure ancienne",
+        "nowCaption": "Aujourd’hui"
+      }
+    },
+    {
+      "id": "catacombe-san-gennaro",
+      "name": "Catacombes de San Gennaro",
+      "clues": [
+        "Sous terre",
+        "Tombes peintes",
+        "Mosaïques anciennes"
+      ],
+      "story": {
+        "eyebrow": "Catacombes de San Gennaro · Naples",
+        "question": "Ici, le visage d’un évêque du Ve siècle survit en mosaïque. De quelle ville était-il évêque ?",
+        "answers": [
+          "Constantinople",
+          "Jérusalem",
+          "Carthage, en Afrique"
+        ],
+        "answerTitle": "Carthage.",
+        "subtitle": "Il s’appelait Quodvultdeus.",
+        "body": "Sous Naples, les premiers chrétiens aménagèrent de vastes chambres funéraires. La Crypte des évêques conserve une mosaïque du Ve siècle représentant Quodvultdeus, évêque de Carthage. Cet art souterrain témoigne d’anciens liens méditerranéens.",
+        "source": "Sources publiées",
+        "dinnerLine": "« Sous Naples, une mosaïque vieille de 1 500 ans montre un évêque de Carthage. »",
+        "sticker": {
+          "title": "L’évêque de Carthage",
+          "collection": "Sous terre",
+          "back": "Une mosaïque du Ve siècle de Quodvultdeus, évêque de Carthage."
+        },
+        "recallChoices": [
+          "Constantinople",
+          "Jérusalem",
+          "Carthage"
+        ],
+        "recallPrompt": "Vous vous souvenez de l’évêque des catacombes ? De quelle ville était-il évêque ?",
+        "lookCloser": {
+          "prompt": "Trouvez le livre que tient l’évêque.",
+          "hint": "Astuce : regardez ses mains"
+        }
+      }
+    },
+    {
+      "id": "catacombe-san-gaudioso",
+      "name": "Catacombes de San Gaudioso",
+      "clues": [
+        "Sous une basilique",
+        "Fresques pâlies",
+        "Rione Sanità"
+      ],
+      "story": {
+        "eyebrow": "Catacombes de San Gaudioso · Naples",
+        "question": "Ces catacombes se sont développées autour d’une tombe du Ve siècle. Celle de qui ?",
+        "answers": [
+          "Un empereur romain",
+          "Un évêque africain",
+          "Le poète Virgile"
+        ],
+        "answerTitle": "Un évêque africain.",
+        "subtitle": "Gaudiosus arriva à Naples au Ve siècle.",
+        "body": "Ces catacombes se développèrent autour de la tombe de Gaudiosus, un évêque africain arrivé à Naples au Ve siècle. Des siècles plus tard, des familles nobles y furent enterrées. L’art chrétien ancien côtoie ainsi des sépultures plus récentes.",
+        "source": "Sources publiées",
+        "dinnerLine": "« Les catacombes de San Gaudioso sont nées autour de la tombe d’un évêque africain. »",
+        "sticker": {
+          "title": "Deux époques, une tombe",
+          "collection": "Sous terre",
+          "back": "Art paléochrétien et sépultures nobles plus tardives, sous la Sanità."
+        },
+        "recallChoices": [
+          "Un empereur",
+          "Un évêque",
+          "Virgile"
+        ],
+        "recallPrompt": "Vous vous souvenez des catacombes de San Gaudioso ? Autour de quelle tombe sont-elles nées ?",
+        "lookCloser": {
+          "prompt": "Trouvez l’inscription latine qui nomme Gaudiosus.",
+          "hint": "Astuce : regardez au-dessus de la tombe"
+        }
+      }
+    },
+    {
+      "id": "tesoro-san-gennaro",
+      "name": "Musée du Trésor de San Gennaro",
+      "clues": [
+        "À côté du Duomo",
+        "Bijoux et argenterie",
+        "Dons de dévotion"
+      ],
+      "story": {
+        "eyebrow": "Musée du Trésor de San Gennaro · Naples",
+        "question": "Le collier de saint Janvier fut commencé en 1679. Comment s’est-il enrichi ?",
+        "answers": [
+          "Des dons au fil des générations",
+          "Fabriqué en une seule année",
+          "Acheté par un seul roi"
+        ],
+        "answerTitle": "Des dons, sur des générations.",
+        "subtitle": "De rois, de reines et de simples fidèles.",
+        "body": "Le célèbre collier de saint Janvier fut commencé en 1679 puis enrichi de dons successifs. Rois, reines et fidèles offrirent des bijoux au fil des générations. Le trésor témoigne à la fois d’un savoir-faire artistique et d’une dévotion locale.",
+        "source": "Sources publiées",
+        "dinnerLine": "« Le collier de saint Janvier a grandi pendant des siècles, un don après l’autre. »",
+        "sticker": {
+          "title": "Le collier des dons",
+          "collection": "Chefs-d’œuvre",
+          "back": "Commencé en 1679, enrichi de dons au fil des générations."
+        },
+        "recallChoices": [
+          "Des dons",
+          "Un an",
+          "Un roi"
+        ],
+        "recallPrompt": "Vous vous souvenez du collier de saint Janvier ? Comment s’est-il enrichi ?",
+        "lookCloser": {
+          "prompt": "Trouvez la plus grosse pierre verte du collier.",
+          "hint": "Astuce : regardez près du centre"
         }
       }
     }

@@ -1,0 +1,2361 @@
+{
+  "dataset_name": "CheStoria — Naples Historical Story Cards — Research Prototype",
+  "created_utc_date": "2026-11-20",
+  "stories": [
+    {
+      "id": "gesu-nuovo",
+      "place_name": "Gesù Nuovo",
+      "city": "Naples",
+      "country": "Italy",
+      "hook": "A prince’s palace hiding in plain sight?",
+      "story_en": "In 1470, this was a prince’s palace, not a church. When the Jesuits transformed it in the 1580s, they kept its diamond-shaped stone façade. Look closely: some stones still bear marks made by the original masons.",
+      "surprising_fact": "The façade belonged to a 15th-century palace before it belonged to a church.",
+      "type": "documented_history",
+      "discovery_prompt": "Look for the diamond-shaped blocks and mason marks on the public-facing façade.",
+      "discovery_access": "exterior_or_public_space_possible; some supplemental areas may require admission",
+      "historical_sources": [
+        {
+          "publisher": "Italian Ministry of Culture / Biblioteca Universitaria di Napoli",
+          "url": "https://bibliotecauniversitarianapoli.cultura.gov.it/it/443/chiesa-del-gesu-nuovo",
+          "rights_note": "Institutional or primary heritage description; research reference only, not a grant to copy prose or images"
+        },
+        {
+          "publisher": "Comune di Napoli — World Heritage heritage guide",
+          "url": "https://patrimoniomondiale.comune.napoli.it/gesu-nuovo/",
+          "rights_note": "Institutional or primary heritage description; research reference only, not a grant to copy prose or images"
+        }
+      ],
+      "source_verification": "Source links and principal historical claims reviewed in research pass; independent historian/editor approval NOT completed.",
+      "editorial_status": "Needs independent historical editor review, venue/access check, translation review, and local UX test.",
+      "commercial_use_notes": {
+        "original_story_draft": "Newly written synthesis of historical facts; not an excerpt from sources. Human verification and legal review recommended.",
+        "website_prose": "Not licensed or copied for ingestion; URLs provided as citations only.",
+        "historical_facts": "Individual historical facts are generally not copyright-protected as prose, but EU database rights and site terms may constrain systematic collection.",
+        "images": "NOT_INCLUDED"
+      },
+      "tags": [
+        "architecture",
+        "palace",
+        "transformation",
+        "hidden-detail"
+      ],
+      "suitability_for_demo": "street_demo_candidate",
+      "wikidata_id": "Q718774",
+      "wikidata_id_status": "item_identity_confirmed_on_official_wikidata_page_2026-11-20",
+      "verified_claims": [
+        {
+          "claim": "A palace for Roberto Sanseverino dates to 1470",
+          "classification": "historical",
+          "source_indices": [
+            0,
+            1
+          ],
+          "review": "institutional_source_references_located; independent_human_factcheck_pending"
+        },
+        {
+          "claim": "The Jesuits adapted the palace into a church while retaining its diamond-point façade",
+          "classification": "historical",
+          "source_indices": [
+            0,
+            1
+          ],
+          "review": "institutional_source_references_located; independent_human_factcheck_pending"
+        }
+      ],
+      "photo_url": null,
+      "permission_to_reuse_source_webpage_text": "NOT_CONFIRMED; do not ingest webpages for training without license check",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q718774",
+      "coordinates": {
+        "latitude": 40.84762222,
+        "longitude": 14.25180278,
+        "source": "Wikidata P625",
+        "source_url": "https://www.wikidata.org/wiki/Q718774",
+        "confidence": "provisional_site_coordinate",
+        "navigation_warning": "Wikidata P625 site coordinate; exterior viewpoint needs field check."
+      },
+      "story_word_count_en": 36,
+      "word_limit_en": 40,
+      "experience_mode": "camera_exterior",
+      "visit_type": "exterior_or_public_space_possible; some supplemental areas may require admission",
+      "camera_recognition_enabled": true,
+      "physical_discovery": {
+        "prompt": "Look for the diamond-shaped blocks and mason marks on the public-facing façade.",
+        "photo_target": "diamond-point façade",
+        "photo_required": false,
+        "photo_prompt_allowed": true,
+        "visibility_status": "NOT_FIELD_VERIFIED",
+        "permission_note": "Do not require entry, restricted photography, or paid access for camera mode."
+      },
+      "quiz": {
+        "question_en": "What stood here before the church?",
+        "answers_en": [
+          "A prince’s palace",
+          "A royal prison",
+          "A bank"
+        ],
+        "correct_index": 0,
+        "answer_explanation_en": "In 1470, this was a prince’s palace, not a church. When the Jesuits transformed it in the 1580s, they kept its diamond-shaped stone façade. Look closely: some stones still bear marks made by the original masons."
+      },
+      "recall": {
+        "question_en": "Which feature survived from the original palace?",
+        "answers_en": [
+          "The diamond-shaped façade",
+          "A medieval moat",
+          "A bell tower"
+        ],
+        "correct_index": 0
+      },
+      "dinner_line_en": "This church still wears the stone façade of a 15th-century palace.",
+      "sticker": {
+        "name_en": "Palace in Disguise",
+        "emoji_placeholder": "💎",
+        "art_asset": null,
+        "status": "concept_not_produced"
+      },
+      "look_closer": "Look for the diamond-shaped blocks and mason marks on the public-facing façade.",
+      "translations": {
+        "en": {
+          "hook": "A prince’s palace hiding in plain sight?",
+          "story": "In 1470, this was a prince’s palace, not a church. When the Jesuits transformed it in the 1580s, they kept its diamond-shaped stone façade. Look closely: some stones still bear marks made by the original masons."
+        },
+        "it": {
+          "hook": "Un palazzo principesco nascosto in bella vista?",
+          "story": "Nel 1470 qui sorgeva un palazzo principesco, non una chiesa. Quando i gesuiti lo trasformarono nel Cinquecento, conservarono la facciata in pietra a punta di diamante. Guarda bene: alcune pietre mostrano ancora i segni degli scalpellini.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 36
+        },
+        "fr": {
+          "hook": "Un palais princier caché sous vos yeux ?",
+          "story": "En 1470, cet édifice était un palais princier, pas une église. Au XVIe siècle, les jésuites le transformèrent en conservant sa façade de pierres taillées en pointe de diamant. Regardez : certaines portent encore des marques de tailleurs de pierre.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 40
+        },
+        "de": {
+          "hook": "Ein Fürstenpalast direkt vor deinen Augen?",
+          "story": "1470 stand hier ein Fürstenpalast, keine Kirche. Als die Jesuiten ihn im 16. Jahrhundert umbauten, bewahrten sie die Fassade aus diamantförmigen Steinblöcken. Schau genau hin: Einige Steine tragen noch die Zeichen der damaligen Steinmetze.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 34
+        },
+        "es": {
+          "hook": "¿Un palacio principesco a plena vista?",
+          "story": "En 1470 esto era un palacio principesco, no una iglesia. Cuando los jesuitas lo transformaron en el siglo XVI, conservaron su fachada de piedras en punta de diamante. Fíjate: algunas aún muestran marcas de los canteros originales.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 37
+        }
+      },
+      "source_independence": "independent_institutions",
+      "historical_accuracy_status": "referenced_draft_not_historian_approved",
+      "copyright_review": {
+        "wikidata_structured_data": "CC0",
+        "original_story_text": "original_generated_draft",
+        "third_party_source_material": "link_only_not_relicensed",
+        "photos": "NONE_INCLUDED",
+        "license_for_training_on_source_webpages": "NOT_ESTABLISHED"
+      },
+      "factCheck": {
+        "status": "draft_references_checked_human_review_pending",
+        "claims": [
+          {
+            "text": "A palace for Roberto Sanseverino dates to 1470",
+            "source_urls": [
+              "https://bibliotecauniversitarianapoli.cultura.gov.it/it/443/chiesa-del-gesu-nuovo",
+              "https://patrimoniomondiale.comune.napoli.it/gesu-nuovo/"
+            ],
+            "classification": "historical"
+          },
+          {
+            "text": "The Jesuits adapted the palace into a church while retaining its diamond-point façade",
+            "source_urls": [
+              "https://bibliotecauniversitarianapoli.cultura.gov.it/it/443/chiesa-del-gesu-nuovo",
+              "https://patrimoniomondiale.comune.napoli.it/gesu-nuovo/"
+            ],
+            "classification": "historical"
+          }
+        ]
+      },
+      "recallChoices": [
+        "The diamond-shaped façade",
+        "A medieval moat",
+        "A bell tower"
+      ],
+      "lookCloser": {
+        "prompt": "Look for the diamond-shaped blocks and mason marks on the public-facing façade.",
+        "photoTarget": "diamond-point façade",
+        "photoRequired": false
+      },
+      "mapCoordinates": {
+        "lat": 40.84762222,
+        "lon": 14.25180278,
+        "navigationReady": false
+      },
+      "recordStatus": "editorial_draft"
+    },
+    {
+      "id": "castel-dell-ovo",
+      "place_name": "Castel dell’Ovo",
+      "city": "Naples",
+      "country": "Italy",
+      "hook": "An egg that supposedly protected an entire castle?",
+      "story_en": "Why is this seaside fortress named after an egg? A Neapolitan legend says Virgil hid a magical egg inside it, protecting the castle while it stayed intact. The egg is folklore, not an archaeological discovery.",
+      "surprising_fact": "Its famous name is traditionally explained through a legend about an enchanted egg.",
+      "type": "folklore_clearly_labeled",
+      "discovery_prompt": "From the public waterfront, locate the castle on the island of Megaride.",
+      "discovery_access": "exterior_or_public_space_possible; some supplemental areas may require admission",
+      "historical_sources": [
+        {
+          "publisher": "FAI – Fondo Ambiente Italiano",
+          "url": "https://fondoambiente.it/luoghi/castel-dell-ovo",
+          "rights_note": "Institutional or primary heritage description; research reference only, not a grant to copy prose or images"
+        },
+        {
+          "publisher": "Italia.it — Official Italian tourism portal",
+          "url": "https://www.italia.it/it/campania/napoli/castel-dell-ovo",
+          "rights_note": "Institutional or primary heritage description; research reference only, not a grant to copy prose or images"
+        },
+        {
+          "publisher": "Comune di Napoli — official local myth and history",
+          "url": "https://www.comune.napoli.it/flex/cm/pages/ServeAttachment.php/L/EN/D/D.ad7f5e94ecd973db08a5/P/BLOB%3AID%3D5649/E/pdf?mode=inline",
+          "rights_note": "Reference only; no webpage text or images copied."
+        }
+      ],
+      "source_verification": "Source links and principal historical claims reviewed in research pass; independent historian/editor approval NOT completed.",
+      "editorial_status": "Needs independent historical editor review, venue/access check, translation review, and local UX test.",
+      "commercial_use_notes": {
+        "original_story_draft": "Newly written synthesis of historical facts; not an excerpt from sources. Human verification and legal review recommended.",
+        "website_prose": "Not licensed or copied for ingestion; URLs provided as citations only.",
+        "historical_facts": "Individual historical facts are generally not copyright-protected as prose, but EU database rights and site terms may constrain systematic collection.",
+        "images": "NOT_INCLUDED"
+      },
+      "tags": [
+        "legend",
+        "myth",
+        "coast",
+        "virgil"
+      ],
+      "suitability_for_demo": "street_demo_candidate",
+      "wikidata_id": "Q645041",
+      "wikidata_id_status": "item_identity_confirmed_on_official_wikidata_page_2026-11-20",
+      "verified_claims": [
+        {
+          "claim": "Castel dell’Ovo stands on the former island of Megaride",
+          "classification": "historical",
+          "source_indices": [
+            0,
+            1
+          ],
+          "review": "institutional_source_references_located; independent_human_factcheck_pending"
+        },
+        {
+          "claim": "The magical egg associated with Virgil is a local legend, not proven archaeological history",
+          "classification": "reported_legend",
+          "source_indices": [
+            0,
+            1,
+            2
+          ],
+          "review": "institutional_source_references_located; independent_human_factcheck_pending"
+        }
+      ],
+      "photo_url": null,
+      "permission_to_reuse_source_webpage_text": "NOT_CONFIRMED; do not ingest webpages for training without license check",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q645041",
+      "coordinates": {
+        "latitude": 40.828315,
+        "longitude": 14.24765611,
+        "source": "Wikidata P625",
+        "source_url": "https://www.wikidata.org/wiki/Q645041",
+        "confidence": "provisional_site_coordinate",
+        "navigation_warning": "Wikidata P625 structure coordinate; waterfront viewpoint is different and needs a separate pin."
+      },
+      "story_word_count_en": 35,
+      "word_limit_en": 40,
+      "experience_mode": "camera_exterior",
+      "visit_type": "exterior_or_public_space_possible; some supplemental areas may require admission",
+      "camera_recognition_enabled": true,
+      "physical_discovery": {
+        "prompt": "From the public waterfront, locate the castle on the island of Megaride.",
+        "photo_target": "castle silhouette from the waterfront",
+        "photo_required": false,
+        "photo_prompt_allowed": true,
+        "visibility_status": "NOT_FIELD_VERIFIED",
+        "permission_note": "Do not require entry, restricted photography, or paid access for camera mode."
+      },
+      "quiz": {
+        "question_en": "What supposedly protected Castel dell’Ovo?",
+        "answers_en": [
+          "A magical egg",
+          "A golden key",
+          "A hidden crown"
+        ],
+        "correct_index": 0,
+        "answer_explanation_en": "Why is this seaside fortress named after an egg? A Neapolitan legend says Virgil hid a magical egg inside it, protecting the castle while it stayed intact. The egg is folklore, not an archaeological discovery."
+      },
+      "recall": {
+        "question_en": "Who supposedly hid the magical egg?",
+        "answers_en": [
+          "Virgil",
+          "Caravaggio",
+          "Alfonso I"
+        ],
+        "correct_index": 0
+      },
+      "dinner_line_en": "Naples has a castle named after a magical egg—but the egg is only a legend.",
+      "sticker": {
+        "name_en": "The Magic Egg",
+        "emoji_placeholder": "🥚",
+        "art_asset": null,
+        "status": "concept_not_produced"
+      },
+      "look_closer": "From the public waterfront, locate the castle on the island of Megaride.",
+      "translations": {
+        "en": {
+          "hook": "An egg that supposedly protected an entire castle?",
+          "story": "Why is this seaside fortress named after an egg? A Neapolitan legend says Virgil hid a magical egg inside it, protecting the castle while it stayed intact. The egg is folklore, not an archaeological discovery."
+        },
+        "it": {
+          "hook": "Un uovo avrebbe protetto un intero castello?",
+          "story": "Perché questa fortezza sul mare si chiama Castel dell’Ovo? Secondo una leggenda napoletana, Virgilio vi nascose un uovo magico: finché fosse rimasto intatto, il castello sarebbe stato al sicuro. È folklore, non una scoperta archeologica.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 35
+        },
+        "fr": {
+          "hook": "Un œuf aurait protégé tout un château ?",
+          "story": "Pourquoi cette forteresse maritime porte-t-elle le nom d’un œuf ? Selon une légende napolitaine, Virgile y aurait caché un œuf magique qui protégeait le château tant qu’il restait intact. C’est du folklore, pas une découverte archéologique.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 36
+        },
+        "de": {
+          "hook": "Ein Ei sollte eine ganze Burg schützen?",
+          "story": "Warum heißt diese Festung am Meer Eierburg? Einer neapolitanischen Legende zufolge versteckte Vergil darin ein magisches Ei. Solange es unversehrt blieb, sollte die Burg geschützt sein. Das ist eine Legende, kein archäologischer Fund.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 33
+        },
+        "es": {
+          "hook": "¿Un huevo que protegía un castillo entero?",
+          "story": "¿Por qué esta fortaleza junto al mar lleva el nombre de un huevo? Según una leyenda napolitana, Virgilio escondió allí un huevo mágico que protegía el castillo mientras permaneciera intacto. Es folclore, no un hallazgo arqueológico.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 36
+        }
+      },
+      "source_independence": "independent_institutions",
+      "historical_accuracy_status": "referenced_draft_not_historian_approved",
+      "copyright_review": {
+        "wikidata_structured_data": "CC0",
+        "original_story_text": "original_generated_draft",
+        "third_party_source_material": "link_only_not_relicensed",
+        "photos": "NONE_INCLUDED",
+        "license_for_training_on_source_webpages": "NOT_ESTABLISHED"
+      },
+      "factCheck": {
+        "status": "draft_references_checked_human_review_pending",
+        "claims": [
+          {
+            "text": "Castel dell’Ovo stands on the former island of Megaride",
+            "source_urls": [
+              "https://fondoambiente.it/luoghi/castel-dell-ovo",
+              "https://www.italia.it/it/campania/napoli/castel-dell-ovo"
+            ],
+            "classification": "historical"
+          },
+          {
+            "text": "The magical egg associated with Virgil is a local legend, not proven archaeological history",
+            "source_urls": [
+              "https://fondoambiente.it/luoghi/castel-dell-ovo",
+              "https://www.italia.it/it/campania/napoli/castel-dell-ovo",
+              "https://www.comune.napoli.it/flex/cm/pages/ServeAttachment.php/L/EN/D/D.ad7f5e94ecd973db08a5/P/BLOB%3AID%3D5649/E/pdf?mode=inline"
+            ],
+            "classification": "reported_legend"
+          }
+        ]
+      },
+      "recallChoices": [
+        "Virgil",
+        "Caravaggio",
+        "Alfonso I"
+      ],
+      "lookCloser": {
+        "prompt": "From the public waterfront, locate the castle on the island of Megaride.",
+        "photoTarget": "castle silhouette from the waterfront",
+        "photoRequired": false
+      },
+      "mapCoordinates": {
+        "lat": 40.828315,
+        "lon": 14.24765611,
+        "navigationReady": false
+      },
+      "recordStatus": "editorial_draft"
+    },
+    {
+      "id": "cappella-sansevero",
+      "place_name": "Cappella Sansevero — Veiled Christ",
+      "city": "Naples",
+      "country": "Italy",
+      "hook": "A marble veil mistaken for real fabric?",
+      "story_en": "The Veiled Christ seems covered in delicate fabric, but Giuseppe Sanmartino carved the figure and shroud from one block of marble in 1753. The story that an alchemist turned cloth into stone is a legend.",
+      "surprising_fact": "The apparent cloth and the body beneath it were sculpted from one piece of marble.",
+      "type": "documented_history_with_refuted_legend",
+      "discovery_prompt": "If inside with a valid ticket, observe the carved folds; do not ask visitors to photograph the sculpture.",
+      "discovery_access": "ticket_or_guided_visit_for_story_target",
+      "historical_sources": [
+        {
+          "publisher": "Museo Cappella Sansevero — The legend of the veil",
+          "url": "https://www.museosansevero.it/la-cappella-e-il-cristo-velato/il-cristo-velato/la-leggenda-del-velo",
+          "rights_note": "Institutional or primary heritage description; research reference only, not a grant to copy prose or images"
+        },
+        {
+          "publisher": "Museo Cappella Sansevero — The statue",
+          "url": "https://www.museosansevero.it/la-cappella-e-il-cristo-velato/il-cristo-velato/la-statua",
+          "rights_note": "Institutional or primary heritage description; research reference only, not a grant to copy prose or images"
+        },
+        {
+          "publisher": "Museo Cappella Sansevero — current statue page",
+          "url": "https://www.museosansevero.it/it/cristo-velato/la-statua",
+          "rights_note": "Reference only; no webpage text or images copied."
+        }
+      ],
+      "source_verification": "Source links and principal historical claims reviewed in research pass; independent historian/editor approval NOT completed.",
+      "editorial_status": "Needs independent historical editor review, venue/access check, translation review, and local UX test.",
+      "commercial_use_notes": {
+        "original_story_draft": "Newly written synthesis of historical facts; not an excerpt from sources. Human verification and legal review recommended.",
+        "website_prose": "Not licensed or copied for ingestion; URLs provided as citations only.",
+        "historical_facts": "Individual historical facts are generally not copyright-protected as prose, but EU database rights and site terms may constrain systematic collection.",
+        "images": "NOT_INCLUDED"
+      },
+      "tags": [
+        "sculpture",
+        "illusion",
+        "art",
+        "legend"
+      ],
+      "suitability_for_demo": "map_or_location_demo_candidate",
+      "wikidata_id": "Q897839",
+      "wikidata_id_status": "item_identity_confirmed_on_official_wikidata_page_2026-11-20",
+      "verified_claims": [
+        {
+          "claim": "Giuseppe Sanmartino sculpted the Veiled Christ in 1753",
+          "classification": "historical",
+          "source_indices": [
+            0,
+            1
+          ],
+          "review": "institutional_source_references_located; independent_human_factcheck_pending"
+        },
+        {
+          "claim": "The figure and veil were carved together in marble, while an alchemical fabric story is a legend",
+          "classification": "documented_history_or_legend_discussed",
+          "source_indices": [
+            0,
+            1
+          ],
+          "review": "institutional_source_references_located; independent_human_factcheck_pending"
+        }
+      ],
+      "photo_url": null,
+      "permission_to_reuse_source_webpage_text": "NOT_CONFIRMED; do not ingest webpages for training without license check",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q897839",
+      "coordinates": {
+        "latitude": 40.84919,
+        "longitude": 14.25488,
+        "source": "Wikidata P625",
+        "source_url": "https://www.wikidata.org/wiki/Q897839",
+        "confidence": "provisional_site_coordinate",
+        "navigation_warning": "Wikidata church/museum coordinate. Sculpture is INSIDE. No indoor photo task."
+      },
+      "story_word_count_en": 35,
+      "word_limit_en": 40,
+      "experience_mode": "map_or_location_only",
+      "visit_type": "ticket_or_guided_visit_for_story_target",
+      "camera_recognition_enabled": false,
+      "physical_discovery": {
+        "prompt": "If inside with a valid ticket, observe the carved folds; do not ask visitors to photograph the sculpture.",
+        "photo_target": null,
+        "photo_required": false,
+        "photo_prompt_allowed": false,
+        "visibility_status": "NOT_FIELD_VERIFIED",
+        "permission_note": "Do not require entry, restricted photography, or paid access for camera mode."
+      },
+      "quiz": {
+        "question_en": "What is the Veiled Christ’s veil made of?",
+        "answers_en": [
+          "Marble",
+          "Silk",
+          "Glass"
+        ],
+        "correct_index": 0,
+        "answer_explanation_en": "The Veiled Christ seems covered in delicate fabric, but Giuseppe Sanmartino carved the figure and shroud from one block of marble in 1753. The story that an alchemist turned cloth into stone is a legend."
+      },
+      "recall": {
+        "question_en": "Who sculpted the Veiled Christ?",
+        "answers_en": [
+          "Giuseppe Sanmartino",
+          "Michelangelo",
+          "Antonio Canova"
+        ],
+        "correct_index": 0
+      },
+      "dinner_line_en": "The Veiled Christ’s delicate veil is carved from the same marble block as the figure.",
+      "sticker": {
+        "name_en": "Marble Illusion",
+        "emoji_placeholder": "🗿",
+        "art_asset": null,
+        "status": "concept_not_produced"
+      },
+      "look_closer": "If inside with a valid ticket, observe the carved folds; do not ask visitors to photograph the sculpture.",
+      "translations": {
+        "en": {
+          "hook": "A marble veil mistaken for real fabric?",
+          "story": "The Veiled Christ seems covered in delicate fabric, but Giuseppe Sanmartino carved the figure and shroud from one block of marble in 1753. The story that an alchemist turned cloth into stone is a legend."
+        },
+        "it": {
+          "hook": "Un velo di marmo scambiato per stoffa?",
+          "story": "Il Cristo velato sembra coperto da un tessuto delicatissimo. In realtà Giuseppe Sanmartino scolpì figura e sudario da un unico blocco di marmo nel 1753. La storia dell’alchimista che trasformò la stoffa in pietra è una leggenda.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 37
+        },
+        "fr": {
+          "hook": "Un voile de marbre pris pour du tissu ?",
+          "story": "Le Christ voilé semble recouvert d’un tissu délicat. Pourtant, Giuseppe Sanmartino sculpta le corps et le voile dans un seul bloc de marbre en 1753. L’histoire d’un alchimiste transformant du tissu en pierre est une légende.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 36
+        },
+        "de": {
+          "hook": "Ein Marmorschleier, der wie Stoff aussieht?",
+          "story": "Der Verschleierte Christus wirkt wie mit feinem Stoff bedeckt. Doch Giuseppe Sanmartino meißelte Figur und Tuch 1753 aus einem einzigen Marmorblock. Die Geschichte, ein Alchemist habe echten Stoff in Stein verwandelt, ist eine Legende.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 34
+        },
+        "es": {
+          "hook": "¿Un velo de mármol que parece tela?",
+          "story": "El Cristo Velado parece cubierto por una tela finísima. Sin embargo, Giuseppe Sanmartino talló la figura y el sudario en un único bloque de mármol en 1753. La historia de una transformación alquímica de tela en piedra es una leyenda.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 40
+        }
+      },
+      "source_independence": "single_institution_primary_source_only",
+      "historical_accuracy_status": "referenced_draft_not_historian_approved",
+      "copyright_review": {
+        "wikidata_structured_data": "CC0",
+        "original_story_text": "original_generated_draft",
+        "third_party_source_material": "link_only_not_relicensed",
+        "photos": "NONE_INCLUDED",
+        "license_for_training_on_source_webpages": "NOT_ESTABLISHED"
+      },
+      "factCheck": {
+        "status": "draft_references_checked_human_review_pending",
+        "claims": [
+          {
+            "text": "Giuseppe Sanmartino sculpted the Veiled Christ in 1753",
+            "source_urls": [
+              "https://www.museosansevero.it/la-cappella-e-il-cristo-velato/il-cristo-velato/la-leggenda-del-velo",
+              "https://www.museosansevero.it/la-cappella-e-il-cristo-velato/il-cristo-velato/la-statua"
+            ],
+            "classification": "historical"
+          },
+          {
+            "text": "The figure and veil were carved together in marble, while an alchemical fabric story is a legend",
+            "source_urls": [
+              "https://www.museosansevero.it/la-cappella-e-il-cristo-velato/il-cristo-velato/la-leggenda-del-velo",
+              "https://www.museosansevero.it/la-cappella-e-il-cristo-velato/il-cristo-velato/la-statua"
+            ],
+            "classification": "documented_history_or_legend_discussed"
+          }
+        ]
+      },
+      "recallChoices": [
+        "Giuseppe Sanmartino",
+        "Michelangelo",
+        "Antonio Canova"
+      ],
+      "lookCloser": {
+        "prompt": "If inside with a valid ticket, observe the carved folds; do not ask visitors to photograph the sculpture.",
+        "photoTarget": null,
+        "photoRequired": false
+      },
+      "mapCoordinates": {
+        "lat": 40.84919,
+        "lon": 14.25488,
+        "navigationReady": false
+      },
+      "recordStatus": "editorial_draft"
+    },
+    {
+      "id": "santa-chiara",
+      "place_name": "Basilica and Cloister of Santa Chiara",
+      "city": "Naples",
+      "country": "Italy",
+      "hook": "Why does this medieval church carry wartime scars?",
+      "story_en": "Santa Chiara’s medieval church gained Baroque decoration, then suffered devastating damage during bombing in 1943. Restoration revived much of its Gothic appearance. Its cloister preserves a different era through bright 18th-century ceramic tiles.",
+      "surprising_fact": "Wartime destruction changed how the church looks today.",
+      "type": "documented_history",
+      "discovery_prompt": "Exterior identification from the square. The majolica detail is only for visitors admitted to the cloister.",
+      "discovery_access": "exterior_or_public_space_possible; some supplemental areas may require admission",
+      "historical_sources": [
+        {
+          "publisher": "Comune di Napoli — NapoliForMe",
+          "url": "https://napoliforme.comune.napoli.it/pois/-/poi/Chiesa-di-Santa-Chiara",
+          "rights_note": "Institutional or primary heritage description; research reference only, not a grant to copy prose or images"
+        },
+        {
+          "publisher": "Comune di Napoli — World Heritage heritage guide",
+          "url": "https://patrimoniomondiale.comune.napoli.it/santa-chiara/",
+          "rights_note": "Institutional or primary heritage description; research reference only, not a grant to copy prose or images"
+        },
+        {
+          "publisher": "Monastero di Santa Chiara — official history",
+          "url": "https://www.monasterodisantachiara.it/benvenuti/",
+          "rights_note": "Reference only; no webpage text or images copied."
+        }
+      ],
+      "source_verification": "Source links and principal historical claims reviewed in research pass; independent historian/editor approval NOT completed.",
+      "editorial_status": "Needs independent historical editor review, venue/access check, translation review, and local UX test.",
+      "commercial_use_notes": {
+        "original_story_draft": "Newly written synthesis of historical facts; not an excerpt from sources. Human verification and legal review recommended.",
+        "website_prose": "Not licensed or copied for ingestion; URLs provided as citations only.",
+        "historical_facts": "Individual historical facts are generally not copyright-protected as prose, but EU database rights and site terms may constrain systematic collection.",
+        "images": "NOT_INCLUDED"
+      },
+      "tags": [
+        "war",
+        "restoration",
+        "majolica",
+        "medieval"
+      ],
+      "suitability_for_demo": "street_demo_candidate",
+      "wikidata_id": "Q810104",
+      "wikidata_id_status": "item_identity_confirmed_on_official_wikidata_page_2026-11-20",
+      "verified_claims": [
+        {
+          "claim": "Santa Chiara was severely damaged in a 1943 bombing",
+          "classification": "historical",
+          "source_indices": [
+            0,
+            1,
+            2
+          ],
+          "review": "institutional_source_references_located; independent_human_factcheck_pending"
+        },
+        {
+          "claim": "The cloister displays colorful majolica from the eighteenth century",
+          "classification": "historical",
+          "source_indices": [
+            0,
+            2
+          ],
+          "review": "institutional_source_references_located; independent_human_factcheck_pending"
+        }
+      ],
+      "photo_url": null,
+      "permission_to_reuse_source_webpage_text": "NOT_CONFIRMED; do not ingest webpages for training without license check",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q810104",
+      "coordinates": {
+        "latitude": 40.84688056,
+        "longitude": 14.25286944,
+        "source": "Wikidata P625",
+        "source_url": "https://www.wikidata.org/wiki/Q810104",
+        "confidence": "provisional_site_coordinate",
+        "navigation_warning": "Wikidata item refers to Basilica; cloister is distinct interior area; no claim that this pin is cloister entrance."
+      },
+      "story_word_count_en": 33,
+      "word_limit_en": 40,
+      "experience_mode": "camera_exterior_then_map_for_interior",
+      "visit_type": "exterior_or_public_space_possible; some supplemental areas may require admission",
+      "camera_recognition_enabled": true,
+      "physical_discovery": {
+        "prompt": "Exterior identification from the square. The majolica detail is only for visitors admitted to the cloister.",
+        "photo_target": "basilica exterior; cloister tiles only with access",
+        "photo_required": false,
+        "photo_prompt_allowed": true,
+        "visibility_status": "NOT_FIELD_VERIFIED",
+        "permission_note": "Do not require entry, restricted photography, or paid access for camera mode."
+      },
+      "quiz": {
+        "question_en": "What severely damaged Santa Chiara in 1943?",
+        "answers_en": [
+          "Wartime bombing",
+          "An earthquake",
+          "A flood"
+        ],
+        "correct_index": 0,
+        "answer_explanation_en": "Santa Chiara’s medieval church gained Baroque decoration, then suffered devastating damage during bombing in 1943. Restoration revived much of its Gothic appearance. Its cloister preserves a different era through bright 18th-century ceramic tiles."
+      },
+      "recall": {
+        "question_en": "What decorates Santa Chiara’s cloister?",
+        "answers_en": [
+          "Colorful majolica tiles",
+          "Gold mirrors",
+          "Marble animals"
+        ],
+        "correct_index": 0
+      },
+      "dinner_line_en": "A 1943 bombing helped reshape the medieval appearance visitors see at Santa Chiara.",
+      "sticker": {
+        "name_en": "Phoenix of Santa Chiara",
+        "emoji_placeholder": "🕊️",
+        "art_asset": null,
+        "status": "concept_not_produced"
+      },
+      "look_closer": "Exterior identification from the square. The majolica detail is only for visitors admitted to the cloister.",
+      "translations": {
+        "en": {
+          "hook": "Why does this medieval church carry wartime scars?",
+          "story": "Santa Chiara’s medieval church gained Baroque decoration, then suffered devastating damage during bombing in 1943. Restoration revived much of its Gothic appearance. Its cloister preserves a different era through bright 18th-century ceramic tiles."
+        },
+        "it": {
+          "hook": "Perché questa chiesa medievale porta i segni della guerra?",
+          "story": "Santa Chiara fu arricchita in età barocca, ma subì gravi danni durante i bombardamenti del 1943. I restauri recuperarono gran parte dell’aspetto gotico. Il chiostro conserva un’altra epoca, raccontata dalle vivaci maioliche settecentesche.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 33
+        },
+        "fr": {
+          "hook": "Pourquoi cette église médiévale porte-t-elle les traces de la guerre ?",
+          "story": "Santa Chiara reçut des décors baroques avant d’être gravement endommagée par les bombardements de 1943. La restauration restitua une grande partie de son aspect gothique. Son cloître conserve aussi de magnifiques faïences colorées du XVIIIe siècle.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 36
+        },
+        "de": {
+          "hook": "Warum trägt diese mittelalterliche Kirche Kriegsspuren?",
+          "story": "Santa Chiara wurde barock umgestaltet und 1943 bei Bombenangriffen schwer beschädigt. Der Wiederaufbau brachte viel von ihrem gotischen Charakter zurück. Im Kreuzgang erzählen farbenfrohe Majolikafliesen aus dem 18. Jahrhundert von einer anderen Epoche.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 33
+        },
+        "es": {
+          "hook": "¿Por qué esta iglesia medieval conserva huellas de la guerra?",
+          "story": "Santa Chiara recibió decoración barroca, pero los bombardeos de 1943 la dañaron gravemente. La restauración recuperó buena parte de su aspecto gótico. En el claustro, coloridas mayólicas del siglo XVIII conservan otra etapa de su historia.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 36
+        }
+      },
+      "source_independence": "independent_institutions",
+      "historical_accuracy_status": "referenced_draft_not_historian_approved",
+      "copyright_review": {
+        "wikidata_structured_data": "CC0",
+        "original_story_text": "original_generated_draft",
+        "third_party_source_material": "link_only_not_relicensed",
+        "photos": "NONE_INCLUDED",
+        "license_for_training_on_source_webpages": "NOT_ESTABLISHED"
+      },
+      "factCheck": {
+        "status": "draft_references_checked_human_review_pending",
+        "claims": [
+          {
+            "text": "Santa Chiara was severely damaged in a 1943 bombing",
+            "source_urls": [
+              "https://napoliforme.comune.napoli.it/pois/-/poi/Chiesa-di-Santa-Chiara",
+              "https://patrimoniomondiale.comune.napoli.it/santa-chiara/",
+              "https://www.monasterodisantachiara.it/benvenuti/"
+            ],
+            "classification": "historical"
+          },
+          {
+            "text": "The cloister displays colorful majolica from the eighteenth century",
+            "source_urls": [
+              "https://napoliforme.comune.napoli.it/pois/-/poi/Chiesa-di-Santa-Chiara",
+              "https://www.monasterodisantachiara.it/benvenuti/"
+            ],
+            "classification": "historical"
+          }
+        ]
+      },
+      "recallChoices": [
+        "Colorful majolica tiles",
+        "Gold mirrors",
+        "Marble animals"
+      ],
+      "lookCloser": {
+        "prompt": "Exterior identification from the square. The majolica detail is only for visitors admitted to the cloister.",
+        "photoTarget": "basilica exterior; cloister tiles only with access",
+        "photoRequired": false
+      },
+      "mapCoordinates": {
+        "lat": 40.84688056,
+        "lon": 14.25286944,
+        "navigationReady": false
+      },
+      "recordStatus": "editorial_draft"
+    },
+    {
+      "id": "teatro-san-carlo",
+      "place_name": "Teatro di San Carlo",
+      "city": "Naples",
+      "country": "Italy",
+      "hook": "An opera house rebuilt in roughly nine months?",
+      "story_en": "Teatro San Carlo opened in 1737. A fire destroyed its auditorium in 1816, but reconstruction led by Antonio Niccolini took about nine months. The theater reopened in January 1817—an extraordinary recovery after the disaster.",
+      "surprising_fact": "Its theater was rebuilt in approximately nine months after the 1816 fire.",
+      "type": "documented_history",
+      "discovery_prompt": "From outside, identify the historic theater façade; do not require entrance to the auditorium.",
+      "discovery_access": "exterior_or_public_space_possible; some supplemental areas may require admission",
+      "historical_sources": [
+        {
+          "publisher": "Italian Ministry of Culture — Teatro San Carlo",
+          "url": "https://cultura.gov.it/luogo/teatro-san-carlo",
+          "rights_note": "Reference only; no website text, photographs or audio copied; review rights before ingesting content."
+        },
+        {
+          "publisher": "Italian Ministry of Culture SIUSA — Fondazione Teatro San Carlo",
+          "url": "https://siusa-archivi.cultura.gov.it/cgi-bin/pagina.pl?Chiave=16496&TipoPag=cons",
+          "rights_note": "Reference only; no website text, photographs or audio copied; review rights before ingesting content."
+        },
+        {
+          "publisher": "Italian Ministry of Culture — history of Antonio Niccolini and reopening",
+          "url": "https://cultura.gov.it/comunicato/mostra-antonio-niccolini-scenografo-dei-reali-teatri-di-napoli",
+          "rights_note": "Reference only; no webpage text or images copied."
+        }
+      ],
+      "source_verification": "Source links and principal historical claims reviewed in research pass; independent historian/editor approval NOT completed.",
+      "editorial_status": "Needs independent historical editor review, venue/access check, translation review, and local UX test.",
+      "commercial_use_notes": {
+        "original_story_draft": "Newly written synthesis of historical facts; not an excerpt from sources. Human verification and legal review recommended.",
+        "website_prose": "Not licensed or copied for ingestion; URLs provided as citations only.",
+        "historical_facts": "Individual historical facts are generally not copyright-protected as prose, but EU database rights and site terms may constrain systematic collection.",
+        "images": "NOT_INCLUDED"
+      },
+      "tags": [
+        "opera",
+        "fire",
+        "rebuilding",
+        "architecture"
+      ],
+      "suitability_for_demo": "street_demo_candidate",
+      "wikidata_id": "Q628491",
+      "wikidata_id_status": "item_identity_confirmed_on_official_wikidata_page_2026-11-20",
+      "verified_claims": [
+        {
+          "claim": "The theater opened in 1737",
+          "classification": "historical",
+          "source_indices": [
+            0,
+            2
+          ],
+          "review": "institutional_source_references_located; independent_human_factcheck_pending"
+        },
+        {
+          "claim": "A fire struck in 1816, and the reconstructed theater reopened in January 1817 after about nine months of work",
+          "classification": "historical",
+          "source_indices": [
+            0,
+            1,
+            2
+          ],
+          "review": "institutional_source_references_located; independent_human_factcheck_pending"
+        }
+      ],
+      "photo_url": null,
+      "permission_to_reuse_source_webpage_text": "NOT_CONFIRMED; do not ingest webpages for training without license check",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q628491",
+      "coordinates": {
+        "latitude": 40.83738823,
+        "longitude": 14.2496871,
+        "source": "Wikidata P625",
+        "source_url": "https://www.wikidata.org/wiki/Q628491",
+        "confidence": "provisional_site_coordinate",
+        "navigation_warning": "Wikidata theater coordinate; auditorium not accessible from street."
+      },
+      "story_word_count_en": 34,
+      "word_limit_en": 40,
+      "experience_mode": "camera_exterior_then_map_for_interior",
+      "visit_type": "exterior_or_public_space_possible; some supplemental areas may require admission",
+      "camera_recognition_enabled": true,
+      "physical_discovery": {
+        "prompt": "From outside, identify the historic theater façade; do not require entrance to the auditorium.",
+        "photo_target": "historic opera-house façade",
+        "photo_required": false,
+        "photo_prompt_allowed": true,
+        "visibility_status": "NOT_FIELD_VERIFIED",
+        "permission_note": "Do not require entry, restricted photography, or paid access for camera mode."
+      },
+      "quiz": {
+        "question_en": "What destroyed San Carlo’s auditorium in 1816?",
+        "answers_en": [
+          "A fire",
+          "An earthquake",
+          "A volcanic eruption"
+        ],
+        "correct_index": 0,
+        "answer_explanation_en": "Teatro San Carlo opened in 1737. A fire destroyed its auditorium in 1816, but reconstruction led by Antonio Niccolini took about nine months. The theater reopened in January 1817—an extraordinary recovery after the disaster."
+      },
+      "recall": {
+        "question_en": "Who led the rebuilding?",
+        "answers_en": [
+          "Antonio Niccolini",
+          "Caravaggio",
+          "Giuseppe Sanmartino"
+        ],
+        "correct_index": 0
+      },
+      "dinner_line_en": "After the 1816 fire, Teatro San Carlo reopened in January 1817.",
+      "sticker": {
+        "name_en": "Opera Reborn",
+        "emoji_placeholder": "🎭",
+        "art_asset": null,
+        "status": "concept_not_produced"
+      },
+      "look_closer": "From outside, identify the historic theater façade; do not require entrance to the auditorium.",
+      "translations": {
+        "en": {
+          "hook": "An opera house rebuilt in roughly nine months?",
+          "story": "Teatro San Carlo opened in 1737. A fire destroyed its auditorium in 1816, but reconstruction led by Antonio Niccolini took about nine months. The theater reopened in January 1817—an extraordinary recovery after the disaster."
+        },
+        "it": {
+          "hook": "Un teatro d’opera ricostruito in circa nove mesi?",
+          "story": "Il Teatro San Carlo aprì nel 1737. Un incendio distrusse la sala nel 1816, ma la ricostruzione guidata da Antonio Niccolini durò circa nove mesi. Il teatro riaprì nel gennaio 1817: una ripresa straordinaria dopo il disastro.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 37
+        },
+        "fr": {
+          "hook": "Un opéra reconstruit en neuf mois environ ?",
+          "story": "Le théâtre San Carlo ouvrit en 1737. Un incendie détruisit sa salle en 1816, mais la reconstruction dirigée par Antonio Niccolini dura environ neuf mois. Le théâtre rouvrit en janvier 1817, après cette catastrophe.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 34
+        },
+        "de": {
+          "hook": "Ein Opernhaus in nur etwa neun Monaten wiederaufgebaut?",
+          "story": "Das Teatro San Carlo öffnete 1737. Ein Brand zerstörte 1816 den Zuschauerraum, doch unter Antonio Niccolini dauerte der Wiederaufbau rund neun Monate. Im Januar 1817 wurde das Theater wiedereröffnet – eine erstaunlich schnelle Erholung.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 34
+        },
+        "es": {
+          "hook": "¿Un teatro de ópera reconstruido en unos nueve meses?",
+          "story": "El Teatro San Carlo abrió en 1737. Un incendio destruyó su sala en 1816, pero la reconstrucción dirigida por Antonio Niccolini duró unos nueve meses. El teatro reabrió en enero de 1817, tras aquella catástrofe.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 35
+        }
+      },
+      "source_independence": "single_institution_with_independent_archive_and_curatorial_records",
+      "historical_accuracy_status": "referenced_draft_not_historian_approved",
+      "copyright_review": {
+        "wikidata_structured_data": "CC0",
+        "original_story_text": "original_generated_draft",
+        "third_party_source_material": "link_only_not_relicensed",
+        "photos": "NONE_INCLUDED",
+        "license_for_training_on_source_webpages": "NOT_ESTABLISHED"
+      },
+      "factCheck": {
+        "status": "draft_references_checked_human_review_pending",
+        "claims": [
+          {
+            "text": "The theater opened in 1737",
+            "source_urls": [
+              "https://cultura.gov.it/luogo/teatro-san-carlo",
+              "https://cultura.gov.it/comunicato/mostra-antonio-niccolini-scenografo-dei-reali-teatri-di-napoli"
+            ],
+            "classification": "historical"
+          },
+          {
+            "text": "A fire struck in 1816, and the reconstructed theater reopened in January 1817 after about nine months of work",
+            "source_urls": [
+              "https://cultura.gov.it/luogo/teatro-san-carlo",
+              "https://siusa-archivi.cultura.gov.it/cgi-bin/pagina.pl?Chiave=16496&TipoPag=cons",
+              "https://cultura.gov.it/comunicato/mostra-antonio-niccolini-scenografo-dei-reali-teatri-di-napoli"
+            ],
+            "classification": "historical"
+          }
+        ]
+      },
+      "recallChoices": [
+        "Antonio Niccolini",
+        "Caravaggio",
+        "Giuseppe Sanmartino"
+      ],
+      "lookCloser": {
+        "prompt": "From outside, identify the historic theater façade; do not require entrance to the auditorium.",
+        "photoTarget": "historic opera-house façade",
+        "photoRequired": false
+      },
+      "mapCoordinates": {
+        "lat": 40.83738823,
+        "lon": 14.2496871,
+        "navigationReady": false
+      },
+      "recordStatus": "editorial_draft"
+    },
+    {
+      "id": "castel-nuovo",
+      "place_name": "Castel Nuovo (Maschio Angioino)",
+      "city": "Naples",
+      "country": "Italy",
+      "hook": "Why is there a triumphal arch inside a fortress façade?",
+      "story_en": "Why does this fortress have a brilliant white arch between its towers? Alfonso of Aragon commissioned the triumphal monument to celebrate his arrival in Naples. A Renaissance celebration still stands against the older castle walls.",
+      "surprising_fact": "The marble triumphal arch celebrates Alfonso of Aragon’s entry into Naples.",
+      "type": "documented_history",
+      "discovery_prompt": "Stand in the public square and locate the pale triumphal arch between the dark towers.",
+      "discovery_access": "exterior_or_public_space_possible; some supplemental areas may require admission",
+      "historical_sources": [
+        {
+          "publisher": "Italian Ministry of Culture / Biblioteca Universitaria di Napoli",
+          "url": "https://bibliotecauniversitarianapoli.cultura.gov.it/it/442/castel-nuovo",
+          "rights_note": "Institutional or primary heritage description; research reference only, not a grant to copy prose or images"
+        },
+        {
+          "publisher": "Ministry of Culture — Historical catalogue",
+          "url": "https://catalogo.beniculturali.it/approfondimento/campania-provincia-napoli/castel-nuovo-napoli",
+          "rights_note": "Institutional or primary heritage description; research reference only, not a grant to copy prose or images"
+        },
+        {
+          "publisher": "Italian Ministry of Culture — arch restoration and purpose",
+          "url": "https://trasparenza.cultura.gov.it/archivio105_procedure-dal-01012024_0_27811_566_1.html",
+          "rights_note": "Reference only; no webpage text or images copied."
+        }
+      ],
+      "source_verification": "Source links and principal historical claims reviewed in research pass; independent historian/editor approval NOT completed.",
+      "editorial_status": "Needs independent historical editor review, venue/access check, translation review, and local UX test.",
+      "commercial_use_notes": {
+        "original_story_draft": "Newly written synthesis of historical facts; not an excerpt from sources. Human verification and legal review recommended.",
+        "website_prose": "Not licensed or copied for ingestion; URLs provided as citations only.",
+        "historical_facts": "Individual historical facts are generally not copyright-protected as prose, but EU database rights and site terms may constrain systematic collection.",
+        "images": "NOT_INCLUDED"
+      },
+      "tags": [
+        "castle",
+        "renaissance",
+        "royalty",
+        "architecture"
+      ],
+      "suitability_for_demo": "street_demo_candidate",
+      "wikidata_id": "Q781219",
+      "wikidata_id_status": "item_identity_confirmed_on_official_wikidata_page_2026-11-20",
+      "verified_claims": [
+        {
+          "claim": "Alfonso of Aragon ordered a triumphal arch to commemorate his entry into Naples",
+          "classification": "historical",
+          "source_indices": [
+            0,
+            1,
+            2
+          ],
+          "review": "institutional_source_references_located; independent_human_factcheck_pending"
+        },
+        {
+          "claim": "The arch is located between towers of Castel Nuovo",
+          "classification": "historical",
+          "source_indices": [
+            0,
+            1
+          ],
+          "review": "institutional_source_references_located; independent_human_factcheck_pending"
+        }
+      ],
+      "photo_url": null,
+      "permission_to_reuse_source_webpage_text": "NOT_CONFIRMED; do not ingest webpages for training without license check",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q781219",
+      "coordinates": {
+        "latitude": 40.83837611,
+        "longitude": 14.25380694,
+        "source": "Wikidata P625",
+        "source_url": "https://www.wikidata.org/wiki/Q781219",
+        "confidence": "provisional_site_coordinate",
+        "navigation_warning": "Wikidata castle coordinate; street-visible triumphal arch on the front."
+      },
+      "story_word_count_en": 35,
+      "word_limit_en": 40,
+      "experience_mode": "camera_exterior",
+      "visit_type": "exterior_or_public_space_possible; some supplemental areas may require admission",
+      "camera_recognition_enabled": true,
+      "physical_discovery": {
+        "prompt": "Stand in the public square and locate the pale triumphal arch between the dark towers.",
+        "photo_target": "white triumphal arch between castle towers",
+        "photo_required": false,
+        "photo_prompt_allowed": true,
+        "visibility_status": "NOT_FIELD_VERIFIED",
+        "permission_note": "Do not require entry, restricted photography, or paid access for camera mode."
+      },
+      "quiz": {
+        "question_en": "What does the arch celebrate?",
+        "answers_en": [
+          "Alfonso of Aragon’s arrival",
+          "A naval victory by Rome",
+          "A modern city festival"
+        ],
+        "correct_index": 0,
+        "answer_explanation_en": "Why does this fortress have a brilliant white arch between its towers? Alfonso of Aragon commissioned the triumphal monument to celebrate his arrival in Naples. A Renaissance celebration still stands against the older castle walls."
+      },
+      "recall": {
+        "question_en": "Where can you find the arch?",
+        "answers_en": [
+          "Between the castle towers",
+          "Under the sea",
+          "Inside a bell tower"
+        ],
+        "correct_index": 0
+      },
+      "dinner_line_en": "Castel Nuovo’s white Renaissance arch celebrates Alfonso of Aragon’s entry into Naples.",
+      "sticker": {
+        "name_en": "King’s Arrival",
+        "emoji_placeholder": "🏰",
+        "art_asset": null,
+        "status": "concept_not_produced"
+      },
+      "look_closer": "Stand in the public square and locate the pale triumphal arch between the dark towers.",
+      "translations": {
+        "en": {
+          "hook": "Why is there a triumphal arch inside a fortress façade?",
+          "story": "Why does this fortress have a brilliant white arch between its towers? Alfonso of Aragon commissioned the triumphal monument to celebrate his arrival in Naples. A Renaissance celebration still stands against the older castle walls."
+        },
+        "it": {
+          "hook": "Perché un arco trionfale appare in una fortezza?",
+          "story": "Perché tra le torri di questa fortezza spicca un arco bianco? Alfonso d’Aragona lo fece realizzare per celebrare il suo ingresso a Napoli. Un monumento rinascimentale alla vittoria si staglia ancora contro le mura più antiche.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 36
+        },
+        "fr": {
+          "hook": "Pourquoi un arc de triomphe dans une forteresse ?",
+          "story": "Pourquoi un arc blanc se dresse-t-il entre les tours de cette forteresse ? Alphonse d’Aragon l’a fait ériger pour célébrer son entrée dans Naples. Ce monument de la Renaissance contraste toujours avec les murs plus anciens.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 36
+        },
+        "de": {
+          "hook": "Warum steht ein Triumphbogen in einer Festung?",
+          "story": "Warum leuchtet zwischen den Burgtürmen ein weißer Bogen? Alfons von Aragón ließ ihn zur Erinnerung an seinen Einzug in Neapel errichten. Das Renaissance-Denkmal hebt sich noch heute von den älteren Festungsmauern ab.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 32
+        },
+        "es": {
+          "hook": "¿Por qué hay un arco de triunfo en una fortaleza?",
+          "story": "¿Por qué destaca un arco blanco entre las torres de esta fortaleza? Alfonso de Aragón lo mandó construir para celebrar su entrada en Nápoles. Este monumento renacentista aún contrasta con los muros más antiguos del castillo.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 36
+        }
+      },
+      "source_independence": "single_ministry_and_catalogue",
+      "historical_accuracy_status": "referenced_draft_not_historian_approved",
+      "copyright_review": {
+        "wikidata_structured_data": "CC0",
+        "original_story_text": "original_generated_draft",
+        "third_party_source_material": "link_only_not_relicensed",
+        "photos": "NONE_INCLUDED",
+        "license_for_training_on_source_webpages": "NOT_ESTABLISHED"
+      },
+      "factCheck": {
+        "status": "draft_references_checked_human_review_pending",
+        "claims": [
+          {
+            "text": "Alfonso of Aragon ordered a triumphal arch to commemorate his entry into Naples",
+            "source_urls": [
+              "https://bibliotecauniversitarianapoli.cultura.gov.it/it/442/castel-nuovo",
+              "https://catalogo.beniculturali.it/approfondimento/campania-provincia-napoli/castel-nuovo-napoli",
+              "https://trasparenza.cultura.gov.it/archivio105_procedure-dal-01012024_0_27811_566_1.html"
+            ],
+            "classification": "historical"
+          },
+          {
+            "text": "The arch is located between towers of Castel Nuovo",
+            "source_urls": [
+              "https://bibliotecauniversitarianapoli.cultura.gov.it/it/442/castel-nuovo",
+              "https://catalogo.beniculturali.it/approfondimento/campania-provincia-napoli/castel-nuovo-napoli"
+            ],
+            "classification": "historical"
+          }
+        ]
+      },
+      "recallChoices": [
+        "Between the castle towers",
+        "Under the sea",
+        "Inside a bell tower"
+      ],
+      "lookCloser": {
+        "prompt": "Stand in the public square and locate the pale triumphal arch between the dark towers.",
+        "photoTarget": "white triumphal arch between castle towers",
+        "photoRequired": false
+      },
+      "mapCoordinates": {
+        "lat": 40.83837611,
+        "lon": 14.25380694,
+        "navigationReady": false
+      },
+      "recordStatus": "editorial_draft"
+    },
+    {
+      "id": "pio-monte-misericordia",
+      "place_name": "Pio Monte della Misericordia",
+      "city": "Naples",
+      "country": "Italy",
+      "hook": "Seven acts of kindness hidden in one painting?",
+      "story_en": "After fleeing Rome in 1606, Caravaggio painted the Seven Works of Mercy for this Neapolitan charity. Instead of seven separate pictures, he brought the acts of compassion together in one dramatic painting, completed in 1606–1607.",
+      "surprising_fact": "Caravaggio painted an intricate single picture showing seven charitable acts while on the run.",
+      "type": "documented_history",
+      "discovery_prompt": "With authorized admission, identify different charitable acts in the painting; no required photography.",
+      "discovery_access": "ticket_or_guided_visit_for_story_target",
+      "historical_sources": [
+        {
+          "publisher": "Pio Monte della Misericordia — Caravaggio",
+          "url": "https://piomontedellamisericordia.it/caravaggio/",
+          "rights_note": "Institutional or primary heritage description; research reference only, not a grant to copy prose or images"
+        },
+        {
+          "publisher": "Italian Ministry of Culture — Artwork catalogue",
+          "url": "https://catalogo.beniculturali.it/detail/HistoricOrArtisticProperty/1500409817",
+          "rights_note": "Institutional or primary heritage description; research reference only, not a grant to copy prose or images"
+        },
+        {
+          "publisher": "Pio Monte della Misericordia — artist’s context",
+          "url": "https://piomontedellamisericordia.it/caravaggio-2/",
+          "rights_note": "Reference only; no webpage text or images copied."
+        }
+      ],
+      "source_verification": "Source links and principal historical claims reviewed in research pass; independent historian/editor approval NOT completed.",
+      "editorial_status": "Needs independent historical editor review, venue/access check, translation review, and local UX test.",
+      "commercial_use_notes": {
+        "original_story_draft": "Newly written synthesis of historical facts; not an excerpt from sources. Human verification and legal review recommended.",
+        "website_prose": "Not licensed or copied for ingestion; URLs provided as citations only.",
+        "historical_facts": "Individual historical facts are generally not copyright-protected as prose, but EU database rights and site terms may constrain systematic collection.",
+        "images": "NOT_INCLUDED"
+      },
+      "tags": [
+        "art",
+        "caravaggio",
+        "charity",
+        "painting"
+      ],
+      "suitability_for_demo": "map_or_location_demo_candidate",
+      "wikidata_id": "Q3737242",
+      "wikidata_id_status": "item_identity_confirmed_on_official_wikidata_page_2026-11-20",
+      "verified_claims": [
+        {
+          "claim": "The painting depicts seven works of mercy in a single composition",
+          "classification": "historical",
+          "source_indices": [
+            0,
+            1
+          ],
+          "review": "institutional_source_references_located; independent_human_factcheck_pending"
+        },
+        {
+          "claim": "Caravaggio painted the work in Naples in 1606–1607 after leaving Rome",
+          "classification": "historical",
+          "source_indices": [
+            0,
+            2
+          ],
+          "review": "institutional_source_references_located; independent_human_factcheck_pending"
+        }
+      ],
+      "photo_url": null,
+      "permission_to_reuse_source_webpage_text": "NOT_CONFIRMED; do not ingest webpages for training without license check",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q3737242",
+      "coordinates": {
+        "latitude": 40.851871,
+        "longitude": 14.260426,
+        "source": "Wikidata P625",
+        "source_url": "https://www.wikidata.org/wiki/Q3737242",
+        "confidence": "provisional_site_coordinate",
+        "navigation_warning": "Wikidata church/museum coordinate; Caravaggio painting indoors."
+      },
+      "story_word_count_en": 35,
+      "word_limit_en": 40,
+      "experience_mode": "map_or_location_only",
+      "visit_type": "ticket_or_guided_visit_for_story_target",
+      "camera_recognition_enabled": false,
+      "physical_discovery": {
+        "prompt": "With authorized admission, identify different charitable acts in the painting; no required photography.",
+        "photo_target": null,
+        "photo_required": false,
+        "photo_prompt_allowed": false,
+        "visibility_status": "NOT_FIELD_VERIFIED",
+        "permission_note": "Do not require entry, restricted photography, or paid access for camera mode."
+      },
+      "quiz": {
+        "question_en": "How many acts of mercy appear in Caravaggio’s work?",
+        "answers_en": [
+          "Seven",
+          "Three",
+          "Twelve"
+        ],
+        "correct_index": 0,
+        "answer_explanation_en": "After fleeing Rome in 1606, Caravaggio painted the Seven Works of Mercy for this Neapolitan charity. Instead of seven separate pictures, he brought the acts of compassion together in one dramatic painting, completed in 1606–1607."
+      },
+      "recall": {
+        "question_en": "Who painted the Seven Works of Mercy?",
+        "answers_en": [
+          "Caravaggio",
+          "Giotto",
+          "Raphael"
+        ],
+        "correct_index": 0
+      },
+      "dinner_line_en": "Caravaggio combined seven acts of mercy into one painting in Naples.",
+      "sticker": {
+        "name_en": "Seven Kindnesses",
+        "emoji_placeholder": "🖼️",
+        "art_asset": null,
+        "status": "concept_not_produced"
+      },
+      "look_closer": "With authorized admission, identify different charitable acts in the painting; no required photography.",
+      "translations": {
+        "en": {
+          "hook": "Seven acts of kindness hidden in one painting?",
+          "story": "After fleeing Rome in 1606, Caravaggio painted the Seven Works of Mercy for this Neapolitan charity. Instead of seven separate pictures, he brought the acts of compassion together in one dramatic painting, completed in 1606–1607."
+        },
+        "it": {
+          "hook": "Sette gesti di bontà in un solo dipinto?",
+          "story": "Dopo la fuga da Roma nel 1606, Caravaggio dipinse le Sette opere di misericordia per un’istituzione caritativa napoletana. Invece di sette quadri distinti, raccolse i gesti di compassione in un’unica scena drammatica, realizzata tra il 1606 e il 1607.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 39
+        },
+        "fr": {
+          "hook": "Sept gestes de bonté dans un seul tableau ?",
+          "story": "Après avoir fui Rome en 1606, Caravage peignit Les Sept Œuvres de miséricorde pour une institution charitable napolitaine. Plutôt que sept tableaux séparés, il réunit ces actes de compassion dans une seule scène dramatique, réalisée entre 1606 et 1607.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 39
+        },
+        "de": {
+          "hook": "Sieben gute Taten in nur einem Gemälde?",
+          "story": "Nach seiner Flucht aus Rom 1606 malte Caravaggio die Sieben Werke der Barmherzigkeit für eine neapolitanische Wohltätigkeitsorganisation. Statt sieben einzelnen Bildern vereinte er die Taten in einer dramatischen Komposition von 1606 bis 1607.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 33
+        },
+        "es": {
+          "hook": "¿Siete actos de bondad en un solo cuadro?",
+          "story": "Tras huir de Roma en 1606, Caravaggio pintó Las siete obras de misericordia para una institución benéfica napolitana. En vez de siete cuadros distintos, reunió los actos de compasión en una única escena dramática, realizada entre 1606 y 1607.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 39
+        }
+      },
+      "source_independence": "institution_and_national_heritage_catalogue",
+      "historical_accuracy_status": "referenced_draft_not_historian_approved",
+      "copyright_review": {
+        "wikidata_structured_data": "CC0",
+        "original_story_text": "original_generated_draft",
+        "third_party_source_material": "link_only_not_relicensed",
+        "photos": "NONE_INCLUDED",
+        "license_for_training_on_source_webpages": "NOT_ESTABLISHED"
+      },
+      "factCheck": {
+        "status": "draft_references_checked_human_review_pending",
+        "claims": [
+          {
+            "text": "The painting depicts seven works of mercy in a single composition",
+            "source_urls": [
+              "https://piomontedellamisericordia.it/caravaggio/",
+              "https://catalogo.beniculturali.it/detail/HistoricOrArtisticProperty/1500409817"
+            ],
+            "classification": "historical"
+          },
+          {
+            "text": "Caravaggio painted the work in Naples in 1606–1607 after leaving Rome",
+            "source_urls": [
+              "https://piomontedellamisericordia.it/caravaggio/",
+              "https://piomontedellamisericordia.it/caravaggio-2/"
+            ],
+            "classification": "historical"
+          }
+        ]
+      },
+      "recallChoices": [
+        "Caravaggio",
+        "Giotto",
+        "Raphael"
+      ],
+      "lookCloser": {
+        "prompt": "With authorized admission, identify different charitable acts in the painting; no required photography.",
+        "photoTarget": null,
+        "photoRequired": false
+      },
+      "mapCoordinates": {
+        "lat": 40.851871,
+        "lon": 14.260426,
+        "navigationReady": false
+      },
+      "recordStatus": "editorial_draft"
+    },
+    {
+      "id": "galleria-borbonica",
+      "place_name": "Galleria Borbonica",
+      "city": "Naples",
+      "country": "Italy",
+      "hook": "A royal passage that became a wartime shelter?",
+      "story_en": "In 1853, King Ferdinand II ordered this underground passage through Naples. Decades later, the tunnel and nearby cisterns sheltered residents during Second World War air raids. One underground space served two very different eras.",
+      "surprising_fact": "The same tunnel served royal plans, wartime civilians, and later storage.",
+      "type": "documented_history",
+      "discovery_prompt": "Show the story from the map. Underground details require a permitted guided route; do not ask for a street scan.",
+      "discovery_access": "ticket_or_guided_visit_for_story_target",
+      "historical_sources": [
+        {
+          "publisher": "Galleria Borbonica — Official operator history",
+          "url": "https://www.galleriaborbonica.com/it/storia",
+          "rights_note": "Institutional or primary heritage description; research reference only, not a grant to copy prose or images"
+        },
+        {
+          "publisher": "Royal District of Naples",
+          "url": "https://www.royaldistrict.it/siti-borbonici/galleria-borbonica/",
+          "rights_note": "Institutional or primary heritage description; research reference only, not a grant to copy prose or images"
+        }
+      ],
+      "source_verification": "Source links and principal historical claims reviewed in research pass; independent historian/editor approval NOT completed.",
+      "editorial_status": "Needs independent historical editor review, venue/access check, translation review, and local UX test.",
+      "commercial_use_notes": {
+        "original_story_draft": "Newly written synthesis of historical facts; not an excerpt from sources. Human verification and legal review recommended.",
+        "website_prose": "Not licensed or copied for ingestion; URLs provided as citations only.",
+        "historical_facts": "Individual historical facts are generally not copyright-protected as prose, but EU database rights and site terms may constrain systematic collection.",
+        "images": "NOT_INCLUDED"
+      },
+      "tags": [
+        "underground",
+        "war",
+        "bourbon",
+        "hidden-history"
+      ],
+      "suitability_for_demo": "map_or_location_demo_candidate",
+      "wikidata_id": "Q4000489",
+      "wikidata_id_status": "item_identity_confirmed_on_official_wikidata_page_2026-11-20",
+      "verified_claims": [
+        {
+          "claim": "Ferdinand II ordered work on the tunnel in 1853",
+          "classification": "historical",
+          "source_indices": [
+            0,
+            1
+          ],
+          "review": "institutional_source_references_located; independent_human_factcheck_pending"
+        },
+        {
+          "claim": "The tunnel and nearby cisterns were used for civilian shelter during World War II",
+          "classification": "historical",
+          "source_indices": [
+            0,
+            1
+          ],
+          "review": "institutional_source_references_located; independent_human_factcheck_pending"
+        }
+      ],
+      "photo_url": null,
+      "permission_to_reuse_source_webpage_text": "NOT_CONFIRMED; do not ingest webpages for training without license check",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q4000489",
+      "coordinates": {
+        "latitude": 40.83547277,
+        "longitude": 14.24627202,
+        "source": "Wikidata P625",
+        "source_url": "https://www.wikidata.org/wiki/Q4000489",
+        "confidence": "provisional_site_coordinate",
+        "navigation_warning": "Wikidata tunnel coordinate is NOT an entrance. Operator provides multiple routes/entrances; do not route to this point as doorway."
+      },
+      "story_word_count_en": 34,
+      "word_limit_en": 40,
+      "experience_mode": "map_or_location_only",
+      "visit_type": "ticket_or_guided_visit_for_story_target",
+      "camera_recognition_enabled": false,
+      "physical_discovery": {
+        "prompt": "Show the story from the map. Underground details require a permitted guided route; do not ask for a street scan.",
+        "photo_target": null,
+        "photo_required": false,
+        "photo_prompt_allowed": false,
+        "visibility_status": "NOT_FIELD_VERIFIED",
+        "permission_note": "Do not require entry, restricted photography, or paid access for camera mode."
+      },
+      "quiz": {
+        "question_en": "What later use did the Bourbon Tunnel serve?",
+        "answers_en": [
+          "An air-raid shelter",
+          "A railway station",
+          "An aquarium"
+        ],
+        "correct_index": 0,
+        "answer_explanation_en": "In 1853, King Ferdinand II ordered this underground passage through Naples. Decades later, the tunnel and nearby cisterns sheltered residents during Second World War air raids. One underground space served two very different eras."
+      },
+      "recall": {
+        "question_en": "Who ordered the tunnel in 1853?",
+        "answers_en": [
+          "Ferdinand II",
+          "Alfonso of Aragon",
+          "Victor Emmanuel III"
+        ],
+        "correct_index": 0
+      },
+      "dinner_line_en": "A royal tunnel under Naples later sheltered people from wartime bombing.",
+      "sticker": {
+        "name_en": "Hidden Shelter",
+        "emoji_placeholder": "🕯️",
+        "art_asset": null,
+        "status": "concept_not_produced"
+      },
+      "look_closer": "Show the story from the map. Underground details require a permitted guided route; do not ask for a street scan.",
+      "translations": {
+        "en": {
+          "hook": "A royal passage that became a wartime shelter?",
+          "story": "In 1853, King Ferdinand II ordered this underground passage through Naples. Decades later, the tunnel and nearby cisterns sheltered residents during Second World War air raids. One underground space served two very different eras."
+        },
+        "it": {
+          "hook": "Un passaggio reale diventato rifugio di guerra?",
+          "story": "Nel 1853 Ferdinando II ordinò la costruzione di un passaggio sotterraneo a Napoli. Decenni dopo, la galleria e le cisterne vicine offrirono riparo durante i bombardamenti della Seconda guerra mondiale. Lo stesso luogo ebbe due vite molto diverse.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 38
+        },
+        "fr": {
+          "hook": "Un passage royal devenu abri pendant la guerre ?",
+          "story": "En 1853, Ferdinand II ordonna le percement d’un passage souterrain à Naples. Des décennies plus tard, le tunnel et les citernes voisines abritèrent des habitants pendant les bombardements de la Seconde Guerre mondiale. Un même lieu, deux époques très différentes.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 40
+        },
+        "de": {
+          "hook": "Ein königlicher Tunnel als Luftschutzraum?",
+          "story": "1853 ließ Ferdinand II. einen Tunnel unter Neapel anlegen. Jahrzehnte später boten der Tunnel und benachbarte Zisternen den Bewohnern Schutz vor Luftangriffen im Zweiten Weltkrieg. Ein unterirdischer Ort diente zwei völlig verschiedenen Zwecken.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 33
+        },
+        "es": {
+          "hook": "¿Un pasadizo real convertido en refugio de guerra?",
+          "story": "En 1853, Fernando II ordenó abrir un paso subterráneo en Nápoles. Décadas después, el túnel y las cisternas cercanas refugiaron a habitantes durante los bombardeos de la Segunda Guerra Mundial. Un mismo lugar tuvo dos usos muy distintos.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 38
+        }
+      },
+      "source_independence": "operator_and_secondary_unverified",
+      "historical_accuracy_status": "referenced_draft_not_historian_approved",
+      "copyright_review": {
+        "wikidata_structured_data": "CC0",
+        "original_story_text": "original_generated_draft",
+        "third_party_source_material": "link_only_not_relicensed",
+        "photos": "NONE_INCLUDED",
+        "license_for_training_on_source_webpages": "NOT_ESTABLISHED"
+      },
+      "factCheck": {
+        "status": "draft_references_checked_human_review_pending",
+        "claims": [
+          {
+            "text": "Ferdinand II ordered work on the tunnel in 1853",
+            "source_urls": [
+              "https://www.galleriaborbonica.com/it/storia",
+              "https://www.royaldistrict.it/siti-borbonici/galleria-borbonica/"
+            ],
+            "classification": "historical"
+          },
+          {
+            "text": "The tunnel and nearby cisterns were used for civilian shelter during World War II",
+            "source_urls": [
+              "https://www.galleriaborbonica.com/it/storia",
+              "https://www.royaldistrict.it/siti-borbonici/galleria-borbonica/"
+            ],
+            "classification": "historical"
+          }
+        ]
+      },
+      "recallChoices": [
+        "Ferdinand II",
+        "Alfonso of Aragon",
+        "Victor Emmanuel III"
+      ],
+      "lookCloser": {
+        "prompt": "Show the story from the map. Underground details require a permitted guided route; do not ask for a street scan.",
+        "photoTarget": null,
+        "photoRequired": false
+      },
+      "mapCoordinates": {
+        "lat": 40.83547277,
+        "lon": 14.24627202,
+        "navigationReady": false
+      },
+      "recordStatus": "editorial_draft"
+    },
+    {
+      "id": "galleria-umberto-i",
+      "place_name": "Galleria Umberto I",
+      "city": "Naples",
+      "country": "Italy",
+      "hook": "A whole zodiac hidden beneath your feet?",
+      "story_en": "Built between 1887 and 1890, Galleria Umberto I replaced unhealthy old streets with a grand shopping arcade. Under its iron-and-glass dome, the floor hides zodiac mosaics and a compass rose. Look down before looking up.",
+      "surprising_fact": "A late-19th-century shopping arcade contains zodiac designs and a compass rose in its floor.",
+      "type": "documented_history",
+      "discovery_prompt": "Once inside the public arcade, find a zodiac mosaic and look up at the dome.",
+      "discovery_access": "exterior_or_public_space_possible; some supplemental areas may require admission",
+      "historical_sources": [
+        {
+          "publisher": "Comune di Napoli — NapoliForMe",
+          "url": "https://napoliforme.comune.napoli.it/en/pois/-/poi/Umberto-I-Gallery",
+          "rights_note": "Institutional or primary heritage description; research reference only, not a grant to copy prose or images"
+        },
+        {
+          "publisher": "Italian heritage catalogue — historical gallery record",
+          "url": "https://catalogo.beniculturali.it/detail/PhotographicHeritage/1500953655",
+          "rights_note": "Reference only; no webpage text or images copied."
+        }
+      ],
+      "source_verification": "Source links and principal historical claims reviewed in research pass; independent historian/editor approval NOT completed.",
+      "editorial_status": "Needs independent historical editor review, venue/access check, translation review, and local UX test.",
+      "commercial_use_notes": {
+        "original_story_draft": "Newly written synthesis of historical facts; not an excerpt from sources. Human verification and legal review recommended.",
+        "website_prose": "Not licensed or copied for ingestion; URLs provided as citations only.",
+        "historical_facts": "Individual historical facts are generally not copyright-protected as prose, but EU database rights and site terms may constrain systematic collection.",
+        "images": "NOT_INCLUDED"
+      },
+      "tags": [
+        "zodiac",
+        "architecture",
+        "shopping",
+        "urban-renewal"
+      ],
+      "suitability_for_demo": "map_or_location_demo_candidate",
+      "wikidata_id": "Q1007726",
+      "wikidata_id_status": "item_identity_confirmed_on_official_wikidata_page_2026-11-20",
+      "verified_claims": [
+        {
+          "claim": "Galleria Umberto I was constructed between 1887 and 1890",
+          "classification": "historical",
+          "source_indices": [
+            0,
+            1
+          ],
+          "review": "institutional_source_references_located; independent_human_factcheck_pending"
+        },
+        {
+          "claim": "The floor features zodiac symbols and a compass rose under an iron-and-glass dome",
+          "classification": "historical",
+          "source_indices": [
+            0,
+            1
+          ],
+          "review": "institutional_source_references_located; independent_human_factcheck_pending"
+        }
+      ],
+      "photo_url": null,
+      "permission_to_reuse_source_webpage_text": "NOT_CONFIRMED; do not ingest webpages for training without license check",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q1007726",
+      "coordinates": {
+        "latitude": 40.83844167,
+        "longitude": 14.24948333,
+        "source": "Wikidata P625",
+        "source_url": "https://www.wikidata.org/wiki/Q1007726",
+        "confidence": "provisional_site_coordinate",
+        "navigation_warning": "Wikidata gallery coordinate; floor challenge is inside publicly accessible arcade, not on the façade."
+      },
+      "story_word_count_en": 35,
+      "word_limit_en": 40,
+      "experience_mode": "map_or_location_only",
+      "visit_type": "exterior_or_public_space_possible; some supplemental areas may require admission",
+      "camera_recognition_enabled": false,
+      "physical_discovery": {
+        "prompt": "Once inside the public arcade, find a zodiac mosaic and look up at the dome.",
+        "photo_target": "zodiac mosaics on interior floor",
+        "photo_required": false,
+        "photo_prompt_allowed": false,
+        "visibility_status": "NOT_FIELD_VERIFIED",
+        "permission_note": "Do not require entry, restricted photography, or paid access for camera mode."
+      },
+      "quiz": {
+        "question_en": "What symbols decorate the gallery floor?",
+        "answers_en": [
+          "Zodiac signs",
+          "Chess pieces",
+          "Ancient coins"
+        ],
+        "correct_index": 0,
+        "answer_explanation_en": "Built between 1887 and 1890, Galleria Umberto I replaced unhealthy old streets with a grand shopping arcade. Under its iron-and-glass dome, the floor hides zodiac mosaics and a compass rose. Look down before looking up."
+      },
+      "recall": {
+        "question_en": "What rises above the zodiac floor?",
+        "answers_en": [
+          "An iron-and-glass dome",
+          "A medieval bell tower",
+          "A stone pyramid"
+        ],
+        "correct_index": 0
+      },
+      "dinner_line_en": "Galleria Umberto I hides zodiac mosaics beneath its glass dome.",
+      "sticker": {
+        "name_en": "Zodiac Explorer",
+        "emoji_placeholder": "♌",
+        "art_asset": null,
+        "status": "concept_not_produced"
+      },
+      "look_closer": "Once inside the public arcade, find a zodiac mosaic and look up at the dome.",
+      "translations": {
+        "en": {
+          "hook": "A whole zodiac hidden beneath your feet?",
+          "story": "Built between 1887 and 1890, Galleria Umberto I replaced unhealthy old streets with a grand shopping arcade. Under its iron-and-glass dome, the floor hides zodiac mosaics and a compass rose. Look down before looking up."
+        },
+        "it": {
+          "hook": "Uno zodiaco intero nascosto sotto i tuoi piedi?",
+          "story": "Costruita tra il 1887 e il 1890, la Galleria Umberto I sostituì vecchie strade malsane con un elegante passaggio commerciale. Sotto la cupola in ferro e vetro, il pavimento custodisce mosaici zodiacali e una rosa dei venti.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 37
+        },
+        "fr": {
+          "hook": "Tout un zodiaque caché sous vos pieds ?",
+          "story": "Construite entre 1887 et 1890, la Galleria Umberto I remplaça d’anciennes ruelles insalubres par une galerie commerçante monumentale. Sous sa coupole de fer et de verre, le sol révèle des mosaïques du zodiaque et une rose des vents.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 38
+        },
+        "de": {
+          "hook": "Ein ganzer Tierkreis unter deinen Füßen?",
+          "story": "Zwischen 1887 und 1890 ersetzte die Galleria Umberto I ungesunde alte Gassen durch eine prächtige Einkaufspassage. Unter ihrer Eisen-Glas-Kuppel zeigen Bodenmosaike die Tierkreiszeichen und eine Windrose. Schau zuerst nach unten!",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 30
+        },
+        "es": {
+          "hook": "¿Todo un zodiaco escondido bajo tus pies?",
+          "story": "Construida entre 1887 y 1890, la Galleria Umberto I sustituyó antiguas calles insalubres por una gran galería comercial. Bajo su cúpula de hierro y cristal, el suelo guarda mosaicos del zodiaco y una rosa de los vientos.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 37
+        }
+      },
+      "source_independence": "municipal_and_national_heritage_catalogue",
+      "historical_accuracy_status": "referenced_draft_not_historian_approved",
+      "copyright_review": {
+        "wikidata_structured_data": "CC0",
+        "original_story_text": "original_generated_draft",
+        "third_party_source_material": "link_only_not_relicensed",
+        "photos": "NONE_INCLUDED",
+        "license_for_training_on_source_webpages": "NOT_ESTABLISHED"
+      },
+      "factCheck": {
+        "status": "draft_references_checked_human_review_pending",
+        "claims": [
+          {
+            "text": "Galleria Umberto I was constructed between 1887 and 1890",
+            "source_urls": [
+              "https://napoliforme.comune.napoli.it/en/pois/-/poi/Umberto-I-Gallery",
+              "https://catalogo.beniculturali.it/detail/PhotographicHeritage/1500953655"
+            ],
+            "classification": "historical"
+          },
+          {
+            "text": "The floor features zodiac symbols and a compass rose under an iron-and-glass dome",
+            "source_urls": [
+              "https://napoliforme.comune.napoli.it/en/pois/-/poi/Umberto-I-Gallery",
+              "https://catalogo.beniculturali.it/detail/PhotographicHeritage/1500953655"
+            ],
+            "classification": "historical"
+          }
+        ]
+      },
+      "recallChoices": [
+        "An iron-and-glass dome",
+        "A medieval bell tower",
+        "A stone pyramid"
+      ],
+      "lookCloser": {
+        "prompt": "Once inside the public arcade, find a zodiac mosaic and look up at the dome.",
+        "photoTarget": "zodiac mosaics on interior floor",
+        "photoRequired": false
+      },
+      "mapCoordinates": {
+        "lat": 40.83844167,
+        "lon": 14.24948333,
+        "navigationReady": false
+      },
+      "recordStatus": "editorial_draft"
+    },
+    {
+      "id": "catacombe-san-gennaro",
+      "place_name": "Catacombs of San Gennaro",
+      "city": "Naples",
+      "country": "Italy",
+      "hook": "A bishop from Carthage pictured under Naples?",
+      "story_en": "Beneath Naples, early Christians created extensive burial chambers. Later additions included the Crypt of the Bishops, where a fifth-century mosaic depicts Quodvultdeus, a bishop of Carthage. The underground art reveals links across the Mediterranean.",
+      "surprising_fact": "The catacombs preserve elaborate early Christian paintings and mosaics, not only burial spaces.",
+      "type": "documented_history",
+      "discovery_prompt": "During a guided visit, ask about the fifth-century mosaic of Quodvultdeus. No camera task.",
+      "discovery_access": "ticket_or_guided_visit_for_story_target",
+      "historical_sources": [
+        {
+          "publisher": "Catacombe di Napoli — Official site history",
+          "url": "https://catacombedinapoli.it/it/luoghi/catacombe-di-san-gennaro-napoli/",
+          "rights_note": "Institutional or primary heritage description; research reference only, not a grant to copy prose or images"
+        },
+        {
+          "publisher": "Catacombe di Napoli — English official site",
+          "url": "https://catacombedinapoli.it/en/luoghi/catacombs-of-san-gennaro-naples/",
+          "rights_note": "Reference only; no webpage text or images copied."
+        },
+        {
+          "publisher": "Italia.it — Catacombs heritage guide",
+          "url": "https://www.italia.it/it/campania/napoli/cosa-fare/catacombe-di-napoli",
+          "rights_note": "Reference only; no webpage text or images copied."
+        }
+      ],
+      "source_verification": "Source links and principal historical claims reviewed in research pass; independent historian/editor approval NOT completed.",
+      "editorial_status": "Needs independent historical editor review, venue/access check, translation review, and local UX test.",
+      "commercial_use_notes": {
+        "original_story_draft": "Newly written synthesis of historical facts; not an excerpt from sources. Human verification and legal review recommended.",
+        "website_prose": "Not licensed or copied for ingestion; URLs provided as citations only.",
+        "historical_facts": "Individual historical facts are generally not copyright-protected as prose, but EU database rights and site terms may constrain systematic collection.",
+        "images": "NOT_INCLUDED"
+      },
+      "tags": [
+        "catacombs",
+        "mosaic",
+        "christianity",
+        "underground"
+      ],
+      "suitability_for_demo": "map_or_location_demo_candidate",
+      "wikidata_id": "Q3663206",
+      "wikidata_id_status": "item_identity_confirmed_on_official_wikidata_page_2026-11-20",
+      "verified_claims": [
+        {
+          "claim": "The catacombs contain the Crypt of the Bishops",
+          "classification": "historical",
+          "source_indices": [
+            0,
+            1
+          ],
+          "review": "institutional_source_references_located; independent_human_factcheck_pending"
+        },
+        {
+          "claim": "The crypt preserves a fifth-century mosaic representing Bishop Quodvultdeus of Carthage",
+          "classification": "historical",
+          "source_indices": [
+            0,
+            1
+          ],
+          "review": "institutional_source_references_located; independent_human_factcheck_pending"
+        }
+      ],
+      "photo_url": null,
+      "permission_to_reuse_source_webpage_text": "NOT_CONFIRMED; do not ingest webpages for training without license check",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q3663206",
+      "coordinates": {
+        "latitude": 40.86418056,
+        "longitude": 14.247625,
+        "source": "Wikidata P625",
+        "source_url": "https://www.wikidata.org/wiki/Q3663206",
+        "confidence": "provisional_site_coordinate",
+        "navigation_warning": "Wikidata catacombs geographic point; tour entrance at Via Capodimonte 13 must be handled separately."
+      },
+      "story_word_count_en": 34,
+      "word_limit_en": 40,
+      "experience_mode": "map_or_location_only",
+      "visit_type": "ticket_or_guided_visit_for_story_target",
+      "camera_recognition_enabled": false,
+      "physical_discovery": {
+        "prompt": "During a guided visit, ask about the fifth-century mosaic of Quodvultdeus. No camera task.",
+        "photo_target": null,
+        "photo_required": false,
+        "photo_prompt_allowed": false,
+        "visibility_status": "NOT_FIELD_VERIFIED",
+        "permission_note": "Do not require entry, restricted photography, or paid access for camera mode."
+      },
+      "quiz": {
+        "question_en": "Who appears in the catacombs’ ancient mosaic?",
+        "answers_en": [
+          "A bishop of Carthage",
+          "A Roman emperor",
+          "A medieval king"
+        ],
+        "correct_index": 0,
+        "answer_explanation_en": "Beneath Naples, early Christians created extensive burial chambers. Later additions included the Crypt of the Bishops, where a fifth-century mosaic depicts Quodvultdeus, a bishop of Carthage. The underground art reveals links across the Mediterranean."
+      },
+      "recall": {
+        "question_en": "Where is the mosaic described?",
+        "answers_en": [
+          "The Crypt of the Bishops",
+          "The opera house",
+          "Castel dell’Ovo"
+        ],
+        "correct_index": 0
+      },
+      "dinner_line_en": "An ancient mosaic under Naples depicts a bishop from Carthage.",
+      "sticker": {
+        "name_en": "Underground Mosaic",
+        "emoji_placeholder": "🪦",
+        "art_asset": null,
+        "status": "concept_not_produced"
+      },
+      "look_closer": "During a guided visit, ask about the fifth-century mosaic of Quodvultdeus. No camera task.",
+      "translations": {
+        "en": {
+          "hook": "A bishop from Carthage pictured under Naples?",
+          "story": "Beneath Naples, early Christians created extensive burial chambers. Later additions included the Crypt of the Bishops, where a fifth-century mosaic depicts Quodvultdeus, a bishop of Carthage. The underground art reveals links across the Mediterranean."
+        },
+        "it": {
+          "hook": "Un vescovo di Cartagine raffigurato sotto Napoli?",
+          "story": "Sotto Napoli, i primi cristiani crearono ampie camere funerarie. Tra gli ambienti successivi c’è la Cripta dei Vescovi, dove un mosaico del V secolo raffigura Quodvultdeus, vescovo di Cartagine. Quest’arte sotterranea racconta legami mediterranei.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 34
+        },
+        "fr": {
+          "hook": "Un évêque de Carthage représenté sous Naples ?",
+          "story": "Sous Naples, les premiers chrétiens aménagèrent de vastes chambres funéraires. La Crypte des évêques conserve une mosaïque du Ve siècle représentant Quodvultdeus, évêque de Carthage. Cet art souterrain témoigne d’anciens liens méditerranéens.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 32
+        },
+        "de": {
+          "hook": "Ein Bischof aus Karthago unter Neapel?",
+          "story": "Unter Neapel legten frühe Christen weitläufige Grabkammern an. In der später entstandenen Bischofsgruft zeigt ein Mosaik aus dem 5. Jahrhundert Quodvultdeus, einen Bischof aus Karthago. Die unterirdische Kunst erzählt von Verbindungen über das Mittelmeer.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 34
+        },
+        "es": {
+          "hook": "¿Un obispo de Cartago representado bajo Nápoles?",
+          "story": "Bajo Nápoles, los primeros cristianos crearon extensas cámaras funerarias. En la Cripta de los Obispos, un mosaico del siglo V representa a Quodvultdeus, obispo de Cartago. Este arte subterráneo revela antiguos vínculos mediterráneos.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 33
+        }
+      },
+      "source_independence": "operator_and_national_tourism_portal",
+      "historical_accuracy_status": "referenced_draft_not_historian_approved",
+      "copyright_review": {
+        "wikidata_structured_data": "CC0",
+        "original_story_text": "original_generated_draft",
+        "third_party_source_material": "link_only_not_relicensed",
+        "photos": "NONE_INCLUDED",
+        "license_for_training_on_source_webpages": "NOT_ESTABLISHED"
+      },
+      "factCheck": {
+        "status": "draft_references_checked_human_review_pending",
+        "claims": [
+          {
+            "text": "The catacombs contain the Crypt of the Bishops",
+            "source_urls": [
+              "https://catacombedinapoli.it/it/luoghi/catacombe-di-san-gennaro-napoli/",
+              "https://catacombedinapoli.it/en/luoghi/catacombs-of-san-gennaro-naples/"
+            ],
+            "classification": "historical"
+          },
+          {
+            "text": "The crypt preserves a fifth-century mosaic representing Bishop Quodvultdeus of Carthage",
+            "source_urls": [
+              "https://catacombedinapoli.it/it/luoghi/catacombe-di-san-gennaro-napoli/",
+              "https://catacombedinapoli.it/en/luoghi/catacombs-of-san-gennaro-naples/"
+            ],
+            "classification": "historical"
+          }
+        ]
+      },
+      "recallChoices": [
+        "The Crypt of the Bishops",
+        "The opera house",
+        "Castel dell’Ovo"
+      ],
+      "lookCloser": {
+        "prompt": "During a guided visit, ask about the fifth-century mosaic of Quodvultdeus. No camera task.",
+        "photoTarget": null,
+        "photoRequired": false
+      },
+      "mapCoordinates": {
+        "lat": 40.86418056,
+        "lon": 14.247625,
+        "navigationReady": false
+      },
+      "recordStatus": "editorial_draft"
+    },
+    {
+      "id": "catacombe-san-gaudioso",
+      "place_name": "Catacombs of San Gaudioso",
+      "city": "Naples",
+      "country": "Italy",
+      "hook": "An African bishop beneath a Neapolitan basilica?",
+      "story_en": "These catacombs grew around the tomb of Gaudiosus, an African bishop who reached Naples in the fifth century. Centuries later, noble families used the underground chambers for burials. Ancient Christian art shares space with later memorials.",
+      "surprising_fact": "A North African bishop’s burial helped shape a Neapolitan catacomb that was later reused.",
+      "type": "documented_history",
+      "discovery_prompt": "This is an underground guided-visit story. Discover early Christian frescoes only while following the authorized route.",
+      "discovery_access": "ticket_or_guided_visit_for_story_target",
+      "historical_sources": [
+        {
+          "publisher": "Catacombe di Napoli — San Gaudioso",
+          "url": "https://catacombedinapoli.it/it/luoghi/catacombe-di-san-gaudioso-napoli/",
+          "rights_note": "Institutional or primary heritage description; research reference only, not a grant to copy prose or images"
+        },
+        {
+          "publisher": "Vatican Pontifical Commission for Sacred Archaeology — San Gaudioso",
+          "url": "https://www.catacombeditalia.va/content/archeologiasacra/it/visita-catacombe/per-regione/campania/catacomba-di-s-gaudioso.pdf",
+          "rights_note": "Reference only; no webpage text or images copied."
+        },
+        {
+          "publisher": "Italia.it — San Gaudioso and San Severo",
+          "url": "https://www.italia.it/it/campania/napoli/le-catacombe-di-san-gaudioso-e-san-severo",
+          "rights_note": "Reference only; no webpage text or images copied."
+        }
+      ],
+      "source_verification": "Source links and principal historical claims reviewed in research pass; independent historian/editor approval NOT completed.",
+      "editorial_status": "Needs independent historical editor review, venue/access check, translation review, and local UX test.",
+      "commercial_use_notes": {
+        "original_story_draft": "Newly written synthesis of historical facts; not an excerpt from sources. Human verification and legal review recommended.",
+        "website_prose": "Not licensed or copied for ingestion; URLs provided as citations only.",
+        "historical_facts": "Individual historical facts are generally not copyright-protected as prose, but EU database rights and site terms may constrain systematic collection.",
+        "images": "NOT_INCLUDED"
+      },
+      "tags": [
+        "catacombs",
+        "early-christian",
+        "burial",
+        "symbols"
+      ],
+      "suitability_for_demo": "map_or_location_demo_candidate",
+      "wikidata_id": "Q3663202",
+      "wikidata_id_status": "item_identity_confirmed_on_official_wikidata_page_2026-11-20",
+      "verified_claims": [
+        {
+          "claim": "Gaudiosus was an African bishop associated with a fifth-century tomb at the site",
+          "classification": "historical",
+          "source_indices": [
+            0,
+            1,
+            2
+          ],
+          "review": "institutional_source_references_located; independent_human_factcheck_pending"
+        },
+        {
+          "claim": "The site also preserves later aristocratic burials and early Christian frescoes",
+          "classification": "historical",
+          "source_indices": [
+            0,
+            1,
+            2
+          ],
+          "review": "institutional_source_references_located; independent_human_factcheck_pending"
+        }
+      ],
+      "photo_url": null,
+      "permission_to_reuse_source_webpage_text": "NOT_CONFIRMED; do not ingest webpages for training without license check",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q3663202",
+      "coordinates": {
+        "latitude": 40.86,
+        "longitude": 14.24888889,
+        "source": "Wikidata P625",
+        "source_url": "https://www.wikidata.org/wiki/Q3663202",
+        "confidence": "provisional_site_coordinate",
+        "navigation_warning": "Wikidata catacombs coordinate; actual visitor access via Basilica di Santa Maria della Sanità is separate."
+      },
+      "story_word_count_en": 36,
+      "word_limit_en": 40,
+      "experience_mode": "map_or_location_only",
+      "visit_type": "ticket_or_guided_visit_for_story_target",
+      "camera_recognition_enabled": false,
+      "physical_discovery": {
+        "prompt": "This is an underground guided-visit story. Discover early Christian frescoes only while following the authorized route.",
+        "photo_target": null,
+        "photo_required": false,
+        "photo_prompt_allowed": false,
+        "visibility_status": "NOT_FIELD_VERIFIED",
+        "permission_note": "Do not require entry, restricted photography, or paid access for camera mode."
+      },
+      "quiz": {
+        "question_en": "Who gave these catacombs their name?",
+        "answers_en": [
+          "Bishop Gaudiosus",
+          "King Alfonso",
+          "The poet Virgil"
+        ],
+        "correct_index": 0,
+        "answer_explanation_en": "These catacombs grew around the tomb of Gaudiosus, an African bishop who reached Naples in the fifth century. Centuries later, noble families used the underground chambers for burials. Ancient Christian art shares space with later memorials."
+      },
+      "recall": {
+        "question_en": "What later use expanded the catacombs?",
+        "answers_en": [
+          "Noble burials",
+          "Opera rehearsals",
+          "Fish markets"
+        ],
+        "correct_index": 0
+      },
+      "dinner_line_en": "Naples’ San Gaudioso catacombs grew around the tomb of an African bishop.",
+      "sticker": {
+        "name_en": "Two Centuries, One Tomb",
+        "emoji_placeholder": "🕯️",
+        "art_asset": null,
+        "status": "concept_not_produced"
+      },
+      "look_closer": "This is an underground guided-visit story. Discover early Christian frescoes only while following the authorized route.",
+      "translations": {
+        "en": {
+          "hook": "An African bishop beneath a Neapolitan basilica?",
+          "story": "These catacombs grew around the tomb of Gaudiosus, an African bishop who reached Naples in the fifth century. Centuries later, noble families used the underground chambers for burials. Ancient Christian art shares space with later memorials."
+        },
+        "it": {
+          "hook": "Un vescovo africano sotto una basilica napoletana?",
+          "story": "Queste catacombe si svilupparono attorno alla tomba di Gaudioso, vescovo africano arrivato a Napoli nel V secolo. Secoli dopo, famiglie nobili usarono gli ambienti sotterranei per le sepolture. Antichi affreschi cristiani convivono con memorie più recenti.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 36
+        },
+        "fr": {
+          "hook": "Un évêque africain sous une basilique napolitaine ?",
+          "story": "Ces catacombes se développèrent autour de la tombe de Gaudiosus, un évêque africain arrivé à Naples au Ve siècle. Des siècles plus tard, des familles nobles y furent enterrées. L’art chrétien ancien côtoie ainsi des sépultures plus récentes.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 38
+        },
+        "de": {
+          "hook": "Ein afrikanischer Bischof unter einer Basilika?",
+          "story": "Diese Katakomben entstanden um das Grab von Gaudiosus, einem afrikanischen Bischof, der im 5. Jahrhundert nach Neapel kam. Jahrhunderte später wurden dort Adlige bestattet. Frühchristliche Wandmalereien stehen neben späteren Grabstätten.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 30
+        },
+        "es": {
+          "hook": "¿Un obispo africano bajo una basílica napolitana?",
+          "story": "Estas catacumbas crecieron alrededor de la tumba de Gaudioso, un obispo africano llegado a Nápoles en el siglo V. Siglos después, familias nobles utilizaron las cámaras subterráneas para enterramientos. El arte paleocristiano convive con memorias posteriores.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 36
+        }
+      },
+      "source_independence": "operator_vatican_and_national_tourism_portal",
+      "historical_accuracy_status": "referenced_draft_not_historian_approved",
+      "copyright_review": {
+        "wikidata_structured_data": "CC0",
+        "original_story_text": "original_generated_draft",
+        "third_party_source_material": "link_only_not_relicensed",
+        "photos": "NONE_INCLUDED",
+        "license_for_training_on_source_webpages": "NOT_ESTABLISHED"
+      },
+      "factCheck": {
+        "status": "draft_references_checked_human_review_pending",
+        "claims": [
+          {
+            "text": "Gaudiosus was an African bishop associated with a fifth-century tomb at the site",
+            "source_urls": [
+              "https://catacombedinapoli.it/it/luoghi/catacombe-di-san-gaudioso-napoli/",
+              "https://www.catacombeditalia.va/content/archeologiasacra/it/visita-catacombe/per-regione/campania/catacomba-di-s-gaudioso.pdf",
+              "https://www.italia.it/it/campania/napoli/le-catacombe-di-san-gaudioso-e-san-severo"
+            ],
+            "classification": "historical"
+          },
+          {
+            "text": "The site also preserves later aristocratic burials and early Christian frescoes",
+            "source_urls": [
+              "https://catacombedinapoli.it/it/luoghi/catacombe-di-san-gaudioso-napoli/",
+              "https://www.catacombeditalia.va/content/archeologiasacra/it/visita-catacombe/per-regione/campania/catacomba-di-s-gaudioso.pdf",
+              "https://www.italia.it/it/campania/napoli/le-catacombe-di-san-gaudioso-e-san-severo"
+            ],
+            "classification": "historical"
+          }
+        ]
+      },
+      "recallChoices": [
+        "Noble burials",
+        "Opera rehearsals",
+        "Fish markets"
+      ],
+      "lookCloser": {
+        "prompt": "This is an underground guided-visit story. Discover early Christian frescoes only while following the authorized route.",
+        "photoTarget": null,
+        "photoRequired": false
+      },
+      "mapCoordinates": {
+        "lat": 40.86,
+        "lon": 14.24888889,
+        "navigationReady": false
+      },
+      "recordStatus": "editorial_draft"
+    },
+    {
+      "id": "tesoro-san-gennaro",
+      "place_name": "Museum of the Treasure of San Gennaro",
+      "city": "Naples",
+      "country": "Italy",
+      "hook": "A necklace assembled across generations?",
+      "story_en": "San Gennaro’s jeweled necklace began in 1679 and gained new gems through later donations. Kings, queens and ordinary devotees contributed gifts over generations. The treasure is both an artwork and a record of the city’s devotion.",
+      "surprising_fact": "A jeweled necklace associated with San Gennaro grew through donations over centuries.",
+      "type": "documented_history",
+      "discovery_prompt": "During a permitted museum visit, view the famous necklace; do not require photographs.",
+      "discovery_access": "ticket_or_guided_visit_for_story_target",
+      "historical_sources": [
+        {
+          "publisher": "Comune di Napoli — NapoliForMe",
+          "url": "https://napoliforme.comune.napoli.it/en/pois/-/poi/Museum-of-the-Treasure-of-San-Gennaro",
+          "rights_note": "Institutional or primary heritage description; research reference only, not a grant to copy prose or images"
+        },
+        {
+          "publisher": "Museum of Treasure of San Gennaro — official collection",
+          "url": "https://tesorosangennaro.it/i-capolavori/",
+          "rights_note": "Reference only; no webpage text or images copied."
+        }
+      ],
+      "source_verification": "Source links and principal historical claims reviewed in research pass; independent historian/editor approval NOT completed.",
+      "editorial_status": "Needs independent historical editor review, venue/access check, translation review, and local UX test.",
+      "commercial_use_notes": {
+        "original_story_draft": "Newly written synthesis of historical facts; not an excerpt from sources. Human verification and legal review recommended.",
+        "website_prose": "Not licensed or copied for ingestion; URLs provided as citations only.",
+        "historical_facts": "Individual historical facts are generally not copyright-protected as prose, but EU database rights and site terms may constrain systematic collection.",
+        "images": "NOT_INCLUDED"
+      },
+      "tags": [
+        "religion",
+        "community",
+        "jewelry",
+        "tradition"
+      ],
+      "suitability_for_demo": "map_or_location_demo_candidate",
+      "wikidata_id": "Q3849166",
+      "wikidata_id_status": "item_identity_confirmed_on_official_wikidata_page_2026-11-20",
+      "verified_claims": [
+        {
+          "claim": "The famous necklace began in 1679",
+          "classification": "historical",
+          "source_indices": [
+            0,
+            1
+          ],
+          "review": "institutional_source_references_located; independent_human_factcheck_pending"
+        },
+        {
+          "claim": "Its jewels grew through donations from different groups over time",
+          "classification": "historical",
+          "source_indices": [
+            0,
+            1
+          ],
+          "review": "institutional_source_references_located; independent_human_factcheck_pending"
+        }
+      ],
+      "photo_url": null,
+      "permission_to_reuse_source_webpage_text": "NOT_CONFIRMED; do not ingest webpages for training without license check",
+      "wikidata_url": "https://www.wikidata.org/wiki/Q3849166",
+      "coordinates": {
+        "latitude": 40.85231111,
+        "longitude": 14.25903889,
+        "source": "Wikidata P625",
+        "source_url": "https://www.wikidata.org/wiki/Q3849166",
+        "confidence": "provisional_site_coordinate",
+        "navigation_warning": "Wikidata P625 has conflicting coordinates: 40°51′15″N 14°15′48″E (Wikipedia import) versus 40°51′8.32″N 14°15′32.54″E (cultural catalogue). Selected cultural-catalogue claim as provisional; validate entrance on-site before navigation."
+      },
+      "story_word_count_en": 36,
+      "word_limit_en": 40,
+      "experience_mode": "map_or_location_only",
+      "visit_type": "ticket_or_guided_visit_for_story_target",
+      "camera_recognition_enabled": false,
+      "physical_discovery": {
+        "prompt": "During a permitted museum visit, view the famous necklace; do not require photographs.",
+        "photo_target": null,
+        "photo_required": false,
+        "photo_prompt_allowed": false,
+        "visibility_status": "NOT_FIELD_VERIFIED",
+        "permission_note": "Do not require entry, restricted photography, or paid access for camera mode."
+      },
+      "quiz": {
+        "question_en": "How did San Gennaro’s necklace grow?",
+        "answers_en": [
+          "Through donations over time",
+          "By a single modern purchase",
+          "By excavation at Pompeii"
+        ],
+        "correct_index": 0,
+        "answer_explanation_en": "San Gennaro’s jeweled necklace began in 1679 and gained new gems through later donations. Kings, queens and ordinary devotees contributed gifts over generations. The treasure is both an artwork and a record of the city’s devotion."
+      },
+      "recall": {
+        "question_en": "When did work on the famous necklace begin?",
+        "answers_en": [
+          "1679",
+          "1943",
+          "2003"
+        ],
+        "correct_index": 0
+      },
+      "dinner_line_en": "San Gennaro’s necklace accumulated precious gifts from many generations.",
+      "sticker": {
+        "name_en": "Treasure Keeper",
+        "emoji_placeholder": "💎",
+        "art_asset": null,
+        "status": "concept_not_produced"
+      },
+      "look_closer": "During a permitted museum visit, view the famous necklace; do not require photographs.",
+      "translations": {
+        "en": {
+          "hook": "A necklace assembled across generations?",
+          "story": "San Gennaro’s jeweled necklace began in 1679 and gained new gems through later donations. Kings, queens and ordinary devotees contributed gifts over generations. The treasure is both an artwork and a record of the city’s devotion."
+        },
+        "it": {
+          "hook": "Una collana costruita attraverso generazioni?",
+          "story": "La preziosa collana di San Gennaro ebbe inizio nel 1679 e fu arricchita da donazioni successive. Re, regine e fedeli offrirono gioielli nel corso delle generazioni. Il tesoro è insieme un’opera d’arte e una testimonianza della devozione cittadina.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 38
+        },
+        "fr": {
+          "hook": "Un collier enrichi de génération en génération ?",
+          "story": "Le célèbre collier de saint Janvier fut commencé en 1679 puis enrichi de dons successifs. Rois, reines et fidèles offrirent des bijoux au fil des générations. Le trésor témoigne à la fois d’un savoir-faire artistique et d’une dévotion locale.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 39
+        },
+        "de": {
+          "hook": "Eine Halskette, die über Generationen wuchs?",
+          "story": "Die berühmte Juwelenkette des heiligen Januarius entstand ab 1679 und wurde später durch Spenden erweitert. Könige, Königinnen und Gläubige schenkten über Generationen Edelsteine. Der Schatz ist zugleich Kunstwerk und Ausdruck neapolitanischer Verehrung.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 32
+        },
+        "es": {
+          "hook": "¿Un collar formado a lo largo de generaciones?",
+          "story": "El célebre collar de san Jenaro comenzó a elaborarse en 1679 y recibió nuevas gemas con donaciones posteriores. Reyes, reinas y devotos aportaron joyas durante generaciones. El tesoro es una obra de arte y un testimonio de devoción popular.",
+          "status": "draft_requires_native_speaker_review",
+          "word_count": 39
+        }
+      },
+      "source_independence": "municipal_and_museum_sources",
+      "historical_accuracy_status": "referenced_draft_not_historian_approved",
+      "copyright_review": {
+        "wikidata_structured_data": "CC0",
+        "original_story_text": "original_generated_draft",
+        "third_party_source_material": "link_only_not_relicensed",
+        "photos": "NONE_INCLUDED",
+        "license_for_training_on_source_webpages": "NOT_ESTABLISHED"
+      },
+      "factCheck": {
+        "status": "draft_references_checked_human_review_pending",
+        "claims": [
+          {
+            "text": "The famous necklace began in 1679",
+            "source_urls": [
+              "https://napoliforme.comune.napoli.it/en/pois/-/poi/Museum-of-the-Treasure-of-San-Gennaro",
+              "https://tesorosangennaro.it/i-capolavori/"
+            ],
+            "classification": "historical"
+          },
+          {
+            "text": "Its jewels grew through donations from different groups over time",
+            "source_urls": [
+              "https://napoliforme.comune.napoli.it/en/pois/-/poi/Museum-of-the-Treasure-of-San-Gennaro",
+              "https://tesorosangennaro.it/i-capolavori/"
+            ],
+            "classification": "historical"
+          }
+        ]
+      },
+      "recallChoices": [
+        "1679",
+        "1943",
+        "2003"
+      ],
+      "lookCloser": {
+        "prompt": "During a permitted museum visit, view the famous necklace; do not require photographs.",
+        "photoTarget": null,
+        "photoRequired": false
+      },
+      "mapCoordinates": {
+        "lat": 40.85231111,
+        "lon": 14.25903889,
+        "navigationReady": false
+      },
+      "recordStatus": "editorial_draft"
+    }
+  ],
+  "version": "0.2.0",
+  "record_count": 12,
+  "locales": [
+    "en",
+    "it",
+    "fr",
+    "de",
+    "es"
+  ],
+  "scope": "Research-backed draft for integration testing; NOT historian-approved, not a cleared third-party training corpus.",
+  "policy": {
+    "source_hierarchy": "Prefer Italian Ministry of Culture, Comune di Napoli heritage catalogue, primary museum/operator, then supported institution.",
+    "legends": "Legends explicitly labeled and separated from historical facts.",
+    "image_policy": "No images are bundled. Check asset-specific permissions, including Italian cultural-heritage reproduction rules, before adding images.",
+    "text_policy": "Original summaries of historical facts; do not copy source website text into the training corpus without checking license and terms.",
+    "training_use": "These original record texts may be used as sample inputs/outputs for your own system, subject to independent legal and editorial review; the linked source prose must not be assumed licensed for training.",
+    "accessibility": "Discovery prompts are optional and may require a ticket or authorized guided visit.",
+    "limitations": "No field testing, professional historian signoff, proof of all photographic/venue rights, or dataset-wide peer review has been performed.",
+    "publication_gate": "Before launch, review every claim and source, map/entrance coordinates, public visibility, access/photography policy and every translation.",
+    "accuracy": "All story factual claims have references; citations and sourced drafts do not establish historical accuracy or human review.",
+    "quiz": "One multiple-choice question and one recall question per story; correct_index is zero-based.",
+    "camera": "Do not use camera for interior/restricted artworks or underground sites; map/location alternative is available.",
+    "localization": "Four added localizations are draft translations and must be checked by native speakers.",
+    "photo_assets": "No third-party image included; emoji sticker placeholders are not artwork."
+  },
+  "quality_summary": {
+    "stories": 12,
+    "max_story_words_en": 40,
+    "min_story_words_en": 33,
+    "max_actual_story_words_en": 36,
+    "wikidata_item_ids_present": 12,
+    "site_coordinates_present": 12,
+    "quiz_questions_present": 12,
+    "recall_questions_present": 12,
+    "four_added_draft_translations_present": 12,
+    "requires_historian_signoff": 12,
+    "street_camera_candidates": 5,
+    "map_or_location_candidates": 7,
+    "confirmed_visitor_entrances": 0,
+    "licensed_images_included": 0,
+    "source_and_scope_corrections": [
+      "Castel dell’Ovo item Q645041 (not Q645941)",
+      "Teatro San Carlo removed unrelated conservatory citation",
+      "Treasure museum Wikidata has inconsistent coordinate claims; provisional chosen cultural catalogue location",
+      "Bourbon Tunnel Wikidata point is not certified visitor entrance"
+    ]
+  }
+}

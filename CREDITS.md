@@ -25,6 +25,38 @@
 | `castelOvo` | Castel dell’Ovo 01 | Bernard Gagnon | CC BY 4.0 |
 | `castelOvo2` | Castel dell’Ovo | Livioandronico2013 | CC BY-SA 4.0 |
 
+### Naples, story cards v2
+
+| File in app | Subject | Author | Licence |
+|---|---|---|---|
+| `santaChiara` | [Santa Chiara (Naples) – facade and bell tower from the entrance gate](https://commons.wikimedia.org/wiki/File:Santa_Chiara_(Naples)_%E2%80%93_facade_and_bell_tower_from_the_entrance_gate.jpg) | Punteador | CC BY-SA 4.0 |
+| `santaChiara2` | [Basilica di Santa Chiara, Belltower and façade, Naples (5287)](https://commons.wikimedia.org/wiki/File:Basilica_di_Santa_Chiara,_Belltower_and_fa%C3%A7ade,_Naples_(5287).jpg) | Marco Ober | CC BY-SA 4.0 |
+| `santaChiaraCloister` | [Santa chiara, chiostro maiolicato 01](https://commons.wikimedia.org/wiki/File:Santa_chiara,_chiostro_maiolicato_01.JPG) | Sailko | CC BY 3.0 |
+| `sanCarlo` | [Napoli - Teatro San CarloFacciata](https://commons.wikimedia.org/wiki/File:Napoli_-_Teatro_San_CarloFacciata.jpg) | Armando Mancini | CC BY-SA 2.0 |
+| `sanCarloEngraving` | [Napoli. Facciata del Teatro San Carlo (xilografia)](https://commons.wikimedia.org/wiki/File:Napoli._Facciata_del_Teatro_San_Carlo_(xilografia).jpg) | Matania | Public domain |
+| `castelNuovo` | [Castel Nuovo (Maschio Angioino), Entrance, Naples (5257)](https://commons.wikimedia.org/wiki/File:Castel_Nuovo_(Maschio_Angioino),_Entrance,_Naples_(5257).jpg) | Marco Ober | CC BY-SA 4.0 |
+| `castelNuovo2` | [Napoli Castel Nuovo Maschio Angioino, a seat of medieval kings of Naples and Aragon 2013-05-16 14-05-42](https://commons.wikimedia.org/wiki/File:Napoli_Castel_Nuovo_Maschio_Angioino,_a_seat_of_medieval_kings_of_Naples_and_Aragon_2013-05-16_14-05-42.jpg) | Berthold Werner | CC BY-SA 3.0 |
+| `castelNuovoArch` | [Napoli - Castel Nuovo Arco trionfale 1030697](https://commons.wikimedia.org/wiki/File:Napoli_-_Castel_Nuovo_Arco_trionfale_1030697.JPG) | Lalupa | CC BY-SA 3.0 |
+| `pioMonte` | [PioMonteMisericordiaNaples](https://commons.wikimedia.org/wiki/File:PioMonteMisericordiaNaples.jpg) | IlSistemone | CC BY-SA 3.0 |
+| `pioMonte2` | [PiomontedellaMisericordiaFacciataNaples](https://commons.wikimedia.org/wiki/File:PiomontedellaMisericordiaFacciataNaples.jpg) | IlSistemone | CC BY-SA 3.0 |
+| `sevenWorksOfMercy` | [Caravaggio - Sette opere di Misericordia](https://commons.wikimedia.org/wiki/File:Caravaggio_-_Sette_opere_di_Misericordia.jpg) | Caravaggio | Public domain |
+| `borbonica` | [Galleria borbonica - War refuge (Naples)](https://commons.wikimedia.org/wiki/File:Galleria_borbonica_-_War_refuge_(Naples).jpg) | Associazione Culturale Borbonica Sotterranea | CC BY-SA 4.0 |
+| `borbonica2` | [Galleria borbonica - Visitors and refuge (Naples)](https://commons.wikimedia.org/wiki/File:Galleria_borbonica_-_Visitors_and_refuge_(Naples).jpg) | Associazione Culturale Borbonica Sotterranea | CC BY-SA 4.0 |
+| `galleriaUmberto` | [Galleria Umberto I, Interior, Naples (5263)](https://commons.wikimedia.org/wiki/File:Galleria_Umberto_I,_Interior,_Naples_(5263).jpg) | Marco Ober | CC BY-SA 4.0 |
+| `galleriaUmberto2` | [Galleria Umberto I Napoli interno](https://commons.wikimedia.org/wiki/File:Galleria_Umberto_I_Napoli_interno.jpg) | Wolfgang Moroder | CC BY-SA 3.0 |
+| `galleriaUmbertoEngraving` | [Napoli interno della Galleria Umberto I](https://commons.wikimedia.org/wiki/File:Napoli_interno_della_Galleria_Umberto_I.jpg) | Carlo Cornaglia | Public domain |
+| `sanGennaroCatacombs` | [Catacombe di San Gennaro 023](https://commons.wikimedia.org/wiki/File:Catacombe_di_San_Gennaro_023.jpg) | Dominik Matus | CC BY-SA 4.0 |
+| `sanGennaroCatacombs2` | [Catacombe di San Gennaro 003](https://commons.wikimedia.org/wiki/File:Catacombe_di_San_Gennaro_003.jpg) | Dominik Matus | CC BY-SA 4.0 |
+| `quodvultdeus` | [Quodvultdeus mosaic portrait, 5th century (San Gennaro catacombs, Naples)](https://commons.wikimedia.org/wiki/File:Quodvultdeus_mosaic_portrait,_5th_century_(San_Gennaro_catacombs,_Naples).jpg) | Unknown author | Public domain |
+| `sanitaBasilica` | [Basilica Santa Maria alla Sanità-Napoli](https://commons.wikimedia.org/wiki/File:Basilica_Santa_Maria_alla_Sanit%C3%A0-Napoli.jpg) | Aisav72 | CC BY-SA 4.0 |
+| `sanGaudioso` | [Catacombe di San Gaudioso (Napoli) 03](https://commons.wikimedia.org/wiki/File:Catacombe_di_San_Gaudioso_(Napoli)_03.jpg) | Fabien Bièvre-Perrin | CC BY-SA 4.0 |
+| `sanGaudioso2` | [Catacombe di San Gaudioso (Napoli) 02](https://commons.wikimedia.org/wiki/File:Catacombe_di_San_Gaudioso_(Napoli)_02.jpg) | Fabien Bièvre-Perrin | CC BY-SA 4.0 |
+| `tesoroMuseum` | [Museo del Tesoro di San Gennaro](https://commons.wikimedia.org/wiki/File:Museo_del_Tesoro_di_San_Gennaro.jpg) | IlSistemone | CC BY-SA 3.0 |
+| `tesoroMuseum2` | [MuseoSanGennaro](https://commons.wikimedia.org/wiki/File:MuseoSanGennaro.JPG) | IlSistemone | CC BY-SA 3.0 |
+| `sanGennaroNecklace` | [Collana San Gennaro](https://commons.wikimedia.org/wiki/File:Collana_San_Gennaro.jpg) | Photo2023 | CC BY 4.0 |
+
+Entrance points for the catacombs, the Bourbon Tunnel and two corrected museum points: © OpenStreetMap contributors, ODbL. Place coordinates otherwise from Wikidata (CC0). Story texts are original summaries from the team's research dataset (`tools/story_cards/`), checked against the sources listed in each story.
+
 All from Wikimedia Commons. CC BY-SA images are resized and cropped here and shared under the same licence, with attribution.
 
 Test fixtures in `CheStoriaTests/Fixtures` (used only to test recognition): Pompeii Forum (Gary Todd, CC0), Cave canem mosaic (Yair Haklai, CC BY-SA 4.0), Stepping stones at Via del Tempio d’Iside (Gary Todd, public domain).

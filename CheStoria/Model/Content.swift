@@ -136,11 +136,20 @@ nonisolated struct Place: Codable, Identifiable, Hashable, Sendable {
     let aiDescriptions: [String]?
     /// Photos used to recognise this place from the camera.
     let referenceImages: [ImageRef]?
+    /// false for places the camera shouldn't be used for (indoor art, ticketed or no-photo rooms).
+    /// They open from the map, or from Snap when you are standing there.
+    let cameraRecognition: Bool?
+    /// Where visitors actually go in, when it differs from the site's point (catacombs, tunnels).
+    let entrance: Entrance?
+    nonisolated struct Entrance: Codable, Hashable, Sendable { let latitude: Double; let longitude: Double; let note: String? }
     let story: Story?
 
     var recognitionImages: [ImageRef] { referenceImages ?? [cameraImage] }
 
     var coordinate: CLLocationCoordinate2D { .init(latitude: latitude, longitude: longitude) }
+    var usesCamera: Bool { cameraRecognition ?? true }
+    /// Where walking directions should lead.
+    var directionsTarget: CLLocation { entrance.map { CLLocation(latitude: $0.latitude, longitude: $0.longitude) } ?? CLLocation(latitude: latitude, longitude: longitude) }
 }
 
 // MARK: - Site
@@ -234,6 +243,8 @@ nonisolated struct SiteContent: Codable, Identifiable, Hashable, Sendable {
 
     func place(id: String) -> Place? { places.first { $0.id == id } }
     var storyPlaces: [Place] { places.filter { $0.story != nil } }
+    /// Story places the camera can recognise.
+    var cameraPlaces: [Place] { storyPlaces.filter(\.usesCamera) }
     var stickers: [Sticker] { places.compactMap { $0.story?.sticker } }
     func sticker(id: String) -> Sticker? { stickers.first { $0.id == id } }
     func placeOwning(stickerID: String) -> Place? { places.first { $0.story?.sticker.id == stickerID } }

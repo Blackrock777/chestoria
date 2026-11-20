@@ -112,7 +112,7 @@ struct PlaceSheet: View {
 
     /// Opens Apple Maps with walking directions to the place.
     private func directions(to p: Place) {
-        let item = MKMapItem(location: CLLocation(latitude: p.latitude, longitude: p.longitude), address: nil)
+        let item = MKMapItem(location: p.directionsTarget, address: nil)
         item.name = p.name
         item.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking])
     }
