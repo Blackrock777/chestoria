@@ -27,7 +27,7 @@ enum ContentValidator {
         if Set(stickerIDs).count != stickerIDs.count { out.append("duplicate sticker ids") }
         if site.storyPlaces.isEmpty { out.append("no place has a story") }
         if site.place(id: site.featuredPlace)?.story == nil { out.append("featuredPlace '\(site.featuredPlace)' missing or has no story") }
-        if site.map.outline.count < 3 { out.append("map outline needs at least 3 points") }
+        if let map = site.map, map.outline.count < 3 { out.append("map outline needs at least 3 points") }
 
         if site.tickets.tiles.isEmpty { out.append("tickets.tiles is empty") }
         image(site.welcome.image, "welcome.image")
@@ -36,7 +36,7 @@ enum ContentValidator {
         for p in site.places {
             image(p.cameraImage, "\(p.id).cameraImage")
             if let tn = p.thenNow { image(tn.then, "\(p.id).thenNow.then"); image(tn.now, "\(p.id).thenNow.now") }
-            if !(0...site.map.width).contains(p.mapPoint.x) || !(0...site.map.height).contains(p.mapPoint.y) {
+            if let map = site.map, let mp = p.mapPoint, !(0...map.width).contains(mp.x) || !(0...map.height).contains(mp.y) {
                 out.append("\(p.id): mapPoint is outside the map")
             }
             if !(-90...90).contains(p.latitude) || !(-180...180).contains(p.longitude) { out.append("\(p.id): bad coordinates") }

@@ -1,17 +1,17 @@
+import MapKit
 import SwiftUI
 
-/// Today's walk on a hand-drawn site map. Only places you found are shown, never what you missed.
+/// Today's walk on Apple Maps: places you found are gold pins joined by your route;
+/// stories you haven't found yet are quiet "?" pins, so the map invites you without spoiling anything.
 struct TripView: View {
     @Environment(AppModel.self) private var model
-    @Environment(PlaceRecognizer.self) private var location
     @State private var showSite = false
-    @State private var drawn = false
     @State private var openPlace: Place?
+    @State private var appeared = false
 
     var body: some View {
         let t = model.strings
         let visited = model.visitedPlaces
-        let map = model.site.map
         ScrollView {
             VStack(alignment: .leading, spacing: 14) {
                 HStack(alignment: .center) {
@@ -28,12 +28,14 @@ struct TripView: View {
                 }
                 .padding(.horizontal, 4)
 
-                SiteMapView(map: map, places: visited, drawn: drawn, here: hereOnMap, onTap: { openPlace = $0 })
-                    .aspectRatio(map.width / map.height, contentMode: .fit)
+                TripMapView(site: model.site, visited: visited) { openPlace = $0 }
+                    .frame(height: 460)
                     .overlay(alignment: .bottom) {
                         if visited.isEmpty {
                             Text(t("trip.empty")).font(.system(size: 14, weight: .semibold)).foregroundStyle(Palette.stone)
-                                .padding(.horizontal, 14).padding(.vertical, 10).background(.white.opacity(0.85), in: .capsule).padding(16)
+                                .multilineTextAlignment(.center)
+                                .padding(.horizontal, 14).padding(.vertical, 10).background(.regularMaterial, in: .capsule).padding(16)
+                                .allowsHitTesting(false)
                         }
                     }
                     .clipShape(.rect(cornerRadius: 30))
@@ -49,138 +51,112 @@ struct TripView: View {
                         .padding(.horizontal, 10).frame(height: 64)
                         .background(Palette.card, in: .rect(cornerRadius: 18))
                         .overlay(RoundedRectangle(cornerRadius: 18).stroke(Palette.hair, lineWidth: 1.5))
-                        .rise(drawn, delay: 1.6 + Double(i) * 0.12)
+                        .rise(appeared, delay: 0.4 + Double(i) * 0.12)
                     }
                 }
             }
             .padding(.horizontal, 16).padding(.bottom, 24)
         }
         .background(Palette.calce)
-        .onAppear { drawn = false; DispatchQueue.main.async { drawn = true } }
+        .onAppear { appeared = false; DispatchQueue.main.async { appeared = true } }
         .sheet(isPresented: $showSite) { SiteSheet().presentationDetents([.large]).presentationCornerRadius(38) }
         .sheet(item: $openPlace) { PlaceSheet(place: $0) }
     }
+}
 
-    /// Your real position on the hand-drawn map, if you are inside it.
-    private var hereOnMap: MapPoint? {
-        guard let loc = location.lastLocation, let b = model.site.geoBounds else { return nil }
-        let lat = loc.coordinate.latitude, lon = loc.coordinate.longitude
-        guard (b.south...b.north).contains(lat), (b.west...b.east).contains(lon) else { return nil }
-        let m = model.site.map
-        return MapPoint((lon - b.west) / (b.east - b.west) * m.width, (b.north - lat) / (b.north - b.south) * m.height)
+/// Apple Maps view of a site, built only from each place's latitude/longitude in the content.
+struct TripMapView: View {
+    let site: SiteContent
+    let visited: [Place]
+    var onTap: (Place) -> Void
+    @Environment(AppModel.self) private var model
+    @State private var position: MapCameraPosition = .automatic
+
+    var body: some View {
+        let t = model.strings
+        let visitedIDs = Set(visited.map(\.id))
+        // Found places, plus stories still to find. Places without a story stay off the map until they have one.
+        let pins = site.places.filter { visitedIDs.contains($0.id) || $0.story != nil }
+        Map(position: $position) {
+            UserAnnotation()
+            if visited.count > 1 {
+                MapPolyline(coordinates: visited.map(\.coordinate))
+                    .stroke(Palette.piperno, style: StrokeStyle(lineWidth: 3, lineCap: .round, lineJoin: .round, dash: [1, 8]))
+            }
+            ForEach(Array(pins.enumerated()), id: \.element.id) { i, place in
+                let found = visitedIDs.contains(place.id)
+                Annotation("", coordinate: place.coordinate, anchor: .top) {
+                    TripPin(found: found, latest: place.id == visited.last?.id, delay: Double(i) * 0.12,
+                            label: found && (place.showsMapLabel ?? true) ? place.name : nil)
+                        .onTapGesture { Haptics.tap(); onTap(place) }
+                        .accessibilityLabel(found ? place.name : t("trip.toFind"))
+                        .accessibilityAddTraits(.isButton)
+                }
+            }
+        }
+        .mapStyle(.standard(elevation: .realistic, pointsOfInterest: .excludingAll))
+        .mapControls {
+            MapUserLocationButton()
+            MapCompass()
+            MapScaleView()
+        }
+        .onAppear { position = .region(Self.region(for: site)) }
+        .onChange(of: site.id) { position = .region(Self.region(for: site)) }
+    }
+
+    /// Frames every place of the site with a little margin.
+    static func region(for site: SiteContent) -> MKCoordinateRegion {
+        let pts = site.places
+        guard let minLat = pts.map(\.latitude).min(), let maxLat = pts.map(\.latitude).max(),
+              let minLon = pts.map(\.longitude).min(), let maxLon = pts.map(\.longitude).max() else {
+            return MKCoordinateRegion(center: site.centre.coordinate, latitudinalMeters: 1500, longitudinalMeters: 1500)
+        }
+        return MKCoordinateRegion(
+            center: .init(latitude: (minLat + maxLat) / 2, longitude: (minLon + maxLon) / 2),
+            span: .init(latitudeDelta: max((maxLat - minLat) * 1.9, 0.004), longitudeDelta: max((maxLon - minLon) * 1.9, 0.004)))
     }
 }
 
-/// A hand-drawn map rendered from the site's `map` description (walls, streets, water, labels).
-struct SiteMapView: View {
-    let map: SiteMap
-    let places: [Place]
-    let drawn: Bool
-    var here: MapPoint? = nil
-    var onTap: ((Place) -> Void)? = nil
+/// Gold pin for a place you found, a small "?" for a story still to find.
+private struct TripPin: View {
+    let found: Bool
+    let latest: Bool
+    let delay: Double
+    var label: String? = nil
+    @State private var shown = false
     @Environment(\.accessibilityReduceMotion) private var reduce
-
     private let ink = Color(red: 0.17, green: 0.19, blue: 0.18)
 
     var body: some View {
-        GeometryReader { geo in
-            let k = geo.size.width / map.width
-            let pts = places.map { CGPoint(x: $0.mapPoint.x * k, y: $0.mapPoint.y * k) }
-            ZStack(alignment: .topLeading) {
-                Canvas { ctx, _ in drawBase(ctx, k: k) }
-                SmoothPath(points: pts)
-                    .trim(from: 0, to: drawn ? 1 : 0)
-                    .stroke(ink, style: StrokeStyle(lineWidth: 3, lineCap: .round, dash: [0.1, 9]))
-                    .animation(reduce ? nil : .easeInOut(duration: 1.6).delay(0.4), value: drawn)
-                ForEach(Array(places.enumerated()), id: \.element.id) { i, place in
-                    let last = i == places.count - 1
-                    ZStack {
-                        Circle().fill(Palette.tufo).overlay(Circle().stroke(.white, lineWidth: 4)).shadow(color: .black.opacity(0.2), radius: 3, y: 3)
-                        Circle().fill(ink).padding(last ? 12 : 11)
-                    }
-                    .frame(width: last ? 36 : 32, height: last ? 36 : 32)
-                    .scaleEffect(drawn ? 1 : 0.4).opacity(drawn ? 1 : 0).offset(y: drawn ? 0 : -40)
-                    .animation(reduce ? nil : Motion.pop.delay(0.35 + Double(i) * 0.6), value: drawn)
-                    .position(pts[i])
-                    .onTapGesture { Haptics.tap(); onTap?(place) }
-                    .accessibilityLabel(place.name)
-                    .accessibilityAddTraits(.isButton)
-                    if place.showsMapLabel ?? true {
-                        Text(place.name).font(.system(size: 11.5, weight: .bold)).foregroundStyle(ink)
-                            .fixedSize()
-                            .position(x: pts[i].x, y: pts[i].y + 28 * max(k, 0.8))
-                            .opacity(drawn ? 1 : 0).animation(.easeOut.delay(0.6 + Double(i) * 0.6), value: drawn)
-                    }
+        Group {
+            if found {
+                ZStack {
+                    Circle().fill(Palette.tufo).overlay(Circle().stroke(.white, lineWidth: 4))
+                    Circle().fill(ink).padding(latest ? 12 : 11)
                 }
-                if let here { YouAreHere().position(x: here.x * k, y: here.y * k) }
+                .frame(width: latest ? 36 : 32, height: latest ? 36 : 32)
+            } else {
+                Image(systemName: "questionmark")
+                    .font(.system(size: 13, weight: .heavy)).foregroundStyle(Palette.stone)
+                    .frame(width: 28, height: 28)
+                    .background(Circle().fill(Color.white))
+                    .overlay(Circle().stroke(Palette.hair, lineWidth: 1.5))
             }
         }
-        .background(Color(red: 0.98, green: 0.98, blue: 0.96))
-        .environment(\.colorScheme, .light)
-    }
-
-    private func drawBase(_ ctx: GraphicsContext, k: CGFloat) {
-        func p(_ m: MapPoint) -> CGPoint { CGPoint(x: m.x * k, y: m.y * k) }
-        func poly(_ ps: [MapPoint]) -> Path { var path = Path(); path.addLines(ps.map(p)); path.closeSubpath(); return path }
-
-        let wall = poly(map.outline)
-        ctx.fill(wall, with: .color(Color(red: 0.957, green: 0.945, blue: 0.91)))
-        ctx.stroke(wall, with: .color(Color(red: 0.81, green: 0.79, blue: 0.73)), style: StrokeStyle(lineWidth: 2.5, lineCap: .round, dash: [2, 5]))
-        for s in map.streets {
-            var path = Path(); path.move(to: p(s.from)); path.addLine(to: p(s.to))
-            ctx.stroke(path, with: .color(Color(red: 0.89, green: 0.875, blue: 0.83)), style: StrokeStyle(lineWidth: 10 * k, lineCap: .round))
-        }
-        if let water = map.water { ctx.fill(poly(water), with: .color(Color(red: 0.86, green: 0.92, blue: 0.96))) }
-        for b in map.blocks ?? [] {
-            ctx.fill(Path(roundedRect: CGRect(x: b.x * k, y: b.y * k, width: b.w * k, height: b.h * k), cornerRadius: 4),
-                     with: .color(Color(red: 0.94, green: 0.91, blue: 0.85)))
-        }
-        for m in map.mountains ?? [] {
-            let path = poly(m)
-            ctx.fill(path, with: .color(Color(red: 0.91, green: 0.9, blue: 0.85)))
-            ctx.stroke(path, with: .color(Color(red: 0.72, green: 0.69, blue: 0.64)), lineWidth: 1.5)
-        }
-        for l in map.labels {
-            var c = ctx
-            c.translateBy(x: l.x * k, y: l.y * k)
-            if let r = l.rotation { c.rotate(by: .degrees(r)) }
-            let text: Text = switch l.style {
-            case .street: Text(l.text).font(.system(size: 9 * k, weight: .bold)).kerning(1.2).foregroundStyle(Color(red: 0.6, green: 0.62, blue: 0.61))
-            case .water: Text(l.text).font(.system(size: 9 * k).italic()).foregroundStyle(Palette.azzurro)
-            case .place: Text(l.text).font(.system(size: 10 * k, weight: .semibold)).foregroundStyle(Color(red: 0.42, green: 0.44, blue: 0.43))
+        .shadow(color: .black.opacity(0.2), radius: 3, y: 3)
+        .frame(width: 44, height: 44)
+        .contentShape(Circle())
+        .overlay(alignment: .top) {
+            if let label {
+                Text(label).font(.system(size: 12, weight: .bold)).foregroundStyle(ink)
+                    .padding(.horizontal, 7).padding(.vertical, 3)
+                    .background(.white.opacity(0.9), in: .capsule)
+                    .fixedSize().offset(y: 44)
             }
-            c.draw(text, at: .zero)
         }
-    }
-}
-
-/// Catmull-Rom curve through the visited pins.
-nonisolated struct SmoothPath: Shape {
-    let points: [CGPoint]
-    func path(in rect: CGRect) -> Path {
-        var p = Path()
-        guard points.count > 1 else { return p }
-        p.move(to: points[0])
-        for i in 0..<points.count - 1 {
-            let p0 = points[max(i - 1, 0)], p1 = points[i], p2 = points[i + 1], p3 = points[min(i + 2, points.count - 1)]
-            let c1 = CGPoint(x: p1.x + (p2.x - p0.x) / 6, y: p1.y + (p2.y - p0.y) / 6)
-            let c2 = CGPoint(x: p2.x - (p3.x - p1.x) / 6, y: p2.y - (p3.y - p1.y) / 6)
-            p.addCurve(to: p2, control1: c1, control2: c2)
-        }
-        return p
-    }
-}
-
-private struct YouAreHere: View {
-    @Environment(AppModel.self) private var model
-    @State private var pulse = false
-    var body: some View {
-        ZStack {
-            Circle().fill(Palette.azzurro.opacity(0.18)).frame(width: pulse ? 48 : 24, height: pulse ? 48 : 24)
-            Circle().fill(Palette.azzurro).frame(width: 16, height: 16).overlay(Circle().stroke(.white, lineWidth: 3))
-        }
-        .onAppear { withAnimation(.easeInOut(duration: 1.2).repeatForever()) { pulse = true } }
-        .accessibilityLabel(model.strings("a11y.here"))
+        .padding(.top, -22) // keeps the circle's centre on the coordinate
+        .scaleEffect(shown ? 1 : 0.4).opacity(shown ? 1 : 0)
+        .onAppear { withAnimation(reduce ? nil : Motion.pop.delay(0.2 + delay)) { shown = true } }
     }
 }
 

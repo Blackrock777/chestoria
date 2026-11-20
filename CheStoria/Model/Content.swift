@@ -127,8 +127,8 @@ nonisolated struct Place: Codable, Identifiable, Hashable, Sendable {
     /// The area the recogniser "locks onto", in camera-image coordinates.
     let focus: NormalizedRect
     let clues: [String]
-    /// Position on the site map, in map units.
-    let mapPoint: MapPoint
+    /// Legacy position on a hand-drawn site map, in map units. The Trip map uses Apple Maps and only needs latitude/longitude.
+    let mapPoint: MapPoint?
     let showsMapLabel: Bool?
     /// Optional old-vs-today comparison for this place (shown after the story and on the map).
     let thenNow: ThenNow?
@@ -216,10 +216,10 @@ nonisolated struct SiteContent: Codable, Identifiable, Hashable, Sendable {
     let welcome: Welcome
     let tickets: Tickets
     let postcardImage: ImageRef
-    /// Real-world corners of the hand-drawn map, used to place "you are here" and imported pins.
+    /// Real-world corners of the optional hand-drawn map (legacy; the Trip map uses Apple Maps).
     let geoBounds: GeoBounds?
     nonisolated struct GeoBounds: Codable, Hashable, Sendable { let north: Double; let south: Double; let west: Double; let east: Double }
-    let map: SiteMap
+    let map: SiteMap?
     let places: [Place]
     let demoTrip: DemoTrip?
     let recognition: Recognition?

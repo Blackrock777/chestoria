@@ -1,3 +1,4 @@
+import MapKit
 import SwiftUI
 
 /// Old vs today for one place: drag the handle to compare.
@@ -39,6 +40,7 @@ struct ThenNowSheet: View {
 struct PlaceSheet: View {
     let place: Place
     @Environment(AppModel.self) private var model
+    @Environment(PlaceRecognizer.self) private var location
     @Environment(\.dismiss) private var dismiss
     @State private var showSources = false
     @State private var showThenNow = false
@@ -81,8 +83,18 @@ struct PlaceSheet: View {
                     .sheet(isPresented: $showThenNow) { ThenNowSheet(thenNow: tn, title: p.name) }
                 }
                 if story != nil {
-                    Button(t("place.playAgain")) { dismiss(); model.startStory(at: p) }.buttonStyle(CTAButtonStyle(kind: .dark))
+                    if found {
+                        Button(t("place.playAgain")) { dismiss(); model.startStory(at: p) }.buttonStyle(CTAButtonStyle(kind: .dark))
+                    } else if isNear(p) {
+                        // Indoors or where photos aren't allowed, being there is enough to start.
+                        Button(t("place.startHere")) { dismiss(); model.startStory(at: p) }.buttonStyle(CTAButtonStyle(kind: .dark))
+                    }
                 }
+                Button { directions(to: p) } label: {
+                    Label(t("place.directions"), systemImage: "figure.walk").frame(maxWidth: .infinity)
+                }
+                .buttonStyle(CTAButtonStyle(kind: .light))
+                .overlay(Capsule().stroke(Palette.hair, lineWidth: 1.5))
             }
             .padding(20)
         }
@@ -90,5 +102,18 @@ struct PlaceSheet: View {
         .presentationDetents([.medium, .large])
         .presentationCornerRadius(32)
         .sheet(isPresented: $showSources) { if let fc = story?.factCheck { SourcesSheet(factCheck: fc) } }
+    }
+
+    /// Within 150 m by real GPS, never guessed.
+    private func isNear(_ p: Place) -> Bool {
+        guard let here = location.lastLocation else { return false }
+        return here.distance(from: CLLocation(latitude: p.latitude, longitude: p.longitude)) <= 150
+    }
+
+    /// Opens Apple Maps with walking directions to the place.
+    private func directions(to p: Place) {
+        let item = MKMapItem(location: CLLocation(latitude: p.latitude, longitude: p.longitude), address: nil)
+        item.name = p.name
+        item.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking])
     }
 }

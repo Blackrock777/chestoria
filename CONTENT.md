@@ -30,7 +30,6 @@ The tests (`⌘U`) validate every file in every language: ids, answers, image na
   "cameraAnchor": { "x": 0.5, "y": 0.5 },
   "focus": { "x": 0.2, "y": 0.3, "w": 0.6, "h": 0.4 },
   "clues": ["Oval arena", "Stone seats", "Big crowds"],
-  "mapPoint": [340, 120],
   "showsMapLabel": true,
   "referenceImages": ["amphitheatre", "amphitheatre-2"],
   "story": {
@@ -58,7 +57,7 @@ The tests (`⌘U`) validate every file in every language: ids, answers, image na
 - `aiDescriptions`: two or three plain-English sentences describing what the camera will see. After editing them run `python3 tools/embed_content.py` (needs `pip install torch transformers sentencepiece`).
 - `thenNow` (optional): `{ "then": "oldPhoto", "thenCaption": "…", "now": "todayPhoto", "nowCaption": "Today" }`. It appears as a card after the story, in the place card (tap the pin on My trip) and in the site sheet. Translate the captions in the overlays.
 - `theory` and `lookCloser` are optional. Use `"label": "LEGEND"` or `"THEORY"`: it appears on the red seal.
-- `mapPoint` is in the units of the site's `map` (Pompeii is drawn 361 × 520).
+- The **My trip** map is Apple Maps: a pin needs only `latitude` and `longitude`. Found places show as gold pins joined by your route, stories not found yet as "?" pins, and the place card offers walking directions in Apple Maps. Where photos aren't allowed (indoors, ticketed rooms), visitors within 150 m can start the story from the card. The old hand-drawn `map` and `mapPoint` fields are optional and no longer needed.
 - `target` and `crop` are fractions of the photo (0 to 1), measured from the top-left corner.
 - Every story needs a `factCheck` block (the validator rejects stories without one):
 
@@ -109,7 +108,7 @@ The language then appears in the picker on the welcome screen and in Profile. Re
 
 ## Add a site
 
-Create `naples.json` with the same shape as `pompeii.json`, including its own `map`, `welcome`, `tickets` and optional `demoTrip`. Then list it in `catalog.json`. `defaultSite` picks the one the app opens with.
+Create `naples.json` with the same shape as `pompeii.json`, including its own `welcome`, `tickets` and optional `demoTrip`. Then list it in `catalog.json`. `defaultSite` picks the one the app opens with.
 
 ## Update content without an App Store release
 
@@ -124,4 +123,4 @@ python3 tools/import_places.py export.csv            # add or update places, pin
 python3 tools/import_places.py export.csv --dry-run  # preview first
 ```
 
-Columns: `id, name, latitude, longitude` (required), and optionally `street, description, image, image_credit, name_it, name_fr, name_de, name_es`. Imported places arrive without a story. The tool writes `stories_todo.csv` so writers can turn each description into a question, two facts and a detail to find. Pins are placed using the site's `geoBounds`; check them on the map.
+Columns: `id, name, latitude, longitude` (required), and optionally `street, description, image, image_credit, name_it, name_fr, name_de, name_es`. Imported places arrive without a story. The tool writes `stories_todo.csv` so writers can turn each description into a question, two facts and a detail to find. Pins appear on the Apple Maps trip map from their coordinates; check them on the map.

@@ -12,7 +12,7 @@
 <img src="docs/screenshots/15-far-away.jpg" width="160"> <img src="docs/screenshots/16-switch-to-naples.jpg" width="160"> <img src="docs/screenshots/17-naples-snap-it.jpg" width="160"> <img src="docs/screenshots/19-naples-castel-ovo.jpg" width="160"> <img src="docs/screenshots/18-naples-reveal.jpg" width="160">
 </p>
 <p>
-<img src="docs/screenshots/21-live-ai.jpg" width="160"> <img src="docs/screenshots/23-not-a-place-coffee.jpg" width="160"> <img src="docs/screenshots/24-which-one-street.jpg" width="160"> <img src="docs/screenshots/22-then-now-card.jpg" width="160"> <img src="docs/screenshots/20-welcome-real.jpg" width="160">
+<img src="docs/screenshots/21-live-ai.jpg" width="160"> <img src="docs/screenshots/23-not-a-place-coffee.jpg" width="160"> <img src="docs/screenshots/24-which-one-street.jpg" width="160"> <img src="docs/screenshots/22-then-now-card.jpg" width="160"> <img src="docs/screenshots/20-welcome-real.jpg" width="160"> <img src="docs/screenshots/25-apple-maps-trip.jpg" width="160">
 </p>
 
 ## The loop
@@ -34,6 +34,7 @@ Every design decision maps to the team's research: the language gap, little time
 - **Everything is content**: places, stories, maps, welcome text, tickets, translations and interface text are JSON. See [CONTENT.md](CONTENT.md).
 - **Two sites**: Pompeii (Forum, Thermopolium, House of the Tragic Poet) and Naples (Gesù Nuovo, Piazza del Plebiscito with a real car-park Then & Now, Cappella Sansevero, Castel dell’Ovo). Switch in Profile; the app offers to switch when you are standing in the other site. Each site keeps its own trip.
 - **Fact-checked**: every story lists its sources (tap the green pill). The validator refuses a story without sources. "Verified" is reserved for facts confirmed by the site itself; everything else says "Checked against N sources".
+- **Apple Maps trip map**: your route between the places you found, "?" pins for stories still to find, your live position, and walking directions from any place card. Pins come from each place's coordinates in the content.
 - **Honest location**: the Snap chip shows the real nearest place and distance, "Finding where you are…", "Location is off", or "Pompeii is 1,639 km away". It never invents a distance.
 - **Live Activity and widget**: "Secret 30 m ahead" appears on the Lock Screen and in the Dynamic Island when an unseen story is within 150 m. A "Yesterday’s question" widget shows the recall question and its result.
 - **Next-morning question**: answer it straight from the notification. You get "✓ Bar! You remembered." (or the right answer) at once, and it counts towards "Remembered" in Profile.

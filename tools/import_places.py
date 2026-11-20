@@ -11,7 +11,8 @@ Input columns (CSV header or JSON keys), only the first four are required:
 What it does:
   * adds new places (or updates name/coordinates/street of existing ones, matched by id),
   * sets cameraImage + referenceImages from `image` (an asset name or an https URL),
-  * places each pin on the hand-drawn map using the site's "geoBounds",
+  * pins appear on the Apple Maps trip map from latitude/longitude (a legacy hand-drawn
+    "map" position is also written if the site still has one),
   * writes translated names into the language overlays when name_xx columns exist,
   * writes stories_todo.csv: imported places still need a question, answer and sticker,
     written and fact-checked by a person. Places without a story are shown on the map only.
@@ -82,12 +83,14 @@ def main():
                 ("latitude", lat), ("longitude", lon),
                 ("cameraImage", image or site["welcome"]["image"]), ("cameraAnchor", {"x": 0.5, "y": 0.5}),
                 ("focus", {"x": 0.2, "y": 0.2, "w": 0.6, "h": 0.6}), ("clues", []),
-                ("mapPoint", project(lat, lon, site)), ("showsMapLabel", True),
+                ("showsMapLabel", True),
                 ("referenceImages", [image] if image else []), ("story", None),
             ])
+            if site.get("map"): place["mapPoint"] = project(lat, lon, site)
             site["places"].append(place); by_id[pid] = place; added.append(pid)
         else:
-            place.update(name=name, latitude=lat, longitude=lon, mapPoint=project(lat, lon, site))
+            place.update(name=name, latitude=lat, longitude=lon)
+            if site.get("map"): place["mapPoint"] = project(lat, lon, site)
             if row.get("street"): place["street"] = row["street"].strip()
             if image and image not in place.get("referenceImages", []):
                 place.setdefault("referenceImages", []).append(image)
