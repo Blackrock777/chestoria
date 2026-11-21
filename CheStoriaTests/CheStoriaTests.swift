@@ -2,6 +2,7 @@ import Testing
 import Foundation
 import UIKit
 import CoreLocation
+import MapKit
 @testable import CheStoria
 
 @MainActor
@@ -387,6 +388,18 @@ struct SiteTests {
         #expect(Set(ids).count == ids.count)
         // The existing Thermopolium story kept its own place and photos.
         #expect(pompeii.place(id: "thermopolium")?.referenceImages?.first == .asset("thermo"))
+    }
+
+    @Test func mapPinsClusterWhenZoomedOutAndSplitWhenZoomedIn() throws {
+        let pompeii = try ContentStore.loadBundled().site(id: "pompeii")!
+        let size = CGSize(width: 360, height: 460)
+        let wide = MapClusterer.clusters(pompeii.places, visited: [], span: TripMapView.region(for: pompeii).span, size: size)
+        #expect(wide.count < pompeii.places.count / 2, "zoomed out, overlapping pins are grouped")
+        #expect(wide.flatMap(\.members).count == pompeii.places.count, "no place is lost")
+        // A story always leads its cluster, so it isn't hidden behind "coming soon" dots.
+        for c in wide where c.storyCount > 0 { #expect(c.members.first?.story != nil) }
+        let close = MapClusterer.clusters(pompeii.places, visited: [], span: .init(latitudeDelta: 0.0005, longitudeDelta: 0.0005), size: size)
+        #expect(close.count == pompeii.places.count, "zoomed in, every place has its own pin again")
     }
 
     @Test func everyPhotoIsCreditedInTheApp() throws {

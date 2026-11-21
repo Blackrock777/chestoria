@@ -63,43 +63,73 @@ struct TripView: View {
 }
 
 /// Apple Maps view of a site, built only from each place's latitude/longitude in the content.
+/// Pins that would overlap at the current zoom are grouped into a numbered cluster; tap it to zoom in.
 struct TripMapView: View {
     let site: SiteContent
     let visited: [Place]
     var onTap: (Place) -> Void
     @Environment(AppModel.self) private var model
-    @State private var position: MapCameraPosition = .automatic
+    @State private var position: MapCameraPosition
+    @State private var region: MKCoordinateRegion?
+    @State private var size: CGSize = .zero
+
+    init(site: SiteContent, visited: [Place], onTap: @escaping (Place) -> Void) {
+        self.site = site; self.visited = visited; self.onTap = onTap
+        // Start framed on the site; setting it later in onAppear can be lost inside a GeometryReader.
+        _position = State(initialValue: .region(Self.region(for: site)))
+    }
 
     var body: some View {
         let t = model.strings
         let visitedIDs = Set(visited.map(\.id))
-        // Found places, stories still to find, and small dots for places whose story is coming.
-        let pins = site.places.sorted { ($0.story == nil ? 0 : 1) < ($1.story == nil ? 0 : 1) }
+        let shown = region ?? Self.region(for: site)
+        let clusters = MapClusterer.clusters(site.places, visited: visitedIDs, span: shown.span, size: size)
         Map(position: $position) {
-            UserAnnotation()
-            if visited.count > 1 {
-                MapPolyline(coordinates: visited.map(\.coordinate))
-                    .stroke(Palette.piperno, style: StrokeStyle(lineWidth: 3, lineCap: .round, lineJoin: .round, dash: [1, 8]))
-            }
-            ForEach(Array(pins.enumerated()), id: \.element.id) { i, place in
-                let found = visitedIDs.contains(place.id)
-                Annotation("", coordinate: place.coordinate, anchor: .top) {
-                    TripPin(found: found, latest: place.id == visited.last?.id, delay: min(Double(i) * 0.12, 1.5),
-                            label: found && (place.showsMapLabel ?? true) ? place.name : nil, hasStory: place.story != nil)
-                        .onTapGesture { Haptics.tap(); onTap(place) }
-                        .accessibilityLabel(found || place.story == nil ? place.name : t("trip.toFind"))
-                        .accessibilityAddTraits(.isButton)
+                UserAnnotation()
+                if visited.count > 1 {
+                    MapPolyline(coordinates: visited.map(\.coordinate))
+                        .stroke(Palette.piperno, style: StrokeStyle(lineWidth: 3, lineCap: .round, lineJoin: .round, dash: [1, 8]))
+                }
+                ForEach(Array(clusters.enumerated()), id: \.element.id) { i, cluster in
+                    Annotation("", coordinate: cluster.coordinate, anchor: .top) {
+                        if cluster.members.count == 1, let place = cluster.members.first {
+                            let found = visitedIDs.contains(place.id)
+                            TripPin(found: found, latest: place.id == visited.last?.id, delay: min(Double(i) * 0.06, 0.8),
+                                    label: found && (place.showsMapLabel ?? true) ? place.name : nil, hasStory: place.story != nil)
+                                .onTapGesture { Haptics.tap(); onTap(place) }
+                                .accessibilityLabel(found || place.story == nil ? place.name : t("trip.toFind"))
+                                .accessibilityAddTraits(.isButton)
+                        } else {
+                            ClusterPin(count: cluster.members.count, found: cluster.foundCount, stories: cluster.storyCount)
+                                .onTapGesture { Haptics.tap(); open(cluster) }
+                                .accessibilityLabel(t("trip.cluster", "\(cluster.members.count)"))
+                                .accessibilityAddTraits(.isButton)
+                        }
+                    }
                 }
             }
-        }
-        .mapStyle(.standard(elevation: .realistic, pointsOfInterest: .excludingAll))
-        .mapControls {
-            MapUserLocationButton()
-            MapCompass()
-            MapScaleView()
-        }
-        .onAppear { position = .region(Self.region(for: site)) }
-        .onChange(of: site.id) { position = .region(Self.region(for: site)) }
+            .mapStyle(.standard(elevation: .realistic, pointsOfInterest: .excludingAll))
+            .mapControls {
+                MapUserLocationButton()
+                MapCompass()
+                MapScaleView()
+            }
+            .onMapCameraChange(frequency: .onEnd) { region = $0.region }
+            .animation(.snappy, value: clusters.map(\.id))
+            // Measured beside the map, not around it: a GeometryReader parent made the map start at zero size and zoom far out.
+            .onGeometryChange(for: CGSize.self) { $0.size } action: { size = $0 }
+        .onChange(of: site.id) { region = nil; position = .region(Self.region(for: site)) }
+    }
+
+    /// Zooms to the places in a cluster; if they sit on the same spot, opens the most interesting one.
+    private func open(_ cluster: MapClusterer.Cluster) {
+        let lats = cluster.members.map(\.latitude), lons = cluster.members.map(\.longitude)
+        let spanLat = (lats.max()! - lats.min()!), spanLon = (lons.max()! - lons.min()!)
+        if max(spanLat, spanLon) < 0.00015, let first = cluster.members.first { onTap(first); return }
+        let target = MKCoordinateRegion(
+            center: .init(latitude: (lats.max()! + lats.min()!) / 2, longitude: (lons.max()! + lons.min()!) / 2),
+            span: .init(latitudeDelta: max(spanLat * 2.2, 0.0012), longitudeDelta: max(spanLon * 2.2, 0.0012)))
+        withAnimation(.smooth(duration: 0.6)) { position = .region(target) }
     }
 
     /// Frames every place of the site with a little margin.
@@ -112,6 +142,71 @@ struct TripMapView: View {
         return MKCoordinateRegion(
             center: .init(latitude: (minLat + maxLat) / 2, longitude: (minLon + maxLon) / 2),
             span: .init(latitudeDelta: max((maxLat - minLat) * 1.25, 0.004), longitudeDelta: max((maxLon - minLon) * 1.25, 0.004)))
+    }
+}
+
+/// Groups pins that would overlap on screen. Pure, so it can be tested.
+nonisolated enum MapClusterer {
+    struct Cluster: Identifiable, Equatable {
+        let members: [Place]
+        let foundCount: Int
+        let storyCount: Int
+        var id: String { members.map(\.id).joined(separator: "+") }
+        var coordinate: CLLocationCoordinate2D {
+            .init(latitude: members.map(\.latitude).reduce(0, +) / Double(members.count),
+                  longitude: members.map(\.longitude).reduce(0, +) / Double(members.count))
+        }
+        static func == (a: Cluster, b: Cluster) -> Bool { a.id == b.id }
+    }
+
+    /// `radius` is in screen points: two pins closer than this become one cluster.
+    /// Found places and stories lead their cluster, so they are never hidden behind "coming soon" dots.
+    static func clusters(_ places: [Place], visited: Set<String>, span: MKCoordinateSpan, size: CGSize, radius: CGFloat = 34) -> [Cluster] {
+        guard size.width > 0, size.height > 0, span.latitudeDelta > 0, span.longitudeDelta > 0 else {
+            return places.map { Cluster(members: [$0], foundCount: visited.contains($0.id) ? 1 : 0, storyCount: $0.story == nil ? 0 : 1) }
+        }
+        let ptLat = span.latitudeDelta / size.height, ptLon = span.longitudeDelta / size.width
+        func rank(_ p: Place) -> Int { visited.contains(p.id) ? 0 : p.story != nil ? 1 : 2 }
+        let ordered = places.enumerated().sorted { (rank($0.element), $0.offset) < (rank($1.element), $1.offset) }.map(\.element)
+        var groups: [(seed: Place, members: [Place])] = []
+        for p in ordered {
+            if let i = groups.firstIndex(where: { g in
+                hypot((g.seed.latitude - p.latitude) / ptLat, (g.seed.longitude - p.longitude) / ptLon) < radius
+            }) {
+                groups[i].members.append(p)
+            } else {
+                groups.append((p, [p]))
+            }
+        }
+        return groups.map { g in
+            Cluster(members: g.members, foundCount: g.members.filter { visited.contains($0.id) }.count,
+                    storyCount: g.members.filter { $0.story != nil }.count)
+        }
+    }
+}
+
+/// A numbered bubble for several places; gold ring if you found any of them.
+private struct ClusterPin: View {
+    let count: Int
+    let found: Int
+    let stories: Int
+    @State private var shown = false
+    @Environment(\.accessibilityReduceMotion) private var reduce
+
+    var body: some View {
+        let size: CGFloat = count > 20 ? 46 : count > 9 ? 40 : 34
+        Text("\(count)")
+            .font(.system(size: 15, weight: .bold, design: .rounded)).monospacedDigit()
+            .foregroundStyle(stories > 0 ? .white : Palette.piperno)
+            .frame(width: size, height: size)
+            .background(Circle().fill(stories > 0 ? Palette.azzurro : Color.white))
+            .overlay(Circle().stroke(found > 0 ? Palette.tufo : .white, lineWidth: found > 0 ? 4 : 3))
+            .shadow(color: .black.opacity(0.22), radius: 4, y: 3)
+            .frame(width: max(size, 44), height: max(size, 44))
+            .contentShape(Circle())
+            .padding(.top, -max(size, 44) / 2)
+            .scaleEffect(shown ? 1 : 0.4).opacity(shown ? 1 : 0)
+            .onAppear { withAnimation(reduce ? nil : Motion.pop.delay(0.15)) { shown = true } }
     }
 }
 

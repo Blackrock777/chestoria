@@ -156,5 +156,6 @@
   "postcard.messageLabel": "Deine Nachricht",
   "postcard.messagePlaceholder": "Schreib ein paar Worte …",
   "snap.nearLabel": "%@ m von dir",
-  "snap.nearStart": "Willst du seine Geschichte hören?"
+  "snap.nearStart": "Willst du seine Geschichte hören?",
+  "trip.cluster": "%@ Orte · zum Vergrößern tippen"
 }
