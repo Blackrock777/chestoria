@@ -373,6 +373,22 @@ struct SiteTests {
         else { Issue.record("a confident photo match must win") }
     }
 
+    @Test func pompeiiHasStoriesPinsAndNoReadAloud() throws {
+        let catalog = try ContentStore.loadBundled()
+        let pompeii = catalog.site(id: "pompeii")!, naples = catalog.site(id: "naples")!
+        #expect(pompeii.storyPlaces.count >= 19)
+        #expect(pompeii.places.count > 60, "places without a story yet appear as pins")
+        #expect(!pompeii.allowsReadAloud, "the Park allows only its authorised audio guides")
+        #expect(naples.allowsReadAloud)
+        for p in pompeii.places {
+            #expect((40.744...40.757).contains(p.latitude) && (14.474...14.500).contains(p.longitude), "\(p.id) is outside Pompeii")
+        }
+        let ids = pompeii.places.map(\.id)
+        #expect(Set(ids).count == ids.count)
+        // The existing Thermopolium story kept its own place and photos.
+        #expect(pompeii.place(id: "thermopolium")?.referenceImages?.first == .asset("thermo"))
+    }
+
     @Test func answersAreShuffledAndEntrancesGuideDirections() throws {
         let catalog = try ContentStore.loadBundled()
         let stories = catalog.sites.flatMap(\.storyPlaces).compactMap(\.story)

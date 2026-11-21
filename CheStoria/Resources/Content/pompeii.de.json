@@ -137,6 +137,555 @@
           "hint": "Tipp: Schau unter die gemalten Götter"
         }
       }
+    },
+    {
+      "id": "amphitheatre",
+      "name": "Amphitheater",
+      "clues": [
+        "Ovale Arena",
+        "Steinerne Sitzreihen",
+        "Am Ostrand der Stadt"
+      ],
+      "story": {
+        "eyebrow": "Amphitheater · Pompeji",
+        "question": "In dieser Arena kämpften Gladiatoren. Was war zuerst da: sie oder das Kolosseum?",
+        "answers": [
+          "Das Kolosseum",
+          "Diese Arena, lange vorher",
+          "Beide im selben Jahrzehnt"
+        ],
+        "answerTitle": "Diese Arena war zuerst da.",
+        "subtitle": "Erbaut im 1. Jahrhundert v. Chr.",
+        "body": "Das Amphitheater von Pompeji entstand im 1. Jahrhundert v. Chr., lange vor dem Kolosseum. Es gehört zu den ältesten erhaltenen römischen Arenen, und Zuschauer kamen aus der ganzen Region zu den Spielen.",
+        "source": "Veröffentlichte Quellen",
+        "dinnerLine": "„Pompeji hatte eine Steinarena lange bevor Rom das Kolosseum bekam.“",
+        "sticker": {
+          "title": "Älter als das Kolosseum",
+          "collection": "Volle Ränge",
+          "back": "Pompejis Amphitheater stammt aus dem 1. Jahrhundert v. Chr."
+        },
+        "recallChoices": [
+          "Kolosseum",
+          "Diese Arena",
+          "Gleiches Jahrzehnt"
+        ],
+        "recallPrompt": "Erinnerst du dich an Pompejis Amphitheater? Was war zuerst da: es oder das Kolosseum?"
+      }
+    },
+    {
+      "id": "large-theatre",
+      "name": "Großes Theater",
+      "clues": [
+        "Gebogene Steinreihen",
+        "In einen Hang gebaut",
+        "Ein kleines Theater daneben"
+      ],
+      "story": {
+        "eyebrow": "Großes Theater · Pompeji",
+        "question": "Keine großen Mauern tragen diese Sitzreihen. Was dann?",
+        "answers": [
+          "Ziegelgewölbe darunter",
+          "Der natürliche Hang",
+          "Ein Holzgerüst"
+        ],
+        "answerTitle": "Der Hang selbst.",
+        "subtitle": "Die Baumeister nutzten den Hang.",
+        "body": "Die gebogenen Sitzreihen des Großen Theaters ruhen auf dem natürlichen Hang. Statt einen riesigen Bau zu errichten, ließen Pompejis Baumeister die Landschaft arbeiten und machten einen Hügel zur Bühne der Stadt.",
+        "source": "Veröffentlichte Quellen",
+        "dinnerLine": "„Pompejis großes Theater steht auf einem Hang, nicht auf Mauern.“",
+        "sticker": {
+          "title": "Sitze am Hang",
+          "collection": "Volle Ränge",
+          "back": "Die Sitze des Großen Theaters ruhen auf dem natürlichen Hang."
+        },
+        "recallChoices": [
+          "Gewölbe",
+          "Hang",
+          "Holz"
+        ],
+        "recallPrompt": "Erinnerst du dich an Pompejis Großes Theater? Was trägt seine Sitzreihen?"
+      }
+    },
+    {
+      "id": "odeon",
+      "name": "Kleines Theater (Odeion)",
+      "clues": [
+        "Kleiner Sitzhalbkreis",
+        "Von Mauern umschlossen",
+        "Neben dem Großen Theater"
+      ],
+      "story": {
+        "eyebrow": "Kleines Theater (Odeion) · Pompeji",
+        "question": "Pompeji hatte schon ein großes Theater nebenan. Was war an diesem kleinen anders?",
+        "answers": [
+          "Es war nur für Gladiatoren",
+          "Es hatte ein Dach",
+          "Es war nur für Frauen"
+        ],
+        "answerTitle": "Es hatte ein Dach.",
+        "subtitle": "Ein überdachter Saal für kleines Publikum.",
+        "body": "Neben dem offenen Großen Theater stand dieses kleinere, überdachte Theater. Mit einem Dach über den Sitzen bot es Aufführungen einen intimen Rahmen, ganz anders als der große Zuschauerraum nebenan.",
+        "source": "Veröffentlichte Quellen",
+        "dinnerLine": "„Pompeji hatte zwei Theater nebeneinander: eines offen, eines mit Dach.“",
+        "sticker": {
+          "title": "Das überdachte Theater",
+          "collection": "Volle Ränge",
+          "back": "Das kleine Theater war überdacht, anders als sein großer Nachbar."
+        },
+        "recallChoices": [
+          "Gladiatoren",
+          "Ein Dach",
+          "Nur Frauen"
+        ],
+        "recallPrompt": "Erinnerst du dich an Pompejis kleines Theater? Was war anders?"
+      }
+    },
+    {
+      "id": "basilica",
+      "name": "Basilika",
+      "clues": [
+        "Reihen von Ziegelsäulen",
+        "Neben dem Forum",
+        "Ein Podium am Ende"
+      ],
+      "story": {
+        "eyebrow": "Basilika · Pompeji",
+        "question": "Lange bevor Kirchen so hießen: Was geschah in einer Basilika?",
+        "answers": [
+          "Christliche Gottesdienste",
+          "Prozesse und Geschäfte",
+          "Wagenrennen"
+        ],
+        "answerTitle": "Prozesse und Geschäfte.",
+        "subtitle": "Pompejis große öffentliche Halle.",
+        "body": "Lange bevor das Wort eine Kirche meinte, war die Basilika eine öffentliche Halle. Diese neben dem Forum diente Gerichtsverfahren und Geschäften, den alltäglichen Entscheidungen, die die Stadt am Laufen hielten.",
+        "source": "Veröffentlichte Quellen",
+        "dinnerLine": "„In Pompeji war eine Basilika ein Gericht, keine Kirche.“",
+        "sticker": {
+          "title": "Gericht und Handel",
+          "collection": "Stadtleben",
+          "back": "Eine römische Basilika diente Prozessen und Geschäften, nicht dem Gebet."
+        },
+        "recallChoices": [
+          "Gottesdienst",
+          "Prozesse",
+          "Rennen"
+        ],
+        "recallPrompt": "Erinnerst du dich an die Basilika von Pompeji? Was geschah dort?"
+      }
+    },
+    {
+      "id": "mensa-ponderaria",
+      "name": "Mensa Ponderaria",
+      "clues": [
+        "Steintisch",
+        "Runde Mulden",
+        "Am Rand des Forums"
+      ],
+      "story": {
+        "eyebrow": "Mensa Ponderaria · Pompeji",
+        "question": "Die Mulden in diesem Steintisch hatten eine Aufgabe. Welche?",
+        "answers": [
+          "Regen für Tiere sammeln",
+          "Opfergaben für die Götter",
+          "Prüfen, ob Maße stimmten"
+        ],
+        "answerTitle": "Gerechte Maße.",
+        "subtitle": "Der amtliche Messtisch der Stadt.",
+        "body": "In Pompeji konnte man prüfen, ob man betrogen wurde. Dieser öffentliche Steintisch legte die amtlichen Maße fest, damit Händler und Käufer Waren mit einer gemeinsamen Referenz vergleichen konnten.",
+        "source": "Veröffentlichte Quellen",
+        "dinnerLine": "„Pompeji hatte einen amtlichen Steintisch gegen schummelnde Händler.“",
+        "sticker": {
+          "title": "Rechtes Maß",
+          "collection": "Stadtleben",
+          "back": "Händler prüften ihre Maße an diesem öffentlichen Tisch."
+        },
+        "recallChoices": [
+          "Regen",
+          "Opfer",
+          "Maße"
+        ],
+        "recallPrompt": "Erinnerst du dich an den Steintisch am Forum? Wofür waren die Mulden?"
+      }
+    },
+    {
+      "id": "castellum-aquae",
+      "name": "Castellum Aquae",
+      "clues": [
+        "Wasserbau aus Ziegeln",
+        "Am Vesuvtor",
+        "Höchster Punkt der Stadt"
+      ],
+      "story": {
+        "eyebrow": "Castellum Aquae · Pompeji",
+        "question": "Das Wasser des Aquädukts kam an diesem hohen Punkt an. Was geschah dann damit?",
+        "answers": [
+          "Sie wurde für Brände gespeichert",
+          "Sie wurde krugweise verkauft",
+          "Sie wurde auf Leitungen verteilt"
+        ],
+        "answerTitle": "Es wurde verteilt.",
+        "subtitle": "Leitungen verzweigten sich in die Viertel.",
+        "body": "Das Wasser des Aquädukts erreichte Pompeji in diesem Bau am höchsten Punkt der Stadt. Von hier floss es in ein verzweigtes Leitungsnetz und hinunter in die verschiedenen Stadtteile.",
+        "source": "Veröffentlichte Quellen",
+        "dinnerLine": "„Pompejis Wasser wurde von einem einzigen Gebäude oben in der Stadt verteilt.“",
+        "sticker": {
+          "title": "Wasser für die Stadt",
+          "collection": "Stadtleben",
+          "back": "Hier wurde das Aquäduktwasser auf Pompejis Leitungen verteilt."
+        },
+        "recallChoices": [
+          "Für Brände",
+          "Krugweise",
+          "Verteilt"
+        ],
+        "recallPrompt": "Erinnerst du dich an Pompejis Wasserbau? Was geschah dort mit dem Wasser?"
+      }
+    },
+    {
+      "id": "central-baths",
+      "name": "Zentralthermen",
+      "clues": [
+        "Großer offener Hof",
+        "Unfertige Mauern",
+        "An einer belebten Kreuzung"
+      ],
+      "story": {
+        "eyebrow": "Zentralthermen · Pompeji",
+        "question": "Diese großen Thermen wirken unfertig. Warum?",
+        "answers": [
+          "Bomben trafen sie 1943",
+          "Das Geld ging aus",
+          "Sie wurden 79 n. Chr. noch gebaut"
+        ],
+        "answerTitle": "Noch im Bau.",
+        "subtitle": "Der Ausbruch stoppte die Arbeiten.",
+        "body": "Die Zentralthermen wurden noch gebaut, als der Vesuv 79 n. Chr. ausbrach. Ihre unfertigen Mauern halten eine römische Baustelle mitten in der Arbeit fest, so deutlich wie jedes vollendete Bauwerk.",
+        "source": "Veröffentlichte Quellen",
+        "dinnerLine": "„Pompejis neueste Thermen wurden nie fertig. Der Vesuv kam zuvor.“",
+        "sticker": {
+          "title": "Nie vollendet",
+          "collection": "Stadtleben",
+          "back": "Die Zentralthermen waren beim Ausbruch eine Baustelle."
+        },
+        "recallChoices": [
+          "Bomben",
+          "Kein Geld",
+          "Noch im Bau"
+        ],
+        "recallPrompt": "Erinnerst du dich an die Zentralthermen? Warum wirken sie unfertig?"
+      }
+    },
+    {
+      "id": "stabian-baths",
+      "name": "Stabianer Thermen",
+      "clues": [
+        "Übungshof",
+        "Warme und kalte Räume",
+        "Via dell’Abbondanza"
+      ],
+      "story": {
+        "eyebrow": "Stabianer Thermen · Pompeji",
+        "question": "Für die Pompejaner ging es in den Thermen um mehr als Waschen. Worum noch?",
+        "answers": [
+          "Bei Wahlen abstimmen",
+          "Sport und Freunde treffen",
+          "Getreide lagern"
+        ],
+        "answerTitle": "Sport und Gesellschaft.",
+        "subtitle": "Räume mit verschiedenen Temperaturen.",
+        "body": "Diese Thermen verbanden Räume mit verschiedenen Temperaturen mit Flächen für Sport und Gespräche. Für die Pompejaner war das tägliche Bad auch Gelegenheit zum Training und zum Treffen mit anderen.",
+        "source": "Veröffentlichte Quellen",
+        "dinnerLine": "„Für Römer waren die Thermen Fitnessstudio, Spa und Café in einem.“",
+        "sticker": {
+          "title": "Das tägliche Bad",
+          "collection": "Stadtleben",
+          "back": "Hier badeten, trainierten und trafen sich die Pompejaner."
+        },
+        "recallChoices": [
+          "Wahlen",
+          "Freunde",
+          "Getreide"
+        ],
+        "recallPrompt": "Erinnerst du dich an die Stabianer Thermen? Wofür waren sie, außer zum Waschen?"
+      }
+    },
+    {
+      "id": "house-octavius-quartio",
+      "name": "Haus des Octavius Quartio",
+      "clues": [
+        "Langer Garten",
+        "Wasserkanäle",
+        "Via dell’Abbondanza"
+      ],
+      "story": {
+        "eyebrow": "Haus des Octavius Quartio · Pompeji",
+        "question": "Die Besitzer wollten eine Landvilla mitten in der Stadt. Was bauten sie?",
+        "answers": [
+          "Lange Wasserläufe im Garten",
+          "Einen eigenen Weinberg",
+          "Einen Jagdpark"
+        ],
+        "answerTitle": "Lange Wasserläufe.",
+        "subtitle": "Eine Landvilla in der Stadt.",
+        "body": "Lange Wasserkanäle und angelegte Gärten gaben diesem Stadthaus das Flair einer Landvilla. Die Besitzer schufen sich eine Oase der Muße mitten im engen Straßennetz Pompejis.",
+        "source": "Veröffentlichte Quellen",
+        "dinnerLine": "„Eine Familie in Pompeji baute sich einen Landgarten mit Wasserläufen mitten in der Stadt.“",
+        "sticker": {
+          "title": "Villa in der Stadt",
+          "collection": "Privatleben",
+          "back": "Wasserläufe machten ein Stadthaus zur Landvilla."
+        },
+        "recallChoices": [
+          "Wasserläufe",
+          "Weinberg",
+          "Jagdpark"
+        ],
+        "recallPrompt": "Erinnerst du dich an das Haus des Octavius Quartio? Was machte es zur Landvilla?"
+      }
+    },
+    {
+      "id": "house-vettii",
+      "name": "Haus der Vettier",
+      "clues": [
+        "Bemalte Wände",
+        "Säulengarten",
+        "Regio VI"
+      ],
+      "story": {
+        "eyebrow": "Haus der Vettier · Pompeji",
+        "question": "Die Besitzer dieses prächtigen Hauses hatten eine ungewöhnliche Vergangenheit. Welche?",
+        "answers": [
+          "Sie waren ausländische Prinzen",
+          "Sie waren Sklaven gewesen",
+          "Sie waren Priester der Isis"
+        ],
+        "answerTitle": "Sie waren Sklaven gewesen.",
+        "subtitle": "Zwei Freigelassene, die reich wurden.",
+        "body": "Zwei wohlhabende Freigelassene, einst Sklaven, besaßen dieses reich bemalte Haus. Die Ausmalung, darunter ein Priapus als Zeichen des Wohlstands, zeigte ihren Erfolg in einer Stadt, in der sich der Stand ändern konnte.",
+        "source": "Veröffentlichte Quellen",
+        "dinnerLine": "„Eines der prächtigsten Häuser Pompejis gehörte zwei ehemaligen Sklaven.“",
+        "sticker": {
+          "title": "Das Glück der Freigelassenen",
+          "collection": "Privatleben",
+          "back": "Die Vettier stiegen von Sklaven zu Reichen auf."
+        },
+        "recallChoices": [
+          "Prinzen",
+          "Sklaven",
+          "Priester"
+        ],
+        "recallPrompt": "Erinnerst du dich an das Haus der Vettier? Was war an den Besitzern ungewöhnlich?"
+      }
+    },
+    {
+      "id": "house-faun",
+      "name": "Haus des Fauns",
+      "clues": [
+        "Statue des tanzenden Fauns",
+        "Riesiges Haus",
+        "Ein Mosaikgruß am Eingang"
+      ],
+      "story": {
+        "eyebrow": "Haus des Fauns · Pompeji",
+        "question": "Ein riesiges Bodenmosaik in diesem Haus zeigte eine Schlacht. Wessen?",
+        "answers": [
+          "Julius Caesars",
+          "Hannibals",
+          "Alexanders des Großen"
+        ],
+        "answerTitle": "Alexander der Große.",
+        "subtitle": "Das berühmte Alexandermosaik.",
+        "body": "Dieses riesige Haus barg das berühmte Alexandermosaik und den kleinen tanzenden Faun, der ihm den Namen gibt. Kunst und Größe zeigen, wie reiche Pompejaner ihre Gäste beeindruckten.",
+        "source": "Veröffentlichte Quellen",
+        "dinnerLine": "„Das berühmte Alexandermosaik war einst der Fußboden eines Hauses in Pompeji.“",
+        "sticker": {
+          "title": "Der tanzende Faun",
+          "collection": "Privatleben",
+          "back": "Hier lagen das Alexandermosaik und ein tanzender Faun."
+        },
+        "recallChoices": [
+          "Caesar",
+          "Hannibal",
+          "Alexander"
+        ],
+        "recallPrompt": "Erinnerst du dich an das Haus des Fauns? Wessen Schlacht zeigte das Mosaik?"
+      }
+    },
+    {
+      "id": "villa-mysteries",
+      "name": "Mysterienvilla",
+      "clues": [
+        "Vor den Stadtmauern",
+        "Ein rot bemalter Raum",
+        "Große Landvilla"
+      ],
+      "story": {
+        "eyebrow": "Mysterienvilla · Pompeji",
+        "question": "Lebensgroße Figuren auf roten Wänden feiern einen geheimen Ritus. Für welchen Gott?",
+        "answers": [
+          "Apollon",
+          "Venus",
+          "Dionysos"
+        ],
+        "answerTitle": "Dionysos.",
+        "subtitle": "Die Bedeutung ist bis heute umstritten.",
+        "body": "Ein durchgehender Bilderfries umläuft hier einen Raum und zeigt Figuren bei einem Ritual für Dionysos. Fachleute streiten noch über seine Bedeutung, und so bleibt die Villa eines der großen Rätsel Pompejis.",
+        "source": "Veröffentlichte Quellen",
+        "dinnerLine": "„Niemand weiß sicher, was die Fresken der Mysterienvilla zeigen.“",
+        "sticker": {
+          "title": "Der geheime Ritus",
+          "collection": "Rätsel",
+          "back": "Ein Bilderfries eines Ritus für Dionysos."
+        },
+        "recallChoices": [
+          "Apollon",
+          "Venus",
+          "Dionysos"
+        ],
+        "recallPrompt": "Erinnerst du dich an die Mysterienvilla? Welchem Gott gilt der Ritus?",
+        "theory": {
+          "label": "THEORIE",
+          "lead": "Manche sagen,",
+          "text": "es zeige die Einweihung einer jungen Frau vor der Hochzeit."
+        }
+      }
+    },
+    {
+      "id": "lupanar",
+      "name": "Lupanar",
+      "clues": [
+        "Kleine Kammern",
+        "Inschriften an den Wänden",
+        "Eine Ecke zweier Gassen"
+      ],
+      "story": {
+        "eyebrow": "Lupanar · Pompeji",
+        "question": "Winzige Kammern und Wände voller Inschriften. Was war dieses Gebäude?",
+        "answers": [
+          "Eine Herberge für Reisende",
+          "Eine Schule",
+          "Ein Bordell"
+        ],
+        "answerTitle": "Ein Bordell.",
+        "subtitle": "Die Wände tragen noch Inschriften.",
+        "body": "Kleine Kammern und erhaltene Wandinschriften weisen dieses Gebäude als Bordell aus. Es ist ein schwieriges Zeugnis, oft mit Sklaverei verbunden, über Menschen, an die sich die Geschichte selten erinnert.",
+        "source": "Veröffentlichte Quellen",
+        "dinnerLine": "„Die Wände von Pompejis Bordell tragen fast 2.000 Jahre alte Botschaften.“",
+        "sticker": {
+          "title": "Sprechende Wände",
+          "collection": "Römischer Alltag",
+          "back": "An den Wänden des Lupanars sind Inschriften erhalten."
+        },
+        "recallChoices": [
+          "Herberge",
+          "Schule",
+          "Bordell"
+        ],
+        "recallPrompt": "Erinnerst du dich an das Gebäude mit den winzigen Kammern? Was war es?"
+      }
+    },
+    {
+      "id": "house-casca",
+      "name": "Haus des Casca Longus",
+      "clues": [
+        "Beschrifteter Marmortisch",
+        "Gemalte Theaterszenen",
+        "Via dell’Abbondanza"
+      ],
+      "story": {
+        "eyebrow": "Haus des Casca Longus · Pompeji",
+        "question": "Ein Marmortisch hier trägt einen Namen, der mit einem berühmten Mord verbunden ist. Welchem?",
+        "answers": [
+          "Die Ermordung Julius Caesars",
+          "Der Mord an Neros Mutter",
+          "Romulus tötet Remus"
+        ],
+        "answerTitle": "Caesars Ermordung.",
+        "subtitle": "Der Tisch nennt Casca Longus.",
+        "body": "Ein hier gefundener Marmortisch trägt den Namen des Publius Servilius Casca Longus, verbunden mit einem der Mörder Julius Caesars 44 v. Chr. Römische Politik, eingemeißelt in ein Möbel aus Pompeji.",
+        "source": "Veröffentlichte Quellen",
+        "dinnerLine": "„Ein Tisch in Pompeji trägt einen Namen, der mit Caesars Mördern verbunden ist.“",
+        "sticker": {
+          "title": "Caesars Schatten",
+          "collection": "Privatleben",
+          "back": "Ein Tisch nennt Casca Longus, verbunden mit Caesars Mördern."
+        },
+        "recallChoices": [
+          "Caesar",
+          "Neros Mutter",
+          "Remus"
+        ],
+        "recallPrompt": "Erinnerst du dich an den Marmortisch? Mit welchem Mord ist sein Name verbunden?"
+      }
+    },
+    {
+      "id": "house-moralist",
+      "name": "Haus des Moralisten",
+      "clues": [
+        "Gemalte Sprüche",
+        "Speisezimmer",
+        "Regio III"
+      ],
+      "story": {
+        "eyebrow": "Haus des Moralisten · Pompeji",
+        "question": "Gemalte Zeilen in diesem Speisezimmer geben Gästen Ratschläge. Wozu?",
+        "answers": [
+          "Wie man das Essen bezahlt",
+          "Wann man vor Dunkelheit geht",
+          "Wie man sich bei Tisch benimmt"
+        ],
+        "answerTitle": "Gute Tischmanieren.",
+        "subtitle": "Hausregeln, an die Wand gemalt.",
+        "body": "Gemalte Sprüche rund um das Speisezimmer sagten Gästen, wie man sich bei Gelagen benimmt. Mehr als Schmuck, zeigen sie amüsant, was Römer bei einem gemeinsamen Essen voneinander erwarteten.",
+        "source": "Veröffentlichte Quellen",
+        "dinnerLine": "„In einem Speisezimmer in Pompeji stehen Tischregeln an der Wand.“",
+        "sticker": {
+          "title": "Benimm dich",
+          "collection": "Römischer Alltag",
+          "back": "Gemalte Regeln sagten Gästen, wie man sich benimmt."
+        },
+        "recallChoices": [
+          "Bezahlen",
+          "Früh gehen",
+          "Manieren"
+        ],
+        "recallPrompt": "Erinnerst du dich an das Haus des Moralisten? Welche Ratschläge standen an der Wand?"
+      }
+    },
+    {
+      "id": "bakery-popidius-priscus",
+      "name": "Bäckerei des Popidius Priscus",
+      "clues": [
+        "Steine wie Sanduhren",
+        "Ein Ziegelofen",
+        "Regio VII"
+      ],
+      "story": {
+        "eyebrow": "Bäckerei des Popidius Priscus · Pompeji",
+        "question": "Die großen sanduhrförmigen Steine hatten eine Aufgabe. Welche?",
+        "answers": [
+          "Oliven pressen",
+          "Die Zeit messen",
+          "Getreide mahlen"
+        ],
+        "answerTitle": "Getreide mahlen.",
+        "subtitle": "Mühlen und Ofen unter einem Dach.",
+        "body": "Diese Bäckerei vereinte Mahlen und Backen. Steinmühlen machten aus Getreide Mehl, der Ofen buk das Brot: eine römische Produktionskette, die das Viertel ernährte.",
+        "source": "Veröffentlichte Quellen",
+        "dinnerLine": "„Pompejis Bäcker mahlten ihr Mehl selbst in großen Steinmühlen.“",
+        "sticker": {
+          "title": "Das tägliche Brot",
+          "collection": "Römischer Alltag",
+          "back": "Steinmühlen und Ofen: eine römische Bäckerei."
+        },
+        "recallChoices": [
+          "Olivenöl",
+          "Zeit",
+          "Mehl"
+        ],
+        "recallPrompt": "Erinnerst du dich an die Sanduhrsteine der Bäckerei? Wofür waren sie?"
+      }
     }
   ]
 }

@@ -137,6 +137,763 @@
           "hint": "Suggerimento: guarda sotto gli dèi dipinti"
         }
       }
+    },
+    {
+      "id": "amphitheatre",
+      "name": "Anfiteatro",
+      "clues": [
+        "Arena ovale",
+        "Gradinate di pietra",
+        "All’estremità est"
+      ],
+      "story": {
+        "eyebrow": "Anfiteatro · Pompei",
+        "question": "In quest’arena combattevano i gladiatori. Chi venne prima: lei o il Colosseo?",
+        "answers": [
+          "Il Colosseo",
+          "Quest’arena, molto prima",
+          "Entrambi nello stesso decennio"
+        ],
+        "answerTitle": "Prima quest’arena.",
+        "subtitle": "Costruita nel I secolo a.C.",
+        "body": "L’anfiteatro di Pompei fu costruito nel I secolo a.C., molto prima del Colosseo. È una delle più antiche arene romane giunte fino a noi, e la folla arrivava da tutta la regione per assistere ai giochi.",
+        "source": "Fonti pubblicate",
+        "dinnerLine": "«Pompei aveva un’arena di pietra molto prima che Roma avesse il Colosseo.»",
+        "sticker": {
+          "title": "Più antico del Colosseo",
+          "collection": "Grandi folle",
+          "back": "L’anfiteatro di Pompei risale al I secolo a.C."
+        },
+        "recallChoices": [
+          "Colosseo",
+          "Quest’arena",
+          "Stesso decennio"
+        ],
+        "recallPrompt": "Ricordi l’anfiteatro di Pompei? Chi venne prima: lui o il Colosseo?"
+      }
+    },
+    {
+      "id": "large-theatre",
+      "name": "Teatro Grande",
+      "clues": [
+        "Gradinate curve",
+        "Costruito su un pendio",
+        "Un piccolo teatro accanto"
+      ],
+      "story": {
+        "eyebrow": "Teatro Grande · Pompei",
+        "question": "Nessun grande muro sorregge queste gradinate. Che cosa le sostiene?",
+        "answers": [
+          "Volte di mattoni sotto",
+          "Il pendio naturale",
+          "Un’impalcatura di legno"
+        ],
+        "answerTitle": "Il pendio stesso.",
+        "subtitle": "I costruttori sfruttarono il pendio.",
+        "body": "Le gradinate curve del Teatro Grande poggiano sul pendio naturale del terreno. Invece di innalzare una struttura enorme, i costruttori lasciarono lavorare il paesaggio e trasformarono una collina nel palcoscenico della città.",
+        "source": "Fonti pubblicate",
+        "dinnerLine": "«Il teatro grande di Pompei poggia su una collina, non su muri.»",
+        "sticker": {
+          "title": "Gradinate sulla collina",
+          "collection": "Grandi folle",
+          "back": "Le gradinate del Teatro Grande poggiano sul pendio naturale."
+        },
+        "recallChoices": [
+          "Volte",
+          "Pendio",
+          "Legno"
+        ],
+        "recallPrompt": "Ricordi il Teatro Grande di Pompei? Che cosa sorregge le gradinate?"
+      }
+    },
+    {
+      "id": "odeon",
+      "name": "Teatro Piccolo (Odeion)",
+      "clues": [
+        "Piccolo semicerchio di sedili",
+        "Chiuso da muri",
+        "Accanto al Teatro Grande"
+      ],
+      "story": {
+        "eyebrow": "Teatro Piccolo (Odeion) · Pompei",
+        "question": "Pompei aveva già un grande teatro accanto. Che cosa rendeva diverso questo piccolo?",
+        "answers": [
+          "Era solo per i gladiatori",
+          "Aveva un tetto",
+          "Era riservato alle donne"
+        ],
+        "answerTitle": "Aveva un tetto.",
+        "subtitle": "Una sala coperta per pochi spettatori.",
+        "body": "Accanto al Teatro Grande, all’aperto, sorgeva questo teatro più piccolo e coperto. Con un tetto sopra i sedili, offriva agli spettacoli un ambiente raccolto, ben diverso dalla grande cavea vicina.",
+        "source": "Fonti pubblicate",
+        "dinnerLine": "«Pompei aveva due teatri affiancati: uno a cielo aperto, uno con il tetto.»",
+        "sticker": {
+          "title": "Il teatro coperto",
+          "collection": "Grandi folle",
+          "back": "Il teatro piccolo era coperto, a differenza del grande vicino."
+        },
+        "recallChoices": [
+          "Gladiatori",
+          "Un tetto",
+          "Solo donne"
+        ],
+        "recallPrompt": "Ricordi il teatro piccolo di Pompei? Che cosa lo rendeva diverso?"
+      }
+    },
+    {
+      "id": "basilica",
+      "name": "Basilica",
+      "clues": [
+        "File di colonne in mattoni",
+        "Accanto al Foro",
+        "Un podio in fondo"
+      ],
+      "story": {
+        "eyebrow": "Basilica · Pompei",
+        "question": "Molto prima che il nome passasse alle chiese, che cosa si faceva in una basilica?",
+        "answers": [
+          "Il culto cristiano",
+          "Processi e affari",
+          "Corse di carri"
+        ],
+        "answerTitle": "Processi e affari.",
+        "subtitle": "La grande sala pubblica di Pompei.",
+        "body": "Molto prima di indicare una chiesa, la basilica era una sala pubblica. Accanto al Foro, questa ospitava cause legali e affari, le decisioni quotidiane che facevano funzionare la città.",
+        "source": "Fonti pubblicate",
+        "dinnerLine": "«A Pompei la basilica era un tribunale, non una chiesa.»",
+        "sticker": {
+          "title": "Tribunale e affari",
+          "collection": "Vita in città",
+          "back": "La basilica romana ospitava processi e affari, non il culto."
+        },
+        "recallChoices": [
+          "Culto",
+          "Processi",
+          "Corse"
+        ],
+        "recallPrompt": "Ricordi la Basilica di Pompei? Che cosa vi si faceva?"
+      }
+    },
+    {
+      "id": "mensa-ponderaria",
+      "name": "Mensa Ponderaria",
+      "clues": [
+        "Tavolo di pietra",
+        "Cavità rotonde",
+        "Al margine del Foro"
+      ],
+      "story": {
+        "eyebrow": "Mensa Ponderaria · Pompei",
+        "question": "Le cavità di questo tavolo di pietra avevano un solo compito. Quale?",
+        "answers": [
+          "Raccogliere pioggia per gli animali",
+          "Contenere offerte agli dei",
+          "Controllare che le misure fossero giuste"
+        ],
+        "answerTitle": "Misure giuste.",
+        "subtitle": "Il tavolo ufficiale delle misure.",
+        "body": "A Pompei chi faceva la spesa poteva controllare di non essere imbrogliato. Questo tavolo pubblico di pietra fissava le misure ufficiali: mercanti e clienti confrontavano le merci con un riferimento comune.",
+        "source": "Fonti pubblicate",
+        "dinnerLine": "«Pompei aveva un tavolo di pietra ufficiale contro i negozianti imbroglioni.»",
+        "sticker": {
+          "title": "Misura giusta",
+          "collection": "Vita in città",
+          "back": "I mercanti controllavano le misure su questo tavolo pubblico."
+        },
+        "recallChoices": [
+          "Pioggia",
+          "Offerte",
+          "Misure"
+        ],
+        "recallPrompt": "Ricordi il tavolo di pietra al Foro? A che cosa servivano le cavità?"
+      }
+    },
+    {
+      "id": "castellum-aquae",
+      "name": "Castellum Aquae",
+      "clues": [
+        "Edificio idrico in mattoni",
+        "Presso Porta Vesuvio",
+        "Il punto più alto"
+      ],
+      "story": {
+        "eyebrow": "Castellum Aquae · Pompei",
+        "question": "L’acqua dell’acquedotto arrivava qui, nel punto più alto. Che cosa le succedeva poi?",
+        "answers": [
+          "Veniva conservata contro gli incendi",
+          "Veniva venduta a brocche",
+          "Veniva divisa in tubi per la città"
+        ],
+        "answerTitle": "Veniva distribuita.",
+        "subtitle": "I tubi si diramavano per i quartieri.",
+        "body": "L’acqua dell’acquedotto arrivava a Pompei in questo edificio, sul punto più alto della città. Da qui veniva incanalata in una rete di tubi ramificata e portata verso i diversi quartieri.",
+        "source": "Fonti pubblicate",
+        "dinnerLine": "«L’acqua di Pompei partiva da un solo edificio in cima alla città.»",
+        "sticker": {
+          "title": "Acqua per la città",
+          "collection": "Vita in città",
+          "back": "Qui l’acqua dell’acquedotto si divideva nei tubi della città."
+        },
+        "recallChoices": [
+          "Antincendio",
+          "A brocche",
+          "Distribuita"
+        ],
+        "recallPrompt": "Ricordi l’edificio dell’acqua di Pompei? Che cosa succedeva all’acqua?"
+      }
+    },
+    {
+      "id": "central-baths",
+      "name": "Terme Centrali",
+      "clues": [
+        "Grande cortile aperto",
+        "Muri incompiuti",
+        "A un incrocio affollato"
+      ],
+      "story": {
+        "eyebrow": "Terme Centrali · Pompei",
+        "question": "Queste grandi terme sembrano incompiute. Perché?",
+        "answers": [
+          "Le bombe le colpirono nel 1943",
+          "Finirono i soldi",
+          "Erano ancora in costruzione nel 79 d.C."
+        ],
+        "answerTitle": "Erano ancora in cantiere.",
+        "subtitle": "L’eruzione fermò i lavori.",
+        "body": "Le Terme Centrali erano ancora in costruzione quando il Vesuvio eruttò nel 79 d.C. I loro muri incompiuti fermano nel tempo un cantiere romano, con la stessa chiarezza di un monumento finito.",
+        "source": "Fonti pubblicate",
+        "dinnerLine": "«Le terme più nuove di Pompei non furono mai finite: il Vesuvio arrivò prima.»",
+        "sticker": {
+          "title": "Mai finite",
+          "collection": "Vita in città",
+          "back": "Le Terme Centrali erano un cantiere quando il Vesuvio eruttò."
+        },
+        "recallChoices": [
+          "Bombe",
+          "Niente soldi",
+          "In cantiere"
+        ],
+        "recallPrompt": "Ricordi le Terme Centrali? Perché sembrano incompiute?"
+      }
+    },
+    {
+      "id": "stabian-baths",
+      "name": "Terme Stabiane",
+      "clues": [
+        "Cortile per gli esercizi",
+        "Stanze calde e fredde",
+        "Via dell’Abbondanza"
+      ],
+      "story": {
+        "eyebrow": "Terme Stabiane · Pompei",
+        "question": "Per i pompeiani le terme non servivano solo a lavarsi. A che altro?",
+        "answers": [
+          "Votare alle elezioni",
+          "Fare esercizio e vedere amici",
+          "Conservare il grano"
+        ],
+        "answerTitle": "Esercizio e compagnia.",
+        "subtitle": "Stanze a temperature diverse.",
+        "body": "Queste terme univano stanze a temperature diverse a spazi per l’esercizio e la conversazione. Per i pompeiani il bagno quotidiano era anche l’occasione per allenarsi, chiacchierare e incontrare gente.",
+        "source": "Fonti pubblicate",
+        "dinnerLine": "«Per i romani le terme erano palestra, spa e caffè insieme.»",
+        "sticker": {
+          "title": "Il bagno quotidiano",
+          "collection": "Vita in città",
+          "back": "Qui i pompeiani si lavavano, si allenavano e socializzavano."
+        },
+        "recallChoices": [
+          "Votare",
+          "Amici",
+          "Grano"
+        ],
+        "recallPrompt": "Ricordi le Terme Stabiane? A che servivano, oltre a lavarsi?"
+      }
+    },
+    {
+      "id": "house-octavius-quartio",
+      "name": "Casa di Octavius Quartio",
+      "clues": [
+        "Lungo giardino",
+        "Canali d’acqua",
+        "Via dell’Abbondanza"
+      ],
+      "story": {
+        "eyebrow": "Casa di Octavius Quartio · Pompei",
+        "question": "I proprietari volevano una villa di campagna in città. Che cosa costruirono?",
+        "answers": [
+          "Lunghi canali nel giardino",
+          "Una vigna privata",
+          "Una riserva di caccia"
+        ],
+        "answerTitle": "Lunghi canali d’acqua.",
+        "subtitle": "Una villa di campagna in città.",
+        "body": "Lunghi canali d’acqua e giardini curati davano a questa casa di città l’aria di una villa di campagna. I proprietari si crearono un angolo di svago dentro la fitta rete di strade di Pompei.",
+        "source": "Fonti pubblicate",
+        "dinnerLine": "«Una famiglia di Pompei si costruì un giardino di campagna con canali in pieno centro.»",
+        "sticker": {
+          "title": "Villa in città",
+          "collection": "Vite private",
+          "back": "I canali del giardino trasformarono una casa in una villa."
+        },
+        "recallChoices": [
+          "Canali",
+          "Vigna",
+          "Caccia"
+        ],
+        "recallPrompt": "Ricordi la Casa di Octavius Quartio? Che cosa la faceva sembrare una villa?"
+      }
+    },
+    {
+      "id": "house-vettii",
+      "name": "Casa dei Vettii",
+      "clues": [
+        "Pareti dipinte",
+        "Giardino con colonne",
+        "Regio VI"
+      ],
+      "story": {
+        "eyebrow": "Casa dei Vettii · Pompei",
+        "question": "I padroni di questa casa sontuosa avevano un passato insolito. Quale?",
+        "answers": [
+          "Erano principi stranieri",
+          "Erano stati schiavi",
+          "Erano sacerdoti di Iside"
+        ],
+        "answerTitle": "Erano stati schiavi.",
+        "subtitle": "Due liberti diventati ricchi.",
+        "body": "Questa casa riccamente dipinta apparteneva a due liberti, ex schiavi diventati prosperi. Le decorazioni, tra cui un Priapo simbolo di abbondanza, mostravano il loro successo in una città dove la condizione sociale poteva cambiare.",
+        "source": "Fonti pubblicate",
+        "dinnerLine": "«Una delle case più sontuose di Pompei apparteneva a due ex schiavi.»",
+        "sticker": {
+          "title": "La fortuna dei liberti",
+          "collection": "Vite private",
+          "back": "I Vettii passarono dalla schiavitù alla ricchezza."
+        },
+        "recallChoices": [
+          "Principi",
+          "Schiavi",
+          "Sacerdoti"
+        ],
+        "recallPrompt": "Ricordi la Casa dei Vettii? Che cosa avevano di insolito i padroni?"
+      }
+    },
+    {
+      "id": "house-faun",
+      "name": "Casa del Fauno",
+      "clues": [
+        "Statua del fauno danzante",
+        "Casa enorme",
+        "Un saluto in mosaico all’ingresso"
+      ],
+      "story": {
+        "eyebrow": "Casa del Fauno · Pompei",
+        "question": "Un enorme mosaico pavimentale di questa casa mostrava una battaglia. Di chi?",
+        "answers": [
+          "Di Giulio Cesare",
+          "Di Annibale",
+          "Di Alessandro Magno"
+        ],
+        "answerTitle": "Alessandro Magno.",
+        "subtitle": "Il celebre Mosaico di Alessandro.",
+        "body": "Questa casa enorme ospitava il celebre Mosaico di Alessandro e il piccolo fauno danzante che le dà il nome. Arte e dimensioni mostrano come i pompeiani ricchi usassero la casa per impressionare gli ospiti.",
+        "source": "Fonti pubblicate",
+        "dinnerLine": "«Il famoso Mosaico di Alessandro era il pavimento di una casa di Pompei.»",
+        "sticker": {
+          "title": "Il fauno danzante",
+          "collection": "Vite private",
+          "back": "Questa casa ospitava il Mosaico di Alessandro e un fauno danzante."
+        },
+        "recallChoices": [
+          "Cesare",
+          "Annibale",
+          "Alessandro"
+        ],
+        "recallPrompt": "Ricordi la Casa del Fauno? Di chi era la battaglia del grande mosaico?"
+      }
+    },
+    {
+      "id": "villa-mysteries",
+      "name": "Villa dei Misteri",
+      "clues": [
+        "Fuori dalle mura",
+        "Una stanza dipinta di rosso",
+        "Grande villa suburbana"
+      ],
+      "story": {
+        "eyebrow": "Villa dei Misteri · Pompei",
+        "question": "Figure a grandezza naturale su pareti rosse partecipano a un rito segreto. Per quale dio?",
+        "answers": [
+          "Apollo",
+          "Venere",
+          "Dioniso"
+        ],
+        "answerTitle": "Dioniso.",
+        "subtitle": "Il significato del rito è ancora discusso.",
+        "body": "Un fregio dipinto continuo avvolge una stanza e mostra figure in un rito legato a Dioniso. Gli studiosi discutono ancora su cosa rappresenti: per questo la villa resta uno dei grandi enigmi di Pompei.",
+        "source": "Fonti pubblicate",
+        "dinnerLine": "«Nessuno sa con certezza cosa raccontino gli affreschi della Villa dei Misteri.»",
+        "sticker": {
+          "title": "Il rito segreto",
+          "collection": "Misteri",
+          "back": "Un fregio dipinto di un rito legato a Dioniso."
+        },
+        "recallChoices": [
+          "Apollo",
+          "Venere",
+          "Dioniso"
+        ],
+        "recallPrompt": "Ricordi la Villa dei Misteri? A quale dio è legato il rito?",
+        "theory": {
+          "label": "TEORIA",
+          "lead": "Secondo alcuni",
+          "text": "mostra l’iniziazione di una giovane prima delle nozze."
+        }
+      }
+    },
+    {
+      "id": "lupanar",
+      "name": "Lupanare",
+      "clues": [
+        "Stanze piccole",
+        "Scritte sui muri",
+        "All’angolo di due vicoli"
+      ],
+      "story": {
+        "eyebrow": "Lupanare · Pompei",
+        "question": "Stanze minuscole e muri pieni di scritte. Che cos’era questo edificio?",
+        "answers": [
+          "Una locanda per viaggiatori",
+          "Una scuola",
+          "Un bordello"
+        ],
+        "answerTitle": "Un bordello.",
+        "subtitle": "I muri conservano ancora le scritte.",
+        "body": "Stanze piccole e iscrizioni sui muri identificano questo edificio come un bordello. È una testimonianza difficile, spesso legata alla schiavitù, sulla vita di persone che la storia ricorda di rado.",
+        "source": "Fonti pubblicate",
+        "dinnerLine": "«I muri del bordello di Pompei conservano messaggi scritti quasi 2.000 anni fa.»",
+        "sticker": {
+          "title": "Muri che parlano",
+          "collection": "Romani di ogni giorno",
+          "back": "Sui muri del lupanare sopravvivono iscrizioni."
+        },
+        "recallChoices": [
+          "Locanda",
+          "Scuola",
+          "Bordello"
+        ],
+        "recallPrompt": "Ricordi l’edificio con stanze minuscole e muri pieni di scritte? Che cos’era?"
+      }
+    },
+    {
+      "id": "house-casca",
+      "name": "Casa di Casca Longus",
+      "clues": [
+        "Tavolo di marmo iscritto",
+        "Scene teatrali dipinte",
+        "Via dell’Abbondanza"
+      ],
+      "story": {
+        "eyebrow": "Casa di Casca Longus · Pompei",
+        "question": "Un tavolo di marmo qui porta un nome legato a un omicidio famoso. Quale?",
+        "answers": [
+          "L’assassinio di Giulio Cesare",
+          "L’omicidio della madre di Nerone",
+          "Romolo che uccide Remo"
+        ],
+        "answerTitle": "L’assassinio di Cesare.",
+        "subtitle": "Il tavolo porta il nome di Casca Longus.",
+        "body": "Un tavolo di marmo trovato qui porta il nome di Publio Servilio Casca Longo, legato a uno degli uccisori di Giulio Cesare nel 44 a.C. La politica romana, incisa nei mobili di una casa pompeiana.",
+        "source": "Fonti pubblicate",
+        "dinnerLine": "«Un tavolo di Pompei porta un nome legato agli assassini di Cesare.»",
+        "sticker": {
+          "title": "L’ombra di Cesare",
+          "collection": "Vite private",
+          "back": "Un tavolo qui nomina Casca Longus, legato agli uccisori di Cesare."
+        },
+        "recallChoices": [
+          "Cesare",
+          "Madre di Nerone",
+          "Remo"
+        ],
+        "recallPrompt": "Ricordi il tavolo di marmo a Pompei? A quale omicidio è legato il nome?"
+      }
+    },
+    {
+      "id": "house-moralist",
+      "name": "Casa del Moralista",
+      "clues": [
+        "Massime dipinte",
+        "Sala da pranzo",
+        "Regio III"
+      ],
+      "story": {
+        "eyebrow": "Casa del Moralista · Pompei",
+        "question": "Frasi dipinte in questa sala da pranzo danno consigli agli ospiti. Su che cosa?",
+        "answers": [
+          "Come pagare il pasto",
+          "Quando andarsene prima del buio",
+          "Come comportarsi a tavola"
+        ],
+        "answerTitle": "Le buone maniere a tavola.",
+        "subtitle": "Regole di casa, dipinte sui muri.",
+        "body": "Massime dipinte intorno alla sala da pranzo dicevano agli ospiti come comportarsi ai banchetti. Più che decorazione, offrono uno sguardo divertente su ciò che i romani si aspettavano a tavola.",
+        "source": "Fonti pubblicate",
+        "dinnerLine": "«In una sala da pranzo di Pompei le regole del galateo sono dipinte sul muro.»",
+        "sticker": {
+          "title": "Attento alle maniere",
+          "collection": "Romani di ogni giorno",
+          "back": "Regole dipinte dicevano agli ospiti come stare a tavola."
+        },
+        "recallChoices": [
+          "Pagare",
+          "Andarsene",
+          "Maniere"
+        ],
+        "recallPrompt": "Ricordi la Casa del Moralista? Quali consigli erano dipinti in sala da pranzo?"
+      }
+    },
+    {
+      "id": "bakery-popidius-priscus",
+      "name": "Panificio di Popidio Prisco",
+      "clues": [
+        "Pietre a forma di clessidra",
+        "Un forno in mattoni",
+        "Regio VII"
+      ],
+      "story": {
+        "eyebrow": "Panificio di Popidio Prisco · Pompei",
+        "question": "Le grandi pietre a forma di clessidra avevano un compito. Quale?",
+        "answers": [
+          "Spremere le olive",
+          "Misurare il tempo",
+          "Macinare il grano"
+        ],
+        "answerTitle": "Macinare il grano.",
+        "subtitle": "Mulini e forno sotto lo stesso tetto.",
+        "body": "Questo panificio univa macinatura e cottura. I mulini di pietra trasformavano il grano in farina e il forno cuoceva il pane: una catena di produzione romana che sfamava il quartiere.",
+        "source": "Fonti pubblicate",
+        "dinnerLine": "«I fornai di Pompei macinavano la farina da soli, con grandi mulini di pietra.»",
+        "sticker": {
+          "title": "Il pane quotidiano",
+          "collection": "Romani di ogni giorno",
+          "back": "Mulini di pietra e un forno: un panificio romano."
+        },
+        "recallChoices": [
+          "Olio",
+          "Tempo",
+          "Farina"
+        ],
+        "recallPrompt": "Ricordi le pietre a clessidra del panificio? A che cosa servivano?"
+      }
+    },
+    {
+      "id": "house-of-the-citharist",
+      "name": "Casa del Citarista"
+    },
+    {
+      "id": "house-of-the-lararium-of-achilles",
+      "name": "Casa del Larario di Achille"
+    },
+    {
+      "id": "house-of-the-cryptoporticus",
+      "name": "Casa del criptoportico"
+    },
+    {
+      "id": "house-of-the-ceii",
+      "name": "Casa dei Cei"
+    },
+    {
+      "id": "house-of-the-menander",
+      "name": "Casa del Menandro"
+    },
+    {
+      "id": "house-of-paquius-proculus",
+      "name": "Casa di Paquio Proculo"
+    },
+    {
+      "id": "house-of-the-orchard-or-of-the-floral-cubicles",
+      "name": "Casa dei Cubicoli floreali"
+    },
+    {
+      "id": "garden-of-the-fugitives",
+      "name": "Orto dei Fuggiaschi"
+    },
+    {
+      "id": "house-of-venus-in-the-shell",
+      "name": "Casa della Venere in Conchiglia"
+    },
+    {
+      "id": "praedia-of-giulia-felice",
+      "name": "Praedia di Giulia Felice"
+    },
+    {
+      "id": "large-palaestra",
+      "name": "Palestra Grande"
+    },
+    {
+      "id": "house-of-the-garden-of-hercules",
+      "name": "Casa del Giardino di Ercole"
+    },
+    {
+      "id": "house-of-the-silver-wedding",
+      "name": "Casa delle Nozze d'Argento"
+    },
+    {
+      "id": "house-of-the-small-fountain",
+      "name": "Casa della Fontana Piccola"
+    },
+    {
+      "id": "house-of-pansa",
+      "name": "Casa di Pansa"
+    },
+    {
+      "id": "house-of-sallust",
+      "name": "Casa di Sallustio"
+    },
+    {
+      "id": "house-of-the-golden-cupids",
+      "name": "Casa degli Amorini Dorati"
+    },
+    {
+      "id": "house-of-the-ara-maxima",
+      "name": "Casa dell'Ara Massima"
+    },
+    {
+      "id": "house-of-the-prince-of-naples",
+      "name": "Casa del Principe di Napoli"
+    },
+    {
+      "id": "house-of-meleager",
+      "name": "Casa di Meleagro"
+    },
+    {
+      "id": "house-of-apollo",
+      "name": "Casa di Apollo"
+    },
+    {
+      "id": "house-of-the-surgeon",
+      "name": "Casa del Chirurgo"
+    },
+    {
+      "id": "villa-of-diomede",
+      "name": "Villa di Diomede"
+    },
+    {
+      "id": "suburban-baths",
+      "name": "Terme Suburbane di Pompei"
+    },
+    {
+      "id": "house-of-the-sailor",
+      "name": "Casa del Marinaio"
+    },
+    {
+      "id": "forum-granary",
+      "name": "Granai del Foro"
+    },
+    {
+      "id": "temple-of-jupiter",
+      "name": "Tempio di Giove"
+    },
+    {
+      "id": "forum-baths",
+      "name": "Terme del Foro"
+    },
+    {
+      "id": "temple-of-fortuna-augusta",
+      "name": "Tempio della Fortuna Augusta"
+    },
+    {
+      "id": "macellum",
+      "name": "Macellum"
+    },
+    {
+      "id": "sanctuary-of-the-public-lares",
+      "name": "Santuario dei Lari Pubblici"
+    },
+    {
+      "id": "house-of-sirico",
+      "name": "Casa di Sirico"
+    },
+    {
+      "id": "house-of-the-ancient-hunt",
+      "name": "Casa della Caccia Antica"
+    },
+    {
+      "id": "house-of-championnet",
+      "name": "Casa di Championnet"
+    },
+    {
+      "id": "house-of-the-geometric-mosaics",
+      "name": "Casa dei Mosaici Geometrici"
+    },
+    {
+      "id": "house-of-the-red-walls",
+      "name": "Casa delle Pareti Rosse"
+    },
+    {
+      "id": "triangular-forum",
+      "name": "Foro Triangolare"
+    },
+    {
+      "id": "doric-temple-sanctuary-of-athena-and-hercules",
+      "name": "Tempio Dorico"
+    },
+    {
+      "id": "samnite-palaestra",
+      "name": "Palestra Sannitica"
+    },
+    {
+      "id": "quadriporticus-of-the-theatres-or-gladiators-barracks",
+      "name": "Quadriportico dei Teatri / Caserma dei Gladiatori"
+    },
+    {
+      "id": "temple-of-aesculapius-or-jupiter-meilichios",
+      "name": "Tempio di Asclepio"
+    },
+    {
+      "id": "temple-of-isis",
+      "name": "Tempio di Iside"
+    },
+    {
+      "id": "house-of-julius-polybius",
+      "name": "Casa di Giulio Polibio"
+    },
+    {
+      "id": "pompeii-extra-house-of-the-lovers",
+      "name": "Casa degli Amanti"
+    },
+    {
+      "id": "pompeii-extra-caupona-of-sotericus",
+      "name": "Caupona di Sotericus"
+    },
+    {
+      "id": "pompeii-extra-schola-armaturarum",
+      "name": "Schola Armaturarum"
+    },
+    {
+      "id": "pompeii-extra-house-of-leda-and-the-swan",
+      "name": "Casa di Leda"
+    },
+    {
+      "id": "pompeii-extra-house-of-girali",
+      "name": "Casa dei Girali"
+    },
+    {
+      "id": "pompeii-extra-house-of-centaur",
+      "name": "Casa del Centauro"
+    },
+    {
+      "id": "pompeii-extra-antiquarium",
+      "name": "Antiquarium di Pompei"
+    },
+    {
+      "id": "pompeii-extra-boar-house",
+      "name": "Casa del Cinghiale II"
+    },
+    {
+      "id": "pompeii-extra-thermopolium-of-asellina",
+      "name": "Thermopolium di Asellina"
     }
   ]
 }

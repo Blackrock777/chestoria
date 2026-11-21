@@ -52,7 +52,9 @@ struct PlaceSheet: View {
         let found = model.visitedPlaces.contains { $0.id == p.id }
         ScrollView {
             VStack(alignment: .leading, spacing: 14) {
-                CoverImage(p.cameraImage, anchor: p.cameraAnchor).frame(height: 220).clipShape(.rect(cornerRadius: 24))
+                if story != nil {
+                    CoverImage(p.cameraImage, anchor: p.cameraAnchor).frame(height: 220).clipShape(.rect(cornerRadius: 24))
+                }
                 Text(p.name).font(Typeface.display(30)).foregroundStyle(Palette.piperno)
                 Text(p.street).font(.system(size: 14)).foregroundStyle(Palette.stone).padding(.top, -10)
                 if let story, found {
@@ -71,6 +73,8 @@ struct PlaceSheet: View {
                     if let fc = story.factCheck {
                         Button { showSources = true } label: { VerifiedPill(text: t("reveal.sourced", "\(fc.sources.count)")) }
                     }
+                } else if story == nil {
+                    Label(t("place.comingSoon"), systemImage: "hourglass").font(.system(size: 15, weight: .semibold)).foregroundStyle(Palette.stone)
                 } else {
                     Label(t("place.notYet"), systemImage: "camera").font(.system(size: 15, weight: .semibold)).foregroundStyle(Palette.stone)
                 }

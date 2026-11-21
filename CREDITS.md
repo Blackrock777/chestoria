@@ -25,6 +25,36 @@
 | `castelOvo` | Castel dell’Ovo 01 | Bernard Gagnon | CC BY 4.0 |
 | `castelOvo2` | Castel dell’Ovo | Livioandronico2013 | CC BY-SA 4.0 |
 
+### Pompeii, research pack (16 stories)
+
+| File in app | Subject | Author | Licence |
+|---|---|---|---|
+| `amphitheatre` | [Pompeii amphitheatre interior](https://commons.wikimedia.org/wiki/File:Pompeii_amphitheatre_interior.jpg) | Mosborne01 | CC BY-SA 3.0 |
+| `amphitheatre2` | [Amphitheatre of Pompeii, Exterior, Sunset](https://commons.wikimedia.org/wiki/File:Amphitheatre_of_Pompeii%2C_Exterior%2C_Sunset.jpg) | Marco Ober | CC BY-SA 4.0 |
+| `largeTheatre` | [Grand Théâtre de Pompéi](https://commons.wikimedia.org/wiki/File:Grand_Th%C3%A9%C3%A2tre_de_Pomp%C3%A9i.JPG) | Sylvhem | CC BY-SA 3.0 |
+| `largeTheatre2` | [Pompei, Teatro Grande - panoramio](https://commons.wikimedia.org/wiki/File:Pompei%2C_Teatro_Grande_-_panoramio.jpg) | Carlo Pelagalli | CC BY-SA 3.0 |
+| `odeon` | [Odeón, Pompeya. 02](https://commons.wikimedia.org/wiki/File:Ode%C3%B3n%2C_Pompeya._02.JPG) | Miguel Hermoso Cuesta | CC BY-SA 4.0 |
+| `odeon2` | [Odeon of Pompeii, side entrance](https://commons.wikimedia.org/wiki/File:Odeon_of_Pompeii%2C_side_entrance.jpg) | Juliana Bastos Marques | CC BY-SA 4.0 |
+| `basilicaPompeii` | [Basilica Pompei 7](https://commons.wikimedia.org/wiki/File:Basilica_Pompei_7.JPG) | Mentnafunangann | CC BY-SA 3.0 |
+| `basilicaPompeii2` | [Pompeii Basilica, colonnade at the entrance](https://commons.wikimedia.org/wiki/File:Pompeii_Basilica%2C_colonnade_at_the_entrance.jpg) | Marco Ober | CC BY-SA 4.0 |
+| `mensaPonderaria` | [Mensa Ponderaria Pompeya](https://commons.wikimedia.org/wiki/File:Mensa_Ponderaria_Pompeya.jpg) | Miguel Hermoso Cuesta | CC BY-SA 4.0 |
+| `mensaPonderaria2` | [Pompei BW 2013-05-13 11-55-39](https://commons.wikimedia.org/wiki/File:Pompei_BW_2013-05-13_11-55-39.jpg) | Berthold Werner | CC BY-SA 3.0 |
+| `castellumAquae` | [Castellum Aquae 1](https://commons.wikimedia.org/wiki/File:Castellum_Aquae_1.JPG) | Mentnafunangann | CC BY-SA 3.0 |
+| `castellumAquae2` | [Castellum Aquae, Pompeii, 20230623](https://commons.wikimedia.org/wiki/File:Castellum_Aquae%2C_Pompeii%2C_20230623.jpg) | Argo Navis | CC BY-SA 4.0 |
+| `centralBaths` | [Pompei 17 23 17 111000](https://commons.wikimedia.org/wiki/File:Pompei_17_23_17_111000.jpeg) | Robot8A | CC BY-SA 4.0 |
+| `centralBaths2` | [Pompei 17 23 01 949000](https://commons.wikimedia.org/wiki/File:Pompei_17_23_01_949000.jpeg) | Robot8A | CC BY-SA 4.0 |
+| `stabianBaths` | [Stabianer Thermen Auskleidehaus](https://commons.wikimedia.org/wiki/File:Stabianer_Thermen_Auskleidehaus.jpg) | Rabax63 | CC BY-SA 4.0 |
+| `octaviusQuartio` | [Pompeji Casa Di Octavio Quartio Aedicula Pyramus And Thisbe](https://commons.wikimedia.org/wiki/File:Pompeji_Casa_Di_Octavio_Quartio_Aedicula_Pyramus_And_Thisbe.jpg) | see file page | CC BY-SA 2.5 |
+| `vettii` | [Casa dei Vettii WLM24 (23)](https://commons.wikimedia.org/wiki/File:Casa_dei_Vettii_WLM24_%2823%29.jpg) | MentNFG | CC BY-SA 4.0 |
+| `faun` | [HouseOfTheFaunOverview](https://commons.wikimedia.org/wiki/File:HouseOfTheFaunOverview.jpg) | Porsche997SBS | CC BY-SA 3.0 |
+| `villaMysteries` | [Villa of the Mysteries in Pompeii](https://commons.wikimedia.org/wiki/File:Villa_of_the_Mysteries_in_Pompeii.jpg) | ElfQrin | CC BY-SA 4.0 |
+| `lupanar` | [Pompeya lupanar](https://commons.wikimedia.org/wiki/File:Pompeya_lupanar.jpg) | Fer.filol | Public domain |
+| `casca` | [Casa dei Quadretti Teatrali 1](https://commons.wikimedia.org/wiki/File:Casa_dei_Quadretti_Teatrali_1.JPG) | Mentnafunangann | CC BY-SA 3.0 |
+| `moralist` | [Viejos grafitis en Pompeya, Italia, 2016 05](https://commons.wikimedia.org/wiki/File:Viejos_grafitis_en_Pompeya%2C_Italia%2C_2016_05.jpg) | Benjamín Núñez González | CC BY-SA 4.0 |
+| `bakeryPriscus` | [Baeckerei pompeji kampanien italien](https://commons.wikimedia.org/wiki/File:Baeckerei_pompeji_kampanien_italien.jpg) | see file page | CC BY-SA 3.0 |
+
+Pompeii coordinates come from Wikidata (CC0). Story facts come from the team's Pompeii research pack (official 2015 Park guide, page cited in each story) and are checked against a second source where one exists; texts are original.
+
 ### Naples, story cards v2
 
 | File in app | Subject | Author | Licence |

@@ -232,8 +232,11 @@ nonisolated struct SiteContent: Codable, Identifiable, Hashable, Sendable {
     let places: [Place]
     let demoTrip: DemoTrip?
     let recognition: Recognition?
+    /// false where the site allows only its own authorised audio guides; hides "read aloud".
+    let readAloud: Bool?
 
     var recognitionSettings: Recognition { recognition ?? Recognition() }
+    var allowsReadAloud: Bool { readAloud ?? true }
     /// Centre of all places, used for "Pompeii is 1,240 km away".
     var centre: CLLocation {
         let lat = places.map(\.latitude).reduce(0, +) / Double(max(places.count, 1))

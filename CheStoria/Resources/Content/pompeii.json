@@ -1,4 +1,5 @@
 {
+  "readAloud": false,
   "id": "pompeii",
   "name": "Pompeii Archaeological Park",
   "city": "Pompeii",
@@ -328,6 +329,10 @@
             {
               "title": "Wikipedia: Temple of Jupiter (Pompeii)",
               "url": "https://en.wikipedia.org/wiki/Temple_of_Jupiter_(Pompeii)"
+            },
+            {
+              "title": "Board of Cultural Heritage of Pompeii (2015 guide, p. 84)",
+              "url": "https://pompeiisites.org/wp-content/uploads/A-Guide-to-the-Pompeii-Excavations-2.pdf#page=84"
             }
           ]
         }
@@ -414,6 +419,10 @@
             {
               "title": "World History Encyclopedia: Cave Canem dog mosaic",
               "url": "https://www.worldhistory.org/image/12746/cave-canem-dog-mosaic/"
+            },
+            {
+              "title": "Board of Cultural Heritage of Pompeii (2015 guide, p. 59)",
+              "url": "https://pompeiisites.org/wp-content/uploads/A-Guide-to-the-Pompeii-Excavations-2.pdf#page=59"
             }
           ]
         }
@@ -526,10 +535,2749 @@
             {
               "title": "Wikipedia: Thermopolium",
               "url": "https://en.wikipedia.org/wiki/Thermopolium"
+            },
+            {
+              "title": "Board of Cultural Heritage of Pompeii (2015 guide, p. 23)",
+              "url": "https://pompeiisites.org/wp-content/uploads/A-Guide-to-the-Pompeii-Excavations-2.pdf#page=23"
             }
           ]
         }
       }
+    },
+    {
+      "id": "amphitheatre",
+      "name": "Amphitheatre",
+      "site": "Pompeii",
+      "street": "Piazzale Anfiteatro",
+      "latitude": 40.751264,
+      "longitude": 14.494969,
+      "cameraImage": "amphitheatre",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [
+        "Oval arena",
+        "Tiers of stone seats",
+        "East end of town"
+      ],
+      "showsMapLabel": true,
+      "referenceImages": [
+        "amphitheatre",
+        "amphitheatre2"
+      ],
+      "aiDescriptions": [
+        "an ancient Roman oval amphitheatre with tiers of stone seats around a sandy arena",
+        "the amphitheatre of Pompeii"
+      ],
+      "cameraRecognition": true,
+      "story": {
+        "eyebrow": "Amphitheatre · Pompeii",
+        "question": "Gladiators fought in this arena. Which came first: it, or Rome’s Colosseum?",
+        "answers": [
+          "The Colosseum",
+          "This arena, long before",
+          "Both in the same decade"
+        ],
+        "correctIndex": 1,
+        "answerTitle": "This arena came first.",
+        "subtitle": "Built in the 1st century BC.",
+        "body": "Pompeii’s amphitheatre was built in the first century BC, long before Rome’s Colosseum. It is one of the oldest surviving Roman arenas, and crowds came from the whole region to watch the games.",
+        "source": "Published sources",
+        "theory": null,
+        "dinnerLine": "“Pompeii had a stone arena long before Rome had the Colosseum.”",
+        "lookCloser": null,
+        "sticker": {
+          "id": "older-than-colosseum",
+          "title": "Older than the Colosseum",
+          "collection": "Big crowds",
+          "image": "amphitheatre",
+          "crop": {
+            "x": 0.2,
+            "y": 0.2,
+            "w": 0.6,
+            "h": 0.6
+          },
+          "back": "Pompeii’s amphitheatre dates from the 1st century BC."
+        },
+        "recallChoices": [
+          "Colosseum",
+          "This arena",
+          "Same decade"
+        ],
+        "recallPrompt": "Remember Pompeii’s amphitheatre? Which came first: it or the Colosseum?",
+        "factCheck": {
+          "status": "sourced",
+          "checkedOn": "2026-11-21",
+          "sources": [
+            {
+              "title": "Board of Cultural Heritage of Pompeii (2015 guide, p. 34)",
+              "url": "https://pompeiisites.org/wp-content/uploads/A-Guide-to-the-Pompeii-Excavations-2.pdf#page=34"
+            },
+            {
+              "title": "Wikipedia: Amphitheatre of Pompeii",
+              "url": "https://en.wikipedia.org/wiki/Amphitheatre_of_Pompeii"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "large-theatre",
+      "name": "Large Theatre",
+      "site": "Pompeii",
+      "street": "Via Stabiana",
+      "latitude": 40.748795,
+      "longitude": 14.488416,
+      "cameraImage": "largeTheatre",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [
+        "Curved stone seats",
+        "Built into a slope",
+        "A small theatre next door"
+      ],
+      "showsMapLabel": true,
+      "referenceImages": [
+        "largeTheatre",
+        "largeTheatre2"
+      ],
+      "aiDescriptions": [
+        "a Roman open-air theatre with a semicircle of stone seats built into a slope and a stage building",
+        "the Large Theatre of Pompeii"
+      ],
+      "cameraRecognition": true,
+      "story": {
+        "eyebrow": "Large Theatre · Pompeii",
+        "question": "No great walls hold up these seats. What does?",
+        "answers": [
+          "Brick vaults underneath",
+          "The natural hillside",
+          "A timber frame"
+        ],
+        "correctIndex": 1,
+        "answerTitle": "The hillside itself.",
+        "subtitle": "The builders used the slope.",
+        "body": "The Large Theatre’s curved seating rests on the natural slope of the ground. Instead of raising a huge structure, Pompeii’s builders let the landscape do the work and turned a hillside into the city’s stage.",
+        "source": "Published sources",
+        "theory": null,
+        "dinnerLine": "“Pompeii’s big theatre sits on a hillside, not on walls.”",
+        "lookCloser": null,
+        "sticker": {
+          "id": "seats-on-a-hill",
+          "title": "Seats on a hill",
+          "collection": "Big crowds",
+          "image": "largeTheatre",
+          "crop": {
+            "x": 0.2,
+            "y": 0.2,
+            "w": 0.6,
+            "h": 0.6
+          },
+          "back": "The Large Theatre’s seats rest on the natural slope."
+        },
+        "recallChoices": [
+          "Brick vaults",
+          "Hillside",
+          "Timber"
+        ],
+        "recallPrompt": "Remember Pompeii’s Large Theatre? What holds up its seats?",
+        "factCheck": {
+          "status": "sourced",
+          "checkedOn": "2026-11-21",
+          "sources": [
+            {
+              "title": "Board of Cultural Heritage of Pompeii (2015 guide, p. 113)",
+              "url": "https://pompeiisites.org/wp-content/uploads/A-Guide-to-the-Pompeii-Excavations-2.pdf#page=113"
+            },
+            {
+              "title": "Wikipedia (it): Teatro Grande (Pompei)",
+              "url": "https://it.wikipedia.org/wiki/Teatro_Grande_(Pompei)"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "odeon",
+      "name": "Small Theatre (Odeon)",
+      "site": "Pompeii",
+      "street": "Via Stabiana",
+      "latitude": 40.748854,
+      "longitude": 14.488987,
+      "cameraImage": "odeon",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [
+        "Small half circle of seats",
+        "Enclosed by walls",
+        "Next to the Large Theatre"
+      ],
+      "showsMapLabel": true,
+      "referenceImages": [
+        "odeon",
+        "odeon2"
+      ],
+      "aiDescriptions": [
+        "a small Roman theatre with a compact half circle of stone seats enclosed by walls",
+        "the Small Theatre or Odeon of Pompeii"
+      ],
+      "cameraRecognition": true,
+      "story": {
+        "eyebrow": "Small Theatre (Odeon) · Pompeii",
+        "question": "Pompeii already had a big theatre next door. What made this small one different?",
+        "answers": [
+          "It was only for gladiators",
+          "It had a roof",
+          "It was for women only"
+        ],
+        "correctIndex": 1,
+        "answerTitle": "It had a roof.",
+        "subtitle": "A covered hall for smaller audiences.",
+        "body": "Beside the open-air Large Theatre stood this smaller covered theatre. With a roof over its seats, it gave performances a more intimate setting, a very different atmosphere from the big auditorium next door.",
+        "source": "Published sources",
+        "theory": null,
+        "dinnerLine": "“Pompeii had two theatres side by side: one open to the sky, one with a roof.”",
+        "lookCloser": null,
+        "sticker": {
+          "id": "roofed-theatre",
+          "title": "The roofed theatre",
+          "collection": "Big crowds",
+          "image": "odeon",
+          "crop": {
+            "x": 0.2,
+            "y": 0.2,
+            "w": 0.6,
+            "h": 0.6
+          },
+          "back": "Pompeii’s small theatre was covered, unlike its big neighbour."
+        },
+        "recallChoices": [
+          "Gladiators",
+          "A roof",
+          "Women only"
+        ],
+        "recallPrompt": "Remember Pompeii’s small theatre? What made it different?",
+        "factCheck": {
+          "status": "sourced",
+          "checkedOn": "2026-11-21",
+          "sources": [
+            {
+              "title": "Board of Cultural Heritage of Pompeii (2015 guide, p. 115)",
+              "url": "https://pompeiisites.org/wp-content/uploads/A-Guide-to-the-Pompeii-Excavations-2.pdf#page=115"
+            },
+            {
+              "title": "Wikipedia: Odeon of Pompeii",
+              "url": "https://en.wikipedia.org/wiki/Odeon_of_Pompeii"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "basilica",
+      "name": "Basilica",
+      "site": "Pompeii",
+      "street": "Via Marina",
+      "latitude": 40.7488,
+      "longitude": 14.4845,
+      "cameraImage": "basilicaPompeii",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [
+        "Rows of brick columns",
+        "Beside the Forum",
+        "A raised platform at the end"
+      ],
+      "showsMapLabel": true,
+      "referenceImages": [
+        "basilicaPompeii",
+        "basilicaPompeii2"
+      ],
+      "aiDescriptions": [
+        "a large ruined Roman hall with rows of brick column bases and a raised platform at one end",
+        "the Basilica of Pompeii beside the Forum"
+      ],
+      "cameraRecognition": true,
+      "story": {
+        "eyebrow": "Basilica · Pompeii",
+        "question": "Long before churches used the name, what happened in a basilica?",
+        "answers": [
+          "Christian worship",
+          "Trials and business deals",
+          "Chariot races"
+        ],
+        "correctIndex": 1,
+        "answerTitle": "Trials and business.",
+        "subtitle": "Pompeii’s great public hall.",
+        "body": "Long before the word meant a church, a basilica was a public hall. Beside the Forum, this one hosted legal cases and business deals, the everyday decisions that kept the city running.",
+        "source": "Published sources",
+        "theory": null,
+        "dinnerLine": "“In Pompeii, a basilica was a courthouse, not a church.”",
+        "lookCloser": null,
+        "sticker": {
+          "id": "court-and-commerce",
+          "title": "Court and commerce",
+          "collection": "City life",
+          "image": "basilicaPompeii",
+          "crop": {
+            "x": 0.2,
+            "y": 0.2,
+            "w": 0.6,
+            "h": 0.6
+          },
+          "back": "A Roman basilica hosted trials and business, not worship."
+        },
+        "recallChoices": [
+          "Worship",
+          "Trials",
+          "Races"
+        ],
+        "recallPrompt": "Remember Pompeii’s Basilica? What happened there?",
+        "factCheck": {
+          "status": "sourced",
+          "checkedOn": "2026-11-21",
+          "sources": [
+            {
+              "title": "Board of Cultural Heritage of Pompeii (2015 guide, p. 105)",
+              "url": "https://pompeiisites.org/wp-content/uploads/A-Guide-to-the-Pompeii-Excavations-2.pdf#page=105"
+            },
+            {
+              "title": "Wikipedia (it): Basilica (Pompei)",
+              "url": "https://it.wikipedia.org/wiki/Basilica_(Pompei)"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mensa-ponderaria",
+      "name": "Mensa Ponderaria",
+      "site": "Pompeii",
+      "street": "Via del Foro",
+      "latitude": 40.749369,
+      "longitude": 14.484105,
+      "cameraImage": "mensaPonderaria",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [
+        "Stone table",
+        "Round hollows",
+        "At the edge of the Forum"
+      ],
+      "showsMapLabel": true,
+      "referenceImages": [
+        "mensaPonderaria",
+        "mensaPonderaria2"
+      ],
+      "aiDescriptions": [
+        "an ancient stone table with round hollows of different sizes carved into its top",
+        "the Mensa Ponderaria measuring table at the Forum of Pompeii"
+      ],
+      "cameraRecognition": true,
+      "story": {
+        "eyebrow": "Mensa Ponderaria · Pompeii",
+        "question": "The hollows in this stone table had one job. What was it?",
+        "answers": [
+          "Collecting rain for animals",
+          "Holding offerings to the gods",
+          "Checking that measures were fair"
+        ],
+        "correctIndex": 2,
+        "answerTitle": "Fair measures.",
+        "subtitle": "The city’s official measuring table.",
+        "body": "Shoppers in Pompeii could check they were not being cheated. This public stone table set the standard measures, so merchants and buyers compared goods against an agreed reference: an ancient answer to a modern problem.",
+        "source": "Published sources",
+        "theory": null,
+        "dinnerLine": "“Pompeii had an official stone table to stop shopkeepers cheating.”",
+        "lookCloser": null,
+        "sticker": {
+          "id": "fair-measure",
+          "title": "Fair measure",
+          "collection": "City life",
+          "image": "mensaPonderaria",
+          "crop": {
+            "x": 0.05,
+            "y": 0.3,
+            "w": 0.9,
+            "h": 0.35
+          },
+          "back": "Merchants checked their measures against this public table."
+        },
+        "recallChoices": [
+          "Rainwater",
+          "Offerings",
+          "Fair measures"
+        ],
+        "recallPrompt": "Remember the stone table at the Forum? What were its hollows for?",
+        "factCheck": {
+          "status": "sourced",
+          "checkedOn": "2026-11-21",
+          "sources": [
+            {
+              "title": "Board of Cultural Heritage of Pompeii (2015 guide, p. 85)",
+              "url": "https://pompeiisites.org/wp-content/uploads/A-Guide-to-the-Pompeii-Excavations-2.pdf#page=85"
+            },
+            {
+              "title": "Wikipedia (it): Foro di Pompei",
+              "url": "https://it.wikipedia.org/wiki/Foro_di_Pompei"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "castellum-aquae",
+      "name": "Castellum Aquae",
+      "site": "Pompeii",
+      "street": "Porta Vesuvio",
+      "latitude": 40.753221,
+      "longitude": 14.484167,
+      "cameraImage": "castellumAquae",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [
+        "Brick water building",
+        "By the Vesuvius Gate",
+        "Highest point of town"
+      ],
+      "showsMapLabel": true,
+      "referenceImages": [
+        "castellumAquae",
+        "castellumAquae2"
+      ],
+      "aiDescriptions": [
+        "a small square Roman brick water distribution building beside an ancient city gate",
+        "the Castellum Aquae water tower of Pompeii"
+      ],
+      "cameraRecognition": true,
+      "story": {
+        "eyebrow": "Castellum Aquae · Pompeii",
+        "question": "Pompeii’s aqueduct water arrived at this high point. What happened to it next?",
+        "answers": [
+          "It was stored for fighting fires",
+          "It was sold by the jug",
+          "It was split into pipes across town"
+        ],
+        "correctIndex": 2,
+        "answerTitle": "It was shared out.",
+        "subtitle": "Pipes branched to every district.",
+        "body": "Aqueduct water reached Pompeii at this building on the town’s highest ground. From here it was channelled into a branching network of pipes and carried down to different parts of the city.",
+        "source": "Published sources",
+        "theory": null,
+        "dinnerLine": "“Pompeii’s water was shared out from one building at the top of town.”",
+        "lookCloser": null,
+        "sticker": {
+          "id": "water-for-the-city",
+          "title": "Water for the city",
+          "collection": "City life",
+          "image": "castellumAquae",
+          "crop": {
+            "x": 0.2,
+            "y": 0.2,
+            "w": 0.6,
+            "h": 0.6
+          },
+          "back": "Aqueduct water was split here into pipes across Pompeii."
+        },
+        "recallChoices": [
+          "Fire store",
+          "Sold by jug",
+          "Shared out"
+        ],
+        "recallPrompt": "Remember Pompeii’s water building? What happened to the water there?",
+        "factCheck": {
+          "status": "sourced",
+          "checkedOn": "2026-11-21",
+          "sources": [
+            {
+              "title": "Board of Cultural Heritage of Pompeii (2015 guide, p. 69)",
+              "url": "https://pompeiisites.org/wp-content/uploads/A-Guide-to-the-Pompeii-Excavations-2.pdf#page=69"
+            },
+            {
+              "title": "Wikipedia (it): Castellum Aquae",
+              "url": "https://it.wikipedia.org/wiki/Castellum_Aquae"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "central-baths",
+      "name": "Central Baths",
+      "site": "Pompeii",
+      "street": "Via di Nola",
+      "latitude": 40.751526,
+      "longitude": 14.486693,
+      "cameraImage": "centralBaths",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [
+        "Large open courtyard",
+        "Unfinished walls",
+        "At a busy crossroads"
+      ],
+      "showsMapLabel": true,
+      "referenceImages": [
+        "centralBaths",
+        "centralBaths2"
+      ],
+      "aiDescriptions": [
+        "unfinished Roman bath walls of brick and stone around a large open courtyard",
+        "the Central Baths of Pompeii"
+      ],
+      "cameraRecognition": true,
+      "story": {
+        "eyebrow": "Central Baths · Pompeii",
+        "question": "These huge baths look unfinished. Why?",
+        "answers": [
+          "Bombs hit them in 1943",
+          "The money ran out",
+          "They were still being built in AD 79"
+        ],
+        "correctIndex": 2,
+        "answerTitle": "Still being built.",
+        "subtitle": "The eruption stopped the work.",
+        "body": "The Central Baths were still being built when Vesuvius erupted in AD 79. Their unfinished walls freeze a Roman building site in mid-work, as clearly as any finished monument in the city.",
+        "source": "Published sources",
+        "theory": null,
+        "dinnerLine": "“Pompeii’s newest baths were never finished. Vesuvius got there first.”",
+        "lookCloser": null,
+        "sticker": {
+          "id": "never-finished",
+          "title": "Never finished",
+          "collection": "City life",
+          "image": "centralBaths",
+          "crop": {
+            "x": 0.2,
+            "y": 0.2,
+            "w": 0.6,
+            "h": 0.6
+          },
+          "back": "The Central Baths were a building site when Vesuvius erupted."
+        },
+        "recallChoices": [
+          "Bombs",
+          "No money",
+          "Still building"
+        ],
+        "recallPrompt": "Remember the Central Baths? Why do they look unfinished?",
+        "factCheck": {
+          "status": "sourced",
+          "checkedOn": "2026-11-21",
+          "sources": [
+            {
+              "title": "Board of Cultural Heritage of Pompeii (2015 guide, p. 123)",
+              "url": "https://pompeiisites.org/wp-content/uploads/A-Guide-to-the-Pompeii-Excavations-2.pdf#page=123"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "stabian-baths",
+      "name": "Stabian Baths",
+      "site": "Pompeii",
+      "street": "Via dell’Abbondanza",
+      "latitude": 40.749921,
+      "longitude": 14.487616,
+      "cameraImage": "stabianBaths",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [
+        "Exercise courtyard",
+        "Hot and cold rooms",
+        "Via dell’Abbondanza"
+      ],
+      "showsMapLabel": true,
+      "referenceImages": [
+        "stabianBaths"
+      ],
+      "aiDescriptions": [
+        "a Roman bath complex with an exercise courtyard surrounded by columns and vaulted bathing rooms",
+        "the Stabian Baths of Pompeii"
+      ],
+      "cameraRecognition": false,
+      "story": {
+        "eyebrow": "Stabian Baths · Pompeii",
+        "question": "For Pompeians, the baths were about more than washing. What else?",
+        "answers": [
+          "Voting in elections",
+          "Exercise and meeting friends",
+          "Storing the town’s grain"
+        ],
+        "correctIndex": 1,
+        "answerTitle": "Exercise and company.",
+        "subtitle": "Rooms at different temperatures.",
+        "body": "These baths combined rooms at different temperatures with spaces for exercise and conversation. For Pompeians, the daily bath was also the chance to work out, catch up and meet other people.",
+        "source": "Published sources",
+        "theory": null,
+        "dinnerLine": "“For Romans, the baths were the gym, the spa and the café in one.”",
+        "lookCloser": null,
+        "sticker": {
+          "id": "daily-bath",
+          "title": "The daily bath",
+          "collection": "City life",
+          "image": "stabianBaths",
+          "crop": {
+            "x": 0.2,
+            "y": 0.2,
+            "w": 0.6,
+            "h": 0.6
+          },
+          "back": "Pompeians bathed, exercised and socialised here."
+        },
+        "recallChoices": [
+          "Voting",
+          "Friends",
+          "Grain"
+        ],
+        "recallPrompt": "Remember the Stabian Baths? What were they for, besides washing?",
+        "factCheck": {
+          "status": "sourced",
+          "checkedOn": "2026-11-21",
+          "sources": [
+            {
+              "title": "Board of Cultural Heritage of Pompeii (2015 guide, p. 95)",
+              "url": "https://pompeiisites.org/wp-content/uploads/A-Guide-to-the-Pompeii-Excavations-2.pdf#page=95"
+            },
+            {
+              "title": "Wikipedia: Stabian Baths",
+              "url": "https://en.wikipedia.org/wiki/Stabian_Baths"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "house-octavius-quartio",
+      "name": "House of Octavius Quartio",
+      "site": "Pompeii",
+      "street": "Via dell’Abbondanza",
+      "latitude": 40.7517,
+      "longitude": 14.4924,
+      "cameraImage": "octaviusQuartio",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [
+        "Long garden",
+        "Water channels",
+        "Via dell’Abbondanza"
+      ],
+      "showsMapLabel": true,
+      "referenceImages": [
+        "octaviusQuartio"
+      ],
+      "aiDescriptions": [
+        "a Roman town house garden with a long water channel lined with plants and a pergola",
+        "the garden of the House of Octavius Quartio in Pompeii"
+      ],
+      "cameraRecognition": false,
+      "story": {
+        "eyebrow": "House of Octavius Quartio · Pompeii",
+        "question": "Its owners wanted a country villa in the middle of town. What did they build?",
+        "answers": [
+          "Long garden waterways",
+          "A private vineyard",
+          "A hunting park"
+        ],
+        "correctIndex": 0,
+        "answerTitle": "Long garden waterways.",
+        "subtitle": "A country villa inside the city.",
+        "body": "Long water channels and landscaped gardens gave this town house the feel of a countryside villa. Its owners created a corner of leisure inside Pompeii’s crowded street grid.",
+        "source": "Published sources",
+        "theory": null,
+        "dinnerLine": "“One Pompeii family built a country garden with waterways right in the middle of town.”",
+        "lookCloser": null,
+        "sticker": {
+          "id": "villa-in-the-city",
+          "title": "Villa in the city",
+          "collection": "Private lives",
+          "image": "octaviusQuartio",
+          "crop": {
+            "x": 0.2,
+            "y": 0.2,
+            "w": 0.6,
+            "h": 0.6
+          },
+          "back": "Garden waterways turned a town house into a country villa."
+        },
+        "recallChoices": [
+          "Waterways",
+          "Vineyard",
+          "Hunting park"
+        ],
+        "recallPrompt": "Remember the House of Octavius Quartio? What made it feel like a country villa?",
+        "factCheck": {
+          "status": "sourced",
+          "checkedOn": "2026-11-21",
+          "sources": [
+            {
+              "title": "Board of Cultural Heritage of Pompeii (2015 guide, p. 30)",
+              "url": "https://pompeiisites.org/wp-content/uploads/A-Guide-to-the-Pompeii-Excavations-2.pdf#page=30"
+            },
+            {
+              "title": "Wikipedia: House of Loreius Tiburtinus",
+              "url": "https://en.wikipedia.org/wiki/House_of_Loreius_Tiburtinus"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "house-vettii",
+      "name": "House of the Vettii",
+      "site": "Pompeii",
+      "street": "Vicolo dei Vettii",
+      "latitude": 40.752083,
+      "longitude": 14.484583,
+      "cameraImage": "vettii",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [
+        "Painted walls",
+        "Garden with columns",
+        "Regio VI"
+      ],
+      "showsMapLabel": true,
+      "referenceImages": [
+        "vettii"
+      ],
+      "aiDescriptions": [
+        "a richly painted Roman house with red and black frescoed walls around a garden courtyard with columns",
+        "the House of the Vettii in Pompeii"
+      ],
+      "cameraRecognition": false,
+      "story": {
+        "eyebrow": "House of the Vettii · Pompeii",
+        "question": "The owners of this lavish house had an unusual past. What was it?",
+        "answers": [
+          "They were foreign princes",
+          "They had been slaves",
+          "They were priests of Isis"
+        ],
+        "correctIndex": 1,
+        "answerTitle": "They had been slaves.",
+        "subtitle": "Two freedmen who became rich.",
+        "body": "Two prosperous freedmen, former slaves, owned this richly painted house. Its decoration, including a figure of Priapus as a symbol of prosperity, showed off their success in a city where status could change.",
+        "source": "Published sources",
+        "theory": null,
+        "dinnerLine": "“One of Pompeii’s most lavish houses belonged to two former slaves.”",
+        "lookCloser": null,
+        "sticker": {
+          "id": "freedmens-fortune",
+          "title": "Freedmen’s fortune",
+          "collection": "Private lives",
+          "image": "vettii",
+          "crop": {
+            "x": 0.2,
+            "y": 0.2,
+            "w": 0.6,
+            "h": 0.6
+          },
+          "back": "The Vettii brothers rose from slavery to wealth."
+        },
+        "recallChoices": [
+          "Princes",
+          "Slaves",
+          "Priests"
+        ],
+        "recallPrompt": "Remember the House of the Vettii? What was unusual about its owners?",
+        "factCheck": {
+          "status": "sourced",
+          "checkedOn": "2026-11-21",
+          "sources": [
+            {
+              "title": "Board of Cultural Heritage of Pompeii (2015 guide, p. 66)",
+              "url": "https://pompeiisites.org/wp-content/uploads/A-Guide-to-the-Pompeii-Excavations-2.pdf#page=66"
+            },
+            {
+              "title": "Wikipedia: House of the Vettii",
+              "url": "https://en.wikipedia.org/wiki/House_of_the_Vettii"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "house-faun",
+      "name": "House of the Faun",
+      "site": "Pompeii",
+      "street": "Via della Fortuna",
+      "latitude": 40.75125,
+      "longitude": 14.484583,
+      "cameraImage": "faun",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [
+        "Dancing faun statue",
+        "Huge house",
+        "A mosaic welcome at the door"
+      ],
+      "showsMapLabel": true,
+      "referenceImages": [
+        "faun"
+      ],
+      "aiDescriptions": [
+        "a large Roman house atrium with a shallow pool and a small bronze statue of a dancing faun",
+        "the House of the Faun in Pompeii"
+      ],
+      "cameraRecognition": false,
+      "story": {
+        "eyebrow": "House of the Faun · Pompeii",
+        "question": "A giant floor mosaic in this house showed a battle. Whose?",
+        "answers": [
+          "Julius Caesar’s",
+          "Hannibal’s",
+          "Alexander the Great’s"
+        ],
+        "correctIndex": 2,
+        "answerTitle": "Alexander the Great.",
+        "subtitle": "The famous Alexander Mosaic.",
+        "body": "This vast house once held the famous Alexander Mosaic, along with the small dancing faun that gives it its name. Its art and size show how rich Pompeians used their homes to impress guests.",
+        "source": "Published sources",
+        "theory": null,
+        "dinnerLine": "“The famous Alexander Mosaic was once the floor of a Pompeii house.”",
+        "lookCloser": null,
+        "sticker": {
+          "id": "dancing-faun",
+          "title": "The dancing faun",
+          "collection": "Private lives",
+          "image": "faun",
+          "crop": {
+            "x": 0.4,
+            "y": 0.35,
+            "w": 0.25,
+            "h": 0.35
+          },
+          "back": "This house held the Alexander Mosaic and a dancing faun."
+        },
+        "recallChoices": [
+          "Caesar",
+          "Hannibal",
+          "Alexander"
+        ],
+        "recallPrompt": "Remember the House of the Faun? Whose battle did its great mosaic show?",
+        "factCheck": {
+          "status": "sourced",
+          "checkedOn": "2026-11-21",
+          "sources": [
+            {
+              "title": "Board of Cultural Heritage of Pompeii (2015 guide, p. 56)",
+              "url": "https://pompeiisites.org/wp-content/uploads/A-Guide-to-the-Pompeii-Excavations-2.pdf#page=56"
+            },
+            {
+              "title": "Wikipedia: House of the Faun",
+              "url": "https://en.wikipedia.org/wiki/House_of_the_Faun"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "villa-mysteries",
+      "name": "Villa of the Mysteries",
+      "site": "Pompeii",
+      "street": "Via Villa dei Misteri",
+      "latitude": 40.753694,
+      "longitude": 14.477444,
+      "cameraImage": "villaMysteries",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [
+        "Outside the city walls",
+        "A red painted room",
+        "Large country villa"
+      ],
+      "showsMapLabel": true,
+      "referenceImages": [
+        "villaMysteries"
+      ],
+      "aiDescriptions": [
+        "a Roman room painted with a continuous frieze of life-size figures on a deep red background",
+        "the Villa of the Mysteries outside Pompeii"
+      ],
+      "cameraRecognition": false,
+      "story": {
+        "eyebrow": "Villa of the Mysteries · Pompeii",
+        "question": "Life-size figures on red walls take part in a secret rite. For which god?",
+        "answers": [
+          "Apollo",
+          "Venus",
+          "Dionysus"
+        ],
+        "correctIndex": 2,
+        "answerTitle": "Dionysus.",
+        "subtitle": "What the rite means is still debated.",
+        "body": "One continuous painted frieze wraps around a room here, showing figures in a ritual linked to Dionysus. Experts still debate exactly what it shows, which keeps this villa one of Pompeii’s great puzzles.",
+        "source": "Published sources",
+        "theory": {
+          "label": "THEORY",
+          "lead": "Some say",
+          "text": "it shows a young woman’s initiation before marriage."
+        },
+        "dinnerLine": "“Nobody is sure what the Villa of the Mysteries frescoes really show.”",
+        "lookCloser": null,
+        "sticker": {
+          "id": "secret-rite",
+          "title": "The secret rite",
+          "collection": "Mysteries",
+          "image": "villaMysteries",
+          "crop": {
+            "x": 0.2,
+            "y": 0.2,
+            "w": 0.6,
+            "h": 0.6
+          },
+          "back": "A painted frieze of a rite linked to Dionysus."
+        },
+        "recallChoices": [
+          "Apollo",
+          "Venus",
+          "Dionysus"
+        ],
+        "recallPrompt": "Remember the Villa of the Mysteries? Which god is its rite linked to?",
+        "factCheck": {
+          "status": "sourced",
+          "checkedOn": "2026-11-21",
+          "sources": [
+            {
+              "title": "Board of Cultural Heritage of Pompeii (2015 guide, p. 77)",
+              "url": "https://pompeiisites.org/wp-content/uploads/A-Guide-to-the-Pompeii-Excavations-2.pdf#page=77"
+            },
+            {
+              "title": "Wikipedia: Villa of the Mysteries",
+              "url": "https://en.wikipedia.org/wiki/Villa_of_the_Mysteries"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "lupanar",
+      "name": "Lupanar",
+      "site": "Pompeii",
+      "street": "Vicolo del Lupanare",
+      "latitude": 40.75025,
+      "longitude": 14.486778,
+      "cameraImage": "lupanar",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [
+        "Small rooms",
+        "Writing on the walls",
+        "A corner of two lanes"
+      ],
+      "showsMapLabel": true,
+      "referenceImages": [
+        "lupanar"
+      ],
+      "aiDescriptions": [
+        "a narrow Roman building on a corner of two stone streets with small rooms inside",
+        "the Lupanar of Pompeii"
+      ],
+      "cameraRecognition": false,
+      "story": {
+        "eyebrow": "Lupanar · Pompeii",
+        "question": "Tiny rooms and walls full of writing. What was this building?",
+        "answers": [
+          "An inn for travellers",
+          "A school",
+          "A brothel"
+        ],
+        "correctIndex": 2,
+        "answerTitle": "A brothel.",
+        "subtitle": "Its walls still carry inscriptions.",
+        "body": "Small rooms and surviving wall inscriptions identify this building as a brothel. It is difficult evidence, often linked to slavery, about the lives of people that history rarely remembers.",
+        "source": "Published sources",
+        "theory": null,
+        "dinnerLine": "“Pompeii’s brothel walls still carry messages written by people almost 2,000 years ago.”",
+        "lookCloser": null,
+        "sticker": {
+          "id": "walls-that-talk",
+          "title": "Walls that talk",
+          "collection": "Everyday Romans",
+          "image": "lupanar",
+          "crop": {
+            "x": 0.1,
+            "y": 0.1,
+            "w": 0.8,
+            "h": 0.5
+          },
+          "back": "Inscriptions survive on the walls of Pompeii’s brothel."
+        },
+        "recallChoices": [
+          "Inn",
+          "School",
+          "Brothel"
+        ],
+        "recallPrompt": "Remember the building with tiny rooms and writing on the walls? What was it?",
+        "factCheck": {
+          "status": "sourced",
+          "checkedOn": "2026-11-21",
+          "sources": [
+            {
+              "title": "Board of Cultural Heritage of Pompeii (2015 guide, p. 97)",
+              "url": "https://pompeiisites.org/wp-content/uploads/A-Guide-to-the-Pompeii-Excavations-2.pdf#page=97"
+            },
+            {
+              "title": "Wikipedia: Lupanar",
+              "url": "https://en.wikipedia.org/wiki/Lupanar"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "house-casca",
+      "name": "House of Casca Longus",
+      "site": "Pompeii",
+      "street": "Via dell’Abbondanza",
+      "latitude": 40.750208,
+      "longitude": 14.488993,
+      "cameraImage": "casca",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [
+        "Inscribed marble table",
+        "Painted theatre scenes",
+        "Via dell’Abbondanza"
+      ],
+      "showsMapLabel": true,
+      "referenceImages": [
+        "casca"
+      ],
+      "aiDescriptions": [
+        "a Roman house atrium with a marble table on carved legs and small painted theatre scenes",
+        "the House of Casca Longus in Pompeii"
+      ],
+      "cameraRecognition": false,
+      "story": {
+        "eyebrow": "House of Casca Longus · Pompeii",
+        "question": "A marble table here carries a name linked to a famous murder. Which one?",
+        "answers": [
+          "Julius Caesar’s assassination",
+          "The murder of Nero’s mother",
+          "Romulus killing Remus"
+        ],
+        "correctIndex": 0,
+        "answerTitle": "Caesar’s assassination.",
+        "subtitle": "The table names Casca Longus.",
+        "body": "A marble table found here bears the name of Publius Servilius Casca Longus, linked to one of the men who killed Julius Caesar in 44 BC. Roman politics, carved into the furniture of a Pompeian home.",
+        "source": "Published sources",
+        "theory": null,
+        "dinnerLine": "“A table in Pompeii carries a name linked to Caesar’s assassins.”",
+        "lookCloser": null,
+        "sticker": {
+          "id": "caesars-shadow",
+          "title": "Caesar’s shadow",
+          "collection": "Private lives",
+          "image": "casca",
+          "crop": {
+            "x": 0.2,
+            "y": 0.2,
+            "w": 0.6,
+            "h": 0.6
+          },
+          "back": "A table here names Casca Longus, linked to Caesar’s killers."
+        },
+        "recallChoices": [
+          "Caesar",
+          "Nero’s mother",
+          "Remus"
+        ],
+        "recallPrompt": "Remember the marble table in Pompeii? Which murder is its name linked to?",
+        "factCheck": {
+          "status": "sourced",
+          "checkedOn": "2026-11-21",
+          "sources": [
+            {
+              "title": "Board of Cultural Heritage of Pompeii (2015 guide, p. 15)",
+              "url": "https://pompeiisites.org/wp-content/uploads/A-Guide-to-the-Pompeii-Excavations-2.pdf#page=15"
+            },
+            {
+              "title": "Wikipedia (it): Casa dei Quadretti Teatrali",
+              "url": "https://it.wikipedia.org/wiki/Casa_dei_Quadretti_Teatrali"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "house-moralist",
+      "name": "House of the Moralist",
+      "site": "Pompeii",
+      "street": "Via dell’Abbondanza",
+      "latitude": 40.751944,
+      "longitude": 14.491944,
+      "cameraImage": "moralist",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [
+        "Painted sayings",
+        "Dining room",
+        "Regio III"
+      ],
+      "showsMapLabel": true,
+      "referenceImages": [
+        "moralist"
+      ],
+      "aiDescriptions": [
+        "a Roman dining room with painted walls and short lines of Latin writing",
+        "the House of the Moralist in Pompeii"
+      ],
+      "cameraRecognition": false,
+      "story": {
+        "eyebrow": "House of the Moralist · Pompeii",
+        "question": "Painted lines in this dining room give guests advice. About what?",
+        "answers": [
+          "How to pay for the meal",
+          "When to leave before dark",
+          "How to behave at dinner"
+        ],
+        "correctIndex": 2,
+        "answerTitle": "Good table manners.",
+        "subtitle": "House rules, painted on the walls.",
+        "body": "Painted sayings around this home’s dining area told guests how to behave at banquets. More than decoration, they give an amusing glimpse of what Romans expected from each other at a shared meal.",
+        "source": "Published sources",
+        "theory": null,
+        "dinnerLine": "“A Pompeii dining room has table-manner rules painted on the wall.”",
+        "lookCloser": null,
+        "sticker": {
+          "id": "mind-your-manners",
+          "title": "Mind your manners",
+          "collection": "Everyday Romans",
+          "image": "moralist",
+          "crop": {
+            "x": 0.2,
+            "y": 0.2,
+            "w": 0.6,
+            "h": 0.6
+          },
+          "back": "Painted rules told Roman guests how to behave at dinner."
+        },
+        "recallChoices": [
+          "Paying",
+          "Leaving early",
+          "Manners"
+        ],
+        "recallPrompt": "Remember the House of the Moralist? What advice was painted in its dining room?",
+        "factCheck": {
+          "status": "sourced",
+          "checkedOn": "2026-11-21",
+          "sources": [
+            {
+              "title": "Board of Cultural Heritage of Pompeii (2015 guide, p. 43)",
+              "url": "https://pompeiisites.org/wp-content/uploads/A-Guide-to-the-Pompeii-Excavations-2.pdf#page=43"
+            },
+            {
+              "title": "Wikipedia (it): Casa del Moralista",
+              "url": "https://it.wikipedia.org/wiki/Casa_del_Moralista"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "bakery-popidius-priscus",
+      "name": "Bakery of Popidius Priscus",
+      "site": "Pompeii",
+      "street": "Vicolo Storto",
+      "latitude": 40.750881,
+      "longitude": 14.485712,
+      "cameraImage": "bakeryPriscus",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [
+        "Hourglass-shaped stones",
+        "A brick oven",
+        "Regio VII"
+      ],
+      "showsMapLabel": true,
+      "referenceImages": [
+        "bakeryPriscus"
+      ],
+      "aiDescriptions": [
+        "a Roman bakery with large hourglass-shaped stone mills and a domed brick oven",
+        "the bakery of Popidius Priscus in Pompeii"
+      ],
+      "cameraRecognition": false,
+      "story": {
+        "eyebrow": "Bakery of Popidius Priscus · Pompeii",
+        "question": "The big hourglass-shaped stones here did one job. What was it?",
+        "answers": [
+          "Pressing olives for oil",
+          "Measuring time",
+          "Grinding grain into flour"
+        ],
+        "correctIndex": 2,
+        "answerTitle": "Grinding grain.",
+        "subtitle": "Mills and oven under one roof.",
+        "body": "This bakery brought grinding and baking together. Its stone mills turned grain into flour and its oven baked the bread: a Roman production line that fed the neighbourhood.",
+        "source": "Published sources",
+        "theory": null,
+        "dinnerLine": "“Pompeii’s bakers ground their own flour in big stone mills.”",
+        "lookCloser": null,
+        "sticker": {
+          "id": "daily-bread",
+          "title": "Daily bread",
+          "collection": "Everyday Romans",
+          "image": "bakeryPriscus",
+          "crop": {
+            "x": 0.45,
+            "y": 0.4,
+            "w": 0.5,
+            "h": 0.5
+          },
+          "back": "Stone mills and an oven: a Roman bakery in one room."
+        },
+        "recallChoices": [
+          "Olive oil",
+          "Time",
+          "Flour"
+        ],
+        "recallPrompt": "Remember the bakery’s hourglass stones? What did they do?",
+        "factCheck": {
+          "status": "sourced",
+          "checkedOn": "2026-11-21",
+          "sources": [
+            {
+              "title": "Board of Cultural Heritage of Pompeii (2015 guide, p. 98)",
+              "url": "https://pompeiisites.org/wp-content/uploads/A-Guide-to-the-Pompeii-Excavations-2.pdf#page=98"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "house-of-the-citharist",
+      "name": "House of the Citharist",
+      "site": "Pompeii",
+      "street": "Regio I",
+      "latitude": 40.749891,
+      "longitude": 14.488763,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        220,
+        194
+      ]
+    },
+    {
+      "id": "house-of-the-lararium-of-achilles",
+      "name": "House of the Lararium of Achilles",
+      "site": "Pompeii",
+      "street": "Regio I",
+      "latitude": 40.750362,
+      "longitude": 14.489286,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        232,
+        159
+      ]
+    },
+    {
+      "id": "house-of-the-cryptoporticus",
+      "name": "House of the Cryptoporticus",
+      "site": "Pompeii",
+      "street": "Regio I",
+      "latitude": 40.750131,
+      "longitude": 14.489672,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        241,
+        176
+      ]
+    },
+    {
+      "id": "house-of-the-ceii",
+      "name": "House of the Ceii",
+      "site": "Pompeii",
+      "street": "Regio I",
+      "latitude": 40.750032,
+      "longitude": 14.489398,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        235,
+        183
+      ]
+    },
+    {
+      "id": "house-of-the-menander",
+      "name": "House of the Menander",
+      "site": "Pompeii",
+      "street": "Regio I",
+      "latitude": 40.749722,
+      "longitude": 14.49,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        248,
+        206
+      ]
+    },
+    {
+      "id": "house-of-paquius-proculus",
+      "name": "House of Paquius Proculus",
+      "site": "Pompeii",
+      "street": "Regio I",
+      "latitude": 40.750424,
+      "longitude": 14.489664,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        241,
+        154
+      ]
+    },
+    {
+      "id": "house-of-the-orchard-or-of-the-floral-cubicles",
+      "name": "House of the Orchard or of the Floral Cubicles",
+      "site": "Pompeii",
+      "street": "Regio I",
+      "latitude": 40.750896,
+      "longitude": 14.490668,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        263,
+        119
+      ]
+    },
+    {
+      "id": "garden-of-the-fugitives",
+      "name": "Garden of the Fugitives",
+      "site": "Pompeii",
+      "street": "Regio I",
+      "latitude": 40.749678,
+      "longitude": 14.492318,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        300,
+        210
+      ]
+    },
+    {
+      "id": "house-of-venus-in-the-shell",
+      "name": "House of Venus in the shell",
+      "site": "Pompeii",
+      "street": "Regio II",
+      "latitude": 40.751957,
+      "longitude": 14.492723,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        310,
+        40
+      ]
+    },
+    {
+      "id": "praedia-of-giulia-felice",
+      "name": "Praedia of Giulia Felice",
+      "site": "Pompeii",
+      "street": "Regio II",
+      "latitude": 40.7519,
+      "longitude": 14.4933,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        323,
+        45
+      ]
+    },
+    {
+      "id": "large-palaestra",
+      "name": "Large Palaestra",
+      "site": "Pompeii",
+      "street": "Regio II",
+      "latitude": 40.75081,
+      "longitude": 14.49395,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        337,
+        126
+      ]
+    },
+    {
+      "id": "house-of-the-garden-of-hercules",
+      "name": "House of the Garden of Hercules",
+      "site": "Pompeii",
+      "street": "Regio II",
+      "latitude": 40.750223,
+      "longitude": 14.493059,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        317,
+        169
+      ]
+    },
+    {
+      "id": "house-of-the-silver-wedding",
+      "name": "House of the Silver Wedding",
+      "site": "Pompeii",
+      "street": "Regio V",
+      "latitude": 40.752513,
+      "longitude": 14.486548,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        170,
+        0
+      ]
+    },
+    {
+      "id": "house-of-the-small-fountain",
+      "name": "House of the Small Fountain",
+      "site": "Pompeii",
+      "street": "Regio VI",
+      "latitude": 40.751429,
+      "longitude": 14.483645,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        105,
+        80
+      ]
+    },
+    {
+      "id": "house-of-pansa",
+      "name": "House of Pansa",
+      "site": "Pompeii",
+      "street": "Regio VI",
+      "latitude": 40.750562,
+      "longitude": 14.483517,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        102,
+        144
+      ]
+    },
+    {
+      "id": "house-of-sallust",
+      "name": "House of Sallust",
+      "site": "Pompeii",
+      "street": "Regio VI",
+      "latitude": 40.7512,
+      "longitude": 14.4826,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        81,
+        97
+      ]
+    },
+    {
+      "id": "house-of-the-golden-cupids",
+      "name": "House of the Golden Cupids",
+      "site": "Pompeii",
+      "street": "Regio VI",
+      "latitude": 40.752278,
+      "longitude": 14.48503,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        136,
+        16
+      ]
+    },
+    {
+      "id": "house-of-the-ara-maxima",
+      "name": "House of the Ara Maxima",
+      "site": "Pompeii",
+      "street": "Regio VI",
+      "latitude": 40.752692,
+      "longitude": 14.484786,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        131,
+        0
+      ]
+    },
+    {
+      "id": "house-of-the-prince-of-naples",
+      "name": "House of the Prince of Naples",
+      "site": "Pompeii",
+      "street": "Regio VI",
+      "latitude": 40.752626,
+      "longitude": 14.484352,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        121,
+        0
+      ]
+    },
+    {
+      "id": "house-of-meleager",
+      "name": "House of Meleager",
+      "site": "Pompeii",
+      "street": "Regio VI",
+      "latitude": 40.752358,
+      "longitude": 14.483373,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        99,
+        11
+      ]
+    },
+    {
+      "id": "house-of-apollo",
+      "name": "House of Apollo",
+      "site": "Pompeii",
+      "street": "Regio VI",
+      "latitude": 40.752392,
+      "longitude": 14.482819,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        86,
+        8
+      ]
+    },
+    {
+      "id": "house-of-the-surgeon",
+      "name": "House of the Surgeon",
+      "site": "Pompeii",
+      "street": "Regio VI",
+      "latitude": 40.7516,
+      "longitude": 14.4819,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        65,
+        67
+      ]
+    },
+    {
+      "id": "villa-of-diomede",
+      "name": "Villa of Diomede",
+      "site": "Pompeii",
+      "street": "Regio VI",
+      "latitude": 40.752386,
+      "longitude": 14.478707,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        0,
+        8
+      ]
+    },
+    {
+      "id": "suburban-baths",
+      "name": "Suburban Baths",
+      "site": "Pompeii",
+      "street": "Regio VII",
+      "latitude": 40.7486,
+      "longitude": 14.4828,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        86,
+        290
+      ]
+    },
+    {
+      "id": "house-of-the-sailor",
+      "name": "House of the Sailor",
+      "site": "Pompeii",
+      "street": "Regio VII",
+      "latitude": 40.74911,
+      "longitude": 14.483618,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        104,
+        252
+      ]
+    },
+    {
+      "id": "forum-granary",
+      "name": "Forum Granary",
+      "site": "Pompeii",
+      "street": "Regio VII",
+      "latitude": 40.749808,
+      "longitude": 14.48413,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        116,
+        200
+      ]
+    },
+    {
+      "id": "temple-of-jupiter",
+      "name": "Temple of Jupiter",
+      "site": "Pompeii",
+      "street": "Regio VII",
+      "latitude": 40.7499,
+      "longitude": 14.4845,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        124,
+        193
+      ]
+    },
+    {
+      "id": "forum-baths",
+      "name": "Forum Baths",
+      "site": "Pompeii",
+      "street": "Regio VII",
+      "latitude": 40.7504,
+      "longitude": 14.4841,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        115,
+        156
+      ]
+    },
+    {
+      "id": "temple-of-fortuna-augusta",
+      "name": "Temple of Fortuna Augusta",
+      "site": "Pompeii",
+      "street": "Regio VII",
+      "latitude": 40.750682,
+      "longitude": 14.484351,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        121,
+        135
+      ]
+    },
+    {
+      "id": "macellum",
+      "name": "Macellum",
+      "site": "Pompeii",
+      "street": "Regio VII",
+      "latitude": 40.750057,
+      "longitude": 14.485047,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        136,
+        181
+      ]
+    },
+    {
+      "id": "sanctuary-of-the-public-lares",
+      "name": "Sanctuary of the Public Lares",
+      "site": "Pompeii",
+      "street": "Regio VII",
+      "latitude": 40.749762,
+      "longitude": 14.485004,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        135,
+        203
+      ]
+    },
+    {
+      "id": "house-of-sirico",
+      "name": "House of Sirico",
+      "site": "Pompeii",
+      "street": "Regio VII",
+      "latitude": 40.75054,
+      "longitude": 14.48735,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        188,
+        146
+      ]
+    },
+    {
+      "id": "house-of-the-ancient-hunt",
+      "name": "House of the Ancient Hunt",
+      "site": "Pompeii",
+      "street": "Regio VII",
+      "latitude": 40.75111,
+      "longitude": 14.485394,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        144,
+        103
+      ]
+    },
+    {
+      "id": "house-of-championnet",
+      "name": "House of Championnet",
+      "site": "Pompeii",
+      "street": "Regio VIII",
+      "latitude": 40.748564,
+      "longitude": 14.484548,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        125,
+        292
+      ]
+    },
+    {
+      "id": "house-of-the-geometric-mosaics",
+      "name": "House of the Geometric Mosaics",
+      "site": "Pompeii",
+      "street": "Regio VIII",
+      "latitude": 40.748336,
+      "longitude": 14.485497,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        147,
+        309
+      ]
+    },
+    {
+      "id": "house-of-the-red-walls",
+      "name": "House of the red walls",
+      "site": "Pompeii",
+      "street": "Regio VIII",
+      "latitude": 40.749044,
+      "longitude": 14.487144,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        184,
+        257
+      ]
+    },
+    {
+      "id": "triangular-forum",
+      "name": "Triangular Forum",
+      "site": "Pompeii",
+      "street": "Regio VIII",
+      "latitude": 40.748915,
+      "longitude": 14.487699,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        196,
+        266
+      ]
+    },
+    {
+      "id": "doric-temple-sanctuary-of-athena-and-hercules",
+      "name": "Doric Temple - Sanctuary of Athena and Hercules",
+      "site": "Pompeii",
+      "street": "Regio VIII",
+      "latitude": 40.748279,
+      "longitude": 14.488005,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        203,
+        314
+      ]
+    },
+    {
+      "id": "samnite-palaestra",
+      "name": "Samnite Palaestra",
+      "site": "Pompeii",
+      "street": "Regio VIII",
+      "latitude": 40.749044,
+      "longitude": 14.487956,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        202,
+        257
+      ]
+    },
+    {
+      "id": "quadriporticus-of-the-theatres-or-gladiators-barracks",
+      "name": "Quadriporticus of the theatres or Gladiators Barracks",
+      "site": "Pompeii",
+      "street": "Regio VIII",
+      "latitude": 40.74831,
+      "longitude": 14.48886,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        222,
+        311
+      ]
+    },
+    {
+      "id": "temple-of-aesculapius-or-jupiter-meilichios",
+      "name": "Temple of Aesculapius or Jupiter Meilichios",
+      "site": "Pompeii",
+      "street": "Regio VIII",
+      "latitude": 40.749309,
+      "longitude": 14.488618,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        217,
+        237
+      ]
+    },
+    {
+      "id": "temple-of-isis",
+      "name": "Temple of Isis",
+      "site": "Pompeii",
+      "street": "Regio VIII",
+      "latitude": 40.7492,
+      "longitude": 14.4883,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        210,
+        245
+      ]
+    },
+    {
+      "id": "house-of-julius-polybius",
+      "name": "House of Julius Polybius",
+      "site": "Pompeii",
+      "street": "Regio IX",
+      "latitude": 40.751135,
+      "longitude": 14.490246,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        254,
+        101
+      ]
+    },
+    {
+      "id": "pompeii-extra-house-of-the-lovers",
+      "name": "House of the Lovers",
+      "site": "Pompeii",
+      "street": "Regio I",
+      "latitude": 40.749448,
+      "longitude": 14.489869,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        245,
+        227
+      ]
+    },
+    {
+      "id": "pompeii-extra-caupona-of-sotericus",
+      "name": "Caupona of Sotericus",
+      "site": "Pompeii",
+      "street": "Regio I",
+      "latitude": 40.75132,
+      "longitude": 14.49126,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        277,
+        88
+      ]
+    },
+    {
+      "id": "pompeii-extra-schola-armaturarum",
+      "name": "Schola Armaturarum",
+      "site": "Pompeii",
+      "street": "Regio III",
+      "latitude": 40.751667,
+      "longitude": 14.491667,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        286,
+        62
+      ]
+    },
+    {
+      "id": "pompeii-extra-house-of-leda-and-the-swan",
+      "name": "House of Leda and the Swan",
+      "site": "Pompeii",
+      "street": "Regio V",
+      "latitude": 40.752942,
+      "longitude": 14.484734,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        129,
+        0
+      ]
+    },
+    {
+      "id": "pompeii-extra-house-of-girali",
+      "name": "House of Girali",
+      "site": "Pompeii",
+      "street": "Regio V",
+      "latitude": 40.752536,
+      "longitude": 14.485887,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        155,
+        0
+      ]
+    },
+    {
+      "id": "pompeii-extra-house-of-centaur",
+      "name": "House of Centaur",
+      "site": "Pompeii",
+      "street": "Regio VI",
+      "latitude": 40.75221,
+      "longitude": 14.483505,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        102,
+        22
+      ]
+    },
+    {
+      "id": "pompeii-extra-antiquarium",
+      "name": "Antiquarium",
+      "site": "Pompeii",
+      "street": "Regio VIII",
+      "latitude": 40.74854,
+      "longitude": 14.48329,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        97,
+        294
+      ]
+    },
+    {
+      "id": "pompeii-extra-boar-house",
+      "name": "Boar house",
+      "site": "Pompeii",
+      "street": "Regio VIII",
+      "latitude": 40.748369,
+      "longitude": 14.486219,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        163,
+        307
+      ]
+    },
+    {
+      "id": "pompeii-extra-thermopolium-of-asellina",
+      "name": "Thermopolium of Asellina",
+      "site": "Pompeii",
+      "street": "Regio IX",
+      "latitude": 40.750632,
+      "longitude": 14.489512,
+      "cameraImage": "forum",
+      "cameraAnchor": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "focus": {
+        "x": 0.2,
+        "y": 0.2,
+        "w": 0.6,
+        "h": 0.6
+      },
+      "clues": [],
+      "showsMapLabel": true,
+      "referenceImages": [],
+      "story": null,
+      "mapPoint": [
+        237,
+        139
+      ]
     }
   ],
   "demoTrip": {

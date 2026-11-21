@@ -137,6 +137,555 @@
           "hint": "Pista: mira debajo de los dioses pintados"
         }
       }
+    },
+    {
+      "id": "amphitheatre",
+      "name": "Anfiteatro",
+      "clues": [
+        "Arena ovalada",
+        "Gradas de piedra",
+        "En el extremo este"
+      ],
+      "story": {
+        "eyebrow": "Anfiteatro · Pompeya",
+        "question": "En esta arena luchaban gladiadores. ¿Qué llegó antes: ella o el Coliseo?",
+        "answers": [
+          "El Coliseo",
+          "Esta arena, mucho antes",
+          "Ambos en la misma década"
+        ],
+        "answerTitle": "Primero esta arena.",
+        "subtitle": "Construida en el siglo I a. C.",
+        "body": "El anfiteatro de Pompeya se construyó en el siglo I a. C., mucho antes que el Coliseo. Es una de las arenas romanas más antiguas que se conservan, y el público llegaba de toda la región para ver los juegos.",
+        "source": "Fuentes publicadas",
+        "dinnerLine": "«Pompeya tenía una arena de piedra mucho antes de que Roma tuviera el Coliseo.»",
+        "sticker": {
+          "title": "Más antiguo que el Coliseo",
+          "collection": "Grandes multitudes",
+          "back": "El anfiteatro de Pompeya data del siglo I a. C."
+        },
+        "recallChoices": [
+          "Coliseo",
+          "Esta arena",
+          "Misma década"
+        ],
+        "recallPrompt": "¿Recuerdas el anfiteatro de Pompeya? ¿Qué llegó antes: él o el Coliseo?"
+      }
+    },
+    {
+      "id": "large-theatre",
+      "name": "Teatro Grande",
+      "clues": [
+        "Gradas curvas",
+        "Construido en una ladera",
+        "Un teatro pequeño al lado"
+      ],
+      "story": {
+        "eyebrow": "Teatro Grande · Pompeya",
+        "question": "Ningún gran muro sostiene estas gradas. ¿Qué las sostiene?",
+        "answers": [
+          "Bóvedas de ladrillo",
+          "La ladera natural",
+          "Un armazón de madera"
+        ],
+        "answerTitle": "La propia ladera.",
+        "subtitle": "Los constructores aprovecharon la ladera.",
+        "body": "Las gradas curvas del Teatro Grande descansan sobre la pendiente natural del terreno. En lugar de levantar una enorme estructura, los constructores dejaron trabajar al paisaje y convirtieron una colina en el escenario de la ciudad.",
+        "source": "Fuentes publicadas",
+        "dinnerLine": "«El gran teatro de Pompeya se apoya en una colina, no en muros.»",
+        "sticker": {
+          "title": "Gradas en la colina",
+          "collection": "Grandes multitudes",
+          "back": "Las gradas del Teatro Grande descansan en la ladera natural."
+        },
+        "recallChoices": [
+          "Bóvedas",
+          "Ladera",
+          "Madera"
+        ],
+        "recallPrompt": "¿Recuerdas el Teatro Grande de Pompeya? ¿Qué sostiene sus gradas?"
+      }
+    },
+    {
+      "id": "odeon",
+      "name": "Teatro Pequeño (Odeón)",
+      "clues": [
+        "Pequeño semicírculo de asientos",
+        "Cerrado por muros",
+        "Junto al Teatro Grande"
+      ],
+      "story": {
+        "eyebrow": "Teatro Pequeño (Odeón) · Pompeya",
+        "question": "Pompeya ya tenía un gran teatro al lado. ¿Qué hacía diferente a este pequeño?",
+        "answers": [
+          "Era solo para gladiadores",
+          "Tenía techo",
+          "Era solo para mujeres"
+        ],
+        "answerTitle": "Tenía techo.",
+        "subtitle": "Una sala cubierta para menos público.",
+        "body": "Junto al Teatro Grande, al aire libre, estaba este teatro más pequeño y cubierto. Con un techo sobre los asientos, daba a las funciones un ambiente íntimo, muy distinto del gran auditorio vecino.",
+        "source": "Fuentes publicadas",
+        "dinnerLine": "«Pompeya tenía dos teatros juntos: uno al aire libre y otro con techo.»",
+        "sticker": {
+          "title": "El teatro cubierto",
+          "collection": "Grandes multitudes",
+          "back": "El teatro pequeño estaba cubierto, a diferencia de su gran vecino."
+        },
+        "recallChoices": [
+          "Gladiadores",
+          "Un techo",
+          "Solo mujeres"
+        ],
+        "recallPrompt": "¿Recuerdas el teatro pequeño de Pompeya? ¿Qué lo hacía diferente?"
+      }
+    },
+    {
+      "id": "basilica",
+      "name": "Basílica",
+      "clues": [
+        "Filas de columnas de ladrillo",
+        "Junto al Foro",
+        "Una tarima al fondo"
+      ],
+      "story": {
+        "eyebrow": "Basílica · Pompeya",
+        "question": "Mucho antes de que las iglesias usaran el nombre, ¿qué se hacía en una basílica?",
+        "answers": [
+          "El culto cristiano",
+          "Juicios y negocios",
+          "Carreras de carros"
+        ],
+        "answerTitle": "Juicios y negocios.",
+        "subtitle": "La gran sala pública de Pompeya.",
+        "body": "Mucho antes de significar iglesia, la basílica era una sala pública. Junto al Foro, esta acogía pleitos y negocios, las decisiones diarias que mantenían en marcha la ciudad.",
+        "source": "Fuentes publicadas",
+        "dinnerLine": "«En Pompeya, una basílica era un tribunal, no una iglesia.»",
+        "sticker": {
+          "title": "Tribunal y comercio",
+          "collection": "Vida urbana",
+          "back": "La basílica romana acogía juicios y negocios, no el culto."
+        },
+        "recallChoices": [
+          "Culto",
+          "Juicios",
+          "Carreras"
+        ],
+        "recallPrompt": "¿Recuerdas la basílica de Pompeya? ¿Qué se hacía allí?"
+      }
+    },
+    {
+      "id": "mensa-ponderaria",
+      "name": "Mensa Ponderaria",
+      "clues": [
+        "Mesa de piedra",
+        "Huecos redondos",
+        "Al borde del Foro"
+      ],
+      "story": {
+        "eyebrow": "Mensa Ponderaria · Pompeya",
+        "question": "Los huecos de esta mesa de piedra tenían una sola función. ¿Cuál?",
+        "answers": [
+          "Recoger lluvia para los animales",
+          "Guardar ofrendas a los dioses",
+          "Comprobar que las medidas eran justas"
+        ],
+        "answerTitle": "Medidas justas.",
+        "subtitle": "La mesa oficial de medidas.",
+        "body": "En Pompeya, los compradores podían comprobar que no los engañaban. Esta mesa pública de piedra fijaba las medidas oficiales: comerciantes y clientes comparaban la mercancía con una referencia común.",
+        "source": "Fuentes publicadas",
+        "dinnerLine": "«Pompeya tenía una mesa de piedra oficial contra los tenderos tramposos.»",
+        "sticker": {
+          "title": "Medida justa",
+          "collection": "Vida urbana",
+          "back": "Los comerciantes comprobaban sus medidas en esta mesa pública."
+        },
+        "recallChoices": [
+          "Lluvia",
+          "Ofrendas",
+          "Medidas"
+        ],
+        "recallPrompt": "¿Recuerdas la mesa de piedra del Foro? ¿Para qué eran sus huecos?"
+      }
+    },
+    {
+      "id": "castellum-aquae",
+      "name": "Castellum Aquae",
+      "clues": [
+        "Edificio de agua de ladrillo",
+        "Junto a la puerta del Vesubio",
+        "El punto más alto"
+      ],
+      "story": {
+        "eyebrow": "Castellum Aquae · Pompeya",
+        "question": "El agua del acueducto llegaba aquí, al punto más alto. ¿Qué pasaba después?",
+        "answers": [
+          "Se guardaba contra incendios",
+          "Se vendía por jarras",
+          "Se repartía por tuberías"
+        ],
+        "answerTitle": "Se repartía.",
+        "subtitle": "Las tuberías llegaban a los barrios.",
+        "body": "El agua del acueducto llegaba a Pompeya a este edificio, en el punto más alto de la ciudad. Desde aquí se canalizaba por una red de tuberías ramificada hacia los distintos barrios.",
+        "source": "Fuentes publicadas",
+        "dinnerLine": "«El agua de Pompeya se repartía desde un solo edificio en lo alto de la ciudad.»",
+        "sticker": {
+          "title": "Agua para la ciudad",
+          "collection": "Vida urbana",
+          "back": "Aquí el agua del acueducto se repartía por las tuberías de Pompeya."
+        },
+        "recallChoices": [
+          "Incendios",
+          "Por jarras",
+          "Repartida"
+        ],
+        "recallPrompt": "¿Recuerdas el edificio del agua de Pompeya? ¿Qué pasaba con el agua?"
+      }
+    },
+    {
+      "id": "central-baths",
+      "name": "Termas Centrales",
+      "clues": [
+        "Gran patio abierto",
+        "Muros sin terminar",
+        "En un cruce concurrido"
+      ],
+      "story": {
+        "eyebrow": "Termas Centrales · Pompeya",
+        "question": "Estas grandes termas parecen inacabadas. ¿Por qué?",
+        "answers": [
+          "Las bombardearon en 1943",
+          "Se acabó el dinero",
+          "Aún se construían en el 79 d. C."
+        ],
+        "answerTitle": "Aún en obras.",
+        "subtitle": "La erupción detuvo las obras.",
+        "body": "Las Termas Centrales aún estaban en obras cuando el Vesubio entró en erupción en el 79 d. C. Sus muros inacabados congelan una obra romana a medio hacer, tan clara como cualquier monumento terminado.",
+        "source": "Fuentes publicadas",
+        "dinnerLine": "«Las termas más nuevas de Pompeya nunca se terminaron: el Vesubio llegó antes.»",
+        "sticker": {
+          "title": "Nunca terminadas",
+          "collection": "Vida urbana",
+          "back": "Las Termas Centrales eran una obra cuando estalló el Vesubio."
+        },
+        "recallChoices": [
+          "Bombas",
+          "Sin dinero",
+          "En obras"
+        ],
+        "recallPrompt": "¿Recuerdas las Termas Centrales? ¿Por qué parecen inacabadas?"
+      }
+    },
+    {
+      "id": "stabian-baths",
+      "name": "Termas Estabianas",
+      "clues": [
+        "Patio de ejercicios",
+        "Salas calientes y frías",
+        "Via dell’Abbondanza"
+      ],
+      "story": {
+        "eyebrow": "Termas Estabianas · Pompeya",
+        "question": "Para los pompeyanos, las termas eran más que lavarse. ¿Qué más?",
+        "answers": [
+          "Votar en elecciones",
+          "Hacer ejercicio y ver amigos",
+          "Guardar el grano"
+        ],
+        "answerTitle": "Ejercicio y compañía.",
+        "subtitle": "Salas a distintas temperaturas.",
+        "body": "Estas termas combinaban salas a distintas temperaturas con espacios para el ejercicio y la charla. Para los pompeyanos, el baño diario era también una ocasión para entrenar y ver a otras personas.",
+        "source": "Fuentes publicadas",
+        "dinnerLine": "«Para los romanos, las termas eran gimnasio, spa y café a la vez.»",
+        "sticker": {
+          "title": "El baño diario",
+          "collection": "Vida urbana",
+          "back": "Aquí los pompeyanos se bañaban, entrenaban y socializaban."
+        },
+        "recallChoices": [
+          "Votar",
+          "Amigos",
+          "Grano"
+        ],
+        "recallPrompt": "¿Recuerdas las Termas Estabianas? ¿Para qué servían, además de lavarse?"
+      }
+    },
+    {
+      "id": "house-octavius-quartio",
+      "name": "Casa de Octavius Quartio",
+      "clues": [
+        "Jardín alargado",
+        "Canales de agua",
+        "Via dell’Abbondanza"
+      ],
+      "story": {
+        "eyebrow": "Casa de Octavius Quartio · Pompeya",
+        "question": "Sus dueños querían una villa de campo en plena ciudad. ¿Qué construyeron?",
+        "answers": [
+          "Largos canales en el jardín",
+          "Un viñedo privado",
+          "Un coto de caza"
+        ],
+        "answerTitle": "Largos canales de agua.",
+        "subtitle": "Una villa de campo en la ciudad.",
+        "body": "Largos canales de agua y jardines cuidados daban a esta casa urbana el aire de una villa de campo. Sus dueños crearon un rincón de ocio dentro de la apretada red de calles de Pompeya.",
+        "source": "Fuentes publicadas",
+        "dinnerLine": "«Una familia de Pompeya se hizo un jardín de campo con canales en plena ciudad.»",
+        "sticker": {
+          "title": "Villa en la ciudad",
+          "collection": "Vidas privadas",
+          "back": "Los canales convirtieron una casa urbana en villa."
+        },
+        "recallChoices": [
+          "Canales",
+          "Viñedo",
+          "Coto"
+        ],
+        "recallPrompt": "¿Recuerdas la Casa de Octavius Quartio? ¿Qué la hacía parecer una villa?"
+      }
+    },
+    {
+      "id": "house-vettii",
+      "name": "Casa de los Vettii",
+      "clues": [
+        "Paredes pintadas",
+        "Jardín con columnas",
+        "Regio VI"
+      ],
+      "story": {
+        "eyebrow": "Casa de los Vettii · Pompeya",
+        "question": "Los dueños de esta casa lujosa tenían un pasado inusual. ¿Cuál?",
+        "answers": [
+          "Eran príncipes extranjeros",
+          "Habían sido esclavos",
+          "Eran sacerdotes de Isis"
+        ],
+        "answerTitle": "Habían sido esclavos.",
+        "subtitle": "Dos libertos que se hicieron ricos.",
+        "body": "Dos libertos prósperos, antiguos esclavos, eran dueños de esta casa ricamente pintada. Su decoración, con un Príapo como símbolo de prosperidad, lucía su éxito en una ciudad donde la posición social podía cambiar.",
+        "source": "Fuentes publicadas",
+        "dinnerLine": "«Una de las casas más lujosas de Pompeya era de dos antiguos esclavos.»",
+        "sticker": {
+          "title": "La fortuna de los libertos",
+          "collection": "Vidas privadas",
+          "back": "Los Vettii pasaron de la esclavitud a la riqueza."
+        },
+        "recallChoices": [
+          "Príncipes",
+          "Esclavos",
+          "Sacerdotes"
+        ],
+        "recallPrompt": "¿Recuerdas la Casa de los Vettii? ¿Qué tenían de inusual sus dueños?"
+      }
+    },
+    {
+      "id": "house-faun",
+      "name": "Casa del Fauno",
+      "clues": [
+        "Estatua del fauno danzante",
+        "Casa enorme",
+        "Un saludo en mosaico en la entrada"
+      ],
+      "story": {
+        "eyebrow": "Casa del Fauno · Pompeya",
+        "question": "Un enorme mosaico en el suelo de esta casa mostraba una batalla. ¿De quién?",
+        "answers": [
+          "De Julio César",
+          "De Aníbal",
+          "De Alejandro Magno"
+        ],
+        "answerTitle": "Alejandro Magno.",
+        "subtitle": "El famoso mosaico de Alejandro.",
+        "body": "Esta enorme casa albergaba el famoso mosaico de Alejandro y el pequeño fauno danzante que le da nombre. Su arte y su tamaño muestran cómo los pompeyanos ricos impresionaban a sus invitados.",
+        "source": "Fuentes publicadas",
+        "dinnerLine": "«El famoso mosaico de Alejandro era el suelo de una casa de Pompeya.»",
+        "sticker": {
+          "title": "El fauno danzante",
+          "collection": "Vidas privadas",
+          "back": "Aquí estaban el mosaico de Alejandro y un fauno danzante."
+        },
+        "recallChoices": [
+          "César",
+          "Aníbal",
+          "Alejandro"
+        ],
+        "recallPrompt": "¿Recuerdas la Casa del Fauno? ¿De quién era la batalla del gran mosaico?"
+      }
+    },
+    {
+      "id": "villa-mysteries",
+      "name": "Villa de los Misterios",
+      "clues": [
+        "Fuera de las murallas",
+        "Una sala pintada de rojo",
+        "Gran villa"
+      ],
+      "story": {
+        "eyebrow": "Villa de los Misterios · Pompeya",
+        "question": "Figuras de tamaño natural sobre muros rojos celebran un rito secreto. ¿Para qué dios?",
+        "answers": [
+          "Apolo",
+          "Venus",
+          "Dioniso"
+        ],
+        "answerTitle": "Dioniso.",
+        "subtitle": "Su significado aún se debate.",
+        "body": "Un friso pintado continuo rodea una sala y muestra figuras en un ritual ligado a Dioniso. Los expertos aún debaten qué representa, y por eso esta villa sigue siendo uno de los grandes enigmas de Pompeya.",
+        "source": "Fuentes publicadas",
+        "dinnerLine": "«Nadie sabe con certeza qué muestran los frescos de la Villa de los Misterios.»",
+        "sticker": {
+          "title": "El rito secreto",
+          "collection": "Misterios",
+          "back": "Un friso pintado de un rito ligado a Dioniso."
+        },
+        "recallChoices": [
+          "Apolo",
+          "Venus",
+          "Dioniso"
+        ],
+        "recallPrompt": "¿Recuerdas la Villa de los Misterios? ¿A qué dios está ligado el rito?",
+        "theory": {
+          "label": "TEORÍA",
+          "lead": "Algunos dicen que",
+          "text": "muestra la iniciación de una joven antes de casarse."
+        }
+      }
+    },
+    {
+      "id": "lupanar",
+      "name": "Lupanar",
+      "clues": [
+        "Cuartos pequeños",
+        "Inscripciones en las paredes",
+        "En la esquina de dos callejones"
+      ],
+      "story": {
+        "eyebrow": "Lupanar · Pompeya",
+        "question": "Cuartos diminutos y paredes llenas de inscripciones. ¿Qué era este edificio?",
+        "answers": [
+          "Una posada para viajeros",
+          "Una escuela",
+          "Un burdel"
+        ],
+        "answerTitle": "Un burdel.",
+        "subtitle": "Sus paredes aún conservan inscripciones.",
+        "body": "Cuartos pequeños e inscripciones en las paredes identifican este edificio como un burdel. Es un testimonio difícil, a menudo ligado a la esclavitud, sobre personas que la historia rara vez recuerda.",
+        "source": "Fuentes publicadas",
+        "dinnerLine": "«Las paredes del burdel de Pompeya conservan mensajes de hace casi 2.000 años.»",
+        "sticker": {
+          "title": "Paredes que hablan",
+          "collection": "Romanos de cada día",
+          "back": "En las paredes del lupanar sobreviven inscripciones."
+        },
+        "recallChoices": [
+          "Posada",
+          "Escuela",
+          "Burdel"
+        ],
+        "recallPrompt": "¿Recuerdas el edificio de cuartos diminutos? ¿Qué era?"
+      }
+    },
+    {
+      "id": "house-casca",
+      "name": "Casa de Casca Longus",
+      "clues": [
+        "Mesa de mármol con inscripción",
+        "Escenas teatrales pintadas",
+        "Via dell’Abbondanza"
+      ],
+      "story": {
+        "eyebrow": "Casa de Casca Longus · Pompeya",
+        "question": "Una mesa de mármol lleva aquí un nombre ligado a un asesinato famoso. ¿Cuál?",
+        "answers": [
+          "El asesinato de Julio César",
+          "El asesinato de la madre de Nerón",
+          "Rómulo matando a Remo"
+        ],
+        "answerTitle": "El asesinato de César.",
+        "subtitle": "La mesa lleva el nombre de Casca Longus.",
+        "body": "Una mesa de mármol hallada aquí lleva el nombre de Publio Servilio Casca Longo, ligado a uno de los asesinos de Julio César en el 44 a. C. La política romana, grabada en un mueble pompeyano.",
+        "source": "Fuentes publicadas",
+        "dinnerLine": "«Una mesa de Pompeya lleva un nombre ligado a los asesinos de César.»",
+        "sticker": {
+          "title": "La sombra de César",
+          "collection": "Vidas privadas",
+          "back": "Una mesa nombra a Casca Longus, ligado a los asesinos de César."
+        },
+        "recallChoices": [
+          "César",
+          "Madre de Nerón",
+          "Remo"
+        ],
+        "recallPrompt": "¿Recuerdas la mesa de mármol? ¿A qué asesinato está ligado su nombre?"
+      }
+    },
+    {
+      "id": "house-moralist",
+      "name": "Casa del Moralista",
+      "clues": [
+        "Máximas pintadas",
+        "Comedor",
+        "Regio III"
+      ],
+      "story": {
+        "eyebrow": "Casa del Moralista · Pompeya",
+        "question": "Frases pintadas en este comedor aconsejan a los invitados. ¿Sobre qué?",
+        "answers": [
+          "Cómo pagar la comida",
+          "Cuándo irse antes de oscurecer",
+          "Cómo portarse en la mesa"
+        ],
+        "answerTitle": "Buenos modales en la mesa.",
+        "subtitle": "Normas de la casa, pintadas en la pared.",
+        "body": "Máximas pintadas alrededor del comedor decían a los invitados cómo comportarse en los banquetes. Más que decoración, muestran con humor lo que los romanos esperaban unos de otros en la mesa.",
+        "source": "Fuentes publicadas",
+        "dinnerLine": "«En un comedor de Pompeya, las normas de etiqueta están pintadas en la pared.»",
+        "sticker": {
+          "title": "Cuida tus modales",
+          "collection": "Romanos de cada día",
+          "back": "Normas pintadas decían a los invitados cómo comportarse."
+        },
+        "recallChoices": [
+          "Pagar",
+          "Irse pronto",
+          "Modales"
+        ],
+        "recallPrompt": "¿Recuerdas la Casa del Moralista? ¿Qué consejos estaban pintados?"
+      }
+    },
+    {
+      "id": "bakery-popidius-priscus",
+      "name": "Panadería de Popidio Prisco",
+      "clues": [
+        "Piedras con forma de reloj de arena",
+        "Un horno de ladrillo",
+        "Regio VII"
+      ],
+      "story": {
+        "eyebrow": "Panadería de Popidio Prisco · Pompeya",
+        "question": "Las grandes piedras con forma de reloj de arena tenían una función. ¿Cuál?",
+        "answers": [
+          "Prensar aceitunas",
+          "Medir el tiempo",
+          "Moler el grano"
+        ],
+        "answerTitle": "Moler el grano.",
+        "subtitle": "Molinos y horno bajo el mismo techo.",
+        "body": "Esta panadería unía molienda y horneado. Sus molinos de piedra convertían el grano en harina y su horno cocía el pan: una cadena de producción romana que alimentaba al barrio.",
+        "source": "Fuentes publicadas",
+        "dinnerLine": "«Los panaderos de Pompeya molían su propia harina en grandes molinos de piedra.»",
+        "sticker": {
+          "title": "El pan de cada día",
+          "collection": "Romanos de cada día",
+          "back": "Molinos de piedra y horno: una panadería romana."
+        },
+        "recallChoices": [
+          "Aceite",
+          "Tiempo",
+          "Harina"
+        ],
+        "recallPrompt": "¿Recuerdas las piedras de la panadería? ¿Para qué servían?"
+      }
     }
   ]
 }

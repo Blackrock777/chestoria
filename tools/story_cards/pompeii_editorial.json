@@ -1,0 +1,3007 @@
+{
+  "_about": "Editorial layer for the Pompeii research pack (chestoria_pompeii_110_poi_research_v1.json). Facts come from the research pack (official 2015 Park guide, page cited) and are checked against a second source added by the importer (Wikipedia via Wikidata). Correct answer FIRST here; the importer shuffles. Bodies are written fresh from the research facts, at most 40 words. The Garden of the Fugitives is deliberately not a sticker story: victims are not collectibles.",
+  "siteName": "Pompeii",
+  "city": {
+    "en": "Pompeii",
+    "it": "Pompei",
+    "fr": "Pompéi",
+    "de": "Pompeji",
+    "es": "Pompeya"
+  },
+  "source": {
+    "en": "Published sources",
+    "it": "Fonti pubblicate",
+    "fr": "Sources publiées",
+    "de": "Veröffentlichte Quellen",
+    "es": "Fuentes publicadas"
+  },
+  "today": {
+    "en": "Today",
+    "it": "Oggi",
+    "fr": "Aujourd’hui",
+    "de": "Heute",
+    "es": "Hoy"
+  },
+  "existing": {
+    "pompeii-07-forum": "forum",
+    "pompeii-06-house-of-the-tragic-poet": "tragic-poet",
+    "pompeii-01-house-and-thermopolium-of-vetutius-placidus": "thermopolium"
+  },
+  "collections": {
+    "crowds": {
+      "en": "Big crowds",
+      "it": "Grandi folle",
+      "fr": "Grandes foules",
+      "de": "Volle Ränge",
+      "es": "Grandes multitudes"
+    },
+    "city": {
+      "en": "City life",
+      "it": "Vita in città",
+      "fr": "Vie en ville",
+      "de": "Stadtleben",
+      "es": "Vida urbana"
+    },
+    "private": {
+      "en": "Private lives",
+      "it": "Vite private",
+      "fr": "Vies privées",
+      "de": "Privatleben",
+      "es": "Vidas privadas"
+    },
+    "mysteries": {
+      "en": "Mysteries",
+      "it": "Misteri",
+      "fr": "Mystères",
+      "de": "Rätsel",
+      "es": "Misterios"
+    },
+    "everyday": {
+      "en": "Everyday Romans",
+      "it": "Romani di ogni giorno",
+      "fr": "Romains du quotidien",
+      "de": "Römischer Alltag",
+      "es": "Romanos de cada día"
+    }
+  },
+  "places": [
+    {
+      "id": "amphitheatre",
+      "card": "pompeii-02-amphitheater",
+      "name": {
+        "en": "Amphitheatre",
+        "it": "Anfiteatro",
+        "fr": "Amphithéâtre",
+        "de": "Amphitheater",
+        "es": "Anfiteatro"
+      },
+      "street": "Piazzale Anfiteatro",
+      "camera": true,
+      "aiDescriptions": [
+        "an ancient Roman oval amphitheatre with tiers of stone seats around a sandy arena",
+        "the amphitheatre of Pompeii"
+      ],
+      "clues": {
+        "en": [
+          "Oval arena",
+          "Tiers of stone seats",
+          "East end of town"
+        ],
+        "it": [
+          "Arena ovale",
+          "Gradinate di pietra",
+          "All’estremità est"
+        ],
+        "fr": [
+          "Arène ovale",
+          "Gradins de pierre",
+          "À l’est de la ville"
+        ],
+        "de": [
+          "Ovale Arena",
+          "Steinerne Sitzreihen",
+          "Am Ostrand der Stadt"
+        ],
+        "es": [
+          "Arena ovalada",
+          "Gradas de piedra",
+          "En el extremo este"
+        ]
+      },
+      "question": {
+        "en": "Gladiators fought in this arena. Which came first: it, or Rome’s Colosseum?",
+        "it": "In quest’arena combattevano i gladiatori. Chi venne prima: lei o il Colosseo?",
+        "fr": "Des gladiateurs combattaient dans cette arène. Laquelle est la plus ancienne : elle ou le Colisée ?",
+        "de": "In dieser Arena kämpften Gladiatoren. Was war zuerst da: sie oder das Kolosseum?",
+        "es": "En esta arena luchaban gladiadores. ¿Qué llegó antes: ella o el Coliseo?"
+      },
+      "answers": {
+        "en": [
+          "This arena, long before",
+          "The Colosseum",
+          "Both in the same decade"
+        ],
+        "it": [
+          "Quest’arena, molto prima",
+          "Il Colosseo",
+          "Entrambi nello stesso decennio"
+        ],
+        "fr": [
+          "Cette arène, bien avant",
+          "Le Colisée",
+          "Les deux la même décennie"
+        ],
+        "de": [
+          "Diese Arena, lange vorher",
+          "Das Kolosseum",
+          "Beide im selben Jahrzehnt"
+        ],
+        "es": [
+          "Esta arena, mucho antes",
+          "El Coliseo",
+          "Ambos en la misma década"
+        ]
+      },
+      "answerTitle": {
+        "en": "This arena came first.",
+        "it": "Prima quest’arena.",
+        "fr": "Cette arène d’abord.",
+        "de": "Diese Arena war zuerst da.",
+        "es": "Primero esta arena."
+      },
+      "subtitle": {
+        "en": "Built in the 1st century BC.",
+        "it": "Costruita nel I secolo a.C.",
+        "fr": "Construite au Ier siècle av. J.-C.",
+        "de": "Erbaut im 1. Jahrhundert v. Chr.",
+        "es": "Construida en el siglo I a. C."
+      },
+      "body": {
+        "en": "Pompeii’s amphitheatre was built in the first century BC, long before Rome’s Colosseum. It is one of the oldest surviving Roman arenas, and crowds came from the whole region to watch the games.",
+        "it": "L’anfiteatro di Pompei fu costruito nel I secolo a.C., molto prima del Colosseo. È una delle più antiche arene romane giunte fino a noi, e la folla arrivava da tutta la regione per assistere ai giochi.",
+        "fr": "L’amphithéâtre de Pompéi fut construit au Ier siècle av. J.-C., bien avant le Colisée. C’est l’une des plus anciennes arènes romaines conservées, et la foule venait de toute la région pour les jeux.",
+        "de": "Das Amphitheater von Pompeji entstand im 1. Jahrhundert v. Chr., lange vor dem Kolosseum. Es gehört zu den ältesten erhaltenen römischen Arenen, und Zuschauer kamen aus der ganzen Region zu den Spielen.",
+        "es": "El anfiteatro de Pompeya se construyó en el siglo I a. C., mucho antes que el Coliseo. Es una de las arenas romanas más antiguas que se conservan, y el público llegaba de toda la región para ver los juegos."
+      },
+      "dinnerLine": {
+        "en": "“Pompeii had a stone arena long before Rome had the Colosseum.”",
+        "it": "«Pompei aveva un’arena di pietra molto prima che Roma avesse il Colosseo.»",
+        "fr": "« Pompéi avait une arène de pierre bien avant que Rome ait le Colisée. »",
+        "de": "„Pompeji hatte eine Steinarena lange bevor Rom das Kolosseum bekam.“",
+        "es": "«Pompeya tenía una arena de piedra mucho antes de que Roma tuviera el Coliseo.»"
+      },
+      "sticker": {
+        "id": "older-than-colosseum",
+        "collection": "crowds",
+        "title": {
+          "en": "Older than the Colosseum",
+          "it": "Più antico del Colosseo",
+          "fr": "Plus ancien que le Colisée",
+          "de": "Älter als das Kolosseum",
+          "es": "Más antiguo que el Coliseo"
+        },
+        "back": {
+          "en": "Pompeii’s amphitheatre dates from the 1st century BC.",
+          "it": "L’anfiteatro di Pompei risale al I secolo a.C.",
+          "fr": "L’amphithéâtre de Pompéi date du Ier siècle av. J.-C.",
+          "de": "Pompejis Amphitheater stammt aus dem 1. Jahrhundert v. Chr.",
+          "es": "El anfiteatro de Pompeya data del siglo I a. C."
+        }
+      },
+      "recall": {
+        "en": [
+          "This arena",
+          "Colosseum",
+          "Same decade"
+        ],
+        "it": [
+          "Quest’arena",
+          "Colosseo",
+          "Stesso decennio"
+        ],
+        "fr": [
+          "Cette arène",
+          "Colisée",
+          "Même décennie"
+        ],
+        "de": [
+          "Diese Arena",
+          "Kolosseum",
+          "Gleiches Jahrzehnt"
+        ],
+        "es": [
+          "Esta arena",
+          "Coliseo",
+          "Misma década"
+        ]
+      },
+      "recallPrompt": {
+        "en": "Remember Pompeii’s amphitheatre? Which came first: it or the Colosseum?",
+        "it": "Ricordi l’anfiteatro di Pompei? Chi venne prima: lui o il Colosseo?",
+        "fr": "Vous vous souvenez de l’amphithéâtre de Pompéi ? Lequel est le plus ancien : lui ou le Colisée ?",
+        "de": "Erinnerst du dich an Pompejis Amphitheater? Was war zuerst da: es oder das Kolosseum?",
+        "es": "¿Recuerdas el anfiteatro de Pompeya? ¿Qué llegó antes: él o el Coliseo?"
+      },
+      "coordinate": {
+        "latitude": 40.751264,
+        "longitude": 14.494969,
+        "source": "Wikidata Q2015116"
+      },
+      "extraSources": [
+        {
+          "title": "Wikipedia: Amphitheatre of Pompeii",
+          "url": "https://en.wikipedia.org/wiki/Amphitheatre_of_Pompeii"
+        }
+      ],
+      "wikidata": "Q2015116",
+      "images": {
+        "camera": "amphitheatre",
+        "references": [
+          "amphitheatre",
+          "amphitheatre2"
+        ],
+        "sticker": "amphitheatre",
+        "crop": {
+          "x": 0.2,
+          "y": 0.2,
+          "w": 0.6,
+          "h": 0.6
+        }
+      }
+    },
+    {
+      "id": "large-theatre",
+      "card": "pompeii-08-large-theatre",
+      "name": {
+        "en": "Large Theatre",
+        "it": "Teatro Grande",
+        "fr": "Grand Théâtre",
+        "de": "Großes Theater",
+        "es": "Teatro Grande"
+      },
+      "street": "Via Stabiana",
+      "camera": true,
+      "aiDescriptions": [
+        "a Roman open-air theatre with a semicircle of stone seats built into a slope and a stage building",
+        "the Large Theatre of Pompeii"
+      ],
+      "clues": {
+        "en": [
+          "Curved stone seats",
+          "Built into a slope",
+          "A small theatre next door"
+        ],
+        "it": [
+          "Gradinate curve",
+          "Costruito su un pendio",
+          "Un piccolo teatro accanto"
+        ],
+        "fr": [
+          "Gradins en arc",
+          "Adossé à une pente",
+          "Un petit théâtre à côté"
+        ],
+        "de": [
+          "Gebogene Steinreihen",
+          "In einen Hang gebaut",
+          "Ein kleines Theater daneben"
+        ],
+        "es": [
+          "Gradas curvas",
+          "Construido en una ladera",
+          "Un teatro pequeño al lado"
+        ]
+      },
+      "question": {
+        "en": "No great walls hold up these seats. What does?",
+        "it": "Nessun grande muro sorregge queste gradinate. Che cosa le sostiene?",
+        "fr": "Aucun grand mur ne soutient ces gradins. Qu’est-ce qui les porte ?",
+        "de": "Keine großen Mauern tragen diese Sitzreihen. Was dann?",
+        "es": "Ningún gran muro sostiene estas gradas. ¿Qué las sostiene?"
+      },
+      "answers": {
+        "en": [
+          "The natural hillside",
+          "Brick vaults underneath",
+          "A timber frame"
+        ],
+        "it": [
+          "Il pendio naturale",
+          "Volte di mattoni sotto",
+          "Un’impalcatura di legno"
+        ],
+        "fr": [
+          "La pente naturelle",
+          "Des voûtes de brique",
+          "Une charpente en bois"
+        ],
+        "de": [
+          "Der natürliche Hang",
+          "Ziegelgewölbe darunter",
+          "Ein Holzgerüst"
+        ],
+        "es": [
+          "La ladera natural",
+          "Bóvedas de ladrillo",
+          "Un armazón de madera"
+        ]
+      },
+      "answerTitle": {
+        "en": "The hillside itself.",
+        "it": "Il pendio stesso.",
+        "fr": "La pente elle-même.",
+        "de": "Der Hang selbst.",
+        "es": "La propia ladera."
+      },
+      "subtitle": {
+        "en": "The builders used the slope.",
+        "it": "I costruttori sfruttarono il pendio.",
+        "fr": "Les bâtisseurs ont utilisé la pente.",
+        "de": "Die Baumeister nutzten den Hang.",
+        "es": "Los constructores aprovecharon la ladera."
+      },
+      "body": {
+        "en": "The Large Theatre’s curved seating rests on the natural slope of the ground. Instead of raising a huge structure, Pompeii’s builders let the landscape do the work and turned a hillside into the city’s stage.",
+        "it": "Le gradinate curve del Teatro Grande poggiano sul pendio naturale del terreno. Invece di innalzare una struttura enorme, i costruttori lasciarono lavorare il paesaggio e trasformarono una collina nel palcoscenico della città.",
+        "fr": "Les gradins du Grand Théâtre reposent sur la pente naturelle du terrain. Plutôt que d’élever une énorme structure, les bâtisseurs ont laissé faire le paysage et changé une colline en scène pour la ville.",
+        "de": "Die gebogenen Sitzreihen des Großen Theaters ruhen auf dem natürlichen Hang. Statt einen riesigen Bau zu errichten, ließen Pompejis Baumeister die Landschaft arbeiten und machten einen Hügel zur Bühne der Stadt.",
+        "es": "Las gradas curvas del Teatro Grande descansan sobre la pendiente natural del terreno. En lugar de levantar una enorme estructura, los constructores dejaron trabajar al paisaje y convirtieron una colina en el escenario de la ciudad."
+      },
+      "dinnerLine": {
+        "en": "“Pompeii’s big theatre sits on a hillside, not on walls.”",
+        "it": "«Il teatro grande di Pompei poggia su una collina, non su muri.»",
+        "fr": "« Le grand théâtre de Pompéi repose sur une colline, pas sur des murs. »",
+        "de": "„Pompejis großes Theater steht auf einem Hang, nicht auf Mauern.“",
+        "es": "«El gran teatro de Pompeya se apoya en una colina, no en muros.»"
+      },
+      "sticker": {
+        "id": "seats-on-a-hill",
+        "collection": "crowds",
+        "title": {
+          "en": "Seats on a hill",
+          "it": "Gradinate sulla collina",
+          "fr": "Gradins sur la colline",
+          "de": "Sitze am Hang",
+          "es": "Gradas en la colina"
+        },
+        "back": {
+          "en": "The Large Theatre’s seats rest on the natural slope.",
+          "it": "Le gradinate del Teatro Grande poggiano sul pendio naturale.",
+          "fr": "Les gradins du Grand Théâtre reposent sur la pente naturelle.",
+          "de": "Die Sitze des Großen Theaters ruhen auf dem natürlichen Hang.",
+          "es": "Las gradas del Teatro Grande descansan en la ladera natural."
+        }
+      },
+      "recall": {
+        "en": [
+          "Hillside",
+          "Brick vaults",
+          "Timber"
+        ],
+        "it": [
+          "Pendio",
+          "Volte",
+          "Legno"
+        ],
+        "fr": [
+          "Pente",
+          "Voûtes",
+          "Bois"
+        ],
+        "de": [
+          "Hang",
+          "Gewölbe",
+          "Holz"
+        ],
+        "es": [
+          "Ladera",
+          "Bóvedas",
+          "Madera"
+        ]
+      },
+      "recallPrompt": {
+        "en": "Remember Pompeii’s Large Theatre? What holds up its seats?",
+        "it": "Ricordi il Teatro Grande di Pompei? Che cosa sorregge le gradinate?",
+        "fr": "Vous vous souvenez du Grand Théâtre de Pompéi ? Qu’est-ce qui porte ses gradins ?",
+        "de": "Erinnerst du dich an Pompejis Großes Theater? Was trägt seine Sitzreihen?",
+        "es": "¿Recuerdas el Teatro Grande de Pompeya? ¿Qué sostiene sus gradas?"
+      },
+      "coordinate": {
+        "latitude": 40.748795,
+        "longitude": 14.488416,
+        "source": "Wikidata Q3982012"
+      },
+      "extraSources": [
+        {
+          "title": "Wikipedia (it): Teatro Grande (Pompei)",
+          "url": "https://it.wikipedia.org/wiki/Teatro_Grande_(Pompei)"
+        }
+      ],
+      "wikidata": "Q3982012",
+      "images": {
+        "camera": "largeTheatre",
+        "references": [
+          "largeTheatre",
+          "largeTheatre2"
+        ],
+        "sticker": "largeTheatre",
+        "crop": {
+          "x": 0.2,
+          "y": 0.2,
+          "w": 0.6,
+          "h": 0.6
+        }
+      }
+    },
+    {
+      "id": "odeon",
+      "card": "pompeii-08-small-theatre-odeon",
+      "name": {
+        "en": "Small Theatre (Odeon)",
+        "it": "Teatro Piccolo (Odeion)",
+        "fr": "Petit Théâtre (Odéon)",
+        "de": "Kleines Theater (Odeion)",
+        "es": "Teatro Pequeño (Odeón)"
+      },
+      "street": "Via Stabiana",
+      "camera": true,
+      "aiDescriptions": [
+        "a small Roman theatre with a compact half circle of stone seats enclosed by walls",
+        "the Small Theatre or Odeon of Pompeii"
+      ],
+      "clues": {
+        "en": [
+          "Small half circle of seats",
+          "Enclosed by walls",
+          "Next to the Large Theatre"
+        ],
+        "it": [
+          "Piccolo semicerchio di sedili",
+          "Chiuso da muri",
+          "Accanto al Teatro Grande"
+        ],
+        "fr": [
+          "Petit hémicycle de gradins",
+          "Fermé par des murs",
+          "À côté du Grand Théâtre"
+        ],
+        "de": [
+          "Kleiner Sitzhalbkreis",
+          "Von Mauern umschlossen",
+          "Neben dem Großen Theater"
+        ],
+        "es": [
+          "Pequeño semicírculo de asientos",
+          "Cerrado por muros",
+          "Junto al Teatro Grande"
+        ]
+      },
+      "question": {
+        "en": "Pompeii already had a big theatre next door. What made this small one different?",
+        "it": "Pompei aveva già un grande teatro accanto. Che cosa rendeva diverso questo piccolo?",
+        "fr": "Pompéi avait déjà un grand théâtre à côté. Qu’est-ce qui rendait ce petit différent ?",
+        "de": "Pompeji hatte schon ein großes Theater nebenan. Was war an diesem kleinen anders?",
+        "es": "Pompeya ya tenía un gran teatro al lado. ¿Qué hacía diferente a este pequeño?"
+      },
+      "answers": {
+        "en": [
+          "It had a roof",
+          "It was only for gladiators",
+          "It was for women only"
+        ],
+        "it": [
+          "Aveva un tetto",
+          "Era solo per i gladiatori",
+          "Era riservato alle donne"
+        ],
+        "fr": [
+          "Il avait un toit",
+          "Il était réservé aux gladiateurs",
+          "Il était réservé aux femmes"
+        ],
+        "de": [
+          "Es hatte ein Dach",
+          "Es war nur für Gladiatoren",
+          "Es war nur für Frauen"
+        ],
+        "es": [
+          "Tenía techo",
+          "Era solo para gladiadores",
+          "Era solo para mujeres"
+        ]
+      },
+      "answerTitle": {
+        "en": "It had a roof.",
+        "it": "Aveva un tetto.",
+        "fr": "Il avait un toit.",
+        "de": "Es hatte ein Dach.",
+        "es": "Tenía techo."
+      },
+      "subtitle": {
+        "en": "A covered hall for smaller audiences.",
+        "it": "Una sala coperta per pochi spettatori.",
+        "fr": "Une salle couverte pour un public restreint.",
+        "de": "Ein überdachter Saal für kleines Publikum.",
+        "es": "Una sala cubierta para menos público."
+      },
+      "body": {
+        "en": "Beside the open-air Large Theatre stood this smaller covered theatre. With a roof over its seats, it gave performances a more intimate setting, a very different atmosphere from the big auditorium next door.",
+        "it": "Accanto al Teatro Grande, all’aperto, sorgeva questo teatro più piccolo e coperto. Con un tetto sopra i sedili, offriva agli spettacoli un ambiente raccolto, ben diverso dalla grande cavea vicina.",
+        "fr": "À côté du Grand Théâtre à ciel ouvert se trouvait ce petit théâtre couvert. Avec un toit au-dessus des gradins, il offrait aux spectacles un cadre intime, bien différent du grand auditorium voisin.",
+        "de": "Neben dem offenen Großen Theater stand dieses kleinere, überdachte Theater. Mit einem Dach über den Sitzen bot es Aufführungen einen intimen Rahmen, ganz anders als der große Zuschauerraum nebenan.",
+        "es": "Junto al Teatro Grande, al aire libre, estaba este teatro más pequeño y cubierto. Con un techo sobre los asientos, daba a las funciones un ambiente íntimo, muy distinto del gran auditorio vecino."
+      },
+      "dinnerLine": {
+        "en": "“Pompeii had two theatres side by side: one open to the sky, one with a roof.”",
+        "it": "«Pompei aveva due teatri affiancati: uno a cielo aperto, uno con il tetto.»",
+        "fr": "« Pompéi avait deux théâtres côte à côte : l’un à ciel ouvert, l’autre couvert. »",
+        "de": "„Pompeji hatte zwei Theater nebeneinander: eines offen, eines mit Dach.“",
+        "es": "«Pompeya tenía dos teatros juntos: uno al aire libre y otro con techo.»"
+      },
+      "sticker": {
+        "id": "roofed-theatre",
+        "collection": "crowds",
+        "title": {
+          "en": "The roofed theatre",
+          "it": "Il teatro coperto",
+          "fr": "Le théâtre couvert",
+          "de": "Das überdachte Theater",
+          "es": "El teatro cubierto"
+        },
+        "back": {
+          "en": "Pompeii’s small theatre was covered, unlike its big neighbour.",
+          "it": "Il teatro piccolo era coperto, a differenza del grande vicino.",
+          "fr": "Le petit théâtre était couvert, contrairement à son grand voisin.",
+          "de": "Das kleine Theater war überdacht, anders als sein großer Nachbar.",
+          "es": "El teatro pequeño estaba cubierto, a diferencia de su gran vecino."
+        }
+      },
+      "recall": {
+        "en": [
+          "A roof",
+          "Gladiators",
+          "Women only"
+        ],
+        "it": [
+          "Un tetto",
+          "Gladiatori",
+          "Solo donne"
+        ],
+        "fr": [
+          "Un toit",
+          "Gladiateurs",
+          "Femmes"
+        ],
+        "de": [
+          "Ein Dach",
+          "Gladiatoren",
+          "Nur Frauen"
+        ],
+        "es": [
+          "Un techo",
+          "Gladiadores",
+          "Solo mujeres"
+        ]
+      },
+      "recallPrompt": {
+        "en": "Remember Pompeii’s small theatre? What made it different?",
+        "it": "Ricordi il teatro piccolo di Pompei? Che cosa lo rendeva diverso?",
+        "fr": "Vous vous souvenez du petit théâtre de Pompéi ? Qu’avait-il de différent ?",
+        "de": "Erinnerst du dich an Pompejis kleines Theater? Was war anders?",
+        "es": "¿Recuerdas el teatro pequeño de Pompeya? ¿Qué lo hacía diferente?"
+      },
+      "coordinate": {
+        "latitude": 40.748854,
+        "longitude": 14.488987,
+        "source": "Wikidata Q3982091"
+      },
+      "extraSources": [
+        {
+          "title": "Wikipedia: Odeon of Pompeii",
+          "url": "https://en.wikipedia.org/wiki/Odeon_of_Pompeii"
+        }
+      ],
+      "wikidata": "Q3982091",
+      "images": {
+        "camera": "odeon",
+        "references": [
+          "odeon",
+          "odeon2"
+        ],
+        "sticker": "odeon",
+        "crop": {
+          "x": 0.2,
+          "y": 0.2,
+          "w": 0.6,
+          "h": 0.6
+        }
+      }
+    },
+    {
+      "id": "basilica",
+      "card": "pompeii-08-basilica",
+      "name": {
+        "en": "Basilica",
+        "it": "Basilica",
+        "fr": "Basilique",
+        "de": "Basilika",
+        "es": "Basílica"
+      },
+      "street": "Via Marina",
+      "camera": true,
+      "aiDescriptions": [
+        "a large ruined Roman hall with rows of brick column bases and a raised platform at one end",
+        "the Basilica of Pompeii beside the Forum"
+      ],
+      "clues": {
+        "en": [
+          "Rows of brick columns",
+          "Beside the Forum",
+          "A raised platform at the end"
+        ],
+        "it": [
+          "File di colonne in mattoni",
+          "Accanto al Foro",
+          "Un podio in fondo"
+        ],
+        "fr": [
+          "Rangées de colonnes en brique",
+          "À côté du Forum",
+          "Une estrade au fond"
+        ],
+        "de": [
+          "Reihen von Ziegelsäulen",
+          "Neben dem Forum",
+          "Ein Podium am Ende"
+        ],
+        "es": [
+          "Filas de columnas de ladrillo",
+          "Junto al Foro",
+          "Una tarima al fondo"
+        ]
+      },
+      "question": {
+        "en": "Long before churches used the name, what happened in a basilica?",
+        "it": "Molto prima che il nome passasse alle chiese, che cosa si faceva in una basilica?",
+        "fr": "Bien avant que les églises prennent ce nom, que faisait-on dans une basilique ?",
+        "de": "Lange bevor Kirchen so hießen: Was geschah in einer Basilika?",
+        "es": "Mucho antes de que las iglesias usaran el nombre, ¿qué se hacía en una basílica?"
+      },
+      "answers": {
+        "en": [
+          "Trials and business deals",
+          "Christian worship",
+          "Chariot races"
+        ],
+        "it": [
+          "Processi e affari",
+          "Il culto cristiano",
+          "Corse di carri"
+        ],
+        "fr": [
+          "Des procès et des affaires",
+          "Le culte chrétien",
+          "Des courses de chars"
+        ],
+        "de": [
+          "Prozesse und Geschäfte",
+          "Christliche Gottesdienste",
+          "Wagenrennen"
+        ],
+        "es": [
+          "Juicios y negocios",
+          "El culto cristiano",
+          "Carreras de carros"
+        ]
+      },
+      "answerTitle": {
+        "en": "Trials and business.",
+        "it": "Processi e affari.",
+        "fr": "Procès et affaires.",
+        "de": "Prozesse und Geschäfte.",
+        "es": "Juicios y negocios."
+      },
+      "subtitle": {
+        "en": "Pompeii’s great public hall.",
+        "it": "La grande sala pubblica di Pompei.",
+        "fr": "La grande salle publique de Pompéi.",
+        "de": "Pompejis große öffentliche Halle.",
+        "es": "La gran sala pública de Pompeya."
+      },
+      "body": {
+        "en": "Long before the word meant a church, a basilica was a public hall. Beside the Forum, this one hosted legal cases and business deals, the everyday decisions that kept the city running.",
+        "it": "Molto prima di indicare una chiesa, la basilica era una sala pubblica. Accanto al Foro, questa ospitava cause legali e affari, le decisioni quotidiane che facevano funzionare la città.",
+        "fr": "Bien avant de désigner une église, la basilique était une salle publique. À côté du Forum, celle-ci accueillait procès et affaires, les décisions quotidiennes qui faisaient tourner la ville.",
+        "de": "Lange bevor das Wort eine Kirche meinte, war die Basilika eine öffentliche Halle. Diese neben dem Forum diente Gerichtsverfahren und Geschäften, den alltäglichen Entscheidungen, die die Stadt am Laufen hielten.",
+        "es": "Mucho antes de significar iglesia, la basílica era una sala pública. Junto al Foro, esta acogía pleitos y negocios, las decisiones diarias que mantenían en marcha la ciudad."
+      },
+      "dinnerLine": {
+        "en": "“In Pompeii, a basilica was a courthouse, not a church.”",
+        "it": "«A Pompei la basilica era un tribunale, non una chiesa.»",
+        "fr": "« À Pompéi, une basilique était un tribunal, pas une église. »",
+        "de": "„In Pompeji war eine Basilika ein Gericht, keine Kirche.“",
+        "es": "«En Pompeya, una basílica era un tribunal, no una iglesia.»"
+      },
+      "sticker": {
+        "id": "court-and-commerce",
+        "collection": "city",
+        "title": {
+          "en": "Court and commerce",
+          "it": "Tribunale e affari",
+          "fr": "Justice et commerce",
+          "de": "Gericht und Handel",
+          "es": "Tribunal y comercio"
+        },
+        "back": {
+          "en": "A Roman basilica hosted trials and business, not worship.",
+          "it": "La basilica romana ospitava processi e affari, non il culto.",
+          "fr": "La basilique romaine accueillait procès et affaires, pas le culte.",
+          "de": "Eine römische Basilika diente Prozessen und Geschäften, nicht dem Gebet.",
+          "es": "La basílica romana acogía juicios y negocios, no el culto."
+        }
+      },
+      "recall": {
+        "en": [
+          "Trials",
+          "Worship",
+          "Races"
+        ],
+        "it": [
+          "Processi",
+          "Culto",
+          "Corse"
+        ],
+        "fr": [
+          "Procès",
+          "Culte",
+          "Courses"
+        ],
+        "de": [
+          "Prozesse",
+          "Gottesdienst",
+          "Rennen"
+        ],
+        "es": [
+          "Juicios",
+          "Culto",
+          "Carreras"
+        ]
+      },
+      "recallPrompt": {
+        "en": "Remember Pompeii’s Basilica? What happened there?",
+        "it": "Ricordi la Basilica di Pompei? Che cosa vi si faceva?",
+        "fr": "Vous vous souvenez de la basilique de Pompéi ? Qu’y faisait-on ?",
+        "de": "Erinnerst du dich an die Basilika von Pompeji? Was geschah dort?",
+        "es": "¿Recuerdas la basílica de Pompeya? ¿Qué se hacía allí?"
+      },
+      "coordinate": {
+        "latitude": 40.7488,
+        "longitude": 14.4845,
+        "source": "Wikidata Q3635629"
+      },
+      "extraSources": [
+        {
+          "title": "Wikipedia (it): Basilica (Pompei)",
+          "url": "https://it.wikipedia.org/wiki/Basilica_(Pompei)"
+        }
+      ],
+      "wikidata": "Q3635629",
+      "images": {
+        "camera": "basilicaPompeii",
+        "references": [
+          "basilicaPompeii",
+          "basilicaPompeii2"
+        ],
+        "sticker": "basilicaPompeii",
+        "crop": {
+          "x": 0.2,
+          "y": 0.2,
+          "w": 0.6,
+          "h": 0.6
+        }
+      }
+    },
+    {
+      "id": "mensa-ponderaria",
+      "card": "pompeii-07-mensa-ponderaria",
+      "name": {
+        "en": "Mensa Ponderaria"
+      },
+      "street": "Via del Foro",
+      "camera": true,
+      "aiDescriptions": [
+        "an ancient stone table with round hollows of different sizes carved into its top",
+        "the Mensa Ponderaria measuring table at the Forum of Pompeii"
+      ],
+      "clues": {
+        "en": [
+          "Stone table",
+          "Round hollows",
+          "At the edge of the Forum"
+        ],
+        "it": [
+          "Tavolo di pietra",
+          "Cavità rotonde",
+          "Al margine del Foro"
+        ],
+        "fr": [
+          "Table de pierre",
+          "Creux arrondis",
+          "En bordure du Forum"
+        ],
+        "de": [
+          "Steintisch",
+          "Runde Mulden",
+          "Am Rand des Forums"
+        ],
+        "es": [
+          "Mesa de piedra",
+          "Huecos redondos",
+          "Al borde del Foro"
+        ]
+      },
+      "question": {
+        "en": "The hollows in this stone table had one job. What was it?",
+        "it": "Le cavità di questo tavolo di pietra avevano un solo compito. Quale?",
+        "fr": "Les creux de cette table de pierre avaient une seule fonction. Laquelle ?",
+        "de": "Die Mulden in diesem Steintisch hatten eine Aufgabe. Welche?",
+        "es": "Los huecos de esta mesa de piedra tenían una sola función. ¿Cuál?"
+      },
+      "answers": {
+        "en": [
+          "Checking that measures were fair",
+          "Collecting rain for animals",
+          "Holding offerings to the gods"
+        ],
+        "it": [
+          "Controllare che le misure fossero giuste",
+          "Raccogliere pioggia per gli animali",
+          "Contenere offerte agli dei"
+        ],
+        "fr": [
+          "Vérifier que les mesures étaient justes",
+          "Recueillir la pluie pour les animaux",
+          "Recevoir des offrandes aux dieux"
+        ],
+        "de": [
+          "Prüfen, ob Maße stimmten",
+          "Regen für Tiere sammeln",
+          "Opfergaben für die Götter"
+        ],
+        "es": [
+          "Comprobar que las medidas eran justas",
+          "Recoger lluvia para los animales",
+          "Guardar ofrendas a los dioses"
+        ]
+      },
+      "answerTitle": {
+        "en": "Fair measures.",
+        "it": "Misure giuste.",
+        "fr": "Des mesures justes.",
+        "de": "Gerechte Maße.",
+        "es": "Medidas justas."
+      },
+      "subtitle": {
+        "en": "The city’s official measuring table.",
+        "it": "Il tavolo ufficiale delle misure.",
+        "fr": "La table officielle des mesures.",
+        "de": "Der amtliche Messtisch der Stadt.",
+        "es": "La mesa oficial de medidas."
+      },
+      "body": {
+        "en": "Shoppers in Pompeii could check they were not being cheated. This public stone table set the standard measures, so merchants and buyers compared goods against an agreed reference: an ancient answer to a modern problem.",
+        "it": "A Pompei chi faceva la spesa poteva controllare di non essere imbrogliato. Questo tavolo pubblico di pietra fissava le misure ufficiali: mercanti e clienti confrontavano le merci con un riferimento comune.",
+        "fr": "À Pompéi, les acheteurs pouvaient vérifier qu’on ne les trompait pas. Cette table publique en pierre fixait les mesures officielles : marchands et clients comparaient les marchandises à une référence commune.",
+        "de": "In Pompeji konnte man prüfen, ob man betrogen wurde. Dieser öffentliche Steintisch legte die amtlichen Maße fest, damit Händler und Käufer Waren mit einer gemeinsamen Referenz vergleichen konnten.",
+        "es": "En Pompeya, los compradores podían comprobar que no los engañaban. Esta mesa pública de piedra fijaba las medidas oficiales: comerciantes y clientes comparaban la mercancía con una referencia común."
+      },
+      "dinnerLine": {
+        "en": "“Pompeii had an official stone table to stop shopkeepers cheating.”",
+        "it": "«Pompei aveva un tavolo di pietra ufficiale contro i negozianti imbroglioni.»",
+        "fr": "« Pompéi avait une table de pierre officielle contre les marchands tricheurs. »",
+        "de": "„Pompeji hatte einen amtlichen Steintisch gegen schummelnde Händler.“",
+        "es": "«Pompeya tenía una mesa de piedra oficial contra los tenderos tramposos.»"
+      },
+      "sticker": {
+        "id": "fair-measure",
+        "collection": "city",
+        "title": {
+          "en": "Fair measure",
+          "it": "Misura giusta",
+          "fr": "Juste mesure",
+          "de": "Rechtes Maß",
+          "es": "Medida justa"
+        },
+        "back": {
+          "en": "Merchants checked their measures against this public table.",
+          "it": "I mercanti controllavano le misure su questo tavolo pubblico.",
+          "fr": "Les marchands vérifiaient leurs mesures sur cette table publique.",
+          "de": "Händler prüften ihre Maße an diesem öffentlichen Tisch.",
+          "es": "Los comerciantes comprobaban sus medidas en esta mesa pública."
+        }
+      },
+      "recall": {
+        "en": [
+          "Fair measures",
+          "Rainwater",
+          "Offerings"
+        ],
+        "it": [
+          "Misure",
+          "Pioggia",
+          "Offerte"
+        ],
+        "fr": [
+          "Mesures",
+          "Pluie",
+          "Offrandes"
+        ],
+        "de": [
+          "Maße",
+          "Regen",
+          "Opfer"
+        ],
+        "es": [
+          "Medidas",
+          "Lluvia",
+          "Ofrendas"
+        ]
+      },
+      "recallPrompt": {
+        "en": "Remember the stone table at the Forum? What were its hollows for?",
+        "it": "Ricordi il tavolo di pietra al Foro? A che cosa servivano le cavità?",
+        "fr": "Vous vous souvenez de la table de pierre du Forum ? À quoi servaient ses creux ?",
+        "de": "Erinnerst du dich an den Steintisch am Forum? Wofür waren die Mulden?",
+        "es": "¿Recuerdas la mesa de piedra del Foro? ¿Para qué eran sus huecos?"
+      },
+      "coordinate": {
+        "latitude": 40.749369,
+        "longitude": 14.484105,
+        "source": "Wikidata Q27687336"
+      },
+      "extraSources": [
+        {
+          "title": "Wikipedia (it): Foro di Pompei",
+          "url": "https://it.wikipedia.org/wiki/Foro_di_Pompei"
+        }
+      ],
+      "wikidata": "Q27687336",
+      "images": {
+        "camera": "mensaPonderaria",
+        "references": [
+          "mensaPonderaria",
+          "mensaPonderaria2"
+        ],
+        "sticker": "mensaPonderaria",
+        "crop": {
+          "x": 0.05,
+          "y": 0.3,
+          "w": 0.9,
+          "h": 0.35
+        }
+      }
+    },
+    {
+      "id": "castellum-aquae",
+      "card": "pompeii-06-castellum-aquae",
+      "name": {
+        "en": "Castellum Aquae"
+      },
+      "street": "Porta Vesuvio",
+      "camera": true,
+      "aiDescriptions": [
+        "a small square Roman brick water distribution building beside an ancient city gate",
+        "the Castellum Aquae water tower of Pompeii"
+      ],
+      "clues": {
+        "en": [
+          "Brick water building",
+          "By the Vesuvius Gate",
+          "Highest point of town"
+        ],
+        "it": [
+          "Edificio idrico in mattoni",
+          "Presso Porta Vesuvio",
+          "Il punto più alto"
+        ],
+        "fr": [
+          "Bâtiment d’eau en brique",
+          "Près de la porte du Vésuve",
+          "Point le plus haut"
+        ],
+        "de": [
+          "Wasserbau aus Ziegeln",
+          "Am Vesuvtor",
+          "Höchster Punkt der Stadt"
+        ],
+        "es": [
+          "Edificio de agua de ladrillo",
+          "Junto a la puerta del Vesubio",
+          "El punto más alto"
+        ]
+      },
+      "question": {
+        "en": "Pompeii’s aqueduct water arrived at this high point. What happened to it next?",
+        "it": "L’acqua dell’acquedotto arrivava qui, nel punto più alto. Che cosa le succedeva poi?",
+        "fr": "L’eau de l’aqueduc arrivait ici, au point le plus haut. Que lui arrivait-il ensuite ?",
+        "de": "Das Wasser des Aquädukts kam an diesem hohen Punkt an. Was geschah dann damit?",
+        "es": "El agua del acueducto llegaba aquí, al punto más alto. ¿Qué pasaba después?"
+      },
+      "answers": {
+        "en": [
+          "It was split into pipes across town",
+          "It was stored for fighting fires",
+          "It was sold by the jug"
+        ],
+        "it": [
+          "Veniva divisa in tubi per la città",
+          "Veniva conservata contro gli incendi",
+          "Veniva venduta a brocche"
+        ],
+        "fr": [
+          "Elle partait dans des tuyaux vers la ville",
+          "On la gardait contre les incendies",
+          "On la vendait à la cruche"
+        ],
+        "de": [
+          "Sie wurde auf Leitungen verteilt",
+          "Sie wurde für Brände gespeichert",
+          "Sie wurde krugweise verkauft"
+        ],
+        "es": [
+          "Se repartía por tuberías",
+          "Se guardaba contra incendios",
+          "Se vendía por jarras"
+        ]
+      },
+      "answerTitle": {
+        "en": "It was shared out.",
+        "it": "Veniva distribuita.",
+        "fr": "Elle était distribuée.",
+        "de": "Es wurde verteilt.",
+        "es": "Se repartía."
+      },
+      "subtitle": {
+        "en": "Pipes branched to every district.",
+        "it": "I tubi si diramavano per i quartieri.",
+        "fr": "Les tuyaux desservaient les quartiers.",
+        "de": "Leitungen verzweigten sich in die Viertel.",
+        "es": "Las tuberías llegaban a los barrios."
+      },
+      "body": {
+        "en": "Aqueduct water reached Pompeii at this building on the town’s highest ground. From here it was channelled into a branching network of pipes and carried down to different parts of the city.",
+        "it": "L’acqua dell’acquedotto arrivava a Pompei in questo edificio, sul punto più alto della città. Da qui veniva incanalata in una rete di tubi ramificata e portata verso i diversi quartieri.",
+        "fr": "L’eau de l’aqueduc arrivait à Pompéi dans ce bâtiment, au point le plus haut de la ville. De là, elle partait dans un réseau de tuyaux ramifié vers les différents quartiers.",
+        "de": "Das Wasser des Aquädukts erreichte Pompeji in diesem Bau am höchsten Punkt der Stadt. Von hier floss es in ein verzweigtes Leitungsnetz und hinunter in die verschiedenen Stadtteile.",
+        "es": "El agua del acueducto llegaba a Pompeya a este edificio, en el punto más alto de la ciudad. Desde aquí se canalizaba por una red de tuberías ramificada hacia los distintos barrios."
+      },
+      "dinnerLine": {
+        "en": "“Pompeii’s water was shared out from one building at the top of town.”",
+        "it": "«L’acqua di Pompei partiva da un solo edificio in cima alla città.»",
+        "fr": "« L’eau de Pompéi partait d’un seul bâtiment en haut de la ville. »",
+        "de": "„Pompejis Wasser wurde von einem einzigen Gebäude oben in der Stadt verteilt.“",
+        "es": "«El agua de Pompeya se repartía desde un solo edificio en lo alto de la ciudad.»"
+      },
+      "sticker": {
+        "id": "water-for-the-city",
+        "collection": "city",
+        "title": {
+          "en": "Water for the city",
+          "it": "Acqua per la città",
+          "fr": "De l’eau pour la ville",
+          "de": "Wasser für die Stadt",
+          "es": "Agua para la ciudad"
+        },
+        "back": {
+          "en": "Aqueduct water was split here into pipes across Pompeii.",
+          "it": "Qui l’acqua dell’acquedotto si divideva nei tubi della città.",
+          "fr": "Ici, l’eau de l’aqueduc se répartissait dans les tuyaux de la ville.",
+          "de": "Hier wurde das Aquäduktwasser auf Pompejis Leitungen verteilt.",
+          "es": "Aquí el agua del acueducto se repartía por las tuberías de Pompeya."
+        }
+      },
+      "recall": {
+        "en": [
+          "Shared out",
+          "Fire store",
+          "Sold by jug"
+        ],
+        "it": [
+          "Distribuita",
+          "Antincendio",
+          "A brocche"
+        ],
+        "fr": [
+          "Distribuée",
+          "Incendies",
+          "À la cruche"
+        ],
+        "de": [
+          "Verteilt",
+          "Für Brände",
+          "Krugweise"
+        ],
+        "es": [
+          "Repartida",
+          "Incendios",
+          "Por jarras"
+        ]
+      },
+      "recallPrompt": {
+        "en": "Remember Pompeii’s water building? What happened to the water there?",
+        "it": "Ricordi l’edificio dell’acqua di Pompei? Che cosa succedeva all’acqua?",
+        "fr": "Vous vous souvenez du bâtiment de l’eau ? Que devenait l’eau ?",
+        "de": "Erinnerst du dich an Pompejis Wasserbau? Was geschah dort mit dem Wasser?",
+        "es": "¿Recuerdas el edificio del agua de Pompeya? ¿Qué pasaba con el agua?"
+      },
+      "coordinate": {
+        "latitude": 40.753221,
+        "longitude": 14.484167,
+        "source": "Wikidata Q3662995"
+      },
+      "extraSources": [
+        {
+          "title": "Wikipedia (it): Castellum Aquae",
+          "url": "https://it.wikipedia.org/wiki/Castellum_Aquae"
+        }
+      ],
+      "wikidata": "Q3662995",
+      "images": {
+        "camera": "castellumAquae",
+        "references": [
+          "castellumAquae",
+          "castellumAquae2"
+        ],
+        "sticker": "castellumAquae",
+        "crop": {
+          "x": 0.2,
+          "y": 0.2,
+          "w": 0.6,
+          "h": 0.6
+        }
+      }
+    },
+    {
+      "id": "central-baths",
+      "card": "pompeii-09-central-baths",
+      "name": {
+        "en": "Central Baths",
+        "it": "Terme Centrali",
+        "fr": "Thermes centraux",
+        "de": "Zentralthermen",
+        "es": "Termas Centrales"
+      },
+      "street": "Via di Nola",
+      "camera": true,
+      "aiDescriptions": [
+        "unfinished Roman bath walls of brick and stone around a large open courtyard",
+        "the Central Baths of Pompeii"
+      ],
+      "clues": {
+        "en": [
+          "Large open courtyard",
+          "Unfinished walls",
+          "At a busy crossroads"
+        ],
+        "it": [
+          "Grande cortile aperto",
+          "Muri incompiuti",
+          "A un incrocio affollato"
+        ],
+        "fr": [
+          "Grande cour ouverte",
+          "Murs inachevés",
+          "À un carrefour animé"
+        ],
+        "de": [
+          "Großer offener Hof",
+          "Unfertige Mauern",
+          "An einer belebten Kreuzung"
+        ],
+        "es": [
+          "Gran patio abierto",
+          "Muros sin terminar",
+          "En un cruce concurrido"
+        ]
+      },
+      "question": {
+        "en": "These huge baths look unfinished. Why?",
+        "it": "Queste grandi terme sembrano incompiute. Perché?",
+        "fr": "Ces grands thermes semblent inachevés. Pourquoi ?",
+        "de": "Diese großen Thermen wirken unfertig. Warum?",
+        "es": "Estas grandes termas parecen inacabadas. ¿Por qué?"
+      },
+      "answers": {
+        "en": [
+          "They were still being built in AD 79",
+          "Bombs hit them in 1943",
+          "The money ran out"
+        ],
+        "it": [
+          "Erano ancora in costruzione nel 79 d.C.",
+          "Le bombe le colpirono nel 1943",
+          "Finirono i soldi"
+        ],
+        "fr": [
+          "Ils étaient encore en chantier en 79",
+          "Des bombes les ont touchés en 1943",
+          "L’argent a manqué"
+        ],
+        "de": [
+          "Sie wurden 79 n. Chr. noch gebaut",
+          "Bomben trafen sie 1943",
+          "Das Geld ging aus"
+        ],
+        "es": [
+          "Aún se construían en el 79 d. C.",
+          "Las bombardearon en 1943",
+          "Se acabó el dinero"
+        ]
+      },
+      "answerTitle": {
+        "en": "Still being built.",
+        "it": "Erano ancora in cantiere.",
+        "fr": "Encore en chantier.",
+        "de": "Noch im Bau.",
+        "es": "Aún en obras."
+      },
+      "subtitle": {
+        "en": "The eruption stopped the work.",
+        "it": "L’eruzione fermò i lavori.",
+        "fr": "L’éruption a stoppé les travaux.",
+        "de": "Der Ausbruch stoppte die Arbeiten.",
+        "es": "La erupción detuvo las obras."
+      },
+      "body": {
+        "en": "The Central Baths were still being built when Vesuvius erupted in AD 79. Their unfinished walls freeze a Roman building site in mid-work, as clearly as any finished monument in the city.",
+        "it": "Le Terme Centrali erano ancora in costruzione quando il Vesuvio eruttò nel 79 d.C. I loro muri incompiuti fermano nel tempo un cantiere romano, con la stessa chiarezza di un monumento finito.",
+        "fr": "Les thermes centraux étaient encore en construction quand le Vésuve entra en éruption en 79. Leurs murs inachevés figent un chantier romain en plein travail, aussi clairement qu’un monument terminé.",
+        "de": "Die Zentralthermen wurden noch gebaut, als der Vesuv 79 n. Chr. ausbrach. Ihre unfertigen Mauern halten eine römische Baustelle mitten in der Arbeit fest, so deutlich wie jedes vollendete Bauwerk.",
+        "es": "Las Termas Centrales aún estaban en obras cuando el Vesubio entró en erupción en el 79 d. C. Sus muros inacabados congelan una obra romana a medio hacer, tan clara como cualquier monumento terminado."
+      },
+      "dinnerLine": {
+        "en": "“Pompeii’s newest baths were never finished. Vesuvius got there first.”",
+        "it": "«Le terme più nuove di Pompei non furono mai finite: il Vesuvio arrivò prima.»",
+        "fr": "« Les thermes les plus récents de Pompéi n’ont jamais été finis : le Vésuve est arrivé avant. »",
+        "de": "„Pompejis neueste Thermen wurden nie fertig. Der Vesuv kam zuvor.“",
+        "es": "«Las termas más nuevas de Pompeya nunca se terminaron: el Vesubio llegó antes.»"
+      },
+      "sticker": {
+        "id": "never-finished",
+        "collection": "city",
+        "title": {
+          "en": "Never finished",
+          "it": "Mai finite",
+          "fr": "Jamais finis",
+          "de": "Nie vollendet",
+          "es": "Nunca terminadas"
+        },
+        "back": {
+          "en": "The Central Baths were a building site when Vesuvius erupted.",
+          "it": "Le Terme Centrali erano un cantiere quando il Vesuvio eruttò.",
+          "fr": "Les thermes centraux étaient un chantier lors de l’éruption.",
+          "de": "Die Zentralthermen waren beim Ausbruch eine Baustelle.",
+          "es": "Las Termas Centrales eran una obra cuando estalló el Vesubio."
+        }
+      },
+      "recall": {
+        "en": [
+          "Still building",
+          "Bombs",
+          "No money"
+        ],
+        "it": [
+          "In cantiere",
+          "Bombe",
+          "Niente soldi"
+        ],
+        "fr": [
+          "En chantier",
+          "Bombes",
+          "Plus d’argent"
+        ],
+        "de": [
+          "Noch im Bau",
+          "Bomben",
+          "Kein Geld"
+        ],
+        "es": [
+          "En obras",
+          "Bombas",
+          "Sin dinero"
+        ]
+      },
+      "recallPrompt": {
+        "en": "Remember the Central Baths? Why do they look unfinished?",
+        "it": "Ricordi le Terme Centrali? Perché sembrano incompiute?",
+        "fr": "Vous vous souvenez des thermes centraux ? Pourquoi semblent-ils inachevés ?",
+        "de": "Erinnerst du dich an die Zentralthermen? Warum wirken sie unfertig?",
+        "es": "¿Recuerdas las Termas Centrales? ¿Por qué parecen inacabadas?"
+      },
+      "coordinate": {
+        "latitude": 40.751526,
+        "longitude": 14.486693,
+        "source": "Wikidata Q27688458"
+      },
+      "wikidata": "Q27688458",
+      "images": {
+        "camera": "centralBaths",
+        "references": [
+          "centralBaths",
+          "centralBaths2"
+        ],
+        "sticker": "centralBaths",
+        "crop": {
+          "x": 0.2,
+          "y": 0.2,
+          "w": 0.6,
+          "h": 0.6
+        }
+      }
+    },
+    {
+      "id": "stabian-baths",
+      "card": "pompeii-07-stabian-baths",
+      "name": {
+        "en": "Stabian Baths",
+        "it": "Terme Stabiane",
+        "fr": "Thermes de Stabies",
+        "de": "Stabianer Thermen",
+        "es": "Termas Estabianas"
+      },
+      "street": "Via dell’Abbondanza",
+      "camera": false,
+      "aiDescriptions": [
+        "a Roman bath complex with an exercise courtyard surrounded by columns and vaulted bathing rooms",
+        "the Stabian Baths of Pompeii"
+      ],
+      "clues": {
+        "en": [
+          "Exercise courtyard",
+          "Hot and cold rooms",
+          "Via dell’Abbondanza"
+        ],
+        "it": [
+          "Cortile per gli esercizi",
+          "Stanze calde e fredde",
+          "Via dell’Abbondanza"
+        ],
+        "fr": [
+          "Cour d’exercice",
+          "Salles chaudes et froides",
+          "Via dell’Abbondanza"
+        ],
+        "de": [
+          "Übungshof",
+          "Warme und kalte Räume",
+          "Via dell’Abbondanza"
+        ],
+        "es": [
+          "Patio de ejercicios",
+          "Salas calientes y frías",
+          "Via dell’Abbondanza"
+        ]
+      },
+      "question": {
+        "en": "For Pompeians, the baths were about more than washing. What else?",
+        "it": "Per i pompeiani le terme non servivano solo a lavarsi. A che altro?",
+        "fr": "Pour les Pompéiens, les thermes servaient à plus que se laver. À quoi d’autre ?",
+        "de": "Für die Pompejaner ging es in den Thermen um mehr als Waschen. Worum noch?",
+        "es": "Para los pompeyanos, las termas eran más que lavarse. ¿Qué más?"
+      },
+      "answers": {
+        "en": [
+          "Exercise and meeting friends",
+          "Voting in elections",
+          "Storing the town’s grain"
+        ],
+        "it": [
+          "Fare esercizio e vedere amici",
+          "Votare alle elezioni",
+          "Conservare il grano"
+        ],
+        "fr": [
+          "Faire du sport et voir des amis",
+          "Voter aux élections",
+          "Stocker le grain"
+        ],
+        "de": [
+          "Sport und Freunde treffen",
+          "Bei Wahlen abstimmen",
+          "Getreide lagern"
+        ],
+        "es": [
+          "Hacer ejercicio y ver amigos",
+          "Votar en elecciones",
+          "Guardar el grano"
+        ]
+      },
+      "answerTitle": {
+        "en": "Exercise and company.",
+        "it": "Esercizio e compagnia.",
+        "fr": "Sport et compagnie.",
+        "de": "Sport und Gesellschaft.",
+        "es": "Ejercicio y compañía."
+      },
+      "subtitle": {
+        "en": "Rooms at different temperatures.",
+        "it": "Stanze a temperature diverse.",
+        "fr": "Des salles à différentes températures.",
+        "de": "Räume mit verschiedenen Temperaturen.",
+        "es": "Salas a distintas temperaturas."
+      },
+      "body": {
+        "en": "These baths combined rooms at different temperatures with spaces for exercise and conversation. For Pompeians, the daily bath was also the chance to work out, catch up and meet other people.",
+        "it": "Queste terme univano stanze a temperature diverse a spazi per l’esercizio e la conversazione. Per i pompeiani il bagno quotidiano era anche l’occasione per allenarsi, chiacchierare e incontrare gente.",
+        "fr": "Ces thermes réunissaient des salles à différentes températures et des espaces pour le sport et la conversation. Pour les Pompéiens, le bain quotidien était aussi l’occasion de s’entraîner et de se retrouver.",
+        "de": "Diese Thermen verbanden Räume mit verschiedenen Temperaturen mit Flächen für Sport und Gespräche. Für die Pompejaner war das tägliche Bad auch Gelegenheit zum Training und zum Treffen mit anderen.",
+        "es": "Estas termas combinaban salas a distintas temperaturas con espacios para el ejercicio y la charla. Para los pompeyanos, el baño diario era también una ocasión para entrenar y ver a otras personas."
+      },
+      "dinnerLine": {
+        "en": "“For Romans, the baths were the gym, the spa and the café in one.”",
+        "it": "«Per i romani le terme erano palestra, spa e caffè insieme.»",
+        "fr": "« Pour les Romains, les thermes étaient à la fois salle de sport, spa et café. »",
+        "de": "„Für Römer waren die Thermen Fitnessstudio, Spa und Café in einem.“",
+        "es": "«Para los romanos, las termas eran gimnasio, spa y café a la vez.»"
+      },
+      "sticker": {
+        "id": "daily-bath",
+        "collection": "city",
+        "title": {
+          "en": "The daily bath",
+          "it": "Il bagno quotidiano",
+          "fr": "Le bain quotidien",
+          "de": "Das tägliche Bad",
+          "es": "El baño diario"
+        },
+        "back": {
+          "en": "Pompeians bathed, exercised and socialised here.",
+          "it": "Qui i pompeiani si lavavano, si allenavano e socializzavano.",
+          "fr": "Ici, les Pompéiens se baignaient, s’entraînaient et se retrouvaient.",
+          "de": "Hier badeten, trainierten und trafen sich die Pompejaner.",
+          "es": "Aquí los pompeyanos se bañaban, entrenaban y socializaban."
+        }
+      },
+      "recall": {
+        "en": [
+          "Friends",
+          "Voting",
+          "Grain"
+        ],
+        "it": [
+          "Amici",
+          "Votare",
+          "Grano"
+        ],
+        "fr": [
+          "Amis",
+          "Voter",
+          "Grain"
+        ],
+        "de": [
+          "Freunde",
+          "Wahlen",
+          "Getreide"
+        ],
+        "es": [
+          "Amigos",
+          "Votar",
+          "Grano"
+        ]
+      },
+      "recallPrompt": {
+        "en": "Remember the Stabian Baths? What were they for, besides washing?",
+        "it": "Ricordi le Terme Stabiane? A che servivano, oltre a lavarsi?",
+        "fr": "Vous vous souvenez des thermes de Stabies ? À quoi servaient-ils, en plus du bain ?",
+        "de": "Erinnerst du dich an die Stabianer Thermen? Wofür waren sie, außer zum Waschen?",
+        "es": "¿Recuerdas las Termas Estabianas? ¿Para qué servían, además de lavarse?"
+      },
+      "coordinate": {
+        "latitude": 40.749921,
+        "longitude": 14.487616,
+        "source": "Wikidata Q3984382"
+      },
+      "extraSources": [
+        {
+          "title": "Wikipedia: Stabian Baths",
+          "url": "https://en.wikipedia.org/wiki/Stabian_Baths"
+        }
+      ],
+      "wikidata": "Q3984382",
+      "images": {
+        "camera": "stabianBaths",
+        "references": [
+          "stabianBaths"
+        ],
+        "sticker": "stabianBaths",
+        "crop": {
+          "x": 0.2,
+          "y": 0.2,
+          "w": 0.6,
+          "h": 0.6
+        }
+      }
+    },
+    {
+      "id": "house-octavius-quartio",
+      "card": "pompeii-02-house-of-octavius-quartio",
+      "name": {
+        "en": "House of Octavius Quartio",
+        "it": "Casa di Octavius Quartio",
+        "fr": "Maison d’Octavius Quartio",
+        "de": "Haus des Octavius Quartio",
+        "es": "Casa de Octavius Quartio"
+      },
+      "street": "Via dell’Abbondanza",
+      "camera": false,
+      "aiDescriptions": [
+        "a Roman town house garden with a long water channel lined with plants and a pergola",
+        "the garden of the House of Octavius Quartio in Pompeii"
+      ],
+      "clues": {
+        "en": [
+          "Long garden",
+          "Water channels",
+          "Via dell’Abbondanza"
+        ],
+        "it": [
+          "Lungo giardino",
+          "Canali d’acqua",
+          "Via dell’Abbondanza"
+        ],
+        "fr": [
+          "Long jardin",
+          "Canaux d’eau",
+          "Via dell’Abbondanza"
+        ],
+        "de": [
+          "Langer Garten",
+          "Wasserkanäle",
+          "Via dell’Abbondanza"
+        ],
+        "es": [
+          "Jardín alargado",
+          "Canales de agua",
+          "Via dell’Abbondanza"
+        ]
+      },
+      "question": {
+        "en": "Its owners wanted a country villa in the middle of town. What did they build?",
+        "it": "I proprietari volevano una villa di campagna in città. Che cosa costruirono?",
+        "fr": "Ses propriétaires voulaient une villa de campagne en ville. Qu’ont-ils construit ?",
+        "de": "Die Besitzer wollten eine Landvilla mitten in der Stadt. Was bauten sie?",
+        "es": "Sus dueños querían una villa de campo en plena ciudad. ¿Qué construyeron?"
+      },
+      "answers": {
+        "en": [
+          "Long garden waterways",
+          "A private vineyard",
+          "A hunting park"
+        ],
+        "it": [
+          "Lunghi canali nel giardino",
+          "Una vigna privata",
+          "Una riserva di caccia"
+        ],
+        "fr": [
+          "De longs canaux au jardin",
+          "Un vignoble privé",
+          "Un parc de chasse"
+        ],
+        "de": [
+          "Lange Wasserläufe im Garten",
+          "Einen eigenen Weinberg",
+          "Einen Jagdpark"
+        ],
+        "es": [
+          "Largos canales en el jardín",
+          "Un viñedo privado",
+          "Un coto de caza"
+        ]
+      },
+      "answerTitle": {
+        "en": "Long garden waterways.",
+        "it": "Lunghi canali d’acqua.",
+        "fr": "De longs canaux d’eau.",
+        "de": "Lange Wasserläufe.",
+        "es": "Largos canales de agua."
+      },
+      "subtitle": {
+        "en": "A country villa inside the city.",
+        "it": "Una villa di campagna in città.",
+        "fr": "Une villa de campagne en ville.",
+        "de": "Eine Landvilla in der Stadt.",
+        "es": "Una villa de campo en la ciudad."
+      },
+      "body": {
+        "en": "Long water channels and landscaped gardens gave this town house the feel of a countryside villa. Its owners created a corner of leisure inside Pompeii’s crowded street grid.",
+        "it": "Lunghi canali d’acqua e giardini curati davano a questa casa di città l’aria di una villa di campagna. I proprietari si crearono un angolo di svago dentro la fitta rete di strade di Pompei.",
+        "fr": "De longs canaux et des jardins aménagés donnaient à cette maison de ville l’air d’une villa de campagne. Ses propriétaires s’offraient un coin de loisir au cœur des rues serrées de Pompéi.",
+        "de": "Lange Wasserkanäle und angelegte Gärten gaben diesem Stadthaus das Flair einer Landvilla. Die Besitzer schufen sich eine Oase der Muße mitten im engen Straßennetz Pompejis.",
+        "es": "Largos canales de agua y jardines cuidados daban a esta casa urbana el aire de una villa de campo. Sus dueños crearon un rincón de ocio dentro de la apretada red de calles de Pompeya."
+      },
+      "dinnerLine": {
+        "en": "“One Pompeii family built a country garden with waterways right in the middle of town.”",
+        "it": "«Una famiglia di Pompei si costruì un giardino di campagna con canali in pieno centro.»",
+        "fr": "« Une famille de Pompéi s’est fait un jardin de campagne avec canaux en pleine ville. »",
+        "de": "„Eine Familie in Pompeji baute sich einen Landgarten mit Wasserläufen mitten in der Stadt.“",
+        "es": "«Una familia de Pompeya se hizo un jardín de campo con canales en plena ciudad.»"
+      },
+      "sticker": {
+        "id": "villa-in-the-city",
+        "collection": "private",
+        "title": {
+          "en": "Villa in the city",
+          "it": "Villa in città",
+          "fr": "Villa en ville",
+          "de": "Villa in der Stadt",
+          "es": "Villa en la ciudad"
+        },
+        "back": {
+          "en": "Garden waterways turned a town house into a country villa.",
+          "it": "I canali del giardino trasformarono una casa in una villa.",
+          "fr": "Des canaux ont changé une maison de ville en villa.",
+          "de": "Wasserläufe machten ein Stadthaus zur Landvilla.",
+          "es": "Los canales convirtieron una casa urbana en villa."
+        }
+      },
+      "recall": {
+        "en": [
+          "Waterways",
+          "Vineyard",
+          "Hunting park"
+        ],
+        "it": [
+          "Canali",
+          "Vigna",
+          "Caccia"
+        ],
+        "fr": [
+          "Canaux",
+          "Vignoble",
+          "Chasse"
+        ],
+        "de": [
+          "Wasserläufe",
+          "Weinberg",
+          "Jagdpark"
+        ],
+        "es": [
+          "Canales",
+          "Viñedo",
+          "Coto"
+        ]
+      },
+      "recallPrompt": {
+        "en": "Remember the House of Octavius Quartio? What made it feel like a country villa?",
+        "it": "Ricordi la Casa di Octavius Quartio? Che cosa la faceva sembrare una villa?",
+        "fr": "Vous vous souvenez de la maison d’Octavius Quartio ? Qu’est-ce qui la rendait si champêtre ?",
+        "de": "Erinnerst du dich an das Haus des Octavius Quartio? Was machte es zur Landvilla?",
+        "es": "¿Recuerdas la Casa de Octavius Quartio? ¿Qué la hacía parecer una villa?"
+      },
+      "coordinate": {
+        "latitude": 40.7517,
+        "longitude": 14.4924,
+        "source": "Wikidata Q1590867"
+      },
+      "extraSources": [
+        {
+          "title": "Wikipedia: House of Loreius Tiburtinus",
+          "url": "https://en.wikipedia.org/wiki/House_of_Loreius_Tiburtinus"
+        }
+      ],
+      "wikidata": "Q1590867",
+      "images": {
+        "camera": "octaviusQuartio",
+        "references": [
+          "octaviusQuartio"
+        ],
+        "sticker": "octaviusQuartio",
+        "crop": {
+          "x": 0.2,
+          "y": 0.2,
+          "w": 0.6,
+          "h": 0.6
+        }
+      }
+    },
+    {
+      "id": "house-vettii",
+      "card": "pompeii-06-house-of-the-vettii",
+      "name": {
+        "en": "House of the Vettii",
+        "it": "Casa dei Vettii",
+        "fr": "Maison des Vettii",
+        "de": "Haus der Vettier",
+        "es": "Casa de los Vettii"
+      },
+      "street": "Vicolo dei Vettii",
+      "camera": false,
+      "aiDescriptions": [
+        "a richly painted Roman house with red and black frescoed walls around a garden courtyard with columns",
+        "the House of the Vettii in Pompeii"
+      ],
+      "clues": {
+        "en": [
+          "Painted walls",
+          "Garden with columns",
+          "Regio VI"
+        ],
+        "it": [
+          "Pareti dipinte",
+          "Giardino con colonne",
+          "Regio VI"
+        ],
+        "fr": [
+          "Murs peints",
+          "Jardin à colonnes",
+          "Regio VI"
+        ],
+        "de": [
+          "Bemalte Wände",
+          "Säulengarten",
+          "Regio VI"
+        ],
+        "es": [
+          "Paredes pintadas",
+          "Jardín con columnas",
+          "Regio VI"
+        ]
+      },
+      "question": {
+        "en": "The owners of this lavish house had an unusual past. What was it?",
+        "it": "I padroni di questa casa sontuosa avevano un passato insolito. Quale?",
+        "fr": "Les propriétaires de cette maison fastueuse avaient un passé inhabituel. Lequel ?",
+        "de": "Die Besitzer dieses prächtigen Hauses hatten eine ungewöhnliche Vergangenheit. Welche?",
+        "es": "Los dueños de esta casa lujosa tenían un pasado inusual. ¿Cuál?"
+      },
+      "answers": {
+        "en": [
+          "They had been slaves",
+          "They were foreign princes",
+          "They were priests of Isis"
+        ],
+        "it": [
+          "Erano stati schiavi",
+          "Erano principi stranieri",
+          "Erano sacerdoti di Iside"
+        ],
+        "fr": [
+          "Ils avaient été esclaves",
+          "C’étaient des princes étrangers",
+          "C’étaient des prêtres d’Isis"
+        ],
+        "de": [
+          "Sie waren Sklaven gewesen",
+          "Sie waren ausländische Prinzen",
+          "Sie waren Priester der Isis"
+        ],
+        "es": [
+          "Habían sido esclavos",
+          "Eran príncipes extranjeros",
+          "Eran sacerdotes de Isis"
+        ]
+      },
+      "answerTitle": {
+        "en": "They had been slaves.",
+        "it": "Erano stati schiavi.",
+        "fr": "Ils avaient été esclaves.",
+        "de": "Sie waren Sklaven gewesen.",
+        "es": "Habían sido esclavos."
+      },
+      "subtitle": {
+        "en": "Two freedmen who became rich.",
+        "it": "Due liberti diventati ricchi.",
+        "fr": "Deux affranchis devenus riches.",
+        "de": "Zwei Freigelassene, die reich wurden.",
+        "es": "Dos libertos que se hicieron ricos."
+      },
+      "body": {
+        "en": "Two prosperous freedmen, former slaves, owned this richly painted house. Its decoration, including a figure of Priapus as a symbol of prosperity, showed off their success in a city where status could change.",
+        "it": "Questa casa riccamente dipinta apparteneva a due liberti, ex schiavi diventati prosperi. Le decorazioni, tra cui un Priapo simbolo di abbondanza, mostravano il loro successo in una città dove la condizione sociale poteva cambiare.",
+        "fr": "Deux affranchis prospères, anciens esclaves, possédaient cette maison richement peinte. Son décor, dont un Priape symbole de prospérité, affichait leur réussite dans une ville où le statut pouvait changer.",
+        "de": "Zwei wohlhabende Freigelassene, einst Sklaven, besaßen dieses reich bemalte Haus. Die Ausmalung, darunter ein Priapus als Zeichen des Wohlstands, zeigte ihren Erfolg in einer Stadt, in der sich der Stand ändern konnte.",
+        "es": "Dos libertos prósperos, antiguos esclavos, eran dueños de esta casa ricamente pintada. Su decoración, con un Príapo como símbolo de prosperidad, lucía su éxito en una ciudad donde la posición social podía cambiar."
+      },
+      "dinnerLine": {
+        "en": "“One of Pompeii’s most lavish houses belonged to two former slaves.”",
+        "it": "«Una delle case più sontuose di Pompei apparteneva a due ex schiavi.»",
+        "fr": "« L’une des maisons les plus fastueuses de Pompéi appartenait à deux anciens esclaves. »",
+        "de": "„Eines der prächtigsten Häuser Pompejis gehörte zwei ehemaligen Sklaven.“",
+        "es": "«Una de las casas más lujosas de Pompeya era de dos antiguos esclavos.»"
+      },
+      "sticker": {
+        "id": "freedmens-fortune",
+        "collection": "private",
+        "title": {
+          "en": "Freedmen’s fortune",
+          "it": "La fortuna dei liberti",
+          "fr": "La fortune des affranchis",
+          "de": "Das Glück der Freigelassenen",
+          "es": "La fortuna de los libertos"
+        },
+        "back": {
+          "en": "The Vettii brothers rose from slavery to wealth.",
+          "it": "I Vettii passarono dalla schiavitù alla ricchezza.",
+          "fr": "Les Vettii passèrent de l’esclavage à la richesse.",
+          "de": "Die Vettier stiegen von Sklaven zu Reichen auf.",
+          "es": "Los Vettii pasaron de la esclavitud a la riqueza."
+        }
+      },
+      "recall": {
+        "en": [
+          "Slaves",
+          "Princes",
+          "Priests"
+        ],
+        "it": [
+          "Schiavi",
+          "Principi",
+          "Sacerdoti"
+        ],
+        "fr": [
+          "Esclaves",
+          "Princes",
+          "Prêtres"
+        ],
+        "de": [
+          "Sklaven",
+          "Prinzen",
+          "Priester"
+        ],
+        "es": [
+          "Esclavos",
+          "Príncipes",
+          "Sacerdotes"
+        ]
+      },
+      "recallPrompt": {
+        "en": "Remember the House of the Vettii? What was unusual about its owners?",
+        "it": "Ricordi la Casa dei Vettii? Che cosa avevano di insolito i padroni?",
+        "fr": "Vous vous souvenez de la maison des Vettii ? Qu’avaient d’inhabituel ses propriétaires ?",
+        "de": "Erinnerst du dich an das Haus der Vettier? Was war an den Besitzern ungewöhnlich?",
+        "es": "¿Recuerdas la Casa de los Vettii? ¿Qué tenían de inusual sus dueños?"
+      },
+      "coordinate": {
+        "latitude": 40.752083,
+        "longitude": 14.484583,
+        "source": "Wikidata Q1590855"
+      },
+      "extraSources": [
+        {
+          "title": "Wikipedia: House of the Vettii",
+          "url": "https://en.wikipedia.org/wiki/House_of_the_Vettii"
+        }
+      ],
+      "wikidata": "Q1590855",
+      "images": {
+        "camera": "vettii",
+        "references": [
+          "vettii"
+        ],
+        "sticker": "vettii",
+        "crop": {
+          "x": 0.2,
+          "y": 0.2,
+          "w": 0.6,
+          "h": 0.6
+        }
+      }
+    },
+    {
+      "id": "house-faun",
+      "card": "pompeii-06-house-of-the-faun",
+      "name": {
+        "en": "House of the Faun",
+        "it": "Casa del Fauno",
+        "fr": "Maison du Faune",
+        "de": "Haus des Fauns",
+        "es": "Casa del Fauno"
+      },
+      "street": "Via della Fortuna",
+      "camera": false,
+      "aiDescriptions": [
+        "a large Roman house atrium with a shallow pool and a small bronze statue of a dancing faun",
+        "the House of the Faun in Pompeii"
+      ],
+      "clues": {
+        "en": [
+          "Dancing faun statue",
+          "Huge house",
+          "A mosaic welcome at the door"
+        ],
+        "it": [
+          "Statua del fauno danzante",
+          "Casa enorme",
+          "Un saluto in mosaico all’ingresso"
+        ],
+        "fr": [
+          "Statue du faune dansant",
+          "Maison immense",
+          "Un mot d’accueil en mosaïque"
+        ],
+        "de": [
+          "Statue des tanzenden Fauns",
+          "Riesiges Haus",
+          "Ein Mosaikgruß am Eingang"
+        ],
+        "es": [
+          "Estatua del fauno danzante",
+          "Casa enorme",
+          "Un saludo en mosaico en la entrada"
+        ]
+      },
+      "question": {
+        "en": "A giant floor mosaic in this house showed a battle. Whose?",
+        "it": "Un enorme mosaico pavimentale di questa casa mostrava una battaglia. Di chi?",
+        "fr": "Une immense mosaïque au sol de cette maison montrait une bataille. Laquelle ?",
+        "de": "Ein riesiges Bodenmosaik in diesem Haus zeigte eine Schlacht. Wessen?",
+        "es": "Un enorme mosaico en el suelo de esta casa mostraba una batalla. ¿De quién?"
+      },
+      "answers": {
+        "en": [
+          "Alexander the Great’s",
+          "Julius Caesar’s",
+          "Hannibal’s"
+        ],
+        "it": [
+          "Di Alessandro Magno",
+          "Di Giulio Cesare",
+          "Di Annibale"
+        ],
+        "fr": [
+          "Celle d’Alexandre le Grand",
+          "Celle de Jules César",
+          "Celle d’Hannibal"
+        ],
+        "de": [
+          "Alexanders des Großen",
+          "Julius Caesars",
+          "Hannibals"
+        ],
+        "es": [
+          "De Alejandro Magno",
+          "De Julio César",
+          "De Aníbal"
+        ]
+      },
+      "answerTitle": {
+        "en": "Alexander the Great.",
+        "it": "Alessandro Magno.",
+        "fr": "Alexandre le Grand.",
+        "de": "Alexander der Große.",
+        "es": "Alejandro Magno."
+      },
+      "subtitle": {
+        "en": "The famous Alexander Mosaic.",
+        "it": "Il celebre Mosaico di Alessandro.",
+        "fr": "La célèbre mosaïque d’Alexandre.",
+        "de": "Das berühmte Alexandermosaik.",
+        "es": "El famoso mosaico de Alejandro."
+      },
+      "body": {
+        "en": "This vast house once held the famous Alexander Mosaic, along with the small dancing faun that gives it its name. Its art and size show how rich Pompeians used their homes to impress guests.",
+        "it": "Questa casa enorme ospitava il celebre Mosaico di Alessandro e il piccolo fauno danzante che le dà il nome. Arte e dimensioni mostrano come i pompeiani ricchi usassero la casa per impressionare gli ospiti.",
+        "fr": "Cette immense maison abritait la célèbre mosaïque d’Alexandre et le petit faune dansant qui lui donne son nom. Son art et sa taille montrent comment les riches Pompéiens impressionnaient leurs invités.",
+        "de": "Dieses riesige Haus barg das berühmte Alexandermosaik und den kleinen tanzenden Faun, der ihm den Namen gibt. Kunst und Größe zeigen, wie reiche Pompejaner ihre Gäste beeindruckten.",
+        "es": "Esta enorme casa albergaba el famoso mosaico de Alejandro y el pequeño fauno danzante que le da nombre. Su arte y su tamaño muestran cómo los pompeyanos ricos impresionaban a sus invitados."
+      },
+      "dinnerLine": {
+        "en": "“The famous Alexander Mosaic was once the floor of a Pompeii house.”",
+        "it": "«Il famoso Mosaico di Alessandro era il pavimento di una casa di Pompei.»",
+        "fr": "« La célèbre mosaïque d’Alexandre était le sol d’une maison de Pompéi. »",
+        "de": "„Das berühmte Alexandermosaik war einst der Fußboden eines Hauses in Pompeji.“",
+        "es": "«El famoso mosaico de Alejandro era el suelo de una casa de Pompeya.»"
+      },
+      "sticker": {
+        "id": "dancing-faun",
+        "collection": "private",
+        "title": {
+          "en": "The dancing faun",
+          "it": "Il fauno danzante",
+          "fr": "Le faune dansant",
+          "de": "Der tanzende Faun",
+          "es": "El fauno danzante"
+        },
+        "back": {
+          "en": "This house held the Alexander Mosaic and a dancing faun.",
+          "it": "Questa casa ospitava il Mosaico di Alessandro e un fauno danzante.",
+          "fr": "Cette maison abritait la mosaïque d’Alexandre et un faune dansant.",
+          "de": "Hier lagen das Alexandermosaik und ein tanzender Faun.",
+          "es": "Aquí estaban el mosaico de Alejandro y un fauno danzante."
+        }
+      },
+      "recall": {
+        "en": [
+          "Alexander",
+          "Caesar",
+          "Hannibal"
+        ],
+        "it": [
+          "Alessandro",
+          "Cesare",
+          "Annibale"
+        ],
+        "fr": [
+          "Alexandre",
+          "César",
+          "Hannibal"
+        ],
+        "de": [
+          "Alexander",
+          "Caesar",
+          "Hannibal"
+        ],
+        "es": [
+          "Alejandro",
+          "César",
+          "Aníbal"
+        ]
+      },
+      "recallPrompt": {
+        "en": "Remember the House of the Faun? Whose battle did its great mosaic show?",
+        "it": "Ricordi la Casa del Fauno? Di chi era la battaglia del grande mosaico?",
+        "fr": "Vous vous souvenez de la maison du Faune ? Quelle bataille montrait sa grande mosaïque ?",
+        "de": "Erinnerst du dich an das Haus des Fauns? Wessen Schlacht zeigte das Mosaik?",
+        "es": "¿Recuerdas la Casa del Fauno? ¿De quién era la batalla del gran mosaico?"
+      },
+      "coordinate": {
+        "latitude": 40.75125,
+        "longitude": 14.484583,
+        "source": "Wikidata Q1547308"
+      },
+      "extraSources": [
+        {
+          "title": "Wikipedia: House of the Faun",
+          "url": "https://en.wikipedia.org/wiki/House_of_the_Faun"
+        }
+      ],
+      "wikidata": "Q1547308",
+      "images": {
+        "camera": "faun",
+        "references": [
+          "faun"
+        ],
+        "sticker": "faun",
+        "crop": {
+          "x": 0.4,
+          "y": 0.35,
+          "w": 0.25,
+          "h": 0.35
+        }
+      }
+    },
+    {
+      "id": "villa-mysteries",
+      "card": "pompeii-06-villa-of-the-mysteries",
+      "name": {
+        "en": "Villa of the Mysteries",
+        "it": "Villa dei Misteri",
+        "fr": "Villa des Mystères",
+        "de": "Mysterienvilla",
+        "es": "Villa de los Misterios"
+      },
+      "street": "Via Villa dei Misteri",
+      "camera": false,
+      "aiDescriptions": [
+        "a Roman room painted with a continuous frieze of life-size figures on a deep red background",
+        "the Villa of the Mysteries outside Pompeii"
+      ],
+      "clues": {
+        "en": [
+          "Outside the city walls",
+          "A red painted room",
+          "Large country villa"
+        ],
+        "it": [
+          "Fuori dalle mura",
+          "Una stanza dipinta di rosso",
+          "Grande villa suburbana"
+        ],
+        "fr": [
+          "Hors des remparts",
+          "Une salle peinte en rouge",
+          "Grande villa"
+        ],
+        "de": [
+          "Vor den Stadtmauern",
+          "Ein rot bemalter Raum",
+          "Große Landvilla"
+        ],
+        "es": [
+          "Fuera de las murallas",
+          "Una sala pintada de rojo",
+          "Gran villa"
+        ]
+      },
+      "question": {
+        "en": "Life-size figures on red walls take part in a secret rite. For which god?",
+        "it": "Figure a grandezza naturale su pareti rosse partecipano a un rito segreto. Per quale dio?",
+        "fr": "Des figures grandeur nature sur des murs rouges participent à un rite secret. Pour quel dieu ?",
+        "de": "Lebensgroße Figuren auf roten Wänden feiern einen geheimen Ritus. Für welchen Gott?",
+        "es": "Figuras de tamaño natural sobre muros rojos celebran un rito secreto. ¿Para qué dios?"
+      },
+      "answers": {
+        "en": [
+          "Dionysus",
+          "Apollo",
+          "Venus"
+        ],
+        "it": [
+          "Dioniso",
+          "Apollo",
+          "Venere"
+        ],
+        "fr": [
+          "Dionysos",
+          "Apollon",
+          "Vénus"
+        ],
+        "de": [
+          "Dionysos",
+          "Apollon",
+          "Venus"
+        ],
+        "es": [
+          "Dioniso",
+          "Apolo",
+          "Venus"
+        ]
+      },
+      "answerTitle": {
+        "en": "Dionysus.",
+        "it": "Dioniso.",
+        "fr": "Dionysos.",
+        "de": "Dionysos.",
+        "es": "Dioniso."
+      },
+      "subtitle": {
+        "en": "What the rite means is still debated.",
+        "it": "Il significato del rito è ancora discusso.",
+        "fr": "Le sens du rite est encore débattu.",
+        "de": "Die Bedeutung ist bis heute umstritten.",
+        "es": "Su significado aún se debate."
+      },
+      "body": {
+        "en": "One continuous painted frieze wraps around a room here, showing figures in a ritual linked to Dionysus. Experts still debate exactly what it shows, which keeps this villa one of Pompeii’s great puzzles.",
+        "it": "Un fregio dipinto continuo avvolge una stanza e mostra figure in un rito legato a Dioniso. Gli studiosi discutono ancora su cosa rappresenti: per questo la villa resta uno dei grandi enigmi di Pompei.",
+        "fr": "Une frise peinte continue fait le tour d’une salle et montre des figures dans un rituel lié à Dionysos. Les spécialistes débattent encore de son sens, ce qui fait de cette villa une grande énigme.",
+        "de": "Ein durchgehender Bilderfries umläuft hier einen Raum und zeigt Figuren bei einem Ritual für Dionysos. Fachleute streiten noch über seine Bedeutung, und so bleibt die Villa eines der großen Rätsel Pompejis.",
+        "es": "Un friso pintado continuo rodea una sala y muestra figuras en un ritual ligado a Dioniso. Los expertos aún debaten qué representa, y por eso esta villa sigue siendo uno de los grandes enigmas de Pompeya."
+      },
+      "theory": {
+        "label": {
+          "en": "THEORY",
+          "it": "TEORIA",
+          "fr": "THÉORIE",
+          "de": "THEORIE",
+          "es": "TEORÍA"
+        },
+        "lead": {
+          "en": "Some say",
+          "it": "Secondo alcuni",
+          "fr": "Selon certains",
+          "de": "Manche sagen,",
+          "es": "Algunos dicen que"
+        },
+        "text": {
+          "en": "it shows a young woman’s initiation before marriage.",
+          "it": "mostra l’iniziazione di una giovane prima delle nozze.",
+          "fr": "elle montre l’initiation d’une jeune femme avant son mariage.",
+          "de": "es zeige die Einweihung einer jungen Frau vor der Hochzeit.",
+          "es": "muestra la iniciación de una joven antes de casarse."
+        }
+      },
+      "dinnerLine": {
+        "en": "“Nobody is sure what the Villa of the Mysteries frescoes really show.”",
+        "it": "«Nessuno sa con certezza cosa raccontino gli affreschi della Villa dei Misteri.»",
+        "fr": "« Personne ne sait vraiment ce que montrent les fresques de la villa des Mystères. »",
+        "de": "„Niemand weiß sicher, was die Fresken der Mysterienvilla zeigen.“",
+        "es": "«Nadie sabe con certeza qué muestran los frescos de la Villa de los Misterios.»"
+      },
+      "sticker": {
+        "id": "secret-rite",
+        "collection": "mysteries",
+        "title": {
+          "en": "The secret rite",
+          "it": "Il rito segreto",
+          "fr": "Le rite secret",
+          "de": "Der geheime Ritus",
+          "es": "El rito secreto"
+        },
+        "back": {
+          "en": "A painted frieze of a rite linked to Dionysus.",
+          "it": "Un fregio dipinto di un rito legato a Dioniso.",
+          "fr": "Une frise peinte d’un rite lié à Dionysos.",
+          "de": "Ein Bilderfries eines Ritus für Dionysos.",
+          "es": "Un friso pintado de un rito ligado a Dioniso."
+        }
+      },
+      "recall": {
+        "en": [
+          "Dionysus",
+          "Apollo",
+          "Venus"
+        ],
+        "it": [
+          "Dioniso",
+          "Apollo",
+          "Venere"
+        ],
+        "fr": [
+          "Dionysos",
+          "Apollon",
+          "Vénus"
+        ],
+        "de": [
+          "Dionysos",
+          "Apollon",
+          "Venus"
+        ],
+        "es": [
+          "Dioniso",
+          "Apolo",
+          "Venus"
+        ]
+      },
+      "recallPrompt": {
+        "en": "Remember the Villa of the Mysteries? Which god is its rite linked to?",
+        "it": "Ricordi la Villa dei Misteri? A quale dio è legato il rito?",
+        "fr": "Vous vous souvenez de la villa des Mystères ? À quel dieu son rite est-il lié ?",
+        "de": "Erinnerst du dich an die Mysterienvilla? Welchem Gott gilt der Ritus?",
+        "es": "¿Recuerdas la Villa de los Misterios? ¿A qué dios está ligado el rito?"
+      },
+      "coordinate": {
+        "latitude": 40.753694,
+        "longitude": 14.477444,
+        "source": "Wikidata Q1241298"
+      },
+      "extraSources": [
+        {
+          "title": "Wikipedia: Villa of the Mysteries",
+          "url": "https://en.wikipedia.org/wiki/Villa_of_the_Mysteries"
+        }
+      ],
+      "wikidata": "Q1241298",
+      "images": {
+        "camera": "villaMysteries",
+        "references": [
+          "villaMysteries"
+        ],
+        "sticker": "villaMysteries",
+        "crop": {
+          "x": 0.2,
+          "y": 0.2,
+          "w": 0.6,
+          "h": 0.6
+        }
+      }
+    },
+    {
+      "id": "lupanar",
+      "card": "pompeii-07-lupanar",
+      "name": {
+        "en": "Lupanar",
+        "it": "Lupanare",
+        "fr": "Lupanar",
+        "de": "Lupanar",
+        "es": "Lupanar"
+      },
+      "street": "Vicolo del Lupanare",
+      "camera": false,
+      "aiDescriptions": [
+        "a narrow Roman building on a corner of two stone streets with small rooms inside",
+        "the Lupanar of Pompeii"
+      ],
+      "clues": {
+        "en": [
+          "Small rooms",
+          "Writing on the walls",
+          "A corner of two lanes"
+        ],
+        "it": [
+          "Stanze piccole",
+          "Scritte sui muri",
+          "All’angolo di due vicoli"
+        ],
+        "fr": [
+          "Petites pièces",
+          "Inscriptions aux murs",
+          "À l’angle de deux ruelles"
+        ],
+        "de": [
+          "Kleine Kammern",
+          "Inschriften an den Wänden",
+          "Eine Ecke zweier Gassen"
+        ],
+        "es": [
+          "Cuartos pequeños",
+          "Inscripciones en las paredes",
+          "En la esquina de dos callejones"
+        ]
+      },
+      "question": {
+        "en": "Tiny rooms and walls full of writing. What was this building?",
+        "it": "Stanze minuscole e muri pieni di scritte. Che cos’era questo edificio?",
+        "fr": "De toutes petites pièces et des murs couverts d’inscriptions. Qu’était ce bâtiment ?",
+        "de": "Winzige Kammern und Wände voller Inschriften. Was war dieses Gebäude?",
+        "es": "Cuartos diminutos y paredes llenas de inscripciones. ¿Qué era este edificio?"
+      },
+      "answers": {
+        "en": [
+          "A brothel",
+          "An inn for travellers",
+          "A school"
+        ],
+        "it": [
+          "Un bordello",
+          "Una locanda per viaggiatori",
+          "Una scuola"
+        ],
+        "fr": [
+          "Une maison close",
+          "Une auberge pour voyageurs",
+          "Une école"
+        ],
+        "de": [
+          "Ein Bordell",
+          "Eine Herberge für Reisende",
+          "Eine Schule"
+        ],
+        "es": [
+          "Un burdel",
+          "Una posada para viajeros",
+          "Una escuela"
+        ]
+      },
+      "answerTitle": {
+        "en": "A brothel.",
+        "it": "Un bordello.",
+        "fr": "Une maison close.",
+        "de": "Ein Bordell.",
+        "es": "Un burdel."
+      },
+      "subtitle": {
+        "en": "Its walls still carry inscriptions.",
+        "it": "I muri conservano ancora le scritte.",
+        "fr": "Ses murs portent encore des inscriptions.",
+        "de": "Die Wände tragen noch Inschriften.",
+        "es": "Sus paredes aún conservan inscripciones."
+      },
+      "body": {
+        "en": "Small rooms and surviving wall inscriptions identify this building as a brothel. It is difficult evidence, often linked to slavery, about the lives of people that history rarely remembers.",
+        "it": "Stanze piccole e iscrizioni sui muri identificano questo edificio come un bordello. È una testimonianza difficile, spesso legata alla schiavitù, sulla vita di persone che la storia ricorda di rado.",
+        "fr": "De petites pièces et des inscriptions conservées identifient ce bâtiment comme une maison close. C’est un témoignage difficile, souvent lié à l’esclavage, sur des vies que l’histoire retient rarement.",
+        "de": "Kleine Kammern und erhaltene Wandinschriften weisen dieses Gebäude als Bordell aus. Es ist ein schwieriges Zeugnis, oft mit Sklaverei verbunden, über Menschen, an die sich die Geschichte selten erinnert.",
+        "es": "Cuartos pequeños e inscripciones en las paredes identifican este edificio como un burdel. Es un testimonio difícil, a menudo ligado a la esclavitud, sobre personas que la historia rara vez recuerda."
+      },
+      "dinnerLine": {
+        "en": "“Pompeii’s brothel walls still carry messages written by people almost 2,000 years ago.”",
+        "it": "«I muri del bordello di Pompei conservano messaggi scritti quasi 2.000 anni fa.»",
+        "fr": "« Les murs de la maison close de Pompéi portent des messages vieux de près de 2 000 ans. »",
+        "de": "„Die Wände von Pompejis Bordell tragen fast 2.000 Jahre alte Botschaften.“",
+        "es": "«Las paredes del burdel de Pompeya conservan mensajes de hace casi 2.000 años.»"
+      },
+      "sticker": {
+        "id": "walls-that-talk",
+        "collection": "everyday",
+        "title": {
+          "en": "Walls that talk",
+          "it": "Muri che parlano",
+          "fr": "Des murs qui parlent",
+          "de": "Sprechende Wände",
+          "es": "Paredes que hablan"
+        },
+        "back": {
+          "en": "Inscriptions survive on the walls of Pompeii’s brothel.",
+          "it": "Sui muri del lupanare sopravvivono iscrizioni.",
+          "fr": "Des inscriptions subsistent sur les murs du lupanar.",
+          "de": "An den Wänden des Lupanars sind Inschriften erhalten.",
+          "es": "En las paredes del lupanar sobreviven inscripciones."
+        }
+      },
+      "recall": {
+        "en": [
+          "Brothel",
+          "Inn",
+          "School"
+        ],
+        "it": [
+          "Bordello",
+          "Locanda",
+          "Scuola"
+        ],
+        "fr": [
+          "Maison close",
+          "Auberge",
+          "École"
+        ],
+        "de": [
+          "Bordell",
+          "Herberge",
+          "Schule"
+        ],
+        "es": [
+          "Burdel",
+          "Posada",
+          "Escuela"
+        ]
+      },
+      "recallPrompt": {
+        "en": "Remember the building with tiny rooms and writing on the walls? What was it?",
+        "it": "Ricordi l’edificio con stanze minuscole e muri pieni di scritte? Che cos’era?",
+        "fr": "Vous vous souvenez du bâtiment aux toutes petites pièces ? Qu’était-ce ?",
+        "de": "Erinnerst du dich an das Gebäude mit den winzigen Kammern? Was war es?",
+        "es": "¿Recuerdas el edificio de cuartos diminutos? ¿Qué era?"
+      },
+      "coordinate": {
+        "latitude": 40.75025,
+        "longitude": 14.486778,
+        "source": "Wikidata Q157747"
+      },
+      "extraSources": [
+        {
+          "title": "Wikipedia: Lupanar",
+          "url": "https://en.wikipedia.org/wiki/Lupanar"
+        }
+      ],
+      "wikidata": "Q157747",
+      "images": {
+        "camera": "lupanar",
+        "references": [
+          "lupanar"
+        ],
+        "sticker": "lupanar",
+        "crop": {
+          "x": 0.1,
+          "y": 0.1,
+          "w": 0.8,
+          "h": 0.5
+        }
+      }
+    },
+    {
+      "id": "house-casca",
+      "card": "pompeii-01-house-of-casca-longus-or-quadretti-teatrali",
+      "name": {
+        "en": "House of Casca Longus",
+        "it": "Casa di Casca Longus",
+        "fr": "Maison de Casca Longus",
+        "de": "Haus des Casca Longus",
+        "es": "Casa de Casca Longus"
+      },
+      "street": "Via dell’Abbondanza",
+      "camera": false,
+      "aiDescriptions": [
+        "a Roman house atrium with a marble table on carved legs and small painted theatre scenes",
+        "the House of Casca Longus in Pompeii"
+      ],
+      "clues": {
+        "en": [
+          "Inscribed marble table",
+          "Painted theatre scenes",
+          "Via dell’Abbondanza"
+        ],
+        "it": [
+          "Tavolo di marmo iscritto",
+          "Scene teatrali dipinte",
+          "Via dell’Abbondanza"
+        ],
+        "fr": [
+          "Table de marbre gravée",
+          "Scènes de théâtre peintes",
+          "Via dell’Abbondanza"
+        ],
+        "de": [
+          "Beschrifteter Marmortisch",
+          "Gemalte Theaterszenen",
+          "Via dell’Abbondanza"
+        ],
+        "es": [
+          "Mesa de mármol con inscripción",
+          "Escenas teatrales pintadas",
+          "Via dell’Abbondanza"
+        ]
+      },
+      "question": {
+        "en": "A marble table here carries a name linked to a famous murder. Which one?",
+        "it": "Un tavolo di marmo qui porta un nome legato a un omicidio famoso. Quale?",
+        "fr": "Une table de marbre porte ici un nom lié à un meurtre célèbre. Lequel ?",
+        "de": "Ein Marmortisch hier trägt einen Namen, der mit einem berühmten Mord verbunden ist. Welchem?",
+        "es": "Una mesa de mármol lleva aquí un nombre ligado a un asesinato famoso. ¿Cuál?"
+      },
+      "answers": {
+        "en": [
+          "Julius Caesar’s assassination",
+          "The murder of Nero’s mother",
+          "Romulus killing Remus"
+        ],
+        "it": [
+          "L’assassinio di Giulio Cesare",
+          "L’omicidio della madre di Nerone",
+          "Romolo che uccide Remo"
+        ],
+        "fr": [
+          "L’assassinat de Jules César",
+          "Le meurtre de la mère de Néron",
+          "Romulus tuant Rémus"
+        ],
+        "de": [
+          "Die Ermordung Julius Caesars",
+          "Der Mord an Neros Mutter",
+          "Romulus tötet Remus"
+        ],
+        "es": [
+          "El asesinato de Julio César",
+          "El asesinato de la madre de Nerón",
+          "Rómulo matando a Remo"
+        ]
+      },
+      "answerTitle": {
+        "en": "Caesar’s assassination.",
+        "it": "L’assassinio di Cesare.",
+        "fr": "L’assassinat de César.",
+        "de": "Caesars Ermordung.",
+        "es": "El asesinato de César."
+      },
+      "subtitle": {
+        "en": "The table names Casca Longus.",
+        "it": "Il tavolo porta il nome di Casca Longus.",
+        "fr": "La table porte le nom de Casca Longus.",
+        "de": "Der Tisch nennt Casca Longus.",
+        "es": "La mesa lleva el nombre de Casca Longus."
+      },
+      "body": {
+        "en": "A marble table found here bears the name of Publius Servilius Casca Longus, linked to one of the men who killed Julius Caesar in 44 BC. Roman politics, carved into the furniture of a Pompeian home.",
+        "it": "Un tavolo di marmo trovato qui porta il nome di Publio Servilio Casca Longo, legato a uno degli uccisori di Giulio Cesare nel 44 a.C. La politica romana, incisa nei mobili di una casa pompeiana.",
+        "fr": "Une table de marbre trouvée ici porte le nom de Publius Servilius Casca Longus, lié à l’un des assassins de Jules César en 44 av. J.-C. La politique romaine, gravée dans un meuble pompéien.",
+        "de": "Ein hier gefundener Marmortisch trägt den Namen des Publius Servilius Casca Longus, verbunden mit einem der Mörder Julius Caesars 44 v. Chr. Römische Politik, eingemeißelt in ein Möbel aus Pompeji.",
+        "es": "Una mesa de mármol hallada aquí lleva el nombre de Publio Servilio Casca Longo, ligado a uno de los asesinos de Julio César en el 44 a. C. La política romana, grabada en un mueble pompeyano."
+      },
+      "dinnerLine": {
+        "en": "“A table in Pompeii carries a name linked to Caesar’s assassins.”",
+        "it": "«Un tavolo di Pompei porta un nome legato agli assassini di Cesare.»",
+        "fr": "« Une table de Pompéi porte un nom lié aux assassins de César. »",
+        "de": "„Ein Tisch in Pompeji trägt einen Namen, der mit Caesars Mördern verbunden ist.“",
+        "es": "«Una mesa de Pompeya lleva un nombre ligado a los asesinos de César.»"
+      },
+      "sticker": {
+        "id": "caesars-shadow",
+        "collection": "private",
+        "title": {
+          "en": "Caesar’s shadow",
+          "it": "L’ombra di Cesare",
+          "fr": "L’ombre de César",
+          "de": "Caesars Schatten",
+          "es": "La sombra de César"
+        },
+        "back": {
+          "en": "A table here names Casca Longus, linked to Caesar’s killers.",
+          "it": "Un tavolo qui nomina Casca Longus, legato agli uccisori di Cesare.",
+          "fr": "Une table nomme Casca Longus, lié aux assassins de César.",
+          "de": "Ein Tisch nennt Casca Longus, verbunden mit Caesars Mördern.",
+          "es": "Una mesa nombra a Casca Longus, ligado a los asesinos de César."
+        }
+      },
+      "recall": {
+        "en": [
+          "Caesar",
+          "Nero’s mother",
+          "Remus"
+        ],
+        "it": [
+          "Cesare",
+          "Madre di Nerone",
+          "Remo"
+        ],
+        "fr": [
+          "César",
+          "Mère de Néron",
+          "Rémus"
+        ],
+        "de": [
+          "Caesar",
+          "Neros Mutter",
+          "Remus"
+        ],
+        "es": [
+          "César",
+          "Madre de Nerón",
+          "Remo"
+        ]
+      },
+      "recallPrompt": {
+        "en": "Remember the marble table in Pompeii? Which murder is its name linked to?",
+        "it": "Ricordi il tavolo di marmo a Pompei? A quale omicidio è legato il nome?",
+        "fr": "Vous vous souvenez de la table de marbre ? À quel meurtre son nom est-il lié ?",
+        "de": "Erinnerst du dich an den Marmortisch? Mit welchem Mord ist sein Name verbunden?",
+        "es": "¿Recuerdas la mesa de mármol? ¿A qué asesinato está ligado su nombre?"
+      },
+      "coordinate": {
+        "latitude": 40.750208,
+        "longitude": 14.488993,
+        "source": "Wikidata Q27070418"
+      },
+      "extraSources": [
+        {
+          "title": "Wikipedia (it): Casa dei Quadretti Teatrali",
+          "url": "https://it.wikipedia.org/wiki/Casa_dei_Quadretti_Teatrali"
+        }
+      ],
+      "wikidata": "Q27070418",
+      "images": {
+        "camera": "casca",
+        "references": [
+          "casca"
+        ],
+        "sticker": "casca",
+        "crop": {
+          "x": 0.2,
+          "y": 0.2,
+          "w": 0.6,
+          "h": 0.6
+        }
+      }
+    },
+    {
+      "id": "house-moralist",
+      "card": "pompeii-03-house-of-the-moralist",
+      "name": {
+        "en": "House of the Moralist",
+        "it": "Casa del Moralista",
+        "fr": "Maison du Moraliste",
+        "de": "Haus des Moralisten",
+        "es": "Casa del Moralista"
+      },
+      "street": "Via dell’Abbondanza",
+      "camera": false,
+      "aiDescriptions": [
+        "a Roman dining room with painted walls and short lines of Latin writing",
+        "the House of the Moralist in Pompeii"
+      ],
+      "clues": {
+        "en": [
+          "Painted sayings",
+          "Dining room",
+          "Regio III"
+        ],
+        "it": [
+          "Massime dipinte",
+          "Sala da pranzo",
+          "Regio III"
+        ],
+        "fr": [
+          "Maximes peintes",
+          "Salle à manger",
+          "Regio III"
+        ],
+        "de": [
+          "Gemalte Sprüche",
+          "Speisezimmer",
+          "Regio III"
+        ],
+        "es": [
+          "Máximas pintadas",
+          "Comedor",
+          "Regio III"
+        ]
+      },
+      "question": {
+        "en": "Painted lines in this dining room give guests advice. About what?",
+        "it": "Frasi dipinte in questa sala da pranzo danno consigli agli ospiti. Su che cosa?",
+        "fr": "Des phrases peintes dans cette salle à manger conseillent les invités. Sur quoi ?",
+        "de": "Gemalte Zeilen in diesem Speisezimmer geben Gästen Ratschläge. Wozu?",
+        "es": "Frases pintadas en este comedor aconsejan a los invitados. ¿Sobre qué?"
+      },
+      "answers": {
+        "en": [
+          "How to behave at dinner",
+          "How to pay for the meal",
+          "When to leave before dark"
+        ],
+        "it": [
+          "Come comportarsi a tavola",
+          "Come pagare il pasto",
+          "Quando andarsene prima del buio"
+        ],
+        "fr": [
+          "Comment se tenir à table",
+          "Comment payer le repas",
+          "Quand partir avant la nuit"
+        ],
+        "de": [
+          "Wie man sich bei Tisch benimmt",
+          "Wie man das Essen bezahlt",
+          "Wann man vor Dunkelheit geht"
+        ],
+        "es": [
+          "Cómo portarse en la mesa",
+          "Cómo pagar la comida",
+          "Cuándo irse antes de oscurecer"
+        ]
+      },
+      "answerTitle": {
+        "en": "Good table manners.",
+        "it": "Le buone maniere a tavola.",
+        "fr": "Les bonnes manières à table.",
+        "de": "Gute Tischmanieren.",
+        "es": "Buenos modales en la mesa."
+      },
+      "subtitle": {
+        "en": "House rules, painted on the walls.",
+        "it": "Regole di casa, dipinte sui muri.",
+        "fr": "Le règlement, peint sur les murs.",
+        "de": "Hausregeln, an die Wand gemalt.",
+        "es": "Normas de la casa, pintadas en la pared."
+      },
+      "body": {
+        "en": "Painted sayings around this home’s dining area told guests how to behave at banquets. More than decoration, they give an amusing glimpse of what Romans expected from each other at a shared meal.",
+        "it": "Massime dipinte intorno alla sala da pranzo dicevano agli ospiti come comportarsi ai banchetti. Più che decorazione, offrono uno sguardo divertente su ciò che i romani si aspettavano a tavola.",
+        "fr": "Des maximes peintes autour de la salle à manger disaient aux invités comment se tenir aux banquets. Plus qu’un décor, elles montrent avec humour ce que les Romains attendaient les uns des autres à table.",
+        "de": "Gemalte Sprüche rund um das Speisezimmer sagten Gästen, wie man sich bei Gelagen benimmt. Mehr als Schmuck, zeigen sie amüsant, was Römer bei einem gemeinsamen Essen voneinander erwarteten.",
+        "es": "Máximas pintadas alrededor del comedor decían a los invitados cómo comportarse en los banquetes. Más que decoración, muestran con humor lo que los romanos esperaban unos de otros en la mesa."
+      },
+      "dinnerLine": {
+        "en": "“A Pompeii dining room has table-manner rules painted on the wall.”",
+        "it": "«In una sala da pranzo di Pompei le regole del galateo sono dipinte sul muro.»",
+        "fr": "« Une salle à manger de Pompéi affiche ses règles de politesse peintes au mur. »",
+        "de": "„In einem Speisezimmer in Pompeji stehen Tischregeln an der Wand.“",
+        "es": "«En un comedor de Pompeya, las normas de etiqueta están pintadas en la pared.»"
+      },
+      "sticker": {
+        "id": "mind-your-manners",
+        "collection": "everyday",
+        "title": {
+          "en": "Mind your manners",
+          "it": "Attento alle maniere",
+          "fr": "Tenez-vous bien",
+          "de": "Benimm dich",
+          "es": "Cuida tus modales"
+        },
+        "back": {
+          "en": "Painted rules told Roman guests how to behave at dinner.",
+          "it": "Regole dipinte dicevano agli ospiti come stare a tavola.",
+          "fr": "Des règles peintes disaient aux invités comment se tenir.",
+          "de": "Gemalte Regeln sagten Gästen, wie man sich benimmt.",
+          "es": "Normas pintadas decían a los invitados cómo comportarse."
+        }
+      },
+      "recall": {
+        "en": [
+          "Manners",
+          "Paying",
+          "Leaving early"
+        ],
+        "it": [
+          "Maniere",
+          "Pagare",
+          "Andarsene"
+        ],
+        "fr": [
+          "Manières",
+          "Payer",
+          "Partir tôt"
+        ],
+        "de": [
+          "Manieren",
+          "Bezahlen",
+          "Früh gehen"
+        ],
+        "es": [
+          "Modales",
+          "Pagar",
+          "Irse pronto"
+        ]
+      },
+      "recallPrompt": {
+        "en": "Remember the House of the Moralist? What advice was painted in its dining room?",
+        "it": "Ricordi la Casa del Moralista? Quali consigli erano dipinti in sala da pranzo?",
+        "fr": "Vous vous souvenez de la maison du Moraliste ? Quels conseils étaient peints ?",
+        "de": "Erinnerst du dich an das Haus des Moralisten? Welche Ratschläge standen an der Wand?",
+        "es": "¿Recuerdas la Casa del Moralista? ¿Qué consejos estaban pintados?"
+      },
+      "coordinate": {
+        "latitude": 40.751944,
+        "longitude": 14.491944,
+        "source": "Wikidata Q1046568"
+      },
+      "extraSources": [
+        {
+          "title": "Wikipedia (it): Casa del Moralista",
+          "url": "https://it.wikipedia.org/wiki/Casa_del_Moralista"
+        }
+      ],
+      "wikidata": "Q1046568",
+      "images": {
+        "camera": "moralist",
+        "references": [
+          "moralist"
+        ],
+        "sticker": "moralist",
+        "crop": {
+          "x": 0.2,
+          "y": 0.2,
+          "w": 0.6,
+          "h": 0.6
+        }
+      }
+    },
+    {
+      "id": "bakery-popidius-priscus",
+      "card": "pompeii-07-bakery-of-popidio-prisco",
+      "name": {
+        "en": "Bakery of Popidius Priscus",
+        "it": "Panificio di Popidio Prisco",
+        "fr": "Boulangerie de Popidius Priscus",
+        "de": "Bäckerei des Popidius Priscus",
+        "es": "Panadería de Popidio Prisco"
+      },
+      "street": "Vicolo Storto",
+      "camera": false,
+      "aiDescriptions": [
+        "a Roman bakery with large hourglass-shaped stone mills and a domed brick oven",
+        "the bakery of Popidius Priscus in Pompeii"
+      ],
+      "clues": {
+        "en": [
+          "Hourglass-shaped stones",
+          "A brick oven",
+          "Regio VII"
+        ],
+        "it": [
+          "Pietre a forma di clessidra",
+          "Un forno in mattoni",
+          "Regio VII"
+        ],
+        "fr": [
+          "Pierres en forme de sablier",
+          "Un four en brique",
+          "Regio VII"
+        ],
+        "de": [
+          "Steine wie Sanduhren",
+          "Ein Ziegelofen",
+          "Regio VII"
+        ],
+        "es": [
+          "Piedras con forma de reloj de arena",
+          "Un horno de ladrillo",
+          "Regio VII"
+        ]
+      },
+      "question": {
+        "en": "The big hourglass-shaped stones here did one job. What was it?",
+        "it": "Le grandi pietre a forma di clessidra avevano un compito. Quale?",
+        "fr": "Les grandes pierres en forme de sablier avaient une fonction. Laquelle ?",
+        "de": "Die großen sanduhrförmigen Steine hatten eine Aufgabe. Welche?",
+        "es": "Las grandes piedras con forma de reloj de arena tenían una función. ¿Cuál?"
+      },
+      "answers": {
+        "en": [
+          "Grinding grain into flour",
+          "Pressing olives for oil",
+          "Measuring time"
+        ],
+        "it": [
+          "Macinare il grano",
+          "Spremere le olive",
+          "Misurare il tempo"
+        ],
+        "fr": [
+          "Moudre le grain",
+          "Presser les olives",
+          "Mesurer le temps"
+        ],
+        "de": [
+          "Getreide mahlen",
+          "Oliven pressen",
+          "Die Zeit messen"
+        ],
+        "es": [
+          "Moler el grano",
+          "Prensar aceitunas",
+          "Medir el tiempo"
+        ]
+      },
+      "answerTitle": {
+        "en": "Grinding grain.",
+        "it": "Macinare il grano.",
+        "fr": "Moudre le grain.",
+        "de": "Getreide mahlen.",
+        "es": "Moler el grano."
+      },
+      "subtitle": {
+        "en": "Mills and oven under one roof.",
+        "it": "Mulini e forno sotto lo stesso tetto.",
+        "fr": "Moulins et four sous le même toit.",
+        "de": "Mühlen und Ofen unter einem Dach.",
+        "es": "Molinos y horno bajo el mismo techo."
+      },
+      "body": {
+        "en": "This bakery brought grinding and baking together. Its stone mills turned grain into flour and its oven baked the bread: a Roman production line that fed the neighbourhood.",
+        "it": "Questo panificio univa macinatura e cottura. I mulini di pietra trasformavano il grano in farina e il forno cuoceva il pane: una catena di produzione romana che sfamava il quartiere.",
+        "fr": "Cette boulangerie réunissait mouture et cuisson. Ses moulins de pierre changeaient le grain en farine et son four cuisait le pain : une chaîne de production romaine qui nourrissait le quartier.",
+        "de": "Diese Bäckerei vereinte Mahlen und Backen. Steinmühlen machten aus Getreide Mehl, der Ofen buk das Brot: eine römische Produktionskette, die das Viertel ernährte.",
+        "es": "Esta panadería unía molienda y horneado. Sus molinos de piedra convertían el grano en harina y su horno cocía el pan: una cadena de producción romana que alimentaba al barrio."
+      },
+      "dinnerLine": {
+        "en": "“Pompeii’s bakers ground their own flour in big stone mills.”",
+        "it": "«I fornai di Pompei macinavano la farina da soli, con grandi mulini di pietra.»",
+        "fr": "« Les boulangers de Pompéi moulaient leur farine dans de grands moulins de pierre. »",
+        "de": "„Pompejis Bäcker mahlten ihr Mehl selbst in großen Steinmühlen.“",
+        "es": "«Los panaderos de Pompeya molían su propia harina en grandes molinos de piedra.»"
+      },
+      "sticker": {
+        "id": "daily-bread",
+        "collection": "everyday",
+        "title": {
+          "en": "Daily bread",
+          "it": "Il pane quotidiano",
+          "fr": "Le pain quotidien",
+          "de": "Das tägliche Brot",
+          "es": "El pan de cada día"
+        },
+        "back": {
+          "en": "Stone mills and an oven: a Roman bakery in one room.",
+          "it": "Mulini di pietra e un forno: un panificio romano.",
+          "fr": "Moulins de pierre et four : une boulangerie romaine.",
+          "de": "Steinmühlen und Ofen: eine römische Bäckerei.",
+          "es": "Molinos de piedra y horno: una panadería romana."
+        }
+      },
+      "recall": {
+        "en": [
+          "Flour",
+          "Olive oil",
+          "Time"
+        ],
+        "it": [
+          "Farina",
+          "Olio",
+          "Tempo"
+        ],
+        "fr": [
+          "Farine",
+          "Huile",
+          "Temps"
+        ],
+        "de": [
+          "Mehl",
+          "Olivenöl",
+          "Zeit"
+        ],
+        "es": [
+          "Harina",
+          "Aceite",
+          "Tiempo"
+        ]
+      },
+      "recallPrompt": {
+        "en": "Remember the bakery’s hourglass stones? What did they do?",
+        "it": "Ricordi le pietre a clessidra del panificio? A che cosa servivano?",
+        "fr": "Vous vous souvenez des pierres en sablier de la boulangerie ? À quoi servaient-elles ?",
+        "de": "Erinnerst du dich an die Sanduhrsteine der Bäckerei? Wofür waren sie?",
+        "es": "¿Recuerdas las piedras de la panadería? ¿Para qué servían?"
+      },
+      "coordinate": {
+        "latitude": 40.750881,
+        "longitude": 14.485712,
+        "source": "Wikidata Q27686667"
+      },
+      "wikidata": "Q27686667",
+      "images": {
+        "camera": "bakeryPriscus",
+        "references": [
+          "bakeryPriscus"
+        ],
+        "sticker": "bakeryPriscus",
+        "crop": {
+          "x": 0.45,
+          "y": 0.4,
+          "w": 0.5,
+          "h": 0.5
+        }
+      }
+    }
+  ]
+}

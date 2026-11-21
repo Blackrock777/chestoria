@@ -75,8 +75,8 @@ struct TripMapView: View {
     var body: some View {
         let t = model.strings
         let visitedIDs = Set(visited.map(\.id))
-        // Found places, plus stories still to find. Places without a story stay off the map until they have one.
-        let pins = site.places.filter { visitedIDs.contains($0.id) || $0.story != nil }
+        // Found places, stories still to find, and small dots for places whose story is coming.
+        let pins = site.places.sorted { ($0.story == nil ? 0 : 1) < ($1.story == nil ? 0 : 1) }
         Map(position: $position) {
             UserAnnotation()
             if visited.count > 1 {
@@ -86,10 +86,10 @@ struct TripMapView: View {
             ForEach(Array(pins.enumerated()), id: \.element.id) { i, place in
                 let found = visitedIDs.contains(place.id)
                 Annotation("", coordinate: place.coordinate, anchor: .top) {
-                    TripPin(found: found, latest: place.id == visited.last?.id, delay: Double(i) * 0.12,
-                            label: found && (place.showsMapLabel ?? true) ? place.name : nil)
+                    TripPin(found: found, latest: place.id == visited.last?.id, delay: min(Double(i) * 0.12, 1.5),
+                            label: found && (place.showsMapLabel ?? true) ? place.name : nil, hasStory: place.story != nil)
                         .onTapGesture { Haptics.tap(); onTap(place) }
-                        .accessibilityLabel(found ? place.name : t("trip.toFind"))
+                        .accessibilityLabel(found || place.story == nil ? place.name : t("trip.toFind"))
                         .accessibilityAddTraits(.isButton)
                 }
             }
@@ -113,7 +113,7 @@ struct TripMapView: View {
         }
         return MKCoordinateRegion(
             center: .init(latitude: (minLat + maxLat) / 2, longitude: (minLon + maxLon) / 2),
-            span: .init(latitudeDelta: max((maxLat - minLat) * 1.9, 0.004), longitudeDelta: max((maxLon - minLon) * 1.9, 0.004)))
+            span: .init(latitudeDelta: max((maxLat - minLat) * 1.25, 0.004), longitudeDelta: max((maxLon - minLon) * 1.25, 0.004)))
     }
 }
 
@@ -123,13 +123,16 @@ private struct TripPin: View {
     let latest: Bool
     let delay: Double
     var label: String? = nil
+    var hasStory = true
     @State private var shown = false
     @Environment(\.accessibilityReduceMotion) private var reduce
     private let ink = Color(red: 0.17, green: 0.19, blue: 0.18)
 
     var body: some View {
         Group {
-            if found {
+            if !hasStory && !found {
+                Circle().fill(Palette.stone.opacity(0.55)).overlay(Circle().stroke(.white, lineWidth: 2)).frame(width: 11, height: 11)
+            } else if found {
                 ZStack {
                     Circle().fill(Palette.tufo).overlay(Circle().stroke(.white, lineWidth: 4))
                     Circle().fill(ink).padding(latest ? 12 : 11)

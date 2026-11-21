@@ -137,6 +137,555 @@
           "hint": "Astuce : regardez sous les dieux peints"
         }
       }
+    },
+    {
+      "id": "amphitheatre",
+      "name": "Amphithéâtre",
+      "clues": [
+        "Arène ovale",
+        "Gradins de pierre",
+        "À l’est de la ville"
+      ],
+      "story": {
+        "eyebrow": "Amphithéâtre · Pompéi",
+        "question": "Des gladiateurs combattaient dans cette arène. Laquelle est la plus ancienne : elle ou le Colisée ?",
+        "answers": [
+          "Le Colisée",
+          "Cette arène, bien avant",
+          "Les deux la même décennie"
+        ],
+        "answerTitle": "Cette arène d’abord.",
+        "subtitle": "Construite au Ier siècle av. J.-C.",
+        "body": "L’amphithéâtre de Pompéi fut construit au Ier siècle av. J.-C., bien avant le Colisée. C’est l’une des plus anciennes arènes romaines conservées, et la foule venait de toute la région pour les jeux.",
+        "source": "Sources publiées",
+        "dinnerLine": "« Pompéi avait une arène de pierre bien avant que Rome ait le Colisée. »",
+        "sticker": {
+          "title": "Plus ancien que le Colisée",
+          "collection": "Grandes foules",
+          "back": "L’amphithéâtre de Pompéi date du Ier siècle av. J.-C."
+        },
+        "recallChoices": [
+          "Colisée",
+          "Cette arène",
+          "Même décennie"
+        ],
+        "recallPrompt": "Vous vous souvenez de l’amphithéâtre de Pompéi ? Lequel est le plus ancien : lui ou le Colisée ?"
+      }
+    },
+    {
+      "id": "large-theatre",
+      "name": "Grand Théâtre",
+      "clues": [
+        "Gradins en arc",
+        "Adossé à une pente",
+        "Un petit théâtre à côté"
+      ],
+      "story": {
+        "eyebrow": "Grand Théâtre · Pompéi",
+        "question": "Aucun grand mur ne soutient ces gradins. Qu’est-ce qui les porte ?",
+        "answers": [
+          "Des voûtes de brique",
+          "La pente naturelle",
+          "Une charpente en bois"
+        ],
+        "answerTitle": "La pente elle-même.",
+        "subtitle": "Les bâtisseurs ont utilisé la pente.",
+        "body": "Les gradins du Grand Théâtre reposent sur la pente naturelle du terrain. Plutôt que d’élever une énorme structure, les bâtisseurs ont laissé faire le paysage et changé une colline en scène pour la ville.",
+        "source": "Sources publiées",
+        "dinnerLine": "« Le grand théâtre de Pompéi repose sur une colline, pas sur des murs. »",
+        "sticker": {
+          "title": "Gradins sur la colline",
+          "collection": "Grandes foules",
+          "back": "Les gradins du Grand Théâtre reposent sur la pente naturelle."
+        },
+        "recallChoices": [
+          "Voûtes",
+          "Pente",
+          "Bois"
+        ],
+        "recallPrompt": "Vous vous souvenez du Grand Théâtre de Pompéi ? Qu’est-ce qui porte ses gradins ?"
+      }
+    },
+    {
+      "id": "odeon",
+      "name": "Petit Théâtre (Odéon)",
+      "clues": [
+        "Petit hémicycle de gradins",
+        "Fermé par des murs",
+        "À côté du Grand Théâtre"
+      ],
+      "story": {
+        "eyebrow": "Petit Théâtre (Odéon) · Pompéi",
+        "question": "Pompéi avait déjà un grand théâtre à côté. Qu’est-ce qui rendait ce petit différent ?",
+        "answers": [
+          "Il était réservé aux gladiateurs",
+          "Il avait un toit",
+          "Il était réservé aux femmes"
+        ],
+        "answerTitle": "Il avait un toit.",
+        "subtitle": "Une salle couverte pour un public restreint.",
+        "body": "À côté du Grand Théâtre à ciel ouvert se trouvait ce petit théâtre couvert. Avec un toit au-dessus des gradins, il offrait aux spectacles un cadre intime, bien différent du grand auditorium voisin.",
+        "source": "Sources publiées",
+        "dinnerLine": "« Pompéi avait deux théâtres côte à côte : l’un à ciel ouvert, l’autre couvert. »",
+        "sticker": {
+          "title": "Le théâtre couvert",
+          "collection": "Grandes foules",
+          "back": "Le petit théâtre était couvert, contrairement à son grand voisin."
+        },
+        "recallChoices": [
+          "Gladiateurs",
+          "Un toit",
+          "Femmes"
+        ],
+        "recallPrompt": "Vous vous souvenez du petit théâtre de Pompéi ? Qu’avait-il de différent ?"
+      }
+    },
+    {
+      "id": "basilica",
+      "name": "Basilique",
+      "clues": [
+        "Rangées de colonnes en brique",
+        "À côté du Forum",
+        "Une estrade au fond"
+      ],
+      "story": {
+        "eyebrow": "Basilique · Pompéi",
+        "question": "Bien avant que les églises prennent ce nom, que faisait-on dans une basilique ?",
+        "answers": [
+          "Le culte chrétien",
+          "Des procès et des affaires",
+          "Des courses de chars"
+        ],
+        "answerTitle": "Procès et affaires.",
+        "subtitle": "La grande salle publique de Pompéi.",
+        "body": "Bien avant de désigner une église, la basilique était une salle publique. À côté du Forum, celle-ci accueillait procès et affaires, les décisions quotidiennes qui faisaient tourner la ville.",
+        "source": "Sources publiées",
+        "dinnerLine": "« À Pompéi, une basilique était un tribunal, pas une église. »",
+        "sticker": {
+          "title": "Justice et commerce",
+          "collection": "Vie en ville",
+          "back": "La basilique romaine accueillait procès et affaires, pas le culte."
+        },
+        "recallChoices": [
+          "Culte",
+          "Procès",
+          "Courses"
+        ],
+        "recallPrompt": "Vous vous souvenez de la basilique de Pompéi ? Qu’y faisait-on ?"
+      }
+    },
+    {
+      "id": "mensa-ponderaria",
+      "name": "Mensa Ponderaria",
+      "clues": [
+        "Table de pierre",
+        "Creux arrondis",
+        "En bordure du Forum"
+      ],
+      "story": {
+        "eyebrow": "Mensa Ponderaria · Pompéi",
+        "question": "Les creux de cette table de pierre avaient une seule fonction. Laquelle ?",
+        "answers": [
+          "Recueillir la pluie pour les animaux",
+          "Recevoir des offrandes aux dieux",
+          "Vérifier que les mesures étaient justes"
+        ],
+        "answerTitle": "Des mesures justes.",
+        "subtitle": "La table officielle des mesures.",
+        "body": "À Pompéi, les acheteurs pouvaient vérifier qu’on ne les trompait pas. Cette table publique en pierre fixait les mesures officielles : marchands et clients comparaient les marchandises à une référence commune.",
+        "source": "Sources publiées",
+        "dinnerLine": "« Pompéi avait une table de pierre officielle contre les marchands tricheurs. »",
+        "sticker": {
+          "title": "Juste mesure",
+          "collection": "Vie en ville",
+          "back": "Les marchands vérifiaient leurs mesures sur cette table publique."
+        },
+        "recallChoices": [
+          "Pluie",
+          "Offrandes",
+          "Mesures"
+        ],
+        "recallPrompt": "Vous vous souvenez de la table de pierre du Forum ? À quoi servaient ses creux ?"
+      }
+    },
+    {
+      "id": "castellum-aquae",
+      "name": "Castellum Aquae",
+      "clues": [
+        "Bâtiment d’eau en brique",
+        "Près de la porte du Vésuve",
+        "Point le plus haut"
+      ],
+      "story": {
+        "eyebrow": "Castellum Aquae · Pompéi",
+        "question": "L’eau de l’aqueduc arrivait ici, au point le plus haut. Que lui arrivait-il ensuite ?",
+        "answers": [
+          "On la gardait contre les incendies",
+          "On la vendait à la cruche",
+          "Elle partait dans des tuyaux vers la ville"
+        ],
+        "answerTitle": "Elle était distribuée.",
+        "subtitle": "Les tuyaux desservaient les quartiers.",
+        "body": "L’eau de l’aqueduc arrivait à Pompéi dans ce bâtiment, au point le plus haut de la ville. De là, elle partait dans un réseau de tuyaux ramifié vers les différents quartiers.",
+        "source": "Sources publiées",
+        "dinnerLine": "« L’eau de Pompéi partait d’un seul bâtiment en haut de la ville. »",
+        "sticker": {
+          "title": "De l’eau pour la ville",
+          "collection": "Vie en ville",
+          "back": "Ici, l’eau de l’aqueduc se répartissait dans les tuyaux de la ville."
+        },
+        "recallChoices": [
+          "Incendies",
+          "À la cruche",
+          "Distribuée"
+        ],
+        "recallPrompt": "Vous vous souvenez du bâtiment de l’eau ? Que devenait l’eau ?"
+      }
+    },
+    {
+      "id": "central-baths",
+      "name": "Thermes centraux",
+      "clues": [
+        "Grande cour ouverte",
+        "Murs inachevés",
+        "À un carrefour animé"
+      ],
+      "story": {
+        "eyebrow": "Thermes centraux · Pompéi",
+        "question": "Ces grands thermes semblent inachevés. Pourquoi ?",
+        "answers": [
+          "Des bombes les ont touchés en 1943",
+          "L’argent a manqué",
+          "Ils étaient encore en chantier en 79"
+        ],
+        "answerTitle": "Encore en chantier.",
+        "subtitle": "L’éruption a stoppé les travaux.",
+        "body": "Les thermes centraux étaient encore en construction quand le Vésuve entra en éruption en 79. Leurs murs inachevés figent un chantier romain en plein travail, aussi clairement qu’un monument terminé.",
+        "source": "Sources publiées",
+        "dinnerLine": "« Les thermes les plus récents de Pompéi n’ont jamais été finis : le Vésuve est arrivé avant. »",
+        "sticker": {
+          "title": "Jamais finis",
+          "collection": "Vie en ville",
+          "back": "Les thermes centraux étaient un chantier lors de l’éruption."
+        },
+        "recallChoices": [
+          "Bombes",
+          "Plus d’argent",
+          "En chantier"
+        ],
+        "recallPrompt": "Vous vous souvenez des thermes centraux ? Pourquoi semblent-ils inachevés ?"
+      }
+    },
+    {
+      "id": "stabian-baths",
+      "name": "Thermes de Stabies",
+      "clues": [
+        "Cour d’exercice",
+        "Salles chaudes et froides",
+        "Via dell’Abbondanza"
+      ],
+      "story": {
+        "eyebrow": "Thermes de Stabies · Pompéi",
+        "question": "Pour les Pompéiens, les thermes servaient à plus que se laver. À quoi d’autre ?",
+        "answers": [
+          "Voter aux élections",
+          "Faire du sport et voir des amis",
+          "Stocker le grain"
+        ],
+        "answerTitle": "Sport et compagnie.",
+        "subtitle": "Des salles à différentes températures.",
+        "body": "Ces thermes réunissaient des salles à différentes températures et des espaces pour le sport et la conversation. Pour les Pompéiens, le bain quotidien était aussi l’occasion de s’entraîner et de se retrouver.",
+        "source": "Sources publiées",
+        "dinnerLine": "« Pour les Romains, les thermes étaient à la fois salle de sport, spa et café. »",
+        "sticker": {
+          "title": "Le bain quotidien",
+          "collection": "Vie en ville",
+          "back": "Ici, les Pompéiens se baignaient, s’entraînaient et se retrouvaient."
+        },
+        "recallChoices": [
+          "Voter",
+          "Amis",
+          "Grain"
+        ],
+        "recallPrompt": "Vous vous souvenez des thermes de Stabies ? À quoi servaient-ils, en plus du bain ?"
+      }
+    },
+    {
+      "id": "house-octavius-quartio",
+      "name": "Maison d’Octavius Quartio",
+      "clues": [
+        "Long jardin",
+        "Canaux d’eau",
+        "Via dell’Abbondanza"
+      ],
+      "story": {
+        "eyebrow": "Maison d’Octavius Quartio · Pompéi",
+        "question": "Ses propriétaires voulaient une villa de campagne en ville. Qu’ont-ils construit ?",
+        "answers": [
+          "De longs canaux au jardin",
+          "Un vignoble privé",
+          "Un parc de chasse"
+        ],
+        "answerTitle": "De longs canaux d’eau.",
+        "subtitle": "Une villa de campagne en ville.",
+        "body": "De longs canaux et des jardins aménagés donnaient à cette maison de ville l’air d’une villa de campagne. Ses propriétaires s’offraient un coin de loisir au cœur des rues serrées de Pompéi.",
+        "source": "Sources publiées",
+        "dinnerLine": "« Une famille de Pompéi s’est fait un jardin de campagne avec canaux en pleine ville. »",
+        "sticker": {
+          "title": "Villa en ville",
+          "collection": "Vies privées",
+          "back": "Des canaux ont changé une maison de ville en villa."
+        },
+        "recallChoices": [
+          "Canaux",
+          "Vignoble",
+          "Chasse"
+        ],
+        "recallPrompt": "Vous vous souvenez de la maison d’Octavius Quartio ? Qu’est-ce qui la rendait si champêtre ?"
+      }
+    },
+    {
+      "id": "house-vettii",
+      "name": "Maison des Vettii",
+      "clues": [
+        "Murs peints",
+        "Jardin à colonnes",
+        "Regio VI"
+      ],
+      "story": {
+        "eyebrow": "Maison des Vettii · Pompéi",
+        "question": "Les propriétaires de cette maison fastueuse avaient un passé inhabituel. Lequel ?",
+        "answers": [
+          "C’étaient des princes étrangers",
+          "Ils avaient été esclaves",
+          "C’étaient des prêtres d’Isis"
+        ],
+        "answerTitle": "Ils avaient été esclaves.",
+        "subtitle": "Deux affranchis devenus riches.",
+        "body": "Deux affranchis prospères, anciens esclaves, possédaient cette maison richement peinte. Son décor, dont un Priape symbole de prospérité, affichait leur réussite dans une ville où le statut pouvait changer.",
+        "source": "Sources publiées",
+        "dinnerLine": "« L’une des maisons les plus fastueuses de Pompéi appartenait à deux anciens esclaves. »",
+        "sticker": {
+          "title": "La fortune des affranchis",
+          "collection": "Vies privées",
+          "back": "Les Vettii passèrent de l’esclavage à la richesse."
+        },
+        "recallChoices": [
+          "Princes",
+          "Esclaves",
+          "Prêtres"
+        ],
+        "recallPrompt": "Vous vous souvenez de la maison des Vettii ? Qu’avaient d’inhabituel ses propriétaires ?"
+      }
+    },
+    {
+      "id": "house-faun",
+      "name": "Maison du Faune",
+      "clues": [
+        "Statue du faune dansant",
+        "Maison immense",
+        "Un mot d’accueil en mosaïque"
+      ],
+      "story": {
+        "eyebrow": "Maison du Faune · Pompéi",
+        "question": "Une immense mosaïque au sol de cette maison montrait une bataille. Laquelle ?",
+        "answers": [
+          "Celle de Jules César",
+          "Celle d’Hannibal",
+          "Celle d’Alexandre le Grand"
+        ],
+        "answerTitle": "Alexandre le Grand.",
+        "subtitle": "La célèbre mosaïque d’Alexandre.",
+        "body": "Cette immense maison abritait la célèbre mosaïque d’Alexandre et le petit faune dansant qui lui donne son nom. Son art et sa taille montrent comment les riches Pompéiens impressionnaient leurs invités.",
+        "source": "Sources publiées",
+        "dinnerLine": "« La célèbre mosaïque d’Alexandre était le sol d’une maison de Pompéi. »",
+        "sticker": {
+          "title": "Le faune dansant",
+          "collection": "Vies privées",
+          "back": "Cette maison abritait la mosaïque d’Alexandre et un faune dansant."
+        },
+        "recallChoices": [
+          "César",
+          "Hannibal",
+          "Alexandre"
+        ],
+        "recallPrompt": "Vous vous souvenez de la maison du Faune ? Quelle bataille montrait sa grande mosaïque ?"
+      }
+    },
+    {
+      "id": "villa-mysteries",
+      "name": "Villa des Mystères",
+      "clues": [
+        "Hors des remparts",
+        "Une salle peinte en rouge",
+        "Grande villa"
+      ],
+      "story": {
+        "eyebrow": "Villa des Mystères · Pompéi",
+        "question": "Des figures grandeur nature sur des murs rouges participent à un rite secret. Pour quel dieu ?",
+        "answers": [
+          "Apollon",
+          "Vénus",
+          "Dionysos"
+        ],
+        "answerTitle": "Dionysos.",
+        "subtitle": "Le sens du rite est encore débattu.",
+        "body": "Une frise peinte continue fait le tour d’une salle et montre des figures dans un rituel lié à Dionysos. Les spécialistes débattent encore de son sens, ce qui fait de cette villa une grande énigme.",
+        "source": "Sources publiées",
+        "dinnerLine": "« Personne ne sait vraiment ce que montrent les fresques de la villa des Mystères. »",
+        "sticker": {
+          "title": "Le rite secret",
+          "collection": "Mystères",
+          "back": "Une frise peinte d’un rite lié à Dionysos."
+        },
+        "recallChoices": [
+          "Apollon",
+          "Vénus",
+          "Dionysos"
+        ],
+        "recallPrompt": "Vous vous souvenez de la villa des Mystères ? À quel dieu son rite est-il lié ?",
+        "theory": {
+          "label": "THÉORIE",
+          "lead": "Selon certains",
+          "text": "elle montre l’initiation d’une jeune femme avant son mariage."
+        }
+      }
+    },
+    {
+      "id": "lupanar",
+      "name": "Lupanar",
+      "clues": [
+        "Petites pièces",
+        "Inscriptions aux murs",
+        "À l’angle de deux ruelles"
+      ],
+      "story": {
+        "eyebrow": "Lupanar · Pompéi",
+        "question": "De toutes petites pièces et des murs couverts d’inscriptions. Qu’était ce bâtiment ?",
+        "answers": [
+          "Une auberge pour voyageurs",
+          "Une école",
+          "Une maison close"
+        ],
+        "answerTitle": "Une maison close.",
+        "subtitle": "Ses murs portent encore des inscriptions.",
+        "body": "De petites pièces et des inscriptions conservées identifient ce bâtiment comme une maison close. C’est un témoignage difficile, souvent lié à l’esclavage, sur des vies que l’histoire retient rarement.",
+        "source": "Sources publiées",
+        "dinnerLine": "« Les murs de la maison close de Pompéi portent des messages vieux de près de 2 000 ans. »",
+        "sticker": {
+          "title": "Des murs qui parlent",
+          "collection": "Romains du quotidien",
+          "back": "Des inscriptions subsistent sur les murs du lupanar."
+        },
+        "recallChoices": [
+          "Auberge",
+          "École",
+          "Maison close"
+        ],
+        "recallPrompt": "Vous vous souvenez du bâtiment aux toutes petites pièces ? Qu’était-ce ?"
+      }
+    },
+    {
+      "id": "house-casca",
+      "name": "Maison de Casca Longus",
+      "clues": [
+        "Table de marbre gravée",
+        "Scènes de théâtre peintes",
+        "Via dell’Abbondanza"
+      ],
+      "story": {
+        "eyebrow": "Maison de Casca Longus · Pompéi",
+        "question": "Une table de marbre porte ici un nom lié à un meurtre célèbre. Lequel ?",
+        "answers": [
+          "L’assassinat de Jules César",
+          "Le meurtre de la mère de Néron",
+          "Romulus tuant Rémus"
+        ],
+        "answerTitle": "L’assassinat de César.",
+        "subtitle": "La table porte le nom de Casca Longus.",
+        "body": "Une table de marbre trouvée ici porte le nom de Publius Servilius Casca Longus, lié à l’un des assassins de Jules César en 44 av. J.-C. La politique romaine, gravée dans un meuble pompéien.",
+        "source": "Sources publiées",
+        "dinnerLine": "« Une table de Pompéi porte un nom lié aux assassins de César. »",
+        "sticker": {
+          "title": "L’ombre de César",
+          "collection": "Vies privées",
+          "back": "Une table nomme Casca Longus, lié aux assassins de César."
+        },
+        "recallChoices": [
+          "César",
+          "Mère de Néron",
+          "Rémus"
+        ],
+        "recallPrompt": "Vous vous souvenez de la table de marbre ? À quel meurtre son nom est-il lié ?"
+      }
+    },
+    {
+      "id": "house-moralist",
+      "name": "Maison du Moraliste",
+      "clues": [
+        "Maximes peintes",
+        "Salle à manger",
+        "Regio III"
+      ],
+      "story": {
+        "eyebrow": "Maison du Moraliste · Pompéi",
+        "question": "Des phrases peintes dans cette salle à manger conseillent les invités. Sur quoi ?",
+        "answers": [
+          "Comment payer le repas",
+          "Quand partir avant la nuit",
+          "Comment se tenir à table"
+        ],
+        "answerTitle": "Les bonnes manières à table.",
+        "subtitle": "Le règlement, peint sur les murs.",
+        "body": "Des maximes peintes autour de la salle à manger disaient aux invités comment se tenir aux banquets. Plus qu’un décor, elles montrent avec humour ce que les Romains attendaient les uns des autres à table.",
+        "source": "Sources publiées",
+        "dinnerLine": "« Une salle à manger de Pompéi affiche ses règles de politesse peintes au mur. »",
+        "sticker": {
+          "title": "Tenez-vous bien",
+          "collection": "Romains du quotidien",
+          "back": "Des règles peintes disaient aux invités comment se tenir."
+        },
+        "recallChoices": [
+          "Payer",
+          "Partir tôt",
+          "Manières"
+        ],
+        "recallPrompt": "Vous vous souvenez de la maison du Moraliste ? Quels conseils étaient peints ?"
+      }
+    },
+    {
+      "id": "bakery-popidius-priscus",
+      "name": "Boulangerie de Popidius Priscus",
+      "clues": [
+        "Pierres en forme de sablier",
+        "Un four en brique",
+        "Regio VII"
+      ],
+      "story": {
+        "eyebrow": "Boulangerie de Popidius Priscus · Pompéi",
+        "question": "Les grandes pierres en forme de sablier avaient une fonction. Laquelle ?",
+        "answers": [
+          "Presser les olives",
+          "Mesurer le temps",
+          "Moudre le grain"
+        ],
+        "answerTitle": "Moudre le grain.",
+        "subtitle": "Moulins et four sous le même toit.",
+        "body": "Cette boulangerie réunissait mouture et cuisson. Ses moulins de pierre changeaient le grain en farine et son four cuisait le pain : une chaîne de production romaine qui nourrissait le quartier.",
+        "source": "Sources publiées",
+        "dinnerLine": "« Les boulangers de Pompéi moulaient leur farine dans de grands moulins de pierre. »",
+        "sticker": {
+          "title": "Le pain quotidien",
+          "collection": "Romains du quotidien",
+          "back": "Moulins de pierre et four : une boulangerie romaine."
+        },
+        "recallChoices": [
+          "Huile",
+          "Temps",
+          "Farine"
+        ],
+        "recallPrompt": "Vous vous souvenez des pierres en sablier de la boulangerie ? À quoi servaient-elles ?"
+      }
     }
   ]
 }

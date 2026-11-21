@@ -57,6 +57,8 @@ The tests (`⌘U`) validate every file in every language: ids, answers, image na
 - `aiDescriptions`: two or three plain-English sentences describing what the camera will see. After editing them run `python3 tools/embed_content.py` (needs `pip install torch transformers sentencepiece`).
 - `thenNow` (optional): `{ "then": "oldPhoto", "thenCaption": "…", "now": "todayPhoto", "nowCaption": "Today" }`. It appears as a card after the story, in the place card (tap the pin on My trip) and in the site sheet. Translate the captions in the overlays.
 - `cameraRecognition: false` (optional) marks places where the camera shouldn't be used: indoor art, ticketed or no-photo rooms, underground sites. They are never matched from photos. They open from the map, and Snap offers them when you are within 150 m (real GPS).
+- `readAloud: false` (site level, optional) hides the read-aloud button and auto-read for that site, for places that allow only their own audio guides.
+- Places without a `story` show on the map as small dots with "Story coming soon" and walking directions.
 - `entrance` (optional): `{ "latitude": …, "longitude": …, "note": "…" }` when visitors go in somewhere other than the site's point (catacombs, tunnels). Walking directions lead there.
 - `theory` and `lookCloser` are optional. Use `"label": "LEGEND"` or `"THEORY"`: it appears on the red seal.
 - The **My trip** map is Apple Maps: a pin needs only `latitude` and `longitude`. Found places show as gold pins joined by your route, stories not found yet as "?" pins, and the place card offers walking directions in Apple Maps. Where photos aren't allowed (indoors, ticketed rooms), visitors within 150 m can start the story from the card. The old hand-drawn `map` and `mapPoint` fields are optional and no longer needed.
@@ -125,6 +127,8 @@ python3 tools/import_story_cards.py tools/story_cards/chestoria_naples_12_cards_
     tools/story_cards/naples_editorial.json --site CheStoria/Resources/Content/naples.json
 python3 tools/embed_content.py   # AI text descriptions for the new places
 ```
+
+Pompeii works the same way: `tools/story_cards/chestoria_pompeii_110_poi_research_v1.json` with `tools/story_cards/pompeii_editorial.json` (`--site CheStoria/Resources/Content/pompeii.json`). The research pack has no coordinates or translations, so the editorial file carries them (coordinates from Wikidata), along with the story text in five languages and an optional `theory`.
 
 The importer shuffles the answers (the same order every run), builds `factCheck` from the sources, marks map-only places, writes all four translation overlays, and refuses any story over 40 words. For places the app already has, it only adds the extra sources. Then run the tests.
 

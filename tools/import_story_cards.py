@@ -48,7 +48,9 @@ def tr(value, lang):
     return value
 
 
-def body_text(card, lang):
+def body_text(card, lang, ed=None):
+    if ed and ed.get("body"):
+        return tr(ed["body"], lang)
     text = card["translations"].get(lang, card["translations"]["en"])["story"].strip()
     # The app asks the question itself, so drop an opening question sentence.
     first = re.match(r"^[^.!?]*\?\s+", text)
@@ -65,12 +67,16 @@ def permutation(pid, n):
     return order, target
 
 
-def sources(card):
+def sources(card, ed=None):
     seen, out = set(), []
-    for s in card.get("historical_sources", []):
-        if s["url"] not in seen:
-            seen.add(s["url"])
-            out.append({"title": s["publisher"], "url": s["url"]})
+    for s in card.get("historical_sources", []) + card.get("source_links", []) + ((ed or {}).get("extraSources") or []):
+        if s["url"] in seen:
+            continue
+        seen.add(s["url"])
+        title = s.get("title") or s["publisher"]
+        if s.get("page_number"):
+            title += f" ({s.get('publication_year', '')} guide, p. {s['page_number']})".replace("( guide", "(guide")
+        out.append({"title": title, "url": s["url"]})
     return out
 
 
@@ -79,10 +85,11 @@ def build(card, ed, common):
     order, correct = permutation(pid, len(ed["answers"]["en"]))
     img = ed["images"]
     coord = ed.get("coordinate") or {"latitude": card["coordinates"]["latitude"], "longitude": card["coordinates"]["longitude"]}
+    site_name = common.get("siteName", "Naples")
     place = {
         "id": pid,
         "name": tr(ed["name"], "en"),
-        "site": "Naples",
+        "site": site_name,
         "street": ed["street"],
         "latitude": coord["latitude"],
         "longitude": coord["longitude"],
@@ -113,16 +120,16 @@ def build(card, ed, common):
         "correctIndex": correct,
         "answerTitle": ed["answerTitle"]["en"],
         "subtitle": ed["subtitle"]["en"],
-        "body": body_text(card, "en"),
+        "body": body_text(card, "en", ed),
         "source": common["source"]["en"],
-        "theory": None,
+        "theory": theory(ed, "en"),
         "dinnerLine": ed["dinnerLine"]["en"],
         "lookCloser": look,
         "sticker": {"id": st["id"], "title": st["title"]["en"], "collection": common["collections"][st["collection"]]["en"],
                     "image": img["sticker"], "crop": img["crop"], "back": st["back"]["en"]},
         "recallChoices": [ed["recall"]["en"][i] for i in order],
         "recallPrompt": ed["recallPrompt"]["en"],
-        "factCheck": {"status": "sourced", "checkedOn": date.today().isoformat(), "sources": sources(card)},
+        "factCheck": {"status": "sourced", "checkedOn": date.today().isoformat(), "sources": sources(card, ed)},
     }
     overlays = {}
     for lang in LANGS[1:]:
@@ -136,7 +143,7 @@ def build(card, ed, common):
                 "answers": [ed["answers"][lang][i] for i in order],
                 "answerTitle": ed["answerTitle"][lang],
                 "subtitle": ed["subtitle"][lang],
-                "body": body_text(card, lang),
+                "body": body_text(card, lang, ed),
                 "source": common["source"][lang],
                 "dinnerLine": ed["dinnerLine"][lang],
                 "sticker": {"title": st["title"][lang], "collection": common["collections"][st["collection"]][lang], "back": st["back"][lang]},
@@ -144,12 +151,19 @@ def build(card, ed, common):
                 "recallPrompt": ed["recallPrompt"][lang],
             },
         }
+        if ed.get("theory"):
+            o["story"]["theory"] = theory(ed, lang)
         if look:
             o["story"]["lookCloser"] = {"prompt": ed["look"]["prompt"][lang], "hint": ed["look"]["hint"][lang]}
         if ed.get("thenNow"):
             o["thenNow"] = {"thenCaption": tr(common[ed["thenNow"]["thenCaption"]], lang), "nowCaption": common["today"][lang]}
         overlays[lang] = o
     return place, overlays
+
+
+def theory(ed, lang):
+    t = ed.get("theory")
+    return {k: tr(t[k], lang) for k in ("label", "lead", "text")} if t else None
 
 
 def upsert(items, item):
@@ -169,7 +183,8 @@ def main():
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
 
-    cards = {c["id"]: c for c in load(args.cards)["stories"]}
+    data = load(args.cards)
+    cards = {c["id"]: c for c in data.get("stories", data.get("places", []))}
     common = load(args.editorial)
     site = load(args.site)
     base = os.path.splitext(args.site)[0]
@@ -180,9 +195,12 @@ def main():
 
     problems, report = [], []
     for ed in common["places"]:
-        card = cards.get(ed["id"])
+        card = cards.get(ed.get("card", ed["id"]))
         if not card:
             problems.append(f"{ed['id']}: not in the dataset")
+            continue
+        if not ed.get("coordinate") and not card.get("coordinates"):
+            problems.append(f"{ed['id']}: no coordinates (dataset has none; add one to the editorial file)")
             continue
         place, ovs = build(card, ed, common)
         for lang in LANGS:
@@ -194,13 +212,13 @@ def main():
             upsert(overlays[lang]["places"], o)
 
     # Places the app already has: keep our story, add the dataset's extra sources.
-    for card_id, app_id in EXISTING.items():
+    for card_id, app_id in common.get("existing", EXISTING).items():
         card, place = cards.get(card_id), next((p for p in site["places"] if p["id"] == app_id), None)
         if not card or not place or not place.get("story"):
             continue
         fc = place["story"].setdefault("factCheck", {"status": "sourced", "checkedOn": date.today().isoformat(), "sources": []})
         known = {s["url"] for s in fc["sources"]}
-        new = [s for s in sources(card) if s["url"] not in known]
+        new = [s for s in sources(card) if s["url"] not in known and s["url"].split("#")[0] not in known]
         fc["sources"] += new
         report.append(f"sources  {app_id:24} +{len(new)}")
 

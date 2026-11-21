@@ -472,6 +472,8 @@ struct RevealView: View {
             }
             Spacer(minLength: 0)
             HStack(spacing: 10) {
+                // Some sites only allow their authorised audio guides (Pompeii, visitor rules art. 6).
+                if model.site.allowsReadAloud {
                 Button { narrator.toggle(spoken, language: model.language) } label: {
                     Image(systemName: narrator.isSpeaking ? "stop.fill" : "speaker.wave.2.fill")
                         .font(.system(size: 19, weight: .semibold)).foregroundStyle(Palette.piperno)
@@ -479,6 +481,7 @@ struct RevealView: View {
                         .contentTransition(.symbolEffect(.replace))
                 }
                 .accessibilityLabel(narrator.isSpeaking ? t("reveal.stopReading") : t("reveal.readAloud"))
+                }
                 Button(story.lookCloser == nil ? t("reveal.collect") : t("reveal.lookCloser")) { Haptics.tap(); narrator.stop(); onNext() }
                     .buttonStyle(CTAButtonStyle(kind: .tufo, shine: true))
             }
@@ -496,7 +499,7 @@ struct RevealView: View {
             Task {
                 try? await Task.sleep(for: .milliseconds(1700))
                 if story.theory != nil { Haptics.rigid() }
-                if autoRead { narrator.toggle(spoken, language: model.language) }
+                if autoRead && model.site.allowsReadAloud { narrator.toggle(spoken, language: model.language) }
             }
         }
         .onDisappear { narrator.stop() }
