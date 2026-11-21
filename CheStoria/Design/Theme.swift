@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 /// Colours come from the stones of Naples. Each has exactly one job (see design/README).
 enum Palette {
@@ -21,17 +22,43 @@ enum Palette {
     static let onTufo = Color(red: 0.12, green: 0.14, blue: 0.13)
 }
 
+/// Apple's system typeface (SF Pro), so the app reads like it belongs on the phone.
+/// Sizes scale with Dynamic Type through UIFontMetrics.
 enum Typeface {
-    /// Bricolage Grotesque ExtraBold: questions, answers, big headings.
+    /// Big headings, questions and answers.
     static func display(_ size: CGFloat, relativeTo style: Font.TextStyle = .title) -> Font {
-        .custom("BricolageGrotesque-ExtraBold", size: size, relativeTo: style)
+        scaled(size, weight: .bold, design: .default, style: style)
     }
     static func displayBold(_ size: CGFloat, relativeTo style: Font.TextStyle = .headline) -> Font {
-        .custom("BricolageGrotesque-Bold", size: size, relativeTo: style)
+        scaled(size, weight: .semibold, design: .default, style: style)
     }
-    /// Kalam: one-line handwritten reactions only.
+    /// Short friendly reactions ("Spot on!"): SF Pro Rounded.
     static func hand(_ size: CGFloat) -> Font {
-        .custom("Kalam-Bold", size: size, relativeTo: .title3)
+        scaled(size, weight: .semibold, design: .rounded, style: .title3)
+    }
+
+    private static func scaled(_ size: CGFloat, weight: UIFont.Weight, design: UIFontDescriptor.SystemDesign, style: Font.TextStyle) -> Font {
+        var font = UIFont.systemFont(ofSize: size, weight: weight)
+        if let d = font.fontDescriptor.withDesign(design) { font = UIFont(descriptor: d, size: size) }
+        return Font(UIFontMetrics(forTextStyle: style.uiKit).scaledFont(for: font))
+    }
+}
+
+private extension Font.TextStyle {
+    var uiKit: UIFont.TextStyle {
+        switch self {
+        case .largeTitle: .largeTitle
+        case .title: .title1
+        case .title2: .title2
+        case .title3: .title3
+        case .headline: .headline
+        case .subheadline: .subheadline
+        case .callout: .callout
+        case .footnote: .footnote
+        case .caption: .caption1
+        case .caption2: .caption2
+        default: .body
+        }
     }
 }
 

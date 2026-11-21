@@ -169,6 +169,9 @@ def theory(ed, lang):
 def upsert(items, item):
     for i, existing in enumerate(items):
         if existing.get("id") == item["id"]:
+            # Gallery photos are added by hand after import; keep them.
+            if "photos" in existing and "photos" not in item:
+                item["photos"] = existing["photos"]
             items[i] = item
             return "replaced"
     items.append(item)

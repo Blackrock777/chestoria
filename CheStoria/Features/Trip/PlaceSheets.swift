@@ -70,9 +70,10 @@ struct PlaceSheet: View {
                         Text(story.dinnerLine).font(.system(size: 15, weight: .semibold)).foregroundStyle(Palette.piperno)
                     }
                     .fixedSize(horizontal: false, vertical: true)
-                    if let fc = story.factCheck {
-                        Button { showSources = true } label: { VerifiedPill(text: t("reveal.sourced", "\(fc.sources.count)")) }
+                    Button { showSources = true } label: {
+                        Label(t("reveal.about"), systemImage: "info.circle").font(.subheadline.weight(.semibold))
                     }
+                    .tint(Palette.azzurro)
                 } else if story == nil {
                     Label(t("place.comingSoon"), systemImage: "hourglass").font(.system(size: 15, weight: .semibold)).foregroundStyle(Palette.stone)
                 } else {
@@ -105,7 +106,7 @@ struct PlaceSheet: View {
         .background(Palette.calce)
         .presentationDetents([.medium, .large])
         .presentationCornerRadius(32)
-        .sheet(isPresented: $showSources) { if let fc = story?.factCheck { SourcesSheet(factCheck: fc) } }
+        .sheet(isPresented: $showSources) { StoryInfoSheet(place: p) }
     }
 
     /// Within 150 m by real GPS, never guessed.

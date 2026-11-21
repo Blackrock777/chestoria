@@ -1,12 +1,14 @@
 import SwiftUI
 
-/// One screen, no account. The site's photo drifts in slowly while the headline rises word by word.
+/// One screen, then an account. The site's photo drifts in slowly while the headline rises word by word.
 /// Every word on this screen comes from the content files.
 struct WelcomeView: View {
     @Environment(AppModel.self) private var model
     @Environment(\.accessibilityReduceMotion) private var reduce
     @State private var zoom: CGFloat = 1.16
+    @Environment(AccountModel.self) private var account
     @State private var shown = false
+    @State private var showAccount = false
 
     var body: some View {
         @Bindable var model = model
@@ -53,25 +55,34 @@ struct WelcomeView: View {
                     .rise(shown, delay: 0.8)
                 }
 
-                Button { model.showLanguagePicker = true } label: {
-                    HStack {
-                        Text(t("welcome.storiesIn", t("lang.name")))
-                        Spacer()
-                        Text(t("common.change")).foregroundStyle(Palette.tufo)
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(t("welcome.selectLanguage")).font(.subheadline.weight(.semibold)).foregroundStyle(.white.opacity(0.75))
+                    Menu {
+                        Picker(t("lang.title"), selection: Binding(get: { model.language },
+                                                                   set: { code in Haptics.tap(); withAnimation { model.setLanguage(code) } })) {
+                            ForEach(model.languages, id: \.self) { Text(model.languageName($0)).tag($0) }
+                        }
+                    } label: {
+                        HStack(spacing: 12) {
+                            Image(systemName: "globe").font(.title3)
+                            Text(model.languageName(model.language)).font(.title3.weight(.semibold))
+                            Spacer()
+                            Image(systemName: "chevron.up.chevron.down").font(.body.weight(.semibold)).foregroundStyle(.white.opacity(0.7))
+                        }
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 18).frame(height: 60)
+                        .contentShape(Rectangle())
                     }
-                    .font(.system(size: 16, weight: .semibold)).foregroundStyle(.white)
-                    .padding(.horizontal, 16).frame(height: 52)
-                    .contentShape(Rectangle())
+                    .glassEffect(.regular.interactive(), in: .rect(cornerRadius: 20))
                 }
-                .glassEffect(.regular.interactive(), in: .rect(cornerRadius: 18))
                 .rise(shown, delay: 0.85)
 
-                Button(t("welcome.start")) { Haptics.tap(); model.completeOnboarding() }
-                    .buttonStyle(CTAButtonStyle(kind: .light))
-                    .rise(shown, delay: 0.95)
-
-                Text(t("welcome.noAccount")).font(.system(size: 13)).foregroundStyle(.white.opacity(0.6))
-                    .frame(maxWidth: .infinity).rise(shown, delay: 1.05)
+                Button(t("welcome.start")) {
+                    Haptics.tap()
+                    if account.isSignedIn { model.completeOnboarding() } else { showAccount = true }
+                }
+                .buttonStyle(CTAButtonStyle(kind: .light))
+                .rise(shown, delay: 0.95)
             }
             .padding(.horizontal, 24).padding(.bottom, 12)
         }
@@ -85,10 +96,33 @@ struct WelcomeView: View {
             .opacity(shown ? 1 : 0)
         }
         .preferredColorScheme(.dark)
+        .sheet(isPresented: $showAccount) { AccountSheet() }
+        .onChange(of: account.isSignedIn) { _, signedIn in
+            if signedIn { showAccount = false; model.completeOnboarding() }
+        }
         .onAppear {
             withAnimation(reduce ? nil : .easeOut(duration: 9)) { zoom = 1 }
             withAnimation(.easeOut(duration: 0.6)) { shown = true }
         }
+    }
+}
+
+/// Create an account (or sign in) before the first story: trips and stickers belong to you.
+private struct AccountSheet: View {
+    @Environment(AppModel.self) private var model
+    @Environment(\.dismiss) private var dismiss
+    var body: some View {
+        let t = model.strings
+        NavigationStack {
+            VStack(alignment: .leading, spacing: 0) {
+                Text(t("welcome.accountNote")).font(.subheadline).foregroundStyle(.secondary).padding(.horizontal, 20)
+                SignInView(showsGuestHeader: false)
+            }
+            .background(Palette.calce)
+            .navigationTitle(t("welcome.accountTitle"))
+            .toolbar { ToolbarItem(placement: .cancellationAction) { Button(t("common.cancel")) { dismiss() } } }
+        }
+        .presentationDetents([.large])
     }
 }
 

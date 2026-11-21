@@ -52,13 +52,22 @@ struct CheStoriaApp: App {
 
 struct RootView: View {
     @Environment(AppModel.self) private var model
+    @Environment(AccountModel.self) private var account
+
+    /// The app needs an account: signing out returns to the welcome screen.
+    private var ready: Bool {
+        #if DEBUG
+        if DebugLaunch.skipsAccount { return model.hasOnboarded }
+        #endif
+        return model.hasOnboarded && account.isSignedIn
+    }
 
     var body: some View {
         @Bindable var model = model
         Group {
-            if model.hasOnboarded { MainTabs().transition(.opacity) } else { WelcomeView().transition(.opacity) }
+            if ready { MainTabs().transition(.opacity) } else { WelcomeView().transition(.opacity) }
         }
-        .animation(.easeInOut(duration: 0.4), value: model.hasOnboarded)
+        .animation(.easeInOut(duration: 0.4), value: ready)
         .fullScreenCover(item: $model.activeFlow) { request in StoryFlowView(request: request) }
         .sheet(isPresented: $model.showProfile) { ProfileView() }
         .sheet(isPresented: $model.showLanguagePicker) { LanguagePicker() }
@@ -92,6 +101,11 @@ enum DebugLaunch {
     }
     static var screen: String? { value("-screen") }
     static var autoSolve: Bool { ProcessInfo.processInfo.arguments.contains("-autosolve") }
+    /// Screenshot and capture runs open straight into the app without signing in.
+    static var skipsAccount: Bool {
+        (screen != nil && screen != "welcome") || value("-capture") != nil || value("-capturePath") != nil
+            || ProcessInfo.processInfo.arguments.contains("-skipAccount")
+    }
 
     static func apply(to model: AppModel) {
         let args = ProcessInfo.processInfo.arguments
@@ -114,7 +128,7 @@ enum DebugLaunch {
         case "language": model.showLanguagePicker = true
         case "recognizing", "question", "reveal", "closer", "sticker":
             if let p = value("-place").flatMap(model.site.place(id:)) ?? model.site.featured { model.startStory(at: p) }
-        case "postcard": model.loadDemo(); model.selectedTab = .stickers
+        case "postcard": model.selectedTab = .stickers
         default: break
         }
     }

@@ -64,7 +64,7 @@ xcodebuild test -project CheStoria.xcodeproj -scheme CheStoria -destination 'pla
 ### Debug launch arguments
 
 Useful for demos and screenshots (Debug builds only):
-- `-reset` starts a fresh trip; `-demo` loads the content’s demo trip (for presentations).
+- `-reset` starts a fresh trip; `-demo` loads the content’s demo trip (for presentations); `-skipAccount` opens the app without signing in. `-screen nearby` and `-screen postcard` open those sheets.
 - `-capturePath /path/photo.jpg` runs recognition on any photo file (simulator).
 - `-place forum` picks the place for `-screen reveal` and friends.
 - `-lang it` switches the story language. `-site naples` switches site.
@@ -112,7 +112,7 @@ The app talks to an `AuthService` protocol. This version ships `LocalAuthService
 ## Design
 
 - **Colours** come from the city: Piperno (ink), Tufo (rewards only), Azzurro (interactive), Maiolica (verified facts only), Pompei red (legends and theories, never wrong answers), Calce (backgrounds). Light and dark variants are in the asset catalog.
-- **Type**: Bricolage Grotesque ExtraBold for questions and answers, SF Pro for story text (Dynamic Type, every language), Kalam for one-line reactions.
+- **Type**: Apple’s system fonts only: SF Pro for everything, SF Pro Rounded for one-line reactions. Dynamic Type, every language, nothing to license.
 - **Motion**: springs for answers, pins and stickers; everything respects Reduce Motion.
 - References from Apple Design Award winners: CapWords (stickers), Flighty (Live Activities), Any Distance (collectibles), Duolingo (press feedback without streak guilt), Bears Gratitude (hand-drawn warmth), Crouton (one thing per screen), Oko (haptics you can use without looking), Gentler Streak (no-guilt tone).
 

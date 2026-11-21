@@ -1,0 +1,588 @@
+{
+  "photos": [
+    {
+      "asset": "forum",
+      "title": "Pompeii Forum & Mt. Vesuvius",
+      "author": "Gary Todd",
+      "licence": "CC0",
+      "licenceURL": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "asset": "thermo",
+      "title": "Thermopolium of Vetutius Placidus",
+      "author": "Gary Todd",
+      "licence": "Public domain"
+    },
+    {
+      "asset": "shrine",
+      "title": "Thermopolium shrine (lararium) of Lucius Vetutius Placidus",
+      "author": "Jebulon",
+      "licence": "CC0",
+      "licenceURL": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "asset": "forum1841",
+      "title": "The Forum, Pompeii, with Vesuvius in the Distance (1841), painting",
+      "author": "Christen Schjellerup Købke",
+      "licence": "Public domain"
+    },
+    {
+      "asset": "caveCanem",
+      "title": "Cave canem mosaic, House of the Tragic Poet (cropped)",
+      "author": "Argo Navis",
+      "licence": "CC BY-SA 4.0",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "asset": "gesuFacade",
+      "title": "Façade of Gesù Nuovo",
+      "author": "Berthold Werner",
+      "licence": "CC BY-SA 3.0",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    {
+      "asset": "gesuFacade2",
+      "title": "Chiesa del Gesù Nuovo",
+      "author": "Rutger van der Maar",
+      "licence": "CC BY 2.0",
+      "licenceURL": "https://creativecommons.org/licenses/by/2.0/"
+    },
+    {
+      "asset": "gesuDetail",
+      "title": "Gesù Nuovo, rusticated façade",
+      "author": "Punteador",
+      "licence": "CC BY-SA 4.0",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "asset": "plebiscito",
+      "title": "Piazza del Plebiscito, San Francesco di Paola",
+      "author": "Vyacheslav Argenberg",
+      "licence": "CC BY 4.0",
+      "licenceURL": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "asset": "plebiscitoVesuvius",
+      "title": "Vesuvius from Piazza del Plebiscito",
+      "author": "Roma1314",
+      "licence": "CC BY-SA 3.0",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    {
+      "asset": "plebiscitoCarPark",
+      "title": "Piazza del Plebiscito as a car park",
+      "author": "Unknown author",
+      "licence": "Public domain"
+    },
+    {
+      "asset": "sansevero",
+      "title": "Cappella Sansevero, the Veiled Christ",
+      "author": "David Sivyer",
+      "licence": "CC BY-SA 2.0",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/2.0/"
+    },
+    {
+      "asset": "veiledChristFace",
+      "title": "Veiled Christ, face",
+      "author": "David Sivyer",
+      "licence": "CC BY-SA 2.0",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/2.0/"
+    },
+    {
+      "asset": "castelOvo",
+      "title": "Castel dell’Ovo 01",
+      "author": "Bernard Gagnon",
+      "licence": "CC BY 4.0",
+      "licenceURL": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "asset": "castelOvo2",
+      "title": "Castel dell’Ovo",
+      "author": "Livioandronico2013",
+      "licence": "CC BY-SA 4.0",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "asset": "amphitheatre",
+      "title": "Pompeii amphitheatre interior",
+      "author": "Mosborne01",
+      "licence": "CC BY-SA 3.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Pompeii_amphitheatre_interior.jpg",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    {
+      "asset": "amphitheatre2",
+      "title": "Amphitheatre of Pompeii, Exterior, Sunset",
+      "author": "Marco Ober",
+      "licence": "CC BY-SA 4.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Amphitheatre_of_Pompeii%2C_Exterior%2C_Sunset.jpg",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "asset": "largeTheatre",
+      "title": "Grand Théâtre de Pompéi",
+      "author": "Sylvhem",
+      "licence": "CC BY-SA 3.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Grand_Th%C3%A9%C3%A2tre_de_Pomp%C3%A9i.JPG",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    {
+      "asset": "largeTheatre2",
+      "title": "Pompei, Teatro Grande - panoramio",
+      "author": "Carlo Pelagalli",
+      "licence": "CC BY-SA 3.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Pompei%2C_Teatro_Grande_-_panoramio.jpg",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    {
+      "asset": "odeon",
+      "title": "Odeón, Pompeya. 02",
+      "author": "Miguel Hermoso Cuesta",
+      "licence": "CC BY-SA 4.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Ode%C3%B3n%2C_Pompeya._02.JPG",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "asset": "odeon2",
+      "title": "Odeon of Pompeii, side entrance",
+      "author": "Juliana Bastos Marques",
+      "licence": "CC BY-SA 4.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Odeon_of_Pompeii%2C_side_entrance.jpg",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "asset": "basilicaPompeii",
+      "title": "Basilica Pompei 7",
+      "author": "Mentnafunangann",
+      "licence": "CC BY-SA 3.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Basilica_Pompei_7.JPG",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    {
+      "asset": "basilicaPompeii2",
+      "title": "Pompeii Basilica, colonnade at the entrance",
+      "author": "Marco Ober",
+      "licence": "CC BY-SA 4.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Pompeii_Basilica%2C_colonnade_at_the_entrance.jpg",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "asset": "mensaPonderaria",
+      "title": "Mensa Ponderaria Pompeya",
+      "author": "Miguel Hermoso Cuesta",
+      "licence": "CC BY-SA 4.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Mensa_Ponderaria_Pompeya.jpg",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "asset": "mensaPonderaria2",
+      "title": "Pompei BW 2013-05-13 11-55-39",
+      "author": "Berthold Werner",
+      "licence": "CC BY-SA 3.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Pompei_BW_2013-05-13_11-55-39.jpg",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    {
+      "asset": "castellumAquae",
+      "title": "Castellum Aquae 1",
+      "author": "Mentnafunangann",
+      "licence": "CC BY-SA 3.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Castellum_Aquae_1.JPG",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    {
+      "asset": "castellumAquae2",
+      "title": "Castellum Aquae, Pompeii, 20230623",
+      "author": "Argo Navis",
+      "licence": "CC BY-SA 4.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Castellum_Aquae%2C_Pompeii%2C_20230623.jpg",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "asset": "centralBaths",
+      "title": "Pompei 17 23 17 111000",
+      "author": "Robot8A",
+      "licence": "CC BY-SA 4.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Pompei_17_23_17_111000.jpeg",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "asset": "centralBaths2",
+      "title": "Pompei 17 23 01 949000",
+      "author": "Robot8A",
+      "licence": "CC BY-SA 4.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Pompei_17_23_01_949000.jpeg",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "asset": "stabianBaths",
+      "title": "Stabianer Thermen Auskleidehaus",
+      "author": "Rabax63",
+      "licence": "CC BY-SA 4.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Stabianer_Thermen_Auskleidehaus.jpg",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "asset": "octaviusQuartio",
+      "title": "Pompeji Casa Di Octavio Quartio Aedicula Pyramus And Thisbe",
+      "author": "see file page",
+      "licence": "CC BY-SA 2.5",
+      "url": "https://commons.wikimedia.org/wiki/File:Pompeji_Casa_Di_Octavio_Quartio_Aedicula_Pyramus_And_Thisbe.jpg",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/2.5/"
+    },
+    {
+      "asset": "vettii",
+      "title": "Casa dei Vettii WLM24 (23)",
+      "author": "MentNFG",
+      "licence": "CC BY-SA 4.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Casa_dei_Vettii_WLM24_%2823%29.jpg",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "asset": "faun",
+      "title": "HouseOfTheFaunOverview",
+      "author": "Porsche997SBS",
+      "licence": "CC BY-SA 3.0",
+      "url": "https://commons.wikimedia.org/wiki/File:HouseOfTheFaunOverview.jpg",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    {
+      "asset": "villaMysteries",
+      "title": "Villa of the Mysteries in Pompeii",
+      "author": "ElfQrin",
+      "licence": "CC BY-SA 4.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Villa_of_the_Mysteries_in_Pompeii.jpg",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "asset": "lupanar",
+      "title": "Pompeya lupanar",
+      "author": "Fer.filol",
+      "licence": "Public domain",
+      "url": "https://commons.wikimedia.org/wiki/File:Pompeya_lupanar.jpg"
+    },
+    {
+      "asset": "casca",
+      "title": "Casa dei Quadretti Teatrali 1",
+      "author": "Mentnafunangann",
+      "licence": "CC BY-SA 3.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Casa_dei_Quadretti_Teatrali_1.JPG",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    {
+      "asset": "moralist",
+      "title": "Viejos grafitis en Pompeya, Italia, 2016 05",
+      "author": "Benjamín Núñez González",
+      "licence": "CC BY-SA 4.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Viejos_grafitis_en_Pompeya%2C_Italia%2C_2016_05.jpg",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "asset": "bakeryPriscus",
+      "title": "Baeckerei pompeji kampanien italien",
+      "author": "see file page",
+      "licence": "CC BY-SA 3.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Baeckerei_pompeji_kampanien_italien.jpg",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    {
+      "asset": "santaChiara",
+      "title": "Santa Chiara (Naples) – facade and bell tower from the entrance gate",
+      "author": "Punteador",
+      "licence": "CC BY-SA 4.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Santa_Chiara_(Naples",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "asset": "santaChiara2",
+      "title": "Basilica di Santa Chiara, Belltower and façade, Naples (5287)",
+      "author": "Marco Ober",
+      "licence": "CC BY-SA 4.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Basilica_di_Santa_Chiara,_Belltower_and_fa%C3%A7ade,_Naples_(5287",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "asset": "santaChiaraCloister",
+      "title": "Santa chiara, chiostro maiolicato 01",
+      "author": "Sailko",
+      "licence": "CC BY 3.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Santa_chiara,_chiostro_maiolicato_01.JPG",
+      "licenceURL": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "asset": "sanCarlo",
+      "title": "Napoli - Teatro San CarloFacciata",
+      "author": "Armando Mancini",
+      "licence": "CC BY-SA 2.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Napoli_-_Teatro_San_CarloFacciata.jpg",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/2.0/"
+    },
+    {
+      "asset": "sanCarloEngraving",
+      "title": "Napoli. Facciata del Teatro San Carlo (xilografia)",
+      "author": "Matania",
+      "licence": "Public domain",
+      "url": "https://commons.wikimedia.org/wiki/File:Napoli._Facciata_del_Teatro_San_Carlo_(xilografia"
+    },
+    {
+      "asset": "castelNuovo",
+      "title": "Castel Nuovo (Maschio Angioino), Entrance, Naples (5257)",
+      "author": "Marco Ober",
+      "licence": "CC BY-SA 4.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Castel_Nuovo_(Maschio_Angioino",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "asset": "castelNuovo2",
+      "title": "Napoli Castel Nuovo Maschio Angioino, a seat of medieval kings of Naples and Aragon 2013-05-16 14-05-42",
+      "author": "Berthold Werner",
+      "licence": "CC BY-SA 3.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Napoli_Castel_Nuovo_Maschio_Angioino,_a_seat_of_medieval_kings_of_Naples_and_Aragon_2013-05-16_14-05-42.jpg",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    {
+      "asset": "castelNuovoArch",
+      "title": "Napoli - Castel Nuovo Arco trionfale 1030697",
+      "author": "Lalupa",
+      "licence": "CC BY-SA 3.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Napoli_-_Castel_Nuovo_Arco_trionfale_1030697.JPG",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    {
+      "asset": "pioMonte",
+      "title": "PioMonteMisericordiaNaples",
+      "author": "IlSistemone",
+      "licence": "CC BY-SA 3.0",
+      "url": "https://commons.wikimedia.org/wiki/File:PioMonteMisericordiaNaples.jpg",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    {
+      "asset": "pioMonte2",
+      "title": "PiomontedellaMisericordiaFacciataNaples",
+      "author": "IlSistemone",
+      "licence": "CC BY-SA 3.0",
+      "url": "https://commons.wikimedia.org/wiki/File:PiomontedellaMisericordiaFacciataNaples.jpg",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    {
+      "asset": "sevenWorksOfMercy",
+      "title": "Caravaggio - Sette opere di Misericordia",
+      "author": "Caravaggio",
+      "licence": "Public domain",
+      "url": "https://commons.wikimedia.org/wiki/File:Caravaggio_-_Sette_opere_di_Misericordia.jpg"
+    },
+    {
+      "asset": "borbonica",
+      "title": "Galleria borbonica - War refuge (Naples)",
+      "author": "Associazione Culturale Borbonica Sotterranea",
+      "licence": "CC BY-SA 4.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Galleria_borbonica_-_War_refuge_(Naples",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "asset": "borbonica2",
+      "title": "Galleria borbonica - Visitors and refuge (Naples)",
+      "author": "Associazione Culturale Borbonica Sotterranea",
+      "licence": "CC BY-SA 4.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Galleria_borbonica_-_Visitors_and_refuge_(Naples",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "asset": "galleriaUmberto",
+      "title": "Galleria Umberto I, Interior, Naples (5263)",
+      "author": "Marco Ober",
+      "licence": "CC BY-SA 4.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Galleria_Umberto_I,_Interior,_Naples_(5263",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "asset": "galleriaUmberto2",
+      "title": "Galleria Umberto I Napoli interno",
+      "author": "Wolfgang Moroder",
+      "licence": "CC BY-SA 3.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Galleria_Umberto_I_Napoli_interno.jpg",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    {
+      "asset": "galleriaUmbertoEngraving",
+      "title": "Napoli interno della Galleria Umberto I",
+      "author": "Carlo Cornaglia",
+      "licence": "Public domain",
+      "url": "https://commons.wikimedia.org/wiki/File:Napoli_interno_della_Galleria_Umberto_I.jpg"
+    },
+    {
+      "asset": "sanGennaroCatacombs",
+      "title": "Catacombe di San Gennaro 023",
+      "author": "Dominik Matus",
+      "licence": "CC BY-SA 4.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Catacombe_di_San_Gennaro_023.jpg",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "asset": "sanGennaroCatacombs2",
+      "title": "Catacombe di San Gennaro 003",
+      "author": "Dominik Matus",
+      "licence": "CC BY-SA 4.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Catacombe_di_San_Gennaro_003.jpg",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "asset": "quodvultdeus",
+      "title": "Quodvultdeus mosaic portrait, 5th century (San Gennaro catacombs, Naples)",
+      "author": "Unknown author",
+      "licence": "Public domain",
+      "url": "https://commons.wikimedia.org/wiki/File:Quodvultdeus_mosaic_portrait,_5th_century_(San_Gennaro_catacombs,_Naples"
+    },
+    {
+      "asset": "sanitaBasilica",
+      "title": "Basilica Santa Maria alla Sanità-Napoli",
+      "author": "Aisav72",
+      "licence": "CC BY-SA 4.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Basilica_Santa_Maria_alla_Sanit%C3%A0-Napoli.jpg",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "asset": "sanGaudioso",
+      "title": "Catacombe di San Gaudioso (Napoli) 03",
+      "author": "Fabien Bièvre-Perrin",
+      "licence": "CC BY-SA 4.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Catacombe_di_San_Gaudioso_(Napoli",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "asset": "sanGaudioso2",
+      "title": "Catacombe di San Gaudioso (Napoli) 02",
+      "author": "Fabien Bièvre-Perrin",
+      "licence": "CC BY-SA 4.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Catacombe_di_San_Gaudioso_(Napoli",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "asset": "tesoroMuseum",
+      "title": "Museo del Tesoro di San Gennaro",
+      "author": "IlSistemone",
+      "licence": "CC BY-SA 3.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Museo_del_Tesoro_di_San_Gennaro.jpg",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    {
+      "asset": "tesoroMuseum2",
+      "title": "MuseoSanGennaro",
+      "author": "IlSistemone",
+      "licence": "CC BY-SA 3.0",
+      "url": "https://commons.wikimedia.org/wiki/File:MuseoSanGennaro.JPG",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    {
+      "asset": "sanGennaroNecklace",
+      "title": "Collana San Gennaro",
+      "author": "Photo2023",
+      "licence": "CC BY 4.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Collana_San_Gennaro.jpg",
+      "licenceURL": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "asset": "sanCarloPhoto",
+      "title": "RealTeatroSanCarloNaples15",
+      "author": "IlSistemone",
+      "licence": "CC BY-SA 3.0",
+      "url": "https://commons.wikimedia.org/wiki/File:RealTeatroSanCarloNaples15.jpg",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    {
+      "asset": "caveCanemPhoto",
+      "title": "Pompei, Casa del Poeta Tragico - panoramio",
+      "author": "Carlo Pelagalli",
+      "licence": "CC BY-SA 3.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Pompei,_Casa_del_Poeta_Tragico_-_panoramio.jpg",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    {
+      "asset": "stabianBathsPhoto",
+      "title": "Calidarium Terme Stabiane. 03",
+      "author": "Miguel Hermoso Cuesta",
+      "licence": "CC BY-SA 4.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Calidarium_Terme_Stabiane._03.JPG",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "asset": "octaviusQuartioPhoto",
+      "title": "Pompeii House-Octavius-Quartio 20240504 154131",
+      "author": "Rigorius",
+      "licence": "CC BY-SA 4.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Pompeii_House-Octavius-Quartio_20240504_154131.jpg",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "asset": "vettiiPhoto",
+      "title": "Binnenplaats (atrium) van Casa dei Vettii P.e 1.a N.o 11349a. POMPEI - Casa dei Vettii, il Peristilio. (titel op object), RP-F-00-1662",
+      "author": "Rijksmuseum",
+      "licence": "CC0",
+      "url": "https://commons.wikimedia.org/wiki/File:Binnenplaats_(atrium",
+      "licenceURL": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "asset": "faunPhoto",
+      "title": "Casa del Fauno, Pompei -",
+      "author": "DinaBenedettoFerrandina",
+      "licence": "CC BY-SA 4.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Casa_del_Fauno,_Pompei_-.jpg",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "asset": "villaMysteriesPhoto",
+      "title": "Villa dei misteri, sala del grande dipinto con misteri iniziatici, I secolo a.c. 09",
+      "author": "Sailko",
+      "licence": "CC BY-SA 4.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Villa_dei_misteri,_sala_del_grande_dipinto_con_misteri_iniziatici,_I_secolo_a.c._09.jpg",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "asset": "lupanarPhoto",
+      "title": "Vicolo del Lupanare (Pompeii) - panoramio - roadmap (16)",
+      "author": "roadmap",
+      "licence": "CC BY 3.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Vicolo_del_Lupanare_(Pompeii",
+      "licenceURL": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "asset": "cascaPhoto",
+      "title": "Casa dei Quadretti Teatrali (Pompei) WLM 013",
+      "author": "Mentnafunangann",
+      "licence": "CC BY-SA 3.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Casa_dei_Quadretti_Teatrali_(Pompei",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    {
+      "asset": "moralistPhoto",
+      "title": "Pompei. Casa del moralista Triclinium, GD004699",
+      "author": "Unknown author",
+      "licence": "Public domain",
+      "url": "https://commons.wikimedia.org/wiki/File:Pompei._Casa_del_moralista_Triclinium,_GD004699.jpg"
+    },
+    {
+      "asset": "bakeryPriscusPhoto",
+      "title": "Bakery mills for grinding grain (catullus) from a pistrinum (bakery), Pompeii (14856051379)",
+      "author": "Carole Raddato from FRANKFURT, Germany",
+      "licence": "CC BY-SA 2.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Bakery_mills_for_grinding_grain_(catullus",
+      "licenceURL": "https://creativecommons.org/licenses/by-sa/2.0/"
+    }
+  ],
+  "notices": [
+    {
+      "title": "Wikimedia Commons",
+      "text": "Photos are from Wikimedia Commons. CC BY-SA photos are resized and cropped and shared under the same licence."
+    },
+    {
+      "title": "Map data",
+      "text": "Maps by Apple. Place coordinates from Wikidata (CC0). Entrance points © OpenStreetMap contributors, ODbL.",
+      "url": "https://www.openstreetmap.org/copyright"
+    },
+    {
+      "title": "SigLIP",
+      "text": "On-device image recognition uses SigLIP by Google (google/siglip-base-patch16-224), Apache License 2.0.",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ]
+}

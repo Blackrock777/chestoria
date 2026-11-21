@@ -1,5 +1,7 @@
 # Credits
 
+The app shows these credits itself: **Profile → About → Acknowledgements** lists every photo with author, licence and a link, and each story’s **Sources** button (“About this story”) lists the sources and the photos it uses. `tools/build_credits.py` turns the tables below into `CheStoria/Resources/Content/credits.json`; run it after editing this file.
+
 ## Photos (Wikimedia Commons)
 
 | File in app | Subject | Author | Licence |
@@ -85,6 +87,22 @@ Pompeii coordinates come from Wikidata (CC0). Story facts come from the team's P
 | `tesoroMuseum2` | [MuseoSanGennaro](https://commons.wikimedia.org/wiki/File:MuseoSanGennaro.JPG) | IlSistemone | CC BY-SA 3.0 |
 | `sanGennaroNecklace` | [Collana San Gennaro](https://commons.wikimedia.org/wiki/File:Collana_San_Gennaro.jpg) | Photo2023 | CC BY 4.0 |
 
+### Second photos (shown when your photo isn't of the place)
+
+| File in app | Subject | Author | Licence |
+|---|---|---|---|
+| `sanCarloPhoto` | [RealTeatroSanCarloNaples15](https://commons.wikimedia.org/wiki/File:RealTeatroSanCarloNaples15.jpg) | IlSistemone | CC BY-SA 3.0 |
+| `caveCanemPhoto` | [Pompei, Casa del Poeta Tragico - panoramio](https://commons.wikimedia.org/wiki/File:Pompei,_Casa_del_Poeta_Tragico_-_panoramio.jpg) | Carlo Pelagalli | CC BY-SA 3.0 |
+| `stabianBathsPhoto` | [Calidarium Terme Stabiane. 03](https://commons.wikimedia.org/wiki/File:Calidarium_Terme_Stabiane._03.JPG) | Miguel Hermoso Cuesta | CC BY-SA 4.0 |
+| `octaviusQuartioPhoto` | [Pompeii House-Octavius-Quartio 20240504 154131](https://commons.wikimedia.org/wiki/File:Pompeii_House-Octavius-Quartio_20240504_154131.jpg) | Rigorius | CC BY-SA 4.0 |
+| `vettiiPhoto` | [Binnenplaats (atrium) van Casa dei Vettii P.e 1.a N.o 11349a. POMPEI - Casa dei Vettii, il Peristilio. (titel op object), RP-F-00-1662](https://commons.wikimedia.org/wiki/File:Binnenplaats_(atrium)_van_Casa_dei_Vettii_P.e_1.a_N.o_11349a._POMPEI_-_Casa_dei_Vettii,_il_Peristilio._(titel_op_object),_RP-F-00-1662.jpg) | Rijksmuseum | CC0 |
+| `faunPhoto` | [Casa del Fauno, Pompei -](https://commons.wikimedia.org/wiki/File:Casa_del_Fauno,_Pompei_-.jpg) | DinaBenedettoFerrandina | CC BY-SA 4.0 |
+| `villaMysteriesPhoto` | [Villa dei misteri, sala del grande dipinto con misteri iniziatici, I secolo a.c. 09](https://commons.wikimedia.org/wiki/File:Villa_dei_misteri,_sala_del_grande_dipinto_con_misteri_iniziatici,_I_secolo_a.c._09.jpg) | Sailko | CC BY-SA 4.0 |
+| `lupanarPhoto` | [Vicolo del Lupanare (Pompeii) - panoramio - roadmap (16)](https://commons.wikimedia.org/wiki/File:Vicolo_del_Lupanare_(Pompeii)_-_panoramio_-_roadmap_(16).jpg) | roadmap | CC BY 3.0 |
+| `cascaPhoto` | [Casa dei Quadretti Teatrali (Pompei) WLM 013](https://commons.wikimedia.org/wiki/File:Casa_dei_Quadretti_Teatrali_(Pompei)_WLM_013.JPG) | Mentnafunangann | CC BY-SA 3.0 |
+| `moralistPhoto` | [Pompei. Casa del moralista Triclinium, GD004699](https://commons.wikimedia.org/wiki/File:Pompei._Casa_del_moralista_Triclinium,_GD004699.jpg) | Unknown author | Public domain |
+| `bakeryPriscusPhoto` | [Bakery mills for grinding grain (catullus) from a pistrinum (bakery), Pompeii (14856051379)](https://commons.wikimedia.org/wiki/File:Bakery_mills_for_grinding_grain_(catullus)_from_a_pistrinum_(bakery),_Pompeii_(14856051379).jpg) | Carole Raddato from FRANKFURT, Germany | CC BY-SA 2.0 |
+
 Entrance points for the catacombs, the Bourbon Tunnel and two corrected museum points: © OpenStreetMap contributors, ODbL. Place coordinates otherwise from Wikidata (CC0). Story texts are original summaries from the team's research dataset (`tools/story_cards/`), checked against the sources listed in each story.
 
 All from Wikimedia Commons. CC BY-SA images are resized and cropped here and shared under the same licence, with attribution.
@@ -101,9 +119,7 @@ Test fixtures for "not a place": cup of coffee in Café Butter, Berlin (Edward, 
 
 ## Fonts
 
-- **Bricolage Grotesque** by Mathieu Triay and the Bricolage Grotesque Project Authors, SIL Open Font License 1.1 (`CheStoria/Resources/Fonts/OFL-Bricolage.txt`). The ExtraBold and Bold files are static instances made from the variable font.
-- **Kalam** by the Indian Type Foundry, SIL Open Font License 1.1 (`CheStoria/Resources/Fonts/OFL-Kalam.txt`).
-- SF Pro is the system font and is not included.
+No fonts are bundled. The app uses Apple’s system typefaces (SF Pro and SF Pro Rounded), which need no credit.
 
 ## Research
 

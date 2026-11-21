@@ -389,6 +389,29 @@ struct SiteTests {
         #expect(pompeii.place(id: "thermopolium")?.referenceImages?.first == .asset("thermo"))
     }
 
+    @Test func everyPhotoIsCreditedInTheApp() throws {
+        // CC BY / BY-SA need author, licence and link: Profile → Acknowledgements and "About this story" show them.
+        let catalog = try ContentStore.loadBundled()
+        #expect(!Credits.shared.photos.isEmpty)
+        for site in catalog.sites {
+            for ref in site.places.flatMap(\.allImages) + [site.postcardImage, site.welcome.image] {
+                guard case .asset(let name) = ref else { continue }
+                #expect(Credits.shared.photo(for: ref) != nil, "\(name) in \(site.id) has no credit")
+            }
+        }
+    }
+
+    @Test func storiesHaveTheirOwnPhotosWhenYoursIsSomethingElse() throws {
+        // After "that's a bottle → stories nearby", the question shows the place's photos, never the bottle.
+        let catalog = try ContentStore.loadBundled()
+        for site in catalog.sites {
+            for p in site.storyPlaces {
+                #expect((2...3).contains(p.galleryImages.count), "\(p.id) needs two or three photos of its own")
+                #expect(Set(p.galleryImages).count == p.galleryImages.count)
+            }
+        }
+    }
+
     @Test func answersAreShuffledAndEntrancesGuideDirections() throws {
         let catalog = try ContentStore.loadBundled()
         let stories = catalog.sites.flatMap(\.storyPlaces).compactMap(\.story)

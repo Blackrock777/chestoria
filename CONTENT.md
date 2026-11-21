@@ -77,7 +77,7 @@ The tests (`⌘U`) validate every file in every language: ids, answers, image na
 
 ## Welcome screen
 
-The line above the headline is written by the app from real data: "Welcome to Pompeii" before your first story, then "Pompeii · Day 2 of your trip" counted from the day you started. Set `welcome.eyebrow` only if a site needs a fixed line. New trips start empty; `demoTrip` is only used by Profile → Demo → Load demo trip.
+The line above the headline is written by the app from real data: "Welcome to Pompeii" before your first story, then "Pompeii · Day 2 of your trip" counted from the day you started. Set `welcome.eyebrow` only if a site needs a fixed line. New trips start empty; `demoTrip` is only used by the `-demo` launch argument for presentations.
 
 ## What the AI can name
 
@@ -142,3 +142,8 @@ python3 tools/import_places.py export.csv --dry-run  # preview first
 ```
 
 Columns: `id, name, latitude, longitude` (required), and optionally `street, description, image, image_credit, name_it, name_fr, name_de, name_es`. Imported places arrive without a story. The tool writes `stories_todo.csv` so writers can turn each description into a question, two facts and a detail to find. Pins appear on the Apple Maps trip map from their coordinates; check them on the map.
+
+## Gallery photos and credits
+
+- `photos` (optional, on a place): extra photos of the place, shown in its swipeable gallery when the visitor's own photo isn't of that place (for example "that's a bottle → stories nearby"), and on the Near you card. They are not used for recognition. Every story place should have two or three photos in total (`cameraImage` + `photos` + `referenceImages`); a test checks this.
+- Every photo needs a row in `CREDITS.md`. Run `python3 tools/build_credits.py` to rebuild `credits.json`, which the app shows in Acknowledgements and in each story's Sources sheet. A test fails if a content photo has no credit.

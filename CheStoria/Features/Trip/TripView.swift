@@ -12,14 +12,9 @@ struct TripView: View {
     var body: some View {
         let t = model.strings
         let visited = model.visitedPlaces
+        NavigationStack {
         ScrollView {
             VStack(alignment: .leading, spacing: 14) {
-                HStack(alignment: .center) {
-                    Text(t("trip.title")).font(Typeface.display(36, relativeTo: .largeTitle)).foregroundStyle(Palette.piperno)
-                    Spacer()
-                    ProfileButton()
-                }
-                .padding(.horizontal, 8)
                 Button { showSite = true } label: {
                     Label(t("trip.secrets", model.site.city, "\(visited.count)"), systemImage: "ticket")
                         .font(.system(size: 14, weight: .semibold)).foregroundStyle(Palette.azzurro)
@@ -58,6 +53,9 @@ struct TripView: View {
             .padding(.horizontal, 16).padding(.bottom, 24)
         }
         .background(Palette.calce)
+        .navigationTitle(t("trip.title"))
+        .toolbar { ToolbarItem(placement: .topBarTrailing) { ProfileButton(style: .toolbar) } }
+        }
         .onAppear { appeared = false; DispatchQueue.main.async { appeared = true } }
         .sheet(isPresented: $showSite) { SiteSheet().presentationDetents([.large]).presentationCornerRadius(38) }
         .sheet(item: $openPlace) { PlaceSheet(place: $0) }

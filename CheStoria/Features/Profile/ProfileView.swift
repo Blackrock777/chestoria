@@ -22,11 +22,13 @@ struct ProfileView: View {
 
 // MARK: - Signed out
 
-private struct SignInView: View {
+struct SignInView: View {
     enum Mode: Hashable { case signIn, create }
     @Environment(AppModel.self) private var model
     @Environment(AccountModel.self) private var account
     @Environment(\.colorScheme) private var scheme
+    /// In onboarding the screen has its own title, so the "Guest" header is hidden.
+    var showsGuestHeader = true
     @State private var mode: Mode = .create
     @State private var name = ""
     @State private var email = ""
@@ -38,6 +40,7 @@ private struct SignInView: View {
         let t = model.strings
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
+                if showsGuestHeader {
                 HStack(spacing: 14) {
                     Image(systemName: "person.fill").font(.system(size: 26, weight: .semibold)).foregroundStyle(Palette.stone)
                         .frame(width: 64, height: 64).background(Circle().fill(Palette.sunk))
@@ -47,6 +50,7 @@ private struct SignInView: View {
                     }
                 }
                 .padding(.top, 8)
+                }
 
                 SignInWithAppleButton(mode == .create ? .signUp : .signIn) { req in
                     req.requestedScopes = [.fullName, .email]
@@ -201,12 +205,13 @@ private struct SignedInView: View {
             }
             .tint(Palette.azzurro)
 
-            Section(t("profile.demo")) {
+            #if DEBUG
+            // Developer tools: never shown in TestFlight or App Store builds.
+            Section("Developer") {
                 Button(t("profile.startFresh")) { model.startFresh(); dismiss() }
-                Button(t("profile.loadDemo")) { model.loadDemo(); dismiss() }
-                Button(t("profile.replayWelcome")) { model.resetOnboarding(); dismiss() }
                 NavigationLink(t("profile.recognitionLog")) { RecognitionLogView() }
             }
+            #endif
 
             Section(t("profile.account")) {
                 Button(t("profile.editName")) { newName = user.displayName; editingName = true }
@@ -215,7 +220,7 @@ private struct SignedInView: View {
             }
 
             Section(t("profile.about")) {
-                Link(t("profile.credits"), destination: URL(string: "https://github.com/poojatalele/chestoria/blob/main/CREDITS.md")!)
+                NavigationLink(t("ack.title")) { AcknowledgementsView() }
                 Text(t("profile.version", Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "–"))
                     .foregroundStyle(Palette.stone)
             }

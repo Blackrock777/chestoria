@@ -426,7 +426,10 @@
             }
           ]
         }
-      }
+      },
+      "photos": [
+        "caveCanemPhoto"
+      ]
     },
     {
       "id": "thermopolium",
@@ -1209,7 +1212,10 @@
             }
           ]
         }
-      }
+      },
+      "photos": [
+        "stabianBathsPhoto"
+      ]
     },
     {
       "id": "house-octavius-quartio",
@@ -1292,7 +1298,10 @@
             }
           ]
         }
-      }
+      },
+      "photos": [
+        "octaviusQuartioPhoto"
+      ]
     },
     {
       "id": "house-vettii",
@@ -1375,7 +1384,10 @@
             }
           ]
         }
-      }
+      },
+      "photos": [
+        "vettiiPhoto"
+      ]
     },
     {
       "id": "house-faun",
@@ -1458,7 +1470,10 @@
             }
           ]
         }
-      }
+      },
+      "photos": [
+        "faunPhoto"
+      ]
     },
     {
       "id": "villa-mysteries",
@@ -1545,7 +1560,10 @@
             }
           ]
         }
-      }
+      },
+      "photos": [
+        "villaMysteriesPhoto"
+      ]
     },
     {
       "id": "lupanar",
@@ -1628,7 +1646,10 @@
             }
           ]
         }
-      }
+      },
+      "photos": [
+        "lupanarPhoto"
+      ]
     },
     {
       "id": "house-casca",
@@ -1711,7 +1732,10 @@
             }
           ]
         }
-      }
+      },
+      "photos": [
+        "cascaPhoto"
+      ]
     },
     {
       "id": "house-moralist",
@@ -1794,7 +1818,10 @@
             }
           ]
         }
-      }
+      },
+      "photos": [
+        "moralistPhoto"
+      ]
     },
     {
       "id": "bakery-popidius-priscus",
@@ -1873,7 +1900,10 @@
             }
           ]
         }
-      }
+      },
+      "photos": [
+        "bakeryPriscusPhoto"
+      ]
     },
     {
       "id": "house-of-the-citharist",

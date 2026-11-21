@@ -60,7 +60,24 @@ struct LookCloserView: View {
                     .position(pos)
                     .opacity(shown ? 1 : 0).scaleEffect(shown ? 1 : 0.4)
                     .animation(Motion.pop.delay(0.3), value: shown)
+
+                // A magnifier floats above your finger, so you see what you're pointing at, not your thumb.
+                if let img = photo ?? ImageLoader.shared.cached(look.image), aim != nil, !found {
+                    Loupe(image: img, layout: layout, center: pos, magnification: 2.2, diameter: 110)
+                        .position(x: pos.x, y: max(70, pos.y - 120))
+                        .transition(.scale.combined(with: .opacity))
+                        .allowsHitTesting(false)
+                }
+                // Found: the detail itself, big and close, so you know exactly what you were looking for.
+                if found, let img = photo ?? ImageLoader.shared.cached(look.image) {
+                    Loupe(image: img, layout: layout, center: target, magnification: 1.6, diameter: 190, ring: Palette.tufo)
+                    .position(x: geo.size.width / 2, y: target.y > geo.size.height * 0.5 ? geo.size.height * 0.40 : geo.size.height * 0.66)
+                    .transition(.scale(scale: 0.3, anchor: UnitPoint(x: target.x / max(geo.size.width, 1), y: target.y / max(geo.size.height, 1))).combined(with: .opacity))
+                    .allowsHitTesting(false)
+                }
             }
+            .animation(Motion.pop, value: found)
+            .animation(.easeOut(duration: 0.15), value: aim == nil)
             .contentShape(Rectangle())
             .gesture(DragGesture(minimumDistance: 0).onChanged { v in if !found { aim = v.location } })
             .overlay(alignment: .top) {
@@ -130,6 +147,32 @@ struct LookCloserView: View {
             Haptics.pulse(intensity: 0.3 + fb.closeness * 0.7)
             try? await Task.sleep(for: .seconds(fb.pulseInterval))
         }
+    }
+}
+
+/// A round magnified view of the photo around `center` (screen point in `layout`).
+private struct Loupe: View {
+    let image: UIImage
+    let layout: CoverLayout
+    let center: CGPoint
+    var magnification: CGFloat = 2
+    var diameter: CGFloat = 110
+    var ring: Color = .white
+
+    var body: some View {
+        let m = magnification
+        let size = CGSize(width: layout.displaySize.width * m, height: layout.displaySize.height * m)
+        // Point in the magnified image that sits under `center`.
+        let px = (center.x - layout.origin.x) * m, py = (center.y - layout.origin.y) * m
+        ZStack(alignment: .topLeading) {
+            Image(uiImage: image).resizable().frame(width: size.width, height: size.height)
+                .offset(x: diameter / 2 - px, y: diameter / 2 - py)
+        }
+        .frame(width: diameter, height: diameter, alignment: .topLeading)
+        .clipShape(Circle())
+        .overlay(Circle().stroke(ring, lineWidth: 4))
+        .shadow(color: .black.opacity(0.45), radius: 14, y: 6)
+        .accessibilityHidden(true)
     }
 }
 

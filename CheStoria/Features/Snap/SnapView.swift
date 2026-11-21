@@ -11,6 +11,7 @@ struct SnapView: View {
     @State private var flash = 0
     @State private var shown = false
     @State private var picked: PhotosPickerItem?
+    @State private var nearby: NearbyPick?
 
     var body: some View {
         let t = model.strings
@@ -24,7 +25,7 @@ struct SnapView: View {
                 HStack {
                     ProfileButton(style: .glass)
                     Spacer()
-                    LocationChip(status: status)
+                    LocationChip(status: status) { place, meters in nearby = NearbyPick(place: place, meters: meters) }
                     Spacer()
                     Color.clear.frame(width: 8, height: 44)
                 }
@@ -75,6 +76,15 @@ struct SnapView: View {
             if CameraSession.isAvailable { camera.start() }
         }
         .onDisappear { camera.stop() }
+        #if DEBUG
+        .task { if DebugLaunch.screen == "nearby" { nearby = NearbyPick(place: fallback, meters: 40) } }
+        #endif
+        .sheet(item: $nearby) { pick in
+            NearbyPlaceCard(place: pick.place, meters: pick.meters) {
+                nearby = nil
+                model.startStory(at: pick.place)
+            }
+        }
         .onChange(of: recognizer.lastLocation) { updateLiveActivity() }
         .onChange(of: model.activeFlow == nil) { _, idle in if !idle { LiveActivityController.shared.end() } }
         .task(id: model.site.id + model.language) {
@@ -147,6 +157,7 @@ private struct LiveGuessChip: View {
 /// Tells the truth about location: off, locating, at the site, or far away.
 private struct LocationChip: View {
     let status: LocationStatus
+    var onNear: (Place, Int) -> Void = { _, _ in }
     @Environment(AppModel.self) private var model
 
     var body: some View {
@@ -158,6 +169,7 @@ private struct LocationChip: View {
                     LiveDot()
                     Text(t("snap.near", place.name)).lineLimit(1).minimumScaleFactor(0.75)
                     Text("· \(meters) m").font(.system(size: 13)).opacity(0.75).fixedSize()
+                    Image(systemName: "chevron.down").font(.system(size: 11, weight: .bold)).opacity(0.75)
                 case .locating:
                     ProgressView().controlSize(.mini).tint(.white)
                     Text(t("snap.locating")).lineLimit(1).minimumScaleFactor(0.75)
@@ -176,11 +188,16 @@ private struct LocationChip: View {
             .padding(.horizontal, 16).frame(minHeight: 44)
         }
         .glassEffect(.regular, in: .capsule)
-        .disabled(status != .off)
+        .disabled(!isTappable)
         .animation(.easeInOut, value: status)
     }
 
+    private var isTappable: Bool {
+        switch status { case .near, .off: true; default: false }
+    }
+
     private func tap() {
+        if case .near(let place, let meters) = status { Haptics.tap(); onNear(place, meters); return }
         if let url = URL(string: UIApplication.openSettingsURLString) { UIApplication.shared.open(url) }
     }
 }
@@ -223,5 +240,48 @@ private struct BreathingReticle: View {
             .scaleEffect(breathe ? 0.965 : 1)
             .onAppear { guard !reduce else { return }; withAnimation(.easeInOut(duration: 1.2).repeatForever()) { breathe = true } }
             .accessibilityHidden(true)
+    }
+}
+
+private struct NearbyPick: Identifiable {
+    let place: Place
+    let meters: Int
+    var id: String { place.id }
+}
+
+/// Tapping "Near you": the place, a photo, and one clear invitation to hear its story.
+private struct NearbyPlaceCard: View {
+    let place: Place
+    let meters: Int
+    let onStart: () -> Void
+    @Environment(AppModel.self) private var model
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        let t = model.strings
+        let p = model.site.place(id: place.id) ?? place
+        VStack(alignment: .leading, spacing: 16) {
+            PlaceGallery(place: p, topInset: 12)
+                .frame(height: 230)
+                .clipShape(.rect(cornerRadius: 24))
+            VStack(alignment: .leading, spacing: 4) {
+                Label(t("snap.nearLabel", "\(meters)"), systemImage: "location.fill")
+                    .font(.footnote.weight(.semibold)).foregroundStyle(Palette.azzurro)
+                Text(p.name).font(Typeface.display(28, relativeTo: .title)).foregroundStyle(Palette.piperno)
+                Text(p.street).font(.subheadline).foregroundStyle(.secondary)
+            }
+            if let story = p.story {
+                Text(story.question).font(.body).foregroundStyle(Palette.piperno).fixedSize(horizontal: false, vertical: true)
+                Button { Haptics.tap(); onStart() } label: {
+                    Label(t("snap.nearStart"), systemImage: "sparkles").frame(maxWidth: .infinity)
+                }
+                .buttonStyle(CTAButtonStyle(kind: .tufo, shine: true))
+            } else {
+                Label(t("place.comingSoon"), systemImage: "hourglass").font(.subheadline.weight(.semibold)).foregroundStyle(.secondary)
+            }
+        }
+        .padding(20)
+        .presentationDetents([.medium, .large])
+        .presentationBackground(Palette.calce)
     }
 }

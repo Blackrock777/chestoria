@@ -136,6 +136,8 @@ nonisolated struct Place: Codable, Identifiable, Hashable, Sendable {
     let aiDescriptions: [String]?
     /// Photos used to recognise this place from the camera.
     let referenceImages: [ImageRef]?
+    /// Extra photos of the place shown in its gallery (not used for recognition).
+    let photos: [ImageRef]?
     /// false for places the camera shouldn't be used for (indoor art, ticketed or no-photo rooms).
     /// They open from the map, or from Snap when you are standing there.
     let cameraRecognition: Bool?

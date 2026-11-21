@@ -2,13 +2,22 @@ import SwiftUI
 
 /// Round avatar that opens the profile. Shows initials when signed in, a person icon otherwise.
 struct ProfileButton: View {
-    enum Style { case glass, plain }
+    enum Style { case glass, plain, toolbar }
     var style: Style = .plain
     @Environment(AppModel.self) private var model
     @Environment(AccountModel.self) private var account
 
     var body: some View {
         Button { Haptics.tap(); model.showProfile = true } label: {
+            if style == .toolbar {
+                // In a navigation bar the system draws the glass; we only supply the symbol or initials.
+                if let user = account.user {
+                    Text(user.initials).font(.system(size: 14, weight: .bold, design: .rounded)).foregroundStyle(Palette.onTufo)
+                        .frame(width: 32, height: 32).background(Circle().fill(Palette.tufo))
+                } else {
+                    Image(systemName: "person.crop.circle")
+                }
+            } else {
             Group {
                 if let user = account.user {
                     Text(user.initials).font(Typeface.display(15)).foregroundStyle(Palette.onTufo)
@@ -19,6 +28,7 @@ struct ProfileButton: View {
                         .frame(width: 44, height: 44)
                         .background { if style == .plain { Circle().fill(Palette.card).overlay(Circle().stroke(Palette.hair, lineWidth: 1.5)) } }
                 }
+            }
             }
         }
         .modifier(GlassIf(on: style == .glass && account.user == nil))

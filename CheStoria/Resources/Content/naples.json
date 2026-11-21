@@ -842,7 +842,10 @@
             }
           ]
         }
-      }
+      },
+      "photos": [
+        "sanCarloPhoto"
+      ]
     },
     {
       "id": "castel-nuovo",

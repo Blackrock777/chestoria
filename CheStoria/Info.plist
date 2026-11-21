@@ -51,12 +51,6 @@
 	<string></string>
 	<key>SupabaseURL</key>
 	<string></string>
-	<key>UIAppFonts</key>
-	<array>
-		<string>BricolageGrotesque-ExtraBold.ttf</string>
-		<string>BricolageGrotesque-Bold.ttf</string>
-		<string>Kalam-Bold.ttf</string>
-	</array>
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIColorName</key>

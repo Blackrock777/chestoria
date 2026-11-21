@@ -247,7 +247,7 @@ struct TheoryCard: View {
     var stamped: Bool
     var body: some View {
         HStack(spacing: 14) {
-            Text(theory.label).font(.custom("BricolageGrotesque-ExtraBold", size: 10)).kerning(0.5)
+            Text(theory.label).font(.system(size: 10, weight: .heavy)).kerning(0.5)
                 .foregroundStyle(.white)
                 .frame(width: 54, height: 54)
                 .background(Circle().fill(Palette.pompei).shadow(color: .black.opacity(0.15), radius: 0, y: -3))

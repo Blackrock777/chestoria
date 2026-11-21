@@ -12,6 +12,11 @@ struct StoryFlowView: View {
     @State private var step: Step = .recognizing
     @State private var chosen = 0
     @State private var confidence = 2
+    /// True only when the person's photo really shows this place (recognised, or picked from "which one?").
+    /// After "that's a bottle → stories nearby", the place's own photos are used instead of theirs.
+    @State private var photoIsPlace = false
+
+    private var placePhoto: UIImage? { photoIsPlace ? request.photo : nil }
 
     enum Step: Int { case recognizing, choose, notAPlace, question, reveal, lookCloser, sticker }
 
@@ -26,22 +31,22 @@ struct StoryFlowView: View {
                     .transition(.opacity)
             case .choose:
                 ChoosePlaceView(photo: request.photo, places: choices, label: seenLabel, noMatch: noMatch,
-                                onPick: { picked in place = picked; go(.question) },
+                                onPick: { picked in place = picked; photoIsPlace = true; go(.question) },
                                 onNone: { noMatch = true; go(.notAPlace) })
                 .transition(.opacity)
             case .notAPlace:
                 NotAPlaceView(photo: request.photo, label: seenLabel, heritage: heritage, nearby: choices,
-                              onPick: { picked in place = picked; go(.question) },
+                              onPick: { picked in place = picked; photoIsPlace = false; go(.question) },
                               onRetake: { model.activeFlow = nil })
                 .transition(.opacity)
             case .question:
                 if let p = current, let story = p.story {
-                    QuestionView(place: p, story: story, photo: request.photo) { i, sure in chosen = i; confidence = sure; go(.reveal) }
+                    QuestionView(place: p, story: story, photo: placePhoto) { i, sure in chosen = i; confidence = sure; go(.reveal) }
                         .transition(.opacity)
                 }
             case .reveal:
                 if let p = current, let story = p.story {
-                    RevealView(story: story, chosen: chosen, confidence: confidence, thenNow: p.thenNow) { go(story.lookCloser == nil ? .sticker : .lookCloser) }
+                    RevealView(place: p, story: story, chosen: chosen, confidence: confidence) { go(story.lookCloser == nil ? .sticker : .lookCloser) }
                         .transition(.push(from: .trailing))
                 }
             case .lookCloser:
@@ -51,7 +56,7 @@ struct StoryFlowView: View {
                 }
             case .sticker:
                 if let sticker = current?.story?.sticker {
-                    StickerEarnedView(sticker: sticker, photo: request.photo, onKeepExploring: { finish(.trip) }, onSeeAll: { finish(.stickers) })
+                    StickerEarnedView(sticker: sticker, photo: placePhoto, onKeepExploring: { finish(.trip) }, onSeeAll: { finish(.stickers) })
                         .transition(.move(edge: .bottom))
                 }
             }
@@ -70,7 +75,7 @@ struct StoryFlowView: View {
 
     private func handle(_ result: RecognitionResult) {
         switch result {
-        case .confident(let p): place = p; go(.question, animated: false)
+        case .confident(let p): place = p; photoIsPlace = request.photo != nil; go(.question, animated: false)
         case .unsure(let ps, let label): choices = ps; seenLabel = label; noMatch = false; go(.choose, animated: false)
         case .notAPlace(let label, let h, let nearby): choices = nearby; seenLabel = label; heritage = h; go(.notAPlace, animated: false)
         }
@@ -84,7 +89,7 @@ struct StoryFlowView: View {
         guard let p = current else { model.activeFlow = nil; return }
         if let story = p.story { RecallScheduler.schedule(for: p, story: story, strings: model.strings) }
         LiveActivityController.shared.end()
-        model.finishStory(at: p, goTo: tab, photo: request.photo)
+        model.finishStory(at: p, goTo: tab, photo: placePhoto)
     }
 
     #if DEBUG
@@ -341,7 +346,7 @@ struct QuestionView: View {
             ZStack(alignment: .top) {
                 Palette.calce
                 Group {
-                    if let photo { CoverImage(image: photo) } else { CoverImage(place.cameraImage, anchor: .init(x: 0.40, y: 0.62)) }
+                    if let photo { CoverImage(image: photo) } else { PlaceGallery(place: place, topInset: geo.safeAreaInsets.top + 56) }
                 }
                 .frame(height: shown ? geo.size.height * 0.42 : geo.size.height)
                 .animation(Motion.glide, value: shown)
@@ -394,118 +399,246 @@ struct QuestionView: View {
 
 // MARK: - Reveal
 
+/// The answer, as a page you want to read: the place's photo, a result badge, the story in a card,
+/// and quick actions (Tonight, Then & Now, Listen, About) in the style of an Apple Maps place card.
 struct RevealView: View {
+    let place: Place
     let story: Story
     let chosen: Int
     var confidence = 2
-    var thenNow: ThenNow? = nil
     let onNext: () -> Void
     @Environment(AppModel.self) private var model
     @Environment(\.accessibilityReduceMotion) private var reduce
     @AppStorage(Settings.autoRead) private var autoRead = false
     @State private var narrator = Narrator()
-    @State private var wipe = false
     @State private var shown = false
     @State private var stamped = false
-    @State private var showSources = false
+    @State private var showInfo = false
     @State private var showThenNow = false
+    @State private var showTonight = false
 
     private var right: Bool { chosen == story.correctIndex }
-    private var factLabel: String {
-        let t = model.strings
-        guard let fc = story.factCheck else { return t("reveal.verified", story.source) }
-        return fc.status == .verified ? t("reveal.verified", story.source) : t("reveal.sourced", "\(fc.sources.count)")
-    }
 
     var body: some View {
         let t = model.strings
-        VStack(alignment: .leading, spacing: 14) {
-            Text(confidence == 3 ? (right ? t("reveal.rightSure") : t("reveal.wrongSure"))
-                 : right ? t("reveal.right") : t("reveal.wrong", story.answers[min(chosen, story.answers.count - 1)]))
-                .font(Typeface.hand(23)).foregroundStyle(right ? Palette.maiolica : Palette.stone)
-                .mask(alignment: .leading) { Rectangle().scaleEffect(x: wipe ? 1 : 0, anchor: .leading) }
-                .padding(.top, 8)
-            Text(story.answerTitle).font(Typeface.display(46, relativeTo: .largeTitle)).foregroundStyle(Palette.piperno)
-                .fixedSize(horizontal: false, vertical: true).minimumScaleFactor(0.7)
-                .opacity(shown ? 1 : 0).offset(y: shown ? 0 : -40).scaleEffect(shown ? 1 : 1.06, anchor: .leading)
-                .animation(reduce ? nil : Motion.pop.delay(0.45), value: shown)
-                .accessibilityAddTraits(.isHeader)
-            Text(story.subtitle).font(Typeface.display(22)).foregroundStyle(Palette.azzurro).padding(.top, -6)
-                .rise(shown, delay: 0.75, distance: 10)
-            Text(story.body).font(.system(size: 18)).foregroundStyle(Palette.piperno).lineSpacing(3)
-                .fixedSize(horizontal: false, vertical: true)
-                .rise(shown, delay: 0.9)
-            Button { showSources = true } label: {
-                HStack(spacing: 4) { VerifiedPill(text: factLabel); Image(systemName: "chevron.right").font(.system(size: 10, weight: .bold)).foregroundStyle(Palette.maiolica) }
-            }
-            .disabled(story.factCheck == nil)
-            .rise(shown, delay: 1.0)
-            if let theory = story.theory {
-                TheoryCard(theory: theory, stamped: stamped)
-                    .opacity(shown ? 1 : 0).animation(.easeOut(duration: 0.4).delay(1.1), value: shown)
-            }
-            HStack(alignment: .top, spacing: 12) {
-                RoundedRectangle(cornerRadius: 1.5).fill(Palette.tufo).frame(width: 3)
-                VStack(alignment: .leading, spacing: 3) {
-                    Text(t("reveal.tellTonight")).font(.system(size: 11, weight: .bold)).textCase(.uppercase).kerning(1).foregroundStyle(Palette.stone)
-                    Text(story.dinnerLine).font(.system(size: 16, weight: .semibold)).foregroundStyle(Palette.piperno)
-                }
-            }
-            .fixedSize(horizontal: false, vertical: true)
-            .rise(shown, delay: 1.3)
-            if let tn = thenNow {
-                Button { showThenNow = true } label: {
-                    HStack(spacing: 12) {
-                        HStack(spacing: 0) {
-                            CoverImage(tn.then).frame(width: 34, height: 44)
-                            CoverImage(tn.now).frame(width: 34, height: 44)
-                        }
-                        .clipShape(.rect(cornerRadius: 10))
-                        Text(t("thenNow.open")).font(.system(size: 15, weight: .semibold)).foregroundStyle(Palette.piperno)
-                        Spacer()
-                        Image(systemName: "chevron.right").font(.system(size: 13, weight: .bold)).foregroundStyle(Palette.stone)
+        ScrollView {
+            VStack(alignment: .leading, spacing: 0) {
+                hero
+                VStack(alignment: .leading, spacing: 18) {
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text(story.eyebrow).font(.footnote.weight(.semibold)).textCase(.uppercase).kerning(0.6).foregroundStyle(Palette.stone)
+                        Text(story.answerTitle).font(Typeface.display(36, relativeTo: .largeTitle)).foregroundStyle(Palette.piperno)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .accessibilityAddTraits(.isHeader)
+                        Text(story.subtitle).font(Typeface.displayBold(20, relativeTo: .title3)).foregroundStyle(Palette.azzurro)
+                            .fixedSize(horizontal: false, vertical: true)
                     }
-                    .padding(8).background(Palette.card, in: .rect(cornerRadius: 16))
-                    .overlay(RoundedRectangle(cornerRadius: 16).stroke(Palette.hair, lineWidth: 1.5))
+                    .rise(shown, delay: 0.35)
+
+                    actions.rise(shown, delay: 0.5)
+
+                    Text(story.body)
+                        .font(.system(size: 18)).lineSpacing(5).foregroundStyle(Palette.piperno)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .padding(18)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(Palette.card, in: .rect(cornerRadius: 22))
+                        .overlay(alignment: .topLeading) {
+                            Image(systemName: "quote.opening").font(.system(size: 22, weight: .black)).foregroundStyle(Palette.tufo)
+                                .offset(x: 16, y: -12)
+                        }
+                        .rise(shown, delay: 0.65)
+
+                    if let theory = story.theory {
+                        TheoryCard(theory: theory, stamped: stamped)
+                            .opacity(shown ? 1 : 0).animation(.easeOut(duration: 0.4).delay(0.8), value: shown)
+                    }
+
+                    AnswerRecap(answers: story.answers, correct: story.correctIndex, chosen: chosen, title: t("reveal.yourAnswer"))
+                        .rise(shown, delay: 0.9)
                 }
-                .rise(shown, delay: 1.4)
+                .padding(.horizontal, 20).padding(.top, 22).padding(.bottom, 24)
+                .background(Palette.calce, in: UnevenRoundedRectangle(topLeadingRadius: 32, topTrailingRadius: 32))
+                .padding(.top, -32)
             }
-            Spacer(minLength: 0)
-            HStack(spacing: 10) {
-                // Some sites only allow their authorised audio guides (Pompeii, visitor rules art. 6).
-                if model.site.allowsReadAloud {
-                Button { narrator.toggle(spoken, language: model.language) } label: {
-                    Image(systemName: narrator.isSpeaking ? "stop.fill" : "speaker.wave.2.fill")
-                        .font(.system(size: 19, weight: .semibold)).foregroundStyle(Palette.piperno)
-                        .frame(width: 58, height: 58).background(Palette.sunk, in: .circle)
-                        .contentTransition(.symbolEffect(.replace))
-                }
-                .accessibilityLabel(narrator.isSpeaking ? t("reveal.stopReading") : t("reveal.readAloud"))
-                }
-                Button(story.lookCloser == nil ? t("reveal.collect") : t("reveal.lookCloser")) { Haptics.tap(); narrator.stop(); onNext() }
-                    .buttonStyle(CTAButtonStyle(kind: .tufo, shine: true))
-            }
-            .rise(shown, delay: 1.45)
         }
-        .padding(.horizontal, 24).padding(.bottom, 8)
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .scrollIndicators(.hidden)
+        .ignoresSafeArea(edges: .top)
         .background(Palette.calce)
+        .safeAreaInset(edge: .bottom) {
+            Button(story.lookCloser == nil ? t("reveal.collect") : t("reveal.lookCloser")) { Haptics.tap(); narrator.stop(); onNext() }
+                .buttonStyle(CTAButtonStyle(kind: .tufo, shine: true))
+                .padding(.horizontal, 20).padding(.top, 10).padding(.bottom, 6)
+                .background(LinearGradient(colors: [Palette.calce.opacity(0), Palette.calce], startPoint: .top, endPoint: .center).padding(.top, -24))
+                .rise(shown, delay: 1.0)
+        }
         .preferredColorScheme(.light)
         .sensoryFeedback(right ? .success : .impact(weight: .light), trigger: shown)
         .onAppear {
             shown = true
-            withAnimation(reduce ? nil : .easeOut(duration: 0.9).delay(0.1)) { wipe = true }
-            withAnimation(reduce ? nil : .spring(response: 0.38, dampingFraction: 0.55).delay(1.45)) { stamped = true }
+            withAnimation(reduce ? nil : .spring(response: 0.38, dampingFraction: 0.55).delay(1.1)) { stamped = true }
             Task {
-                try? await Task.sleep(for: .milliseconds(1700))
+                try? await Task.sleep(for: .milliseconds(1300))
                 if story.theory != nil { Haptics.rigid() }
                 if autoRead && model.site.allowsReadAloud { narrator.toggle(spoken, language: model.language) }
             }
         }
         .onDisappear { narrator.stop() }
-        .sheet(isPresented: $showSources) { if let fc = story.factCheck { SourcesSheet(factCheck: fc) } }
-        .sheet(isPresented: $showThenNow) { if let tn = thenNow { ThenNowSheet(thenNow: tn, title: story.eyebrow) } }
+        .sheet(isPresented: $showInfo) { StoryInfoSheet(place: place) }
+        .sheet(isPresented: $showThenNow) { if let tn = place.thenNow { ThenNowSheet(thenNow: tn, title: story.eyebrow) } }
+    }
+
+    /// The place's photo with the result on it, and a Then & Now button when there's an old picture.
+    private var hero: some View {
+        let t = model.strings
+        let reaction = confidence == 3 ? (right ? t("reveal.rightSure") : t("reveal.wrongSure"))
+            : right ? t("reveal.right") : t("reveal.wrong", story.answers[min(chosen, story.answers.count - 1)])
+        return CoverImage(place.cameraImage, anchor: place.cameraAnchor)
+            .frame(height: 340)
+            .overlay {
+                LinearGradient(stops: [.init(color: .black.opacity(0.35), location: 0), .init(color: .clear, location: 0.3),
+                                       .init(color: .clear, location: 0.55), .init(color: .black.opacity(0.55), location: 1)],
+                               startPoint: .top, endPoint: .bottom)
+            }
+            .overlay(alignment: .bottomLeading) {
+                HStack(alignment: .bottom, spacing: 10) {
+                    Label(reaction, systemImage: right ? "checkmark.circle.fill" : "lightbulb.fill")
+                        .font(.subheadline.weight(.semibold))
+                        .foregroundStyle(right ? .white : Palette.onTufo)
+                        .padding(.horizontal, 14).padding(.vertical, 9)
+                        .background(right ? Palette.maiolica : Palette.tufo, in: .capsule)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .scaleEffect(shown ? 1 : 0.6, anchor: .bottomLeading).opacity(shown ? 1 : 0)
+                        .animation(reduce ? nil : Motion.pop.delay(0.15), value: shown)
+                    Spacer(minLength: 0)
+                    if place.thenNow != nil {
+                        Button { Haptics.tap(); showThenNow = true } label: {
+                            Image(systemName: "clock.arrow.circlepath").font(.system(size: 18, weight: .semibold))
+                                .foregroundStyle(.white).frame(width: 46, height: 46)
+                        }
+                        .glassEffect(.regular.interactive(), in: .circle)
+                        .accessibilityLabel(t("thenNow.title"))
+                    }
+                }
+                .padding(.horizontal, 16).padding(.bottom, 46)
+            }
+    }
+
+    /// Tinted quick actions, like the buttons under a place in Apple Maps.
+    private var actions: some View {
+        let t = model.strings
+        return HStack(spacing: 10) {
+            ActionTile(title: t("reveal.tonight"), icon: "fork.knife", tint: Palette.tufo, ink: Color(red: 0.55, green: 0.38, blue: 0.0)) { showTonight = true }
+                .popover(isPresented: $showTonight, arrowEdge: .top) {
+                    TonightCard(title: t("reveal.tellTonight"), line: story.dinnerLine)
+                        .presentationCompactAdaptation(.popover)
+                }
+            if place.thenNow != nil {
+                ActionTile(title: t("thenNow.title"), icon: "clock.arrow.circlepath", tint: Palette.mare) { showThenNow = true }
+            }
+            // Some sites only allow their authorised audio guides (Pompeii, visitor rules art. 6).
+            if model.site.allowsReadAloud {
+                ActionTile(title: narrator.isSpeaking ? t("reveal.stopReading") : t("reveal.listen"),
+                           icon: narrator.isSpeaking ? "stop.fill" : "speaker.wave.2.fill", tint: Palette.azzurro) {
+                    narrator.toggle(spoken, language: model.language)
+                }
+            }
+            ActionTile(title: t("reveal.about"), icon: "info.circle", tint: Palette.maiolica) { showInfo = true }
+        }
     }
 
     private var spoken: String { [story.answerTitle, story.subtitle, story.body].joined(separator: " ") }
+}
+
+/// One square-ish tinted button with an SF Symbol over a short label.
+private struct ActionTile: View {
+    let title: String
+    let icon: String
+    let tint: Color
+    /// Text and icon colour, when the tint itself is too light to read (yellow).
+    var ink: Color? = nil
+    let action: () -> Void
+    var body: some View {
+        Button { Haptics.tap(); action() } label: {
+            VStack(spacing: 6) {
+                Image(systemName: icon).font(.system(size: 19, weight: .semibold)).contentTransition(.symbolEffect(.replace))
+                Text(title).font(.caption.weight(.semibold)).lineLimit(1).minimumScaleFactor(0.75)
+            }
+            .foregroundStyle(ink ?? tint)
+            .frame(maxWidth: .infinity).frame(height: 64)
+            .background(tint.opacity(ink == nil ? 0.13 : 0.2), in: .rect(cornerRadius: 16))
+        }
+        .buttonStyle(.plain)
+    }
+}
+
+/// The line to retell at dinner, in a small popover.
+private struct TonightCard: View {
+    let title: String
+    let line: String
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Label(title, systemImage: "fork.knife").font(.footnote.weight(.bold)).textCase(.uppercase).foregroundStyle(Palette.tufo)
+            Text(line).font(.title3.weight(.semibold)).foregroundStyle(Palette.piperno).fixedSize(horizontal: false, vertical: true)
+        }
+        .padding(20)
+        .frame(width: 300, alignment: .leading)
+    }
+}
+
+/// The three answers again, with the right one ticked and yours marked: a quick visual "aha".
+private struct AnswerRecap: View {
+    let answers: [String]
+    let correct: Int
+    let chosen: Int
+    let title: String
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(title).font(.footnote.weight(.semibold)).textCase(.uppercase).kerning(0.6).foregroundStyle(Palette.stone)
+            ForEach(Array(answers.enumerated()), id: \.offset) { i, a in
+                let isRight = i == correct, isMine = i == chosen
+                HStack(spacing: 10) {
+                    Image(systemName: isRight ? "checkmark.circle.fill" : isMine ? "xmark.circle.fill" : "circle")
+                        .foregroundStyle(isRight ? Palette.maiolica : isMine ? Palette.stone : Palette.hair)
+                    Text(a).font(.subheadline.weight(isRight ? .semibold : .regular))
+                        .foregroundStyle(isRight ? Palette.piperno : Palette.stone)
+                        .strikethrough(isMine && !isRight, color: Palette.stone)
+                    Spacer()
+                }
+                .padding(.horizontal, 14).frame(minHeight: 44)
+                .background(isRight ? Palette.maiolicaSoft : Palette.card, in: .rect(cornerRadius: 14))
+            }
+        }
+        .accessibilityElement(children: .combine)
+    }
+}
+
+/// Two or three of the place's own photos, swipeable, used when the person's photo isn't of this place.
+struct PlaceGallery: View {
+    let place: Place
+    var topInset: CGFloat = 60
+    @State private var page = 0
+
+    var body: some View {
+        let images = place.galleryImages
+        TabView(selection: $page) {
+            ForEach(Array(images.enumerated()), id: \.offset) { i, ref in
+                CoverImage(ref, anchor: i == 0 ? place.cameraAnchor : .init(x: 0.5, y: 0.5)).tag(i)
+            }
+        }
+        .tabViewStyle(.page(indexDisplayMode: .never))
+        .overlay(alignment: .top) {
+            if images.count > 1 {
+                HStack(spacing: 6) {
+                    ForEach(images.indices, id: \.self) { i in
+                        Capsule().fill(.white.opacity(i == page ? 1 : 0.5)).frame(width: i == page ? 18 : 7, height: 7)
+                    }
+                }
+                .padding(.horizontal, 10).padding(.vertical, 8)
+                .glassEffect(.regular, in: .capsule)
+                .animation(.snappy, value: page)
+                .padding(.top, topInset)
+            }
+        }
+    }
 }

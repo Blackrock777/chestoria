@@ -20,7 +20,6 @@ targets:
     sources:
       - path: CheStoria
         excludes:
-          - "Resources/Fonts/*.txt"
           - "Resources/ML/*.txt"
           - "Resources/ML/*.md"
           - "Resources/Content"
@@ -42,10 +41,6 @@ targets:
         UILaunchScreen:
           UIColorName: LaunchBackground
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
-        UIAppFonts:
-          - BricolageGrotesque-ExtraBold.ttf
-          - BricolageGrotesque-Bold.ttf
-          - Kalam-Bold.ttf
         NSCameraUsageDescription: CheStoria uses the camera so you can point at a place and get its story.
         NSLocationWhenInUseUsageDescription: CheStoria uses your location to know which place you are looking at, so you never have to search.
         ContentBaseURL: ""

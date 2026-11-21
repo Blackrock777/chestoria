@@ -14,17 +14,10 @@ struct StickersView: View {
         let collections = Dictionary(grouping: all, by: { $0.sticker.collection }).map { ($0.key, $0.value.count) }.sorted { $0.0 < $1.0 }
         let shown = all.filter { filter == nil || $0.sticker.collection == filter }
 
+        NavigationStack {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
-                HStack(alignment: .center) {
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(t("stickers.title")).font(Typeface.display(36, relativeTo: .largeTitle)).foregroundStyle(Palette.piperno)
-                        Text(t("stickers.tapToFlip")).font(.system(size: 14)).foregroundStyle(Palette.stone)
-                    }
-                    Spacer()
-                    ProfileButton()
-                }
-                .padding(.horizontal, 8)
+                Text(t("stickers.tapToFlip")).font(.subheadline).foregroundStyle(Palette.stone).padding(.horizontal, 4)
 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 8) {
@@ -59,7 +52,7 @@ struct StickersView: View {
                             .shadow(color: .black.opacity(0.3), radius: 6, y: 4)
                         VStack(alignment: .leading, spacing: 2) {
                             Text(t("postcard.make")).font(Typeface.display(17)).foregroundStyle(.white)
-                            Text(all.isEmpty ? t("postcard.empty") : t("postcard.note")).font(.system(size: 13)).foregroundStyle(.white.opacity(0.75))
+                            Text(t("postcard.note")).font(.system(size: 13)).foregroundStyle(.white.opacity(0.75))
                                 .multilineTextAlignment(.leading)
                         }
                         Spacer()
@@ -68,14 +61,19 @@ struct StickersView: View {
                     .padding(.horizontal, 18).frame(minHeight: 96)
                     .background(Palette.mare, in: .rect(cornerRadius: 24))
                 }
-                .disabled(all.isEmpty).opacity(all.isEmpty ? 0.6 : 1)
                 .opacity(dealt ? 1 : 0).animation(.easeOut.delay(0.5), value: dealt)
             }
             .padding(.horizontal, 16).padding(.bottom, 24)
         }
         .background(Palette.calce)
+        .navigationTitle(t("stickers.title"))
+        .toolbar { ToolbarItem(placement: .topBarTrailing) { ProfileButton(style: .toolbar) } }
+        }
         .onAppear { dealt = false; DispatchQueue.main.async { dealt = true } }
         .sheet(isPresented: $showPostcard) { PostcardView() }
+        #if DEBUG
+        .task { if DebugLaunch.screen == "postcard" { showPostcard = true } }
+        #endif
     }
 
     private func chip(_ title: String, on: Bool, action: @escaping () -> Void) -> some View {
