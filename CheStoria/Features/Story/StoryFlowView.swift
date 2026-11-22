@@ -31,7 +31,7 @@ struct StoryFlowView: View {
                     .transition(.opacity)
             case .choose:
                 ChoosePlaceView(photo: request.photo, places: choices, label: seenLabel, noMatch: noMatch,
-                                onPick: { picked in place = picked; photoIsPlace = true; go(.question) },
+                                onPick: { picked in place = picked; photoIsPlace = picked.usesCamera; go(.question) },
                                 onNone: { noMatch = true; go(.notAPlace) })
                 .transition(.opacity)
             case .notAPlace:

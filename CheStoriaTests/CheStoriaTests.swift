@@ -100,6 +100,26 @@ struct HuntFeedbackTests {
 
 @MainActor
 struct RecognitionTests {
+    @Test func ambiguousVisualMatchesRequireConfirmation() throws {
+        let site = try ContentStore.loadBundled().defaultSite
+        let places = Array(site.cameraPlaces.prefix(2))
+        let scores = PhotoScores(places: [
+            (id: places[0].id, image: 0.80, text: 0),
+            (id: places[1].id, image: 0.79, text: 0)
+        ], labels: [], usedAI: true)
+        let result = RecognitionPolicy.decide(scores, places: places, settings: site.recognitionSettings, language: "en", vocabulary: nil)
+        if case .unsure = result {} else { Issue.record("Close visual competitors must require confirmation") }
+    }
+
+    @Test func descriptorFallbackNeverAutomaticallyOpensAStory() throws {
+        let site = try ContentStore.loadBundled().defaultSite
+        let place = try #require(site.cameraPlaces.first)
+        let scores = PhotoScores(places: [(id: place.id, image: 0.99, text: 0)], labels: [], usedAI: false)
+        let result = RecognitionPolicy.decide(scores, places: [place], settings: site.recognitionSettings, language: "en", vocabulary: nil)
+        if case .unsure(let choices, _) = result { #expect(choices.map(\.id) == [place.id]) }
+        else { Issue.record("Colour/layout alone must require confirmation") }
+    }
+
     /// A crop the matcher has never seen (different framing) must still pick the right place.
     private func crop(_ name: String, _ r: CGRect) -> UIImage {
         let img = UIImage(named: name)!.normalizedCGImage!
@@ -149,6 +169,24 @@ struct RecognitionTests {
 
         if case .confident(let p) = await matcher.identify(try fixture("street-negative"), in: site, near: nil, catalog: catalog) {
             Issue.record("an unrelated street was confidently matched to \(p.id)")
+        }
+    }
+
+    /// Camera region only, cropped from the user's reported false Galleria match.
+    /// The surrounding chat message, question, and answer text are excluded.
+    @Test func residentialFacadeDoesNotOpenGalleriaStory() async throws {
+        let catalog = try ContentStore.loadBundled()
+        let site = try #require(catalog.site(id: "naples"))
+        let matcher = PlaceMatcher()
+        let photo = try fixture("naples-residential-negative")
+        for location in [nil, CLLocation(latitude: 40.83844167, longitude: 14.24948333)] {
+            let result = await matcher.identify(photo, in: site, near: location, catalog: catalog)
+            switch result {
+            case .notAPlace(let label, _, _), .unsure(_, let label):
+                #expect(label == "a modern building")
+            case .confident(let p):
+                Issue.record("Residential windows/balconies must not auto-open \(p.id)")
+            }
         }
     }
 

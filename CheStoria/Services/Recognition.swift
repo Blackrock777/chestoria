@@ -200,6 +200,19 @@ nonisolated enum RecognitionPolicy {
             let byImage = s.places.sorted { $0.image > $1.image }
             let ranked = s.places.sorted { $0.image + settings.textWeight * $0.text > $1.image + settings.textWeight * $1.text }
             let best = byImage[0], second = byImage.count > 1 ? byImage[1].image : 0
+            // Image similarity can confuse ordinary windows/balconies with a landmark.
+            // Compare text scores with text scores: an everyday-object description that
+            // beats the candidate's own descriptions is evidence against that identity.
+            if let label, !label.label.heritage,
+               vocabulary?.placeText[best.id]?.isEmpty == false,
+               label.score > best.text {
+                if best.image < settings.possible {
+                    return .notAPlace(label: labelName, heritage: false, nearby: places)
+                }
+                // Preserve plausible landmarks for explicit confirmation, but never
+                // auto-open one when its semantics conflict with the photograph.
+                return .unsure(byImage.prefix(3).filter { $0.image >= settings.possible }.compactMap { lookup($0.id) }, label: labelName)
+            }
             if best.image >= settings.confident, best.image - second >= settings.margin, let p = lookup(best.id) { return .confident(p) }
             if best.image >= settings.possible || (heritageLooking && best.image >= settings.possible - 0.08) {
                 return .unsure(ranked.prefix(3).compactMap { lookup($0.id) }, label: labelName)
@@ -213,7 +226,8 @@ nonisolated enum RecognitionPolicy {
         if ranked.count > 1, (1 - ranked[0].image) > (1 - ranked[1].image) * settings.separationRatio {
             return .unsure(ranked.prefix(3).filter { $0.image >= cap }.compactMap { lookup($0.id) }, label: nil)
         }
-        return .confident(p)
+        // Colour/layout alone is not reliable enough to identify a monument.
+        return .unsure([p], label: nil)
     }
 
     /// Places the camera doesn't recognise (indoor art, no-photo rooms) are offered when you are
@@ -284,7 +298,7 @@ final class PlaceMatcher {
         await task.value
     }
 
-    /// Nearby places first; if nothing nearby matches (e.g. a gallery photo taken elsewhere), every place.
+    /// Compare all camera places visually; use location for nearby suggestions after an unknown photo.
     func identify(_ photo: UIImage, in site: SiteContent, near location: CLLocation?, catalog: Catalog) async -> RecognitionResult {
         await prepare(site: site)
         guard let cg = photo.normalizedCGImage else { return .notAPlace(label: nil, heritage: false, nearby: site.storyPlaces) }
@@ -292,12 +306,11 @@ final class PlaceMatcher {
         let camera = site.cameraPlaces
         let nearby = RecognitionPolicy.candidates(camera, near: location, nearbyMeters: settings.nearby)
         let scores = await score(cg, among: camera, vocabulary: catalog.vocabulary)
-        let nearbyIDs = Set(nearby.map(\.id))
-        let nearScores = PhotoScores(places: scores.places.filter { nearbyIDs.contains($0.id) }, labels: scores.labels, usedAI: scores.usedAI)
-        var result = RecognitionPolicy.decide(nearScores, places: nearby, settings: settings, language: catalog.language, vocabulary: catalog.vocabulary)
-        if case .notAPlace = result, nearby.count < camera.count {
-            let all = RecognitionPolicy.decide(scores, places: camera, settings: settings, language: catalog.language, vocabulary: catalog.vocabulary)
-            if case .notAPlace = all {} else { result = all }
+        // Confidence must include every visual competitor. GPS may narrow suggestions,
+        // but must never manufacture a winning margin by removing the runner-up.
+        var result = RecognitionPolicy.decide(scores, places: camera, settings: settings, language: catalog.language, vocabulary: catalog.vocabulary)
+        if case .notAPlace(let label, let heritage, _) = result {
+            result = .notAPlace(label: label, heritage: heritage, nearby: nearby)
         }
         result = RecognitionPolicy.offeringPlacesHere(result, site: site, location: location)
         record(scores, result: result)
