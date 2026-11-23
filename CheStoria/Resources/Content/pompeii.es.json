@@ -58,7 +58,8 @@
       },
       "thenNow": {
         "thenCaption": "1841 · pintado por Christen Købke",
-        "nowCaption": "Hoy"
+        "nowCaption": "Hoy",
+        "watchHint": "Busca el Vesubio detrás de las columnas."
       }
     },
     {
@@ -723,91 +724,106 @@
     {
       "id": "house-of-pansa",
       "thenNow": {
-        "thenCaption": "Fotografía del siglo XIX"
+        "thenCaption": "Fotografía del siglo XIX",
+        "watchHint": "Mira más allá de la entrada hacia el patio abierto."
       }
     },
     {
       "id": "house-of-sallust",
       "thenNow": {
-        "thenCaption": "Fotografía histórica"
+        "thenCaption": "Fotografía histórica",
+        "watchHint": "Busca los grandes huecos a lo largo de la calle."
       }
     },
     {
       "id": "house-of-meleager",
       "thenNow": {
-        "thenCaption": "Fotografía del siglo XIX"
+        "thenCaption": "Fotografía del siglo XIX",
+        "watchHint": "Mira por la entrada hacia el patio."
       }
     },
     {
       "id": "temple-of-jupiter",
       "thenNow": {
-        "thenCaption": "Antes de 1881 · fotografía"
+        "thenCaption": "Antes de 1881 · fotografía",
+        "watchHint": "Busca las escaleras del templo en el extremo norte del Foro."
       }
     },
     {
       "id": "temple-of-fortuna-augusta",
       "thenNow": {
-        "thenCaption": "Acuarela histórica"
+        "thenCaption": "Acuarela histórica",
+        "watchHint": "Busca las escaleras del templo y el muro de ladrillo que se conserva."
       }
     },
     {
       "id": "macellum",
       "thenNow": {
-        "thenCaption": "Fotografía del siglo XIX"
+        "thenCaption": "Fotografía del siglo XIX",
+        "watchHint": "Busca el círculo de bases de piedra en el patio."
       }
     },
     {
       "id": "house-of-the-ancient-hunt",
       "thenNow": {
-        "thenCaption": "Fotografía histórica"
+        "thenCaption": "Fotografía histórica",
+        "watchHint": "Busca los paneles pintados junto a una puerta."
       }
     },
     {
       "id": "temple-of-isis",
       "thenNow": {
-        "thenCaption": "Hacia 1870 · fotografía"
+        "thenCaption": "Hacia 1870 · fotografía",
+        "watchHint": "Busca los escalones que suben al santuario."
       }
     },
     {
       "id": "house-of-the-small-fountain",
       "thenNow": {
-        "thenCaption": "1828 · plano de excavación"
+        "thenCaption": "1828 · plano de excavación",
+        "watchHint": "Mira por el atrio hacia la fuente de mosaico."
       }
     },
     {
       "id": "villa-of-diomede",
       "thenNow": {
-        "thenCaption": "Antes de 1890 · fotografía"
+        "thenCaption": "Antes de 1890 · fotografía",
+        "watchHint": "Busca el jardín alargado y los restos de su estanque."
       }
     },
     {
       "id": "forum-baths",
       "thenNow": {
-        "thenCaption": "1898 · ilustración"
+        "thenCaption": "1898 · ilustración",
+        "watchHint": "Busca el arco de ladrillo sobre la puerta."
       }
     },
     {
       "id": "triangular-forum",
       "thenNow": {
-        "thenCaption": "Hasta 1895 · fotografía"
+        "thenCaption": "Hasta 1895 · fotografía",
+        "watchHint": "Busca las columnas junto a la entrada del santuario."
       }
     },
     {
       "id": "quadriporticus-of-the-theatres-or-gladiators-barracks",
       "thenNow": {
-        "thenCaption": "Estereografía del siglo XIX"
+        "thenCaption": "Estereografía del siglo XIX",
+        "watchHint": "Busca las filas de columnas que rodean el patio abierto."
       }
     },
     {
       "id": "house-of-the-prince-of-naples",
       "thenNow": {
-        "thenCaption": "Antes de 1927 · acuarela"
+        "thenCaption": "Antes de 1927 · acuarela",
+        "watchHint": "Busca la mesa de piedra junto al estanque del atrio."
       }
     },
     {
       "id": "house-of-the-sailor",
       "thenNow": {
-        "thenCaption": "Antes de 1927 · acuarela"
+        "thenCaption": "Antes de 1927 · acuarela",
+        "watchHint": "Busca los mosaicos geométricos junto a la entrada."
       }
     }
   ]

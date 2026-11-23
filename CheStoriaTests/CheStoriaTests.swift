@@ -356,6 +356,34 @@ final class FixtureMarker {}
 
 @MainActor
 struct LocationStatusTests {
+    @Test func watchSuggestsBothClosePlacesAndFiltersDiscoveredStops() throws {
+        let site = try #require(ContentStore.loadBundled().site(id: "pompeii"))
+        let forum = try #require(site.place(id: "forum"))
+        let now = Date.now
+        let fix = CLLocation(coordinate: .init(latitude: forum.latitude, longitude: forum.longitude), altitude: 0,
+                             horizontalAccuracy: 40, verticalAccuracy: -1, timestamp: now)
+        let choices = NearbySecret.choices(in: [site], fix: fix, visited: [:], now: now)
+        #expect(choices.map(\.place.id) == ["forum", "basilica"])
+        let afterVisit = NearbySecret.choices(in: [site], fix: fix, visited: [site.id: [forum.id]], now: now)
+        #expect(afterVisit.first?.place.id == "basilica")
+        #expect(afterVisit.allSatisfy { $0.place.id != forum.id && $0.meters <= 150 })
+    }
+
+    @Test func watchSuppressesStaleImpreciseOrRemoteLocations() throws {
+        let site = try #require(ContentStore.loadBundled().site(id: "pompeii"))
+        let forum = try #require(site.place(id: "forum"))
+        let now = Date.now
+        let atForum = CLLocationCoordinate2D(latitude: forum.latitude, longitude: forum.longitude)
+        let fixes = [
+            CLLocation(coordinate: atForum, altitude: 0, horizontalAccuracy: 100, verticalAccuracy: -1, timestamp: now),
+            CLLocation(coordinate: atForum, altitude: 0, horizontalAccuracy: 10, verticalAccuracy: -1, timestamp: now.addingTimeInterval(-31)),
+            CLLocation(coordinate: .init(latitude: 41.9, longitude: 12.5), altitude: 0, horizontalAccuracy: 10, verticalAccuracy: -1, timestamp: now),
+        ]
+        for fix in fixes {
+            #expect(NearbySecret.choices(in: [site], fix: fix, visited: [:], now: now).isEmpty)
+        }
+    }
+
     @Test func neverInventsADistance() throws {
         let site = try ContentStore.loadBundled().site(id: "pompeii")!
         #expect(LocationStatus.compute(site: site, location: nil, authorization: .authorizedWhenInUse) == .locating)

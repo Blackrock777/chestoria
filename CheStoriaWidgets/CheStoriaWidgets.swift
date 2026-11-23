@@ -93,19 +93,7 @@ struct RecallWidget: Widget {
 struct SecretLiveActivity: Widget {
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: SecretActivityAttributes.self) { context in
-            HStack(spacing: 14) {
-                ZStack { Circle().fill(WidgetPalette.tufo); Circle().fill(WidgetPalette.piperno).padding(9) }.frame(width: 40, height: 40)
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(context.state.headline).font(.system(size: 17, weight: .bold, design: .rounded))
-                    Text(context.state.detail).font(.system(size: 13)).foregroundStyle(.secondary)
-                }
-                Spacer()
-                Text("\(context.state.meters) m").font(.system(size: 22, weight: .heavy, design: .rounded)).foregroundStyle(.white)
-            }
-            .padding(16)
-            .activityBackgroundTint(WidgetPalette.piperno.opacity(0.9))
-            .activitySystemActionForegroundColor(.white)
-            .widgetURL(URL(string: "chestoria://snap"))
+            SecretActivityCard(context: context)
         } dynamicIsland: { context in
             DynamicIsland {
                 DynamicIslandExpandedRegion(.leading) {
@@ -131,5 +119,43 @@ struct SecretLiveActivity: Widget {
             .widgetURL(URL(string: "chestoria://snap"))
             .keylineTint(WidgetPalette.tufo)
         }
+        .supplementalActivityFamilies([.small])
+    }
+}
+
+private struct SecretActivityCard: View {
+    @Environment(\.activityFamily) private var family
+    let context: ActivityViewContext<SecretActivityAttributes>
+
+    var body: some View {
+        let small = family == .small
+        let state = context.state
+        HStack(spacing: small ? 8 : 14) {
+            Image(systemName: "location.fill")
+                .font(.system(size: small ? 11 : 17, weight: .semibold))
+                .foregroundStyle(WidgetPalette.piperno)
+                .frame(width: small ? 23 : 40, height: small ? 23 : 40)
+                .background(WidgetPalette.tufo, in: .circle)
+                .accessibilityHidden(true)
+            VStack(alignment: .leading, spacing: 2) {
+                Text(small ? (state.watchTitle ?? state.headline) : state.headline)
+                    .font(small ? .caption.weight(.semibold) : .headline)
+                    .lineLimit(1)
+                Text(context.isStale ? (state.watchExpired ?? context.attributes.siteName) :
+                     (small ? (state.watchDetail ?? state.detail) : state.detail))
+                    .font(small ? .caption2 : .subheadline)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(small ? 2 : nil)
+            }
+            Spacer(minLength: 0)
+            if !context.isStale {
+                Text("\(state.meters) m").font(small ? .caption.weight(.bold) : .title2.weight(.heavy))
+                    .monospacedDigit().fixedSize()
+            }
+        }
+        .padding(small ? 8 : 16)
+        .activityBackgroundTint(WidgetPalette.piperno.opacity(0.9))
+        .activitySystemActionForegroundColor(.white)
+        .widgetURL(URL(string: "chestoria://snap"))
     }
 }

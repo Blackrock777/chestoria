@@ -1,4 +1,5 @@
 import ActivityKit
+import CoreLocation
 import Foundation
 import UserNotifications
 import WidgetKit
@@ -45,28 +46,40 @@ final class NotificationCoordinator: NSObject, UNUserNotificationCenterDelegate 
 /// Starts, updates and ends the "Secret nearby" Live Activity from the Snap screen's location status.
 final class LiveActivityController {
     static let shared = LiveActivityController()
-    private var activity: Activity<SecretActivityAttributes>?
-    /// Only nudge when a story is genuinely close.
-    static let triggerMeters = 150
+    private var activity = Activity<SecretActivityAttributes>.activities.first
 
-    func update(status: LocationStatus, site: SiteContent, visited: Set<String>, strings: UIStrings) {
-        guard ActivityAuthorizationInfo().areActivitiesEnabled else { return }
-        guard case .near(let place, let meters) = status, meters <= Self.triggerMeters, place.story != nil, !visited.contains(place.id) else {
+    func update(fix: CLLocation?, authorization: CLAuthorizationStatus, site: SiteContent, visited: Set<String>, strings: UIStrings) {
+        guard ActivityAuthorizationInfo().areActivitiesEnabled,
+              authorization == .authorizedWhenInUse || authorization == .authorizedAlways else { end(); return }
+        let choices = NearbySecret.choices(in: [site], fix: fix, visited: [site.id: visited])
+        guard let first = choices.first, let fix else {
             end(); return
         }
-        let state = SecretActivityAttributes.ContentState(meters: meters, headline: strings("activity.secret", "\(meters)"),
-                                                         detail: strings("activity.at", place.name))
-        if let a = activity, a.attributes.placeName == place.name {
+        let multiple = choices.count > 1
+        let names = choices.map(\.place.name).joined(separator: " · ")
+        let watchDetail = multiple ? names : [first.place.name, first.place.clues.first].compactMap { $0 }.joined(separator: " · ")
+        let state = SecretActivityAttributes.ContentState(
+            meters: first.meters,
+            headline: multiple ? strings("watch.twoNearby") : strings("activity.secret", "\(first.meters)"),
+            detail: multiple ? names : strings("activity.at", first.place.name),
+            watchTitle: multiple ? strings("watch.twoNearby") : strings("watch.nearby"),
+            watchDetail: watchDetail, watchExpired: strings("watch.locationStale")
+        )
+        let staleDate = fix.timestamp.addingTimeInterval(NearbySecret.fixLifetime)
+        if let a = activity, a.attributes.siteName == site.city {
+            guard a.content.state != state || (a.content.staleDate?.timeIntervalSinceNow ?? 0) < 15 else { return }
             let id = a.id
-            Task {
-                for act in Activity<SecretActivityAttributes>.activities where act.id == id {
-                    await act.update(ActivityContent(state: state, staleDate: .now.addingTimeInterval(600)))
-                }
-            }
+            Task { await Self.updateActivity(id: id, state: state, staleDate: staleDate) }
         } else {
             end()
-            activity = try? Activity.request(attributes: SecretActivityAttributes(placeName: place.name, siteName: site.city),
-                                             content: ActivityContent(state: state, staleDate: .now.addingTimeInterval(600)))
+            activity = try? Activity.request(attributes: SecretActivityAttributes(placeName: first.place.name, siteName: site.city),
+                                             content: ActivityContent(state: state, staleDate: staleDate))
+        }
+    }
+
+    @concurrent private static func updateActivity(id: String, state: SecretActivityAttributes.ContentState, staleDate: Date) async {
+        for activity in Activity<SecretActivityAttributes>.activities where activity.id == id {
+            await activity.update(ActivityContent(state: state, staleDate: staleDate))
         }
     }
 

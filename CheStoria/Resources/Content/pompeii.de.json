@@ -58,7 +58,8 @@
       },
       "thenNow": {
         "thenCaption": "1841 · gemalt von Christen Købke",
-        "nowCaption": "Heute"
+        "nowCaption": "Heute",
+        "watchHint": "Halte hinter den Säulen nach dem Vesuv Ausschau."
       }
     },
     {
@@ -723,91 +724,106 @@
     {
       "id": "house-of-pansa",
       "thenNow": {
-        "thenCaption": "Fotografie aus dem 19. Jahrhundert"
+        "thenCaption": "Fotografie aus dem 19. Jahrhundert",
+        "watchHint": "Blicke durch den Eingang in den offenen Hof."
       }
     },
     {
       "id": "house-of-sallust",
       "thenNow": {
-        "thenCaption": "Historische Fotografie"
+        "thenCaption": "Historische Fotografie",
+        "watchHint": "Suche die breiten Öffnungen entlang der Straße."
       }
     },
     {
       "id": "house-of-meleager",
       "thenNow": {
-        "thenCaption": "Fotografie aus dem 19. Jahrhundert"
+        "thenCaption": "Fotografie aus dem 19. Jahrhundert",
+        "watchHint": "Blicke durch den Eingang in den Hof."
       }
     },
     {
       "id": "temple-of-jupiter",
       "thenNow": {
-        "thenCaption": "Vor 1881 · Fotografie"
+        "thenCaption": "Vor 1881 · Fotografie",
+        "watchHint": "Suche die Tempelstufen am nördlichen Ende des Forums."
       }
     },
     {
       "id": "temple-of-fortuna-augusta",
       "thenNow": {
-        "thenCaption": "Historisches Aquarell"
+        "thenCaption": "Historisches Aquarell",
+        "watchHint": "Suche die Tempelstufen und die erhaltene Ziegelmauer."
       }
     },
     {
       "id": "macellum",
       "thenNow": {
-        "thenCaption": "Fotografie aus dem 19. Jahrhundert"
+        "thenCaption": "Fotografie aus dem 19. Jahrhundert",
+        "watchHint": "Suche den Ring aus Steinsockeln im Hof."
       }
     },
     {
       "id": "house-of-the-ancient-hunt",
       "thenNow": {
-        "thenCaption": "Historische Fotografie"
+        "thenCaption": "Historische Fotografie",
+        "watchHint": "Suche die gemalten Wandfelder neben einer Türöffnung."
       }
     },
     {
       "id": "temple-of-isis",
       "thenNow": {
-        "thenCaption": "Um 1870 · Fotografie"
+        "thenCaption": "Um 1870 · Fotografie",
+        "watchHint": "Suche die Stufen, die zum Schrein hinaufführen."
       }
     },
     {
       "id": "house-of-the-small-fountain",
       "thenNow": {
-        "thenCaption": "1828 · Grabungsplan"
+        "thenCaption": "1828 · Grabungsplan",
+        "watchHint": "Blicke durch das Atrium zum Mosaikbrunnen."
       }
     },
     {
       "id": "villa-of-diomede",
       "thenNow": {
-        "thenCaption": "Vor 1890 · Fotografie"
+        "thenCaption": "Vor 1890 · Fotografie",
+        "watchHint": "Suche den langen Garten und die Reste seines Beckens."
       }
     },
     {
       "id": "forum-baths",
       "thenNow": {
-        "thenCaption": "1898 · Illustration"
+        "thenCaption": "1898 · Illustration",
+        "watchHint": "Suche den Ziegelbogen über dem Eingang."
       }
     },
     {
       "id": "triangular-forum",
       "thenNow": {
-        "thenCaption": "Bis 1895 · Fotografie"
+        "thenCaption": "Bis 1895 · Fotografie",
+        "watchHint": "Suche die Säulen am Eingang zum Heiligtum."
       }
     },
     {
       "id": "quadriporticus-of-the-theatres-or-gladiators-barracks",
       "thenNow": {
-        "thenCaption": "Stereofotografie aus dem 19. Jahrhundert"
+        "thenCaption": "Stereofotografie aus dem 19. Jahrhundert",
+        "watchHint": "Suche die Säulenreihen um den offenen Hof."
       }
     },
     {
       "id": "house-of-the-prince-of-naples",
       "thenNow": {
-        "thenCaption": "Vor 1927 · Aquarell"
+        "thenCaption": "Vor 1927 · Aquarell",
+        "watchHint": "Suche den Steintisch neben dem Becken im Atrium."
       }
     },
     {
       "id": "house-of-the-sailor",
       "thenNow": {
-        "thenCaption": "Vor 1927 · Aquarell"
+        "thenCaption": "Vor 1927 · Aquarell",
+        "watchHint": "Suche die geometrischen Mosaike am Eingang."
       }
     }
   ]

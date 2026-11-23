@@ -6,6 +6,8 @@ struct CheStoriaApp: App {
     @State private var recognizer = PlaceRecognizer()
     @State private var matcher = PlaceMatcher()
     @State private var account = AccountModel.makeDefault()
+    @State private var watch = PhoneWatchSync()
+    @AppStorage(Settings.haptics) private var hapticsEnabled = true
 
     init() {
         Settings.register()
@@ -30,6 +32,7 @@ struct CheStoriaApp: App {
                 .environment(recognizer)
                 .environment(matcher)
                 .environment(account)
+                .onChange(of: watchContext, initial: true) { _, context in watch.publish(context) }
                 .task {
                     NotificationCoordinator.shared.activate()
                     SharedStore.saveWidgetEmptyText(model.strings("widget.empty"))
@@ -47,6 +50,11 @@ struct CheStoriaApp: App {
                     }
                 }
         }
+    }
+
+    private var watchContext: WatchTripContext {
+        WatchTripContext(language: model.language, visited: account.isSignedIn ? model.visitedBySite : [:],
+                         hapticsEnabled: hapticsEnabled)
     }
 }
 

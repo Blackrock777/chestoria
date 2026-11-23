@@ -81,6 +81,12 @@ final class AppModel {
     }
 
     var visitedPlaces: [Place] { state.visited.compactMap(site.place(id:)) }
+    var visitedBySite: [String: Set<String>] {
+        Dictionary(uniqueKeysWithValues: catalog.sites.map { entry in
+            let trip = entry.id == site.id ? state : Self.loadState(for: entry, defaults: defaults)
+            return (entry.id, Set(trip.visited))
+        })
+    }
     var collectedStickers: [(sticker: Sticker, record: CollectedSticker)] {
         state.collected.sorted { $0.date > $1.date }.compactMap { rec in site.sticker(id: rec.stickerID).map { ($0, rec) } }
     }

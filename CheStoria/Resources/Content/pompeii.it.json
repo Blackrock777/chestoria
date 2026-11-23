@@ -58,7 +58,8 @@
       },
       "thenNow": {
         "thenCaption": "1841 · dipinto da Christen Købke",
-        "nowCaption": "Oggi"
+        "nowCaption": "Oggi",
+        "watchHint": "Cerca il Vesuvio dietro le colonne."
       }
     },
     {
@@ -775,21 +776,24 @@
     {
       "id": "house-of-the-small-fountain",
       "thenNow": {
-        "thenCaption": "1828 · pianta di scavo"
+        "thenCaption": "1828 · pianta di scavo",
+        "watchHint": "Guarda attraverso l’atrio verso la fontana a mosaico."
       },
       "name": "Casa della Fontana Piccola"
     },
     {
       "id": "house-of-pansa",
       "thenNow": {
-        "thenCaption": "Fotografia del XIX secolo"
+        "thenCaption": "Fotografia del XIX secolo",
+        "watchHint": "Guarda oltre l’ingresso verso il cortile aperto."
       },
       "name": "Casa di Pansa"
     },
     {
       "id": "house-of-sallust",
       "thenNow": {
-        "thenCaption": "Fotografia storica"
+        "thenCaption": "Fotografia storica",
+        "watchHint": "Cerca le grandi aperture lungo la strada."
       },
       "name": "Casa di Sallustio"
     },
@@ -804,14 +808,16 @@
     {
       "id": "house-of-the-prince-of-naples",
       "thenNow": {
-        "thenCaption": "Prima del 1927 · acquerello"
+        "thenCaption": "Prima del 1927 · acquerello",
+        "watchHint": "Cerca il tavolo di pietra accanto alla vasca nell’atrio."
       },
       "name": "Casa del Principe di Napoli"
     },
     {
       "id": "house-of-meleager",
       "thenNow": {
-        "thenCaption": "Fotografia del XIX secolo"
+        "thenCaption": "Fotografia del XIX secolo",
+        "watchHint": "Guarda attraverso l’ingresso verso il cortile."
       },
       "name": "Casa di Meleagro"
     },
@@ -826,7 +832,8 @@
     {
       "id": "villa-of-diomede",
       "thenNow": {
-        "thenCaption": "Prima del 1890 · fotografia"
+        "thenCaption": "Prima del 1890 · fotografia",
+        "watchHint": "Cerca il lungo giardino e i resti della sua vasca."
       },
       "name": "Villa di Diomede"
     },
@@ -837,7 +844,8 @@
     {
       "id": "house-of-the-sailor",
       "thenNow": {
-        "thenCaption": "Prima del 1927 · acquerello"
+        "thenCaption": "Prima del 1927 · acquerello",
+        "watchHint": "Cerca i mosaici geometrici all’ingresso."
       },
       "name": "Casa del Marinaio"
     },
@@ -848,28 +856,32 @@
     {
       "id": "temple-of-jupiter",
       "thenNow": {
-        "thenCaption": "Prima del 1881 · fotografia"
+        "thenCaption": "Prima del 1881 · fotografia",
+        "watchHint": "Cerca la scalinata del tempio all’estremità nord del Foro."
       },
       "name": "Tempio di Giove"
     },
     {
       "id": "forum-baths",
       "thenNow": {
-        "thenCaption": "1898 · illustrazione"
+        "thenCaption": "1898 · illustrazione",
+        "watchHint": "Cerca l’arco in mattoni sopra il portale."
       },
       "name": "Terme del Foro"
     },
     {
       "id": "temple-of-fortuna-augusta",
       "thenNow": {
-        "thenCaption": "Acquerello storico"
+        "thenCaption": "Acquerello storico",
+        "watchHint": "Cerca la scalinata del tempio e il muro in mattoni rimasto."
       },
       "name": "Tempio della Fortuna Augusta"
     },
     {
       "id": "macellum",
       "thenNow": {
-        "thenCaption": "Fotografia del XIX secolo"
+        "thenCaption": "Fotografia del XIX secolo",
+        "watchHint": "Cerca l’anello di basamenti in pietra nel cortile."
       },
       "name": "Macellum"
     },
@@ -884,7 +896,8 @@
     {
       "id": "house-of-the-ancient-hunt",
       "thenNow": {
-        "thenCaption": "Fotografia storica"
+        "thenCaption": "Fotografia storica",
+        "watchHint": "Cerca i riquadri dipinti ai lati di una porta."
       },
       "name": "Casa della Caccia Antica"
     },
@@ -903,7 +916,8 @@
     {
       "id": "triangular-forum",
       "thenNow": {
-        "thenCaption": "Entro il 1895 · fotografia"
+        "thenCaption": "Entro il 1895 · fotografia",
+        "watchHint": "Cerca le colonne vicino all’ingresso del santuario."
       },
       "name": "Foro Triangolare"
     },
@@ -918,7 +932,8 @@
     {
       "id": "quadriporticus-of-the-theatres-or-gladiators-barracks",
       "thenNow": {
-        "thenCaption": "Stereografia del XIX secolo"
+        "thenCaption": "Stereografia del XIX secolo",
+        "watchHint": "Cerca le file di colonne intorno al cortile aperto."
       },
       "name": "Quadriportico dei Teatri / Caserma dei Gladiatori"
     },
@@ -929,7 +944,8 @@
     {
       "id": "temple-of-isis",
       "thenNow": {
-        "thenCaption": "1870 ca. · fotografia"
+        "thenCaption": "1870 ca. · fotografia",
+        "watchHint": "Cerca i gradini che salgono al tempietto."
       },
       "name": "Tempio di Iside"
     },

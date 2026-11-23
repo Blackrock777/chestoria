@@ -281,7 +281,8 @@
         "then": "forum1841",
         "thenCaption": "1841 · painted by Christen Købke",
         "now": "forum",
-        "nowCaption": "Today"
+        "nowCaption": "Today",
+        "watchHint": "Look for Vesuvius behind the columns."
       },
       "story": {
         "eyebrow": "Forum · Pompeii",
@@ -2352,7 +2353,8 @@
         "then": "comparison-house-of-the-small-fountain-then",
         "thenCaption": "1828 · excavation plan",
         "now": "comparison-house-of-the-small-fountain-now",
-        "nowCaption": "2012"
+        "nowCaption": "2012",
+        "watchHint": "Look through the atrium toward the mosaic fountain."
       }
     },
     {
@@ -2385,7 +2387,8 @@
         "then": "comparison-house-of-pansa-then",
         "thenCaption": "19th-century photograph",
         "now": "comparison-house-of-pansa-now",
-        "nowCaption": "2023"
+        "nowCaption": "2023",
+        "watchHint": "Look past the entrance toward the open courtyard."
       }
     },
     {
@@ -2418,7 +2421,8 @@
         "then": "comparison-house-of-sallust-then",
         "thenCaption": "Historic photograph",
         "now": "comparison-house-of-sallust-now",
-        "nowCaption": "2023"
+        "nowCaption": "2023",
+        "watchHint": "Find the broad openings along the street."
       }
     },
     {
@@ -2505,7 +2509,8 @@
         "then": "comparison-house-of-the-prince-of-naples-then",
         "thenCaption": "Before 1927 · watercolour",
         "now": "comparison-house-of-the-prince-of-naples-now",
-        "nowCaption": "2019"
+        "nowCaption": "2019",
+        "watchHint": "Look for the stone table beside the pool in the atrium."
       }
     },
     {
@@ -2538,7 +2543,8 @@
         "then": "comparison-house-of-meleager-then",
         "thenCaption": "19th-century photograph",
         "now": "comparison-house-of-meleager-now",
-        "nowCaption": "2023"
+        "nowCaption": "2023",
+        "watchHint": "Look through the entrance toward the courtyard."
       }
     },
     {
@@ -2625,7 +2631,8 @@
         "then": "comparison-villa-of-diomede-then",
         "thenCaption": "Before 1890 · photograph",
         "now": "comparison-villa-of-diomede-now",
-        "nowCaption": "2023"
+        "nowCaption": "2023",
+        "watchHint": "Look for the long garden and the remains of its pool."
       }
     },
     {
@@ -2685,7 +2692,8 @@
         "then": "comparison-house-of-the-sailor-then",
         "thenCaption": "Before 1927 · watercolour",
         "now": "comparison-house-of-the-sailor-now",
-        "nowCaption": "2019"
+        "nowCaption": "2019",
+        "watchHint": "Look for geometric mosaics by the entrance."
       }
     },
     {
@@ -2745,7 +2753,8 @@
         "then": "comparison-temple-of-jupiter-then",
         "thenCaption": "Before 1881 · photograph",
         "now": "comparison-temple-of-jupiter-now",
-        "nowCaption": "2012"
+        "nowCaption": "2012",
+        "watchHint": "Look for the temple steps at the north end of the Forum."
       }
     },
     {
@@ -2778,7 +2787,8 @@
         "then": "comparison-forum-baths-then",
         "thenCaption": "1898 · illustration",
         "now": "comparison-forum-baths-now",
-        "nowCaption": "2012"
+        "nowCaption": "2012",
+        "watchHint": "Look for the brick arch over the doorway."
       }
     },
     {
@@ -2811,7 +2821,8 @@
         "then": "comparison-temple-of-fortuna-augusta-then",
         "thenCaption": "Historic watercolour",
         "now": "comparison-temple-of-fortuna-augusta-now",
-        "nowCaption": "2022"
+        "nowCaption": "2022",
+        "watchHint": "Look for the temple steps and the surviving brick wall."
       }
     },
     {
@@ -2844,7 +2855,8 @@
         "then": "comparison-macellum-then",
         "thenCaption": "19th-century photograph",
         "now": "comparison-macellum-now",
-        "nowCaption": "2012"
+        "nowCaption": "2012",
+        "watchHint": "Look for the ring of stone bases in the courtyard."
       }
     },
     {
@@ -2931,7 +2943,8 @@
         "then": "comparison-house-of-the-ancient-hunt-then",
         "thenCaption": "Historic photograph",
         "now": "comparison-house-of-the-ancient-hunt-now",
-        "nowCaption": "2012"
+        "nowCaption": "2012",
+        "watchHint": "Look for the painted wall panels beside a doorway."
       }
     },
     {
@@ -3045,7 +3058,8 @@
         "then": "comparison-triangular-forum-then",
         "thenCaption": "By 1895 · photograph",
         "now": "comparison-triangular-forum-now",
-        "nowCaption": "2011"
+        "nowCaption": "2011",
+        "watchHint": "Look for the columns by the entrance to the sanctuary."
       }
     },
     {
@@ -3132,7 +3146,8 @@
         "then": "comparison-quadriporticus-of-the-theatres-or-gladiators-barracks-then",
         "thenCaption": "19th-century stereograph",
         "now": "comparison-quadriporticus-of-the-theatres-or-gladiators-barracks-now",
-        "nowCaption": "2016"
+        "nowCaption": "2016",
+        "watchHint": "Look for the rows of columns around the open courtyard."
       }
     },
     {
@@ -3192,7 +3207,8 @@
         "then": "comparison-temple-of-isis-then",
         "thenCaption": "c. 1870 · photograph",
         "now": "comparison-temple-of-isis-now",
-        "nowCaption": "2009"
+        "nowCaption": "2009",
+        "watchHint": "Look for the steps leading up to the shrine."
       }
     },
     {
