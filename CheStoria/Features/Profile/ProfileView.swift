@@ -10,7 +10,11 @@ struct ProfileView: View {
     var body: some View {
         NavigationStack {
             Group {
-                if account.isSignedIn { SignedInView() } else { SignInView(mode: $mode) }
+                if let user = account.user {
+                    SignedInView(user: user)
+                } else {
+                    SignInView(mode: $mode)
+                }
             }
             .navigationTitle(model.strings("profile.title"))
             .navigationBarTitleDisplayMode(.inline)
@@ -360,6 +364,8 @@ private extension AuthError {
 // MARK: - Signed in
 
 private struct SignedInView: View {
+    // The old screen can still render during sign-out, after the account model is cleared.
+    let user: UserAccount
     @Environment(AppModel.self) private var model
     @Environment(AccountModel.self) private var account
     @Environment(\.dismiss) private var dismiss
@@ -377,7 +383,6 @@ private struct SignedInView: View {
     var body: some View {
         @Bindable var model = model
         let t = model.strings
-        let user = account.user!
         List {
             Section {
                 HStack(spacing: 14) {
