@@ -85,11 +85,38 @@ struct AcknowledgementsView: View {
 struct PhotoCreditRow: View {
     let photo: Credits.Photo
     var body: some View {
-        let row = HStack(spacing: 12) {
-            CoverImage(.asset(photo.asset)).frame(width: 44, height: 44).clipShape(.rect(cornerRadius: 8))
-            LinkRow(title: photo.title, detail: photo.line, showsArrow: photo.url != nil)
+        VStack(alignment: .leading, spacing: 0) {
+            if let source = photo.url {
+                Link(destination: source) { photoHeader }.buttonStyle(.plain)
+            } else {
+                photoHeader
+            }
+            if let licence = photo.licenceURL {
+                Link(destination: licence) {
+                    Label(photo.licence, systemImage: "arrow.up.right")
+                        .labelStyle(.titleAndIcon)
+                        .font(.footnote)
+                        .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
+                        .contentShape(.rect)
+                }
+                .buttonStyle(.plain)
+            }
         }
-        if let url = photo.url ?? photo.licenceURL { Link(destination: url) { row }.buttonStyle(.plain) } else { row }
+        .foregroundStyle(Color(uiColor: .label))
+    }
+
+    private var photoHeader: some View {
+        HStack(spacing: 12) {
+            CoverImage(.asset(photo.asset))
+                .frame(width: 44, height: 44).clipShape(.rect(cornerRadius: 8))
+                .accessibilityHidden(true)
+            LinkRow(
+                title: photo.title,
+                detail: photo.licenceURL == nil ? photo.line : photo.creator ?? "",
+                showsArrow: photo.url != nil
+            )
+        }
+        .contentShape(.rect)
     }
 }
 
@@ -100,8 +127,8 @@ private struct LinkRow: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 2) {
-                Text(title).font(.subheadline.weight(.semibold)).lineLimit(2)
-                Text(detail).font(.footnote).lineLimit(1)
+                Text(title).font(.subheadline.weight(.semibold))
+                if !detail.isEmpty { Text(detail).font(.footnote) }
             }
             Spacer(minLength: 8)
             if showsArrow { Image(systemName: "arrow.up.right").font(.footnote.weight(.semibold)) }

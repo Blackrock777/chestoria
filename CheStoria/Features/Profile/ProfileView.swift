@@ -5,20 +5,23 @@ struct ProfileView: View {
     @Environment(AppModel.self) private var model
     @Environment(AccountModel.self) private var account
     @Environment(\.dismiss) private var dismiss
-    @State private var mode = SignInView.Mode.signIn
+    @State private var showSettings = false
 
     var body: some View {
         NavigationStack {
-            Group {
-                if let user = account.user {
-                    SignedInView(user: user)
-                } else {
-                    SignInView(mode: $mode)
-                }
-            }
+            ProfileSettingsView(user: account.user)
             .navigationTitle(model.strings("profile.title"))
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar { ToolbarItem(placement: .confirmationAction) { Button(model.strings("common.done")) { dismiss() } } }
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button { showSettings = true } label: { Image(systemName: "pencil") }
+                        .accessibilityLabel(model.strings("profile.settings"))
+                }
+                ToolbarItem(placement: .confirmationAction) {
+                    Button(model.strings("common.done")) { dismiss() }
+                }
+            }
+            .sheet(isPresented: $showSettings) { ProfilePreferencesSheet() }
             .background(Palette.calce)
         }
         .animation(Motion.glide, value: account.isSignedIn)
@@ -33,8 +36,6 @@ struct SignInView: View {
     @Environment(AccountModel.self) private var account
     @Environment(\.colorScheme) private var scheme
     @Binding var mode: Mode
-    /// In onboarding the screen has its own title, so the "Guest" header is hidden.
-    var showsGuestHeader = true
     @State private var name = ""
     @State private var email = ""
     @State private var password = ""
@@ -46,18 +47,6 @@ struct SignInView: View {
         let t = model.strings
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
-                if showsGuestHeader {
-                HStack(spacing: 14) {
-                    Image(systemName: "person.fill").font(.system(size: 26, weight: .semibold)).foregroundStyle(Palette.stone)
-                        .frame(width: 64, height: 64).background(Circle().fill(Palette.sunk))
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(t("profile.guest")).font(Typeface.display(24)).foregroundStyle(Palette.piperno)
-                        Text(t("profile.guestNote")).font(.system(size: 14)).foregroundStyle(Palette.stone)
-                    }
-                }
-                .padding(.top, 8)
-                }
-
                 SignInWithAppleButton(mode == .create ? .signUp : .signIn) { req in
                     req.requestedScopes = [.fullName, .email]
                 } onCompletion: { result in
@@ -363,22 +352,20 @@ private extension AuthError {
 
 // MARK: - Signed in
 
-private struct SignedInView: View {
+private struct ProfileSettingsView: View {
     // The old screen can still render during sign-out, after the account model is cleared.
-    let user: UserAccount
+    let user: UserAccount?
     @Environment(AppModel.self) private var model
     @Environment(AccountModel.self) private var account
     @Environment(\.dismiss) private var dismiss
-    @AppStorage(Settings.haptics) private var haptics = true
-    @AppStorage(Settings.recall) private var recall = true
-    @AppStorage(Settings.autoRead) private var autoRead = false
-    @AppStorage(Settings.recallHour) private var recallHour = 8
-    @AppStorage(Settings.recallMinute) private var recallMinute = 12
-    @State private var editingName = false
-    @State private var newName = ""
     @State private var confirmDelete = false
-    @State private var showSites = false
     @State private var showRecoveryKey = false
+    @State private var showAccount = false
+    @State private var showPrivacy = false
+    @State private var showAppleRevocation = false
+    @State private var confirmErase = false
+    @State private var eraseFailed = false
+    @State private var accountDeletionFailed = false
 
     var body: some View {
         @Bindable var model = model
@@ -386,13 +373,15 @@ private struct SignedInView: View {
         List {
             Section {
                 HStack(spacing: 14) {
-                    Text(user.initials).font(Typeface.display(24)).foregroundStyle(Palette.onTufo)
+                    Text(user?.initials ?? "–").font(Typeface.display(24)).foregroundStyle(Palette.onTufo)
                         .frame(width: 64, height: 64).background(Circle().fill(Palette.tufo))
                     VStack(alignment: .leading, spacing: 3) {
-                        Text(user.displayName).font(Typeface.display(22)).foregroundStyle(Palette.piperno)
-                        if let e = user.email { Text(e).font(.system(size: 14)).foregroundStyle(Palette.stone) }
-                        Text(t("profile.signedInWith", t(user.provider == .apple ? "profile.providerApple" : "profile.providerEmail")))
-                            .font(.system(size: 12)).foregroundStyle(Palette.stone)
+                        Text(user?.displayName ?? t("profile.guest")).font(Typeface.display(22)).foregroundStyle(Palette.piperno)
+                        if let user {
+                            if let email = user.email { Text(email).font(.subheadline).foregroundStyle(Palette.stone) }
+                            Text(t("profile.signedInWith", t(user.provider == .apple ? "profile.providerApple" : "profile.providerEmail")))
+                                .font(.footnote).foregroundStyle(Palette.stone)
+                        }
                     }
                 }
                 .padding(.vertical, 6)
@@ -400,35 +389,9 @@ private struct SignedInView: View {
                     stat("\(model.visitedPlaces.count)", t("profile.places"))
                     Divider()
                     stat("\(model.collectedStickers.count)", t("profile.stickers"))
-                    Divider()
-                    stat("\(model.recallStats.remembered)/\(model.recallStats.answered)", t("profile.remembered"))
                 }
                 .frame(height: 56)
             }
-
-            Section(t("profile.settings")) {
-                Button { model.showLanguagePicker = true } label: {
-                    LabeledContent(t("lang.title"), value: model.languageName(model.language))
-                }
-                .tint(Palette.piperno)
-                Button { showSites = true } label: {
-                    LabeledContent(t("profile.site"), value: model.site.city)
-                }
-                .tint(Palette.piperno)
-                Toggle(t("profile.haptics"), isOn: $haptics)
-                VStack(alignment: .leading, spacing: 4) {
-                    Toggle(t("profile.recall"), isOn: $recall)
-                    Text(t("profile.recallNote")).font(.system(size: 12)).foregroundStyle(Palette.stone)
-                }
-                if recall {
-                    DatePicker(t("profile.recallTime"), selection: Binding(
-                        get: { Calendar.current.date(bySettingHour: recallHour, minute: recallMinute, second: 0, of: .now) ?? .now },
-                        set: { let c = Calendar.current.dateComponents([.hour, .minute], from: $0); recallHour = c.hour ?? 8; recallMinute = c.minute ?? 12 }),
-                        displayedComponents: .hourAndMinute)
-                }
-                Toggle(t("profile.autoRead"), isOn: $autoRead)
-            }
-            .tint(Palette.azzurro)
 
             #if DEBUG
             // Developer tools: never shown in TestFlight or App Store builds.
@@ -439,15 +402,23 @@ private struct SignedInView: View {
             #endif
 
             Section(t("profile.account")) {
-                Button(t("profile.editName")) { newName = user.displayName; editingName = true }
-                if user.provider == .email && !account.isServerBacked {
-                    Button(t("recovery.keyTitle")) { showRecoveryKey = true }
+                if let user {
+                    if user.provider == .email && !account.isServerBacked {
+                        Button(t("recovery.keyTitle")) { showRecoveryKey = true }
+                    }
+                    Button(t("profile.signOut")) { account.signOut() }.disabled(account.isBusy)
+                    Button(t("profile.delete"), role: .destructive) { confirmDelete = true }.disabled(account.isBusy)
+                } else {
+                    Button(t("profile.signIn")) {
+                        account.errorMessage = nil
+                        showAccount = true
+                    }
                 }
-                Button(t("profile.signOut")) { account.signOut() }
-                Button(t("profile.delete"), role: .destructive) { confirmDelete = true }
+                Button(t("privacy.eraseTrip"), role: .destructive) { confirmErase = true }.disabled(account.isBusy)
             }
 
             Section(t("profile.about")) {
+                Button(t("privacy.title")) { showPrivacy = true }
                 NavigationLink(t("ack.title")) { AcknowledgementsView() }
                 let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "–"
                 let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "–"
@@ -456,17 +427,38 @@ private struct SignedInView: View {
             }
         }
         .scrollContentBackground(.hidden)
-        .alert(t("profile.editName"), isPresented: $editingName) {
-            TextField(t("profile.name"), text: $newName)
-            Button(t("common.save")) { account.rename(newName) }
-            Button(t("common.cancel"), role: .cancel) {}
-        }
-        .sheet(isPresented: $showSites) { SitePicker() }
         .sheet(isPresented: $showRecoveryKey) { RecoveryKeySheet() }
+        .sheet(isPresented: $showAccount) { ProfileSignInSheet() }
+        .sheet(isPresented: $showPrivacy) { PrivacyPolicySheet() }
+        .sheet(isPresented: $showAppleRevocation) { AppleAuthorizationSheet() }
         .confirmationDialog(t("profile.deleteConfirm"), isPresented: $confirmDelete, titleVisibility: .visible) {
-            Button(t("profile.delete"), role: .destructive) { Task { await account.deleteAccount() } }
+            Button(t("profile.delete"), role: .destructive) {
+                guard let user else { return }
+                Task {
+                    guard await account.deleteAccount() else {
+                        accountDeletionFailed = true
+                        return
+                    }
+                    eraseTrip()
+                    if user.provider == .apple { showAppleRevocation = true }
+                }
+            }
             Button(t("common.cancel"), role: .cancel) {}
         } message: { Text(t("profile.deleteNote")) }
+        .confirmationDialog(t("privacy.eraseTrip"), isPresented: $confirmErase, titleVisibility: .visible) {
+            Button(t("privacy.eraseTrip"), role: .destructive, action: eraseTrip)
+            Button(t("common.cancel"), role: .cancel) {}
+        } message: { Text(t("privacy.eraseNote")) }
+        .alert(t("privacy.eraseFailed"), isPresented: $eraseFailed) {
+            Button(t("common.done"), role: .cancel) {}
+        }
+        .alert(t("profile.delete"), isPresented: $accountDeletionFailed) {
+            Button(t("common.done"), role: .cancel) {}
+        } message: { Text(account.errorMessage ?? t("privacy.eraseFailed")) }
+    }
+
+    private func eraseTrip() {
+        do { try model.eraseTripData() } catch { eraseFailed = true }
     }
 
     private func stat(_ value: String, _ label: String) -> some View {
@@ -475,5 +467,53 @@ private struct SignedInView: View {
             Text(label).font(.system(size: 12)).foregroundStyle(Palette.stone)
         }
         .frame(maxWidth: .infinity)
+    }
+}
+
+private struct ProfilePreferencesSheet: View {
+    @Environment(AppModel.self) private var model
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        let t = model.strings
+        NavigationStack {
+            List {
+                NavigationLink {
+                    LanguagePicker()
+                } label: {
+                    LabeledContent(t("lang.title"), value: model.languageName(model.language))
+                }
+                NavigationLink {
+                    SitePicker()
+                } label: {
+                    LabeledContent(t("profile.site"), value: model.site.city)
+                }
+            }
+            .navigationTitle(t("profile.settings"))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button(t("common.done")) { dismiss() }
+                }
+            }
+        }
+    }
+}
+
+private struct ProfileSignInSheet: View {
+    @Environment(AppModel.self) private var model
+    @Environment(AccountModel.self) private var account
+    @Environment(\.dismiss) private var dismiss
+    @State private var mode = SignInView.Mode.signIn
+
+    var body: some View {
+        let t = model.strings
+        NavigationStack {
+            SignInView(mode: $mode)
+                .navigationTitle(t(mode == .create ? "profile.createAccount" : "profile.signIn"))
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar { ToolbarItem(placement: .cancellationAction) { Button(t("common.cancel")) { dismiss() } } }
+        }
+        .onChange(of: account.isSignedIn) { _, signedIn in if signedIn { dismiss() } }
     }
 }

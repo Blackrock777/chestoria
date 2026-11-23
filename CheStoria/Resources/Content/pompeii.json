@@ -270,9 +270,9 @@
       ],
       "showsMapLabel": false,
       "referenceImages": [
-        "forum",
-        "forum1841"
+        "forum"
       ],
+      "photos": ["forum1841"],
       "aiDescriptions": [
         "the ruins of the Roman Forum of Pompeii with columns and Mount Vesuvius in the background",
         "an open grassy square surrounded by ancient Roman columns and brick ruins"
@@ -368,7 +368,9 @@
       ],
       "showsMapLabel": true,
       "referenceImages": [
-        "caveCanem"
+        "caveCanem",
+        "caveCanemPhoto",
+        "comparison-tragic-poet-now"
       ],
       "aiDescriptions": [
         "an ancient Roman floor mosaic of a black chained dog with the words CAVE CANEM",
@@ -1187,7 +1189,8 @@
       ],
       "showsMapLabel": true,
       "referenceImages": [
-        "stabianBaths"
+        "stabianBaths",
+        "stabianBathsPhoto"
       ],
       "aiDescriptions": [
         "a Roman bath complex with an exercise courtyard surrounded by columns and vaulted bathing rooms",
@@ -1279,7 +1282,8 @@
       ],
       "showsMapLabel": true,
       "referenceImages": [
-        "octaviusQuartio"
+        "octaviusQuartio",
+        "octaviusQuartioPhoto"
       ],
       "aiDescriptions": [
         "a Roman town house garden with a long water channel lined with plants and a pergola",
@@ -1463,7 +1467,8 @@
       ],
       "showsMapLabel": true,
       "referenceImages": [
-        "faun"
+        "faun",
+        "faunPhoto"
       ],
       "aiDescriptions": [
         "a large Roman house atrium with a shallow pool and a small bronze statue of a dancing faun",
@@ -1555,7 +1560,8 @@
       ],
       "showsMapLabel": true,
       "referenceImages": [
-        "villaMysteries"
+        "villaMysteries",
+        "villaMysteriesPhoto"
       ],
       "aiDescriptions": [
         "a Roman room painted with a continuous frieze of life-size figures on a deep red background",
@@ -1737,7 +1743,8 @@
       ],
       "showsMapLabel": true,
       "referenceImages": [
-        "casca"
+        "casca",
+        "cascaPhoto"
       ],
       "aiDescriptions": [
         "a Roman house atrium with a marble table on carved legs and small painted theatre scenes",
@@ -1909,7 +1916,8 @@
       ],
       "showsMapLabel": true,
       "referenceImages": [
-        "bakeryPriscus"
+        "bakeryPriscus",
+        "bakeryPriscusPhoto"
       ],
       "aiDescriptions": [
         "a Roman bakery with large hourglass-shaped stone mills and a domed brick oven",

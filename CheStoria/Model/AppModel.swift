@@ -56,7 +56,8 @@ final class AppModel {
         static let onboarded = "chestoria.onboarded"
         static let recallRight = "chestoria.recall.right"
         static let recallAnswered = "chestoria.recall.answered"
-        static func trip(_ site: String) -> String { "chestoria.trip.v2.\(site)" }
+        static let tripPrefix = "chestoria.trip.v2."
+        static func trip(_ site: String) -> String { tripPrefix + site }
     }
 
     init(catalog: Catalog, defaults: UserDefaults = .standard, loader: @escaping (String) -> Catalog? = { try? ContentStore.load(language: $0) }) {
@@ -110,7 +111,6 @@ final class AppModel {
         catalog = c
         site = c.site(id: site.id) ?? c.defaultSite
         defaults.set(code, forKey: Settings.storyLanguage)
-        SharedStore.saveWidgetEmptyText(strings("widget.empty"))
     }
 
     /// The best language to start with: the saved choice, else the device language if the content has it.
@@ -127,15 +127,6 @@ final class AppModel {
         site = s
         state = Self.loadState(for: s, defaults: defaults)
         defaults.set(id, forKey: Settings.site)
-    }
-
-    /// Answers to next-morning questions, for the "Remembered" stat.
-    var recallStats: (remembered: Int, answered: Int) {
-        (defaults.integer(forKey: Keys.recallRight), defaults.integer(forKey: Keys.recallAnswered))
-    }
-    func recordRecall(correct: Bool) {
-        defaults.set(defaults.integer(forKey: Keys.recallAnswered) + 1, forKey: Keys.recallAnswered)
-        if correct { defaults.set(defaults.integer(forKey: Keys.recallRight) + 1, forKey: Keys.recallRight) }
     }
 
     func startStory(at place: Place, photo: UIImage? = nil) {
@@ -161,6 +152,19 @@ final class AppModel {
     /// For presentations: the content's demo trip (if it has one).
     func loadDemo() { state = .demo(for: site); selectedTab = .snap }
     func startFresh() { state = TripState(); selectedTab = .snap }
+    func eraseTripData() throws {
+        try StickerPhotos.erase()
+        for key in defaults.dictionaryRepresentation().keys where key.hasPrefix(Keys.tripPrefix) {
+            defaults.removeObject(forKey: key)
+        }
+        defaults.removeObject(forKey: Keys.recallRight)
+        defaults.removeObject(forKey: Keys.recallAnswered)
+        activeFlow = nil
+        state = TripState()
+        RetiredRecall.clearNotifications()
+        UserDefaults(suiteName: "group.app.chestoria")?.removeObject(forKey: "recall.latest")
+        LiveActivityController.shared.end()
+    }
     /// Kept for launch arguments and tests.
     func resetDemo() { loadDemo() }
 
@@ -199,4 +203,12 @@ enum StickerPhotos {
     }
 
     static func load(_ name: String) -> UIImage? { UIImage(contentsOfFile: folder.appending(path: name).path) }
+
+    static func erase() throws {
+        do {
+            try FileManager.default.removeItem(at: folder)
+        } catch let error as NSError where error.domain == NSCocoaErrorDomain && error.code == NSFileNoSuchFileError {
+            // A trip can have stickers without saved photos.
+        }
+    }
 }

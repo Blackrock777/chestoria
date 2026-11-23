@@ -2,44 +2,17 @@ import ActivityKit
 import CoreLocation
 import Foundation
 import UserNotifications
-import WidgetKit
 
-/// Handles answers tapped on the next-morning notification: confirms right or wrong straight away,
-/// records it for the "Remembered" stat and updates the widget.
-final class NotificationCoordinator: NSObject, UNUserNotificationCenterDelegate {
-    static let shared = NotificationCoordinator()
-    var onAnswer: ((Bool) -> Void)?
-
-    func activate() { UNUserNotificationCenter.current().delegate = self }
-
-    nonisolated func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse,
-                                            withCompletionHandler completionHandler: @escaping () -> Void) {
-        let info = response.notification.request.content.userInfo
-        let action = response.actionIdentifier
-        guard action.hasPrefix("answer."), let chosen = Int(action.dropFirst("answer.".count)),
-              let correct = info["correct"] as? Int, let right = info["rightText"] as? String, let wrong = info["wrongText"] as? String else {
-            completionHandler(); return
+/// Removes previously scheduled recall prompts after upgrading.
+enum RetiredRecall {
+    static func clearNotifications() {
+        let center = UNUserNotificationCenter.current()
+        Task {
+            let pending = await center.pendingNotificationRequests().map(\.identifier)
+            center.removePendingNotificationRequests(withIdentifiers: pending.filter { $0.hasPrefix("recall.") })
+            let delivered = await center.deliveredNotifications().map(\.request.identifier)
+            center.removeDeliveredNotifications(withIdentifiers: delivered.filter { $0.hasPrefix("recall.") })
         }
-        let ok = chosen == correct
-        let content = UNMutableNotificationContent()
-        content.title = "CheStoria"
-        content.body = ok ? right : wrong
-        center.add(UNNotificationRequest(identifier: "recall.result.\(UUID().uuidString)", content: content,
-                                         trigger: UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)))
-        Task { @MainActor in
-            self.onAnswer?(ok)
-            if var payload = SharedStore.loadRecall() {
-                payload.answeredCorrectly = ok; payload.resultText = ok ? right : wrong
-                SharedStore.saveRecall(payload)
-                WidgetCenter.shared.reloadAllTimelines()
-            }
-        }
-        completionHandler()
-    }
-
-    nonisolated func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification,
-                                            withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.banner, .sound])
     }
 }
 

@@ -1,14 +1,13 @@
 import SwiftUI
 
-/// One screen, then an account. The site's photo drifts in slowly while the headline rises word by word.
+/// Introduces the selected site before opening the guide.
 /// Every word on this screen comes from the content files.
 struct WelcomeView: View {
     @Environment(AppModel.self) private var model
     @Environment(\.accessibilityReduceMotion) private var reduce
     @State private var zoom: CGFloat = 1.16
-    @Environment(AccountModel.self) private var account
     @State private var shown = false
-    @State private var showAccount = false
+    @State private var showPrivacy = false
 
     var body: some View {
         @Bindable var model = model
@@ -79,10 +78,16 @@ struct WelcomeView: View {
 
                 Button(t("welcome.start")) {
                     Haptics.tap()
-                    if account.isSignedIn { model.completeOnboarding() } else { showAccount = true }
+                    model.completeOnboarding()
                 }
                 .buttonStyle(CTAButtonStyle(kind: .light))
                 .rise(shown, delay: 0.95)
+
+                Button(t("privacy.title")) { showPrivacy = true }
+                    .font(.footnote.weight(.semibold))
+                    .foregroundStyle(.white)
+                    .frame(maxWidth: .infinity, minHeight: 44)
+                    .rise(shown, delay: 0.95)
             }
             .padding(.horizontal, 24).padding(.bottom, 12)
         }
@@ -96,34 +101,11 @@ struct WelcomeView: View {
             .opacity(shown ? 1 : 0)
         }
         .preferredColorScheme(.dark)
-        .sheet(isPresented: $showAccount) { AccountSheet(mode: model.hasOnboarded ? .signIn : .create) }
-        .onChange(of: account.isSignedIn) { _, signedIn in
-            if signedIn { showAccount = false; model.completeOnboarding() }
-        }
+        .sheet(isPresented: $showPrivacy) { PrivacyPolicySheet() }
         .onAppear {
             withAnimation(reduce ? nil : .easeOut(duration: 9)) { zoom = 1 }
             withAnimation(.easeOut(duration: 0.6)) { shown = true }
         }
-    }
-}
-
-/// Create an account (or sign in) before the first story: trips and stickers belong to you.
-private struct AccountSheet: View {
-    @Environment(AppModel.self) private var model
-    @Environment(\.dismiss) private var dismiss
-    @State var mode: SignInView.Mode
-    var body: some View {
-        let t = model.strings
-        NavigationStack {
-            VStack(alignment: .leading, spacing: 0) {
-                Text(t("welcome.accountNote")).font(.subheadline).foregroundStyle(.secondary).padding(.horizontal, 20)
-                SignInView(mode: $mode, showsGuestHeader: false)
-            }
-            .background(Palette.calce)
-            .navigationTitle(t(mode == .create ? "welcome.accountTitle" : "profile.signIn"))
-            .toolbar { ToolbarItem(placement: .cancellationAction) { Button(t("common.cancel")) { dismiss() } } }
-        }
-        .presentationDetents([.large])
     }
 }
 

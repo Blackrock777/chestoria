@@ -1,31 +1,31 @@
 # Credits
 
-The app shows these credits itself: **Profile → About → Acknowledgements** lists every photo with author, licence and a link, and each story’s **Sources** button (“About this story”) lists the sources and the photos it uses. `tools/build_credits.py` turns the tables below into `CheStoria/Resources/Content/credits.json`; run it after editing this file.
+In the app, **Profile → About → Acknowledgements** and each story’s **Sources** sheet show photo credits and link to the original and licence where available. Photos are resized for display, and some are cropped or shown as details. Licensed images retain the terms listed below. Run `python3 tools/build_credits.py` after editing the tables.
 
 ## Photos (Wikimedia Commons)
 
 | File in app | Subject | Author | Licence |
 |---|---|---|---|
-| `forum` | Pompeii Forum & Mt. Vesuvius | Gary Todd | CC0 |
-| `thermo` | Thermopolium of Vetutius Placidus | Gary Todd | Public domain |
-| `shrine` | Thermopolium shrine (lararium) of Lucius Vetutius Placidus | Jebulon | CC0 |
-| `forum1841` | *The Forum, Pompeii, with Vesuvius in the Distance* (1841), painting | Christen Schjellerup Købke | Public domain |
-| `caveCanem` | Cave canem mosaic, House of the Tragic Poet (cropped) | Argo Navis | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
+| `forum` | [Pompeii Forum & Mt. Vesuvius](https://commons.wikimedia.org/wiki/File:Pompeii_Forum_%26_Mt._Vesuvius_(9809458366).jpg) | Gary Todd | CC0 |
+| `thermo` | [Thermopolium of Vetutius Placidus](https://commons.wikimedia.org/wiki/File:Pompeii%2C_Thermopolium_of_Vetutius_Placidus_(48443399176).jpg) | Gary Todd | Public domain |
+| `shrine` | [Thermopolium shrine (lararium) of Lucius Vetutius Placidus](https://commons.wikimedia.org/wiki/File:Thermopolium_Lucius_Vetutius_Placidus_Pompeii.jpg) | Jebulon | CC0 |
+| `forum1841` | [The Forum, Pompeii, with Vesuvius in the Distance (1841), painting](https://commons.wikimedia.org/wiki/File:Christen_Schjellerup_K%C3%B8bke_-_The_Forum%2C_Pompeii%2C_with_Vesuvius_in_the_Distance_-_85.PA.43_-_J._Paul_Getty_Museum.jpg) | Christen Schjellerup Købke | Public domain |
+| `caveCanem` | [Cave canem mosaic, House of the Tragic Poet (cropped)](https://commons.wikimedia.org/wiki/File:Cave_canem_mosaic%2C_House_of_the_Tragic_Poet%2C_Pompeii_20230623.jpg) | Argo Navis | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
 
 ### Naples
 
 | File in app | Subject | Author | Licence |
 |---|---|---|---|
-| `gesuFacade` | Façade of Gesù Nuovo | Berthold Werner | CC BY-SA 3.0 |
+| `gesuFacade` | [Façade of Gesù Nuovo](https://commons.wikimedia.org/wiki/File:Facciata_della_chiesa_del_Ges%C3%B9_Nuovo_(Napoli)_-_BW_2013-05-16.jpg) | Berthold Werner | CC BY-SA 3.0 |
 | `gesuFacade2` | [Chiesa del Gesù Nuovo](https://commons.wikimedia.org/wiki/File:Chiesa_del_Ges%C3%B9_Nuovo_(Naples).jpg) | Rutger van der Maar | CC BY 2.0 |
-| `gesuDetail` | Gesù Nuovo, rusticated façade | Punteador | CC BY-SA 4.0 |
-| `plebiscito` | Piazza del Plebiscito, San Francesco di Paola | Vyacheslav Argenberg | CC BY 4.0 |
-| `plebiscitoVesuvius` | Vesuvius from Piazza del Plebiscito | Roma1314 | CC BY-SA 3.0 |
-| `plebiscitoCarPark` | Piazza del Plebiscito as a car park | Unknown author | Public domain |
-| `sansevero` | Cappella Sansevero, the Veiled Christ | David Sivyer | CC BY-SA 2.0 |
-| `veiledChristFace` | Veiled Christ, face | David Sivyer | CC BY-SA 2.0 |
-| `castelOvo` | Castel dell’Ovo 01 | Bernard Gagnon | CC BY 4.0 |
-| `castelOvo2` | Castel dell’Ovo | Livioandronico2013 | CC BY-SA 4.0 |
+| `gesuDetail` | [Gesù Nuovo, rusticated façade](https://commons.wikimedia.org/wiki/File:Ges%C3%B9_Nuovo_(Naples)_%E2%80%93_rusticated_facade.jpg) | Punteador | CC BY-SA 4.0 |
+| `plebiscito` | [Piazza del Plebiscito, San Francesco di Paola](https://commons.wikimedia.org/wiki/File:Naples%2C_Italy%2C_Piazza_del_Plebiscito%2C_The_church_of_San_Francesco_di_Paola.jpg) | Vyacheslav Argenberg | CC BY 4.0 |
+| `plebiscitoVesuvius` | [Vesuvius from Piazza del Plebiscito](https://commons.wikimedia.org/wiki/File:Vesuvio_dalla_Piazza_del_Plebiscito%2C_Napoli.JPG) | Roma1314 | CC BY-SA 3.0 |
+| `plebiscitoCarPark` | [Piazza del Plebiscito facing the Royal Palace, 1971](https://commons.wikimedia.org/wiki/File:Piazza_del_Plebescito%2C_szemben_a_kir%C3%A1lyi_Palota._Fortepan_30836.jpg) | Fortepan / Krasznai Gyula | CC BY-SA 3.0 |
+| `sansevero` | [Cappella Sansevero, the Veiled Christ](https://commons.wikimedia.org/wiki/File:Cappella_Sansevero_(15041603867).jpg) | David Sivyer | CC BY-SA 2.0 |
+| `veiledChristFace` | [Veiled Christ, face](https://commons.wikimedia.org/wiki/File:Cristo_Velato_Volto.jpg) | David Sivyer | CC BY-SA 2.0 |
+| `castelOvo` | [Castel dell’Ovo 01](https://commons.wikimedia.org/wiki/File:Castel_dell%27Ovo_(Naples)_01.jpg) | Bernard Gagnon | CC BY 4.0 |
+| `castelOvo2` | [Castel dell’Ovo](https://commons.wikimedia.org/wiki/File:Castel_dell%27Ovo_(Naples).jpg) | Livioandronico2013 | CC BY-SA 4.0 |
 
 ### Pompeii, research pack (16 stories)
 
@@ -46,14 +46,14 @@ The app shows these credits itself: **Profile → About → Acknowledgements** l
 | `centralBaths` | [Pompei 17 23 17 111000](https://commons.wikimedia.org/wiki/File:Pompei_17_23_17_111000.jpeg) | Robot8A | CC BY-SA 4.0 |
 | `centralBaths2` | [Pompei 17 23 01 949000](https://commons.wikimedia.org/wiki/File:Pompei_17_23_01_949000.jpeg) | Robot8A | CC BY-SA 4.0 |
 | `stabianBaths` | [Stabianer Thermen Auskleidehaus](https://commons.wikimedia.org/wiki/File:Stabianer_Thermen_Auskleidehaus.jpg) | Rabax63 | CC BY-SA 4.0 |
-| `octaviusQuartio` | [Pompeji Casa Di Octavio Quartio Aedicula Pyramus And Thisbe](https://commons.wikimedia.org/wiki/File:Pompeji_Casa_Di_Octavio_Quartio_Aedicula_Pyramus_And_Thisbe.jpg) | see file page | CC BY-SA 2.5 |
+| `octaviusQuartio` | [Pompeji Casa Di Octavio Quartio Aedicula Pyramus And Thisbe](https://commons.wikimedia.org/wiki/File:Pompeji_Casa_Di_Octavio_Quartio_Aedicula_Pyramus_And_Thisbe.jpg) | AlMare | CC BY-SA 2.5 |
 | `vettii` | [Casa dei Vettii WLM24 (23)](https://commons.wikimedia.org/wiki/File:Casa_dei_Vettii_WLM24_%2823%29.jpg) | MentNFG | CC BY-SA 4.0 |
 | `faun` | [HouseOfTheFaunOverview](https://commons.wikimedia.org/wiki/File:HouseOfTheFaunOverview.jpg) | Porsche997SBS | CC BY-SA 3.0 |
 | `villaMysteries` | [Villa of the Mysteries in Pompeii](https://commons.wikimedia.org/wiki/File:Villa_of_the_Mysteries_in_Pompeii.jpg) | ElfQrin | CC BY-SA 4.0 |
 | `lupanar` | [Pompeya lupanar](https://commons.wikimedia.org/wiki/File:Pompeya_lupanar.jpg) | Fer.filol | Public domain |
 | `casca` | [Casa dei Quadretti Teatrali 1](https://commons.wikimedia.org/wiki/File:Casa_dei_Quadretti_Teatrali_1.JPG) | Mentnafunangann | CC BY-SA 3.0 |
 | `moralist` | [Viejos grafitis en Pompeya, Italia, 2016 05](https://commons.wikimedia.org/wiki/File:Viejos_grafitis_en_Pompeya%2C_Italia%2C_2016_05.jpg) | Benjamín Núñez González | CC BY-SA 4.0 |
-| `bakeryPriscus` | [Baeckerei pompeji kampanien italien](https://commons.wikimedia.org/wiki/File:Baeckerei_pompeji_kampanien_italien.jpg) | see file page | CC BY-SA 3.0 |
+| `bakeryPriscus` | [Baeckerei pompeji kampanien italien](https://commons.wikimedia.org/wiki/File:Baeckerei_pompeji_kampanien_italien.jpg) | Polykarbon | CC BY-SA 3.0 |
 
 Pompeii coordinates come from Wikidata (CC0). Story facts come from the team's Pompeii research pack (official 2015 Park guide, page cited in each story) and are checked against a second source where one exists; texts are original.
 
@@ -76,6 +76,7 @@ Pompeii coordinates come from Wikidata (CC0). Story facts come from the team's P
 | `borbonica2` | [Galleria borbonica - Visitors and refuge (Naples)](https://commons.wikimedia.org/wiki/File:Galleria_borbonica_-_Visitors_and_refuge_(Naples).jpg) | Associazione Culturale Borbonica Sotterranea | CC BY-SA 4.0 |
 | `galleriaUmberto` | [Galleria Umberto I, Interior, Naples (5263)](https://commons.wikimedia.org/wiki/File:Galleria_Umberto_I,_Interior,_Naples_(5263).jpg) | Marco Ober | CC BY-SA 4.0 |
 | `galleriaUmberto2` | [Galleria Umberto I Napoli interno](https://commons.wikimedia.org/wiki/File:Galleria_Umberto_I_Napoli_interno.jpg) | Wolfgang Moroder | CC BY-SA 3.0 |
+| `galleriaUmbertoMosaic` | [Galleria Umberto I floor mosaic](https://commons.wikimedia.org/wiki/File:Galleria_Umberto_I_(Naples)_-_mosaic.jpg) | Yair Haklai | CC BY-SA 4.0 |
 | `galleriaUmbertoEngraving` | [Napoli interno della Galleria Umberto I](https://commons.wikimedia.org/wiki/File:Napoli_interno_della_Galleria_Umberto_I.jpg) | Carlo Cornaglia | Public domain |
 | `sanGennaroCatacombs` | [Catacombe di San Gennaro 023](https://commons.wikimedia.org/wiki/File:Catacombe_di_San_Gennaro_023.jpg) | Dominik Matus | CC BY-SA 4.0 |
 | `sanGennaroCatacombs2` | [Catacombe di San Gennaro 003](https://commons.wikimedia.org/wiki/File:Catacombe_di_San_Gennaro_003.jpg) | Dominik Matus | CC BY-SA 4.0 |
@@ -105,15 +106,19 @@ Pompeii coordinates come from Wikidata (CC0). Story facts come from the team's P
 
 Entrance points for the catacombs, the Bourbon Tunnel and two corrected museum points: © OpenStreetMap contributors, ODbL. Place coordinates otherwise from Wikidata (CC0). Story texts are original summaries from the team's research dataset (`tools/story_cards/`), checked against the sources listed in each story.
 
-All from Wikimedia Commons. CC BY-SA images are resized and cropped here and shared under the same licence, with attribution.
+Image licence terms and venue permissions are separate. The [Archaeological Park of Pompeii](https://pompeiisites.org/en/archaeological-park-of-pompeii/application-forms-for-use-of-images/) has an image-use permission process. Release permissions for the relevant venue images have yet to be documented here.
 
-Test fixtures in `CheStoriaTests/Fixtures` (used only to test recognition): Pompeii Forum (Gary Todd, CC0), Cave canem mosaic (Yair Haklai, CC BY-SA 4.0), Stepping stones at Via del Tempio d’Iside (Gary Todd, public domain).
+Test-only fixtures in `CheStoriaTests/Fixtures` include the [Pompeii Forum tour group](https://commons.wikimedia.org/wiki/File:Pompeii_Forum_%26_Mt._Vesuvius_(9809063714).jpg) (Gary Todd, CC0), Cave canem mosaic (Yair Haklai, CC BY-SA 4.0), and [stepping stones at Via del Tempio d’Iside](https://commons.wikimedia.org/wiki/File:Pompeii%2C_Stepping_stones_at_Via_del_Tempio_d%27Iside_(48442377296).jpg) (Gary Todd, public domain).
+
+The test-only [Galleria Umberto I zodiac mosaic photo](https://commons.wikimedia.org/wiki/File:Galleria_Umberto_I_-_zodiac_mosaic.jpg) by МаратД (CC BY-SA 4.0) is cropped to show the floor.
+
+The Naples residential photo came from the reported false match and is used only in tests. Its redistribution permission has yet to be documented.
 
 The Cave canem photo is shared under CC BY-SA 4.0: the cropped version in this repository is shared under the same licence, with attribution to Argo Navis.
 
 ## AI model
 
-- **SigLIP** (google/siglip-base-patch16-224) by Google, Apache License 2.0. The image encoder is converted to Core ML and compressed; see `CheStoria/Resources/ML/NOTICE.md` and the licence file next to it.
+- **SigLIP** (google/siglip-base-patch16-224) by Google, Apache License 2.0. The image encoder is converted to Core ML and compressed. The iPhone app includes the [model notice](CheStoria/Resources/ML/NOTICE.md) and [Apache licence text](CheStoria/Resources/ML/LICENSE-SigLIP-Apache-2.0.txt).
 
 Test fixtures for "not a place": cup of coffee in Café Butter, Berlin (Edward, CC0); Computer desk at Narita Airport (D Coetzee, CC0).
 

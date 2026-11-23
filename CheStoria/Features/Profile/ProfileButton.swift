@@ -50,31 +50,27 @@ struct LanguagePicker: View {
 
     var body: some View {
         let t = model.strings
-        NavigationStack {
-            List {
-                Section {
-                    ForEach(model.languages, id: \.self) { code in
-                        Button {
-                            Haptics.tap()
-                            withAnimation { model.setLanguage(code) }
-                            dismiss()
-                        } label: {
-                            HStack {
-                                VStack(alignment: .leading, spacing: 2) {
-                                    Text(model.languageName(code)).font(.system(size: 17, weight: .semibold)).foregroundStyle(Palette.piperno)
-                                    Text(Locale.current.localizedString(forLanguageCode: code) ?? code).font(.system(size: 13)).foregroundStyle(Palette.stone)
-                                }
-                                Spacer()
-                                if code == model.language { Image(systemName: "checkmark").foregroundStyle(Palette.azzurro).fontWeight(.semibold) }
+        List {
+            Section {
+                ForEach(model.languages, id: \.self) { code in
+                    Button {
+                        Haptics.tap()
+                        withAnimation { model.setLanguage(code) }
+                        dismiss()
+                    } label: {
+                        HStack {
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(model.languageName(code)).font(.system(size: 17, weight: .semibold)).foregroundStyle(Palette.piperno)
+                                Text(Locale.current.localizedString(forLanguageCode: code) ?? code).font(.system(size: 13)).foregroundStyle(Palette.stone)
                             }
+                            Spacer()
+                            if code == model.language { Image(systemName: "checkmark").foregroundStyle(Palette.azzurro).fontWeight(.semibold) }
                         }
                     }
-                } footer: { Text(t("lang.note")) }
-            }
-            .navigationTitle(t("lang.title"))
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar { ToolbarItem(placement: .confirmationAction) { Button(t("common.done")) { dismiss() } } }
+                }
+            } footer: { Text(t("lang.note")) }
         }
-        .presentationDetents([.medium, .large])
+        .navigationTitle(t("lang.title"))
+        .navigationBarTitleDisplayMode(.inline)
     }
 }

@@ -380,9 +380,18 @@ final class AccountModel {
 
     func signOut() { service.signOut(); user = nil }
 
-    func deleteAccount() async {
+    func deleteAccount() async -> Bool {
+        guard !isBusy, user != nil else { return false }
+        errorMessage = nil
         isBusy = true; defer { isBusy = false }
-        do { try await service.deleteAccount(); user = nil } catch { errorMessage = error.localizedDescription }
+        do {
+            try await service.deleteAccount()
+            user = nil
+            return true
+        } catch {
+            errorMessage = error.localizedDescription
+            return false
+        }
     }
 
     private func run(_ work: @escaping () async throws -> UserAccount) async {
@@ -398,14 +407,10 @@ final class AccountModel {
 /// Preferences shown on the profile screen. Read anywhere with `UserDefaults.standard`.
 enum Settings {
     static let haptics = "settings.haptics"
-    static let recall = "settings.recall"
-    static let autoRead = "settings.autoRead"
     static let storyLanguage = "settings.storyLanguage"
     static let site = "settings.site"
-    static let recallHour = "settings.recallHour"
-    static let recallMinute = "settings.recallMinute"
 
     static func register() {
-        UserDefaults.standard.register(defaults: [haptics: true, recall: true, autoRead: false, storyLanguage: "en", recallHour: 8, recallMinute: 12])
+        UserDefaults.standard.register(defaults: [haptics: true, storyLanguage: "en"])
     }
 }

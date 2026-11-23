@@ -133,6 +133,19 @@ struct RecognitionTests {
         else { Issue.record("Colour/layout alone must require confirmation") }
     }
 
+    @Test func strongDescriptionForPlausibleRunnerUpRequiresConfirmation() throws {
+        let site = try ContentStore.loadBundled().defaultSite
+        let places = Array(site.cameraPlaces.prefix(3))
+        let scores = PhotoScores(places: [
+            (id: places[0].id, image: 0.80, text: 0.14),
+            (id: places[1].id, image: 0.73, text: 0.22),
+            (id: places[2].id, image: 0.40, text: 0.38)
+        ], labels: [], usedAI: true)
+        let outcome = RecognitionPolicy.decide(scores, places: places, settings: site.recognitionSettings, language: "en", vocabulary: nil)
+        if case .unsure(let choices, _) = outcome { #expect(choices.map(\.id) == [places[1].id, places[0].id]) }
+        else { Issue.record("Conflicting but plausible visual evidence must require confirmation") }
+    }
+
     /// A crop the matcher has never seen (different framing) must still pick the right place.
     private func crop(_ name: String, _ r: CGRect) -> UIImage {
         let img = UIImage(named: name)!.normalizedCGImage!
@@ -200,6 +213,18 @@ struct RecognitionTests {
             case .confident(let p):
                 Issue.record("Residential windows/balconies must not auto-open \(p.id)")
             }
+        }
+    }
+
+    @Test func galleriaFloorPhotoFromAnotherPhotographerIsRecognised() async throws {
+        let catalog = try ContentStore.loadBundled()
+        let site = try #require(catalog.site(id: "naples"))
+        let matcher = PlaceMatcher()
+        let result = await matcher.identify(try fixture("galleria-zodiac-other"), in: site, near: nil, catalog: catalog)
+        switch result {
+        case .confident(let place): #expect(place.id == "galleria-umberto-i")
+        case .unsure(let places, _): #expect(places.first?.id == "galleria-umberto-i")
+        case .notAPlace: Issue.record("A distinct photo of the Galleria floor should offer the Galleria")
         }
     }
 
@@ -428,11 +453,6 @@ struct SiteTests {
         }
     }
 
-    @Test func recallAnswersAreCounted() throws {
-        let (m, _) = try freshModel()
-        m.recordRecall(correct: true); m.recordRecall(correct: false)
-        #expect(m.recallStats.remembered == 1 && m.recallStats.answered == 2)
-    }
 
     @Test func naplesPlacesAreRecognisedFromTheirPhotos() async throws {
         let catalog = try ContentStore.loadBundled()

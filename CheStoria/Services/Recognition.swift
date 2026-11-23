@@ -198,8 +198,10 @@ nonisolated enum RecognitionPolicy {
 
         if s.usedAI {
             let byImage = s.places.sorted { $0.image > $1.image }
-            let ranked = s.places.sorted { $0.image + settings.textWeight * $0.text > $1.image + settings.textWeight * $1.text }
             let best = byImage[0], second = byImage.count > 1 ? byImage[1].image : 0
+            let minimum = heritageLooking ? settings.possible - 0.08 : settings.possible
+            let ranked = byImage.filter { $0.image >= minimum }
+                .sorted { $0.image + settings.textWeight * $0.text > $1.image + settings.textWeight * $1.text }
             // Image similarity can confuse ordinary windows/balconies with a landmark.
             // Compare text scores with text scores: an everyday-object description that
             // beats the candidate's own descriptions is evidence against that identity.
@@ -213,8 +215,13 @@ nonisolated enum RecognitionPolicy {
                 // auto-open one when its semantics conflict with the photograph.
                 return .unsure(byImage.prefix(3).filter { $0.image >= settings.possible }.compactMap { lookup($0.id) }, label: labelName)
             }
-            if best.image >= settings.confident, best.image - second >= settings.margin, let p = lookup(best.id) { return .confident(p) }
-            if best.image >= settings.possible || (heritageLooking && best.image >= settings.possible - 0.08) {
+            let competingDescription = ranked.contains {
+                $0.id != best.id && $0.image >= settings.possible
+                    && best.image - $0.image <= 2 * settings.margin && $0.text > best.text + 0.04
+            }
+            if best.image >= settings.confident, best.image - second >= settings.margin,
+               !competingDescription, let p = lookup(best.id) { return .confident(p) }
+            if !ranked.isEmpty {
                 return .unsure(ranked.prefix(3).compactMap { lookup($0.id) }, label: labelName)
             }
             return .notAPlace(label: labelName, heritage: heritageLooking, nearby: places)
@@ -266,22 +273,26 @@ struct RecognitionLogEntry: Identifiable {
 
 @Observable
 final class PlaceMatcher {
-    private var index = PlaceIndex()
-    private(set) var isReady = false
+    private var indexes: [String: PlaceIndex] = [:]
     private(set) var log: [RecognitionLogEntry] = []
     private(set) var live: LiveGuess?
-    private var preparation: (site: String, task: Task<Void, Never>)?
+    private var preparations: [String: Task<PlaceIndex, Never>] = [:]
     private var liveBusy = false
+    private var liveGeneration = 0
+    private var lastLiveCandidate: String?
 
     var usesAI: Bool { SigLIPEmbedder.shared.isAvailable }
 
     /// Embeds every story place's reference photos (off the main thread). Calling it again for the
     /// same site waits for the same work instead of starting over.
     func prepare(site: SiteContent) async {
-        if let p = preparation, p.site == site.id { await p.task.value; return }
-        isReady = false
-        if preparation != nil { index = PlaceIndex() }
-        let places = site.cameraPlaces, index = self.index
+        _ = await preparedIndex(for: site)
+    }
+
+    private func preparedIndex(for site: SiteContent) async -> PlaceIndex {
+        if let index = indexes[site.id] { return index }
+        if let task = preparations[site.id] { return await task.value }
+        let places = site.cameraPlaces, index = PlaceIndex()
         let task = Task { @MainActor in
             var jobs: [(String, [CGImage])] = []
             for place in places {
@@ -292,20 +303,25 @@ final class PlaceMatcher {
                 jobs.append((place.id, images))
             }
             await Task.detached(priority: .utility) { for (id, imgs) in jobs { index.add(placeID: id, images: imgs) } }.value
-            self.isReady = true
+            self.indexes[site.id] = index
+            self.preparations[site.id] = nil
+            return index
         }
-        preparation = (site.id, task)
-        await task.value
+        preparations[site.id] = task
+        return await task.value
     }
 
     /// Compare all camera places visually; use location for nearby suggestions after an unknown photo.
     func identify(_ photo: UIImage, in site: SiteContent, near location: CLLocation?, catalog: Catalog) async -> RecognitionResult {
-        await prepare(site: site)
+        let index = await preparedIndex(for: site)
         guard let cg = photo.normalizedCGImage else { return .notAPlace(label: nil, heritage: false, nearby: site.storyPlaces) }
         let settings = site.recognitionSettings
         let camera = site.cameraPlaces
         let nearby = RecognitionPolicy.candidates(camera, near: location, nearbyMeters: settings.nearby)
-        let scores = await score(cg, among: camera, vocabulary: catalog.vocabulary)
+        let ids = Set(camera.map(\.id)), vocabulary = catalog.vocabulary
+        let scores = await Task.detached(priority: .userInitiated) {
+            index.scores(for: cg, among: ids, vocabulary: vocabulary)
+        }.value
         // Confidence must include every visual competitor. GPS may narrow suggestions,
         // but must never manufacture a winning margin by removing the runner-up.
         var result = RecognitionPolicy.decide(scores, places: camera, settings: settings, language: catalog.language, vocabulary: catalog.vocabulary)
@@ -319,9 +335,10 @@ final class PlaceMatcher {
 
     /// Real-time guess for a camera frame (or the simulator's stand-in photo). Drops frames while busy.
     func liveGuess(buffer: CVPixelBuffer? = nil, image: CGImage? = nil, site: SiteContent, catalog: Catalog) {
-        guard usesAI, isReady, !liveBusy else { return }
+        guard usesAI, let index = indexes[site.id], !liveBusy else { return }
         liveBusy = true
-        let index = self.index, ids = Set(site.cameraPlaces.map(\.id)), vocab = catalog.vocabulary
+        let ids = Set(site.cameraPlaces.map(\.id)), vocab = catalog.vocabulary
+        let generation = liveGeneration
         let settings = site.recognitionSettings, language = catalog.language, places = site.cameraPlaces
         nonisolated(unsafe) let frame = buffer
         Task.detached(priority: .userInitiated) {
@@ -331,19 +348,19 @@ final class PlaceMatcher {
             let label = s.labels.first
             await MainActor.run {
                 self.liveBusy = false
-                guard e != nil else { return }
-                var place: Place? = nil
-                if case .confident(let p) = decision { place = p }
+                guard generation == self.liveGeneration, e != nil else { return }
+                let candidate: Place? = if case .confident(let p) = decision { p } else { nil }
+                let place = candidate?.id == self.lastLiveCandidate ? candidate : nil
+                self.lastLiveCandidate = candidate?.id
                 self.live = LiveGuess(label: label.map { vocab?.name($0.label, language: language) ?? $0.label.id }, heritage: label?.label.heritage ?? false, place: place)
             }
         }
     }
 
-    func clearLive() { live = nil }
-
-    private func score(_ cg: CGImage, among places: [Place], vocabulary: AIVocabulary?) async -> PhotoScores {
-        let ids = Set(places.map(\.id)), index = self.index
-        return await Task.detached(priority: .userInitiated) { index.scores(for: cg, among: ids, vocabulary: vocabulary) }.value
+    func clearLive() {
+        liveGeneration += 1
+        lastLiveCandidate = nil
+        live = nil
     }
 
     private func record(_ s: PhotoScores, result: RecognitionResult) {

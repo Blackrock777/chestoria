@@ -1,6 +1,5 @@
 import CoreLocation
 import SwiftUI
-import UIKit
 
 @main
 struct CheStoriaWatchApp: App {
@@ -11,9 +10,8 @@ struct CheStoriaWatchApp: App {
     @State private var path: [Route] = []
 
     private enum Route: Hashable {
-        case nearby, comparisons
+        case nearby
         case clue(String, String)
-        case comparison(String, String)
     }
 
     var body: some Scene {
@@ -24,14 +22,9 @@ struct CheStoriaWatchApp: App {
                         .navigationDestination(for: Route.self) { route in
                             switch route {
                             case .nearby: nearby(catalog)
-                            case .comparisons: comparisons(catalog)
                             case let .clue(site, id):
                                 if let place = catalog.site(id: site)?.place(id: id) {
-                                    clue(place, site: site, strings: catalog.strings)
-                                }
-                            case let .comparison(site, id):
-                                if let place = catalog.site(id: site)?.place(id: id), let pair = place.thenNow {
-                                    CrownComparison(place: place, pair: pair, strings: catalog.strings)
+                                    clue(place, strings: catalog.strings)
                                 }
                             }
                         }
@@ -64,8 +57,11 @@ struct CheStoriaWatchApp: App {
             NavigationLink(value: Route.nearby) {
                 Label(t("watch.nearby"), systemImage: "location.circle")
             }
-            NavigationLink(value: Route.comparisons) {
-                Label(t("thenNow.title"), systemImage: "clock.arrow.circlepath")
+            NavigationLink {
+                PrivacyPolicyContent(unavailableMessage: t("privacy.unavailable"))
+                    .navigationTitle(t("privacy.title"))
+            } label: {
+                Label(t("privacy.title"), systemImage: "hand.raised")
             }
         }
         .navigationTitle("CheStoria")
@@ -136,132 +132,14 @@ struct CheStoriaWatchApp: App {
         }
     }
 
-    private func clue(_ place: Place, site: String, strings t: UIStrings) -> some View {
+    private func clue(_ place: Place, strings t: UIStrings) -> some View {
         List {
             Text(place.name).font(.headline)
             Text(place.street).font(.footnote).foregroundStyle(.secondary)
             if let clue = place.clues.first {
                 Label(clue, systemImage: "eye").font(.body)
             }
-            if place.thenNow?.supportsOfflineWatch == true {
-                NavigationLink(t("thenNow.title"), value: Route.comparison(site, place.id))
-            }
         }
         .navigationTitle(t("watch.clue"))
-    }
-
-    private func comparisons(_ catalog: Catalog) -> some View {
-        List {
-            ForEach(catalog.sites) { site in
-                Section(site.city) {
-                    ForEach(site.places.filter { $0.thenNow?.supportsOfflineWatch == true }) { place in
-                        NavigationLink(place.name, value: Route.comparison(site.id, place.id))
-                    }
-                }
-            }
-        }
-        .navigationTitle(catalog.strings("thenNow.title"))
-    }
-}
-
-private extension ThenNow {
-    var supportsOfflineWatch: Bool {
-        if case .asset = then, case .asset = now { return true }
-        return false
-    }
-}
-
-private struct CrownComparison: View {
-    let place: Place
-    let pair: ThenNow
-    let strings: UIStrings
-    @State private var period = 1.0
-    @FocusState private var crownFocused: Bool
-
-    private var now: Bool { period >= 0.5 }
-    private var label: String { strings(now ? "watch.now" : "watch.then") }
-    private var caption: String { now ? (pair.nowCaption == "Today" ? strings("thenNow.today") : pair.nowCaption) : pair.thenCaption }
-
-    var body: some View {
-        GeometryReader { geometry in
-            VStack(alignment: .leading, spacing: 5) {
-                HStack(spacing: 5) {
-                    Text(label).font(.subheadline.weight(.semibold))
-                    Spacer(minLength: 0)
-                    Text(caption).font(.caption2).foregroundStyle(.secondary)
-                        .lineLimit(1).minimumScaleFactor(0.75)
-                }
-                photo(height: max(48, min(116, geometry.size.height - 60)))
-                HStack(spacing: 4) {
-                    Text(strings("watch.crownHint")).font(.caption2).foregroundStyle(.secondary)
-                        .lineLimit(1).minimumScaleFactor(0.75)
-                    Spacer(minLength: 0)
-                    NavigationLink { photoCredits } label: {
-                        Image(systemName: "info.circle").font(.body).frame(minWidth: 30, minHeight: 28)
-                    }
-                    .buttonStyle(.plain)
-                    .accessibilityLabel(Text(strings("about.photos")))
-                }
-                if let clue = pair.watchHint ?? place.clues.first {
-                    Label(clue, systemImage: "eye").font(.caption2).lineLimit(2)
-                        .fixedSize(horizontal: false, vertical: true)
-                }
-            }
-            .padding(.horizontal, 4)
-        }
-        // The comparison owns the Crown. Photo credits scroll on their own screen.
-        .focusable()
-        .focused($crownFocused)
-        .digitalCrownRotation($period, from: 0, through: 1, by: 1, sensitivity: .high, isContinuous: false, isHapticFeedbackEnabled: true)
-        .defaultFocus($crownFocused, true)
-        .navigationTitle(place.name)
-    }
-
-    private func photo(height: CGFloat) -> some View {
-        Button { period = now ? 0 : 1 } label: {
-            Group {
-                if let photo = image(now ? pair.now : pair.then) {
-                    Image(uiImage: photo).resizable().scaledToFit()
-                        .accessibilityHidden(true)
-                } else {
-                    Label(strings("watch.imageUnavailable"), systemImage: "photo")
-                        .font(.footnote).foregroundStyle(.secondary)
-                }
-            }
-            .frame(height: height)
-            .frame(maxWidth: .infinity)
-            .background(.quaternary, in: .rect(cornerRadius: 12))
-            .clipShape(.rect(cornerRadius: 12))
-        }
-        .buttonStyle(.plain)
-        .accessibilityLabel(Text(label))
-        .accessibilityValue(Text(caption))
-        .accessibilityHint(Text(strings("watch.switchView")))
-        .accessibilityAdjustableAction { direction in
-            switch direction {
-            case .increment: period = 1
-            case .decrement: period = 0
-            @unknown default: break
-            }
-        }
-    }
-
-    private var photoCredits: some View {
-        List([pair.then, pair.now].compactMap(Credits.shared.photo(for:)), id: \.asset) { credit in
-            VStack(alignment: .leading, spacing: 4) {
-                Text(credit.title).font(.headline)
-                Text(credit.line).font(.footnote).foregroundStyle(.secondary)
-                if let url = credit.url ?? credit.licenceURL {
-                    Link(strings("watch.photoSource"), destination: url).font(.footnote)
-                }
-            }
-        }
-        .navigationTitle(strings("about.photos"))
-    }
-
-    private func image(_ ref: ImageRef) -> UIImage? {
-        guard case .asset(let name) = ref,
-              let url = Bundle.main.url(forResource: name, withExtension: "jpg", subdirectory: "ComparisonImages") else { return nil }
-        return UIImage(contentsOfFile: url.path)
     }
 }

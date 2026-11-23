@@ -87,7 +87,6 @@ struct StoryFlowView: View {
 
     private func finish(_ tab: AppTab) {
         guard let p = current else { model.activeFlow = nil; return }
-        if let story = p.story { RecallScheduler.schedule(for: p, story: story, strings: model.strings) }
         LiveActivityController.shared.end()
         model.finishStory(at: p, goTo: tab, photo: placePhoto)
     }
@@ -336,12 +335,13 @@ struct QuestionView: View {
     let photo: UIImage?
     let onAnswer: (Int, Int) -> Void
     @Environment(AppModel.self) private var model
+    @Environment(\.dynamicTypeSize) private var dynamicType
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var shown = false
     @State private var selected: Int?
     @State private var confidence = 2
 
     var body: some View {
-        let t = model.strings
         GeometryReader { geo in
             ZStack(alignment: .top) {
                 Palette.calce
@@ -349,45 +349,21 @@ struct QuestionView: View {
                     if let photo { CoverImage(image: photo) } else { PlaceGallery(place: place, topInset: geo.safeAreaInsets.top + 56) }
                 }
                 .frame(height: shown ? geo.size.height * 0.42 : geo.size.height)
-                .animation(Motion.glide, value: shown)
+                .animation(reduceMotion ? nil : Motion.glide, value: shown)
 
-                VStack(alignment: .leading, spacing: 12) {
-                    Capsule().fill(Palette.hair).frame(width: 38, height: 5).frame(maxWidth: .infinity)
-                    Text(story.eyebrow).font(.system(size: 12, weight: .bold)).textCase(.uppercase).kerning(1).foregroundStyle(Palette.stone)
-                        .rise(shown, delay: 0.45)
-                    Text(story.question).font(Typeface.display(31, relativeTo: .title)).foregroundStyle(Palette.piperno)
-                        .fixedSize(horizontal: false, vertical: true).minimumScaleFactor(0.8)
-                        .rise(shown, delay: 0.5)
-                    Spacer(minLength: 8)
-                    ForEach(Array(story.answers.enumerated()), id: \.offset) { i, a in
-                        Button(a) {
-                            selected = i; Haptics.tap()
-                            Task { try? await Task.sleep(for: .milliseconds(480)); onAnswer(i, confidence) }
-                        }
-                        .buttonStyle(AnswerButtonStyle(selected: selected == i, key: ["A", "B", "C", "D"][min(i, 3)]))
-                        .disabled(selected != nil)
-                        .rise(shown, delay: 0.65 + Double(i) * 0.09, distance: 18)
+                Group {
+                    if dynamicType.isAccessibilitySize {
+                        ScrollView { questionContent.padding(.bottom, 24) }
+                    } else {
+                        questionContent
                     }
-                    HStack(spacing: 10) {
-                        Text(t("question.howSure")).font(.system(size: 15)).foregroundStyle(Palette.stone)
-                        ForEach(1...3, id: \.self) { n in
-                            Button { confidence = n; Haptics.tap() } label: {
-                                Circle().fill(n <= confidence ? Palette.piperno : .clear)
-                                    .overlay(Circle().stroke(Palette.piperno, lineWidth: 2)).frame(width: 14, height: 14)
-                                    .padding(6)
-                            }
-                            .accessibilityLabel(t("question.sure\(n)"))
-                        }
-                    }
-                    .frame(maxWidth: .infinity).rise(shown, delay: 0.95)
                 }
-                .padding(.horizontal, 20).padding(.top, 16).padding(.bottom, 12)
                 .frame(height: geo.size.height * 0.62, alignment: .top)
                 .background(Palette.calce, in: UnevenRoundedRectangle(topLeadingRadius: 38, topTrailingRadius: 38))
                 .shadow(color: .black.opacity(0.25), radius: 20, y: -6)
                 .frame(maxHeight: .infinity, alignment: .bottom)
                 .offset(y: shown ? 0 : geo.size.height)
-                .animation(.spring(response: 0.6, dampingFraction: 0.78).delay(0.12), value: shown)
+                .animation(reduceMotion ? nil : .spring(response: 0.6, dampingFraction: 0.78).delay(0.12), value: shown)
             }
         }
         .ignoresSafeArea()
@@ -395,12 +371,65 @@ struct QuestionView: View {
         .sensoryFeedback(.selection, trigger: selected)
         .onAppear { shown = true }
     }
+
+    private var questionContent: some View {
+        let t = model.strings
+        return VStack(alignment: .leading, spacing: 12) {
+            Capsule().fill(Palette.hair).frame(width: 38, height: 5).frame(maxWidth: .infinity)
+                .accessibilityHidden(true)
+            Text(story.eyebrow).font(.caption.weight(.bold)).textCase(.uppercase).kerning(1).foregroundStyle(Palette.stone)
+                .rise(shown, delay: 0.45)
+            Text(story.question).font(Typeface.display(31, relativeTo: .title)).foregroundStyle(Palette.piperno)
+                .fixedSize(horizontal: false, vertical: true)
+                .accessibilityAddTraits(.isHeader)
+                .rise(shown, delay: 0.5)
+            Spacer(minLength: 8)
+            ForEach(Array(story.answers.enumerated()), id: \.offset) { i, answer in
+                Button(answer) {
+                    selected = i
+                    Haptics.tap()
+                    Task { try? await Task.sleep(for: .milliseconds(480)); onAnswer(i, confidence) }
+                }
+                .buttonStyle(AnswerButtonStyle(selected: selected == i, key: ["A", "B", "C", "D"][min(i, 3)]))
+                .disabled(selected != nil)
+                .rise(shown, delay: 0.65 + Double(i) * 0.09, distance: 18)
+            }
+            ViewThatFits(in: .horizontal) {
+                HStack(spacing: 4) { Text(t("question.howSure")); confidenceButtons }
+                VStack(spacing: 4) { Text(t("question.howSure")); confidenceButtons }
+            }
+            .font(.subheadline)
+            .foregroundStyle(Palette.stone)
+            .frame(maxWidth: .infinity)
+            .rise(shown, delay: 0.95)
+        }
+        .padding(.horizontal, 20).padding(.top, 16).padding(.bottom, 12)
+    }
+
+    private var confidenceButtons: some View {
+        HStack(spacing: 0) {
+            ForEach(1...3, id: \.self) { level in
+                Button {
+                    confidence = level
+                    Haptics.tap()
+                } label: {
+                    Circle().fill(level <= confidence ? Palette.piperno : .clear)
+                        .overlay(Circle().stroke(Palette.piperno, lineWidth: 2))
+                        .frame(width: 14, height: 14)
+                        .frame(width: 44, height: 44)
+                        .contentShape(.rect)
+                }
+                .accessibilityLabel(model.strings("question.sure\(level)"))
+                .accessibilityAddTraits(level == confidence ? .isSelected : [])
+            }
+        }
+    }
 }
 
 // MARK: - Reveal
 
 /// The answer, as a page you want to read: the place's photo, a result badge, the story in a card,
-/// and quick actions (Tonight, Then & Now, Listen, About) in the style of an Apple Maps place card.
+/// and quick actions for listening and viewing sources.
 struct RevealView: View {
     let place: Place
     let story: Story
@@ -409,13 +438,10 @@ struct RevealView: View {
     let onNext: () -> Void
     @Environment(AppModel.self) private var model
     @Environment(\.accessibilityReduceMotion) private var reduce
-    @AppStorage(Settings.autoRead) private var autoRead = false
     @State private var narrator = Narrator()
     @State private var shown = false
     @State private var stamped = false
     @State private var showInfo = false
-    @State private var showThenNow = false
-    @State private var showTonight = false
 
     private var right: Bool { chosen == story.correctIndex }
 
@@ -480,15 +506,13 @@ struct RevealView: View {
             Task {
                 try? await Task.sleep(for: .milliseconds(1300))
                 if story.theory != nil { Haptics.rigid() }
-                if autoRead && model.site.allowsReadAloud { narrator.toggle(spoken, language: model.language) }
             }
         }
         .onDisappear { narrator.stop() }
         .sheet(isPresented: $showInfo) { StoryInfoSheet(place: place) }
-        .sheet(isPresented: $showThenNow) { ThenNowSheet(place: place) }
     }
 
-    /// The place's photo with the result on it, and a Then & Now button when there's an old picture.
+    /// The place's photo with the result on it.
     private var hero: some View {
         let t = model.strings
         let reaction = confidence == 3 ? (right ? t("reveal.rightSure") : t("reveal.wrongSure"))
@@ -510,15 +534,7 @@ struct RevealView: View {
                         .fixedSize(horizontal: false, vertical: true)
                         .scaleEffect(shown ? 1 : 0.6, anchor: .bottomLeading).opacity(shown ? 1 : 0)
                         .animation(reduce ? nil : Motion.pop.delay(0.15), value: shown)
-                    Spacer(minLength: 0)
-                    if place.thenNow != nil {
-                        Button { Haptics.tap(); showThenNow = true } label: {
-                            Image(systemName: "clock.arrow.circlepath").font(.system(size: 18, weight: .semibold))
-                                .foregroundStyle(.white).frame(width: 46, height: 46)
-                        }
-                        .glassEffect(.regular.interactive(), in: .circle)
-                        .accessibilityLabel(t("thenNow.title"))
-                    }
+
                 }
                 .padding(.horizontal, 16).padding(.bottom, 46)
             }
@@ -528,14 +544,6 @@ struct RevealView: View {
     private var actions: some View {
         let t = model.strings
         return HStack(spacing: 10) {
-            ActionTile(title: t("reveal.tonight"), icon: "fork.knife", tint: Palette.tufo, ink: Palette.piperno) { showTonight = true }
-                .popover(isPresented: $showTonight, arrowEdge: .top) {
-                    TonightCard(title: t("reveal.tellTonight"), line: story.dinnerLine)
-                        .presentationCompactAdaptation(.popover)
-                }
-            if place.thenNow != nil {
-                ActionTile(title: t("thenNow.title"), icon: "clock.arrow.circlepath", tint: Palette.mare) { showThenNow = true }
-            }
             // Some sites only allow their authorised audio guides (Pompeii, visitor rules art. 6).
             if model.site.allowsReadAloud {
                 ActionTile(title: narrator.isSpeaking ? t("reveal.stopReading") : t("reveal.listen"),
@@ -555,8 +563,6 @@ private struct ActionTile: View {
     let title: String
     let icon: String
     let tint: Color
-    /// Text and icon colour, when the tint itself is too light to read (yellow).
-    var ink: Color? = nil
     let action: () -> Void
     var body: some View {
         Button { Haptics.tap(); action() } label: {
@@ -564,25 +570,11 @@ private struct ActionTile: View {
                 Image(systemName: icon).font(.system(size: 19, weight: .semibold)).contentTransition(.symbolEffect(.replace))
                 Text(title).font(.caption.weight(.semibold)).lineLimit(1).minimumScaleFactor(0.75)
             }
-            .foregroundStyle(ink ?? tint)
+            .foregroundStyle(tint)
             .frame(maxWidth: .infinity).frame(height: 64)
-            .background(tint.opacity(ink == nil ? 0.13 : 0.2), in: .rect(cornerRadius: 16))
+            .background(tint.opacity(0.13), in: .rect(cornerRadius: 16))
         }
         .buttonStyle(.plain)
-    }
-}
-
-/// The line to retell at dinner, in a small popover.
-private struct TonightCard: View {
-    let title: String
-    let line: String
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Label(title, systemImage: "fork.knife").font(.footnote.weight(.bold)).textCase(.uppercase).foregroundStyle(Palette.piperno)
-            Text(line).font(.title3.weight(.semibold)).foregroundStyle(Palette.piperno).fixedSize(horizontal: false, vertical: true)
-        }
-        .padding(20)
-        .frame(width: 300, alignment: .leading)
     }
 }
 

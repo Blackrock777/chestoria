@@ -194,17 +194,22 @@ struct TagPill: View {
 enum CTAStyleKind { case dark, tufo, light }
 
 struct CTAButtonStyle: ButtonStyle {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     var kind: CTAStyleKind = .dark
     var shine = false
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .font(.system(size: 17, weight: .semibold))
-            .frame(maxWidth: .infinity).frame(height: 58)
+            .font(.headline)
+            .multilineTextAlignment(.center)
+            .fixedSize(horizontal: false, vertical: true)
+            .padding(.horizontal, 16).padding(.vertical, 10)
+            .frame(maxWidth: .infinity, minHeight: 58)
             .foregroundStyle(kind == .dark ? Palette.calce : kind == .tufo ? Palette.onTufo : Color(red: 0.17, green: 0.19, blue: 0.18))
             .background(kind == .dark ? Palette.piperno : kind == .tufo ? Palette.tufo : Color(red: 0.96, green: 0.96, blue: 0.94), in: .capsule)
             .overlay { if shine { ShineSweep().clipShape(.capsule) } }
-            .scaleEffect(configuration.isPressed ? 0.97 : 1)
-            .animation(.spring(response: 0.25, dampingFraction: 0.6), value: configuration.isPressed)
+            .scaleEffect(configuration.isPressed && !reduceMotion ? 0.97 : 1)
+            .opacity(configuration.isPressed && reduceMotion ? 0.82 : 1)
+            .animation(reduceMotion ? nil : .spring(response: 0.25, dampingFraction: 0.6), value: configuration.isPressed)
     }
 }
 
@@ -226,12 +231,17 @@ struct ShineSweep: View {
 
 /// Answer button with a physical "press" depth (the idea we borrow from Duolingo).
 struct AnswerButtonStyle: ButtonStyle {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @ScaledMetric(relativeTo: .body) private var labelSize = 18.0
     var selected: Bool
     var key: String
     func makeBody(configuration: Configuration) -> some View {
-        let down = configuration.isPressed
+        let down = configuration.isPressed && !reduceMotion
         HStack {
-            configuration.label.font(.system(size: 18, weight: .semibold)).foregroundStyle(Palette.piperno)
+            configuration.label
+                .font(.system(size: labelSize, weight: .semibold))
+                .foregroundStyle(Palette.piperno)
+                .fixedSize(horizontal: false, vertical: true)
             Spacer()
             Text(key).font(.system(size: 12, weight: .semibold))
                 .foregroundStyle(selected ? .white : Palette.stone)
@@ -239,12 +249,14 @@ struct AnswerButtonStyle: ButtonStyle {
                 .background(Circle().fill(selected ? Palette.piperno : .clear))
                 .overlay(Circle().stroke(selected ? Palette.piperno : Palette.hair, lineWidth: 1.5))
         }
-        .padding(.leading, 18).padding(.trailing, 16).frame(height: 62)
+        .padding(.leading, 18).padding(.trailing, 16).padding(.vertical, 10)
+        .frame(minHeight: 62)
         .background(RoundedRectangle(cornerRadius: 20).fill(Palette.card))
         .overlay(RoundedRectangle(cornerRadius: 20).stroke(selected ? Palette.piperno : Palette.hair, lineWidth: 1.5))
         .background(RoundedRectangle(cornerRadius: 20).fill(selected ? Palette.piperno : Palette.hair).offset(y: down ? 0 : 3))
         .offset(y: down ? 3 : 0)
-        .animation(.spring(response: 0.18, dampingFraction: 0.7), value: down)
+        .opacity(configuration.isPressed && reduceMotion ? 0.82 : 1)
+        .animation(reduceMotion ? nil : .spring(response: 0.18, dampingFraction: 0.7), value: down)
     }
 }
 
@@ -341,7 +353,8 @@ struct CloseButton: View {
     @Environment(AppModel.self) private var model
     var body: some View {
         Button(action: action) {
-            Image(systemName: "xmark").font(.system(size: 15, weight: .bold)).foregroundStyle(.white).frame(width: 40, height: 40)
+            Image(systemName: "xmark").font(.system(size: 15, weight: .bold)).foregroundStyle(.white).frame(width: 44, height: 44)
+                .contentShape(.circle)
         }
         .glassEffect(.regular.interactive(), in: .circle)
         .accessibilityLabel(model.strings("common.close"))

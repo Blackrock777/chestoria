@@ -24,6 +24,12 @@ targets:
           - "Resources/ML/*.txt"
           - "Resources/ML/*.md"
           - "Resources/Content"
+      - path: CheStoria/Resources/ML/LICENSE-SigLIP-Apache-2.0.txt
+        buildPhase: resources
+      - path: CheStoria/Resources/ML/NOTICE.md
+        buildPhase: resources
+      - path: docs/privacy.md
+        buildPhase: resources
       - path: CheStoria/Resources/Content
         type: folder
         buildPhase: resources
@@ -32,8 +38,6 @@ targets:
       - target: CheStoriaWidgets
       - target: CheStoriaWatch
         embed: true
-        copy:
-          destination: plugins
     entitlements:
       path: CheStoria/CheStoria.entitlements
       properties:
@@ -95,6 +99,9 @@ targets:
       - path: CheStoria/Model/Content.swift
       - path: CheStoria/Model/Credits.swift
       - path: Shared/WatchTripContext.swift
+      - path: Shared/PrivacyPolicyContent.swift
+      - path: docs/privacy.md
+        buildPhase: resources
     postBuildScripts:
       - name: Bundle offline Watch content
         script: '"/usr/bin/python3" "$SRCROOT/tools/build_watch_resources.py" "$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH"'

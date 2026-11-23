@@ -14,13 +14,9 @@ Content/
 
 The tests (`⌘U`) validate every file in every language: ids, answers, image names, map positions, story length (40 words at most). Run them after every content change.
 
-## Add a Then & Now comparison
+## Archive image records
 
-1. Find a dated archival image and a modern photograph of the same place. Check each file's reuse terms and keep its original source link. If a historic drawing or plan is used, identify it as such in the caption.
-2. Add both images to `CheStoria/Resources/Assets.xcassets` and add the title, creator, licence and source to the photo tables in `CREDITS.md`.
-3. On the matching place in `pompeii.json` or `naples.json`, add a `thenNow` object with `then` and `now` set to the two asset names and `thenCaption` and `nowCaption` set to their display labels. Translate caption text in the corresponding language overlays. A missing object shows the pending message on the map place and site list.
-4. Run `python3 tools/build_credits.py`, then `python3 tools/build_database.py --output /path/to/chestoria.sqlite`. The `place_comparisons` table contains one row per place and can be filtered for `archive_pending`. The `image_credits` table has the attribution and source URLs.
-5. Run the app tests in Xcode and open the comparison from **My trip**. Check both sides and their credits.
+Existing Then & Now records remain in the catalog and in the local SQLite export. The iPhone and Watch apps have retired the comparison interface. Keep source and licensing records in `CREDITS.md` for archive images.
 
 ## Add a place
 
@@ -50,7 +46,7 @@ The tests (`⌘U`) validate every file in every language: ids, answers, image na
     "body": "About 30 words, 2 facts.",
     "source": "Pompeii Archaeological Park",
     "theory": { "label": "LEGEND", "lead": "Some say", "text": "…" },
-    "dinnerLine": "One line to retell tonight.",
+    "dinnerLine": "Legacy story field.",
     "lookCloser": { "prompt": "…", "hint": "…", "image": "amphitheatre-detail",
                     "anchor": { "x": 0.5, "y": 0.5 }, "zoom": 1.1, "target": { "x": 0.4, "y": 0.6 } },
     "sticker": { "id": "arena", "title": "…", "collection": "Big crowds", "image": "amphitheatre-detail",
@@ -63,9 +59,8 @@ The tests (`⌘U`) validate every file in every language: ids, answers, image na
 
 - `story` can be `null`. The place then shows on the map but has no question yet.
 - `aiDescriptions`: two or three plain-English sentences describing what the camera will see. After editing them run `python3 tools/embed_content.py` (needs `pip install torch transformers sentencepiece`).
-- `thenNow` (optional): `{ "then": "oldPhoto", "thenCaption": "…", "now": "todayPhoto", "nowCaption": "Today" }`. It appears as a card after the story, in the place card (tap the pin on My trip) and in the site sheet. Translate the captions in the overlays.
 - `cameraRecognition: false` (optional) marks places where the camera shouldn't be used: indoor art, ticketed or no-photo rooms, underground sites. They are never matched from photos. They open from the map, and Snap offers them when you are within 150 m (real GPS).
-- `readAloud: false` (site level, optional) hides the read-aloud button and auto-read for that site, for places that allow only their own audio guides.
+- `readAloud: false` (site level, optional) hides the Listen button for that site, for places that allow only their own audio guides.
 - Places without a `story` show on the map as small dots with "Story coming soon" and walking directions.
 - `entrance` (optional): `{ "latitude": …, "longitude": …, "note": "…" }` when visitors go in somewhere other than the site's point (catacombs, tunnels). Walking directions lead there.
 - `theory` and `lookCloser` are optional. Use `"label": "LEGEND"` or `"THEORY"`: it appears on the red seal.
@@ -97,18 +92,11 @@ The line above the headline is written by the app from real data: "Welcome to Po
 
 ## Photos for recognition
 
-`referenceImages` are the photos the camera is compared against. More is better: three or four shots of the same place from where visitors stand, at different times of day. Recognition runs on the device:
+Add current photos to `referenceImages` to cover distinct views visitors can photograph, such as a landmark’s facade and a recognizable detail. Enter the photo’s source and license in `CREDITS.md`, then regenerate the credits. Keep independent photos for regression tests.
 
-- **Real iPhones** use Apple Vision feature prints.
-- **The simulator**, or any device where Vision returns unusable output, uses a colour-and-layout fingerprint.
+SigLIP runs on device and compares the image with reference photos and place descriptions. The app asks for confirmation when visual evidence is close or descriptions conflict. GPS helps suggest places after an unknown photo. A color-and-layout fallback can suggest a place for confirmation.
 
-Location narrows the candidates to places within 500 m. If none of those match (for example a gallery photo taken elsewhere), every place is compared. If two places look alike, the app asks the visitor which one it is. The thresholds live in each site’s `recognition` block:
-
-```json
-"recognition": { "visionMaxDistance": 1.1, "descriptorMaxDistance": 0.56, "separation": 0.86, "nearbyMeters": 500 }
-```
-
-On site, open Profile → Recognition log after taking photos: it lists every place’s distance for each photo. If the right place wins but the app still asks "Which one?", lower `separation` slightly; if wrong places are accepted, lower the max distance. The change ships with the next content update.
+In Debug builds, **Profile → Recognition log** shows the candidate scores and outcome after a photo. Recognition thresholds are in each site’s `recognition` block.
 
 ## Add a language
 

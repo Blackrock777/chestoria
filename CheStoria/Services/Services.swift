@@ -2,15 +2,13 @@ import AVFoundation
 import CoreLocation
 import SwiftUI
 import UIKit
-@preconcurrency import UserNotifications
-import WidgetKit
 
 // MARK: - Place recognition
 
 /// What the Snap chip should honestly say about where you are.
 enum LocationStatus: Equatable {
-    case off                       // permission denied or restricted
-    case locating                  // allowed (or not asked yet), no fix yet
+    case off                       // location permission is unavailable
+    case locating                  // permission granted, no fix yet
     case near(Place, meters: Int)  // at the site
     case far(siteName: String, distance: String)
 }
@@ -18,7 +16,7 @@ enum LocationStatus: Equatable {
 extension LocationStatus {
     /// Pure so it can be tested: never invents a distance.
     static func compute(site: SiteContent, location: CLLocation?, authorization: CLAuthorizationStatus, locale: Locale = .current) -> LocationStatus {
-        if authorization == .denied || authorization == .restricted { return .off }
+        guard authorization == .authorizedWhenInUse || authorization == .authorizedAlways else { return .off }
         func d(_ p: Place, _ l: CLLocation) -> CLLocationDistance { CLLocation(latitude: p.latitude, longitude: p.longitude).distance(from: l) }
         guard let loc = location, let best = site.storyPlaces.min(by: { d($0, loc) < d($1, loc) }) else { return .locating }
         let meters = d(best, loc)
@@ -43,9 +41,11 @@ final class PlaceRecognizer: NSObject, CLLocationManagerDelegate {
     }
 
     func start() {
-        if manager.authorizationStatus == .notDetermined { manager.requestWhenInUseAuthorization() }
+        guard manager.authorizationStatus == .authorizedWhenInUse || manager.authorizationStatus == .authorizedAlways else { return }
         manager.startUpdatingLocation()
     }
+
+    func requestPermission() { manager.requestWhenInUseAuthorization() }
 
     func status(in site: SiteContent, locale: Locale = .current) -> LocationStatus {
         LocationStatus.compute(site: site, location: lastLocation, authorization: authorization, locale: locale)
@@ -73,7 +73,15 @@ final class PlaceRecognizer: NSObject, CLLocationManagerDelegate {
     }
     nonisolated func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         let status = manager.authorizationStatus
-        Task { @MainActor in self.authorization = status }
+        Task { @MainActor in
+            self.authorization = status
+            if status == .authorizedWhenInUse || status == .authorizedAlways {
+                self.start()
+            } else {
+                self.manager.stopUpdatingLocation()
+                self.lastLocation = nil
+            }
+        }
     }
     nonisolated func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {}
 }
@@ -90,6 +98,7 @@ nonisolated final class CameraSession: @unchecked Sendable {
     private(set) var isConfigured = false
     private var pending: PhotoDelegate?
     private var frames: FrameDelegate?
+    private var device: AVCaptureDevice?
     /// Called with a camera frame about twice a second, for live AI recognition.
     var onFrame: (@Sendable (CVPixelBuffer) -> Void)? { didSet { frames?.onFrame = onFrame } }
 
@@ -110,13 +119,30 @@ nonisolated final class CameraSession: @unchecked Sendable {
 
     func stop() { queue.async { [self] in if session.isRunning { session.stopRunning() } } }
 
+    func zoom(to factor: CGFloat) {
+        queue.async { [self] in
+            guard let device, (try? device.lockForConfiguration()) != nil else { return }
+            defer { device.unlockForConfiguration() }
+            device.videoZoomFactor = min(device.maxAvailableVideoZoomFactor, max(device.minAvailableVideoZoomFactor, factor))
+        }
+    }
+
     /// Takes a photo. Returns nil in the simulator or if capture fails.
     func capture() async -> UIImage? {
         guard Self.isAvailable else { return nil }
         return await withCheckedContinuation { cont in
             queue.async { [self] in
-                guard session.isRunning else { cont.resume(returning: nil); return }
-                let delegate = PhotoDelegate { image in cont.resume(returning: image) }
+                guard pending == nil, session.isRunning,
+                      let connection = output.connection(with: .video), connection.isActive, connection.isEnabled else {
+                    cont.resume(returning: nil)
+                    return
+                }
+                let delegate = PhotoDelegate { [self] image in
+                    queue.async { [self] in
+                        pending = nil
+                        cont.resume(returning: image)
+                    }
+                }
                 pending = delegate
                 output.capturePhoto(with: AVCapturePhotoSettings(), delegate: delegate)
             }
@@ -147,6 +173,7 @@ nonisolated final class CameraSession: @unchecked Sendable {
         if let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back),
            let input = try? AVCaptureDeviceInput(device: device), session.canAddInput(input) {
             session.addInput(input)
+            self.device = device
         }
         if session.canAddOutput(output) { session.addOutput(output) }
         let fd = FrameDelegate(); fd.onFrame = onFrame; frames = fd
@@ -208,44 +235,5 @@ final class Narrator: NSObject, AVSpeechSynthesizerDelegate {
 
     nonisolated func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
         Task { @MainActor in self.isSpeaking = false }
-    }
-}
-
-// MARK: - Next-morning recall
-
-/// Schedules one quiet recall question for the next morning. Uses provisional authorisation,
-/// so nobody is interrupted by a permission prompt; it lands silently in Notification Center.
-/// The right/wrong replies are written now, in the person's language, so the answer can be
-/// confirmed from the notification without opening the app.
-enum RecallScheduler {
-    static let category = "RECALL"
-
-    static func schedule(for place: Place, story: Story, strings: UIStrings,
-                         at hour: Int = UserDefaults.standard.integer(forKey: Settings.recallHour),
-                         minute: Int = UserDefaults.standard.integer(forKey: Settings.recallMinute)) {
-        let payload = RecallPayload(title: strings("widget.title"), prompt: story.recallPrompt, choices: story.recallChoices, placeName: place.name)
-        SharedStore.saveRecall(payload)
-        WidgetCenter.shared.reloadAllTimelines()
-        guard UserDefaults.standard.bool(forKey: Settings.recall) else { return }
-        let center = UNUserNotificationCenter.current()
-        let actions = story.recallChoices.enumerated().map { i, title in
-            UNNotificationAction(identifier: "answer.\(i)", title: title, options: [])
-        }
-        let categoryID = category, prompt = story.recallPrompt, placeID = place.id, correct = story.correctIndex
-        let right = strings("recall.right", story.recallChoices[correct]), wrong = strings("recall.wrong", story.answerTitle)
-        center.setNotificationCategories([UNNotificationCategory(identifier: categoryID, actions: actions, intentIdentifiers: [])])
-        center.requestAuthorization(options: [.alert, .sound, .provisional]) { granted, _ in
-            guard granted else { return }
-            let content = UNMutableNotificationContent()
-            content.title = "CheStoria"
-            content.body = prompt
-            content.categoryIdentifier = categoryID
-            content.userInfo = ["place": placeID, "correct": correct, "rightText": right, "wrongText": wrong]
-            var when = Calendar.current.dateComponents([.year, .month, .day], from: .now.addingTimeInterval(86_400))
-            when.hour = hour; when.minute = minute
-            let request = UNNotificationRequest(identifier: "recall.\(placeID)", content: content,
-                                                trigger: UNCalendarNotificationTrigger(dateMatching: when, repeats: false))
-            center.add(request)
-        }
     }
 }

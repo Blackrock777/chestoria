@@ -399,7 +399,7 @@
       ],
       "thenNow": {
         "then": "plebiscitoCarPark",
-        "thenCaption": "When it was a car park",
+        "thenCaption": "1971 · Archive photo",
         "now": "plebiscito",
         "nowCaption": "Today"
       },
@@ -425,10 +425,10 @@
           "collection": "Was something else",
           "image": "plebiscitoCarPark",
           "crop": {
-            "x": 0.05,
-            "y": 0.45,
-            "w": 0.6,
-            "h": 0.5
+            "x": 0.53,
+            "y": 0.43,
+            "w": 0.43,
+            "h": 0.38
           },
           "back": "Piazza del Plebiscito was a car park until 1993."
         },
@@ -701,7 +701,8 @@
       "showsMapLabel": true,
       "referenceImages": [
         "santaChiara",
-        "santaChiara2"
+        "santaChiara2",
+        "comparison-santa-chiara-now"
       ],
       "aiDescriptions": [
         "a tall plain Gothic church façade of pale stone with a rose window and a square bell tower",
@@ -1210,7 +1211,8 @@
       "showsMapLabel": true,
       "referenceImages": [
         "galleriaUmberto",
-        "galleriaUmberto2"
+        "galleriaUmberto2",
+        "galleriaUmbertoMosaic"
       ],
       "aiDescriptions": [
         "a grand shopping arcade with an iron and glass dome and a patterned marble floor",

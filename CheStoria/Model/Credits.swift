@@ -9,10 +9,12 @@ nonisolated struct Credits: Codable, Sendable {
         let licence: String
         let url: URL?
         let licenceURL: URL?
-        /// "Gary Todd · CC0"; "Unknown author" and "see file page" read as plain licence lines.
+        var creator: String? {
+            ["unknown author", "see file page"].contains(author.lowercased()) ? nil : author
+        }
+
         var line: String {
-            let known = !["unknown author", "see file page"].contains(author.lowercased())
-            return known ? "\(author) · \(licence)" : licence
+            creator.map { "\($0) · \(licence)" } ?? licence
         }
     }
     nonisolated struct Notice: Codable, Hashable, Sendable { let title: String; let text: String; let url: URL? }

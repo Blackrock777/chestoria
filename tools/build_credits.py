@@ -18,7 +18,7 @@ LICENCES = {
     "CC BY-SA 4.0": "https://creativecommons.org/licenses/by-sa/4.0/",
 }
 ROW = re.compile(r"^\|\s*`([^`]+)`\s*\|\s*(.+?)\s*\|\s*(.+?)\s*\|\s*(.+?)\s*\|\s*$")
-LINK = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
+LINK = re.compile(r"\[([^\]]+)\]\((.+)\)")
 
 
 def main(src="CREDITS.md", out="CheStoria/Resources/Content/credits.json"):
@@ -28,24 +28,26 @@ def main(src="CREDITS.md", out="CheStoria/Resources/Content/credits.json"):
         if not m:
             continue
         asset, subject, author, licence = m.groups()
-        link = LINK.search(subject)
+        link = LINK.fullmatch(subject)
         title = link.group(1) if link else subject.strip("*")
         url = link.group(2) if link else None
-        lic_link = LINK.search(licence)
+        lic_link = LINK.fullmatch(licence)
         licence = lic_link.group(1) if lic_link else licence
         entry = {"asset": asset, "title": re.sub(r"\*", "", title), "author": author, "licence": licence}
         if url:
             entry["url"] = url
-        if licence in LICENCES:
+        if lic_link:
+            entry["licenceURL"] = lic_link.group(2)
+        elif licence in LICENCES:
             entry["licenceURL"] = LICENCES[licence]
         photos.append(entry)
     data = {
         "photos": photos,
         "notices": [
-            {"title": "Wikimedia Commons", "text": "Photos are from Wikimedia Commons. CC BY-SA photos are resized and cropped and shared under the same licence."},
+            {"title": "Wikimedia Commons", "text": "Photo credits identify the source, creator and licence when documented. Photos are resized for display, and some are cropped or shown as details. Licensed images retain the terms stated in their credits."},
             {"title": "Map data", "text": "Maps by Apple. Place coordinates from Wikidata (CC0). Entrance points © OpenStreetMap contributors, ODbL.",
              "url": "https://www.openstreetmap.org/copyright"},
-            {"title": "SigLIP", "text": "On-device image recognition uses SigLIP by Google (google/siglip-base-patch16-224), Apache License 2.0.",
+            {"title": "SigLIP", "text": "On-device image recognition uses Google's SigLIP image encoder, converted to Core ML and compressed. The Apache 2.0 licence and model notice are bundled with the app.",
              "url": "https://www.apache.org/licenses/LICENSE-2.0"},
         ],
     }

@@ -7,27 +7,23 @@ struct SitePicker: View {
 
     var body: some View {
         let t = model.strings
-        NavigationStack {
-            List(model.catalog.sites) { site in
-                Button {
-                    Haptics.tap(); withAnimation { model.switchSite(to: site.id) }; dismiss()
-                } label: {
-                    HStack(spacing: 14) {
-                        CoverImage(site.welcome.image, anchor: site.welcome.imageAnchor).frame(width: 56, height: 56).clipShape(.rect(cornerRadius: 14))
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text(site.city).font(Typeface.display(19)).foregroundStyle(Palette.piperno)
-                            Text(site.name).font(.system(size: 13)).foregroundStyle(Palette.stone)
-                        }
-                        Spacer()
-                        if site.id == model.site.id { Image(systemName: "checkmark").fontWeight(.semibold).foregroundStyle(Palette.azzurro) }
+        List(model.catalog.sites) { site in
+            Button {
+                Haptics.tap(); withAnimation { model.switchSite(to: site.id) }; dismiss()
+            } label: {
+                HStack(spacing: 14) {
+                    CoverImage(site.welcome.image, anchor: site.welcome.imageAnchor).frame(width: 56, height: 56).clipShape(.rect(cornerRadius: 14))
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(site.city).font(Typeface.display(19)).foregroundStyle(Palette.piperno)
+                        Text(site.name).font(.system(size: 13)).foregroundStyle(Palette.stone)
                     }
+                    Spacer()
+                    if site.id == model.site.id { Image(systemName: "checkmark").fontWeight(.semibold).foregroundStyle(Palette.azzurro) }
                 }
             }
-            .navigationTitle(t("site.title"))
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar { ToolbarItem(placement: .confirmationAction) { Button(t("common.done")) { dismiss() } } }
         }
-        .presentationDetents([.medium])
+        .navigationTitle(t("site.title"))
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

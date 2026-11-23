@@ -34,14 +34,12 @@ struct CheStoriaApp: App {
                 .environment(account)
                 .onChange(of: watchContext, initial: true) { _, context in watch.publish(context) }
                 .task {
-                    NotificationCoordinator.shared.activate()
-                    SharedStore.saveWidgetEmptyText(model.strings("widget.empty"))
-                    NotificationCoordinator.shared.onAnswer = { [model] correct in model.recordRecall(correct: correct) }
+                    RetiredRecall.clearNotifications()
                     // New content from the server is validated, cached and used on the next launch.
                     if let url = ContentStore.remoteBaseURL { try? await ContentStore.refresh(from: url) }
                 }
                 .onOpenURL { url in
-                    // chestoria://snap, chestoria://trip, chestoria://stickers (widget and Live Activity)
+                    // Routes opened by the Live Activity or other app links.
                     model.completeOnboarding()
                     switch url.host() {
                     case "trip": model.selectedTab = .trip
@@ -53,32 +51,23 @@ struct CheStoriaApp: App {
     }
 
     private var watchContext: WatchTripContext {
-        WatchTripContext(language: model.language, visited: account.isSignedIn ? model.visitedBySite : [:],
+        WatchTripContext(language: model.language, visited: model.visitedBySite,
                          hapticsEnabled: hapticsEnabled)
     }
 }
 
 struct RootView: View {
     @Environment(AppModel.self) private var model
-    @Environment(AccountModel.self) private var account
-
-    /// The app needs an account: signing out returns to the welcome screen.
-    private var ready: Bool {
-        #if DEBUG
-        if DebugLaunch.skipsAccount { return model.hasOnboarded }
-        #endif
-        return model.hasOnboarded && account.isSignedIn
-    }
 
     var body: some View {
         @Bindable var model = model
         Group {
-            if ready { MainTabs().transition(.opacity) } else { WelcomeView().transition(.opacity) }
+            if model.hasOnboarded { MainTabs().transition(.opacity) } else { WelcomeView().transition(.opacity) }
         }
-        .animation(.easeInOut(duration: 0.4), value: ready)
+        .animation(.easeInOut(duration: 0.4), value: model.hasOnboarded)
         .fullScreenCover(item: $model.activeFlow) { request in StoryFlowView(request: request) }
         .sheet(isPresented: $model.showProfile) { ProfileView() }
-        .sheet(isPresented: $model.showLanguagePicker) { LanguagePicker() }
+        .sheet(isPresented: $model.showLanguagePicker) { NavigationStack { LanguagePicker() } }
     }
 }
 
@@ -109,11 +98,6 @@ enum DebugLaunch {
     }
     static var screen: String? { value("-screen") }
     static var autoSolve: Bool { ProcessInfo.processInfo.arguments.contains("-autosolve") }
-    /// Screenshot and capture runs open straight into the app without signing in.
-    static var skipsAccount: Bool {
-        (screen != nil && screen != "welcome") || value("-capture") != nil || value("-capturePath") != nil
-            || ProcessInfo.processInfo.arguments.contains("-skipAccount")
-    }
 
     static func apply(to model: AppModel) {
         let args = ProcessInfo.processInfo.arguments
@@ -127,7 +111,10 @@ enum DebugLaunch {
         if let asset = value("-capture"), let photo = UIImage(named: asset), let fallback = model.site.featured {
             model.completeOnboarding(); model.startStory(at: fallback, photo: photo); return
         }
-        guard let s = screen else { return }
+        guard let s = screen else {
+            if args.contains("-skipAccount") { model.completeOnboarding() }
+            return
+        }
         if s != "welcome" { model.completeOnboarding() } else { model.resetOnboarding() }
         switch s {
         case "trip": model.selectedTab = .trip

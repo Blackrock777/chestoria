@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// Your sticker book. Flip a card to see the line to retell tonight (retelling is retrieval practice).
+/// Your sticker book. Flip a card to see a short fact about the place.
 struct StickersView: View {
     @Environment(AppModel.self) private var model
     @State private var filter: String?
@@ -31,7 +31,7 @@ struct StickersView: View {
                     ForEach(Array(shown.enumerated()), id: \.element.sticker.id) { i, item in
                         FlipCard(sticker: item.sticker, photo: model.stickerPhoto(item.sticker), place: model.site.place(id: item.record.placeID)?.name ?? "",
                                  date: item.record.date, isNew: model.isNew(item.sticker), flipped: flipped.contains(item.sticker.id),
-                                 newLabel: t("stickers.new"), backTitle: t("reveal.tellTonight"))
+                                 newLabel: t("stickers.new"), backTitle: t("stickers.fact"))
                             .onTapGesture {
                                 Haptics.tap()
                                 withAnimation(Motion.glide) { flipped.formSymmetricDifference([item.sticker.id]) }

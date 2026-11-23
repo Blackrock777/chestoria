@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		011E9028EF9EA38ACD107155 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F98FC84C90B10453EAB12EA0 /* PrivacyInfo.xcprivacy */; };
 		05355BEFE6FC680186FEFB3A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E96D1127EDBA09283F7AF743 /* Assets.xcassets */; };
 		07861CD13D4CCEA6C47D037C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9BC09F8FB3BE8110FCEB7ED /* Assets.xcassets */; };
+		0C0E751C4C760C1B5D4C2C54 /* NOTICE.md in Resources */ = {isa = PBXBuildFile; fileRef = 8CBC2D773FA2F821A9EA2DCE /* NOTICE.md */; };
 		0F86EBA4BBA5BFC60981D58D /* SitePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612E7904E9939210D022A6F0 /* SitePicker.swift */; };
 		106B6026CD7F5C91EEC2F5CE /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC29E3C3B9A2B7EF33683A2 /* Content.swift */; };
 		11B17A5DE5C5F5D1410449BA /* PostcardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B3FC71F6CF6DA0AF3C1202 /* PostcardView.swift */; };
@@ -22,6 +24,7 @@
 		43A1931D082ABB760332948C /* SnapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C9772EF8D2986720638311 /* SnapView.swift */; };
 		47614DDE4E26FFB4D8F2A612 /* LookCloserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F290031E2376B71EDE366DDB /* LookCloserView.swift */; };
 		49002DCFC23B028A82992248 /* TripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093B24B4A2965836232F2563 /* TripView.swift */; };
+		55A22C89BF2C839B9F1DB23F /* LICENSE-SigLIP-Apache-2.0.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69F893B7B6883449F2146DF5 /* LICENSE-SigLIP-Apache-2.0.txt */; };
 		59177E474E735C5490D8C098 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE80A87EC9A7A032375039D /* Account.swift */; };
 		593541C1E263B7BA6129BA94 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A08DA6254C99F168A7DE60B /* Components.swift */; };
 		5FD77F48ED7FD01DB904BD91 /* SharedModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41ED3826686F4CB85A541AE2 /* SharedModels.swift */; };
@@ -29,22 +32,29 @@
 		6CEC61AE05F0FE77A61F7BD3 /* Credits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987167A1364AA93E977F61E9 /* Credits.swift */; };
 		7049825DA9EC1AECD6830E19 /* SigLIPVision.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 777EC0EC87CCB37852D5D99B /* SigLIPVision.mlpackage */; };
 		790DDD14479755DDC5D4C488 /* ProfileButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544985A7C71D1651EE6DB030 /* ProfileButton.swift */; };
+		88F727DAB0D1747AB34C4FDA /* privacy.md in Resources */ = {isa = PBXBuildFile; fileRef = B619EA1AF6500565A47E619C /* privacy.md */; };
 		9325465CED416D244F94C5C9 /* PhoneWatchSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE21F0B20A9AD54EE2D58BB /* PhoneWatchSync.swift */; };
 		9513719998FD3C839DF8EEC8 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C4DFA2681FEC827C3CE1B3 /* Services.swift */; };
 		9A71C801E7515099D62C00B7 /* CheStoriaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F58D0E362FF7B8FF337422 /* CheStoriaTests.swift */; };
 		A30A032B6938A6343CC1105A /* WatchTripContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0AFE86D8AF26FC2109A479 /* WatchTripContext.swift */; };
 		A84AA1A9DE85B1D87007C352 /* Credits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987167A1364AA93E977F61E9 /* Credits.swift */; };
 		A92A6D138F7CA26A69B294E0 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C245DC0D36140CC4DB9E5A2D /* WelcomeView.swift */; };
+		B166D3D5278794DC0E955362 /* PrivacyPolicySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2DE18936BC6F59CAE33F083 /* PrivacyPolicySheet.swift */; };
+		B54874422636D26BF18A71F4 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 21D7B517169D02A583C86799 /* PrivacyInfo.xcprivacy */; };
 		BB2E1862EE45A718AAB0D7C2 /* Recognition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D2EBDCC1DE818A621904F4 /* Recognition.swift */; };
 		BC50FBDBB6D936899851743B /* StickersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D15AE7E42AF56E1FFFB3111 /* StickersView.swift */; };
 		C1A6ED68903BA42D049AF362 /* Engagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C40318834956275A9B7206 /* Engagement.swift */; };
 		C57ED7863ECE5B1BA64B81BE /* CheStoriaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E107198779C209FB5180544 /* CheStoriaApp.swift */; };
+		D2EB727062E959A3B7A772E3 /* PrivacyPolicyContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29102227236178E057B1A16 /* PrivacyPolicyContent.swift */; };
 		DA7ADDBEBD1DBC3C7C447F7C /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36255DD9ADE78F22D00621 /* AppModel.swift */; };
 		DCC09E3264E34BD6DAAC3BC0 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA92CFE624C8FD5286299560 /* ProfileView.swift */; };
 		E416980E3184F32D74509824 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1591EED2A2DCB5533A0AE29F /* Theme.swift */; };
 		E689B0B67A1FA5609D228416 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC29E3C3B9A2B7EF33683A2 /* Content.swift */; };
+		E727453A2E09A4B7AB7E792B /* PrivacyPolicyContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29102227236178E057B1A16 /* PrivacyPolicyContent.swift */; };
 		E803A8E85E6E4FE1AF0D3D5D /* WatchVisit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72679359CD44A3A7774869F7 /* WatchVisit.swift */; };
-		EED1818222DD0976BD195D5A /* CheStoriaWatch.app in Embed Dependencies */ = {isa = PBXBuildFile; fileRef = FE94FAEE018749B4FE48092A /* CheStoriaWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E97142EDA182352FD23F5D1F /* privacy.md in Resources */ = {isa = PBXBuildFile; fileRef = B619EA1AF6500565A47E619C /* privacy.md */; };
+		EBE7F0A058CDDC8CD44D60D9 /* CheStoriaWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = FE94FAEE018749B4FE48092A /* CheStoriaWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		ED3FAB4B418443BAD3EF1C89 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = E656C39F373B6442E7F031CE /* PrivacyInfo.xcprivacy */; };
 		F308D746CDCCE25560879370 /* Fixtures in Resources */ = {isa = PBXBuildFile; fileRef = 0EDC56C4FB5C027E9EE7851C /* Fixtures */; };
 		F46B722C4C8C74845125C431 /* StoryFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA71FD65579D156967C7396F /* StoryFlowView.swift */; };
 		F88F01CC026F2CD4C4077B6A /* CheStoriaWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943A39A3C544D1713E469111 /* CheStoriaWatchApp.swift */; };
@@ -76,15 +86,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		8F44D01D1DB833694A1A5334 /* Embed Dependencies */ = {
+		765D47998A38B07190D628E8 /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
 			files = (
-				EED1818222DD0976BD195D5A /* CheStoriaWatch.app in Embed Dependencies */,
+				EBE7F0A058CDDC8CD44D60D9 /* CheStoriaWatch.app in Embed Watch Content */,
 			);
-			name = "Embed Dependencies";
+			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CD5C41DA1C22319EDA016CD5 /* Embed Foundation Extensions */ = {
@@ -106,6 +116,7 @@
 		0E107198779C209FB5180544 /* CheStoriaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheStoriaApp.swift; sourceTree = "<group>"; };
 		0EDC56C4FB5C027E9EE7851C /* Fixtures */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fixtures; path = CheStoriaTests/Fixtures; sourceTree = SOURCE_ROOT; };
 		1591EED2A2DCB5533A0AE29F /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		21D7B517169D02A583C86799 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		291AF653B9985526F7E628A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2A08DA6254C99F168A7DE60B /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
 		2C177852516C3EE880A87FC4 /* CheStoriaWidgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = CheStoriaWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,20 +129,25 @@
 		5F883CBDBE08297A645EBEE7 /* PlaceSheets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceSheets.swift; sourceTree = "<group>"; };
 		612E7904E9939210D022A6F0 /* SitePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SitePicker.swift; sourceTree = "<group>"; };
 		6653475E0ED06AE136C4714B /* CheStoriaTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = CheStoriaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		69F893B7B6883449F2146DF5 /* LICENSE-SigLIP-Apache-2.0.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "LICENSE-SigLIP-Apache-2.0.txt"; sourceTree = "<group>"; };
 		72679359CD44A3A7774869F7 /* WatchVisit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchVisit.swift; sourceTree = "<group>"; };
 		75DF7F2C02ED4759E91D42B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		777EC0EC87CCB37852D5D99B /* SigLIPVision.mlpackage */ = {isa = PBXFileReference; path = SigLIPVision.mlpackage; sourceTree = "<group>"; };
 		79B3FC71F6CF6DA0AF3C1202 /* PostcardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostcardView.swift; sourceTree = "<group>"; };
 		7CC29E3C3B9A2B7EF33683A2 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		81D2EBDCC1DE818A621904F4 /* Recognition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recognition.swift; sourceTree = "<group>"; };
+		8CBC2D773FA2F821A9EA2DCE /* NOTICE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = NOTICE.md; sourceTree = "<group>"; };
 		8FE21F0B20A9AD54EE2D58BB /* PhoneWatchSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneWatchSync.swift; sourceTree = "<group>"; };
 		943A39A3C544D1713E469111 /* CheStoriaWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheStoriaWatchApp.swift; sourceTree = "<group>"; };
 		987167A1364AA93E977F61E9 /* Credits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credits.swift; sourceTree = "<group>"; };
 		A6641F74A7C4BD29595028CA /* Content */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Content; path = CheStoria/Resources/Content; sourceTree = SOURCE_ROOT; };
 		B0F58D0E362FF7B8FF337422 /* CheStoriaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheStoriaTests.swift; sourceTree = "<group>"; };
+		B2DE18936BC6F59CAE33F083 /* PrivacyPolicySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicySheet.swift; sourceTree = "<group>"; };
 		B3C40318834956275A9B7206 /* Engagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Engagement.swift; sourceTree = "<group>"; };
+		B619EA1AF6500565A47E619C /* privacy.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = privacy.md; sourceTree = "<group>"; };
 		BA71FD65579D156967C7396F /* StoryFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryFlowView.swift; sourceTree = "<group>"; };
 		C245DC0D36140CC4DB9E5A2D /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		C29102227236178E057B1A16 /* PrivacyPolicyContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyContent.swift; sourceTree = "<group>"; };
 		D229E9DA883BEE777DF1BA5D /* CheStoria.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = CheStoria.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7C9772EF8D2986720638311 /* SnapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapView.swift; sourceTree = "<group>"; };
 		D9D2323BE0DAD192FDD78068 /* CheStoria.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CheStoria.entitlements; sourceTree = "<group>"; };
@@ -140,10 +156,12 @@
 		DDDBB0412B82E344C6AE701D /* StoryInfoSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryInfoSheet.swift; sourceTree = "<group>"; };
 		DF0AFE86D8AF26FC2109A479 /* WatchTripContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchTripContext.swift; sourceTree = "<group>"; };
 		E406847AC6DDADD1729681D3 /* CheStoriaWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CheStoriaWidgets.entitlements; sourceTree = "<group>"; };
+		E656C39F373B6442E7F031CE /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		E7C4DFA2681FEC827C3CE1B3 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		E96D1127EDBA09283F7AF743 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EE36255DD9ADE78F22D00621 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		F290031E2376B71EDE366DDB /* LookCloserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookCloserView.swift; sourceTree = "<group>"; };
+		F98FC84C90B10453EAB12EA0 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		F9BC09F8FB3BE8110FCEB7ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FE94FAEE018749B4FE48092A /* CheStoriaWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CheStoriaWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -198,6 +216,7 @@
 				E96D1127EDBA09283F7AF743 /* Assets.xcassets */,
 				943A39A3C544D1713E469111 /* CheStoriaWatchApp.swift */,
 				291AF653B9985526F7E628A2 /* Info.plist */,
+				F98FC84C90B10453EAB12EA0 /* PrivacyInfo.xcprivacy */,
 				72679359CD44A3A7774869F7 /* WatchVisit.swift */,
 			);
 			path = CheStoriaWatch;
@@ -206,6 +225,7 @@
 		28F4ACFDA9221EAD8EC4BC5E /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				C29102227236178E057B1A16 /* PrivacyPolicyContent.swift */,
 				41ED3826686F4CB85A541AE2 /* SharedModels.swift */,
 				DF0AFE86D8AF26FC2109A479 /* WatchTripContext.swift */,
 			);
@@ -219,6 +239,7 @@
 				F4675D80EC1006955F08040E /* CheStoriaTests */,
 				2441BE883CCBF623B1EAA5AB /* CheStoriaWatch */,
 				E60CD8073AB91437F0261FBD /* CheStoriaWidgets */,
+				90D570377CE340FEFF040924 /* docs */,
 				28F4ACFDA9221EAD8EC4BC5E /* Shared */,
 				C350F13885202E3A7851DCBF /* Products */,
 			);
@@ -227,6 +248,8 @@
 		572F3D5371351A03BF4C4DCB /* ML */ = {
 			isa = PBXGroup;
 			children = (
+				69F893B7B6883449F2146DF5 /* LICENSE-SigLIP-Apache-2.0.txt */,
+				8CBC2D773FA2F821A9EA2DCE /* NOTICE.md */,
 				777EC0EC87CCB37852D5D99B /* SigLIPVision.mlpackage */,
 			);
 			path = ML;
@@ -245,6 +268,14 @@
 			path = Features;
 			sourceTree = "<group>";
 		};
+		90D570377CE340FEFF040924 /* docs */ = {
+			isa = PBXGroup;
+			children = (
+				B619EA1AF6500565A47E619C /* privacy.md */,
+			);
+			path = docs;
+			sourceTree = "<group>";
+		};
 		963BF68BCACE6C05A633ABE8 /* Stickers */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,6 +290,7 @@
 			children = (
 				D9D2323BE0DAD192FDD78068 /* CheStoria.entitlements */,
 				DB900E6D4D172488B2CA59BA /* Info.plist */,
+				E656C39F373B6442E7F031CE /* PrivacyInfo.xcprivacy */,
 				10699184F96ED98FBBD00639 /* App */,
 				BF095F4FE05AD1077EB0C7C1 /* Components */,
 				20EF6F54F9943FEC9D160F08 /* Design */,
@@ -323,6 +355,7 @@
 		E5E00021B86E4CF4BA8F4820 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				B2DE18936BC6F59CAE33F083 /* PrivacyPolicySheet.swift */,
 				544985A7C71D1651EE6DB030 /* ProfileButton.swift */,
 				DA92CFE624C8FD5286299560 /* ProfileView.swift */,
 				612E7904E9939210D022A6F0 /* SitePicker.swift */,
@@ -336,6 +369,7 @@
 				E406847AC6DDADD1729681D3 /* CheStoriaWidgets.entitlements */,
 				2DEEF3A94E33585FBCA1396D /* CheStoriaWidgets.swift */,
 				75DF7F2C02ED4759E91D42B6 /* Info.plist */,
+				21D7B517169D02A583C86799 /* PrivacyInfo.xcprivacy */,
 			);
 			path = CheStoriaWidgets;
 			sourceTree = "<group>";
@@ -387,6 +421,7 @@
 			buildConfigurationList = EF25D227D5EE747D1259DB65 /* Build configuration list for PBXNativeTarget "CheStoriaWidgets" */;
 			buildPhases = (
 				64756FA0192D9976638AF4CF /* Sources */,
+				EAA98ACEAEF988CDB9CCA9B2 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -406,7 +441,7 @@
 				FB722BA674DE62B2D4E0B576 /* Sources */,
 				855205C112FC2063E63773AF /* Resources */,
 				CD5C41DA1C22319EDA016CD5 /* Embed Foundation Extensions */,
-				8F44D01D1DB833694A1A5334 /* Embed Dependencies */,
+				765D47998A38B07190D628E8 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
@@ -504,6 +539,10 @@
 			files = (
 				07861CD13D4CCEA6C47D037C /* Assets.xcassets in Resources */,
 				F8B22F33E63891D49F5FB464 /* Content in Resources */,
+				55A22C89BF2C839B9F1DB23F /* LICENSE-SigLIP-Apache-2.0.txt in Resources */,
+				0C0E751C4C760C1B5D4C2C54 /* NOTICE.md in Resources */,
+				ED3FAB4B418443BAD3EF1C89 /* PrivacyInfo.xcprivacy in Resources */,
+				E97142EDA182352FD23F5D1F /* privacy.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,6 +551,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				05355BEFE6FC680186FEFB3A /* Assets.xcassets in Resources */,
+				011E9028EF9EA38ACD107155 /* PrivacyInfo.xcprivacy in Resources */,
+				88F727DAB0D1747AB34C4FDA /* privacy.md in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EAA98ACEAEF988CDB9CCA9B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B54874422636D26BF18A71F4 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,6 +605,7 @@
 				F88F01CC026F2CD4C4077B6A /* CheStoriaWatchApp.swift in Sources */,
 				106B6026CD7F5C91EEC2F5CE /* Content.swift in Sources */,
 				6CEC61AE05F0FE77A61F7BD3 /* Credits.swift in Sources */,
+				D2EB727062E959A3B7A772E3 /* PrivacyPolicyContent.swift in Sources */,
 				A30A032B6938A6343CC1105A /* WatchTripContext.swift in Sources */,
 				E803A8E85E6E4FE1AF0D3D5D /* WatchVisit.swift in Sources */,
 			);
@@ -585,6 +635,8 @@
 				9325465CED416D244F94C5C9 /* PhoneWatchSync.swift in Sources */,
 				1332A04AE2EE4982A5F62825 /* PlaceSheets.swift in Sources */,
 				11B17A5DE5C5F5D1410449BA /* PostcardView.swift in Sources */,
+				E727453A2E09A4B7AB7E792B /* PrivacyPolicyContent.swift in Sources */,
+				B166D3D5278794DC0E955362 /* PrivacyPolicySheet.swift in Sources */,
 				790DDD14479755DDC5D4C488 /* ProfileButton.swift in Sources */,
 				DCC09E3264E34BD6DAAC3BC0 /* ProfileView.swift in Sources */,
 				BB2E1862EE45A718AAB0D7C2 /* Recognition.swift in Sources */,

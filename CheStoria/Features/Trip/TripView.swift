@@ -256,12 +256,10 @@ private struct TripPin: View {
     }
 }
 
-// MARK: - Site sheet: tickets and Then & Now
+// MARK: - Site tickets
 
 struct SiteSheet: View {
     @Environment(AppModel.self) private var model
-    @State private var thenNowPlace: Place?
-    @State private var showPendingComparisons = false
 
     var body: some View {
         let site = model.site, t = model.strings
@@ -278,50 +276,10 @@ struct SiteSheet: View {
                 }
                 Link(destination: site.tickets.bookingURL) { Text(t("site.book")).frame(maxWidth: .infinity) }
                     .buttonStyle(CTAButtonStyle(kind: .dark)).padding(.top, 8)
-                Text(t("thenNow.title")).font(.system(size: 12, weight: .bold)).textCase(.uppercase).kerning(1).foregroundStyle(Palette.stone).padding(.top, 4)
-                let compared = site.places.filter { $0.thenNow != nil }
-                let pending = site.places.filter { $0.thenNow == nil }
-                ForEach(compared) { comparisonRow($0, strings: t) }
-                if !pending.isEmpty {
-                    DisclosureGroup(t("thenNow.pendingList", "\(pending.count)"), isExpanded: $showPendingComparisons) {
-                        LazyVStack(spacing: 10) {
-                            ForEach(pending) { comparisonRow($0, strings: t) }
-                        }
-                        .padding(.top, 8)
-                    }
-                    .tint(Palette.piperno)
-                }
             }
             .padding(.horizontal, 20)
         }
         .background(Palette.calce)
-        .sheet(item: $thenNowPlace) { ThenNowSheet(place: $0) }
-    }
-
-    private func comparisonRow(_ place: Place, strings t: UIStrings) -> some View {
-        Button { thenNowPlace = place } label: {
-            HStack(spacing: 12) {
-                if let comparison = place.thenNow {
-                    HStack(spacing: 0) {
-                        CoverImage(comparison.then).frame(width: 40, height: 52)
-                        CoverImage(comparison.now).frame(width: 40, height: 52)
-                    }
-                    .clipShape(.rect(cornerRadius: 12))
-                } else {
-                    Image(systemName: "photo.on.rectangle").frame(width: 38)
-                        .foregroundStyle(Palette.stone)
-                }
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(place.name).font(.system(size: 16, weight: .semibold)).foregroundStyle(Palette.piperno)
-                    Text(place.thenNow?.thenCaption ?? t("thenNow.unavailable")).font(.system(size: 13)).foregroundStyle(Palette.stone)
-                }
-                Spacer()
-                Image(systemName: "chevron.right").foregroundStyle(Palette.stone)
-            }
-            .padding(10).frame(minHeight: 48)
-            .background(Palette.card, in: .rect(cornerRadius: 18))
-            .overlay(RoundedRectangle(cornerRadius: 18).stroke(Palette.hair, lineWidth: 1.5))
-        }
     }
 
     private func tile(_ label: String, _ value: String, _ note: String) -> some View {
@@ -334,47 +292,5 @@ struct SiteSheet: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .background(Palette.card, in: .rect(cornerRadius: 20))
         .overlay(RoundedRectangle(cornerRadius: 20).stroke(Palette.hair, lineWidth: 1.5))
-    }
-}
-
-struct ThenNowSlider: View {
-    let then: ImageRef
-    let now: ImageRef
-    let caption: String
-    let todayLabel: String
-    @Binding var split: CGFloat
-
-    var body: some View {
-        GeometryReader { geo in
-            let x = geo.size.width * split
-            ZStack(alignment: .topLeading) {
-                CoverImage(now, anchor: .init(x: 0.55, y: 0.45))
-                CoverImage(then, anchor: .init(x: 0.5, y: 0.4))
-                    .mask(alignment: .leading) { Rectangle().frame(width: x) }
-                Rectangle().fill(.white).frame(width: 3).shadow(color: .black.opacity(0.4), radius: 8).offset(x: x - 1.5)
-                Image(systemName: "chevron.left.chevron.right").font(.system(size: 14, weight: .bold)).foregroundStyle(Palette.onTufo)
-                    .frame(width: 42, height: 42).background(Circle().fill(Palette.tufo)).overlay(Circle().stroke(.white, lineWidth: 3))
-                    .shadow(color: .black.opacity(0.35), radius: 8, y: 4)
-                    .position(x: x, y: geo.size.height / 2)
-            }
-            .overlay(alignment: .bottom) {
-                HStack { Text(caption); Spacer(); Text(todayLabel) }
-                    .font(.system(size: 12, weight: .bold)).foregroundStyle(.white).shadow(color: .black.opacity(0.6), radius: 4)
-                    .padding(10)
-            }
-            .contentShape(Rectangle())
-            .gesture(DragGesture(minimumDistance: 0).onChanged { v in split = max(0.04, min(0.96, v.location.x / geo.size.width)) })
-        }
-        .clipShape(.rect(cornerRadius: 22))
-        .accessibilityElement()
-        .accessibilityLabel(Text("\(caption) · \(todayLabel)"))
-        .accessibilityValue(Text(Double(split).formatted(.percent.precision(.fractionLength(0)))))
-        .accessibilityAdjustableAction { direction in
-            switch direction {
-            case .increment: split = min(0.96, split + 0.1)
-            case .decrement: split = max(0.04, split - 0.1)
-            @unknown default: break
-            }
-        }
     }
 }
