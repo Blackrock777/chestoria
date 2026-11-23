@@ -92,32 +92,46 @@ struct CheStoriaWatchApp: App {
                     } else if results.isEmpty {
                         Text(t("watch.noSecrets")).font(.footnote).foregroundStyle(.secondary)
                     } else {
-                        if results.count > 1 { Text(t("watch.choose")).font(.footnote).foregroundStyle(.secondary) }
+                        if results.count > 1 {
+                            Text(t("watch.choose")).font(.caption2).foregroundStyle(.secondary)
+                                .listRowBackground(Color.clear)
+                        }
                         ForEach(results) { secret in
+                            let meters = secret.meters.formatted(.number.locale(Locale(identifier: catalog.language)))
                             NavigationLink(value: Route.clue(secret.siteID, secret.place.id)) {
-                                VStack(alignment: .leading, spacing: 3) {
-                                    Text(secret.place.name).font(.headline)
-                                    Text(t("watch.distance", secret.meters.formatted(.number.locale(Locale(identifier: catalog.language)))))
-                                        .font(.footnote).foregroundStyle(.secondary)
+                                VStack(alignment: .leading, spacing: 2) {
+                                    HStack(spacing: 4) {
+                                        Text(secret.place.name).font(.subheadline.weight(.semibold)).lineLimit(1)
+                                            .minimumScaleFactor(0.75)
+                                        Spacer(minLength: 0)
+                                        Text("≈\(meters) m").font(.caption2).foregroundStyle(.secondary).fixedSize()
+                                            .accessibilityLabel(Text(t("watch.distance", meters)))
+                                    }
                                     if let clue = secret.place.clues.first {
-                                        Text(clue).font(.caption2).foregroundStyle(.secondary)
+                                        Text(clue).font(.caption2).foregroundStyle(.secondary).lineLimit(1)
                                     }
                                 }
                             }
+                            .listRowInsets(.init(top: 4, leading: 10, bottom: 4, trailing: 10))
                         }
                     }
                 }
             }
+            .environment(\.defaultMinListRowHeight, 30)
         }
         .navigationTitle(t("watch.nearby"))
         .safeAreaInset(edge: .bottom, spacing: 0) {
             if walk.walking {
-                Button(t("watch.endWalk"), systemImage: "stop.fill") { walk.stop() }
-                    .buttonStyle(.bordered)
-                    .controlSize(.small)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 2)
-                    .background(.background)
+                Button { walk.stop() } label: {
+                    Label(t("watch.endWalk"), systemImage: "stop.fill")
+                        .font(.footnote.weight(.semibold))
+                        .frame(minHeight: 32).padding(.horizontal, 13)
+                        .background(.quaternary, in: .capsule)
+                }
+                .buttonStyle(.plain)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 2)
+                .background(.background)
             }
         }
     }
