@@ -96,7 +96,7 @@ struct WelcomeView: View {
             .opacity(shown ? 1 : 0)
         }
         .preferredColorScheme(.dark)
-        .sheet(isPresented: $showAccount) { AccountSheet() }
+        .sheet(isPresented: $showAccount) { AccountSheet(mode: model.hasOnboarded ? .signIn : .create) }
         .onChange(of: account.isSignedIn) { _, signedIn in
             if signedIn { showAccount = false; model.completeOnboarding() }
         }
@@ -111,15 +111,16 @@ struct WelcomeView: View {
 private struct AccountSheet: View {
     @Environment(AppModel.self) private var model
     @Environment(\.dismiss) private var dismiss
+    @State var mode: SignInView.Mode
     var body: some View {
         let t = model.strings
         NavigationStack {
             VStack(alignment: .leading, spacing: 0) {
                 Text(t("welcome.accountNote")).font(.subheadline).foregroundStyle(.secondary).padding(.horizontal, 20)
-                SignInView(showsGuestHeader: false)
+                SignInView(mode: $mode, showsGuestHeader: false)
             }
             .background(Palette.calce)
-            .navigationTitle(t("welcome.accountTitle"))
+            .navigationTitle(t(mode == .create ? "welcome.accountTitle" : "profile.signIn"))
             .toolbar { ToolbarItem(placement: .cancellationAction) { Button(t("common.cancel")) { dismiss() } } }
         }
         .presentationDetents([.large])

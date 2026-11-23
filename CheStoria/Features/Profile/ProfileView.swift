@@ -5,11 +5,12 @@ struct ProfileView: View {
     @Environment(AppModel.self) private var model
     @Environment(AccountModel.self) private var account
     @Environment(\.dismiss) private var dismiss
+    @State private var mode = SignInView.Mode.signIn
 
     var body: some View {
         NavigationStack {
             Group {
-                if account.isSignedIn { SignedInView() } else { SignInView() }
+                if account.isSignedIn { SignedInView() } else { SignInView(mode: $mode) }
             }
             .navigationTitle(model.strings("profile.title"))
             .navigationBarTitleDisplayMode(.inline)
@@ -27,9 +28,9 @@ struct SignInView: View {
     @Environment(AppModel.self) private var model
     @Environment(AccountModel.self) private var account
     @Environment(\.colorScheme) private var scheme
+    @Binding var mode: Mode
     /// In onboarding the screen has its own title, so the "Guest" header is hidden.
     var showsGuestHeader = true
-    @State private var mode: Mode = .create
     @State private var name = ""
     @State private var email = ""
     @State private var password = ""
@@ -60,6 +61,7 @@ struct SignInView: View {
                 }
                 .signInWithAppleButtonStyle(scheme == .dark ? .white : .black)
                 .frame(height: 54).clipShape(.capsule)
+                .id(mode)
 
                 HStack { line; Text(t("profile.or")).font(.system(size: 13)).foregroundStyle(Palette.stone); line }
 
@@ -84,17 +86,17 @@ struct SignInView: View {
                         .modifier(FieldStyle(focused: focus == .password))
                     if mode == .create {
                         Text(t("profile.passwordHint")).font(.system(size: 12)).foregroundStyle(Palette.stone).frame(maxWidth: .infinity, alignment: .leading)
-                    } else {
-                        Button(t("recovery.forgot")) {
-                            focus = nil
-                            account.errorMessage = nil
-                            showRecovery = true
-                        }
-                        .font(.subheadline.weight(.semibold))
-                        .tint(Palette.piperno)
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                        .disabled(account.isBusy)
                     }
+                    Button(t("recovery.forgot")) {
+                        focus = nil
+                        mode = .signIn
+                        account.errorMessage = nil
+                        showRecovery = true
+                    }
+                    .font(.subheadline.weight(.semibold))
+                    .tint(Palette.piperno)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .disabled(account.isBusy)
                 }
 
                 if let error = account.errorMessage {
@@ -442,7 +444,9 @@ private struct SignedInView: View {
 
             Section(t("profile.about")) {
                 NavigationLink(t("ack.title")) { AcknowledgementsView() }
-                Text(t("profile.version", Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "–"))
+                let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "–"
+                let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "–"
+                Text(t("profile.version", "\(version) (\(build))"))
                     .foregroundStyle(Palette.stone)
             }
         }

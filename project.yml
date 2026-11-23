@@ -10,8 +10,8 @@ settings:
     SWIFT_VERSION: "6.0"
     SWIFT_DEFAULT_ACTOR_ISOLATION: MainActor
     SWIFT_APPROACHABLE_CONCURRENCY: YES
-    MARKETING_VERSION: "0.1.0"
-    CURRENT_PROJECT_VERSION: "1"
+    MARKETING_VERSION: "0.1.1"
+    CURRENT_PROJECT_VERSION: "2"
     DEVELOPMENT_TEAM: 4HDA7QAGZ3
     CODE_SIGN_STYLE: Automatic
 targets:
@@ -43,6 +43,8 @@ targets:
       path: CheStoria/Info.plist
       properties:
         CFBundleDisplayName: CheStoria
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         UILaunchScreen:
           UIColorName: LaunchBackground
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
@@ -71,6 +73,8 @@ targets:
       path: CheStoriaWidgets/Info.plist
       properties:
         CFBundleDisplayName: CheStoria
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         NSExtension:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension
     entitlements:
@@ -99,6 +103,8 @@ targets:
       path: CheStoriaWatch/Info.plist
       properties:
         CFBundleDisplayName: CheStoria
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         CFBundleLocalizations: [en, it, fr, de, es]
         WKApplication: true
         WKCompanionAppBundleIdentifier: app.chestoria.CheStoria
