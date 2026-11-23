@@ -25,6 +25,9 @@
   "places": [
     {
       "id": "gesu-nuovo",
+      "thenNow": {
+        "thenCaption": "1880–1905 · fotografia"
+      },
       "name": "Gesù Nuovo",
       "clues": [
         "Facciata a punta",
@@ -145,6 +148,9 @@
     },
     {
       "id": "castel-ovo",
+      "thenNow": {
+        "thenCaption": "1894 · xilografia"
+      },
       "name": "Castel dell’Ovo",
       "clues": [
         "Castello sul mare",
@@ -184,6 +190,9 @@
     },
     {
       "id": "santa-chiara",
+      "thenNow": {
+        "thenCaption": "Prima del 1943 · interno della chiesa"
+      },
       "name": "Santa Chiara",
       "clues": [
         "Facciata gotica",
@@ -256,6 +265,9 @@
     },
     {
       "id": "castel-nuovo",
+      "thenNow": {
+        "thenCaption": "1907 · cartolina"
+      },
       "name": "Castel Nuovo",
       "clues": [
         "Torri scure e rotonde",

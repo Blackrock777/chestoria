@@ -58,11 +58,15 @@
       },
       "thenNow": {
         "thenCaption": "1841 · gemalt von Christen Købke",
-        "nowCaption": "Heute"
+        "nowCaption": "Heute",
+        "watchHint": "Halte hinter den Säulen nach dem Vesuv Ausschau."
       }
     },
     {
       "id": "tragic-poet",
+      "thenNow": {
+        "thenCaption": "Vor 1914 · Fotografie"
+      },
       "name": "Haus des tragischen Dichters",
       "clues": [
         "Mosaikboden",
@@ -140,6 +144,9 @@
     },
     {
       "id": "amphitheatre",
+      "thenNow": {
+        "thenCaption": "Fotografie aus dem 19. Jahrhundert"
+      },
       "name": "Amphitheater",
       "clues": [
         "Ovale Arena",
@@ -174,6 +181,9 @@
     },
     {
       "id": "large-theatre",
+      "thenNow": {
+        "thenCaption": "1910 · Aquarell"
+      },
       "name": "Großes Theater",
       "clues": [
         "Gebogene Steinreihen",
@@ -208,6 +218,9 @@
     },
     {
       "id": "odeon",
+      "thenNow": {
+        "thenCaption": "Fotografie aus dem 19. Jahrhundert"
+      },
       "name": "Kleines Theater (Odeion)",
       "clues": [
         "Kleiner Sitzhalbkreis",
@@ -242,6 +255,9 @@
     },
     {
       "id": "basilica",
+      "thenNow": {
+        "thenCaption": "Fotografie aus dem 19. Jahrhundert"
+      },
       "name": "Basilika",
       "clues": [
         "Reihen von Ziegelsäulen",
@@ -378,6 +394,9 @@
     },
     {
       "id": "stabian-baths",
+      "thenNow": {
+        "thenCaption": "1889 · Aquarell"
+      },
       "name": "Stabianer Thermen",
       "clues": [
         "Übungshof",
@@ -412,6 +431,9 @@
     },
     {
       "id": "house-octavius-quartio",
+      "thenNow": {
+        "thenCaption": "Nach einem Plan von 1916–1921"
+      },
       "name": "Haus des Octavius Quartio",
       "clues": [
         "Langer Garten",
@@ -446,6 +468,9 @@
     },
     {
       "id": "house-vettii",
+      "thenNow": {
+        "thenCaption": "Historische Fotografie · Peristyl"
+      },
       "name": "Haus der Vettier",
       "clues": [
         "Bemalte Wände",
@@ -480,6 +505,9 @@
     },
     {
       "id": "house-faun",
+      "thenNow": {
+        "thenCaption": "Um 1900 · Fotografie"
+      },
       "name": "Haus des Fauns",
       "clues": [
         "Statue des tanzenden Fauns",
@@ -553,6 +581,9 @@
     },
     {
       "id": "lupanar",
+      "thenNow": {
+        "thenCaption": "Historische Fotografie"
+      },
       "name": "Lupanar",
       "clues": [
         "Kleine Kammern",
@@ -655,6 +686,9 @@
     },
     {
       "id": "bakery-popidius-priscus",
+      "thenNow": {
+        "thenCaption": "Historische Fotografie"
+      },
       "name": "Bäckerei des Popidius Priscus",
       "clues": [
         "Steine wie Sanduhren",
@@ -685,6 +719,111 @@
           "Mehl"
         ],
         "recallPrompt": "Erinnerst du dich an die Sanduhrsteine der Bäckerei? Wofür waren sie?"
+      }
+    },
+    {
+      "id": "house-of-pansa",
+      "thenNow": {
+        "thenCaption": "Fotografie aus dem 19. Jahrhundert",
+        "watchHint": "Blicke durch den Eingang in den offenen Hof."
+      }
+    },
+    {
+      "id": "house-of-sallust",
+      "thenNow": {
+        "thenCaption": "Historische Fotografie",
+        "watchHint": "Suche die breiten Öffnungen entlang der Straße."
+      }
+    },
+    {
+      "id": "house-of-meleager",
+      "thenNow": {
+        "thenCaption": "Fotografie aus dem 19. Jahrhundert",
+        "watchHint": "Blicke durch den Eingang in den Hof."
+      }
+    },
+    {
+      "id": "temple-of-jupiter",
+      "thenNow": {
+        "thenCaption": "Vor 1881 · Fotografie",
+        "watchHint": "Suche die Tempelstufen am nördlichen Ende des Forums."
+      }
+    },
+    {
+      "id": "temple-of-fortuna-augusta",
+      "thenNow": {
+        "thenCaption": "Historisches Aquarell",
+        "watchHint": "Suche die Tempelstufen und die erhaltene Ziegelmauer."
+      }
+    },
+    {
+      "id": "macellum",
+      "thenNow": {
+        "thenCaption": "Fotografie aus dem 19. Jahrhundert",
+        "watchHint": "Suche den Ring aus Steinsockeln im Hof."
+      }
+    },
+    {
+      "id": "house-of-the-ancient-hunt",
+      "thenNow": {
+        "thenCaption": "Historische Fotografie",
+        "watchHint": "Suche die gemalten Wandfelder neben einer Türöffnung."
+      }
+    },
+    {
+      "id": "temple-of-isis",
+      "thenNow": {
+        "thenCaption": "Um 1870 · Fotografie",
+        "watchHint": "Suche die Stufen, die zum Schrein hinaufführen."
+      }
+    },
+    {
+      "id": "house-of-the-small-fountain",
+      "thenNow": {
+        "thenCaption": "1828 · Grabungsplan",
+        "watchHint": "Blicke durch das Atrium zum Mosaikbrunnen."
+      }
+    },
+    {
+      "id": "villa-of-diomede",
+      "thenNow": {
+        "thenCaption": "Vor 1890 · Fotografie",
+        "watchHint": "Suche den langen Garten und die Reste seines Beckens."
+      }
+    },
+    {
+      "id": "forum-baths",
+      "thenNow": {
+        "thenCaption": "1898 · Illustration",
+        "watchHint": "Suche den Ziegelbogen über dem Eingang."
+      }
+    },
+    {
+      "id": "triangular-forum",
+      "thenNow": {
+        "thenCaption": "Bis 1895 · Fotografie",
+        "watchHint": "Suche die Säulen am Eingang zum Heiligtum."
+      }
+    },
+    {
+      "id": "quadriporticus-of-the-theatres-or-gladiators-barracks",
+      "thenNow": {
+        "thenCaption": "Stereofotografie aus dem 19. Jahrhundert",
+        "watchHint": "Suche die Säulenreihen um den offenen Hof."
+      }
+    },
+    {
+      "id": "house-of-the-prince-of-naples",
+      "thenNow": {
+        "thenCaption": "Vor 1927 · Aquarell",
+        "watchHint": "Suche den Steintisch neben dem Becken im Atrium."
+      }
+    },
+    {
+      "id": "house-of-the-sailor",
+      "thenNow": {
+        "thenCaption": "Vor 1927 · Aquarell",
+        "watchHint": "Suche die geometrischen Mosaike am Eingang."
       }
     }
   ]

@@ -113,6 +113,7 @@ nonisolated struct ThenNow: Codable, Hashable, Sendable {
     let thenCaption: String
     let now: ImageRef
     let nowCaption: String
+    let watchHint: String?
 }
 
 nonisolated struct Place: Codable, Identifiable, Hashable, Sendable {
@@ -350,6 +351,7 @@ enum ContentStore {
     }
 
     /// Cached remote content if present and valid, otherwise the bundled content.
+    #if os(iOS)
     static func load(language: String, bundle: Bundle = .main) throws -> Catalog {
         if let cached = try? loadCatalog(language: language, read: { try Data(contentsOf: cacheDirectory.appending(path: $0)) }),
            ContentValidator.problems(in: cached).isEmpty {
@@ -357,6 +359,7 @@ enum ContentStore {
         }
         return try loadBundled(language: language, bundle: bundle)
     }
+    #endif
 
     static func loadBundled(language: String = "en", bundle: Bundle = .main) throws -> Catalog {
         try loadCatalog(language: language) { name in
@@ -390,6 +393,7 @@ enum ContentStore {
 
     /// Downloads every file the catalog mentions from `baseURL`, validates them in every language,
     /// and only then replaces the cache. The new content is used on the next launch.
+    #if os(iOS)
     static func refresh(from baseURL: URL, session: URLSession = .shared) async throws {
         let (indexData, _) = try await session.data(from: baseURL.appending(path: "catalog.json"))
         let index = try JSONDecoder().decode(CatalogIndex.self, from: indexData)
@@ -424,6 +428,7 @@ enum ContentStore {
     }
 
     static func clearCache() { try? FileManager.default.removeItem(at: cacheDirectory) }
+    #endif
 }
 
 // MARK: - AI vocabulary

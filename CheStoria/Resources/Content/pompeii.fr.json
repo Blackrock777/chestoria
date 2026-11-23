@@ -58,11 +58,15 @@
       },
       "thenNow": {
         "thenCaption": "1841 · peint par Christen Købke",
-        "nowCaption": "Aujourd’hui"
+        "nowCaption": "Aujourd’hui",
+        "watchHint": "Repérez le Vésuve derrière les colonnes."
       }
     },
     {
       "id": "tragic-poet",
+      "thenNow": {
+        "thenCaption": "Avant 1914 · photographie"
+      },
       "name": "Maison du Poète tragique",
       "clues": [
         "Sol en mosaïque",
@@ -140,6 +144,9 @@
     },
     {
       "id": "amphitheatre",
+      "thenNow": {
+        "thenCaption": "Photographie du XIXᵉ siècle"
+      },
       "name": "Amphithéâtre",
       "clues": [
         "Arène ovale",
@@ -174,6 +181,9 @@
     },
     {
       "id": "large-theatre",
+      "thenNow": {
+        "thenCaption": "1910 · aquarelle"
+      },
       "name": "Grand Théâtre",
       "clues": [
         "Gradins en arc",
@@ -208,6 +218,9 @@
     },
     {
       "id": "odeon",
+      "thenNow": {
+        "thenCaption": "Photographie du XIXᵉ siècle"
+      },
       "name": "Petit Théâtre (Odéon)",
       "clues": [
         "Petit hémicycle de gradins",
@@ -242,6 +255,9 @@
     },
     {
       "id": "basilica",
+      "thenNow": {
+        "thenCaption": "Photographie du XIXᵉ siècle"
+      },
       "name": "Basilique",
       "clues": [
         "Rangées de colonnes en brique",
@@ -378,6 +394,9 @@
     },
     {
       "id": "stabian-baths",
+      "thenNow": {
+        "thenCaption": "1889 · aquarelle"
+      },
       "name": "Thermes de Stabies",
       "clues": [
         "Cour d’exercice",
@@ -412,6 +431,9 @@
     },
     {
       "id": "house-octavius-quartio",
+      "thenNow": {
+        "thenCaption": "D’après un plan de 1916–1921"
+      },
       "name": "Maison d’Octavius Quartio",
       "clues": [
         "Long jardin",
@@ -446,6 +468,9 @@
     },
     {
       "id": "house-vettii",
+      "thenNow": {
+        "thenCaption": "Photographie ancienne · péristyle"
+      },
       "name": "Maison des Vettii",
       "clues": [
         "Murs peints",
@@ -480,6 +505,9 @@
     },
     {
       "id": "house-faun",
+      "thenNow": {
+        "thenCaption": "Vers 1900 · photographie"
+      },
       "name": "Maison du Faune",
       "clues": [
         "Statue du faune dansant",
@@ -553,6 +581,9 @@
     },
     {
       "id": "lupanar",
+      "thenNow": {
+        "thenCaption": "Photographie ancienne"
+      },
       "name": "Lupanar",
       "clues": [
         "Petites pièces",
@@ -655,6 +686,9 @@
     },
     {
       "id": "bakery-popidius-priscus",
+      "thenNow": {
+        "thenCaption": "Photographie ancienne"
+      },
       "name": "Boulangerie de Popidius Priscus",
       "clues": [
         "Pierres en forme de sablier",
@@ -685,6 +719,111 @@
           "Farine"
         ],
         "recallPrompt": "Vous vous souvenez des pierres en sablier de la boulangerie ? À quoi servaient-elles ?"
+      }
+    },
+    {
+      "id": "house-of-pansa",
+      "thenNow": {
+        "thenCaption": "Photographie du XIXᵉ siècle",
+        "watchHint": "Regardez au-delà de l’entrée vers la cour ouverte."
+      }
+    },
+    {
+      "id": "house-of-sallust",
+      "thenNow": {
+        "thenCaption": "Photographie ancienne",
+        "watchHint": "Repérez les larges ouvertures le long de la rue."
+      }
+    },
+    {
+      "id": "house-of-meleager",
+      "thenNow": {
+        "thenCaption": "Photographie du XIXᵉ siècle",
+        "watchHint": "Regardez à travers l’entrée vers la cour."
+      }
+    },
+    {
+      "id": "temple-of-jupiter",
+      "thenNow": {
+        "thenCaption": "Avant 1881 · photographie",
+        "watchHint": "Repérez les marches du temple à l’extrémité nord du Forum."
+      }
+    },
+    {
+      "id": "temple-of-fortuna-augusta",
+      "thenNow": {
+        "thenCaption": "Aquarelle ancienne",
+        "watchHint": "Repérez les marches du temple et le mur de briques encore debout."
+      }
+    },
+    {
+      "id": "macellum",
+      "thenNow": {
+        "thenCaption": "Photographie du XIXᵉ siècle",
+        "watchHint": "Repérez le cercle de socles en pierre dans la cour."
+      }
+    },
+    {
+      "id": "house-of-the-ancient-hunt",
+      "thenNow": {
+        "thenCaption": "Photographie ancienne",
+        "watchHint": "Repérez les panneaux peints à côté d’une porte."
+      }
+    },
+    {
+      "id": "temple-of-isis",
+      "thenNow": {
+        "thenCaption": "Vers 1870 · photographie",
+        "watchHint": "Repérez les marches qui montent vers le sanctuaire."
+      }
+    },
+    {
+      "id": "house-of-the-small-fountain",
+      "thenNow": {
+        "thenCaption": "1828 · plan des fouilles",
+        "watchHint": "Regardez à travers l’atrium vers la fontaine en mosaïque."
+      }
+    },
+    {
+      "id": "villa-of-diomede",
+      "thenNow": {
+        "thenCaption": "Avant 1890 · photographie",
+        "watchHint": "Repérez le jardin allongé et les vestiges de son bassin."
+      }
+    },
+    {
+      "id": "forum-baths",
+      "thenNow": {
+        "thenCaption": "1898 · illustration",
+        "watchHint": "Repérez l’arc de briques au-dessus de la porte."
+      }
+    },
+    {
+      "id": "triangular-forum",
+      "thenNow": {
+        "thenCaption": "Au plus tard en 1895 · photographie",
+        "watchHint": "Repérez les colonnes à l’entrée du sanctuaire."
+      }
+    },
+    {
+      "id": "quadriporticus-of-the-theatres-or-gladiators-barracks",
+      "thenNow": {
+        "thenCaption": "Stéréophotographie du XIXᵉ siècle",
+        "watchHint": "Repérez les rangées de colonnes autour de la cour ouverte."
+      }
+    },
+    {
+      "id": "house-of-the-prince-of-naples",
+      "thenNow": {
+        "thenCaption": "Avant 1927 · aquarelle",
+        "watchHint": "Repérez la table en pierre près du bassin de l’atrium."
+      }
+    },
+    {
+      "id": "house-of-the-sailor",
+      "thenNow": {
+        "thenCaption": "Avant 1927 · aquarelle",
+        "watchHint": "Repérez les mosaïques géométriques près de l’entrée."
       }
     }
   ]

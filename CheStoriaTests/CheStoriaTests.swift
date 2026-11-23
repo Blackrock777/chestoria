@@ -18,6 +18,19 @@ struct ContentTests {
         }
     }
 
+    @Test func bundledComparisonsUseCreditedImages() throws {
+        let catalog = try ContentStore.loadBundled()
+        for site in catalog.sites {
+            let comparisons = site.places.compactMap(\.thenNow)
+            #expect(!comparisons.isEmpty, "\(site.id) has no comparisons")
+            for comparison in comparisons {
+                for image in [comparison.then, comparison.now] {
+                    #expect(Credits.shared.photo(for: image) != nil, "\(site.id): no credit for \(image)")
+                }
+            }
+        }
+    }
+
     @Test func translationsChangeTextButKeepIDsAndImages() throws {
         let en = try ContentStore.loadBundled(language: "en").defaultSite
         let it = try ContentStore.loadBundled(language: "it").defaultSite
@@ -100,6 +113,26 @@ struct HuntFeedbackTests {
 
 @MainActor
 struct RecognitionTests {
+    @Test func ambiguousVisualMatchesRequireConfirmation() throws {
+        let site = try ContentStore.loadBundled().defaultSite
+        let places = Array(site.cameraPlaces.prefix(2))
+        let scores = PhotoScores(places: [
+            (id: places[0].id, image: 0.80, text: 0),
+            (id: places[1].id, image: 0.79, text: 0)
+        ], labels: [], usedAI: true)
+        let result = RecognitionPolicy.decide(scores, places: places, settings: site.recognitionSettings, language: "en", vocabulary: nil)
+        if case .unsure = result {} else { Issue.record("Close visual competitors must require confirmation") }
+    }
+
+    @Test func descriptorFallbackNeverAutomaticallyOpensAStory() throws {
+        let site = try ContentStore.loadBundled().defaultSite
+        let place = try #require(site.cameraPlaces.first)
+        let scores = PhotoScores(places: [(id: place.id, image: 0.99, text: 0)], labels: [], usedAI: false)
+        let result = RecognitionPolicy.decide(scores, places: [place], settings: site.recognitionSettings, language: "en", vocabulary: nil)
+        if case .unsure(let choices, _) = result { #expect(choices.map(\.id) == [place.id]) }
+        else { Issue.record("Colour/layout alone must require confirmation") }
+    }
+
     /// A crop the matcher has never seen (different framing) must still pick the right place.
     private func crop(_ name: String, _ r: CGRect) -> UIImage {
         let img = UIImage(named: name)!.normalizedCGImage!
@@ -149,6 +182,24 @@ struct RecognitionTests {
 
         if case .confident(let p) = await matcher.identify(try fixture("street-negative"), in: site, near: nil, catalog: catalog) {
             Issue.record("an unrelated street was confidently matched to \(p.id)")
+        }
+    }
+
+    /// Camera region only, cropped from the user's reported false Galleria match.
+    /// The surrounding chat message, question, and answer text are excluded.
+    @Test func residentialFacadeDoesNotOpenGalleriaStory() async throws {
+        let catalog = try ContentStore.loadBundled()
+        let site = try #require(catalog.site(id: "naples"))
+        let matcher = PlaceMatcher()
+        let photo = try fixture("naples-residential-negative")
+        for location in [nil, CLLocation(latitude: 40.83844167, longitude: 14.24948333)] {
+            let result = await matcher.identify(photo, in: site, near: location, catalog: catalog)
+            switch result {
+            case .notAPlace(let label, _, _), .unsure(_, let label):
+                #expect(label == "a modern building")
+            case .confident(let p):
+                Issue.record("Residential windows/balconies must not auto-open \(p.id)")
+            }
         }
     }
 
@@ -245,6 +296,29 @@ struct AuthTests {
         #expect(again.id == user.id)
     }
 
+    @Test func localRecoveryRequiresTheRightAccountAndConsumesTheKey() async throws {
+        let store = InMemorySecureStore()
+        let s = LocalAuthService(keychain: store)
+        let original = try await s.signUp(name: "Pooja", email: "p@x.co", password: "pompeii79")
+        await #expect(throws: AuthError.wrongCredentials) { try await s.createRecoveryKey(currentPassword: "incorrect1") }
+        let key = try await s.createRecoveryKey(currentPassword: "pompeii79")
+        #expect(key.split(separator: "-").count == 5)
+        #expect(store.data(for: "email-users")?.range(of: Data(key.utf8)) == nil)
+        s.signOut()
+
+        let reopened = LocalAuthService(keychain: store)
+        await #expect(throws: AuthError.invalidRecoveryKey) {
+            try await reopened.resetPassword(email: "other@x.co", recoveryKey: key, newPassword: "newpass19")
+        }
+        try await reopened.resetPassword(email: " P@X.co ", recoveryKey: key.lowercased(), newPassword: "newpass19")
+        #expect(reopened.currentUser == nil)
+        await #expect(throws: AuthError.invalidRecoveryKey) {
+            try await reopened.resetPassword(email: "p@x.co", recoveryKey: key, newPassword: "alsoNew81")
+        }
+        await #expect(throws: AuthError.wrongCredentials) { try await reopened.signIn(email: "p@x.co", password: "pompeii79") }
+        #expect(try await reopened.signIn(email: "p@x.co", password: "newpass19") == original)
+    }
+
     @Test func rejectsBadInputAndWrongPassword() async throws {
         let s = service()
         await #expect(throws: AuthError.invalidEmail) { try await s.signUp(name: "A", email: "nope", password: "pompeii79") }
@@ -282,6 +356,34 @@ final class FixtureMarker {}
 
 @MainActor
 struct LocationStatusTests {
+    @Test func watchSuggestsBothClosePlacesAndFiltersDiscoveredStops() throws {
+        let site = try #require(ContentStore.loadBundled().site(id: "pompeii"))
+        let forum = try #require(site.place(id: "forum"))
+        let now = Date.now
+        let fix = CLLocation(coordinate: .init(latitude: forum.latitude, longitude: forum.longitude), altitude: 0,
+                             horizontalAccuracy: 40, verticalAccuracy: -1, timestamp: now)
+        let choices = NearbySecret.choices(in: [site], fix: fix, visited: [:], now: now)
+        #expect(choices.map(\.place.id) == ["forum", "basilica"])
+        let afterVisit = NearbySecret.choices(in: [site], fix: fix, visited: [site.id: [forum.id]], now: now)
+        #expect(afterVisit.first?.place.id == "basilica")
+        #expect(afterVisit.allSatisfy { $0.place.id != forum.id && $0.meters <= 150 })
+    }
+
+    @Test func watchSuppressesStaleImpreciseOrRemoteLocations() throws {
+        let site = try #require(ContentStore.loadBundled().site(id: "pompeii"))
+        let forum = try #require(site.place(id: "forum"))
+        let now = Date.now
+        let atForum = CLLocationCoordinate2D(latitude: forum.latitude, longitude: forum.longitude)
+        let fixes = [
+            CLLocation(coordinate: atForum, altitude: 0, horizontalAccuracy: 100, verticalAccuracy: -1, timestamp: now),
+            CLLocation(coordinate: atForum, altitude: 0, horizontalAccuracy: 10, verticalAccuracy: -1, timestamp: now.addingTimeInterval(-31)),
+            CLLocation(coordinate: .init(latitude: 41.9, longitude: 12.5), altitude: 0, horizontalAccuracy: 10, verticalAccuracy: -1, timestamp: now),
+        ]
+        for fix in fixes {
+            #expect(NearbySecret.choices(in: [site], fix: fix, visited: [:], now: now).isEmpty)
+        }
+    }
+
     @Test func neverInventsADistance() throws {
         let site = try ContentStore.loadBundled().site(id: "pompeii")!
         #expect(LocationStatus.compute(site: site, location: nil, authorization: .authorizedWhenInUse) == .locating)
@@ -487,5 +589,43 @@ struct SupabaseAuthTests {
         await #expect(throws: AuthError.emailInUse) { try await s.signUp(name: "P", email: "p@x.co", password: "pompeii79") }
         Stub.handler = { _ in (200, #"{"id":"u2","email":"new@x.co"}"#) }
         await #expect(throws: AuthError.confirmEmail) { try await s.signUp(name: "N", email: "new@x.co", password: "pompeii79") }
+    }
+
+    @Test func passwordRecoveryVerifiesTheCodeAndLeavesNoSignedInSession() async throws {
+        let s = service()
+        Stub.handler = { request in
+            switch request.url?.path {
+            case "/auth/v1/recover":
+                #expect(request.httpMethod == "POST")
+                #expect(Stub.lastBody?["email"] as? String == "p@x.co")
+                return (200, "{}")
+            case "/auth/v1/verify":
+                #expect(Stub.lastBody?["type"] as? String == "recovery")
+                #expect(Stub.lastBody?["token"] as? String == "123456")
+                return (200, #"{"access_token":"recovery-access","user":{"id":"u1","email":"p@x.co"}}"#)
+            case "/auth/v1/user":
+                #expect(request.httpMethod == "PUT")
+                #expect(request.value(forHTTPHeaderField: "Authorization") == "Bearer recovery-access")
+                #expect(Stub.lastBody?["password"] as? String == "newpass19")
+                return (200, "{}")
+            case "/auth/v1/logout":
+                #expect(request.url?.query == "scope=local")
+                return (204, "")
+            default:
+                Issue.record("Unexpected request")
+                return (500, "{}")
+            }
+        }
+        try await s.sendRecoveryCode(email: " P@X.co ")
+        try await s.resetPassword(email: "p@x.co", emailCode: "123456", newPassword: "newpass19")
+        #expect(s.currentUser == nil)
+
+        Stub.handler = { request in
+            #expect(request.url?.path == "/auth/v1/verify")
+            return (403, #"{"error_code":"otp_expired"}"#)
+        }
+        await #expect(throws: AuthError.invalidRecoveryCode) {
+            try await s.resetPassword(email: "p@x.co", emailCode: "987654", newPassword: "newpass19")
+        }
     }
 }

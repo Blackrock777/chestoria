@@ -85,8 +85,12 @@ struct SnapView: View {
                 model.startStory(at: pick.place)
             }
         }
-        .onChange(of: recognizer.lastLocation) { updateLiveActivity() }
-        .onChange(of: model.activeFlow == nil) { _, idle in if !idle { LiveActivityController.shared.end() } }
+        .onChange(of: recognizer.lastLocation, initial: true) { updateLiveActivity() }
+        .onChange(of: recognizer.authorization) { updateLiveActivity() }
+        .onChange(of: model.site.id) { updateLiveActivity() }
+        .onChange(of: model.language) { updateLiveActivity() }
+        .onChange(of: model.state.visited) { updateLiveActivity() }
+        .onChange(of: model.activeFlow == nil) { updateLiveActivity() }
         .task(id: model.site.id + model.language) {
             matcher.clearLive()
             await matcher.prepare(site: model.site)
@@ -113,8 +117,9 @@ struct SnapView: View {
     }
 
     private func updateLiveActivity() {
-        LiveActivityController.shared.update(status: recognizer.status(in: model.site), site: model.site,
-                                             visited: Set(model.visitedPlaces.map(\.id)), strings: model.strings)
+        guard model.activeFlow == nil else { LiveActivityController.shared.end(); return }
+        LiveActivityController.shared.update(fix: recognizer.lastLocation, authorization: recognizer.authorization,
+                                             site: model.site, visited: Set(model.state.visited), strings: model.strings)
     }
 
     private func snap(fallback: Place) {

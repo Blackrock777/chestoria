@@ -14,6 +14,14 @@ Content/
 
 The tests (`⌘U`) validate every file in every language: ids, answers, image names, map positions, story length (40 words at most). Run them after every content change.
 
+## Add a Then & Now comparison
+
+1. Find a dated archival image and a modern photograph of the same place. Check each file's reuse terms and keep its original source link. If a historic drawing or plan is used, identify it as such in the caption.
+2. Add both images to `CheStoria/Resources/Assets.xcassets` and add the title, creator, licence and source to the photo tables in `CREDITS.md`.
+3. On the matching place in `pompeii.json` or `naples.json`, add a `thenNow` object with `then` and `now` set to the two asset names and `thenCaption` and `nowCaption` set to their display labels. Translate caption text in the corresponding language overlays. A missing object shows the pending message on the map place and site list.
+4. Run `python3 tools/build_credits.py`, then `python3 tools/build_database.py --output /path/to/chestoria.sqlite`. The `place_comparisons` table contains one row per place and can be filtered for `archive_pending`. The `image_credits` table has the attribution and source URLs.
+5. Run the app tests in Xcode and open the comparison from **My trip**. Check both sides and their credits.
+
 ## Add a place
 
 1. Add the photos to `Assets.xcassets`, or host them and use `https://…` URLs.

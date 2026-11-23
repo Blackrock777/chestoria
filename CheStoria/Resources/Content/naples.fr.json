@@ -25,6 +25,9 @@
   "places": [
     {
       "id": "gesu-nuovo",
+      "thenNow": {
+        "thenCaption": "1880–1905 · photographie"
+      },
       "name": "Gesù Nuovo",
       "clues": [
         "Façade à pointes",
@@ -145,6 +148,9 @@
     },
     {
       "id": "castel-ovo",
+      "thenNow": {
+        "thenCaption": "1894 · gravure sur bois"
+      },
       "name": "Castel dell’Ovo",
       "clues": [
         "Château sur la mer",
@@ -184,6 +190,9 @@
     },
     {
       "id": "santa-chiara",
+      "thenNow": {
+        "thenCaption": "Avant 1943 · intérieur de l’église"
+      },
       "name": "Santa Chiara",
       "clues": [
         "Façade gothique",
@@ -256,6 +265,9 @@
     },
     {
       "id": "castel-nuovo",
+      "thenNow": {
+        "thenCaption": "1907 · carte postale"
+      },
       "name": "Castel Nuovo",
       "clues": [
         "Tours rondes et sombres",

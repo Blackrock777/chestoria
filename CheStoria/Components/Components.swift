@@ -115,6 +115,7 @@ nonisolated struct BlobShape: Shape {
 }
 
 struct StickerArt: View {
+    @Environment(AppModel.self) private var model
     let sticker: Sticker
     var border: CGFloat = 8
     /// -1...1 tilt used to move the sheen.
@@ -124,7 +125,14 @@ struct StickerArt: View {
 
     var body: some View {
         Group {
-            if let photo { CoverImage(image: photo) } else { CroppedImage(ref: sticker.image, crop: sticker.crop) }
+            if let photo {
+                CoverImage(image: photo)
+            } else if let place = model.site.placeOwning(stickerID: sticker.id) {
+                // Nearby/map stories use the selected place, never an unrelated detail crop.
+                CoverImage(place.cameraImage, anchor: place.cameraAnchor)
+            } else {
+                CroppedImage(ref: sticker.image, crop: sticker.crop)
+            }
         }
             .overlay {
                 LinearGradient(stops: [.init(color: .clear, location: 0.38), .init(color: .white.opacity(0.5), location: 0.5), .init(color: .clear, location: 0.62)],

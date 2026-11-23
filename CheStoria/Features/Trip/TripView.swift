@@ -261,6 +261,7 @@ private struct TripPin: View {
 struct SiteSheet: View {
     @Environment(AppModel.self) private var model
     @State private var thenNowPlace: Place?
+    @State private var showPendingComparisons = false
 
     var body: some View {
         let site = model.site, t = model.strings
@@ -275,33 +276,52 @@ struct SiteSheet: View {
                 LazyVGrid(columns: [GridItem(.flexible(), spacing: 10), GridItem(.flexible(), spacing: 10)], spacing: 10) {
                     ForEach(site.tickets.tiles, id: \.label) { tile($0.label, $0.value, $0.note) }
                 }
-                let withThenNow = site.places.filter { $0.thenNow != nil }
-                if !withThenNow.isEmpty {
-                    Text(t("thenNow.title")).font(.system(size: 12, weight: .bold)).textCase(.uppercase).kerning(1).foregroundStyle(Palette.stone).padding(.top, 4)
-                    ForEach(withThenNow) { p in
-                        Button { thenNowPlace = p } label: {
-                            HStack(spacing: 12) {
-                                HStack(spacing: 0) { CoverImage(p.thenNow!.then).frame(width: 40, height: 52); CoverImage(p.thenNow!.now).frame(width: 40, height: 52) }
-                                    .clipShape(.rect(cornerRadius: 12))
-                                VStack(alignment: .leading, spacing: 2) {
-                                    Text(p.name).font(.system(size: 16, weight: .semibold)).foregroundStyle(Palette.piperno)
-                                    Text(p.thenNow!.thenCaption).font(.system(size: 13)).foregroundStyle(Palette.stone)
-                                }
-                                Spacer()
-                                Image(systemName: "chevron.right").foregroundStyle(Palette.stone)
-                            }
-                            .padding(10).background(Palette.card, in: .rect(cornerRadius: 18))
-                            .overlay(RoundedRectangle(cornerRadius: 18).stroke(Palette.hair, lineWidth: 1.5))
-                        }
-                    }
-                }
                 Link(destination: site.tickets.bookingURL) { Text(t("site.book")).frame(maxWidth: .infinity) }
                     .buttonStyle(CTAButtonStyle(kind: .dark)).padding(.top, 8)
+                Text(t("thenNow.title")).font(.system(size: 12, weight: .bold)).textCase(.uppercase).kerning(1).foregroundStyle(Palette.stone).padding(.top, 4)
+                let compared = site.places.filter { $0.thenNow != nil }
+                let pending = site.places.filter { $0.thenNow == nil }
+                ForEach(compared) { comparisonRow($0, strings: t) }
+                if !pending.isEmpty {
+                    DisclosureGroup(t("thenNow.pendingList", "\(pending.count)"), isExpanded: $showPendingComparisons) {
+                        LazyVStack(spacing: 10) {
+                            ForEach(pending) { comparisonRow($0, strings: t) }
+                        }
+                        .padding(.top, 8)
+                    }
+                    .tint(Palette.piperno)
+                }
             }
             .padding(.horizontal, 20)
         }
         .background(Palette.calce)
-        .sheet(item: $thenNowPlace) { p in if let tn = p.thenNow { ThenNowSheet(thenNow: tn, title: p.name) } }
+        .sheet(item: $thenNowPlace) { ThenNowSheet(place: $0) }
+    }
+
+    private func comparisonRow(_ place: Place, strings t: UIStrings) -> some View {
+        Button { thenNowPlace = place } label: {
+            HStack(spacing: 12) {
+                if let comparison = place.thenNow {
+                    HStack(spacing: 0) {
+                        CoverImage(comparison.then).frame(width: 40, height: 52)
+                        CoverImage(comparison.now).frame(width: 40, height: 52)
+                    }
+                    .clipShape(.rect(cornerRadius: 12))
+                } else {
+                    Image(systemName: "photo.on.rectangle").frame(width: 38)
+                        .foregroundStyle(Palette.stone)
+                }
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(place.name).font(.system(size: 16, weight: .semibold)).foregroundStyle(Palette.piperno)
+                    Text(place.thenNow?.thenCaption ?? t("thenNow.unavailable")).font(.system(size: 13)).foregroundStyle(Palette.stone)
+                }
+                Spacer()
+                Image(systemName: "chevron.right").foregroundStyle(Palette.stone)
+            }
+            .padding(10).frame(minHeight: 48)
+            .background(Palette.card, in: .rect(cornerRadius: 18))
+            .overlay(RoundedRectangle(cornerRadius: 18).stroke(Palette.hair, lineWidth: 1.5))
+        }
     }
 
     private func tile(_ label: String, _ value: String, _ note: String) -> some View {
@@ -347,7 +367,14 @@ struct ThenNowSlider: View {
         }
         .clipShape(.rect(cornerRadius: 22))
         .accessibilityElement()
-        .accessibilityLabel(caption)
-        .accessibilityAdjustableAction { dir in split = max(0.04, min(0.96, split + (dir == .increment ? 0.1 : -0.1))) }
+        .accessibilityLabel(Text("\(caption) · \(todayLabel)"))
+        .accessibilityValue(Text(Double(split).formatted(.percent.precision(.fractionLength(0)))))
+        .accessibilityAdjustableAction { direction in
+            switch direction {
+            case .increment: split = min(0.96, split + 0.1)
+            case .decrement: split = max(0.04, split - 0.1)
+            @unknown default: break
+            }
+        }
     }
 }

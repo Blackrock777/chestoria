@@ -25,6 +25,9 @@
   "places": [
     {
       "id": "gesu-nuovo",
+      "thenNow": {
+        "thenCaption": "1880–1905 · Fotografie"
+      },
       "name": "Gesù Nuovo",
       "clues": [
         "Stachelige Steinfassade",
@@ -145,6 +148,9 @@
     },
     {
       "id": "castel-ovo",
+      "thenNow": {
+        "thenCaption": "1894 · Holzschnitt"
+      },
       "name": "Castel dell’Ovo",
       "clues": [
         "Burg am Meer",
@@ -184,6 +190,9 @@
     },
     {
       "id": "santa-chiara",
+      "thenNow": {
+        "thenCaption": "Vor 1943 · Kircheninneres"
+      },
       "name": "Santa Chiara",
       "clues": [
         "Gotische Fassade",
@@ -256,6 +265,9 @@
     },
     {
       "id": "castel-nuovo",
+      "thenNow": {
+        "thenCaption": "1907 · Postkarte"
+      },
       "name": "Castel Nuovo",
       "clues": [
         "Dunkle Rundtürme",

@@ -40,6 +40,7 @@ Every design decision maps to the team's research: the language gap, little time
 - **Apple Maps trip map**: your route between the places you found, "?" pins for stories still to find, your live position, and walking directions from any place card. Pins come from each place's coordinates in the content.
 - **Honest location**: the Snap chip shows the real nearest place and distance, "Finding where you are…", "Location is off", or "Pompeii is 1,639 km away". It never invents a distance.
 - **Live Activity and widget**: "Secret 30 m ahead" appears on the Lock Screen and in the Dynamic Island when an unseen story is within 150 m. A "Yesterday’s question" widget shows the recall question and its result.
+- **Apple Watch**: Start a Secret Nearby walk for nearby clues and turn the Digital Crown to switch between historic and current images.
 - **Next-morning question**: answer it straight from the notification. You get "✓ Bar! You remembered." (or the right answer) at once, and it counts towards "Remembered" in Profile.
 - **Accounts that can sync**: on-device accounts by default; set `SupabaseURL` and `SupabaseAnonKey` in `project.yml` and the same screens use Supabase Auth (email, password, Sign in with Apple, account deletion).
 
@@ -105,9 +106,23 @@ Content lives in `CheStoria/Resources/Content/`, not in code; [CONTENT.md](CONTE
 
 How it works: the app ships only SigLIP’s image encoder (`CheStoria/Resources/ML`). Reference photos of each place are embedded on the phone; each place’s plain-English `aiDescriptions` and a vocabulary of ~50 everyday and heritage things are embedded offline by `tools/embed_content.py` and shipped as content. A photo is compared with all of them; thresholds live in each site’s `recognition` block. Measured on photos the app has never seen: a different Cave canem photo opens its story (0.83 vs 0.51), a crowded Forum photo is offered first, an unrelated street is never matched with confidence, and coffee and laptop photos are named correctly in all five languages. See `CheStoria/Resources/ML/NOTICE.md` for the licence notice.
 
+## Apple Watch
+
+The iPhone target installs the `CheStoriaWatch` companion on a paired Apple Watch. Use the `CheStoriaWatch` scheme to run it directly in Xcode. It supports watchOS 11 and later.
+
+- **Secret Nearby**. Tap **Start walk** and allow location access. Nearby stories show approximate distance and a clue. When two places are close, choose the one you see. When CheStoria is active, the Watch taps once on arrival. When it’s in the background, the Watch can deliver a notification if allowed. Walks end when you tap **End walk** or after two hours. The iPhone’s nearby Live Activity has its own Smart Stack layout.
+- **Then & Now**. Open a place from the comparison list or its nearby clue. Turn the Digital Crown or tap the photo to alternate views. Photos, captions, clues and credits are bundled from the iPhone catalog at build time and work offline.
+- A paired iPhone sends the story language, discovered place IDs and haptics preference. The Watch keeps its last received settings locally. Location readings stay on the device that collected them.
+
 ## Accounts
 
-The app talks to an `AuthService` protocol. This version ships `LocalAuthService`: accounts live on the device, in the Keychain, which suits user testing and offline use. To sync accounts across devices, implement `AuthService` against your backend (Firebase, Supabase or your own API) and pass it to `AccountModel` in `CheStoriaApp`. No view changes are needed. Sign in with Apple needs the capability enabled for your team, which `project.yml` already requests.
+The app uses `LocalAuthService` and stores accounts in the iPhone Keychain by default. While signed in with email, open **Profile → Account → Recovery key**, confirm the current password and save the key somewhere safe. **Forgot password?** accepts that key once on the same iPhone. People who have not set up a key can check Apple's Passwords app for a saved password. Apple accounts use **Sign in with Apple**. Your Xcode team needs the Sign in with Apple capability requested by `project.yml`.
+
+### Enable email password recovery
+
+1. Configure a Supabase project for email and password sign-in. Set its URL and public publishable or anon key in `project.yml` (`SupabaseURL` and `SupabaseAnonKey`) and regenerate `CheStoria.xcodeproj` with `xcodegen`. Use a public client key here. Keep the service role key on the server.
+2. In **Authentication → Email Templates → Reset Password**, use an email code. Set the message body to `<p>Your CheStoria password reset code is: <strong>{{ .Token }}</strong></p><p>If you did not request this, you can ignore this email.</p>`. This flow uses the code entered in the app. See the [Supabase email template guide](https://supabase.com/docs/guides/auth/auth-email-templates).
+3. Configure [Supabase SMTP](https://supabase.com/docs/guides/auth/auth-smtp) for production delivery. Test with a real test account by signing out, requesting the code, resetting the password, then signing in again. Existing local accounts stay on their original devices and users who switch to hosted sign-in need an account in Supabase.
 
 ## Design
 

@@ -35,7 +35,22 @@ enum ContentValidator {
 
         for p in site.places {
             image(p.cameraImage, "\(p.id).cameraImage")
-            if let tn = p.thenNow { image(tn.then, "\(p.id).thenNow.then"); image(tn.now, "\(p.id).thenNow.now") }
+            for ref in p.recognitionImages { image(ref, "\(p.id).referenceImages") }
+            for ref in p.photos ?? [] { image(ref, "\(p.id).photos") }
+            if p.usesCamera, p.story != nil, p.recognitionImages.isEmpty {
+                out.append("\(p.id): camera recognition needs reference images")
+            }
+            if let comparison = p.thenNow {
+                image(comparison.then, "\(p.id).thenNow.then")
+                image(comparison.now, "\(p.id).thenNow.now")
+                if comparison.then == comparison.now {
+                    out.append("\(p.id): Then & Now needs two distinct images")
+                }
+                let captions = [comparison.thenCaption, comparison.nowCaption]
+                if captions.contains(where: { $0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }) {
+                    out.append("\(p.id): Then & Now needs captions for both images")
+                }
+            }
             if let map = site.map, let mp = p.mapPoint, !(0...map.width).contains(mp.x) || !(0...map.height).contains(mp.y) {
                 out.append("\(p.id): mapPoint is outside the map")
             }

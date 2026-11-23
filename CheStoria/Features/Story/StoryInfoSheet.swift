@@ -31,6 +31,7 @@ struct StoryInfoSheet: View {
                             Link(destination: source.url) {
                                 LinkRow(title: source.title, detail: source.url.host() ?? "")
                             }
+                            .buttonStyle(.plain)
                         }
                     } header: { Text(t("about.sources")) } footer: { Text(t("sources.note")) }
                 }
@@ -44,6 +45,7 @@ struct StoryInfoSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { ToolbarItem(placement: .confirmationAction) { Button(t("common.done")) { dismiss() } } }
         }
+        .tint(.primary)
         .presentationDetents([.medium, .large])
     }
 }
@@ -76,17 +78,18 @@ struct AcknowledgementsView: View {
             }
         }
         .navigationTitle(t("ack.title"))
+        .tint(.primary)
     }
 }
 
-private struct PhotoCreditRow: View {
+struct PhotoCreditRow: View {
     let photo: Credits.Photo
     var body: some View {
         let row = HStack(spacing: 12) {
             CoverImage(.asset(photo.asset)).frame(width: 44, height: 44).clipShape(.rect(cornerRadius: 8))
             LinkRow(title: photo.title, detail: photo.line, showsArrow: photo.url != nil)
         }
-        if let url = photo.url ?? photo.licenceURL { Link(destination: url) { row } } else { row }
+        if let url = photo.url ?? photo.licenceURL { Link(destination: url) { row }.buttonStyle(.plain) } else { row }
     }
 }
 
@@ -97,12 +100,13 @@ private struct LinkRow: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 2) {
-                Text(title).font(.subheadline.weight(.semibold)).foregroundStyle(.primary).lineLimit(2)
-                Text(detail).font(.footnote).foregroundStyle(.secondary).lineLimit(1)
+                Text(title).font(.subheadline.weight(.semibold)).lineLimit(2)
+                Text(detail).font(.footnote).lineLimit(1)
             }
             Spacer(minLength: 8)
-            if showsArrow { Image(systemName: "arrow.up.right").font(.footnote.weight(.semibold)).foregroundStyle(.tertiary) }
+            if showsArrow { Image(systemName: "arrow.up.right").font(.footnote.weight(.semibold)) }
         }
+        .foregroundStyle(Color(uiColor: .label))
         .contentShape(Rectangle())
     }
 }

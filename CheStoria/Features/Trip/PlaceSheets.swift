@@ -3,8 +3,7 @@ import SwiftUI
 
 /// Old vs today for one place: drag the handle to compare.
 struct ThenNowSheet: View {
-    let thenNow: ThenNow
-    let title: String
+    let place: Place
     @Environment(AppModel.self) private var model
     @Environment(\.dismiss) private var dismiss
     @State private var split: CGFloat = 0.5
@@ -14,24 +13,54 @@ struct ThenNowSheet: View {
     var body: some View {
         let t = model.strings
         NavigationStack {
-            VStack(alignment: .leading, spacing: 14) {
-                Text(title).font(.system(size: 12, weight: .bold)).textCase(.uppercase).kerning(1).foregroundStyle(Palette.stone)
-                ThenNowSlider(then: thenNow.then, now: thenNow.now, caption: thenNow.thenCaption, todayLabel: thenNow.nowCaption, split: $split)
-                    .frame(maxHeight: 420)
-                    .simultaneousGesture(DragGesture().onChanged { _ in dragged = true })
-                Spacer()
+            ScrollView {
+                VStack(alignment: .leading, spacing: 14) {
+                    Text(place.name).font(.system(size: 12, weight: .bold)).textCase(.uppercase).kerning(1).foregroundStyle(Palette.stone)
+                    if let comparison = place.thenNow {
+                        ThenNowSlider(then: comparison.then, now: comparison.now, caption: comparison.thenCaption,
+                                      todayLabel: comparison.nowCaption == "Today" ? t("thenNow.today") : comparison.nowCaption, split: $split)
+                            .frame(height: 380)
+                            .simultaneousGesture(DragGesture().onChanged { _ in dragged = true })
+                        Text(t("thenNow.framing")).font(.footnote).foregroundStyle(Palette.stone)
+                        let images = [comparison.then, comparison.now].compactMap(Credits.shared.photo(for:))
+                        if !images.isEmpty {
+                            Text(t("about.photos")).font(.headline)
+                            ForEach(images, id: \.asset) { PhotoCreditRow(photo: $0).padding(.vertical, 5) }
+                        }
+                    } else {
+                        ContentUnavailableView(t("thenNow.unavailable"), systemImage: "photo.on.rectangle",
+                                               description: Text(t("thenNow.unavailableDetail")))
+                        if place.story != nil {
+                            CoverImage(place.cameraImage, anchor: place.cameraAnchor)
+                                .frame(height: 220).clipShape(.rect(cornerRadius: 22))
+                            Text(t("thenNow.today")).font(.subheadline).foregroundStyle(Palette.stone)
+                            if let credit = Credits.shared.photo(for: place.cameraImage) { PhotoCreditRow(photo: credit) }
+                        }
+                    }
+                }
+                .padding(20)
             }
-            .padding(20)
             .background(Palette.calce)
             .navigationTitle(t("thenNow.title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { ToolbarItem(placement: .confirmationAction) { Button(t("common.done")) { dismiss() } } }
         }
+        .tint(.primary)
         .presentationDetents([.large])
         .task {
-            guard !reduce else { return }
-            try? await Task.sleep(for: .milliseconds(500))
-            for step in 0...60 where !dragged { split = 0.5 + sin(Double(step) / 60 * .pi * 2) * 0.3; try? await Task.sleep(for: .milliseconds(30)) }
+            guard !reduce, place.thenNow != nil else { return }
+            do {
+                try await Task.sleep(for: .milliseconds(500))
+                for step in 0...60 {
+                    guard !dragged else { break }
+                    split = 0.5 + sin(Double(step) / 60 * .pi * 2) * 0.3
+                    try await Task.sleep(for: .milliseconds(30))
+                }
+            } catch is CancellationError {
+                return
+            } catch {
+                return
+            }
         }
     }
 }
@@ -79,14 +108,12 @@ struct PlaceSheet: View {
                 } else {
                     Label(t("place.notYet"), systemImage: "camera").font(.system(size: 15, weight: .semibold)).foregroundStyle(Palette.stone)
                 }
-                if let tn = p.thenNow {
-                    Button { showThenNow = true } label: {
-                        Label(t("thenNow.open"), systemImage: "clock.arrow.circlepath").frame(maxWidth: .infinity)
-                    }
-                    .buttonStyle(CTAButtonStyle(kind: .light))
-                    .overlay(Capsule().stroke(Palette.hair, lineWidth: 1.5))
-                    .sheet(isPresented: $showThenNow) { ThenNowSheet(thenNow: tn, title: p.name) }
+                Button { showThenNow = true } label: {
+                    Label(t(p.thenNow == nil ? "thenNow.title" : "thenNow.open"), systemImage: "clock.arrow.circlepath")
+                        .frame(maxWidth: .infinity)
                 }
+                .buttonStyle(CTAButtonStyle(kind: .light))
+                .overlay(Capsule().stroke(Palette.hair, lineWidth: 1.5))
                 if story != nil {
                     if found {
                         Button(t("place.playAgain")) { dismiss(); model.startStory(at: p) }.buttonStyle(CTAButtonStyle(kind: .dark))
@@ -107,6 +134,7 @@ struct PlaceSheet: View {
         .presentationDetents([.medium, .large])
         .presentationCornerRadius(32)
         .sheet(isPresented: $showSources) { StoryInfoSheet(place: p) }
+        .sheet(isPresented: $showThenNow) { ThenNowSheet(place: p) }
     }
 
     /// Within 150 m by real GPS, never guessed.

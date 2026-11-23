@@ -31,7 +31,7 @@ struct StoryFlowView: View {
                     .transition(.opacity)
             case .choose:
                 ChoosePlaceView(photo: request.photo, places: choices, label: seenLabel, noMatch: noMatch,
-                                onPick: { picked in place = picked; photoIsPlace = true; go(.question) },
+                                onPick: { picked in place = picked; photoIsPlace = picked.usesCamera; go(.question) },
                                 onNone: { noMatch = true; go(.notAPlace) })
                 .transition(.opacity)
             case .notAPlace:
@@ -240,7 +240,7 @@ struct ChoosePlaceView: View {
             else { Palette.piperno.ignoresSafeArea() }
             VStack(alignment: .leading, spacing: 14) {
                 Spacer()
-                if let label { Text(t("ai.looksLike", label)).font(Typeface.hand(22)).foregroundStyle(Palette.tufo) }
+                if let label { Text(t("ai.looksLike", label)).font(Typeface.hand(22)).foregroundStyle(.white) }
                 Text(t("scan.unsureTitle")).font(Typeface.display(30)).foregroundStyle(.white)
                 Text(t("scan.unsureBody")).font(.system(size: 16)).foregroundStyle(.white.opacity(0.8))
                 ForEach(Array(places.compactMap { model.site.place(id: $0.id) }.enumerated()), id: \.element.id) { i, p in
@@ -485,7 +485,7 @@ struct RevealView: View {
         }
         .onDisappear { narrator.stop() }
         .sheet(isPresented: $showInfo) { StoryInfoSheet(place: place) }
-        .sheet(isPresented: $showThenNow) { if let tn = place.thenNow { ThenNowSheet(thenNow: tn, title: story.eyebrow) } }
+        .sheet(isPresented: $showThenNow) { ThenNowSheet(place: place) }
     }
 
     /// The place's photo with the result on it, and a Then & Now button when there's an old picture.
@@ -528,7 +528,7 @@ struct RevealView: View {
     private var actions: some View {
         let t = model.strings
         return HStack(spacing: 10) {
-            ActionTile(title: t("reveal.tonight"), icon: "fork.knife", tint: Palette.tufo, ink: Color(red: 0.55, green: 0.38, blue: 0.0)) { showTonight = true }
+            ActionTile(title: t("reveal.tonight"), icon: "fork.knife", tint: Palette.tufo, ink: Palette.piperno) { showTonight = true }
                 .popover(isPresented: $showTonight, arrowEdge: .top) {
                     TonightCard(title: t("reveal.tellTonight"), line: story.dinnerLine)
                         .presentationCompactAdaptation(.popover)
@@ -578,7 +578,7 @@ private struct TonightCard: View {
     let line: String
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Label(title, systemImage: "fork.knife").font(.footnote.weight(.bold)).textCase(.uppercase).foregroundStyle(Palette.tufo)
+            Label(title, systemImage: "fork.knife").font(.footnote.weight(.bold)).textCase(.uppercase).foregroundStyle(Palette.piperno)
             Text(line).font(.title3.weight(.semibold)).foregroundStyle(Palette.piperno).fixedSize(horizontal: false, vertical: true)
         }
         .padding(20)

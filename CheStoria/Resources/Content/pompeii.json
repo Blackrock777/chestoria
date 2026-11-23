@@ -281,7 +281,8 @@
         "then": "forum1841",
         "thenCaption": "1841 · painted by Christen Købke",
         "now": "forum",
-        "nowCaption": "Today"
+        "nowCaption": "Today",
+        "watchHint": "Look for Vesuvius behind the columns."
       },
       "story": {
         "eyebrow": "Forum · Pompeii",
@@ -429,7 +430,13 @@
       },
       "photos": [
         "caveCanemPhoto"
-      ]
+      ],
+      "thenNow": {
+        "then": "comparison-tragic-poet-then",
+        "thenCaption": "Before 1914 · photograph",
+        "now": "comparison-tragic-poet-now",
+        "nowCaption": "2012"
+      }
     },
     {
       "id": "thermopolium",
@@ -629,6 +636,12 @@
             }
           ]
         }
+      },
+      "thenNow": {
+        "then": "comparison-amphitheatre-then",
+        "thenCaption": "19th-century photograph",
+        "now": "amphitheatre",
+        "nowCaption": "Today"
       }
     },
     {
@@ -713,6 +726,12 @@
             }
           ]
         }
+      },
+      "thenNow": {
+        "then": "comparison-large-theatre-then",
+        "thenCaption": "1910 · watercolour",
+        "now": "largeTheatre",
+        "nowCaption": "Today"
       }
     },
     {
@@ -797,6 +816,12 @@
             }
           ]
         }
+      },
+      "thenNow": {
+        "then": "comparison-odeon-then",
+        "thenCaption": "19th-century photograph",
+        "now": "odeon",
+        "nowCaption": "Today"
       }
     },
     {
@@ -881,6 +906,12 @@
             }
           ]
         }
+      },
+      "thenNow": {
+        "then": "comparison-basilica-then",
+        "thenCaption": "19th-century photograph",
+        "now": "basilicaPompeii",
+        "nowCaption": "Today"
       }
     },
     {
@@ -1215,7 +1246,13 @@
       },
       "photos": [
         "stabianBathsPhoto"
-      ]
+      ],
+      "thenNow": {
+        "then": "comparison-stabian-baths-then",
+        "thenCaption": "1889 · watercolour",
+        "now": "stabianBaths",
+        "nowCaption": "Today"
+      }
     },
     {
       "id": "house-octavius-quartio",
@@ -1301,7 +1338,13 @@
       },
       "photos": [
         "octaviusQuartioPhoto"
-      ]
+      ],
+      "thenNow": {
+        "then": "comparison-house-octavius-quartio-then",
+        "thenCaption": "Based on a 1916–1921 plan",
+        "now": "octaviusQuartioPhoto",
+        "nowCaption": "2024"
+      }
     },
     {
       "id": "house-vettii",
@@ -1387,7 +1430,13 @@
       },
       "photos": [
         "vettiiPhoto"
-      ]
+      ],
+      "thenNow": {
+        "then": "comparison-house-vettii-then",
+        "thenCaption": "Historic photograph · peristyle",
+        "now": "vettii",
+        "nowCaption": "Today"
+      }
     },
     {
       "id": "house-faun",
@@ -1473,7 +1522,13 @@
       },
       "photos": [
         "faunPhoto"
-      ]
+      ],
+      "thenNow": {
+        "then": "comparison-house-faun-then",
+        "thenCaption": "c. 1900 · photograph",
+        "now": "faun",
+        "nowCaption": "Today"
+      }
     },
     {
       "id": "villa-mysteries",
@@ -1649,7 +1704,13 @@
       },
       "photos": [
         "lupanarPhoto"
-      ]
+      ],
+      "thenNow": {
+        "then": "comparison-lupanar-then",
+        "thenCaption": "Historic photograph",
+        "now": "lupanar",
+        "nowCaption": "Today"
+      }
     },
     {
       "id": "house-casca",
@@ -1903,7 +1964,13 @@
       },
       "photos": [
         "bakeryPriscusPhoto"
-      ]
+      ],
+      "thenNow": {
+        "then": "comparison-bakery-popidius-priscus-then",
+        "thenCaption": "Historic photograph",
+        "now": "bakeryPriscus",
+        "nowCaption": "Today"
+      }
     },
     {
       "id": "house-of-the-citharist",
@@ -2281,7 +2348,14 @@
       "mapPoint": [
         105,
         80
-      ]
+      ],
+      "thenNow": {
+        "then": "comparison-house-of-the-small-fountain-then",
+        "thenCaption": "1828 · excavation plan",
+        "now": "comparison-house-of-the-small-fountain-now",
+        "nowCaption": "2012",
+        "watchHint": "Look through the atrium toward the mosaic fountain."
+      }
     },
     {
       "id": "house-of-pansa",
@@ -2308,7 +2382,14 @@
       "mapPoint": [
         102,
         144
-      ]
+      ],
+      "thenNow": {
+        "then": "comparison-house-of-pansa-then",
+        "thenCaption": "19th-century photograph",
+        "now": "comparison-house-of-pansa-now",
+        "nowCaption": "2023",
+        "watchHint": "Look past the entrance toward the open courtyard."
+      }
     },
     {
       "id": "house-of-sallust",
@@ -2335,7 +2416,14 @@
       "mapPoint": [
         81,
         97
-      ]
+      ],
+      "thenNow": {
+        "then": "comparison-house-of-sallust-then",
+        "thenCaption": "Historic photograph",
+        "now": "comparison-house-of-sallust-now",
+        "nowCaption": "2023",
+        "watchHint": "Find the broad openings along the street."
+      }
     },
     {
       "id": "house-of-the-golden-cupids",
@@ -2416,7 +2504,14 @@
       "mapPoint": [
         121,
         0
-      ]
+      ],
+      "thenNow": {
+        "then": "comparison-house-of-the-prince-of-naples-then",
+        "thenCaption": "Before 1927 · watercolour",
+        "now": "comparison-house-of-the-prince-of-naples-now",
+        "nowCaption": "2019",
+        "watchHint": "Look for the stone table beside the pool in the atrium."
+      }
     },
     {
       "id": "house-of-meleager",
@@ -2443,7 +2538,14 @@
       "mapPoint": [
         99,
         11
-      ]
+      ],
+      "thenNow": {
+        "then": "comparison-house-of-meleager-then",
+        "thenCaption": "19th-century photograph",
+        "now": "comparison-house-of-meleager-now",
+        "nowCaption": "2023",
+        "watchHint": "Look through the entrance toward the courtyard."
+      }
     },
     {
       "id": "house-of-apollo",
@@ -2524,7 +2626,14 @@
       "mapPoint": [
         0,
         8
-      ]
+      ],
+      "thenNow": {
+        "then": "comparison-villa-of-diomede-then",
+        "thenCaption": "Before 1890 · photograph",
+        "now": "comparison-villa-of-diomede-now",
+        "nowCaption": "2023",
+        "watchHint": "Look for the long garden and the remains of its pool."
+      }
     },
     {
       "id": "suburban-baths",
@@ -2578,7 +2687,14 @@
       "mapPoint": [
         104,
         252
-      ]
+      ],
+      "thenNow": {
+        "then": "comparison-house-of-the-sailor-then",
+        "thenCaption": "Before 1927 · watercolour",
+        "now": "comparison-house-of-the-sailor-now",
+        "nowCaption": "2019",
+        "watchHint": "Look for geometric mosaics by the entrance."
+      }
     },
     {
       "id": "forum-granary",
@@ -2632,7 +2748,14 @@
       "mapPoint": [
         124,
         193
-      ]
+      ],
+      "thenNow": {
+        "then": "comparison-temple-of-jupiter-then",
+        "thenCaption": "Before 1881 · photograph",
+        "now": "comparison-temple-of-jupiter-now",
+        "nowCaption": "2012",
+        "watchHint": "Look for the temple steps at the north end of the Forum."
+      }
     },
     {
       "id": "forum-baths",
@@ -2659,7 +2782,14 @@
       "mapPoint": [
         115,
         156
-      ]
+      ],
+      "thenNow": {
+        "then": "comparison-forum-baths-then",
+        "thenCaption": "1898 · illustration",
+        "now": "comparison-forum-baths-now",
+        "nowCaption": "2012",
+        "watchHint": "Look for the brick arch over the doorway."
+      }
     },
     {
       "id": "temple-of-fortuna-augusta",
@@ -2686,7 +2816,14 @@
       "mapPoint": [
         121,
         135
-      ]
+      ],
+      "thenNow": {
+        "then": "comparison-temple-of-fortuna-augusta-then",
+        "thenCaption": "Historic watercolour",
+        "now": "comparison-temple-of-fortuna-augusta-now",
+        "nowCaption": "2022",
+        "watchHint": "Look for the temple steps and the surviving brick wall."
+      }
     },
     {
       "id": "macellum",
@@ -2713,7 +2850,14 @@
       "mapPoint": [
         136,
         181
-      ]
+      ],
+      "thenNow": {
+        "then": "comparison-macellum-then",
+        "thenCaption": "19th-century photograph",
+        "now": "comparison-macellum-now",
+        "nowCaption": "2012",
+        "watchHint": "Look for the ring of stone bases in the courtyard."
+      }
     },
     {
       "id": "sanctuary-of-the-public-lares",
@@ -2794,7 +2938,14 @@
       "mapPoint": [
         144,
         103
-      ]
+      ],
+      "thenNow": {
+        "then": "comparison-house-of-the-ancient-hunt-then",
+        "thenCaption": "Historic photograph",
+        "now": "comparison-house-of-the-ancient-hunt-now",
+        "nowCaption": "2012",
+        "watchHint": "Look for the painted wall panels beside a doorway."
+      }
     },
     {
       "id": "house-of-championnet",
@@ -2902,7 +3053,14 @@
       "mapPoint": [
         196,
         266
-      ]
+      ],
+      "thenNow": {
+        "then": "comparison-triangular-forum-then",
+        "thenCaption": "By 1895 · photograph",
+        "now": "comparison-triangular-forum-now",
+        "nowCaption": "2011",
+        "watchHint": "Look for the columns by the entrance to the sanctuary."
+      }
     },
     {
       "id": "doric-temple-sanctuary-of-athena-and-hercules",
@@ -2983,7 +3141,14 @@
       "mapPoint": [
         222,
         311
-      ]
+      ],
+      "thenNow": {
+        "then": "comparison-quadriporticus-of-the-theatres-or-gladiators-barracks-then",
+        "thenCaption": "19th-century stereograph",
+        "now": "comparison-quadriporticus-of-the-theatres-or-gladiators-barracks-now",
+        "nowCaption": "2016",
+        "watchHint": "Look for the rows of columns around the open courtyard."
+      }
     },
     {
       "id": "temple-of-aesculapius-or-jupiter-meilichios",
@@ -3037,7 +3202,14 @@
       "mapPoint": [
         210,
         245
-      ]
+      ],
+      "thenNow": {
+        "then": "comparison-temple-of-isis-then",
+        "thenCaption": "c. 1870 · photograph",
+        "now": "comparison-temple-of-isis-now",
+        "nowCaption": "2009",
+        "watchHint": "Look for the steps leading up to the shrine."
+      }
     },
     {
       "id": "house-of-julius-polybius",

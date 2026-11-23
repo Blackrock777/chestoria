@@ -5,11 +5,12 @@ struct ProfileView: View {
     @Environment(AppModel.self) private var model
     @Environment(AccountModel.self) private var account
     @Environment(\.dismiss) private var dismiss
+    @State private var mode = SignInView.Mode.signIn
 
     var body: some View {
         NavigationStack {
             Group {
-                if account.isSignedIn { SignedInView() } else { SignInView() }
+                if account.isSignedIn { SignedInView() } else { SignInView(mode: $mode) }
             }
             .navigationTitle(model.strings("profile.title"))
             .navigationBarTitleDisplayMode(.inline)
@@ -27,12 +28,13 @@ struct SignInView: View {
     @Environment(AppModel.self) private var model
     @Environment(AccountModel.self) private var account
     @Environment(\.colorScheme) private var scheme
+    @Binding var mode: Mode
     /// In onboarding the screen has its own title, so the "Guest" header is hidden.
     var showsGuestHeader = true
-    @State private var mode: Mode = .create
     @State private var name = ""
     @State private var email = ""
     @State private var password = ""
+    @State private var showRecovery = false
     @FocusState private var focus: Field?
     enum Field { case name, email, password }
 
@@ -59,6 +61,7 @@ struct SignInView: View {
                 }
                 .signInWithAppleButtonStyle(scheme == .dark ? .white : .black)
                 .frame(height: 54).clipShape(.capsule)
+                .id(mode)
 
                 HStack { line; Text(t("profile.or")).font(.system(size: 13)).foregroundStyle(Palette.stone); line }
 
@@ -84,6 +87,16 @@ struct SignInView: View {
                     if mode == .create {
                         Text(t("profile.passwordHint")).font(.system(size: 12)).foregroundStyle(Palette.stone).frame(maxWidth: .infinity, alignment: .leading)
                     }
+                    Button(t("recovery.forgot")) {
+                        focus = nil
+                        mode = .signIn
+                        account.errorMessage = nil
+                        showRecovery = true
+                    }
+                    .font(.subheadline.weight(.semibold))
+                    .tint(Palette.piperno)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .disabled(account.isBusy)
                 }
 
                 if let error = account.errorMessage {
@@ -108,6 +121,12 @@ struct SignInView: View {
         }
         .scrollDismissesKeyboard(.interactively)
         .onChange(of: mode) { account.errorMessage = nil }
+        .sheet(isPresented: $showRecovery) {
+            PasswordRecoverySheet(email: email) { recoveredEmail in
+                email = recoveredEmail
+                password = ""
+            }
+        }
     }
 
     private var line: some View { Rectangle().fill(Palette.hair).frame(height: 1) }
@@ -138,6 +157,206 @@ private struct FieldStyle: ViewModifier {
     }
 }
 
+// MARK: - Password recovery
+
+private struct PasswordRecoverySheet: View {
+    @Environment(AppModel.self) private var model
+    @Environment(AccountModel.self) private var account
+    @Environment(\.dismiss) private var dismiss
+    @State var email: String
+    let onSuccess: (String) -> Void
+    @State private var sentTo: String?
+    @State private var proof = ""
+    @State private var password = ""
+    @State private var confirmation = ""
+    @State private var isBusy = false
+    @State private var complete = false
+    @State private var errorKey: String?
+    @FocusState private var focus: Field?
+    private enum Field { case email, proof, password, confirmation }
+
+    var body: some View {
+        let t = model.strings
+        NavigationStack {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 16) {
+                    if complete {
+                        Label(t("recovery.success"), systemImage: "checkmark.circle.fill")
+                            .font(.headline)
+                        Text(t("recovery.successDetail")).foregroundStyle(Palette.stone)
+                        Button(t("profile.signIn")) { close() }.buttonStyle(CTAButtonStyle(kind: .dark))
+                    } else {
+                        Text(t(account.isServerBacked ? "recovery.emailIntro" : "recovery.localIntro"))
+                            .foregroundStyle(Palette.stone)
+                        if let sentTo {
+                            Text(t("recovery.codeSent", sentTo)).font(.subheadline)
+                            HStack {
+                                Button(t("recovery.changeEmail")) {
+                                    self.sentTo = nil
+                                    proof = ""
+                                    errorKey = nil
+                                    focus = .email
+                                }
+                                Spacer()
+                                Button(t("recovery.resend")) { perform(sendCode: true) }
+                            }
+                            .font(.subheadline.weight(.semibold))
+                        } else {
+                            TextField(t("profile.email"), text: $email)
+                                .keyboardType(.emailAddress).textInputAutocapitalization(.never).autocorrectionDisabled()
+                                .textContentType(.emailAddress).focused($focus, equals: .email)
+                                .modifier(FieldStyle(focused: focus == .email))
+                        }
+                        if !account.isServerBacked || sentTo != nil {
+                            if account.isServerBacked {
+                                TextField(t("recovery.emailCode"), text: $proof)
+                                    .keyboardType(.numberPad).textContentType(.oneTimeCode)
+                                    .focused($focus, equals: .proof).modifier(FieldStyle(focused: focus == .proof))
+                            } else {
+                                SecureField(t("recovery.keyTitle"), text: $proof)
+                                    .textInputAutocapitalization(.never).autocorrectionDisabled()
+                                    .focused($focus, equals: .proof).modifier(FieldStyle(focused: focus == .proof))
+                            }
+                            SecureField(t("recovery.newPassword"), text: $password)
+                                .textContentType(.newPassword).focused($focus, equals: .password)
+                                .modifier(FieldStyle(focused: focus == .password))
+                            SecureField(t("recovery.confirmPassword"), text: $confirmation)
+                                .textContentType(.newPassword).focused($focus, equals: .confirmation)
+                                .modifier(FieldStyle(focused: focus == .confirmation))
+                            Text(t("profile.passwordHint")).font(.footnote).foregroundStyle(Palette.stone)
+                        }
+                        if let errorKey {
+                            Label(t(errorKey), systemImage: "exclamationmark.circle.fill").font(.subheadline).foregroundStyle(Palette.pompei)
+                        }
+                        let requesting = account.isServerBacked && sentTo == nil
+                        Button {
+                            perform(sendCode: requesting)
+                        } label: {
+                            if isBusy { ProgressView().tint(Palette.calce) }
+                            else { Text(t(requesting ? "recovery.sendCode" : "recovery.reset")) }
+                        }
+                        .buttonStyle(CTAButtonStyle(kind: .dark))
+                        .disabled(email.isEmpty || (!requesting && (proof.isEmpty || password.isEmpty || confirmation.isEmpty)))
+                    }
+                }
+                .padding(20)
+                .disabled(isBusy)
+            }
+            .scrollDismissesKeyboard(.interactively)
+            .background(Palette.calce)
+            .navigationTitle(t("recovery.title"))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar { ToolbarItem(placement: .cancellationAction) { Button(t("common.done")) { close() }.disabled(isBusy) } }
+        }
+        .tint(Palette.piperno)
+        .interactiveDismissDisabled(isBusy)
+    }
+
+    private func close() {
+        if complete { onSuccess(CredentialRules.emailKey(email)) }
+        dismiss()
+    }
+
+    private func perform(sendCode: Bool) {
+        guard !isBusy else { return }
+        errorKey = nil
+        if !sendCode && password != confirmation { errorKey = "recovery.mismatch"; return }
+        focus = nil
+        isBusy = true
+        Task {
+            defer { isBusy = false }
+            do {
+                if sendCode {
+                    try await account.sendRecoveryCode(email: email)
+                    sentTo = CredentialRules.emailKey(email)
+                    proof = ""
+                } else {
+                    try await account.resetPassword(email: email, proof: proof, newPassword: password)
+                    proof = ""
+                    password = ""
+                    confirmation = ""
+                    complete = true
+                }
+            } catch { errorKey = (error as? AuthError)?.recoveryStringKey ?? "recovery.network" }
+        }
+    }
+}
+
+private struct RecoveryKeySheet: View {
+    @Environment(AppModel.self) private var model
+    @Environment(AccountModel.self) private var account
+    @Environment(\.dismiss) private var dismiss
+    @State private var password = ""
+    @State private var key: String?
+    @State private var errorKey: String?
+    @State private var isBusy = false
+    @FocusState private var focused: Bool
+
+    var body: some View {
+        let t = model.strings
+        NavigationStack {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 16) {
+                    if let key {
+                        Text(t("recovery.saveKey")).font(.headline)
+                        Text(key).font(.system(.body, design: .monospaced).weight(.semibold)).textSelection(.enabled)
+                            .privacySensitive()
+                        Text(t("recovery.saveKeyDetail")).foregroundStyle(Palette.stone)
+                    } else {
+                        Text(t("recovery.createKeyIntro")).foregroundStyle(Palette.stone)
+                        SecureField(t("profile.password"), text: $password).textContentType(.password)
+                            .focused($focused).modifier(FieldStyle(focused: focused))
+                        if let errorKey {
+                            Label(t(errorKey), systemImage: "exclamationmark.circle.fill").font(.subheadline).foregroundStyle(Palette.pompei)
+                        }
+                        Button {
+                            guard !isBusy else { return }
+                            focused = false
+                            isBusy = true
+                            errorKey = nil
+                            Task {
+                                defer { isBusy = false }
+                                do {
+                                    key = try await account.createRecoveryKey(currentPassword: password)
+                                    password = ""
+                                } catch { errorKey = (error as? AuthError)?.recoveryStringKey ?? "recovery.unavailable" }
+                            }
+                        } label: {
+                            if isBusy { ProgressView().tint(Palette.calce) }
+                            else { Text(t("recovery.createKey")) }
+                        }
+                        .buttonStyle(CTAButtonStyle(kind: .dark)).disabled(password.isEmpty || isBusy)
+                    }
+                }
+                .padding(20)
+            }
+            .scrollDismissesKeyboard(.interactively)
+            .background(Palette.calce)
+            .navigationTitle(t("recovery.keyTitle"))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar { ToolbarItem(placement: .confirmationAction) { Button(t("common.done")) { dismiss() }.disabled(isBusy) } }
+        }
+        .tint(Palette.piperno)
+        .interactiveDismissDisabled(isBusy)
+    }
+}
+
+private extension AuthError {
+    var recoveryStringKey: String {
+        switch self {
+        case .invalidEmail: "recovery.invalidEmail"
+        case .weakPassword: "profile.passwordHint"
+        case .wrongCredentials: "recovery.wrongPassword"
+        case .invalidRecoveryKey: "recovery.invalidKey"
+        case .invalidRecoveryCode: "recovery.invalidCode"
+        case .recoveryRateLimited: "recovery.rateLimited"
+        case .recoveryUpdateFailed: "recovery.updateFailed"
+        case .recoveryUnavailable, .storageFailed, .notSignedIn: "recovery.unavailable"
+        default: "recovery.network"
+        }
+    }
+}
+
 // MARK: - Signed in
 
 private struct SignedInView: View {
@@ -153,6 +372,7 @@ private struct SignedInView: View {
     @State private var newName = ""
     @State private var confirmDelete = false
     @State private var showSites = false
+    @State private var showRecoveryKey = false
 
     var body: some View {
         @Bindable var model = model
@@ -215,13 +435,18 @@ private struct SignedInView: View {
 
             Section(t("profile.account")) {
                 Button(t("profile.editName")) { newName = user.displayName; editingName = true }
+                if user.provider == .email && !account.isServerBacked {
+                    Button(t("recovery.keyTitle")) { showRecoveryKey = true }
+                }
                 Button(t("profile.signOut")) { account.signOut() }
                 Button(t("profile.delete"), role: .destructive) { confirmDelete = true }
             }
 
             Section(t("profile.about")) {
                 NavigationLink(t("ack.title")) { AcknowledgementsView() }
-                Text(t("profile.version", Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "–"))
+                let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "–"
+                let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "–"
+                Text(t("profile.version", "\(version) (\(build))"))
                     .foregroundStyle(Palette.stone)
             }
         }
@@ -232,6 +457,7 @@ private struct SignedInView: View {
             Button(t("common.cancel"), role: .cancel) {}
         }
         .sheet(isPresented: $showSites) { SitePicker() }
+        .sheet(isPresented: $showRecoveryKey) { RecoveryKeySheet() }
         .confirmationDialog(t("profile.deleteConfirm"), isPresented: $confirmDelete, titleVisibility: .visible) {
             Button(t("profile.delete"), role: .destructive) { Task { await account.deleteAccount() } }
             Button(t("common.cancel"), role: .cancel) {}

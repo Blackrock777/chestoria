@@ -353,6 +353,12 @@
             }
           ]
         }
+      },
+      "thenNow": {
+        "then": "comparison-gesu-nuovo-then",
+        "thenCaption": "1880–1905 · photograph",
+        "now": "gesuFacade2",
+        "nowCaption": "Today"
       }
     },
     {
@@ -661,6 +667,12 @@
             }
           ]
         }
+      },
+      "thenNow": {
+        "then": "comparison-castel-ovo-then",
+        "thenCaption": "1894 · woodcut",
+        "now": "castelOvo",
+        "nowCaption": "Today"
       }
     },
     {
@@ -749,6 +761,12 @@
             }
           ]
         }
+      },
+      "thenNow": {
+        "then": "comparison-santa-chiara-then",
+        "thenCaption": "Before 1943 · church interior",
+        "now": "comparison-santa-chiara-now",
+        "nowCaption": "2013"
       }
     },
     {
@@ -947,6 +965,12 @@
             }
           ]
         }
+      },
+      "thenNow": {
+        "then": "comparison-castel-nuovo-then",
+        "thenCaption": "1907 · postcard",
+        "now": "castelNuovo",
+        "nowCaption": "Today"
       }
     },
     {
