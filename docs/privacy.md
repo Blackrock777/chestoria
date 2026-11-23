@@ -12,7 +12,7 @@ CheStoria asks to use the camera when you enable it. You can also select an imag
 
 Location helps suggest nearby landmarks and narrow photo matches. CheStoria does not send your location to a CheStoria server. On Apple Watch, location may continue in the background during a walk you start, for up to two hours. You can end the walk at any time. The phone sends discovered landmark IDs and app preferences to your paired Watch. Directions open Apple Maps, and source or ticket links open the sites you choose to visit.
 
-You can change camera, location and notification permissions in system settings. Guest features such as the map and sample story remain available without granting those permissions.
+You can change camera, location and notification permissions in system settings. The map remains available to guests without those permissions.
 
 ## Optional accounts
 

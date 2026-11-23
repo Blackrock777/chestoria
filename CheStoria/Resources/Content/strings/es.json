@@ -34,6 +34,7 @@
   "reveal.collect": "Conseguir pegatina",
   "reveal.readAloud": "Leer en voz alta",
   "reveal.stopReading": "Detener lectura",
+  "reveal.audioUnavailable": "No se ha podido iniciar el audio. Toca Escuchar de nuevo.",
   "closer.eyebrow": "Mira de cerca",
   "closer.drag": "Arrastra por la foto",
   "closer.found": "¡Encontrado!",
@@ -219,7 +220,6 @@
   "privacy.appleAccount": "Abrir la cuenta de Apple",
   "snap.enableCamera": "Activar la cámara",
   "snap.captureFailed": "La cámara no ha hecho ninguna foto. Inténtalo de nuevo o elige una foto de tu fototeca.",
-  "snap.sampleStory": "Probar una historia de ejemplo",
   "snap.noCameraHint": "Activa la cámara o elige una foto para identificar un lugar.",
   "stickers.fact": "Curiosidad",
   "snap.zoom": "Zoom de la cámara"

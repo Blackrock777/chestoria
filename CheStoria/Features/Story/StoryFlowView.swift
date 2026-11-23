@@ -442,6 +442,7 @@ struct RevealView: View {
     @State private var shown = false
     @State private var stamped = false
     @State private var showInfo = false
+    @State private var showAudioError = false
 
     private var right: Bool { chosen == story.correctIndex }
 
@@ -510,6 +511,9 @@ struct RevealView: View {
         }
         .onDisappear { narrator.stop() }
         .sheet(isPresented: $showInfo) { StoryInfoSheet(place: place) }
+        .alert(t("reveal.audioUnavailable"), isPresented: $showAudioError) {
+            Button(t("common.done"), role: .cancel) {}
+        }
     }
 
     /// The place's photo with the result on it.
@@ -548,7 +552,8 @@ struct RevealView: View {
             if model.site.allowsReadAloud {
                 ActionTile(title: narrator.isSpeaking ? t("reveal.stopReading") : t("reveal.listen"),
                            icon: narrator.isSpeaking ? "stop.fill" : "speaker.wave.2.fill", tint: Palette.azzurro) {
-                    narrator.toggle(spoken, language: model.language)
+                    do { try narrator.toggle(spoken, language: model.language) }
+                    catch { showAudioError = true }
                 }
             }
             ActionTile(title: t("reveal.about"), icon: "info.circle", tint: Palette.maiolica) { showInfo = true }

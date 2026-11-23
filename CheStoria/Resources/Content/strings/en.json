@@ -34,6 +34,7 @@
   "reveal.collect": "Collect sticker",
   "reveal.readAloud": "Read aloud",
   "reveal.stopReading": "Stop reading",
+  "reveal.audioUnavailable": "Audio could not start. Try tapping Listen again.",
   "closer.eyebrow": "Look closer",
   "closer.drag": "Drag across the photo",
   "closer.found": "Found it!",
@@ -219,7 +220,6 @@
   "privacy.appleAccount": "Open Apple Account",
   "snap.enableCamera": "Enable camera",
   "snap.captureFailed": "The camera didn’t capture a photo. Try again or choose a photo from your library.",
-  "snap.sampleStory": "Try a sample story",
   "snap.noCameraHint": "Enable the camera or choose a photo to identify a place.",
   "stickers.fact": "Fact",
   "snap.zoom": "Camera zoom"

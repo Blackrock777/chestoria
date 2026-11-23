@@ -34,6 +34,7 @@
   "reveal.collect": "Récupérer le sticker",
   "reveal.readAloud": "Lire à voix haute",
   "reveal.stopReading": "Arrêter la lecture",
+  "reveal.audioUnavailable": "La lecture audio n’a pas pu démarrer. Touchez à nouveau Écouter.",
   "closer.eyebrow": "Regardez de plus près",
   "closer.drag": "Glissez sur la photo",
   "closer.found": "Trouvé !",
@@ -219,7 +220,6 @@
   "privacy.appleAccount": "Ouvrir le compte Apple",
   "snap.enableCamera": "Activer l’appareil photo",
   "snap.captureFailed": "Aucune photo n’a été prise. Réessayez ou choisissez une photo de votre photothèque.",
-  "snap.sampleStory": "Essayer une histoire exemple",
   "snap.noCameraHint": "Activez l’appareil photo ou choisissez une photo pour identifier un lieu.",
   "stickers.fact": "À savoir",
   "snap.zoom": "Zoom de l’appareil photo"

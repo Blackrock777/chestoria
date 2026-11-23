@@ -34,6 +34,7 @@
   "reveal.collect": "Sticker holen",
   "reveal.readAloud": "Vorlesen",
   "reveal.stopReading": "Vorlesen stoppen",
+  "reveal.audioUnavailable": "Die Wiedergabe konnte nicht gestartet werden. Tippe erneut auf Anhören.",
   "closer.eyebrow": "Genauer hinsehen",
   "closer.drag": "Über das Foto ziehen",
   "closer.found": "Gefunden!",
@@ -219,7 +220,6 @@
   "privacy.appleAccount": "Apple Account öffnen",
   "snap.enableCamera": "Kamera aktivieren",
   "snap.captureFailed": "Die Kamera hat kein Foto aufgenommen. Versuche es erneut oder wähle ein Foto aus deiner Mediathek.",
-  "snap.sampleStory": "Eine Beispielgeschichte ausprobieren",
   "snap.noCameraHint": "Aktiviere die Kamera oder wähle ein Foto, um einen Ort zu erkennen.",
   "stickers.fact": "Wissenswert",
   "snap.zoom": "Kamerazoom"

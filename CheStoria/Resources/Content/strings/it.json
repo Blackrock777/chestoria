@@ -34,6 +34,7 @@
   "reveal.collect": "Prendi l’adesivo",
   "reveal.readAloud": "Leggi ad alta voce",
   "reveal.stopReading": "Interrompi lettura",
+  "reveal.audioUnavailable": "Impossibile avviare l’audio. Tocca di nuovo Ascolta.",
   "closer.eyebrow": "Guarda meglio",
   "closer.drag": "Trascina sulla foto",
   "closer.found": "Trovato!",
@@ -219,7 +220,6 @@
   "privacy.appleAccount": "Apri l’account Apple",
   "snap.enableCamera": "Attiva la fotocamera",
   "snap.captureFailed": "La fotocamera non ha scattato una foto. Riprova o scegli una foto dalla libreria.",
-  "snap.sampleStory": "Prova una storia di esempio",
   "snap.noCameraHint": "Attiva la fotocamera o scegli una foto per riconoscere un luogo.",
   "stickers.fact": "Curiosità",
   "snap.zoom": "Zoom fotocamera"

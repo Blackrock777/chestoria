@@ -218,22 +218,54 @@ enum Haptics {
 @MainActor @Observable
 final class Narrator: NSObject, AVSpeechSynthesizerDelegate {
     @ObservationIgnored private let synth = AVSpeechSynthesizer()
+    @ObservationIgnored private let audioSession = AVAudioSession.sharedInstance()
+    @ObservationIgnored private var utteranceID: ObjectIdentifier?
     private(set) var isSpeaking = false
 
-    override init() { super.init(); synth.delegate = self }
+    override init() {
+        super.init()
+        synth.usesApplicationAudioSession = true
+        synth.delegate = self
+    }
 
-    func stop() { if synth.isSpeaking { synth.stopSpeaking(at: .immediate) }; isSpeaking = false }
+    func stop() {
+        guard let utteranceID else { return }
+        synth.stopSpeaking(at: .immediate)
+        finish(utteranceID)
+    }
 
     /// Reads `text` in the story language (e.g. "it"), or stops if already reading.
-    func toggle(_ text: String, language: String) {
-        if synth.isSpeaking { stop(); return }
-        let u = AVSpeechUtterance(string: text)
-        u.voice = AVSpeechSynthesisVoice(language: language)
-        u.rate = AVSpeechUtteranceDefaultSpeechRate * 0.95
-        synth.speak(u); isSpeaking = true
+    func toggle(_ text: String, language: String) throws {
+        if isSpeaking {
+            stop()
+            return
+        }
+        // Playback honors the media volume and lets an explicit Listen tap play in Silent Mode.
+        try audioSession.setCategory(.playback, mode: .default, options: .duckOthers)
+        try audioSession.setActive(true)
+
+        let utterance = AVSpeechUtterance(string: text)
+        utterance.voice = AVSpeechSynthesisVoice(language: language)
+        utterance.rate = AVSpeechUtteranceDefaultSpeechRate * 0.95
+        utteranceID = ObjectIdentifier(utterance)
+        isSpeaking = true
+        synth.speak(utterance)
     }
 
     nonisolated func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
-        Task { @MainActor in self.isSpeaking = false }
+        let id = ObjectIdentifier(utterance)
+        Task { @MainActor in finish(id) }
+    }
+
+    nonisolated func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didCancel utterance: AVSpeechUtterance) {
+        let id = ObjectIdentifier(utterance)
+        Task { @MainActor in finish(id) }
+    }
+
+    private func finish(_ id: ObjectIdentifier) {
+        guard utteranceID == id else { return }
+        utteranceID = nil
+        isSpeaking = false
+        try? audioSession.setActive(false, options: .notifyOthersOnDeactivation)
     }
 }

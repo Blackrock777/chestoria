@@ -87,15 +87,6 @@ struct SnapView: View {
                 .animation(Motion.pop.delay(0.35), value: shown)
                 .padding(.bottom, 24)
 
-                if let sample = model.site.featured {
-                    Button(t("snap.sampleStory")) { model.startStory(at: sample) }
-                        .font(.subheadline.weight(.semibold))
-                        .foregroundStyle(.white)
-                        .padding(.horizontal, 14)
-                        .frame(minHeight: 44)
-                        .glassEffect(.regular.interactive(), in: .capsule)
-                        .padding(.bottom, 6)
-                }
             }
             FlashOverlay(trigger: flash)
         }
