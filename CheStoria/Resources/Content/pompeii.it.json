@@ -63,6 +63,9 @@
     },
     {
       "id": "tragic-poet",
+      "thenNow": {
+        "thenCaption": "Prima del 1914 · fotografia"
+      },
       "name": "Casa del Poeta Tragico",
       "clues": [
         "Pavimento a mosaico",
@@ -140,6 +143,9 @@
     },
     {
       "id": "amphitheatre",
+      "thenNow": {
+        "thenCaption": "Fotografia del XIX secolo"
+      },
       "name": "Anfiteatro",
       "clues": [
         "Arena ovale",
@@ -174,6 +180,9 @@
     },
     {
       "id": "large-theatre",
+      "thenNow": {
+        "thenCaption": "1910 · acquerello"
+      },
       "name": "Teatro Grande",
       "clues": [
         "Gradinate curve",
@@ -208,6 +217,9 @@
     },
     {
       "id": "odeon",
+      "thenNow": {
+        "thenCaption": "Fotografia del XIX secolo"
+      },
       "name": "Teatro Piccolo (Odeion)",
       "clues": [
         "Piccolo semicerchio di sedili",
@@ -242,6 +254,9 @@
     },
     {
       "id": "basilica",
+      "thenNow": {
+        "thenCaption": "Fotografia del XIX secolo"
+      },
       "name": "Basilica",
       "clues": [
         "File di colonne in mattoni",
@@ -378,6 +393,9 @@
     },
     {
       "id": "stabian-baths",
+      "thenNow": {
+        "thenCaption": "1889 · acquerello"
+      },
       "name": "Terme Stabiane",
       "clues": [
         "Cortile per gli esercizi",
@@ -412,6 +430,9 @@
     },
     {
       "id": "house-octavius-quartio",
+      "thenNow": {
+        "thenCaption": "Da una pianta del 1916–1921"
+      },
       "name": "Casa di Octavius Quartio",
       "clues": [
         "Lungo giardino",
@@ -446,6 +467,9 @@
     },
     {
       "id": "house-vettii",
+      "thenNow": {
+        "thenCaption": "Fotografia storica · peristilio"
+      },
       "name": "Casa dei Vettii",
       "clues": [
         "Pareti dipinte",
@@ -480,6 +504,9 @@
     },
     {
       "id": "house-faun",
+      "thenNow": {
+        "thenCaption": "1900 ca. · fotografia"
+      },
       "name": "Casa del Fauno",
       "clues": [
         "Statua del fauno danzante",
@@ -553,6 +580,9 @@
     },
     {
       "id": "lupanar",
+      "thenNow": {
+        "thenCaption": "Fotografia storica"
+      },
       "name": "Lupanare",
       "clues": [
         "Stanze piccole",
@@ -655,6 +685,9 @@
     },
     {
       "id": "bakery-popidius-priscus",
+      "thenNow": {
+        "thenCaption": "Fotografia storica"
+      },
       "name": "Panificio di Popidio Prisco",
       "clues": [
         "Pietre a forma di clessidra",
@@ -745,10 +778,16 @@
     },
     {
       "id": "house-of-pansa",
+      "thenNow": {
+        "thenCaption": "Fotografia del XIX secolo"
+      },
       "name": "Casa di Pansa"
     },
     {
       "id": "house-of-sallust",
+      "thenNow": {
+        "thenCaption": "Fotografia storica"
+      },
       "name": "Casa di Sallustio"
     },
     {
@@ -765,6 +804,9 @@
     },
     {
       "id": "house-of-meleager",
+      "thenNow": {
+        "thenCaption": "Fotografia del XIX secolo"
+      },
       "name": "Casa di Meleagro"
     },
     {
@@ -793,6 +835,9 @@
     },
     {
       "id": "temple-of-jupiter",
+      "thenNow": {
+        "thenCaption": "Prima del 1881 · fotografia"
+      },
       "name": "Tempio di Giove"
     },
     {
@@ -801,10 +846,16 @@
     },
     {
       "id": "temple-of-fortuna-augusta",
+      "thenNow": {
+        "thenCaption": "Acquerello storico"
+      },
       "name": "Tempio della Fortuna Augusta"
     },
     {
       "id": "macellum",
+      "thenNow": {
+        "thenCaption": "Fotografia del XIX secolo"
+      },
       "name": "Macellum"
     },
     {
@@ -817,6 +868,9 @@
     },
     {
       "id": "house-of-the-ancient-hunt",
+      "thenNow": {
+        "thenCaption": "Fotografia storica"
+      },
       "name": "Casa della Caccia Antica"
     },
     {
@@ -853,6 +907,9 @@
     },
     {
       "id": "temple-of-isis",
+      "thenNow": {
+        "thenCaption": "1870 ca. · fotografia"
+      },
       "name": "Tempio di Iside"
     },
     {

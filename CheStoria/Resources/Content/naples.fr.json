@@ -145,6 +145,9 @@
     },
     {
       "id": "castel-ovo",
+      "thenNow": {
+        "thenCaption": "1894 · gravure sur bois"
+      },
       "name": "Castel dell’Ovo",
       "clues": [
         "Château sur la mer",
@@ -184,6 +187,9 @@
     },
     {
       "id": "santa-chiara",
+      "thenNow": {
+        "thenCaption": "Avant 1943 · intérieur de l’église"
+      },
       "name": "Santa Chiara",
       "clues": [
         "Façade gothique",

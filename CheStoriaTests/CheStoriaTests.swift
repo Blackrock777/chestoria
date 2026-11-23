@@ -18,6 +18,19 @@ struct ContentTests {
         }
     }
 
+    @Test func bundledComparisonsUseCreditedImages() throws {
+        let catalog = try ContentStore.loadBundled()
+        for site in catalog.sites {
+            let comparisons = site.places.compactMap(\.thenNow)
+            #expect(!comparisons.isEmpty, "\(site.id) has no comparisons")
+            for comparison in comparisons {
+                for image in [comparison.then, comparison.now] {
+                    #expect(Credits.shared.photo(for: image) != nil, "\(site.id): no credit for \(image)")
+                }
+            }
+        }
+    }
+
     @Test func translationsChangeTextButKeepIDsAndImages() throws {
         let en = try ContentStore.loadBundled(language: "en").defaultSite
         let it = try ContentStore.loadBundled(language: "it").defaultSite

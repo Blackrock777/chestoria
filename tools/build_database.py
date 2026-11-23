@@ -18,6 +18,7 @@ ASSETS = CONTENT.parent / 'Assets.xcassets'
 
 def build(output):
     index = json.loads((CONTENT / 'catalog.json').read_text())
+    credits = json.loads((CONTENT / 'credits.json').read_text())['photos']
     output = Path(output).expanduser().resolve()
     output.parent.mkdir(parents=True, exist_ok=True)
     # Validate in a separate database before atomically replacing the last good build.
@@ -33,6 +34,15 @@ def build(output):
                 camera_enabled INTEGER NOT NULL CHECK(camera_enabled IN (0,1)),
                 display_image TEXT NOT NULL, content_json TEXT NOT NULL,
                 PRIMARY KEY(site_id,id));
+            CREATE TABLE image_credits(asset TEXT PRIMARY KEY, title TEXT NOT NULL,
+                author TEXT NOT NULL, licence TEXT NOT NULL, source_url TEXT, licence_url TEXT);
+            CREATE TABLE place_comparisons(site_id TEXT NOT NULL, place_id TEXT NOT NULL,
+                status TEXT NOT NULL CHECK(status IN ('ready', 'archive_pending')),
+                then_image TEXT, then_caption TEXT, now_image TEXT, now_caption TEXT,
+                CHECK((status = 'ready' AND then_image IS NOT NULL AND now_image IS NOT NULL AND then_image <> now_image)
+                   OR (status = 'archive_pending' AND then_image IS NULL)),
+                PRIMARY KEY(site_id,place_id),
+                FOREIGN KEY(site_id,place_id) REFERENCES places(site_id,id));
             CREATE TABLE stories(site_id TEXT NOT NULL, place_id TEXT NOT NULL,
                 sticker_id TEXT NOT NULL, content_json TEXT NOT NULL,
                 PRIMARY KEY(site_id,place_id), UNIQUE(site_id,sticker_id),
@@ -49,7 +59,10 @@ def build(output):
             if not image.startswith('https://') and not (ASSETS / (image + '.imageset')).is_dir():
                 raise ValueError(f'Missing image: {image}')
         with db:
-            db.execute('INSERT INTO metadata VALUES (?,?)', ('schema_version', '1'))
+            db.execute('INSERT INTO metadata VALUES (?,?)', ('schema_version', '2'))
+            db.executemany('INSERT INTO image_credits VALUES (?,?,?,?,?,?)',
+                           ((c['asset'], c['title'], c['author'], c['licence'], c.get('url'), c.get('licenceURL'))
+                            for c in credits))
             for entry in index['sites']:
                 site = json.loads((CONTENT / entry['file']).read_text())
                 sid = site['id']
@@ -60,6 +73,17 @@ def build(output):
                                (sid, p['id'], p['name'], p['latitude'], p['longitude'],
                                 int(p.get('cameraRecognition', True)), p['cameraImage'], json.dumps(p)))
                     story = p.get('story')
+                    comparison = p.get('thenNow')
+                    if comparison:
+                        for key in ('then', 'now'):
+                            image_exists(comparison[key])
+                        values = ('ready', comparison['then'], comparison['thenCaption'],
+                                  comparison['now'], comparison['nowCaption'])
+                    else:
+                        values = ('archive_pending', None, None, p['cameraImage'] if story else None,
+                                  'Today' if story else None)
+                    db.execute('INSERT INTO place_comparisons VALUES (?,?,?,?,?,?,?)',
+                               (sid, p['id'], *values))
                     if story:
                         if not story.get('factCheck', {}).get('sources'):
                             raise ValueError(f'{sid}/{p["id"]}: story needs sources')
@@ -77,10 +101,11 @@ def build(output):
         assert db.execute('PRAGMA integrity_check').fetchone()[0] == 'ok'
         assert not db.execute('PRAGMA foreign_key_check').fetchall()
         counts = {t: db.execute(f'SELECT COUNT(*) FROM {t}').fetchone()[0]
-                  for t in ('sites','places','stories','reference_images','translations','interface_strings')}
+                  for t in ('sites','places','stories','reference_images','translations','interface_strings','place_comparisons','image_credits')}
+        coverage = dict(db.execute('SELECT status, count(*) FROM place_comparisons GROUP BY status'))
         db.close()
         temporary.replace(output)
-    print(json.dumps({'database': str(output), 'counts': counts}, indent=2))
+    print(json.dumps({'database': str(output), 'counts': counts, 'comparison_coverage': coverage}, indent=2))
 
 
 if __name__ == '__main__':

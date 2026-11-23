@@ -83,7 +83,7 @@ struct LookCloserView: View {
             .overlay(alignment: .top) {
                 VStack(spacing: 14) {
                     VStack(alignment: .leading, spacing: 6) {
-                        Text(t("closer.eyebrow")).font(.system(size: 11, weight: .bold)).textCase(.uppercase).kerning(1.2).foregroundStyle(Palette.tufo)
+                        Text(t("closer.eyebrow")).font(.system(size: 11, weight: .bold)).textCase(.uppercase).kerning(1.2).foregroundStyle(.white)
                         Text(look.prompt).font(Typeface.display(20)).foregroundStyle(.white).fixedSize(horizontal: false, vertical: true)
                     }
                     .padding(.horizontal, 18).padding(.vertical, 16)

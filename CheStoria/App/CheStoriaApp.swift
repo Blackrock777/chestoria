@@ -85,7 +85,7 @@ struct MainTabs: View {
             Tab(t("tab.trip"), systemImage: "map", value: AppTab.trip) { TripView() }
             Tab(t("tab.stickers"), systemImage: "seal", value: AppTab.stickers) { StickersView() }
         }
-        .tint(model.selectedTab == .snap ? Palette.tufo : Palette.azzurro)
+        .tint(model.selectedTab == .snap ? Palette.piperno : Palette.azzurro)
     }
 }
 

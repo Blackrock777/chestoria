@@ -661,6 +661,12 @@
             }
           ]
         }
+      },
+      "thenNow": {
+        "then": "comparison-castel-ovo-then",
+        "thenCaption": "1894 · woodcut",
+        "now": "castelOvo",
+        "nowCaption": "Today"
       }
     },
     {
@@ -749,6 +755,12 @@
             }
           ]
         }
+      },
+      "thenNow": {
+        "then": "comparison-santa-chiara-then",
+        "thenCaption": "Before 1943 · church interior",
+        "now": "comparison-santa-chiara-now",
+        "nowCaption": "2013"
       }
     },
     {

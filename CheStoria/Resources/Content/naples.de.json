@@ -145,6 +145,9 @@
     },
     {
       "id": "castel-ovo",
+      "thenNow": {
+        "thenCaption": "1894 · Holzschnitt"
+      },
       "name": "Castel dell’Ovo",
       "clues": [
         "Burg am Meer",
@@ -184,6 +187,9 @@
     },
     {
       "id": "santa-chiara",
+      "thenNow": {
+        "thenCaption": "Vor 1943 · Kircheninneres"
+      },
       "name": "Santa Chiara",
       "clues": [
         "Gotische Fassade",

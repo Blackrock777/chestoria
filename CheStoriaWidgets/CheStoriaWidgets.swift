@@ -100,7 +100,7 @@ struct SecretLiveActivity: Widget {
                     Text(context.state.detail).font(.system(size: 13)).foregroundStyle(.secondary)
                 }
                 Spacer()
-                Text("\(context.state.meters) m").font(.system(size: 22, weight: .heavy, design: .rounded)).foregroundStyle(WidgetPalette.tufo)
+                Text("\(context.state.meters) m").font(.system(size: 22, weight: .heavy, design: .rounded)).foregroundStyle(.white)
             }
             .padding(16)
             .activityBackgroundTint(WidgetPalette.piperno.opacity(0.9))
@@ -112,7 +112,7 @@ struct SecretLiveActivity: Widget {
                     Circle().fill(WidgetPalette.tufo).frame(width: 28, height: 28).padding(.leading, 4)
                 }
                 DynamicIslandExpandedRegion(.trailing) {
-                    Text("\(context.state.meters) m").font(.system(size: 20, weight: .heavy, design: .rounded)).foregroundStyle(WidgetPalette.tufo)
+                    Text("\(context.state.meters) m").font(.system(size: 20, weight: .heavy, design: .rounded)).foregroundStyle(.white)
                 }
                 DynamicIslandExpandedRegion(.bottom) {
                     VStack(alignment: .leading, spacing: 2) {
@@ -124,7 +124,7 @@ struct SecretLiveActivity: Widget {
             } compactLeading: {
                 Circle().fill(WidgetPalette.tufo).frame(width: 12, height: 12)
             } compactTrailing: {
-                Text("\(context.state.meters) m").font(.system(size: 13, weight: .bold, design: .rounded)).foregroundStyle(WidgetPalette.tufo)
+                Text("\(context.state.meters) m").font(.system(size: 13, weight: .bold, design: .rounded)).foregroundStyle(.white)
             } minimal: {
                 Circle().fill(WidgetPalette.tufo).frame(width: 12, height: 12)
             }

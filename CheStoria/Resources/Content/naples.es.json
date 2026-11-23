@@ -145,6 +145,9 @@
     },
     {
       "id": "castel-ovo",
+      "thenNow": {
+        "thenCaption": "1894 · xilografía"
+      },
       "name": "Castel dell’Ovo",
       "clues": [
         "Castillo en el mar",
@@ -184,6 +187,9 @@
     },
     {
       "id": "santa-chiara",
+      "thenNow": {
+        "thenCaption": "Antes de 1943 · interior de la iglesia"
+      },
       "name": "Santa Chiara",
       "clues": [
         "Fachada gótica",

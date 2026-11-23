@@ -130,7 +130,7 @@ private struct FlipCard: View {
 
     private var back: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text(backTitle).font(.system(size: 10, weight: .bold)).textCase(.uppercase).kerning(1).foregroundStyle(Palette.tufo)
+            Text(backTitle).font(.system(size: 10, weight: .bold)).textCase(.uppercase).kerning(1).foregroundStyle(Palette.calce)
             Text(sticker.back).font(Typeface.hand(19)).foregroundStyle(Palette.calce)
             Spacer()
             Text("\(place) · \(date.formatted(.dateTime.day().month()))").font(.system(size: 12)).foregroundStyle(Palette.calce.opacity(0.7))
