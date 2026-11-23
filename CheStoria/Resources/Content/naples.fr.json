@@ -25,6 +25,9 @@
   "places": [
     {
       "id": "gesu-nuovo",
+      "thenNow": {
+        "thenCaption": "1880–1905 · photographie"
+      },
       "name": "Gesù Nuovo",
       "clues": [
         "Façade à pointes",
@@ -262,6 +265,9 @@
     },
     {
       "id": "castel-nuovo",
+      "thenNow": {
+        "thenCaption": "1907 · carte postale"
+      },
       "name": "Castel Nuovo",
       "clues": [
         "Tours rondes et sombres",

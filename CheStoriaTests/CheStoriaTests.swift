@@ -296,6 +296,29 @@ struct AuthTests {
         #expect(again.id == user.id)
     }
 
+    @Test func localRecoveryRequiresTheRightAccountAndConsumesTheKey() async throws {
+        let store = InMemorySecureStore()
+        let s = LocalAuthService(keychain: store)
+        let original = try await s.signUp(name: "Pooja", email: "p@x.co", password: "pompeii79")
+        await #expect(throws: AuthError.wrongCredentials) { try await s.createRecoveryKey(currentPassword: "incorrect1") }
+        let key = try await s.createRecoveryKey(currentPassword: "pompeii79")
+        #expect(key.split(separator: "-").count == 5)
+        #expect(store.data(for: "email-users")?.range(of: Data(key.utf8)) == nil)
+        s.signOut()
+
+        let reopened = LocalAuthService(keychain: store)
+        await #expect(throws: AuthError.invalidRecoveryKey) {
+            try await reopened.resetPassword(email: "other@x.co", recoveryKey: key, newPassword: "newpass19")
+        }
+        try await reopened.resetPassword(email: " P@X.co ", recoveryKey: key.lowercased(), newPassword: "newpass19")
+        #expect(reopened.currentUser == nil)
+        await #expect(throws: AuthError.invalidRecoveryKey) {
+            try await reopened.resetPassword(email: "p@x.co", recoveryKey: key, newPassword: "alsoNew81")
+        }
+        await #expect(throws: AuthError.wrongCredentials) { try await reopened.signIn(email: "p@x.co", password: "pompeii79") }
+        #expect(try await reopened.signIn(email: "p@x.co", password: "newpass19") == original)
+    }
+
     @Test func rejectsBadInputAndWrongPassword() async throws {
         let s = service()
         await #expect(throws: AuthError.invalidEmail) { try await s.signUp(name: "A", email: "nope", password: "pompeii79") }
@@ -538,5 +561,43 @@ struct SupabaseAuthTests {
         await #expect(throws: AuthError.emailInUse) { try await s.signUp(name: "P", email: "p@x.co", password: "pompeii79") }
         Stub.handler = { _ in (200, #"{"id":"u2","email":"new@x.co"}"#) }
         await #expect(throws: AuthError.confirmEmail) { try await s.signUp(name: "N", email: "new@x.co", password: "pompeii79") }
+    }
+
+    @Test func passwordRecoveryVerifiesTheCodeAndLeavesNoSignedInSession() async throws {
+        let s = service()
+        Stub.handler = { request in
+            switch request.url?.path {
+            case "/auth/v1/recover":
+                #expect(request.httpMethod == "POST")
+                #expect(Stub.lastBody?["email"] as? String == "p@x.co")
+                return (200, "{}")
+            case "/auth/v1/verify":
+                #expect(Stub.lastBody?["type"] as? String == "recovery")
+                #expect(Stub.lastBody?["token"] as? String == "123456")
+                return (200, #"{"access_token":"recovery-access","user":{"id":"u1","email":"p@x.co"}}"#)
+            case "/auth/v1/user":
+                #expect(request.httpMethod == "PUT")
+                #expect(request.value(forHTTPHeaderField: "Authorization") == "Bearer recovery-access")
+                #expect(Stub.lastBody?["password"] as? String == "newpass19")
+                return (200, "{}")
+            case "/auth/v1/logout":
+                #expect(request.url?.query == "scope=local")
+                return (204, "")
+            default:
+                Issue.record("Unexpected request")
+                return (500, "{}")
+            }
+        }
+        try await s.sendRecoveryCode(email: " P@X.co ")
+        try await s.resetPassword(email: "p@x.co", emailCode: "123456", newPassword: "newpass19")
+        #expect(s.currentUser == nil)
+
+        Stub.handler = { request in
+            #expect(request.url?.path == "/auth/v1/verify")
+            return (403, #"{"error_code":"otp_expired"}"#)
+        }
+        await #expect(throws: AuthError.invalidRecoveryCode) {
+            try await s.resetPassword(email: "p@x.co", emailCode: "987654", newPassword: "newpass19")
+        }
     }
 }

@@ -2347,7 +2347,13 @@
       "mapPoint": [
         105,
         80
-      ]
+      ],
+      "thenNow": {
+        "then": "comparison-house-of-the-small-fountain-then",
+        "thenCaption": "1828 · excavation plan",
+        "now": "comparison-house-of-the-small-fountain-now",
+        "nowCaption": "2012"
+      }
     },
     {
       "id": "house-of-pansa",
@@ -2494,7 +2500,13 @@
       "mapPoint": [
         121,
         0
-      ]
+      ],
+      "thenNow": {
+        "then": "comparison-house-of-the-prince-of-naples-then",
+        "thenCaption": "Before 1927 · watercolour",
+        "now": "comparison-house-of-the-prince-of-naples-now",
+        "nowCaption": "2019"
+      }
     },
     {
       "id": "house-of-meleager",
@@ -2608,7 +2620,13 @@
       "mapPoint": [
         0,
         8
-      ]
+      ],
+      "thenNow": {
+        "then": "comparison-villa-of-diomede-then",
+        "thenCaption": "Before 1890 · photograph",
+        "now": "comparison-villa-of-diomede-now",
+        "nowCaption": "2023"
+      }
     },
     {
       "id": "suburban-baths",
@@ -2662,7 +2680,13 @@
       "mapPoint": [
         104,
         252
-      ]
+      ],
+      "thenNow": {
+        "then": "comparison-house-of-the-sailor-then",
+        "thenCaption": "Before 1927 · watercolour",
+        "now": "comparison-house-of-the-sailor-now",
+        "nowCaption": "2019"
+      }
     },
     {
       "id": "forum-granary",
@@ -2749,7 +2773,13 @@
       "mapPoint": [
         115,
         156
-      ]
+      ],
+      "thenNow": {
+        "then": "comparison-forum-baths-then",
+        "thenCaption": "1898 · illustration",
+        "now": "comparison-forum-baths-now",
+        "nowCaption": "2012"
+      }
     },
     {
       "id": "temple-of-fortuna-augusta",
@@ -3010,7 +3040,13 @@
       "mapPoint": [
         196,
         266
-      ]
+      ],
+      "thenNow": {
+        "then": "comparison-triangular-forum-then",
+        "thenCaption": "By 1895 · photograph",
+        "now": "comparison-triangular-forum-now",
+        "nowCaption": "2011"
+      }
     },
     {
       "id": "doric-temple-sanctuary-of-athena-and-hercules",
@@ -3091,7 +3127,13 @@
       "mapPoint": [
         222,
         311
-      ]
+      ],
+      "thenNow": {
+        "then": "comparison-quadriporticus-of-the-theatres-or-gladiators-barracks-then",
+        "thenCaption": "19th-century stereograph",
+        "now": "comparison-quadriporticus-of-the-theatres-or-gladiators-barracks-now",
+        "nowCaption": "2016"
+      }
     },
     {
       "id": "temple-of-aesculapius-or-jupiter-meilichios",

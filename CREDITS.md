@@ -17,7 +17,7 @@ The app shows these credits itself: **Profile → About → Acknowledgements** l
 | File in app | Subject | Author | Licence |
 |---|---|---|---|
 | `gesuFacade` | Façade of Gesù Nuovo | Berthold Werner | CC BY-SA 3.0 |
-| `gesuFacade2` | Chiesa del Gesù Nuovo | Rutger van der Maar | CC BY 2.0 |
+| `gesuFacade2` | [Chiesa del Gesù Nuovo](https://commons.wikimedia.org/wiki/File:Chiesa_del_Ges%C3%B9_Nuovo_(Naples).jpg) | Rutger van der Maar | CC BY 2.0 |
 | `gesuDetail` | Gesù Nuovo, rusticated façade | Punteador | CC BY-SA 4.0 |
 | `plebiscito` | Piazza del Plebiscito, San Francesco di Paola | Vyacheslav Argenberg | CC BY 4.0 |
 | `plebiscitoVesuvius` | Vesuvius from Piazza del Plebiscito | Roma1314 | CC BY-SA 3.0 |
@@ -160,3 +160,19 @@ The design rules come from the team's research deck (Storia Pitch v4), including
 | `comparison-castel-ovo-then` | [Castel dell’Ovo · 1894 · woodcut](https://commons.wikimedia.org/wiki/File:Napoli_Castel_dell_Ovo.jpg) | Giuseppe Barberis | Public domain |
 | `comparison-santa-chiara-then` | [Santa Chiara · Before 1943 · church interior](https://commons.wikimedia.org/wiki/File:Napoli%2C_Chiesa_di_Santa_Chiara%2C_interno_verso_l%27altare.jpg) | Unknown photographer | Public domain |
 | `comparison-santa-chiara-now` | [Santa Chiara · 2013](https://commons.wikimedia.org/wiki/File:Interior_Santa_Chiara_02.JPG) | Miguel Hermoso Cuesta | CC BY-SA 4.0 |
+| `comparison-house-of-the-small-fountain-then` | [House of the Small Fountain · 1828 · excavation plan](https://commons.wikimedia.org/wiki/File:Floor_plan_of_the_House_of_the_Small_Fountain_by_Carlo_Bonucci_dated_9th_October_1828.jpg) | Carlo Bonucci | Public domain |
+| `comparison-house-of-the-small-fountain-now` | [House of the Small Fountain · 2012](https://commons.wikimedia.org/wiki/File:Casa_della_Fontana_Piccola_2.JPG) | Mentnafunangann | CC BY-SA 3.0 |
+| `comparison-villa-of-diomede-then` | [Villa of Diomede · Before 1890 · photograph](https://commons.wikimedia.org/wiki/File:Amodio%2C_Michele_%28attivo_ca._1850-1890%29_-_Pompei_-_Maison_Diom%C3%A8de.jpg) | Michele Amodio | Public domain |
+| `comparison-villa-of-diomede-now` | [Villa of Diomede · 2023](https://commons.wikimedia.org/wiki/File:Antigua_ciudad_de_Pompeya%2C_Italia%2C_2023-03-27%2C_DD_174.jpg) | Diego Delso | CC BY-SA 4.0 |
+| `comparison-forum-baths-then` | [Forum Baths · 1898 · illustration](https://commons.wikimedia.org/wiki/File:Tepidarium_of_the_Old_Baths_at_Pompeii_by_Overbeck.jpg) | Johannes Overbeck | Public domain |
+| `comparison-forum-baths-now` | [Forum Baths · 2012](https://commons.wikimedia.org/wiki/File:Terme_del_Foro_6.JPG) | Mentnafunangann | CC BY-SA 3.0 |
+| `comparison-triangular-forum-then` | [Triangular Forum · By 1895 · photograph](https://commons.wikimedia.org/wiki/File:Pluschow%2C_Wilhelm_von_%281852-1930%29_-_Pompei_-_Foro_triangolare_-_portico.jpg) | Attributed to Wilhelm von Plüschow | Public domain |
+| `comparison-triangular-forum-now` | [Triangular Forum · 2011](https://commons.wikimedia.org/wiki/File:Foro_Triangolare_1.JPG) | Mentnafunangann | CC BY-SA 3.0 |
+| `comparison-quadriporticus-of-the-theatres-or-gladiators-barracks-then` | [Quadriporticus of the theatres or Gladiators Barracks · 19th-century stereograph](https://commons.wikimedia.org/wiki/File:Brogi%2C_Giacomo_%281822-1881%29_-_n._5036_-_Pompei_-_Scuola_di_gladiatori%2C_detta_Quartiere_dei_soldati.jpg) | Giacomo Brogi | Public domain |
+| `comparison-quadriporticus-of-the-theatres-or-gladiators-barracks-now` | [Quadriporticus of the theatres or Gladiators Barracks · 2016](https://commons.wikimedia.org/wiki/File:Barracas_de_los_gladiadores_%28Quadriportico_dei_Teatri%29%2C_Pompeya%2C_2016_01.jpg) | Benjamín Núñez González | CC BY-SA 4.0 |
+| `comparison-gesu-nuovo-then` | [Gesù Nuovo · 1880–1905 · photograph](https://commons.wikimedia.org/wiki/File:Henderson%2C_Alexander_Lamont_%281838-1907%29_-_Napoli_chiesa_dei_gesuiti_1880-1905_regular.jpg) | Alexander Lamont Henderson | Public domain |
+| `comparison-castel-nuovo-then` | [Castel Nuovo · 1907 · postcard](https://commons.wikimedia.org/wiki/File:NA-Napoli-1907-Arco-di-trionfo.jpg) | Unknown photographer | Public domain |
+| `comparison-house-of-the-prince-of-naples-then` | [House of the Prince of Naples · Before 1927 · watercolour](https://commons.wikimedia.org/wiki/File:Atrium_of_the_House_of_the_Prince_of_Naples_in_Pompeii_watercolor_by_Luigi_Bazzani.jpg) | Luigi Bazzani | Public domain |
+| `comparison-house-of-the-prince-of-naples-now` | [House of the Prince of Naples · 2019](https://commons.wikimedia.org/wiki/File:The_atrium_with_impluvium_and_cubiculum_of_the_House_of_the_Prince_of_Naples%2C_Pompeii%2C_Italy_2nd_century_BCE_-_1st_century_CE.jpg) | Carole Raddato | CC BY-SA 2.0 |
+| `comparison-house-of-the-sailor-then` | [House of the Sailor · Before 1927 · watercolour](https://commons.wikimedia.org/wiki/File:Atrium_of_the_House_of_the_Mariner_by_Luigi_Bazzani_before_1927.jpg) | Luigi Bazzani | Public domain |
+| `comparison-house-of-the-sailor-now` | [House of the Sailor · 2019](https://commons.wikimedia.org/wiki/File:Pompeii%2C_Italy_23.jpg) | Simon Burchell | CC BY-SA 4.0 |

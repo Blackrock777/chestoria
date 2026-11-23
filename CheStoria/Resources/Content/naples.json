@@ -353,6 +353,12 @@
             }
           ]
         }
+      },
+      "thenNow": {
+        "then": "comparison-gesu-nuovo-then",
+        "thenCaption": "1880–1905 · photograph",
+        "now": "gesuFacade2",
+        "nowCaption": "Today"
       }
     },
     {
@@ -959,6 +965,12 @@
             }
           ]
         }
+      },
+      "thenNow": {
+        "then": "comparison-castel-nuovo-then",
+        "thenCaption": "1907 · postcard",
+        "now": "castelNuovo",
+        "nowCaption": "Today"
       }
     },
     {

@@ -774,6 +774,9 @@
     },
     {
       "id": "house-of-the-small-fountain",
+      "thenNow": {
+        "thenCaption": "1828 · pianta di scavo"
+      },
       "name": "Casa della Fontana Piccola"
     },
     {
@@ -800,6 +803,9 @@
     },
     {
       "id": "house-of-the-prince-of-naples",
+      "thenNow": {
+        "thenCaption": "Prima del 1927 · acquerello"
+      },
       "name": "Casa del Principe di Napoli"
     },
     {
@@ -819,6 +825,9 @@
     },
     {
       "id": "villa-of-diomede",
+      "thenNow": {
+        "thenCaption": "Prima del 1890 · fotografia"
+      },
       "name": "Villa di Diomede"
     },
     {
@@ -827,6 +836,9 @@
     },
     {
       "id": "house-of-the-sailor",
+      "thenNow": {
+        "thenCaption": "Prima del 1927 · acquerello"
+      },
       "name": "Casa del Marinaio"
     },
     {
@@ -842,6 +854,9 @@
     },
     {
       "id": "forum-baths",
+      "thenNow": {
+        "thenCaption": "1898 · illustrazione"
+      },
       "name": "Terme del Foro"
     },
     {
@@ -887,6 +902,9 @@
     },
     {
       "id": "triangular-forum",
+      "thenNow": {
+        "thenCaption": "Entro il 1895 · fotografia"
+      },
       "name": "Foro Triangolare"
     },
     {
@@ -899,6 +917,9 @@
     },
     {
       "id": "quadriporticus-of-the-theatres-or-gladiators-barracks",
+      "thenNow": {
+        "thenCaption": "Stereografia del XIX secolo"
+      },
       "name": "Quadriportico dei Teatri / Caserma dei Gladiatori"
     },
     {

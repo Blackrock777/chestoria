@@ -767,6 +767,48 @@
       "thenNow": {
         "thenCaption": "Hacia 1870 · fotografía"
       }
+    },
+    {
+      "id": "house-of-the-small-fountain",
+      "thenNow": {
+        "thenCaption": "1828 · plano de excavación"
+      }
+    },
+    {
+      "id": "villa-of-diomede",
+      "thenNow": {
+        "thenCaption": "Antes de 1890 · fotografía"
+      }
+    },
+    {
+      "id": "forum-baths",
+      "thenNow": {
+        "thenCaption": "1898 · ilustración"
+      }
+    },
+    {
+      "id": "triangular-forum",
+      "thenNow": {
+        "thenCaption": "Hasta 1895 · fotografía"
+      }
+    },
+    {
+      "id": "quadriporticus-of-the-theatres-or-gladiators-barracks",
+      "thenNow": {
+        "thenCaption": "Estereografía del siglo XIX"
+      }
+    },
+    {
+      "id": "house-of-the-prince-of-naples",
+      "thenNow": {
+        "thenCaption": "Antes de 1927 · acuarela"
+      }
+    },
+    {
+      "id": "house-of-the-sailor",
+      "thenNow": {
+        "thenCaption": "Antes de 1927 · acuarela"
+      }
     }
   ]
 }

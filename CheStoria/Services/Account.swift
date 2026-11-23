@@ -1,5 +1,6 @@
 import AuthenticationServices
 import CommonCrypto
+import CryptoKit
 import Foundation
 import Security
 
@@ -22,6 +23,7 @@ struct UserAccount: Codable, Equatable, Identifiable, Sendable {
 
 enum AuthError: LocalizedError, Equatable {
     case invalidEmail, weakPassword, emptyName, emailInUse, wrongCredentials, appleFailed, notSignedIn, storageFailed, network, confirmEmail
+    case invalidRecoveryKey, invalidRecoveryCode, recoveryRateLimited, recoveryUnavailable, recoveryUpdateFailed
 
     var errorDescription: String? {
         switch self {
@@ -35,6 +37,11 @@ enum AuthError: LocalizedError, Equatable {
         case .storageFailed: "Your account couldn’t be saved on this device. Try again."
         case .network: "We couldn’t reach the server. Check your connection and try again."
         case .confirmEmail: "Check your inbox and confirm your email, then sign in."
+        case .invalidRecoveryKey: "Check your email address and recovery key."
+        case .invalidRecoveryCode: "That email code is invalid or expired. Request a new one."
+        case .recoveryRateLimited: "Please wait before requesting another code."
+        case .recoveryUnavailable: "Password recovery is unavailable for this account."
+        case .recoveryUpdateFailed: "The password change couldn’t be confirmed. Try signing in with the new password or request another code."
         }
     }
 }
@@ -52,6 +59,10 @@ protocol AuthService: AnyObject {
 }
 
 enum CredentialRules {
+    static func emailKey(_ email: String) -> String {
+        email.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+    }
+
     static func isValidEmail(_ s: String) -> Bool {
         s.range(of: #"^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"#, options: .regularExpression) != nil
     }
@@ -148,7 +159,12 @@ nonisolated enum PasswordHasher {
 /// Accounts that live only on this device, in the Keychain. Good for demos, user testing and offline use.
 /// Swap in a server-backed `AuthService` to sync accounts across devices.
 final class LocalAuthService: AuthService {
-    private struct StoredEmailUser: Codable { var account: UserAccount; let salt: Data; let hash: Data }
+    private struct StoredEmailUser: Codable {
+        var account: UserAccount
+        var salt: Data
+        var hash: Data
+        var recoveryHash: Data? = nil
+    }
     private struct Session: Codable { let userID: String; let provider: UserAccount.Provider; let key: String }
 
     private let keychain: SecureStore
@@ -190,10 +206,11 @@ final class LocalAuthService: AuthService {
         guard !name.isEmpty else { throw AuthError.emptyName }
         guard CredentialRules.isValidEmail(key) else { throw AuthError.invalidEmail }
         guard CredentialRules.isStrongPassword(password) else { throw AuthError.weakPassword }
-        var users = emailUsers
-        guard users[key] == nil else { throw AuthError.emailInUse }
+        guard emailUsers[key] == nil else { throw AuthError.emailInUse }
         let salt = PasswordHasher.salt()
         let hash = await Task.detached(priority: .userInitiated) { PasswordHasher.hash(password, salt: salt) }.value
+        var users = emailUsers
+        guard users[key] == nil else { throw AuthError.emailInUse }
         let account = UserAccount(id: UUID().uuidString, displayName: name, email: key, provider: .email, createdAt: .now)
         users[key] = StoredEmailUser(account: account, salt: salt, hash: hash)
         try save(emailUsers: users)
@@ -204,8 +221,54 @@ final class LocalAuthService: AuthService {
         let key = email.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
         guard let stored = emailUsers[key] else { throw AuthError.wrongCredentials }
         let hash = await Task.detached(priority: .userInitiated) { PasswordHasher.hash(password, salt: stored.salt) }.value
-        guard PasswordHasher.matches(hash, stored.hash) else { throw AuthError.wrongCredentials }
-        return try startSession(stored.account, key: key)
+        guard let latest = emailUsers[key], latest.account.id == stored.account.id, latest.salt == stored.salt,
+              PasswordHasher.matches(hash, latest.hash) else { throw AuthError.wrongCredentials }
+        return try startSession(latest.account, key: key)
+    }
+
+    func createRecoveryKey(currentPassword: String) async throws -> String {
+        guard let user = currentUser, user.provider == .email, let email = user.email,
+              let stored = emailUsers[email] else { throw AuthError.recoveryUnavailable }
+        let salt = stored.salt
+        let hash = await Task.detached(priority: .userInitiated) { PasswordHasher.hash(currentPassword, salt: salt) }.value
+        var users = emailUsers
+        guard currentUser?.id == user.id, var account = users[email], account.account.id == user.id,
+              PasswordHasher.matches(hash, account.hash), account.recoveryHash == stored.recoveryHash else {
+            throw AuthError.wrongCredentials
+        }
+        var bytes = [UInt8](repeating: 0, count: 20)
+        guard SecRandomCopyBytes(kSecRandomDefault, bytes.count, &bytes) == errSecSuccess else { throw AuthError.storageFailed }
+        let groups = stride(from: 0, to: bytes.count, by: 4).map { start in
+            bytes[start..<start+4].map { String(format: "%02X", $0) }.joined()
+        }
+        account.recoveryHash = Self.recoveryDigest(groups.joined())
+        users[email] = account
+        try save(emailUsers: users)
+        return groups.joined(separator: "-")
+    }
+
+    func resetPassword(email: String, recoveryKey: String, newPassword: String) async throws {
+        let email = CredentialRules.emailKey(email)
+        guard CredentialRules.isValidEmail(email) else { throw AuthError.invalidEmail }
+        guard CredentialRules.isStrongPassword(newPassword) else { throw AuthError.weakPassword }
+        let digest = Self.recoveryDigest(recoveryKey)
+        guard currentUser == nil, let stored = emailUsers[email], let recoveryHash = stored.recoveryHash,
+              PasswordHasher.matches(digest, recoveryHash) else { throw AuthError.invalidRecoveryKey }
+        let salt = PasswordHasher.salt()
+        let hash = await Task.detached(priority: .userInitiated) { PasswordHasher.hash(newPassword, salt: salt) }.value
+        var users = emailUsers
+        guard currentUser == nil, var account = users[email], account.account.id == stored.account.id,
+              account.recoveryHash == recoveryHash else { throw AuthError.invalidRecoveryKey }
+        account.salt = salt
+        account.hash = hash
+        account.recoveryHash = nil
+        users[email] = account
+        try save(emailUsers: users)
+    }
+
+    private static func recoveryDigest(_ key: String) -> Data {
+        let normalized = key.filter { $0 != "-" && !$0.isWhitespace }.uppercased()
+        return Data(SHA256.hash(data: Data(normalized.utf8)))
     }
 
     func signInWithApple(userID: String, name: PersonNameComponents?, email: String?, identityToken: String? = nil) async throws -> UserAccount {
@@ -278,6 +341,27 @@ final class AccountModel {
     func signUp(name: String, email: String, password: String) async { await run { try await self.service.signUp(name: name, email: email, password: password) } }
     func signIn(email: String, password: String) async { await run { try await self.service.signIn(email: email, password: password) } }
 
+    func createRecoveryKey(currentPassword: String) async throws -> String {
+        guard let local = service as? LocalAuthService else { throw AuthError.recoveryUnavailable }
+        return try await local.createRecoveryKey(currentPassword: currentPassword)
+    }
+
+    func sendRecoveryCode(email: String) async throws {
+        guard let server = service as? SupabaseAuthService else { throw AuthError.recoveryUnavailable }
+        try await server.sendRecoveryCode(email: email)
+    }
+
+    func resetPassword(email: String, proof: String, newPassword: String) async throws {
+        switch service {
+        case let local as LocalAuthService:
+            try await local.resetPassword(email: email, recoveryKey: proof, newPassword: newPassword)
+        case let server as SupabaseAuthService:
+            try await server.resetPassword(email: email, emailCode: proof, newPassword: newPassword)
+        default:
+            throw AuthError.recoveryUnavailable
+        }
+    }
+
     func handleApple(_ result: Result<ASAuthorization, Error>) async {
         switch result {
         case .success(let auth):
@@ -302,6 +386,7 @@ final class AccountModel {
     }
 
     private func run(_ work: @escaping () async throws -> UserAccount) async {
+        guard !isBusy else { return }
         isBusy = true; errorMessage = nil
         defer { isBusy = false }
         do { user = try await work(); Haptics.success() } catch { errorMessage = error.localizedDescription }

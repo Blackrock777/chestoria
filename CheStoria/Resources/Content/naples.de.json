@@ -25,6 +25,9 @@
   "places": [
     {
       "id": "gesu-nuovo",
+      "thenNow": {
+        "thenCaption": "1880–1905 · Fotografie"
+      },
       "name": "Gesù Nuovo",
       "clues": [
         "Stachelige Steinfassade",
@@ -262,6 +265,9 @@
     },
     {
       "id": "castel-nuovo",
+      "thenNow": {
+        "thenCaption": "1907 · Postkarte"
+      },
       "name": "Castel Nuovo",
       "clues": [
         "Dunkle Rundtürme",

@@ -64,6 +64,59 @@ final class SupabaseAuthService: AuthService {
         return try await authenticate(path: "auth/v1/token?grant_type=password", body: body, provider: .email, fallbackName: nil)
     }
 
+    func sendRecoveryCode(email: String) async throws {
+        let email = CredentialRules.emailKey(email)
+        guard currentUser == nil else { throw AuthError.recoveryUnavailable }
+        guard CredentialRules.isValidEmail(email) else { throw AuthError.invalidEmail }
+        var req = request("auth/v1/recover", method: "POST")
+        req.httpBody = try JSONEncoder().encode(["email": email])
+        let (data, response) = try await session.data(for: req)
+        // Use the same confirmation for known and unknown addresses.
+        if (try? JSONDecoder().decode(ErrorResponse.self, from: data).error_code) == "user_not_found" { return }
+        if (response as? HTTPURLResponse)?.statusCode == 429 { throw AuthError.recoveryRateLimited }
+        try check(response, data)
+    }
+
+    func resetPassword(email: String, emailCode: String, newPassword: String) async throws {
+        let email = CredentialRules.emailKey(email)
+        let code = emailCode.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard currentUser == nil else { throw AuthError.recoveryUnavailable }
+        guard CredentialRules.isValidEmail(email) else { throw AuthError.invalidEmail }
+        guard CredentialRules.isStrongPassword(newPassword) else { throw AuthError.weakPassword }
+        guard code.range(of: #"^[0-9]{6,10}$"#, options: .regularExpression) != nil else { throw AuthError.invalidRecoveryCode }
+
+        var verify = request("auth/v1/verify", method: "POST")
+        verify.httpBody = try JSONEncoder().encode(["email": email, "token": code, "type": "recovery"])
+        let (data, response) = try await session.data(for: verify)
+        switch (response as? HTTPURLResponse)?.statusCode {
+        case 400, 401, 403, 404, 422: throw AuthError.invalidRecoveryCode
+        case 429: throw AuthError.recoveryRateLimited
+        default: try check(response, data)
+        }
+        let result = try JSONDecoder().decode(TokenResponse.self, from: data)
+        guard let token = result.access_token, !token.isEmpty,
+              result.user?.email.map(CredentialRules.emailKey) == email else { throw AuthError.invalidRecoveryCode }
+
+        var update = request("auth/v1/user", method: "PUT")
+        update.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        update.httpBody = try JSONEncoder().encode(["password": newPassword])
+        do {
+            let (data, response) = try await session.data(for: update)
+            try check(response, data)
+        } catch {
+            await closeRecoverySession(token)
+            throw AuthError.recoveryUpdateFailed
+        }
+        await closeRecoverySession(token)
+    }
+
+    private func closeRecoverySession(_ token: String) async {
+        var logout = request("auth/v1/logout?scope=local", method: "POST")
+        logout.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        logout.timeoutInterval = 5
+        _ = try? await session.data(for: logout)
+    }
+
     func signInWithApple(userID: String, name: PersonNameComponents?, email: String?, identityToken: String?) async throws -> UserAccount {
         guard let token = identityToken else { throw AuthError.appleFailed }
         let display = name.map { PersonNameComponentsFormatter().string(from: $0) }.flatMap { $0.isEmpty ? nil : $0 }

@@ -107,7 +107,13 @@ How it works: the app ships only SigLIP’s image encoder (`CheStoria/Resources/
 
 ## Accounts
 
-The app talks to an `AuthService` protocol. This version ships `LocalAuthService`: accounts live on the device, in the Keychain, which suits user testing and offline use. To sync accounts across devices, implement `AuthService` against your backend (Firebase, Supabase or your own API) and pass it to `AccountModel` in `CheStoriaApp`. No view changes are needed. Sign in with Apple needs the capability enabled for your team, which `project.yml` already requests.
+The app uses `LocalAuthService` and stores accounts in the iPhone Keychain by default. While signed in with email, open **Profile → Account → Recovery key**, confirm the current password and save the key somewhere safe. **Forgot password?** accepts that key once on the same iPhone. People who have not set up a key can check Apple's Passwords app for a saved password. Apple accounts use **Sign in with Apple**. Your Xcode team needs the Sign in with Apple capability requested by `project.yml`.
+
+### Enable email password recovery
+
+1. Configure a Supabase project for email and password sign-in. Set its URL and public publishable or anon key in `project.yml` (`SupabaseURL` and `SupabaseAnonKey`) and regenerate `CheStoria.xcodeproj` with `xcodegen`. Use a public client key here. Keep the service role key on the server.
+2. In **Authentication → Email Templates → Reset Password**, use an email code. Set the message body to `<p>Your CheStoria password reset code is: <strong>{{ .Token }}</strong></p><p>If you did not request this, you can ignore this email.</p>`. This flow uses the code entered in the app. See the [Supabase email template guide](https://supabase.com/docs/guides/auth/auth-email-templates).
+3. Configure [Supabase SMTP](https://supabase.com/docs/guides/auth/auth-smtp) for production delivery. Test with a real test account by signing out, requesting the code, resetting the password, then signing in again. Existing local accounts stay on their original devices and users who switch to hosted sign-in need an account in Supabase.
 
 ## Design
 

@@ -25,6 +25,9 @@
   "places": [
     {
       "id": "gesu-nuovo",
+      "thenNow": {
+        "thenCaption": "1880–1905 · fotografia"
+      },
       "name": "Gesù Nuovo",
       "clues": [
         "Facciata a punta",
@@ -262,6 +265,9 @@
     },
     {
       "id": "castel-nuovo",
+      "thenNow": {
+        "thenCaption": "1907 · cartolina"
+      },
       "name": "Castel Nuovo",
       "clues": [
         "Torri scure e rotonde",

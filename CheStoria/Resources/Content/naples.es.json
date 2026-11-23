@@ -25,6 +25,9 @@
   "places": [
     {
       "id": "gesu-nuovo",
+      "thenNow": {
+        "thenCaption": "1880–1905 · fotografía"
+      },
       "name": "Gesù Nuovo",
       "clues": [
         "Fachada de puntas",
@@ -262,6 +265,9 @@
     },
     {
       "id": "castel-nuovo",
+      "thenNow": {
+        "thenCaption": "1907 · postal"
+      },
       "name": "Castel Nuovo",
       "clues": [
         "Torres oscuras y redondas",
