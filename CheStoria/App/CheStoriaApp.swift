@@ -58,16 +58,29 @@ struct CheStoriaApp: App {
 
 struct RootView: View {
     @Environment(AppModel.self) private var model
+    @Environment(AccountModel.self) private var account
 
     var body: some View {
         @Bindable var model = model
-        Group {
+        ZStack {
             if model.hasOnboarded { MainTabs().transition(.opacity) } else { WelcomeView().transition(.opacity) }
         }
         .animation(.easeInOut(duration: 0.4), value: model.hasOnboarded)
         .fullScreenCover(item: $model.activeFlow) { request in StoryFlowView(request: request) }
-        .sheet(isPresented: $model.showProfile) { ProfileView() }
+        .sheet(isPresented: $model.showProfile, onDismiss: finishSignOut) {
+            ProfileView {
+                model.isSigningOut = true
+                model.showProfile = false
+            }
+        }
         .sheet(isPresented: $model.showLanguagePicker) { NavigationStack { LanguagePicker() } }
+    }
+
+    private func finishSignOut() {
+        guard model.isSigningOut else { return }
+        account.signOut()
+        LiveActivityController.shared.end()
+        model.returnToWelcome()
     }
 }
 

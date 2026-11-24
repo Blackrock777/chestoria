@@ -4,10 +4,12 @@ import SwiftUI
 /// Every word on this screen comes from the content files.
 struct WelcomeView: View {
     @Environment(AppModel.self) private var model
+    @Environment(AccountModel.self) private var account
     @Environment(\.accessibilityReduceMotion) private var reduce
     @State private var zoom: CGFloat = 1.16
     @State private var shown = false
     @State private var showPrivacy = false
+    @State private var showSignIn = false
 
     var body: some View {
         @Bindable var model = model
@@ -83,11 +85,17 @@ struct WelcomeView: View {
                 .buttonStyle(CTAButtonStyle(kind: .light))
                 .rise(shown, delay: 0.95)
 
-                Button(t("privacy.title")) { showPrivacy = true }
-                    .font(.footnote.weight(.semibold))
-                    .foregroundStyle(.white)
-                    .frame(maxWidth: .infinity, minHeight: 44)
-                    .rise(shown, delay: 0.95)
+                HStack {
+                    if !account.isSignedIn {
+                        Button(t("profile.signIn")) { showSignIn = true }
+                            .frame(maxWidth: .infinity, minHeight: 44)
+                    }
+                    Button(t("privacy.title")) { showPrivacy = true }
+                        .frame(maxWidth: .infinity, minHeight: 44)
+                }
+                .font(.footnote.weight(.semibold))
+                .foregroundStyle(.white)
+                .rise(shown, delay: 0.95)
             }
             .padding(.horizontal, 24).padding(.bottom, 12)
         }
@@ -102,6 +110,9 @@ struct WelcomeView: View {
         }
         .preferredColorScheme(.dark)
         .sheet(isPresented: $showPrivacy) { PrivacyPolicySheet() }
+        .sheet(isPresented: $showSignIn, onDismiss: {
+            if account.isSignedIn { model.completeOnboarding() }
+        }) { AccountSignInSheet() }
         .onAppear {
             withAnimation(reduce ? nil : .easeOut(duration: 9)) { zoom = 1 }
             withAnimation(.easeOut(duration: 0.6)) { shown = true }

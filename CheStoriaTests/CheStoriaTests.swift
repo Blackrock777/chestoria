@@ -301,7 +301,7 @@ struct AppModelTests {
         #expect(m.language == "de")
         #expect(m.site.place(id: "tragic-poet")?.name == "Haus des tragischen Dichters")
         #expect(m.collectedStickers.count == 2)
-        #expect(m.strings("tab.trip") == "Meine Reise")
+        #expect(m.strings("tab.trip") == "Karte")
     }
 }
 
@@ -455,6 +455,9 @@ struct SiteTests {
         m.switchSite(to: "naples")
         m.setLanguage("it")
         m.completeOnboarding()
+        #expect(m.isShowingSnap)
+        m.isSigningOut = true
+        #expect(!m.isShowingSnap)
         let place = try #require(m.site.place(id: "gesu-nuovo"))
         m.finishStory(at: place, goTo: .trip)
         m.startStory(at: place)
@@ -462,7 +465,7 @@ struct SiteTests {
 
         m.returnToWelcome()
 
-        #expect(!m.hasOnboarded && !m.showProfile)
+        #expect(!m.hasOnboarded && !m.showProfile && !m.isSigningOut)
         #expect(m.activeFlow == nil && m.selectedTab == .snap)
         #expect(m.site.id == "naples" && m.language == "it")
         #expect(m.collectedStickers.count == 1)

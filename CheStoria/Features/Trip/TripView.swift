@@ -4,7 +4,6 @@ import SwiftUI
 /// The discovery map shows found places as gold pins and undiscovered stories as "?" pins.
 struct TripView: View {
     @Environment(AppModel.self) private var model
-    @State private var showSite = false
     @State private var openPlace: Place?
     @State private var appeared = false
 
@@ -14,13 +13,9 @@ struct TripView: View {
         NavigationStack {
         ScrollView {
             VStack(alignment: .leading, spacing: 14) {
-                Button { showSite = true } label: {
-                    Label(t("trip.secrets", model.site.city, "\(visited.count)"), systemImage: "ticket")
-                        .font(.system(size: 14, weight: .semibold)).foregroundStyle(Palette.azzurro)
-                        .padding(.horizontal, 14).frame(height: 34)
-                        .background(Palette.azzurroSoft, in: .capsule)
-                }
-                .padding(.horizontal, 4)
+                Text(model.site.city)
+                    .font(.subheadline.weight(.semibold)).foregroundStyle(Palette.stone)
+                    .padding(.horizontal, 4)
 
                 TripMapView(site: model.site, visited: visited) { openPlace = $0 }
                     .frame(height: 460)
@@ -56,7 +51,6 @@ struct TripView: View {
         .toolbar { ToolbarItem(placement: .topBarTrailing) { ProfileButton(style: .toolbar) } }
         }
         .onAppear { appeared = false; DispatchQueue.main.async { appeared = true } }
-        .sheet(isPresented: $showSite) { SiteSheet().presentationDetents([.large]).presentationCornerRadius(38) }
         .sheet(item: $openPlace) { PlaceSheet(place: $0) }
     }
 }
@@ -248,44 +242,5 @@ private struct TripPin: View {
         .padding(.top, -22) // keeps the circle's centre on the coordinate
         .scaleEffect(shown ? 1 : 0.4).opacity(shown ? 1 : 0)
         .onAppear { withAnimation(reduce ? nil : Motion.pop.delay(0.2 + delay)) { shown = true } }
-    }
-}
-
-// MARK: - Site tickets
-
-struct SiteSheet: View {
-    @Environment(AppModel.self) private var model
-
-    var body: some View {
-        let site = model.site, t = model.strings
-        ScrollView {
-            VStack(alignment: .leading, spacing: 14) {
-                Text(site.name).font(Typeface.display(29, relativeTo: .title)).foregroundStyle(Palette.piperno).padding(.top, 24)
-                HStack(spacing: 8) {
-                    ForEach(Array(site.tickets.tags.enumerated()), id: \.offset) { i, tag in
-                        TagPill(text: tag, fill: i == 0 ? Palette.tufoSoft : Palette.sunk, ink: i == 0 ? Palette.piperno : Palette.stone)
-                    }
-                }
-                LazyVGrid(columns: [GridItem(.flexible(), spacing: 10), GridItem(.flexible(), spacing: 10)], spacing: 10) {
-                    ForEach(site.tickets.tiles, id: \.label) { tile($0.label, $0.value, $0.note) }
-                }
-                Link(destination: site.tickets.bookingURL) { Text(t("site.book")).frame(maxWidth: .infinity) }
-                    .buttonStyle(CTAButtonStyle(kind: .dark)).padding(.top, 8)
-            }
-            .padding(.horizontal, 20)
-        }
-        .background(Palette.calce)
-    }
-
-    private func tile(_ label: String, _ value: String, _ note: String) -> some View {
-        VStack(alignment: .leading, spacing: 2) {
-            Text(label).font(.system(size: 13)).foregroundStyle(Palette.stone)
-            Text(value).font(Typeface.display(22)).foregroundStyle(Palette.piperno)
-            Text(note).font(.system(size: 11)).foregroundStyle(Palette.stone)
-        }
-        .padding(.horizontal, 14).padding(.vertical, 12)
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        .background(Palette.card, in: .rect(cornerRadius: 20))
-        .overlay(RoundedRectangle(cornerRadius: 20).stroke(Palette.hair, lineWidth: 1.5))
     }
 }

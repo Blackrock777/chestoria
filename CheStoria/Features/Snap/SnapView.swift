@@ -26,16 +26,15 @@ struct SnapView: View {
         let fallback = recognizer.fallbackPlace(in: model.site)
         ZStack {
             CameraBackground(camera: camera, place: fallback, live: canUseCamera, drifting: !reduce)
+                .scaleEffect(canUseCamera ? 1 : zoom)
                 .ignoresSafeArea()
                 .accessibilityHidden(true)
 
-            if canUseCamera {
-                Color.clear.contentShape(.rect)
-                    .gesture(MagnifyGesture()
-                        .updating($zoomStart) { _, start, _ in if start == nil { start = zoom } }
-                        .onChanged { value in zoom = min(3, max(1, (zoomStart ?? zoom) * value.magnification)) })
-                    .accessibilityHidden(true)
-            }
+            Color.clear.contentShape(.rect)
+                .gesture(MagnifyGesture()
+                    .updating($zoomStart) { _, start, _ in if start == nil { start = zoom } }
+                    .onChanged { value in zoom = min(3, max(1, (zoomStart ?? zoom) * value.magnification)) })
+                .accessibilityHidden(true)
 
             VStack(spacing: 0) {
                 HStack {
@@ -58,20 +57,29 @@ struct SnapView: View {
                     .padding(.top, 10).transition(.move(edge: .top).combined(with: .opacity))
                 }
 
-                Spacer()
-                BreathingReticle().frame(width: 270, height: 320)
-                    .opacity(shown ? 1 : 0).scaleEffect(shown ? 1 : 1.15)
-                    .animation(Motion.glide.delay(0.25), value: shown)
-                Spacer()
+                GeometryReader { geometry in
+                    BreathingReticle()
+                        .frame(width: min(270, geometry.size.width * 0.72), height: min(320, geometry.size.height * 0.88))
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .opacity(shown ? 1 : 0).scaleEffect(shown ? 1 : 1.15)
+                        .animation(Motion.glide.delay(0.25), value: shown)
+                }
+                .allowsHitTesting(false)
 
                 LiveGuessChip(guess: canUseCamera ? matcher.live : nil, hint: t(canUseCamera ? "snap.hint" : "snap.noCameraHint"))
                     .padding(.bottom, 14)
-                if canUseCamera { zoomControls }
+                zoomControls
                 ZStack {
-                    ShutterButton(label: t(canUseCamera ? "snap.takePhoto" : "snap.enableCamera")) {
-                        if canUseCamera { snap(fallback: fallback) } else { enableCamera() }
+                    if !canUseCamera && CameraSession.isAvailable {
+                        Button(t("snap.enableCamera"), action: enableCamera)
+                            .buttonStyle(.borderedProminent)
+                            .tint(.white)
+                            .foregroundStyle(.black)
+                            .frame(minHeight: 88)
+                    } else {
+                        ShutterButton(label: t("snap.takePhoto")) { snap(fallback: fallback) }
+                            .disabled(isCapturing || !canUseCamera)
                     }
-                    .disabled(isCapturing || !CameraSession.isAvailable)
                     HStack {
                         PhotosPicker(selection: $picked, matching: .images) {
                             Image(systemName: "photo.on.rectangle").font(.system(size: 19, weight: .semibold))
@@ -94,15 +102,28 @@ struct SnapView: View {
         .onAppear {
             shown = true
             if !Self.isScreenshotRun { recognizer.start() }
-            refreshCamera()
+            refreshCameraAccess()
         }
-        .onDisappear { camera.stop() }
+        .onDisappear {
+            camera.setFrameHandler(nil)
+            camera.stop()
+            matcher.clearLive()
+        }
+        .onChange(of: isPreviewRunning, initial: true) { _, active in
+            if active {
+                camera.start()
+                camera.zoom(to: zoom)
+            } else {
+                camera.stop()
+                matcher.clearLive()
+            }
+        }
         .onChange(of: zoom) { _, factor in
             matcher.clearLive()
-            camera.zoom(to: factor)
+            if isPreviewRunning { camera.zoom(to: factor) }
         }
         .onChange(of: scenePhase) { _, phase in
-            if phase == .active { refreshCamera() } else { camera.stop() }
+            if phase == .active { refreshCameraAccess() }
         }
         .alert(t("snap.captureFailed"), isPresented: $showCaptureError) {
             Button(t("common.done"), role: .cancel) {}
@@ -125,11 +146,15 @@ struct SnapView: View {
         .task(id: model.site.id + model.language) {
             matcher.clearLive()
             await matcher.prepare(site: model.site)
+            guard !Task.isCancelled else { return }
             if CameraSession.isAvailable {
                 // Real camera: a frame about twice a second goes to the on-device AI.
-                camera.onFrame = { [matcher, model] buffer in
+                camera.setFrameHandler { [matcher, model] buffer in
                     nonisolated(unsafe) let frame = buffer
-                    Task { @MainActor in matcher.liveGuess(buffer: frame, site: model.site, catalog: model.catalog) }
+                    Task { @MainActor in
+                        guard model.isShowingSnap else { return }
+                        matcher.liveGuess(buffer: frame, site: model.site, catalog: model.catalog)
+                    }
                 }
             } else if let cg = ImageLoader.shared.cached(fallback.cameraImage)?.normalizedCGImage {
                 // Simulator: the stand-in photo is what the "camera" sees.
@@ -139,7 +164,7 @@ struct SnapView: View {
         .onChange(of: picked) { _, item in
             guard let item else { return }
             Task {
-                if let data = try? await item.loadTransferable(type: Data.self), let image = UIImage(data: data) {
+                if let data = try? await item.loadTransferable(type: Data.self), let image = UIImage(data: data), model.isShowingSnap {
                     model.startStory(at: fallback, photo: image)
                 }
                 picked = nil
@@ -159,14 +184,16 @@ struct SnapView: View {
                         .font(.subheadline.weight(.semibold))
                         .monospacedDigit()
                         .frame(width: 44, height: 44)
-                        .foregroundStyle(selected ? Palette.tufo : Color.white)
+                        .foregroundStyle(selected ? Color.black : Color.white)
+                        .background(selected ? Palette.tufo : Color.clear, in: .circle)
                 }
                 .buttonStyle(.plain)
                 .accessibilityAddTraits(selected ? .isSelected : [])
             }
         }
         .padding(.horizontal, 4)
-        .glassEffect(.regular, in: .capsule)
+        .padding(.vertical, 4)
+        .background(.black.opacity(0.72), in: .capsule)
         .accessibilityElement(children: .contain)
         .accessibilityLabel(model.strings("snap.zoom"))
         .accessibilityValue(Text("\(zoomValue)×"))
@@ -174,7 +201,7 @@ struct SnapView: View {
     }
 
     private func updateLiveActivity() {
-        guard model.activeFlow == nil else { LiveActivityController.shared.end(); return }
+        guard model.isShowingSnap else { LiveActivityController.shared.end(); return }
         LiveActivityController.shared.update(fix: recognizer.lastLocation, authorization: recognizer.authorization,
                                              site: model.site, visited: Set(model.state.visited), strings: model.strings)
     }
@@ -185,7 +212,9 @@ struct SnapView: View {
         Haptics.tap()
         Task {
             defer { isCapturing = false }
-            guard let photo = await camera.capture() else {
+            let photo = await camera.capture()
+            guard model.isShowingSnap else { return }
+            guard let photo else {
                 showCaptureError = true
                 return
             }
@@ -198,19 +227,19 @@ struct SnapView: View {
         CameraSession.isAvailable && cameraAccess == .authorized
     }
 
-    private func refreshCamera() {
+    private var isPreviewRunning: Bool {
+        canUseCamera && model.isShowingSnap && scenePhase == .active
+    }
+
+    private func refreshCameraAccess() {
         cameraAccess = AVCaptureDevice.authorizationStatus(for: .video)
-        if canUseCamera && scenePhase == .active {
-            camera.start()
-            camera.zoom(to: zoom)
-        }
     }
 
     private func enableCamera() {
         if cameraAccess == .notDetermined {
             Task {
                 _ = await AVCaptureDevice.requestAccess(for: .video)
-                refreshCamera()
+                refreshCameraAccess()
             }
         } else if let url = URL(string: UIApplication.openSettingsURLString) {
             UIApplication.shared.open(url)

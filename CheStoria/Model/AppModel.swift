@@ -47,6 +47,10 @@ final class AppModel {
     var activeFlow: FlowRequest?
     var showProfile = false
     var showLanguagePicker = false
+    var isSigningOut = false
+    var isShowingSnap: Bool {
+        hasOnboarded && selectedTab == .snap && activeFlow == nil && !showProfile && !isSigningOut
+    }
     private(set) var hasOnboarded: Bool { didSet { defaults.set(hasOnboarded, forKey: Keys.onboarded) } }
     private(set) var state: TripState { didSet { save() } }
 
@@ -193,6 +197,7 @@ final class AppModel {
         activeFlow = nil
         selectedTab = .snap
         hasOnboarded = false
+        isSigningOut = false
     }
 
     private func save() {

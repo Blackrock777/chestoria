@@ -97,10 +97,12 @@ nonisolated final class CameraSession: @unchecked Sendable {
     private let frameQueue = DispatchQueue(label: "app.chestoria.frames")
     private(set) var isConfigured = false
     private var pending: PhotoDelegate?
-    private var frames: FrameDelegate?
+    private let frames = FrameDelegate()
     private var device: AVCaptureDevice?
     /// Called with a camera frame about twice a second, for live AI recognition.
-    var onFrame: (@Sendable (CVPixelBuffer) -> Void)? { didSet { frames?.onFrame = onFrame } }
+    func setFrameHandler(_ handler: (@Sendable (CVPixelBuffer) -> Void)?) {
+        frameQueue.async { [frames] in frames.onFrame = handler }
+    }
 
     static var isAvailable: Bool {
         #if targetEnvironment(simulator)
@@ -112,8 +114,9 @@ nonisolated final class CameraSession: @unchecked Sendable {
 
     func start() {
         queue.async { [self] in
+            guard AVCaptureDevice.authorizationStatus(for: .video) == .authorized else { return }
             if !isConfigured { configure() }
-            if !session.isRunning { session.startRunning() }
+            if device != nil && !session.isRunning { session.startRunning() }
         }
     }
 
@@ -161,9 +164,13 @@ nonisolated final class CameraSession: @unchecked Sendable {
 
     private final class PhotoDelegate: NSObject, AVCapturePhotoCaptureDelegate, @unchecked Sendable {
         let done: (UIImage?) -> Void
+        private var image: UIImage?
         init(done: @escaping (UIImage?) -> Void) { self.done = done }
         func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-            done(photo.fileDataRepresentation().flatMap(UIImage.init(data:)))
+            if error == nil { image = photo.fileDataRepresentation().flatMap(UIImage.init(data:)) }
+        }
+        func photoOutput(_ output: AVCapturePhotoOutput, didFinishCaptureFor settings: AVCaptureResolvedPhotoSettings, error: Error?) {
+            done(error == nil ? image : nil)
         }
     }
 
@@ -176,10 +183,9 @@ nonisolated final class CameraSession: @unchecked Sendable {
             self.device = device
         }
         if session.canAddOutput(output) { session.addOutput(output) }
-        let fd = FrameDelegate(); fd.onFrame = onFrame; frames = fd
         video.alwaysDiscardsLateVideoFrames = true
         video.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA]
-        video.setSampleBufferDelegate(fd, queue: frameQueue)
+        video.setSampleBufferDelegate(frames, queue: frameQueue)
         if session.canAddOutput(video) { session.addOutput(video) }
         session.commitConfiguration()
         isConfigured = true

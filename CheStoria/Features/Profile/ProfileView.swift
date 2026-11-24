@@ -2,29 +2,23 @@ import AuthenticationServices
 import SwiftUI
 
 struct ProfileView: View {
+    let onSignOut: () -> Void
     @Environment(AppModel.self) private var model
     @Environment(AccountModel.self) private var account
     @Environment(\.dismiss) private var dismiss
-    @State private var showSettings = false
 
     var body: some View {
         NavigationStack {
-            ProfileSettingsView(user: account.user)
+            ProfileSettingsView(user: account.user, onSignOut: onSignOut)
             .navigationTitle(model.strings("profile.title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button { showSettings = true } label: { Image(systemName: "pencil") }
-                        .accessibilityLabel(model.strings("profile.settings"))
-                }
                 ToolbarItem(placement: .confirmationAction) {
                     Button(model.strings("common.done")) { dismiss() }
                 }
             }
-            .sheet(isPresented: $showSettings) { ProfilePreferencesSheet() }
             .background(Palette.calce)
         }
-        .animation(Motion.glide, value: account.isSignedIn)
     }
 }
 
@@ -355,6 +349,7 @@ private extension AuthError {
 private struct ProfileSettingsView: View {
     // The old screen can still render during sign-out, after the account model is cleared.
     let user: UserAccount?
+    let onSignOut: () -> Void
     @Environment(AppModel.self) private var model
     @Environment(AccountModel.self) private var account
     @Environment(\.dismiss) private var dismiss
@@ -401,17 +396,25 @@ private struct ProfileSettingsView: View {
             }
             #endif
 
+            Section(t("profile.settings")) {
+                NavigationLink {
+                    LanguagePicker()
+                } label: {
+                    LabeledContent(t("lang.title"), value: model.languageName(model.language))
+                }
+                NavigationLink {
+                    SitePicker()
+                } label: {
+                    LabeledContent(t("profile.site"), value: model.site.city)
+                }
+            }
+
             Section(t("profile.account")) {
                 if let user {
                     if user.provider == .email && !account.isServerBacked {
                         Button(t("recovery.keyTitle")) { showRecoveryKey = true }
                     }
-                    Button(t("profile.signOut")) {
-                        account.signOut()
-                        LiveActivityController.shared.end()
-                        model.returnToWelcome()
-                    }
-                    .disabled(account.isBusy)
+                    Button(t("profile.signOut"), action: onSignOut).disabled(account.isBusy)
                     Button(t("profile.delete"), role: .destructive) { confirmDelete = true }.disabled(account.isBusy)
                 } else {
                     Button(t("profile.signIn")) {
@@ -433,7 +436,7 @@ private struct ProfileSettingsView: View {
         }
         .scrollContentBackground(.hidden)
         .sheet(isPresented: $showRecoveryKey) { RecoveryKeySheet() }
-        .sheet(isPresented: $showAccount) { ProfileSignInSheet() }
+        .sheet(isPresented: $showAccount) { AccountSignInSheet() }
         .sheet(isPresented: $showPrivacy) { PrivacyPolicySheet() }
         .sheet(isPresented: $showAppleRevocation) { AppleAuthorizationSheet() }
         .confirmationDialog(t("profile.deleteConfirm"), isPresented: $confirmDelete, titleVisibility: .visible) {
@@ -475,37 +478,7 @@ private struct ProfileSettingsView: View {
     }
 }
 
-private struct ProfilePreferencesSheet: View {
-    @Environment(AppModel.self) private var model
-    @Environment(\.dismiss) private var dismiss
-
-    var body: some View {
-        let t = model.strings
-        NavigationStack {
-            List {
-                NavigationLink {
-                    LanguagePicker()
-                } label: {
-                    LabeledContent(t("lang.title"), value: model.languageName(model.language))
-                }
-                NavigationLink {
-                    SitePicker()
-                } label: {
-                    LabeledContent(t("profile.site"), value: model.site.city)
-                }
-            }
-            .navigationTitle(t("profile.settings"))
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button(t("common.done")) { dismiss() }
-                }
-            }
-        }
-    }
-}
-
-private struct ProfileSignInSheet: View {
+struct AccountSignInSheet: View {
     @Environment(AppModel.self) private var model
     @Environment(AccountModel.self) private var account
     @Environment(\.dismiss) private var dismiss

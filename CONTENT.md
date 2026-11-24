@@ -64,7 +64,7 @@ Existing Then & Now records remain in the catalog and in the local SQLite export
 - Places without a `story` show on the map as small dots with "Story coming soon" and walking directions.
 - `entrance` (optional): `{ "latitude": …, "longitude": …, "note": "…" }` when visitors go in somewhere other than the site's point (catacombs, tunnels). Walking directions lead there.
 - `theory` and `lookCloser` are optional. Use `"label": "LEGEND"` or `"THEORY"`: it appears on the red seal.
-- The **My trip** map uses Apple Maps. Found places show as gold pins, undiscovered stories show as "?" pins, and the place card offers walking directions in Apple Maps. Where photos aren't allowed (indoors, ticketed rooms), visitors within 150 m can start the story from the card. The old hand-drawn `map` and `mapPoint` fields are optional and no longer needed.
+- The **Discovery Map** uses Apple Maps. Found places show as gold pins, undiscovered stories show as "?" pins, and the place card offers walking directions in Apple Maps. Where photos aren't allowed (indoors, ticketed rooms), visitors within 150 m can start the story from the card. The old hand-drawn `map` and `mapPoint` fields are optional and no longer needed.
 - `target` and `crop` are fractions of the photo (0 to 1), measured from the top-left corner.
 - Every story needs a `factCheck` block (the validator rejects stories without one):
 
@@ -86,9 +86,9 @@ The line above the headline is written by the app from real data: "Welcome to Po
 
 `ai/labels.json` lists everyday and heritage things ("a cup of coffee", "a fresco") with names in every language. `heritage: true` means an unmatched photo of it is treated as "a historic place we don’t have a story for yet". Add labels freely, then run `tools/embed_content.py`.
 
-## Tickets
+## Legacy ticket data
 
-`tickets.tiles` is a list of label / value / note boxes, so each site shows what matters there (Pompeii: price and daily cap; Naples: free squares and Sansevero’s fee). Prices change: link `bookingURL` to the official page and avoid stating a single price when sources disagree.
+Existing site files still carry booking information for compatibility with older catalog versions. The Discovery Map shows landmarks and discoveries.
 
 ## Photos for recognition
 
