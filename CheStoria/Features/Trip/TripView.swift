@@ -1,8 +1,7 @@
 import MapKit
 import SwiftUI
 
-/// Today's walk on Apple Maps: places you found are gold pins joined by your route;
-/// stories you haven't found yet are quiet "?" pins, so the map invites you without spoiling anything.
+/// The discovery map shows found places as gold pins and undiscovered stories as "?" pins.
 struct TripView: View {
     @Environment(AppModel.self) private var model
     @State private var showSite = false
@@ -86,10 +85,6 @@ struct TripMapView: View {
         let clusters = MapClusterer.clusters(site.places, visited: visitedIDs, span: shown.span, size: size)
         Map(position: $position) {
                 UserAnnotation()
-                if visited.count > 1 {
-                    MapPolyline(coordinates: visited.map(\.coordinate))
-                        .stroke(Palette.piperno, style: StrokeStyle(lineWidth: 3, lineCap: .round, lineJoin: .round, dash: [1, 8]))
-                }
                 ForEach(Array(clusters.enumerated()), id: \.element.id) { i, cluster in
                     Annotation("", coordinate: cluster.coordinate, anchor: .top) {
                         if cluster.members.count == 1, let place = cluster.members.first {

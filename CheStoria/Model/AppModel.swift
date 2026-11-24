@@ -89,9 +89,15 @@ final class AppModel {
         })
     }
     var collectedStickers: [(sticker: Sticker, record: CollectedSticker)] {
-        state.collected.sorted { $0.date > $1.date }.compactMap { rec in site.sticker(id: rec.stickerID).map { ($0, rec) } }
+        collectedStickers(in: site)
     }
-    func isNew(_ sticker: Sticker) -> Bool { state.collected.max { $0.date < $1.date }?.stickerID == sticker.id }
+
+    func collectedStickers(in collection: SiteContent) -> [(sticker: Sticker, record: CollectedSticker)] {
+        let trip = collection.id == site.id ? state : Self.loadState(for: collection, defaults: defaults)
+        return trip.collected.sorted { $0.date > $1.date }.compactMap { record in
+            collection.sticker(id: record.stickerID).map { ($0, record) }
+        }
+    }
 
     func completeOnboarding() { hasOnboarded = true }
 
@@ -181,7 +187,13 @@ final class AppModel {
         state.collected.first { $0.stickerID == sticker.id }?.photoFile.flatMap(StickerPhotos.load)
     }
 
-    func resetOnboarding() { hasOnboarded = false }
+    func returnToWelcome() {
+        showProfile = false
+        showLanguagePicker = false
+        activeFlow = nil
+        selectedTab = .snap
+        hasOnboarded = false
+    }
 
     private func save() {
         if let data = try? JSONEncoder().encode(state) { defaults.set(data, forKey: Keys.trip(site.id)) }

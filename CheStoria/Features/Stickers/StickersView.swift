@@ -3,34 +3,44 @@ import SwiftUI
 /// Your sticker book. Flip a card to see a short fact about the place.
 struct StickersView: View {
     @Environment(AppModel.self) private var model
-    @State private var filter: String?
+    @State private var collectionID: String?
     @State private var flipped: Set<String> = []
     @State private var dealt = false
-    @State private var showPostcard = false
+    @State private var postcardSite: SiteContent?
 
     var body: some View {
         let t = model.strings
-        let all = model.collectedStickers
-        let collections = Dictionary(grouping: all, by: { $0.sticker.collection }).map { ($0.key, $0.value.count) }.sorted { $0.0 < $1.0 }
-        let shown = all.filter { filter == nil || $0.sticker.collection == filter }
+        let collection = collectionID.flatMap(model.catalog.site(id:)) ?? model.site
+        let stickers = model.collectedStickers(in: collection)
+        let count = stickers.count
+        let quantity = count.formatted(.number.locale(Locale(identifier: model.language)))
 
         NavigationStack {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
-                Text(t("stickers.tapToFlip")).font(.subheadline).foregroundStyle(Palette.stone).padding(.horizontal, 4)
-
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 8) {
-                        chip(t("stickers.all", "\(all.count)"), on: filter == nil) { filter = nil }
-                        ForEach(collections, id: \.0) { name, n in chip("\(name) · \(n)", on: filter == name) { filter = name } }
+                if model.catalog.sites.count > 1 {
+                    Picker(t("profile.site"), selection: Binding(get: { collection.id }, set: { collectionID = $0 })) {
+                        ForEach(model.catalog.sites) { site in
+                            Text(site.city).tag(site.id)
+                        }
                     }
-                    .padding(.horizontal, 4)
+                    .pickerStyle(.segmented)
                 }
+                HStack {
+                    Text(t(count == 1 ? "stickers.countOne" : "stickers.countMany", quantity))
+                        .font(.subheadline.weight(.semibold)).foregroundStyle(Palette.piperno)
+                    Spacer()
+                    if count > 0 {
+                        Text(t("stickers.tapToFlip")).font(.subheadline).foregroundStyle(Palette.stone)
+                    }
+                }
+                .padding(.horizontal, 4)
 
                 LazyVGrid(columns: [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)], spacing: 12) {
-                    ForEach(Array(shown.enumerated()), id: \.element.sticker.id) { i, item in
-                        FlipCard(sticker: item.sticker, photo: model.stickerPhoto(item.sticker), place: model.site.place(id: item.record.placeID)?.name ?? "",
-                                 date: item.record.date, isNew: model.isNew(item.sticker), flipped: flipped.contains(item.sticker.id),
+                    ForEach(Array(stickers.enumerated()), id: \.element.sticker.id) { i, item in
+                        FlipCard(sticker: item.sticker, photo: item.record.photoFile.flatMap(StickerPhotos.load),
+                                 place: collection.place(id: item.record.placeID)?.name ?? "",
+                                 date: item.record.date, isNew: i == 0, flipped: flipped.contains(item.sticker.id),
                                  newLabel: t("stickers.new"), backTitle: t("stickers.fact"))
                             .onTapGesture {
                                 Haptics.tap()
@@ -41,13 +51,13 @@ struct StickersView: View {
                     }
                 }
 
-                if all.isEmpty {
+                if stickers.isEmpty {
                     Text(t("stickers.empty")).font(.system(size: 15, weight: .semibold)).foregroundStyle(Palette.stone)
                         .frame(maxWidth: .infinity).padding(.vertical, 40)
                 }
-                Button { showPostcard = true } label: {
+                Button { postcardSite = collection } label: {
                     HStack(spacing: 14) {
-                        CoverImage(model.site.postcardImage).frame(width: 56, height: 64).clipShape(.rect(cornerRadius: 8))
+                        CoverImage(collection.postcardImage).frame(width: 56, height: 64).clipShape(.rect(cornerRadius: 8))
                             .overlay(RoundedRectangle(cornerRadius: 8).stroke(.white, lineWidth: 3)).rotationEffect(.degrees(-6))
                             .shadow(color: .black.opacity(0.3), radius: 6, y: 4)
                         VStack(alignment: .leading, spacing: 2) {
@@ -70,20 +80,12 @@ struct StickersView: View {
         .toolbar { ToolbarItem(placement: .topBarTrailing) { ProfileButton(style: .toolbar) } }
         }
         .onAppear { dealt = false; DispatchQueue.main.async { dealt = true } }
-        .sheet(isPresented: $showPostcard) { PostcardView() }
+        .onChange(of: model.site.id) { collectionID = nil }
+        .onChange(of: collection.id) { flipped.removeAll() }
+        .sheet(item: $postcardSite) { PostcardView(site: $0) }
         #if DEBUG
-        .task { if DebugLaunch.screen == "postcard" { showPostcard = true } }
+        .task { if DebugLaunch.screen == "postcard" { postcardSite = collection } }
         #endif
-    }
-
-    private func chip(_ title: String, on: Bool, action: @escaping () -> Void) -> some View {
-        Button(action: { withAnimation(Motion.glide) { action() } }) {
-            Text(title).font(.system(size: 14, weight: .semibold))
-                .foregroundStyle(on ? Palette.calce : Palette.piperno)
-                .padding(.horizontal, 14).frame(height: 34)
-                .background(on ? Palette.piperno : Palette.card, in: .capsule)
-                .overlay(Capsule().stroke(on ? .clear : Palette.hair, lineWidth: 1.5))
-        }
     }
 }
 

@@ -406,7 +406,12 @@ private struct ProfileSettingsView: View {
                     if user.provider == .email && !account.isServerBacked {
                         Button(t("recovery.keyTitle")) { showRecoveryKey = true }
                     }
-                    Button(t("profile.signOut")) { account.signOut() }.disabled(account.isBusy)
+                    Button(t("profile.signOut")) {
+                        account.signOut()
+                        LiveActivityController.shared.end()
+                        model.returnToWelcome()
+                    }
+                    .disabled(account.isBusy)
                     Button(t("profile.delete"), role: .destructive) { confirmDelete = true }.disabled(account.isBusy)
                 } else {
                     Button(t("profile.signIn")) {

@@ -4,6 +4,7 @@ import SwiftUI
 /// A real postcard: your own photo on the left (from your library, or the site's photo),
 /// a handwritten-style message and a stamp on the right. Rendered with ImageRenderer and shared.
 struct PostcardView: View {
+    let site: SiteContent
     @Environment(AppModel.self) private var model
     @Environment(\.dismiss) private var dismiss
     @State private var picked: PhotosPickerItem?
@@ -46,7 +47,7 @@ struct PostcardView: View {
                     }
 
                     if let rendered {
-                        ShareLink(item: rendered, preview: SharePreview(t("postcard.greeting", model.site.city), image: rendered)) {
+                        ShareLink(item: rendered, preview: SharePreview(t("postcard.greeting", site.city), image: rendered)) {
                             Label(t("postcard.share"), systemImage: "square.and.arrow.up").frame(maxWidth: .infinity)
                         }
                         .buttonStyle(CTAButtonStyle(kind: .tufo))
@@ -74,14 +75,14 @@ struct PostcardView: View {
     }
 
     private var card: PostcardCard {
-        PostcardCard(site: model.site, photo: photo, greeting: model.strings("postcard.greeting", model.site.city),
+        PostcardCard(site: site, photo: photo, greeting: model.strings("postcard.greeting", site.city),
                      message: message.isEmpty ? model.strings("postcard.messagePlaceholder") : message, placeholder: message.isEmpty)
     }
 
     private var renderKey: String { "\(message)|\(photo.map { ObjectIdentifier($0).hashValue } ?? 0)" }
 
     private func render() {
-        let full = PostcardCard(site: model.site, photo: photo, greeting: model.strings("postcard.greeting", model.site.city),
+        let full = PostcardCard(site: site, photo: photo, greeting: model.strings("postcard.greeting", site.city),
                                 message: message, placeholder: false)
             .frame(width: 1500, height: 1000).environment(\.colorScheme, .light)
         let r = ImageRenderer(content: full); r.scale = 1

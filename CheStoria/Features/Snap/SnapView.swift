@@ -369,10 +369,8 @@ private struct NearbyPlaceCard: View {
             }
             if let story = p.story {
                 Text(story.question).font(.body).foregroundStyle(Palette.piperno).fixedSize(horizontal: false, vertical: true)
-                Button { Haptics.tap(); onStart() } label: {
-                    Label(t("snap.nearStart"), systemImage: "sparkles").frame(maxWidth: .infinity)
-                }
-                .buttonStyle(CTAButtonStyle(kind: .tufo, shine: true))
+                Button(t("snap.nearStart")) { Haptics.tap(); onStart() }
+                    .buttonStyle(CTAButtonStyle(kind: .tufo, shine: true))
             } else {
                 Label(t("place.comingSoon"), systemImage: "hourglass").font(.subheadline.weight(.semibold)).foregroundStyle(.secondary)
             }

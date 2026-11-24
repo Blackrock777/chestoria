@@ -115,7 +115,7 @@ enum DebugLaunch {
             if args.contains("-skipAccount") { model.completeOnboarding() }
             return
         }
-        if s != "welcome" { model.completeOnboarding() } else { model.resetOnboarding() }
+        if s != "welcome" { model.completeOnboarding() } else { model.returnToWelcome() }
         switch s {
         case "trip": model.selectedTab = .trip
         case "stickers": model.selectedTab = .stickers

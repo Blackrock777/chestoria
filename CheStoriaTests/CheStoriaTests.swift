@@ -439,12 +439,35 @@ struct SiteTests {
         #expect(m.site.city == "Naples" && m.visitedPlaces.isEmpty)
         let gesu = try #require(m.site.place(id: "gesu-nuovo"))
         m.finishStory(at: gesu, goTo: .trip)
+        let naples = m.site
         m.switchSite(to: "pompeii")
         #expect(m.collectedStickers.isEmpty)
+        #expect(m.collectedStickers(in: naples).map(\.sticker.id) == ["spiky-palace"])
+        #expect(m.site.id == "pompeii")
         m.switchSite(to: "naples")
         #expect(m.collectedStickers.map(\.sticker.id) == ["spiky-palace"])
         let reopened = AppModel(catalog: try ContentStore.loadBundled(), defaults: defaults, loader: { _ in nil })
         #expect(reopened.site.id == "naples")
+    }
+
+    @Test func returningToWelcomeClosesTheTripAndKeepsProgress() throws {
+        let (m, defaults) = try freshModel()
+        m.switchSite(to: "naples")
+        m.setLanguage("it")
+        m.completeOnboarding()
+        let place = try #require(m.site.place(id: "gesu-nuovo"))
+        m.finishStory(at: place, goTo: .trip)
+        m.startStory(at: place)
+        m.showProfile = true
+
+        m.returnToWelcome()
+
+        #expect(!m.hasOnboarded && !m.showProfile)
+        #expect(m.activeFlow == nil && m.selectedTab == .snap)
+        #expect(m.site.id == "naples" && m.language == "it")
+        #expect(m.collectedStickers.count == 1)
+        let reopened = AppModel(catalog: m.catalog, defaults: defaults)
+        #expect(!reopened.hasOnboarded && reopened.collectedStickers.count == 1)
     }
 
     @Test func everyStoryHasSources() throws {

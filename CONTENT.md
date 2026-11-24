@@ -64,7 +64,7 @@ Existing Then & Now records remain in the catalog and in the local SQLite export
 - Places without a `story` show on the map as small dots with "Story coming soon" and walking directions.
 - `entrance` (optional): `{ "latitude": …, "longitude": …, "note": "…" }` when visitors go in somewhere other than the site's point (catacombs, tunnels). Walking directions lead there.
 - `theory` and `lookCloser` are optional. Use `"label": "LEGEND"` or `"THEORY"`: it appears on the red seal.
-- The **My trip** map is Apple Maps: a pin needs only `latitude` and `longitude`. Found places show as gold pins joined by your route, stories not found yet as "?" pins, and the place card offers walking directions in Apple Maps. Where photos aren't allowed (indoors, ticketed rooms), visitors within 150 m can start the story from the card. The old hand-drawn `map` and `mapPoint` fields are optional and no longer needed.
+- The **My trip** map uses Apple Maps. Found places show as gold pins, undiscovered stories show as "?" pins, and the place card offers walking directions in Apple Maps. Where photos aren't allowed (indoors, ticketed rooms), visitors within 150 m can start the story from the card. The old hand-drawn `map` and `mapPoint` fields are optional and no longer needed.
 - `target` and `crop` are fractions of the photo (0 to 1), measured from the top-left corner.
 - Every story needs a `factCheck` block (the validator rejects stories without one):
 
