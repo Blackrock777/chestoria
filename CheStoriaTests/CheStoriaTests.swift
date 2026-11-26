@@ -155,7 +155,6 @@ struct RecognitionTests {
 
     @Test func eachPlaceIsRecognisedFromItsOwnPhoto() async throws {
         let catalog = try ContentStore.loadBundled()
-        let site = catalog.site(id: "pompeii")!
         let matcher = PlaceMatcher()
         #expect(matcher.usesAI, "SigLIP model should load from the app bundle")
         let cases: [(String, CGRect, String)] = [
@@ -165,7 +164,7 @@ struct RecognitionTests {
             ("forum", CGRect(x: 0.05, y: 0.05, width: 0.85, height: 0.85), "forum"),
         ]
         for (asset, rect, expected) in cases {
-            let result = await matcher.identify(crop(asset, rect), in: site, near: nil, catalog: catalog)
+            let result = await matcher.identify(crop(asset, rect), near: nil, catalog: catalog)
             if case .confident(let p) = result { #expect(p.id == expected, "\(asset) → \(p.id)") }
             else { Issue.record("\(asset) not confident: \(result)") }
         }
@@ -180,20 +179,19 @@ struct RecognitionTests {
     /// and a photo of somewhere else must not be confidently matched.
     @Test func unseenPhotosAreHandledSafely() async throws {
         let catalog = try ContentStore.loadBundled()
-        let site = catalog.site(id: "pompeii")!
         let matcher = PlaceMatcher()
 
-        if case .confident(let p) = await matcher.identify(try fixture("cave-canem-other"), in: site, near: nil, catalog: catalog) {
+        if case .confident(let p) = await matcher.identify(try fixture("cave-canem-other"), near: nil, catalog: catalog) {
             #expect(p.id == "tragic-poet")
         } else { Issue.record("second Cave canem photo should be recognised") }
 
-        switch await matcher.identify(try fixture("forum-tour-group"), in: site, near: nil, catalog: catalog) {
+        switch await matcher.identify(try fixture("forum-tour-group"), near: nil, catalog: catalog) {
         case .confident(let p): #expect(p.id == "forum")
         case .unsure(let ps, _): #expect(ps.first?.id == "forum")
         case .notAPlace: Issue.record("forum photo should at least be offered first")
         }
 
-        if case .confident(let p) = await matcher.identify(try fixture("street-negative"), in: site, near: nil, catalog: catalog) {
+        if case .confident(let p) = await matcher.identify(try fixture("street-negative"), near: nil, catalog: catalog) {
             Issue.record("an unrelated street was confidently matched to \(p.id)")
         }
     }
@@ -202,11 +200,10 @@ struct RecognitionTests {
     /// The surrounding chat message, question, and answer text are excluded.
     @Test func residentialFacadeDoesNotOpenGalleriaStory() async throws {
         let catalog = try ContentStore.loadBundled()
-        let site = try #require(catalog.site(id: "naples"))
         let matcher = PlaceMatcher()
         let photo = try fixture("naples-residential-negative")
         for location in [nil, CLLocation(latitude: 40.83844167, longitude: 14.24948333)] {
-            let result = await matcher.identify(photo, in: site, near: location, catalog: catalog)
+            let result = await matcher.identify(photo, near: location, catalog: catalog)
             switch result {
             case .notAPlace(let label, _, _), .unsure(_, let label):
                 #expect(label == "a modern building")
@@ -218,9 +215,8 @@ struct RecognitionTests {
 
     @Test func galleriaFloorPhotoFromAnotherPhotographerIsRecognised() async throws {
         let catalog = try ContentStore.loadBundled()
-        let site = try #require(catalog.site(id: "naples"))
         let matcher = PlaceMatcher()
-        let result = await matcher.identify(try fixture("galleria-zodiac-other"), in: site, near: nil, catalog: catalog)
+        let result = await matcher.identify(try fixture("galleria-zodiac-other"), near: nil, catalog: catalog)
         switch result {
         case .confident(let place): #expect(place.id == "galleria-umberto-i")
         case .unsure(let places, _): #expect(places.first?.id == "galleria-umberto-i")
@@ -231,15 +227,14 @@ struct RecognitionTests {
     /// Everyday photos: not a place, and the AI says what it is (in the chosen language).
     @Test func everydayPhotosAreNamedNotMatched() async throws {
         let catalog = try ContentStore.loadBundled(language: "en")
-        let site = catalog.site(id: "pompeii")!
         let matcher = PlaceMatcher()
         for (name, expected) in [("coffee-negative", "a cup of coffee"), ("laptop-negative", "a laptop")] {
-            if case .notAPlace(let label, let heritage, _) = await matcher.identify(try fixture(name), in: site, near: nil, catalog: catalog) {
+            if case .notAPlace(let label, let heritage, _) = await matcher.identify(try fixture(name), near: nil, catalog: catalog) {
                 #expect(label == expected && !heritage, "\(name) → \(label ?? "-")")
             } else { Issue.record("\(name) should not be a place") }
         }
         let it = try ContentStore.loadBundled(language: "it")
-        if case .notAPlace(let label, _, _) = await matcher.identify(try fixture("coffee-negative"), in: site, near: nil, catalog: it) {
+        if case .notAPlace(let label, _, _) = await matcher.identify(try fixture("coffee-negative"), near: nil, catalog: it) {
             #expect(label == "una tazza di caffè")
         }
     }
@@ -473,6 +468,46 @@ struct SiteTests {
         #expect(!reopened.hasOnboarded && reopened.collectedStickers.count == 1)
     }
 
+    @Test func storiesSaveToTheirOwnCityRegardlessOfTheSelectedCity() async throws {
+        let (model, defaults) = try freshModel()
+        let matcher = PlaceMatcher()
+        for (selectedCity, asset, expected) in [
+            ("pompeii", "galleriaUmberto2", "galleria-umberto-i"),
+            ("naples", "forum", "forum"),
+        ] {
+            model.switchSite(to: selectedCity)
+            let selectedPlace = try #require(model.site.featured)
+            let here = CLLocation(latitude: selectedPlace.latitude, longitude: selectedPlace.longitude)
+            let photo = try #require(UIImage(named: asset))
+            let result = await matcher.identify(photo, near: here, catalog: model.catalog)
+            let matched: Place? = switch result {
+            case .confident(let place): place
+            case .unsure(let choices, _): choices.first
+            case .notAPlace: nil
+            }
+            let place = try #require(matched)
+            #expect(place.id == expected)
+            let owner = try #require(model.catalog.site(containing: place.id))
+            #expect(owner.id != selectedCity)
+            let sticker = try #require(place.story?.sticker)
+            let fileURL = StickerPhotos.folder.appending(path: "\(owner.id)-\(sticker.id).jpg")
+            let previousPhoto = try? Data(contentsOf: fileURL)
+            defer {
+                if let previousPhoto { try? previousPhoto.write(to: fileURL, options: .atomic) }
+                else { try? FileManager.default.removeItem(at: fileURL) }
+            }
+            model.finishStory(at: place, goTo: .stickers, photo: photo)
+            #expect(model.site.id == selectedCity)
+            #expect(model.stickerCollectionID == owner.id)
+            let reopened = AppModel(catalog: model.catalog, defaults: defaults)
+            #expect(reopened.visitedBySite[owner.id]?.contains(place.id) == true)
+            #expect(reopened.collectedStickers(in: owner).first?.sticker.id == sticker.id)
+            #expect(reopened.stickerPhoto(sticker, in: owner) != nil)
+        }
+        #expect(model.visitedBySite["pompeii"] == ["forum"])
+        #expect(model.visitedBySite["naples"] == ["galleria-umberto-i"])
+    }
+
     @Test func everyStoryHasSources() throws {
         for site in try ContentStore.loadBundled().sites {
             for p in site.storyPlaces { #expect((p.story?.factCheck?.sources.count ?? 0) >= 1, "\(p.id) has no sources") }
@@ -482,12 +517,11 @@ struct SiteTests {
 
     @Test func naplesPlacesAreRecognisedFromTheirPhotos() async throws {
         let catalog = try ContentStore.loadBundled()
-        let site = catalog.site(id: "naples")!
         let matcher = PlaceMatcher()
         for (asset, expected) in [("gesuFacade2", "gesu-nuovo"), ("castelOvo", "castel-ovo"), ("veiledChristFace", "sansevero"), ("plebiscitoVesuvius", "plebiscito")] {
             let img = UIImage(named: asset)!.normalizedCGImage!
             let crop = UIImage(cgImage: img.cropping(to: CGRect(x: img.width / 12, y: img.height / 12, width: img.width * 5 / 6, height: img.height * 5 / 6))!)
-            switch await matcher.identify(crop, in: site, near: nil, catalog: catalog) {
+            switch await matcher.identify(crop, near: nil, catalog: catalog) {
             case .confident(let p): #expect(p.id == expected, "\(asset) → \(p.id)")
             case .unsure(let ps, _): #expect(ps.first?.id == expected, "\(asset) unsure, first \(ps.first?.id ?? "-")")
             case .notAPlace: Issue.record("\(asset) matched nothing")
@@ -495,7 +529,7 @@ struct SiteTests {
         }
         // New camera places from the v2 story cards.
         for (asset, expected) in [("castelNuovo2", "castel-nuovo"), ("santaChiara2", "santa-chiara"), ("galleriaUmberto2", "galleria-umberto-i")] {
-            switch await matcher.identify(UIImage(named: asset)!, in: site, near: nil, catalog: catalog) {
+            switch await matcher.identify(UIImage(named: asset)!, near: nil, catalog: catalog) {
             case .confident(let p): #expect(p.id == expected, "\(asset) → \(p.id)")
             case .unsure(let ps, _): #expect(ps.first?.id == expected, "\(asset) unsure, first \(ps.first?.id ?? "-")")
             case .notAPlace: Issue.record("\(asset) matched nothing")
@@ -510,15 +544,15 @@ struct SiteTests {
         #expect(!site.cameraPlaces.contains { $0.id == pio.id })
         #expect(site.storyPlaces.contains { $0.id == pio.id })
         let atPioMonte = CLLocation(latitude: pio.latitude + 0.0002, longitude: pio.longitude)
-        if case .unsure(let ps, _) = RecognitionPolicy.offeringPlacesHere(.notAPlace(label: "a painting", heritage: true, nearby: []), site: site, location: atPioMonte) {
+        if case .unsure(let ps, _) = RecognitionPolicy.offeringPlacesHere(.notAPlace(label: "a painting", heritage: true, nearby: []), places: site.storyPlaces, location: atPioMonte) {
             #expect(ps.first?.id == pio.id)
         } else { Issue.record("standing at Pio Monte should offer its story") }
         let farAway = CLLocation(latitude: 40.8359, longitude: 14.2486)
-        if case .unsure = RecognitionPolicy.offeringPlacesHere(.notAPlace(label: nil, heritage: true, nearby: []), site: site, location: farAway) {
+        if case .unsure = RecognitionPolicy.offeringPlacesHere(.notAPlace(label: nil, heritage: true, nearby: []), places: site.storyPlaces, location: farAway) {
             Issue.record("map-only places must not be offered from 2 km away")
         }
         let castel = site.place(id: "castel-nuovo")!
-        if case .confident(let p) = RecognitionPolicy.offeringPlacesHere(.confident(castel), site: site, location: atPioMonte) { #expect(p.id == castel.id) }
+        if case .confident(let p) = RecognitionPolicy.offeringPlacesHere(.confident(castel), places: site.storyPlaces, location: atPioMonte) { #expect(p.id == castel.id) }
         else { Issue.record("a confident photo match must win") }
     }
 
@@ -541,13 +575,26 @@ struct SiteTests {
     @Test func mapPinsClusterWhenZoomedOutAndSplitWhenZoomedIn() throws {
         let pompeii = try ContentStore.loadBundled().site(id: "pompeii")!
         let size = CGSize(width: 360, height: 460)
-        let wide = MapClusterer.clusters(pompeii.places, visited: [], span: TripMapView.region(for: pompeii).span, size: size)
+        let wide = MapClusterer.clusters(pompeii.places, visited: [], span: TripMapView.region(for: pompeii.places, centeredOn: pompeii).span, size: size)
         #expect(wide.count < pompeii.places.count / 2, "zoomed out, overlapping pins are grouped")
         #expect(wide.flatMap(\.members).count == pompeii.places.count, "no place is lost")
         // A story always leads its cluster, so it isn't hidden behind "coming soon" dots.
         for c in wide where c.storyCount > 0 { #expect(c.members.first?.story != nil) }
         let close = MapClusterer.clusters(pompeii.places, visited: [], span: .init(latitudeDelta: 0.0005, longitudeDelta: 0.0005), size: size)
         #expect(close.count == pompeii.places.count, "zoomed in, every place has its own pin again")
+    }
+
+    @Test func mapOverviewIncludesBothCitiesAndTheirSavedDiscoveries() throws {
+        let catalog = try ContentStore.loadBundled()
+        let region = TripMapView.region(for: catalog.places, centeredOn: catalog.defaultSite)
+        for place in catalog.places {
+            #expect(abs(region.center.latitude - place.latitude) < region.span.latitudeDelta / 2)
+            #expect(abs(region.center.longitude - place.longitude) < region.span.longitudeDelta / 2)
+        }
+        let clusters = MapClusterer.clusters(catalog.places, visited: ["forum", "galleria-umberto-i"],
+                                             span: region.span, size: CGSize(width: 360, height: 460))
+        #expect(clusters.map(\.foundCount).reduce(0, +) == 2)
+        #expect(clusters.map(\.storyCount).reduce(0, +) == catalog.storyPlaces.count)
     }
 
     @Test func everyPhotoIsCreditedInTheApp() throws {

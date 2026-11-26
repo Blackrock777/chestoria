@@ -94,9 +94,7 @@ Existing site files still carry booking information for compatibility with older
 
 Add current photos to `referenceImages` to cover distinct views visitors can photograph, such as a landmark’s facade and a recognizable detail. Enter the photo’s source and license in `CREDITS.md`, then regenerate the credits. Keep independent photos for regression tests.
 
-SigLIP runs on device and compares the image with reference photos and place descriptions. The app asks for confirmation when visual evidence is close or descriptions conflict. GPS helps suggest places after an unknown photo. A color-and-layout fallback can suggest a place for confirmation.
-
-In Debug builds, **Profile → Recognition log** shows the candidate scores and outcome after a photo. Recognition thresholds are in each site’s `recognition` block.
+SigLIP runs on device and compares the image with reference photos and place descriptions across all cities. The app asks for confirmation when visual evidence is close or descriptions conflict. GPS helps suggest places after an unknown photo. A color-and-layout fallback can suggest a place for confirmation. The matcher uses the catalog’s default site `recognition` block for confidence thresholds.
 
 ## Add a language
 

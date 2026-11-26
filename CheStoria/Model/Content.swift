@@ -194,7 +194,7 @@ nonisolated struct SiteContent: Codable, Identifiable, Hashable, Sendable {
         let bookingURL: URL
         let sources: [FactCheck.Source]?
     }
-    /// Recognition thresholds, tunable per site from content (see the recognition log in Profile).
+    /// The matcher uses the default site's thresholds to compare photos across the catalog.
     /// Every field is optional; missing ones fall back to the defaults below.
     nonisolated struct Recognition: Codable, Hashable, Sendable {
         var descriptorMaxDistance: Float?
@@ -214,7 +214,7 @@ nonisolated struct SiteContent: Codable, Identifiable, Hashable, Sendable {
         var confident: Float { aiConfident ?? 0.72 }
         var margin: Float { aiMargin ?? 0.05 }
         var possible: Float { aiPossible ?? 0.62 }
-        var textWeight: Float { aiTextWeight ?? 2 }
+        var textWeight: Float { aiTextWeight ?? 1 }
     }
     nonisolated struct DemoTrip: Codable, Hashable, Sendable {
         let visited: [String]
@@ -294,6 +294,11 @@ nonisolated struct Catalog: Sendable {
     let vocabulary: AIVocabulary?
 
     func site(id: String) -> SiteContent? { sites.first { $0.id == id } }
+    func site(containing placeID: String) -> SiteContent? { sites.first { $0.place(id: placeID) != nil } }
+    func place(id: String) -> Place? { site(containing: id)?.place(id: id) }
+    var places: [Place] { sites.flatMap(\.places) }
+    var storyPlaces: [Place] { sites.flatMap(\.storyPlaces) }
+    var cameraPlaces: [Place] { sites.flatMap(\.cameraPlaces) }
     var defaultSite: SiteContent { site(id: index.defaultSite) ?? sites[0] }
     func languages(forSite id: String) -> [String] { index.sites.first { $0.id == id }?.languages ?? ["en"] }
 }

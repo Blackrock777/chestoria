@@ -5,7 +5,7 @@
   "featuredPlace": "gesu-nuovo",
   "welcome": {
     "headline": "Every corner here has a secret.",
-    "body": "Point your camera at anything. Guess its secret, then find the clue. Takes 30 seconds.",
+    "body": "Point your camera at a historic place. Guess its secret, then find the clue. Takes 30 seconds.",
     "image": "plebiscitoVesuvius",
     "imageAnchor": {
       "x": 0.62,
@@ -52,7 +52,7 @@
     "aiConfident": 0.72,
     "aiMargin": 0.05,
     "aiPossible": 0.62,
-    "aiTextWeight": 2.0
+    "aiTextWeight": 1.0
   },
   "map": {
     "width": 361,

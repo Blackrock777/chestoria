@@ -145,7 +145,7 @@ struct SnapView: View {
         .onChange(of: model.activeFlow == nil) { updateLiveActivity() }
         .task(id: model.site.id + model.language) {
             matcher.clearLive()
-            await matcher.prepare(site: model.site)
+            await matcher.prepare(catalog: model.catalog)
             guard !Task.isCancelled else { return }
             if CameraSession.isAvailable {
                 // Real camera: a frame about twice a second goes to the on-device AI.
@@ -153,12 +153,12 @@ struct SnapView: View {
                     nonisolated(unsafe) let frame = buffer
                     Task { @MainActor in
                         guard model.isShowingSnap else { return }
-                        matcher.liveGuess(buffer: frame, site: model.site, catalog: model.catalog)
+                        matcher.liveGuess(buffer: frame, catalog: model.catalog)
                     }
                 }
             } else if let cg = ImageLoader.shared.cached(fallback.cameraImage)?.normalizedCGImage {
                 // Simulator: the stand-in photo is what the "camera" sees.
-                matcher.liveGuess(image: cg, site: model.site, catalog: model.catalog)
+                matcher.liveGuess(image: cg, catalog: model.catalog)
             }
         }
         .onChange(of: picked) { _, item in

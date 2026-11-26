@@ -127,7 +127,7 @@ struct StickerArt: View {
         Group {
             if let photo {
                 CoverImage(image: photo)
-            } else if let place = model.site.placeOwning(stickerID: sticker.id) {
+            } else if let place = model.catalog.sites.lazy.compactMap({ $0.placeOwning(stickerID: sticker.id) }).first {
                 // Nearby/map stories use the selected place, never an unrelated detail crop.
                 CoverImage(place.cameraImage, anchor: place.cameraAnchor)
             } else {

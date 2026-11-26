@@ -101,8 +101,10 @@ struct WelcomeView: View {
         }
         .overlay(alignment: .topLeading) {
             HStack(spacing: 8) {
-                ZStack { RoundedRectangle(cornerRadius: 7).fill(Palette.tufo); Circle().fill(Color(red: 0.17, green: 0.19, blue: 0.18)).padding(6) }
+                Image("BrandLogo").resizable().scaledToFit()
                     .frame(width: 24, height: 24)
+                    .clipShape(.rect(cornerRadius: 7))
+                    .accessibilityHidden(true)
                 Text("CheStoria").font(Typeface.display(18))
             }
             .foregroundStyle(.white).padding(.leading, 24).padding(.top, 8)

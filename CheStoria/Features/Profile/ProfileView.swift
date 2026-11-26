@@ -388,14 +388,6 @@ private struct ProfileSettingsView: View {
                 .frame(height: 56)
             }
 
-            #if DEBUG
-            // Developer tools: never shown in TestFlight or App Store builds.
-            Section("Developer") {
-                Button(t("profile.startFresh")) { model.startFresh(); dismiss() }
-                NavigationLink(t("profile.recognitionLog")) { RecognitionLogView() }
-            }
-            #endif
-
             Section(t("profile.settings")) {
                 NavigationLink {
                     LanguagePicker()

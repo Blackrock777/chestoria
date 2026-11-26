@@ -9,18 +9,20 @@ struct TripView: View {
 
     var body: some View {
         let t = model.strings
-        let visited = model.visitedPlaces
+        let visitedIDs = Set(model.visitedBySite.values.joined())
+        let sites = model.catalog.sites
+        let recent = sites.flatMap { model.collectedStickers(in: $0) }.sorted { $0.record.date > $1.record.date }.prefix(2)
         NavigationStack {
         ScrollView {
             VStack(alignment: .leading, spacing: 14) {
-                Text(model.site.city)
+                Text(sites.map(\.city).joined(separator: " · "))
                     .font(.subheadline.weight(.semibold)).foregroundStyle(Palette.stone)
                     .padding(.horizontal, 4)
 
-                TripMapView(site: model.site, visited: visited) { openPlace = $0 }
+                TripMapView(catalog: model.catalog, visitedIDs: visitedIDs, latestID: recent.first?.record.placeID) { openPlace = $0 }
                     .frame(height: 460)
                     .overlay(alignment: .bottom) {
-                        if visited.isEmpty {
+                        if visitedIDs.isEmpty {
                             Text(t("trip.empty")).font(.system(size: 14, weight: .semibold)).foregroundStyle(Palette.stone)
                                 .multilineTextAlignment(.center)
                                 .padding(.horizontal, 14).padding(.vertical, 10).background(.regularMaterial, in: .capsule).padding(16)
@@ -31,9 +33,9 @@ struct TripView: View {
                     .overlay(RoundedRectangle(cornerRadius: 30).stroke(Palette.hair, lineWidth: 1.5))
 
                 HStack(spacing: 10) {
-                    ForEach(Array(model.collectedStickers.prefix(2).enumerated()), id: \.element.sticker.id) { i, item in
+                    ForEach(Array(recent.enumerated()), id: \.element.sticker.id) { i, item in
                         HStack(spacing: 10) {
-                            StickerArt(sticker: item.sticker, border: 3, photo: model.stickerPhoto(item.sticker)).frame(width: 44, height: 40)
+                            StickerArt(sticker: item.sticker, border: 3, photo: item.record.photoFile.flatMap(StickerPhotos.load)).frame(width: 44, height: 40)
                             Text(item.sticker.title).font(.system(size: 13, weight: .semibold)).foregroundStyle(Palette.piperno)
                                 .lineLimit(2).frame(maxWidth: .infinity, alignment: .leading)
                         }
@@ -55,44 +57,49 @@ struct TripView: View {
     }
 }
 
-/// Apple Maps view of a site, built only from each place's latitude/longitude in the content.
+/// Apple Maps view of the catalog, built from each place's coordinates.
 /// Pins that would overlap at the current zoom are grouped into a numbered cluster; tap it to zoom in.
 struct TripMapView: View {
-    let site: SiteContent
-    let visited: [Place]
+    let catalog: Catalog
+    let visitedIDs: Set<String>
+    let latestID: String?
     var onTap: (Place) -> Void
     @Environment(AppModel.self) private var model
     @State private var position: MapCameraPosition
     @State private var region: MKCoordinateRegion?
     @State private var size: CGSize = .zero
 
-    init(site: SiteContent, visited: [Place], onTap: @escaping (Place) -> Void) {
-        self.site = site; self.visited = visited; self.onTap = onTap
-        // Start framed on the site; setting it later in onAppear can be lost inside a GeometryReader.
-        _position = State(initialValue: .region(Self.region(for: site)))
+    init(catalog: Catalog, visitedIDs: Set<String>, latestID: String?, onTap: @escaping (Place) -> Void) {
+        self.catalog = catalog
+        self.visitedIDs = visitedIDs
+        self.latestID = latestID
+        self.onTap = onTap
+        _position = State(initialValue: .region(Self.region(for: catalog.places, centeredOn: catalog.defaultSite)))
     }
 
     var body: some View {
         let t = model.strings
-        let visitedIDs = Set(visited.map(\.id))
-        let shown = region ?? Self.region(for: site)
-        let clusters = MapClusterer.clusters(site.places, visited: visitedIDs, span: shown.span, size: size)
+        let places = catalog.places
+        let shown = region ?? Self.region(for: places, centeredOn: catalog.defaultSite)
+        let clusters = MapClusterer.clusters(places, visited: visitedIDs, span: shown.span, size: size)
         Map(position: $position) {
                 UserAnnotation()
                 ForEach(Array(clusters.enumerated()), id: \.element.id) { i, cluster in
-                    Annotation("", coordinate: cluster.coordinate, anchor: .top) {
+                    Annotation("", coordinate: cluster.coordinate, anchor: .center) {
                         if cluster.members.count == 1, let place = cluster.members.first {
                             let found = visitedIDs.contains(place.id)
-                            TripPin(found: found, latest: place.id == visited.last?.id, delay: min(Double(i) * 0.06, 0.8),
-                                    label: found && (place.showsMapLabel ?? true) ? place.name : nil, hasStory: place.story != nil)
-                                .onTapGesture { Haptics.tap(); onTap(place) }
-                                .accessibilityLabel(found || place.story == nil ? place.name : t("trip.toFind"))
-                                .accessibilityAddTraits(.isButton)
+                            Button { Haptics.tap(); onTap(place) } label: {
+                                TripPin(found: found, latest: place.id == latestID, delay: min(Double(i) * 0.06, 0.8),
+                                        label: found && (place.showsMapLabel ?? true) ? place.name : nil, hasStory: place.story != nil)
+                            }
+                            .buttonStyle(.plain)
+                            .accessibilityLabel(found || place.story == nil ? place.name : t("trip.toFind"))
                         } else {
-                            ClusterPin(count: cluster.members.count, found: cluster.foundCount, stories: cluster.storyCount)
-                                .onTapGesture { Haptics.tap(); open(cluster) }
-                                .accessibilityLabel(t("trip.cluster", "\(cluster.members.count)"))
-                                .accessibilityAddTraits(.isButton)
+                            Button { Haptics.tap(); open(cluster) } label: {
+                                ClusterPin(count: cluster.members.count, found: cluster.foundCount, stories: cluster.storyCount)
+                            }
+                            .buttonStyle(.plain)
+                            .accessibilityLabel(t("trip.cluster", "\(cluster.members.count)"))
                         }
                     }
                 }
@@ -107,7 +114,6 @@ struct TripMapView: View {
             .animation(.snappy, value: clusters.map(\.id))
             // Measured beside the map, not around it: a GeometryReader parent made the map start at zero size and zoom far out.
             .onGeometryChange(for: CGSize.self) { $0.size } action: { size = $0 }
-        .onChange(of: site.id) { region = nil; position = .region(Self.region(for: site)) }
     }
 
     /// Zooms to the places in a cluster; if they sit on the same spot, opens the most interesting one.
@@ -121,12 +127,11 @@ struct TripMapView: View {
         withAnimation(.smooth(duration: 0.6)) { position = .region(target) }
     }
 
-    /// Frames every place of the site with a little margin.
-    static func region(for site: SiteContent) -> MKCoordinateRegion {
-        let pts = site.places
+    /// Frames every place with a little margin.
+    static func region(for pts: [Place], centeredOn fallback: SiteContent) -> MKCoordinateRegion {
         guard let minLat = pts.map(\.latitude).min(), let maxLat = pts.map(\.latitude).max(),
               let minLon = pts.map(\.longitude).min(), let maxLon = pts.map(\.longitude).max() else {
-            return MKCoordinateRegion(center: site.centre.coordinate, latitudinalMeters: 1500, longitudinalMeters: 1500)
+            return MKCoordinateRegion(center: fallback.centre.coordinate, latitudinalMeters: 1500, longitudinalMeters: 1500)
         }
         return MKCoordinateRegion(
             center: .init(latitude: (minLat + maxLat) / 2, longitude: (minLon + maxLon) / 2),
@@ -174,7 +179,7 @@ nonisolated enum MapClusterer {
     }
 }
 
-/// A numbered bubble for several places; gold ring if you found any of them.
+/// A numbered bubble for several places, with a sticker badge for discoveries.
 private struct ClusterPin: View {
     let count: Int
     let found: Int
@@ -183,17 +188,29 @@ private struct ClusterPin: View {
     @Environment(\.accessibilityReduceMotion) private var reduce
 
     var body: some View {
-        let size: CGFloat = count > 20 ? 46 : count > 9 ? 40 : 34
-        Text("\(count)")
+        let undiscovered = stories - found
+        let number = undiscovered > 0 ? undiscovered : count
+        let size: CGFloat = number > 20 ? 46 : number > 9 ? 40 : 34
+        HStack(spacing: 2) {
+            if undiscovered > 0 { Image(systemName: "questionmark").font(.system(size: 10, weight: .heavy)) }
+            Text("\(number)")
+        }
             .font(.system(size: 15, weight: .bold, design: .rounded)).monospacedDigit()
             .foregroundStyle(stories > 0 ? .white : Palette.piperno)
             .frame(width: size, height: size)
             .background(Circle().fill(stories > 0 ? Palette.azzurro : Color.white))
-            .overlay(Circle().stroke(found > 0 ? Palette.tufo : .white, lineWidth: found > 0 ? 4 : 3))
+            .overlay(Circle().stroke(.white, lineWidth: 3))
+            .overlay(alignment: .topTrailing) {
+                if found > 0 {
+                    BlobShape().fill(Palette.tufo)
+                        .overlay(BlobShape().stroke(.white, lineWidth: 2))
+                        .frame(width: 17, height: 15)
+                        .offset(x: 3, y: -3)
+                }
+            }
             .shadow(color: .black.opacity(0.22), radius: 4, y: 3)
             .frame(width: max(size, 44), height: max(size, 44))
             .contentShape(Circle())
-            .padding(.top, -max(size, 44) / 2)
             .scaleEffect(shown ? 1 : 0.4).opacity(shown ? 1 : 0)
             .onAppear { withAnimation(reduce ? nil : Motion.pop.delay(0.15)) { shown = true } }
     }
@@ -215,11 +232,9 @@ private struct TripPin: View {
             if !hasStory && !found {
                 Circle().fill(Palette.stone.opacity(0.55)).overlay(Circle().stroke(.white, lineWidth: 2)).frame(width: 11, height: 11)
             } else if found {
-                ZStack {
-                    Circle().fill(Palette.tufo).overlay(Circle().stroke(.white, lineWidth: 4))
-                    Circle().fill(ink).padding(latest ? 12 : 11)
-                }
-                .frame(width: latest ? 36 : 32, height: latest ? 36 : 32)
+                BlobShape().fill(Palette.tufo)
+                    .overlay(BlobShape().stroke(.white, lineWidth: 3))
+                    .frame(width: latest ? 39 : 34, height: latest ? 33 : 29)
             } else {
                 Image(systemName: "questionmark")
                     .font(.system(size: 13, weight: .heavy)).foregroundStyle(Palette.stone)
@@ -239,7 +254,6 @@ private struct TripPin: View {
                     .fixedSize().offset(y: 44)
             }
         }
-        .padding(.top, -22) // keeps the circle's centre on the coordinate
         .scaleEffect(shown ? 1 : 0.4).opacity(shown ? 1 : 0)
         .onAppear { withAnimation(reduce ? nil : Motion.pop.delay(0.2 + delay)) { shown = true } }
     }

@@ -26,33 +26,3 @@ struct SitePicker: View {
         .navigationBarTitleDisplayMode(.inline)
     }
 }
-
-/// The last recognitions with every distance, for tuning thresholds on site.
-struct RecognitionLogView: View {
-    @Environment(AppModel.self) private var model
-    @Environment(PlaceMatcher.self) private var matcher
-
-    var body: some View {
-        let t = model.strings
-        List {
-            Section { Text(t("profile.recognitionLogNote")).font(.system(size: 13)).foregroundStyle(Palette.stone) }
-            if matcher.log.isEmpty { Text(t("profile.logEmpty")).foregroundStyle(Palette.stone) }
-            ForEach(matcher.log) { entry in
-                VStack(alignment: .leading, spacing: 4) {
-                    HStack {
-                        Text(entry.outcome).font(.system(size: 15, weight: .semibold))
-                        Spacer()
-                        Text(entry.date.formatted(date: .omitted, time: .shortened)).font(.system(size: 12)).foregroundStyle(Palette.stone)
-                    }
-                    Text(entry.places.prefix(4).map { "\($0.id) \(String(format: "%.2f", $0.image))" }.joined(separator: " · "))
-                        .font(.system(size: 12, design: .monospaced)).foregroundStyle(Palette.stone)
-                    if !entry.topLabels.isEmpty {
-                        Text(entry.topLabels.joined(separator: " · ")).font(.system(size: 12)).foregroundStyle(Palette.stone)
-                    }
-                    Text(entry.usedAI ? "SigLIP (on-device AI)" : "Descriptor fallback").font(.system(size: 11, weight: .bold)).foregroundStyle(Palette.azzurro)
-                }
-            }
-        }
-        .navigationTitle(t("profile.recognitionLog"))
-    }
-}

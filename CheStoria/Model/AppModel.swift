@@ -43,6 +43,7 @@ final class AppModel {
     private(set) var catalog: Catalog
     private(set) var site: SiteContent
     var selectedTab: AppTab = .snap
+    var stickerCollectionID: String?
     /// The story loop currently playing full-screen.
     var activeFlow: FlowRequest?
     var showProfile = false
@@ -52,10 +53,14 @@ final class AppModel {
         hasOnboarded && selectedTab == .snap && activeFlow == nil && !showProfile && !isSigningOut
     }
     private(set) var hasOnboarded: Bool { didSet { defaults.set(hasOnboarded, forKey: Keys.onboarded) } }
-    private(set) var state: TripState { didSet { save() } }
+    private(set) var state: TripState {
+        get { progress(in: site) }
+        set { save(newValue, for: site.id) }
+    }
 
     private let defaults: UserDefaults
     private let loader: (String) -> Catalog?
+    private var trips: [String: TripState]
     private enum Keys {
         static let onboarded = "chestoria.onboarded"
         static let recallRight = "chestoria.recall.right"
@@ -71,7 +76,7 @@ final class AppModel {
         let site = defaults.string(forKey: Settings.site).flatMap(catalog.site(id:)) ?? catalog.defaultSite
         self.site = site
         self.hasOnboarded = defaults.bool(forKey: Keys.onboarded)
-        self.state = Self.loadState(for: site, defaults: defaults)
+        self.trips = Dictionary(uniqueKeysWithValues: catalog.sites.map { ($0.id, Self.loadState(for: $0, defaults: defaults)) })
     }
 
     private static func loadState(for site: SiteContent, defaults: UserDefaults) -> TripState {
@@ -88,8 +93,7 @@ final class AppModel {
     var visitedPlaces: [Place] { state.visited.compactMap(site.place(id:)) }
     var visitedBySite: [String: Set<String>] {
         Dictionary(uniqueKeysWithValues: catalog.sites.map { entry in
-            let trip = entry.id == site.id ? state : Self.loadState(for: entry, defaults: defaults)
-            return (entry.id, Set(trip.visited))
+            (entry.id, Set(progress(in: entry).visited))
         })
     }
     var collectedStickers: [(sticker: Sticker, record: CollectedSticker)] {
@@ -97,10 +101,13 @@ final class AppModel {
     }
 
     func collectedStickers(in collection: SiteContent) -> [(sticker: Sticker, record: CollectedSticker)] {
-        let trip = collection.id == site.id ? state : Self.loadState(for: collection, defaults: defaults)
-        return trip.collected.sorted { $0.date > $1.date }.compactMap { record in
+        progress(in: collection).collected.sorted { $0.date > $1.date }.compactMap { record in
             collection.sticker(id: record.stickerID).map { ($0, record) }
         }
+    }
+
+    private func progress(in entry: SiteContent) -> TripState {
+        trips[entry.id] ?? TripState()
     }
 
     func completeOnboarding() { hasOnboarded = true }
@@ -135,7 +142,7 @@ final class AppModel {
     func switchSite(to id: String) {
         guard let s = catalog.site(id: id), s.id != site.id else { return }
         site = s
-        state = Self.loadState(for: s, defaults: defaults)
+        stickerCollectionID = nil
         defaults.set(id, forKey: Settings.site)
     }
 
@@ -145,16 +152,20 @@ final class AppModel {
     }
 
     func finishStory(at place: Place, goTo tab: AppTab, photo: UIImage? = nil) {
-        if state.startedAt == nil { state.startedAt = .now }
-        if !state.visited.contains(place.id) { state.visited.append(place.id) }
+        guard let owner = catalog.site(containing: place.id) else { return }
+        var trip = progress(in: owner)
+        if trip.startedAt == nil { trip.startedAt = .now }
+        if !trip.visited.contains(place.id) { trip.visited.append(place.id) }
         if let sticker = place.story?.sticker {
-            let file = photo.flatMap { StickerPhotos.save($0, id: "\(site.id)-\(sticker.id)") }
-            if let i = state.collected.firstIndex(where: { $0.stickerID == sticker.id }) {
-                if let file { state.collected[i].photoFile = file }
+            let file = photo.flatMap { StickerPhotos.save($0, id: "\(owner.id)-\(sticker.id)") }
+            if let i = trip.collected.firstIndex(where: { $0.stickerID == sticker.id }) {
+                if let file { trip.collected[i].photoFile = file }
             } else {
-                state.collected.append(CollectedSticker(stickerID: sticker.id, placeID: place.id, date: .now, photoFile: file))
+                trip.collected.append(CollectedSticker(stickerID: sticker.id, placeID: place.id, date: .now, photoFile: file))
             }
         }
+        save(trip, for: owner.id)
+        if tab == .stickers { stickerCollectionID = owner.id }
         activeFlow = nil
         selectedTab = tab
     }
@@ -170,7 +181,7 @@ final class AppModel {
         defaults.removeObject(forKey: Keys.recallRight)
         defaults.removeObject(forKey: Keys.recallAnswered)
         activeFlow = nil
-        state = TripState()
+        trips.removeAll()
         RetiredRecall.clearNotifications()
         UserDefaults(suiteName: "group.app.chestoria")?.removeObject(forKey: "recall.latest")
         LiveActivityController.shared.end()
@@ -187,8 +198,8 @@ final class AppModel {
     }
 
     /// The person's own photo for a sticker, if they took one.
-    func stickerPhoto(_ sticker: Sticker) -> UIImage? {
-        state.collected.first { $0.stickerID == sticker.id }?.photoFile.flatMap(StickerPhotos.load)
+    func stickerPhoto(_ sticker: Sticker, in collection: SiteContent) -> UIImage? {
+        progress(in: collection).collected.first { $0.stickerID == sticker.id }?.photoFile.flatMap(StickerPhotos.load)
     }
 
     func returnToWelcome() {
@@ -200,8 +211,9 @@ final class AppModel {
         isSigningOut = false
     }
 
-    private func save() {
-        if let data = try? JSONEncoder().encode(state) { defaults.set(data, forKey: Keys.trip(site.id)) }
+    private func save(_ trip: TripState, for siteID: String) {
+        trips[siteID] = trip
+        if let data = try? JSONEncoder().encode(trip) { defaults.set(data, forKey: Keys.trip(siteID)) }
     }
 }
 

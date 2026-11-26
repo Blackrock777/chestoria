@@ -11,9 +11,10 @@ struct PlaceSheet: View {
 
     var body: some View {
         let t = model.strings
-        let p = model.site.place(id: place.id) ?? place
+        let owner = model.catalog.site(containing: place.id) ?? model.site
+        let p = owner.place(id: place.id) ?? place
         let story = p.story
-        let found = model.visitedPlaces.contains { $0.id == p.id }
+        let found = model.visitedBySite[owner.id]?.contains(p.id) == true
         ScrollView {
             VStack(alignment: .leading, spacing: 14) {
                 if story != nil {
@@ -23,7 +24,7 @@ struct PlaceSheet: View {
                 Text(p.street).font(.system(size: 14)).foregroundStyle(Palette.stone).padding(.top, -10)
                 if let story, found {
                     HStack(alignment: .top, spacing: 14) {
-                        StickerArt(sticker: story.sticker, border: 5, photo: model.stickerPhoto(story.sticker)).frame(width: 84, height: 72)
+                        StickerArt(sticker: story.sticker, border: 5, photo: model.stickerPhoto(story.sticker, in: owner)).frame(width: 84, height: 72)
                         VStack(alignment: .leading, spacing: 4) {
                             Text(story.answerTitle).font(Typeface.display(20)).foregroundStyle(Palette.piperno)
                             Text(story.body).font(.system(size: 15)).foregroundStyle(Palette.piperno)

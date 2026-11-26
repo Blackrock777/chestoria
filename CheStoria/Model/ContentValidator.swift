@@ -10,6 +10,10 @@ enum ContentValidator {
         if catalog.site(id: catalog.index.defaultSite) == nil { out.append("defaultSite '\(catalog.index.defaultSite)' is not in the catalog") }
         let siteIDs = catalog.sites.map(\.id)
         if Set(siteIDs).count != siteIDs.count { out.append("duplicate site ids") }
+        let placeIDs = catalog.places.map(\.id)
+        if Set(placeIDs).count != placeIDs.count { out.append("place ids must be unique across the catalog") }
+        let stickerIDs = catalog.sites.flatMap(\.stickers).map(\.id)
+        if Set(stickerIDs).count != stickerIDs.count { out.append("sticker ids must be unique across the catalog") }
         for site in catalog.sites { out += problems(in: site, checkAssets: checkAssets).map { "\(site.id): \($0)" } }
         return out
     }

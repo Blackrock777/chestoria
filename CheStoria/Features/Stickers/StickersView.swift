@@ -3,14 +3,13 @@ import SwiftUI
 /// Your sticker book. Flip a card to see a short fact about the place.
 struct StickersView: View {
     @Environment(AppModel.self) private var model
-    @State private var collectionID: String?
     @State private var flipped: Set<String> = []
     @State private var dealt = false
     @State private var postcardSite: SiteContent?
 
     var body: some View {
         let t = model.strings
-        let collection = collectionID.flatMap(model.catalog.site(id:)) ?? model.site
+        let collection = model.stickerCollectionID.flatMap(model.catalog.site(id:)) ?? model.site
         let stickers = model.collectedStickers(in: collection)
         let count = stickers.count
         let quantity = count.formatted(.number.locale(Locale(identifier: model.language)))
@@ -18,14 +17,6 @@ struct StickersView: View {
         NavigationStack {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
-                if model.catalog.sites.count > 1 {
-                    Picker(t("profile.site"), selection: Binding(get: { collection.id }, set: { collectionID = $0 })) {
-                        ForEach(model.catalog.sites) { site in
-                            Text(site.city).tag(site.id)
-                        }
-                    }
-                    .pickerStyle(.segmented)
-                }
                 HStack {
                     Text(t(count == 1 ? "stickers.countOne" : "stickers.countMany", quantity))
                         .font(.subheadline.weight(.semibold)).foregroundStyle(Palette.piperno)
@@ -38,16 +29,21 @@ struct StickersView: View {
 
                 LazyVGrid(columns: [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)], spacing: 12) {
                     ForEach(Array(stickers.enumerated()), id: \.element.sticker.id) { i, item in
-                        FlipCard(sticker: item.sticker, photo: item.record.photoFile.flatMap(StickerPhotos.load),
-                                 place: collection.place(id: item.record.placeID)?.name ?? "",
-                                 date: item.record.date, isNew: i == 0, flipped: flipped.contains(item.sticker.id),
-                                 newLabel: t("stickers.new"), backTitle: t("stickers.fact"))
-                            .onTapGesture {
-                                Haptics.tap()
-                                withAnimation(Motion.glide) { flipped.formSymmetricDifference([item.sticker.id]) }
-                            }
-                            .opacity(dealt ? 1 : 0).offset(y: dealt ? 0 : 30).rotationEffect(.degrees(dealt ? 0 : (i % 2 == 0 ? -3 : 3)))
-                            .animation(Motion.pop.delay(0.15 + Double(i) * 0.13), value: dealt)
+                        let place = collection.place(id: item.record.placeID)?.name ?? ""
+                        let showingBack = flipped.contains(item.sticker.id)
+                        Button {
+                            Haptics.tap()
+                            withAnimation(Motion.glide) { flipped.formSymmetricDifference([item.sticker.id]) }
+                        } label: {
+                            FlipCard(sticker: item.sticker, photo: item.record.photoFile.flatMap(StickerPhotos.load),
+                                     place: place, date: item.record.date, isNew: i == 0, flipped: showingBack,
+                                     newLabel: t("stickers.new"), backTitle: t("stickers.fact"))
+                                .contentShape(.interaction, RoundedRectangle(cornerRadius: 24))
+                        }
+                        .buttonStyle(.plain)
+                        .accessibilityLabel(showingBack ? item.sticker.back : "\(item.sticker.title), \(place)")
+                        .opacity(dealt ? 1 : 0).offset(y: dealt ? 0 : 30).rotationEffect(.degrees(dealt ? 0 : (i % 2 == 0 ? -3 : 3)))
+                        .animation(Motion.pop.delay(0.15 + Double(i) * 0.13), value: dealt)
                     }
                 }
 
@@ -75,12 +71,24 @@ struct StickersView: View {
             }
             .padding(.horizontal, 16).padding(.bottom, 24)
         }
+        .safeAreaInset(edge: .top, spacing: 0) {
+            if model.catalog.sites.count > 1 {
+                Picker(t("profile.site"), selection: Binding(get: { collection.id }, set: { model.stickerCollectionID = $0 })) {
+                    ForEach(model.catalog.sites) { site in
+                        Text(site.city).tag(site.id)
+                    }
+                }
+                .pickerStyle(.segmented)
+                .padding(.horizontal, 16)
+                .padding(.bottom, 12)
+                .background(Palette.calce)
+            }
+        }
         .background(Palette.calce)
         .navigationTitle(t("stickers.title"))
         .toolbar { ToolbarItem(placement: .topBarTrailing) { ProfileButton(style: .toolbar) } }
         }
         .onAppear { dealt = false; DispatchQueue.main.async { dealt = true } }
-        .onChange(of: model.site.id) { collectionID = nil }
         .onChange(of: collection.id) { flipped.removeAll() }
         .sheet(item: $postcardSite) { PostcardView(site: $0) }
         #if DEBUG
@@ -106,10 +114,7 @@ private struct FlipCard: View {
         }
         .frame(height: 236)
         .rotation3DEffect(.degrees(flipped ? 180 : 0), axis: (0, 1, 0), perspective: 0.6)
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel(flipped ? sticker.back : "\(sticker.title), \(place)")
-        .accessibilityHint("Double-tap to flip")
-        .accessibilityAddTraits(.isButton)
+        .clipped()
     }
 
     private var front: some View {

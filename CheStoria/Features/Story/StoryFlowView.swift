@@ -20,8 +20,8 @@ struct StoryFlowView: View {
 
     enum Step: Int { case recognizing, choose, notAPlace, question, reveal, lookCloser, sticker }
 
-    /// Re-read the place from the current site, so a language change mid-flow shows translated text.
-    private var current: Place? { place.flatMap { model.site.place(id: $0.id) } ?? place }
+    /// Re-read the place from the catalog for the current language.
+    private var current: Place? { place.flatMap { model.catalog.place(id: $0.id) } ?? place }
 
     var body: some View {
         ZStack {
@@ -186,23 +186,19 @@ struct RecognizingView: View {
         let t = model.strings
         withAnimation(.easeOut(duration: 0.5)) { flash = false }
         // Recognition runs alongside the animation, so it never feels like waiting.
-        let site = model.site
         let recognition = Task { () -> RecognitionResult in
             guard let photo = request.photo else { return .confident(request.suggested) }
-            return await matcher.identify(photo, in: site, near: location.lastLocation, catalog: model.catalog)
+            return await matcher.identify(photo, near: location.lastLocation, catalog: model.catalog)
         }
         guard await pause(250) else { recognition.cancel(); return }
         withAnimation(reduce ? .default : .spring(response: 0.7, dampingFraction: 0.72)) { locked = true }
-        guard await pause(450) else { return }
+        guard await pause(450) else { recognition.cancel(); return }
         withAnimation(.easeInOut(duration: 0.9).repeatCount(3, autoreverses: true)) { scan = true }
         let result = await recognition.value
         // Show what the AI actually saw in the photo; for a known place, add its clues.
-        let vocab = model.catalog.vocabulary
-        let seen = (matcher.log.first?.topLabels ?? []).compactMap { id in
-            vocab?.labels.first { $0.id == id }.map { vocab!.name($0, language: model.language) }
-        }
+        let seen = request.photo == nil ? [] : matcher.latestLabels
         if case .confident(let p) = result {
-            clues = request.photo == nil ? (model.site.place(id: p.id)?.clues ?? p.clues) : Array((seen.prefix(2) + [p.name]).prefix(3))
+            clues = request.photo == nil ? (model.catalog.place(id: p.id)?.clues ?? p.clues) : Array((seen.prefix(2) + [p.name]).prefix(3))
         } else {
             clues = Array(seen.prefix(3))
         }
@@ -242,7 +238,7 @@ struct ChoosePlaceView: View {
                 if let label { Text(t("ai.looksLike", label)).font(Typeface.hand(22)).foregroundStyle(.white) }
                 Text(t("scan.unsureTitle")).font(Typeface.display(30)).foregroundStyle(.white)
                 Text(t("scan.unsureBody")).font(.system(size: 16)).foregroundStyle(.white.opacity(0.8))
-                ForEach(Array(places.compactMap { model.site.place(id: $0.id) }.enumerated()), id: \.element.id) { i, p in
+                ForEach(Array(places.compactMap { model.catalog.place(id: $0.id) }.enumerated()), id: \.element.id) { i, p in
                     Button { Haptics.tap(); onPick(p) } label: {
                         HStack(spacing: 14) {
                             CoverImage(p.cameraImage, anchor: p.cameraAnchor).frame(width: 64, height: 64).clipShape(.rect(cornerRadius: 14))
@@ -304,7 +300,7 @@ struct NotAPlaceView: View {
                     Text(t("ai.nearby")).font(.system(size: 12, weight: .bold)).textCase(.uppercase).kerning(1).foregroundStyle(.white.opacity(0.7)).padding(.top, 8)
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 10) {
-                            ForEach(nearby.compactMap { model.site.place(id: $0.id) }) { p in
+                            ForEach(nearby.compactMap { model.catalog.place(id: $0.id) }) { p in
                                 Button { Haptics.tap(); onPick(p) } label: {
                                     VStack(alignment: .leading, spacing: 6) {
                                         CoverImage(p.cameraImage, anchor: p.cameraAnchor).frame(width: 130, height: 90).clipShape(.rect(cornerRadius: 14))
@@ -549,7 +545,7 @@ struct RevealView: View {
         let t = model.strings
         return HStack(spacing: 10) {
             // Some sites only allow their authorised audio guides (Pompeii, visitor rules art. 6).
-            if model.site.allowsReadAloud {
+            if model.catalog.site(containing: place.id)?.allowsReadAloud == true {
                 ActionTile(title: narrator.isSpeaking ? t("reveal.stopReading") : t("reveal.listen"),
                            icon: narrator.isSpeaking ? "stop.fill" : "speaker.wave.2.fill", tint: Palette.azzurro) {
                     do { try narrator.toggle(spoken, language: model.language) }
